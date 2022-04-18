@@ -1,0 +1,13 @@
+.app-button {
+  padding: 10px 30px;
+  margin-top: 1rem;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  transition: all 0.4s;
+}
+
+.app-button:hover {
+  background: orange;
+}

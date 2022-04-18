@@ -1,0 +1,58 @@
+.userreq {
+    width: 100%;
+    height: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+  }
+  a:hover {
+    cursor: pointer;
+  }
+  
+  .userreq .center {
+    flex: 20% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .userreq .center .links {
+    max-height: 30px;
+  }
+  
+  .userreq .center #hidden {
+    display: flex;
+  }
+  
+  .userreq .center .links a {
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    background-color: bisque;
+    margin-left: 50px;
+  }
+  @media only screen and (max-width: 850px) {
+    .userreq .center .links a {
+      font-size: 15px;
+    }
+  }
+  @media only screen and (max-width: 650px) {
+    .userreq .center .links {
+      display: none;
+    }
+    .userreq .center #hidden {
+      position: absolute;
+      left: 0px;
+      top: 60px;
+      max-height: 230px;
+      height: 150px;
+      width: 80%;
+      display: flex;
+  
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .userreq .center #hidden a {
+      font-size: 20px;
+    }
+  }
