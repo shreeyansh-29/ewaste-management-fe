@@ -70,7 +70,7 @@ export default class ForgotPassword extends Component {
     const {emailIdErr} = this.state.error;
     return (
       <div className="ForPassword">
-        <div className="Form-body" style={{marginLeft: "30px"}}>
+        <div className="Form-body">
           <div className="psswd-heading">
             <h2
               style={{
@@ -85,18 +85,18 @@ export default class ForgotPassword extends Component {
             </h2>
           </div>
           <div className="form-cont">
-            <div className="inputGroup1">
+            <div className="inputGroup2">
               <InputField
                 value={email}
                 type="email"
                 placeholder="Enter Registered Email"
                 onChange={this.handleChange("email")}
               />
-              <div className="Error">{emailIdErr}</div>
-              <div style={{color: "green", marginLeft: "4%"}}>
-                {" "}
-                {this.state.msg === "" ? "" : this.state.msg}
-              </div>
+            </div>
+            <div className="Error">{emailIdErr}</div>
+            <div style={{color: "green", marginLeft: "5%"}}>
+              {" "}
+              {this.state.msg === "" ? "" : this.state.msg}
             </div>
             <div className="row">
               <div className="container">

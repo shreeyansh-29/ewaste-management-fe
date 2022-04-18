@@ -5,21 +5,11 @@
   font-family: "Poppins", sans-serif;
 }
 
-@media screen and (max-width : "768px") {
-  .signin-button{
-    padding: .5rem 1rem;
-    text-align: center;
-  }
-}
 .signIn {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 88vh;
-}
-.form-body {
-  background: white;
-  font-family: "Fira Sans", sans-serif;
 }
 .heading {
   background-color: rgb(30, 28, 54);
@@ -50,14 +40,14 @@
 .signin-button:hover {
   background-color: rgb(39, 35, 75);
 }
-.formDiv {
+/* .formDiv {
   flex: 1;
   max-width: 100px;
   max-height: 100px;
   background-color: #eff0f1;
   border-radius: 10px;
   border: 1px solid #999;
-}
+} */
 .inputGroup {
   flex: 1;
   display: flex;

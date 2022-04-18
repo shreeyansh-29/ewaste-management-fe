@@ -159,7 +159,7 @@ export default class Signin extends Component {
           </div>
 
           <div className="form-cont">
-            <div className="inputGroup" >
+            <div className="inputGroup">
               <Inputfields
                 value={this.state.email}
                 placeholder="Email address"
