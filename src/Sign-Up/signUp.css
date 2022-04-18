@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+.signUp {
+  height: 170vh;
+}
+.signup-heading {
+  background-color: rgb(30, 28, 54);
+  border-radius: 10px 10px 0px 0px;
+}
+.signup-button {
+  border-radius: 17px;
+  padding: 10px 48px;
+  margin-left: 2.5rem;
+  border: none;
+  background-color: rgb(30, 28, 54);
+  color: white;
+  font-weight: bold;
+  transition: all 0.4s;
+}
+.signup-button:hover {
+  background-color: rgb(39, 35, 75);
+}
+.backbutton{
+  border-radius: 17px;
+  padding: 10px 50px;
+  margin-left: 10.2rem;
+  border: none;
+  background-color: rgb(30, 28, 54);
+  color: white;
+  font-weight: bold;
+  transition: all 0.4s;
+}
+.backbutton:hover{
+  background-color: rgb(39, 35, 75);
+} 
+
+.Form-bodY {
+  margin-top: 20px;
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  margin-left: 23%;
+  width: 55%;
+
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid white;
+ 
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.signup-form-cont {
+  padding: 30px;
+}
+.inputGroup 
+ {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+}
+label {
+  margin-left:3.5%;
+  color: black;
+  font-size: 18px;
+  font-weight: 200;
+
+}
+.inputWithButton {
+  position: relative;
+  width : 300px;
+}
+
+.inputWithButton button {
+  position: absolute;
+  right: 7px;
+  top : 4px;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="pincode"],
+.Select .select .dropdown {
+  font-size: 18px;
+  height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #666;
+  border: 1px solid #d6d6d6;
+  border-radius: 4px;
+  background: white;
+  outline: none;
+}
+.form-body {
+  background: white;
+  padding: 5px 10px;
+}
+
+@media only screen and (max-width: 100px) {
+  .row {
+    flex-direction: both;
+  }
+}
+.cont {
+  height: 60px;
+  position: relative;
+}
+
+.formErrors {
+  color: red;
+  margin-bottom: 10px;
+  margin-left: 3.5%;
+  text-align: justify;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "poppins", sans-serif;
+}
+
+.app-button {
+  padding: 10px 70px;
+  place-content: center;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  transition: all 0.4s;
+  align-items: center;
+}
+.vertical-center {
+  margin: 0px;
+  padding-bottom: 30px;
+  position: absolute;
+  top: 55%;
+  left: 51%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.btn {
+  background-color: black;
+  border: 1px solid #0f0e0e;
+  color: white;
+}
+.btn:hover {
+  background: orange;
+}
+.Req {
+  color: green;
+}
+
+@media screen and (max-width:768px) {
+  .signup-button{
+    margin-left: 1.8rem;
+    padding: 10px 30px;
+  }
+  .backbutton{
+    margin-left: 10.5rem;
+    padding: 10px 40px;
+  }
+  .Form-bodY{
+    width: 90%;
+    margin-left: 5.2%;
+  }
+  .inputGroup{
+    padding: 10px 1px;
+  }
+  .inputGroups{
+    padding: 10px 1px;
+    width:100%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .inputGroup{
+   padding: 10px 20px;
+  }
+  #role{
+  padding-left:20px;
+  margin-left: 10px;
+  }
+  .backbutton{
+    margin-left: 20px;
+  }
+}

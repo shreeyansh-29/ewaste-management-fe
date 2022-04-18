@@ -1,0 +1,21 @@
+
+.dashboard {
+  grid-template-columns: 1fr;
+  padding: 3%;
+}
+.group{
+  display: flex;
+  grid-template-columns: 1fr, 1fr;
+  padding: 3%;
+  
+}
+.grids{
+  display: flex;
+  grid-template-columns: 1fr, 1fr,1fr;
+  padding: 3%;
+
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+@media screen and (max-width : "768px") {
+  .signin-button{
+    padding: .5rem 1rem;
+    text-align: center;
+  }
+}
+.signIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88vh;
+}
+.form-body {
+  background: white;
+  font-family: "Fira Sans", sans-serif;
+}
+.heading {
+  background-color: rgb(30, 28, 54);
+  border-radius: 10px 10px 0px 0px;
+}
+.form-cont {
+  padding: 15px 10px;
+}
+.Form-Body {
+  resize: none;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 50vh;
+  /* width:100%; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.signin-button {
+  border-radius: 17px;
+  padding: .5rem 5rem;
+  margin-left: 2.9rem;
+  /* margin-top:20px; */
+  border: none;
+  background-color: rgb(30, 28, 54);
+  color: white;
+  font-weight: bold;
+  transition: all 0.4s;
+}
+.signin-button:hover {
+  background-color: rgb(39, 35, 75);
+}
+.formDiv {
+  flex: 1;
+  max-width: 100px;
+  max-height: 100px;
+  background-color: #eff0f1;
+  border-radius: 10px;
+  border: 1px solid #999;
+}
+.inputGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 7px;
+}
+.form-control {
+  border-radius: "30px";
+}
+label {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.error {
+  margin-top: 5px;
+  color: red;
+  margin-bottom: 10px;
+  margin-left: 7px;
+  text-align: left;
+  font-weight: normal;
+  font-size: "12px";
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="pincode"] .select,
+.dropDown {
+  font-size: 18px;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #666;
+  border: 1px solid #d6d6d6;
+  border-radius: 4px;
+  background: white;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+.forgot-psswd {
+  text-align: right;
+  margin-top: -10%;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+}
+.sign {
+  text-align: left;
+  margin-top: -7%;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+}
+.cont {
+  height: 45px;
+  position: relative;
+  margin-top: 40px;
+}
+.Vertical-center {
+  margin-left: 23%;
+  padding-top: 5px;
+}
+label,
+span {
+  font-family: "Poppins", sans-serif;
+}
+.app-button1 {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(30, 28, 54);
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.app-button1:hover {
+  background: rgb(39, 35, 75);
+}
+.btn {
+  background-color: black;
+  border: 1px solid #0f0e0e;
+  color: white;
+}
+.Req {
+  color: rgb(0, 128, 111);
+}

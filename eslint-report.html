@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <title>ESLint Report</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style id="styles"></style>
+  </head>
+  <body>
+    <div class="reporter">
+      <div class="header">
+        <span class="header-title">ESLint Report</span>
+        <span class="header-time">Generated on Sat Apr 09 2022 10:28:55 GMT+0530 (India Standard Time)</span>
+      </div>
+      <div class="content">
+        <div class="summary">
+          <div class="block-title">Summary</div>
+          <div class="summary-content">
+            <div class="summary-item">
+              <span>Clear Files:</span>
+              <span>0</span>
+            </div>
+            <div class="summary-item">
+              <span>Total Files:</span>
+              <span>0</span>
+            </div>
+            <div class="summary-item">
+              <span>Total Errors:</span>
+              <span>0 (fixable: 0)</span>
+            </div>
+            <div class="summary-item">
+              <span>Total Warnings:</span>
+              <span>0 (fixable: 0)</span>
+            </div>
+            <div class="summary-item">
+              <span id="total-problem-count">Total Problems:</span>
+              <span>0 (fixable: 0)</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="problems">
+          <div>
+            <div class="block-title problem-title">Problem Details</div>
+            <div class="copy-button" onclick="onCopyRulesClick()">Copy Rules</div>
+          </div>
+          <table class="problem-table">
+            <thead>
+              <tr>
+                <th>Rule</th>
+                <th>Type</th>
+                <th>Count</th>
+                <th>Fixable</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="files">
+          <div class="block-title">File Details</div>
+          <table class="file-table">
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    /* styles */
+    var styles = `body {
+  overflow: auto;
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+a {
+  color: #1890ff;
+  text-decoration: none;
+}
+
+table, th, td {
+  padding: 6px 15px;
+}
+
+table, tr {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #fbfbfb;
+}
+
+.header {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fbfbfb;
+  border-bottom: 2px solid #f4f4f4;
+  color: #fff;
+  background: #262626;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.header-time {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 1rem;
+  color: #bfbfbf;
+}
+
+.content {
+  padding: 0 40px 20px 40px;
+}
+
+.block-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.summary-item {
+  margin-top: 10px;
+}
+
+.summary-item span:first-child {
+  display: inline-block;
+  width: 150px;
+}
+
+#problems {
+  margin-top: 30px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#problems.visible {
+  opacity: 1;
+}
+
+.problem-title {
+  display: inline-block;
+}
+
+.copy-button {
+  display: inline-block;
+  margin-left: 15px;
+  color: #1890ff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.problem-table {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.problem-detail-row .error {
+  color: #b94a48;
+  font-weight: bolder;
+}
+
+.problem-detail-row .warning {
+  color: #f0ad4e;
+  font-weight: bolder;
+}
+
+.table-align-center-col {
+  text-align: center;
+}
+
+#files {
+  margin-top: 30px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#files.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.file-table {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.check-icon {
+  visibility: hidden;
+}
+
+.fixable-check {
+  visibility: visible;
+  color: green;
+  width: 1rem;
+  height: 1rem;
+}
+
+.file-detail-summary {
+  color: #b94a48;
+  background: #f2dede;
+}
+
+.file-detail-summary-file-path {
+  text-align: left;
+}
+
+.file-detail-summary-problem-count {
+  text-align: right;
+}
+
+.file-detail-message-row .error {
+  color: #b94a48;
+  font-weight: bolder;
+}
+
+.file-detail-message-row .warning {
+  color: #f0ad4e;
+  font-weight: bolder;
+}
+
+.file-detail-content {
+}
+
+.file-detail-messages {
+  font-size: 0.9rem;
+  padding: 10px 0px;
+}
+
+.file-detail-message-row + .file-detail-message-row {
+  margin-top: 5px;
+}
+
+.file-detail-message-row span {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.file-detail-message-row span:nth-child(1) {
+  color: #9da0a4;
+  width: 8%;
+}
+
+.file-detail-message-row span:nth-child(2) {
+  width: 50%;
+}
+
+.file-detail-message-row span:nth-child(3) {
+  width: 30%;
+}
+
+.file-detail-message-row span:nth-child(4) {
+  width: 10%;
+}
+`;
+    var node = document.getElementById('styles');
+    node.innerHTML = styles;
+
+    /* event handlers */
+    function copyToClip(content) {
+        var inputNode = document.createElement("input");
+        inputNode.setAttribute("value", content);
+        document.body.appendChild(inputNode);
+        inputNode.select();
+        document.execCommand("copy");
+        document.body.removeChild(inputNode);
+        alert("Copied!");
+    }
+
+    function onCopyRulesClick() {
+      var ruleNodes = document.getElementsByClassName('problem-rule-id');
+      var rules = {};
+      for (var i = 0; i < ruleNodes.length; i++) {
+        rules[ruleNodes[i].innerHTML] = 0;
+      }
+      copyToClip(JSON.stringify(rules));
+    }
+
+    /* init page */
+    function init(){
+      var totalCount = '0';
+      if (Number(totalCount)) {
+        var problemsNode = document.getElementById('problems');
+        var filesNode = document.getElementById('files');
+        problemsNode.className = "visible"
+        filesNode.className = "visible"
+      }
+    };
+
+    init();
+  </script>
+</html>
