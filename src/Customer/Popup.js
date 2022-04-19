@@ -70,7 +70,7 @@ function Popup(props) {
             </div>
             <div className="popupbody">
               <label>Name</label>
-              <div className="inputGroup1">
+              <div className="inputGroup3">
                 <input
                   name="lastName"
                   style={{
@@ -83,9 +83,9 @@ function Popup(props) {
                   value={data}
                 />
               </div>
-              <div className="inputGroup1">
-                <label>Address</label>
 
+              <label>Address</label>
+              <div className="inputGroup3">
                 <input
                   name="address"
                   disabled
@@ -98,8 +98,9 @@ function Popup(props) {
                   value={add}
                 />
               </div>
-              <div className="inputGroup1">
-                <label>Contact Number</label>
+
+              <label>Contact Number</label>
+              <div className="inputGroup3">
                 <input
                   name="mobileNo"
                   style={{
