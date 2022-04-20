@@ -104,7 +104,7 @@ export default function CollectorRequests() {
     e.preventDefault();
     orderid = datas.orderId;
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     try {
       const response = await fetch(
         `http://localhost:8083/collector/request/pending/accept?order=${orderid}`,
@@ -114,7 +114,7 @@ export default function CollectorRequests() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         }
       );
@@ -133,7 +133,7 @@ export default function CollectorRequests() {
 
   useEffect(() => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -144,7 +144,7 @@ export default function CollectorRequests() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );

@@ -11,7 +11,7 @@ function Popup(props) {
   useEffect(() => {
     (async function () {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       if (props.content) {
         url = `http://localhost:8083/collector/request/pending/customerProfile?id=${props.content}`;
       } else if (props.contents) {
@@ -28,7 +28,7 @@ function Popup(props) {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         });
         const res = await response.json();
@@ -83,9 +83,9 @@ function Popup(props) {
                   value={data}
                 />
               </div>
-
-              <label>Address</label>
               <div className="inputGroup3">
+                <label>Address</label>
+
                 <input
                   name="address"
                   disabled
@@ -98,9 +98,8 @@ function Popup(props) {
                   value={add}
                 />
               </div>
-
-              <label>Contact Number</label>
               <div className="inputGroup3">
+                <label>Contact Number</label>
                 <input
                   name="mobileNo"
                   style={{

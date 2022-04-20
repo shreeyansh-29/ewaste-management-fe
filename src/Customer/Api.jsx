@@ -1,6 +1,6 @@
 export async function apicall(value) {
   const tokens = localStorage.getItem("token");
-  const email = document.cookie.split("=");
+  const email = localStorage.getItem("email");
   let url;
   if (value === "summary") {
     url = "http://localhost:8083/collector/request/summary";
@@ -44,7 +44,7 @@ export async function apicall(value) {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + tokens,
-      EMAIL: email[1],
+      EMAIL: email,
     },
   });
   console.log(response);

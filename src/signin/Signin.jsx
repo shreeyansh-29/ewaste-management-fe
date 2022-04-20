@@ -1,14 +1,15 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Inputfields from "../Components/InputField";
 import "../Components/signin.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import jwt from "jwt-decode";
-import {notificationcount} from "./notificationcount";
-import {profile} from "./profile";
+import { notificationcount } from "./notificationcount";
+import { profile } from "./profile";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
+import GoogleSignin from "./GoogleSignin";
 export default class Signin extends Component {
   state = {
     text: "",
@@ -18,19 +19,19 @@ export default class Signin extends Component {
     msg: "",
   };
   handleChange = (key) => (value) => {
-    this.setState({[key]: value});
+    this.setState({ [key]: value });
   };
   togglePassword = () => {
     if (this.state.passwordType === "password") {
-      this.setState({passwordType: "text"});
+      this.setState({ passwordType: "text" });
       return;
     }
-    this.setState({passwordType: "password"});
+    this.setState({ passwordType: "password" });
   };
   validateForm() {
     let error = {};
     let formIsValid = true;
-    const {email, text} = this.state;
+    const { email, text } = this.state;
 
     if (!email) {
       formIsValid = false;
@@ -47,7 +48,7 @@ export default class Signin extends Component {
       error["passwordErr"] = str1;
     }
 
-    this.setState({error: error});
+    this.setState({ error: error });
     return formIsValid;
   }
   handleClick = async (event) => {
@@ -68,17 +69,19 @@ export default class Signin extends Component {
         const res = await response.json();
 
         if (res.status === "Fail") {
-          toast.error("Wrong Email ID", {position: toast.POSITION.TOP_RIGHT});
+          toast.error("Wrong Email ID", { position: toast.POSITION.TOP_RIGHT });
         }
         if (res.status === "fail") {
-          toast.error("Wrong Password", {position: toast.POSITION.TOP_RIGHT});
+          toast.error("Wrong Password", { position: toast.POSITION.TOP_RIGHT });
         }
+        console.log(res);
         localStorage.setItem("token", res.data.token);
         const tokens = localStorage.getItem("token");
         var token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
         localStorage.setItem("Password", this.state.text);
-        document.cookie = "email=" + this.state.email;
+        localStorage.setItem("email", this.state.email);
+        // document.cookie = "email=" + this.state.email;
         if (localStorage.getItem("Roles") === "CUSTOMER") {
           try {
             let val = await profile("customer");
@@ -140,7 +143,7 @@ export default class Signin extends Component {
   };
 
   render() {
-    const {emailIdErr, passwordErr} = this.state.error;
+    const { emailIdErr, passwordErr } = this.state.error;
     return (
       <div className="signIn">
         <div className="Form-Body">
@@ -216,7 +219,7 @@ export default class Signin extends Component {
               </Link>
             </div>
             <div className="cont">
-              <div className="error" style={{marginLeft: "12px"}}>
+              <div className="error" style={{ marginLeft: "12px" }}>
                 {this.state.msg !== "" ? this.state.msg : ""}
               </div>
               <button
@@ -227,6 +230,7 @@ export default class Signin extends Component {
                 SIGN IN
               </button>
             </div>
+            <GoogleSignin />
 
             <div
               style={{

@@ -83,7 +83,7 @@ export default function DropOff() {
       });
     } else {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       try {
         const response = await fetch(
           `http://localhost:8083/customer/request/dropOff/viewCollectors?category=${data[0].category}`,
@@ -93,7 +93,7 @@ export default function DropOff() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );

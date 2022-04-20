@@ -121,7 +121,7 @@ export default function MyDrives() {
   ]);
   const callApi = (newData) => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -132,7 +132,7 @@ export default function MyDrives() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );
@@ -146,7 +146,7 @@ export default function MyDrives() {
 
   useEffect(() => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -157,7 +157,7 @@ export default function MyDrives() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );

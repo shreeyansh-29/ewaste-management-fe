@@ -79,7 +79,7 @@ export default function ViewCollectors(props) {
   const handleAccept = async (e, datas) => {
     e.preventDefault();
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     setdisable(true);
     try {
       const response = await fetch(
@@ -90,7 +90,7 @@ export default function ViewCollectors(props) {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
           body: JSON.stringify({
             category: props.customerdata[0].category,

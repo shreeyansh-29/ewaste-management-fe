@@ -73,7 +73,7 @@ function ResetPass() {
           }
         );
         if (response.status === 200) {
-          toast.success("Password updated successfully", {
+          toast.success("Password updated succefully", {
             position: toast.POSITION.TOP_RIGHT,
           });
           setTimeout(() => change(), 2000);

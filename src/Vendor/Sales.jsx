@@ -168,7 +168,7 @@ export default function Sales() {
 
   useEffect(() => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -179,7 +179,7 @@ export default function Sales() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );
@@ -226,7 +226,7 @@ export default function Sales() {
       setQuantity(datas.quantities);
       setItem(datas.itemName);
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       try {
         const response = await fetch(
           "http://localhost:8083/vendor/view/items/accept",
@@ -236,7 +236,7 @@ export default function Sales() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
             body: JSON.stringify({
               id: datas.id,

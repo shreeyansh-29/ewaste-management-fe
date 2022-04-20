@@ -50,7 +50,6 @@ a:hover {
     height: 150px;
     width: 100%;
     display: flex;
-
     flex-direction: column;
     align-items: center;
   }
@@ -120,7 +119,6 @@ a {
   border: 1px solid white;
   border-radius: 17px;
   margin: 160px auto;
-  /* padding: 20px; */
   overflow: auto;
 
   z-index: 100001 !important;
@@ -134,23 +132,24 @@ a {
   right: 380px;
   top: 150px;
 }
+.inputGroup3{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+}
 .inputGroup {
   flex: 1;
   display: flex;
   flex-direction: column;
   margin: 10px 5px;
-  /* font-weight: bold;
-  color: black; */
 }
 .msg {
   border: 1px solid white;
-  /* padding:4px; */
   width: 300px;
   border-radius: 4px;
   font-size: 20px;
-  /* text-align: center; */
   color: #e75480;
-  /* background-color: rgb(197, 135, 143); */
 }
 .Req {
   color: green;
@@ -176,12 +175,12 @@ a {
 }
 
 h2 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
 }
 h3 {
-  font-family: "Caveat", cursive;
-  font-size: 1.7rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
 }
 .image {
   text-align: center;
@@ -204,13 +203,12 @@ h3 {
   display: flexbox;
   justify-content: center;
   align-items: center;
-  margin-left: 25%;
+  margin-left: 23%;
   width: 55%;
-  height: 95vh;
+  height: 90vh;
   flex-direction: column;
   background-color: white;
   border: 1px solid white;
-  /* padding:10px; */
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
 }
@@ -253,7 +251,7 @@ h3 {
 .notifications {
   position: absolute;
   top: 60px;
-  right: 19.3%;
+  right: 19.7%;
   background-color: rgb(235, 233, 233);
   color: black;
   font-weight: 300px;
@@ -267,7 +265,7 @@ h3 {
 .notifications1 {
   position: absolute;
   top: 60px;
-  right: 28.3%;
+  right: 32%;
   background-color: rgb(235, 233, 233);
   color: black;
   font-weight: 300px;
@@ -290,24 +288,16 @@ h3 {
   .profilebtn {
     padding: 10px 70px;
   }
-  /* .icon-button__badge1{
-    margin-left: 20%;
-  } */
+
 }
-@media screen and (max-width: 768px) {
-  
+@media screen and (max-width: 768px) { 
   .containers {
     height: 50%;
     width: 85%;
     margin-left: 7%;
-  }
-  .sm_container{
-    font-size: 1rem;
-    padding: 4% 15% 3.5% 15%;
-  }
-  .lg_container{
-    padding-right: 2%;
-  }
+  }   
+ 
+
   .inputGroup{
     padding: 4px 1px;
     width: 10%;
@@ -326,16 +316,14 @@ h3 {
     right:150px;
   }
 }
+.welcome{
+  font-family:"Poppins", sans-serif;
+}
 .welcome:hover{
-  color:skyblue;
+  color:rgb(27, 116, 233)
 }
 
-.inputGroup3{
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin: 10px 5px;
-}
+
 .notification {
   padding: 5px;
   font-size: 14px;
@@ -355,4 +343,12 @@ h3 {
 .Btn:hover {
   color: rgb(144, 117, 221);
   background-color: #ffffff;
+}
+.bell{
+  margin-left: 41%;
+}
+@media screen and (max-width: 991px) {
+  .bell{
+    margin-left: 55%;
+  }
 }

@@ -1,6 +1,7 @@
 export async function notificationcount(value) {
   const token = localStorage.getItem("token");
-  const email = document.cookie.split("=");
+  // const email = document.cookie.split("=");
+  const email = localStorage.getItem("email");
   let url;
   if (value === "collector") {
     url = "http://localhost:8083/collector/notification";
@@ -14,7 +15,7 @@ export async function notificationcount(value) {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
-      EMAIL: email[1],
+      EMAIL: email,
     },
   });
   console.log(response5);

@@ -1,6 +1,6 @@
 export async function navbarapi(value) {
   const tokens = localStorage.getItem("token");
-  const email = document.cookie.split("=");
+  const email = localStorage.getItem("email");
   let url;
   if(value ==="customer"){
     url = "http://localhost:8083/customer/notification/markAsRead";
@@ -17,7 +17,7 @@ export async function navbarapi(value) {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + tokens,
-        EMAIL: email[1],
+        EMAIL: email,
       },
     }
   );

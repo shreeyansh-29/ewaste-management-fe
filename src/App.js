@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./signin/Signin";
 import Home from "./HomePage/Home";
 import SignUp from "./Sign-Up/SignUp";
@@ -33,12 +33,16 @@ import GlobalStyle from "./globalStyles";
 import ScrollToTop from "./Components/ScrollToTop";
 import SummarySales from "./Collector/SummarySales";
 import Popup from "./Customer/Popup";
+// import  GoogleSignin from "./signin/GoogleSignin";
 
 function App() {
   const role = localStorage.getItem("Roles");
 
   console.log(role);
   return (
+    // <div className="App">
+    //   <GoogleSignin />
+    // </div>
     <BrowserRouter>
       {role === "CUSTOMER" ? (
         <>
@@ -81,7 +85,6 @@ function App() {
         <Route path="/Signin" element={<Signin />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
-
         <Route
           path={"/password/save/:token"}
           render={(props) => <ResetPass {...props} />}

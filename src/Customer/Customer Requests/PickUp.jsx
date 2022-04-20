@@ -155,7 +155,7 @@ export default function PickUp() {
     date = date[3] + "-" + date[1] + "-" + date[2];
     data[0].date = date;
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     try {
       const response = await fetch(
         "http://localhost:8083/customer/request/pickUp",
@@ -165,7 +165,7 @@ export default function PickUp() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
           body: JSON.stringify({
             category: data[0].category,
@@ -211,7 +211,7 @@ export default function PickUp() {
       });
     } else {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       try {
         const response = await fetch(
           `http://localhost:8083/customer/request/pickUp/viewCollectors?category=${data[0].category}`,
@@ -221,7 +221,7 @@ export default function PickUp() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );

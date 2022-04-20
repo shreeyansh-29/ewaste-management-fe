@@ -119,7 +119,7 @@ export default function OrganizeDrive() {
       toast.error("Enter all data", {position: toast.POSITION.TOP_RIGHT});
     } else {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       var scheduledate = datas.date.toString().split(" ");
       if (scheduledate[1] === "Jan") {
         scheduledate[1] = "01";
@@ -158,7 +158,7 @@ export default function OrganizeDrive() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
             body: JSON.stringify({
               driveName: datas.name,

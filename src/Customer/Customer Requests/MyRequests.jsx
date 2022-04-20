@@ -136,7 +136,7 @@ export default function MyRequests() {
   };
   useEffect(() => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -147,7 +147,7 @@ export default function MyRequests() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );

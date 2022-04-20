@@ -1,6 +1,7 @@
 export async function profile(value) {
   const token = localStorage.getItem("token");
-  const email = document.cookie.split("=");
+  // const email = document.cookie.split("=");
+  const email = localStorage.getItem("email");
   let url;
   if (value === "vendor") {
     url = "http://localhost:8083/vendor/profile/view";
@@ -17,7 +18,7 @@ export async function profile(value) {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
-      EMAIL: email[1],
+      EMAIL: email,
     },
   });
   console.log(response5);

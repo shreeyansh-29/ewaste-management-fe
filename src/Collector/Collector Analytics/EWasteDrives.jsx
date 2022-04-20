@@ -28,8 +28,8 @@ export default function EWasteDrives() {
     (async function () {
       try {
         const res = await apicall("EwasteDrive");
-        data[2][1] = res.data.EWasteDriveCity;
-        data[1][1] = res.data.EWasteDriveCollector;
+        data[1][1] = res.data.EWasteDriveCity;
+        data[2][1] = res.data.EWasteDriveCollector;
       } catch (err) {
         console.log(err);
       }

@@ -115,7 +115,7 @@ class EditProfile extends Component {
 
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
 
       try {
         const response = await fetch(
@@ -126,12 +126,12 @@ class EditProfile extends Component {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
             body: JSON.stringify({
               firstName: this.state.firstName,
               lastName: this.state.lastName,
-              email: email[1],
+              email: email,
               address1: this.state.address1,
               mobileNo: this.state.mobileNo,
               city: this.state.city,
@@ -164,7 +164,7 @@ class EditProfile extends Component {
       
     });
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     const pass = localStorage.getItem("Password");
     try {
       const response = await fetch(
@@ -175,7 +175,7 @@ class EditProfile extends Component {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         }
       );
@@ -192,7 +192,7 @@ class EditProfile extends Component {
     this.setState({ [key]: value });
   };
   render() {
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     const {
       firstNameErr,
       lastNameErr,
@@ -257,7 +257,7 @@ class EditProfile extends Component {
                   <input
                     style={{ borderRadius: "17px", padding: "4px" , backgroundColor:"white", width:"300px"}}
                     disabled
-                    defaultValue={email[1]}
+                    defaultValue={email}
                   />
                 </div>
                 <div className="inputGroup">

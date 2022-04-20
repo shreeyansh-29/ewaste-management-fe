@@ -141,7 +141,7 @@ class VendorProfile extends Component {
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
       const pass = localStorage.getItem("Password");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
 
       try {
         const response = await fetch(
@@ -152,12 +152,12 @@ class VendorProfile extends Component {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
             body: JSON.stringify({
               firstName: this.state.firstName,
               lastName: this.state.lastName,
-              email: email[1],
+              email: email,
               address1: this.state.address1,
               mobileNo: this.state.mobileNo,
               city: this.state.city,
@@ -189,7 +189,7 @@ class VendorProfile extends Component {
     });
     const tokens = localStorage.getItem("token");
     const pass = localStorage.getItem("Password");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     try {
       const response = await fetch(
         "http://localhost:8083/vendor/profile/view",
@@ -199,7 +199,7 @@ class VendorProfile extends Component {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         }
       );
@@ -216,7 +216,8 @@ class VendorProfile extends Component {
   };
 
   render() {
-    const email = document.cookie.split("=");
+   
+    const email = localStorage.getItem("email");
     const {
       firstNameErr,
       lastNameErr,
@@ -288,7 +289,7 @@ class VendorProfile extends Component {
                       backgroundColor: "#fff",
                     }}
                     disabled
-                    defaultValue={email[1]}
+                    defaultValue={email}
                   />
                 </div>
                 <div className="inputGroup">

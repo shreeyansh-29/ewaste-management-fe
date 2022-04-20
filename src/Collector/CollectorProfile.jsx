@@ -1,11 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import InputField from "../Components/InputField";
 import "./Collector.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import TimeRange from "react-time-range";
-import {statescity} from "../Sign-Up/states";
+import { statescity } from "../Sign-Up/states";
 import moment from "moment";
-import {profile} from "../signin/profile";
+import { profile } from "../signin/profile";
 class CollectorProfile extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,7 @@ class CollectorProfile extends Component {
     this.changeCity = this.changeCity.bind(this);
   }
   changeState(event) {
-    this.setState({state: event.target.value});
+    this.setState({ state: event.target.value });
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -47,7 +47,7 @@ class CollectorProfile extends Component {
     });
   }
   changeCity(event) {
-    this.setState({city: event.target.value});
+    this.setState({ city: event.target.value });
   }
   handleFormValidation() {
     const {
@@ -75,7 +75,7 @@ class CollectorProfile extends Component {
       formErrors["lastNameErr"] = " Last Name is required.";
     }
     const pass = localStorage.getItem("Password");
-    this.setState({password: pass});
+    this.setState({ password: pass });
     //password
     if (!password) {
       formIsValid = false;
@@ -140,7 +140,7 @@ class CollectorProfile extends Component {
         formErrors["gstErr"] = "Invalid GSTNo";
       }
     }
-    this.setState({formErrors: formErrors});
+    this.setState({ formErrors: formErrors });
     return formIsValid;
   }
   handleSubmit = async (e) => {
@@ -156,7 +156,7 @@ class CollectorProfile extends Component {
     var dropoff = start.toString() + end.toString();
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       const pass = localStorage.getItem("Password");
       try {
         const response = await fetch(
@@ -167,12 +167,12 @@ class CollectorProfile extends Component {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
             body: JSON.stringify({
               firstName: this.state.firstName,
               lastName: this.state.lastName,
-              email: email[1],
+              email: email,
               password: pass,
               mobileNo: this.state.mobileNo,
               address1: this.state.address1,
@@ -205,15 +205,14 @@ class CollectorProfile extends Component {
     (async function () {
       try {
         let val = await profile("collector");
-        val.then(function (ress) {
-          localStorage.setItem("name", ress.data.firstName);
-        });
+
+        localStorage.setItem("name", val.data.firstName);
       } catch (err) {
         console.log(err);
       }
     })();
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     const pass = localStorage.getItem("Password");
     try {
       const response = await fetch(
@@ -224,7 +223,7 @@ class CollectorProfile extends Component {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         }
       );
@@ -235,26 +234,26 @@ class CollectorProfile extends Component {
       const shopTimes = res.data.shopTime.toString().split("-");
       times = shopTimes[0].split(":");
       const dates = moment.utc().hour(times[0]).minute(0);
-      this.setState({startTime: dates});
+      this.setState({ startTime: dates });
       times = shopTimes[1].split(":");
       const enddates = moment.utc().hour(times[0]).minute(0);
-      this.setState({endTime: enddates});
+      this.setState({ endTime: enddates });
     } catch (err) {
       console.log(err);
       //   }
     }
   };
   returnFunctionStart = (event) => {
-    this.setState({startTime: event.startTime});
+    this.setState({ startTime: event.startTime });
   };
   returnFunctionEnd = (event) => {
-    this.setState({endTime: event.endTime});
+    this.setState({ endTime: event.endTime });
   };
   handleChange = (key) => (value) => {
-    this.setState({[key]: value});
+    this.setState({ [key]: value });
   };
   render() {
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     const {
       firstNameErr,
       lastNameErr,
@@ -267,7 +266,7 @@ class CollectorProfile extends Component {
       pincodeErr,
     } = this.state.formErrors;
     return (
-      <div className="collector_profile" style={{marginTop: "85px"}}>
+      <div className="collector_profile" style={{ marginTop: "85px" }}>
         <form>
           <div className="Formbody">
             <div className="collectorsprofile">
@@ -331,7 +330,7 @@ class CollectorProfile extends Component {
                       backgroundColor: "#fff",
                     }}
                     disabled
-                    defaultValue={email[1]}
+                    defaultValue={email}
                   ></input>
                 </div>
                 <div className="inputGroup">
@@ -370,7 +369,11 @@ class CollectorProfile extends Component {
                   </label>
                   <select
                     className="form-select"
-                    style={{borderRadius: "17px", padding: "4px", width: "95%"}}
+                    style={{
+                      borderRadius: "17px",
+                      padding: "4px",
+                      width: "95%",
+                    }}
                     value={this.state.state}
                     onChange={this.changeState}
                   >
@@ -389,7 +392,11 @@ class CollectorProfile extends Component {
                   </label>
                   <select
                     className="form-select"
-                    style={{borderRadius: "17px", padding: "4px", width: "95%"}}
+                    style={{
+                      borderRadius: "17px",
+                      padding: "4px",
+                      width: "95%",
+                    }}
                     value={this.state.city}
                     onChange={this.changeCity}
                   >
@@ -449,7 +456,7 @@ class CollectorProfile extends Component {
                     htmlFor="time"
                     data-tip
                     data-for="registerTip"
-                    style={{marginLeft: "11px"}}
+                    style={{ marginLeft: "11px" }}
                   >
                     Drop-Off Time <i className="text-danger">*</i>
                   </label>
