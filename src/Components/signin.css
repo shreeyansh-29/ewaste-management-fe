@@ -25,6 +25,16 @@
   max-width: 50vh;
   /* width:100%; */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ 
+}
+@media screen and (max-width: 400px) {
+  .Form-Body{
+    width:40vh;
+  }
+ 
+}
+.formErrors{
+  padding-left: 15px;
 }
 .signin-button {
   border-radius: 17px;
@@ -72,6 +82,17 @@ label {
   text-align: left;
   font-weight: normal;
   font-size: "12px";
+}
+.inputWithButtons {
+  position: relative;
+  /* width : 300px; */
+}
+
+.inputWithButtons button {
+  position: absolute;
+  right: 7px;
+  top : 4px;
+
 }
 input[type="text"],
 input[type="email"],

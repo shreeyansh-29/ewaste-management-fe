@@ -3,12 +3,12 @@ import Navbar from "./Components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./signin/Signin";
+import OAuth2RedirectHandler from "./oauth2/OAuth2RedirectHandler";
 import Home from "./HomePage/Home";
 import SignUp from "./Sign-Up/SignUp";
 import ForgotPassword from "./ForPass/ForgotPassword";
 import ResetPass from "./ForPass/ResetPass";
 import CustomerHome from "./Customer/Customer Analytics/CustomerHome";
-import EWasteDrive from "./Customer/EWasteDrive";
 import EditProfile from "./Customer/EditProfile";
 import CustomerNav from "./Customer/Navbar/CustomerNav";
 import CollectorNav from "./Collector/Navbar/CollectorNav";
@@ -33,7 +33,7 @@ import GlobalStyle from "./globalStyles";
 import ScrollToTop from "./Components/ScrollToTop";
 import SummarySales from "./Collector/SummarySales";
 import Popup from "./Customer/Popup";
-// import  GoogleSignin from "./signin/GoogleSignin";
+import Waste from "./Customer/Customer Requests/Waste";
 
 function App() {
   const role = localStorage.getItem("Roles");
@@ -90,11 +90,11 @@ function App() {
           render={(props) => <ResetPass {...props} />}
           element={<ResetPass />}
         />
+        <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler/>}></Route>  
         <Route path="/CustomerHome" element={<CustomerHome />} />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/Popup" element={<Popup />} />
         <Route path="/CollectorHome" element={<CollectorHome />} />
-        <Route path="/EWasteDrive" element={<EWasteDrive />} />
         <Route path="/CollectorProfile" element={<CollectorProfile />} />
         <Route path="/MyDrives" element={<MyDrives />} />
         <Route path="/ItemsForSale" element={<ItemsForSale />} />
@@ -112,6 +112,7 @@ function App() {
         <Route path="/RequestSummary" element={<RequestSummary />} />
         <Route path="/ItemsForSale" element={<ItemsForSale />} />
         <Route path="/SummarySales" element={<SummarySales />} />
+        <Route path="/Waste" element={<Waste/>}/>
       </Routes>
     </BrowserRouter>
   );

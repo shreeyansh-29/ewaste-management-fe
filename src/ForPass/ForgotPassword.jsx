@@ -1,42 +1,28 @@
-import React, {Component} from "react";
-import InputField from "../Components/InputField";
+import React, { useState } from "react";
+import { Formik, Field, Form } from "formik";
+import "bootstrap/dist/css/bootstrap.min.css";
+const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState("");
+  const [emailerr, setemailErr] = useState("");
 
-import "./password.css";
-export default class ForgotPassword extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      error: {},
-      msg: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange = (key) => (value) => {
-    this.setState({[key]: value});
-    this.setState({msg: ""});
-  };
-  validateForm() {
-    let error = {};
+  const validateForm = () => {
     let formIsValid = true;
-    const {email} = this.state;
-
     if (!email) {
+      setemailErr("Email id is required.");
       formIsValid = false;
-      error["emailIdErr"] = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setemailErr("Invalid email id.");
       formIsValid = false;
-      error["emailIdErr"] = "Invalid email id.";
     }
-    this.setState({error: error});
+
     return formIsValid;
-  }
-  handleClick = async (event) => {
+  };
+
+  const handleClick = async (event) => {
     event.preventDefault();
 
-    if (this.validateForm()) {
+    if (validateForm()) {
       try {
         const response = await fetch("http://localhost:8083/password/reset", {
           method: "POST",
@@ -44,73 +30,83 @@ export default class ForgotPassword extends Component {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: this.state.email,
+            email: email,
           }),
         });
 
         if (response.status === 200) {
-          this.setState({
-            msg: "An email has been sent to you to reset the password.",
-          });
+          setMsg("An email has been sent to you to reset the password.");
         }
       } catch (error) {
         console.log(error);
       }
     }
   };
-  handleback = () => {
+  const handleback = () => {
     try {
       window.location.href = "/Signin";
     } catch (e) {
       console.log(e);
     }
   };
-  render() {
-    const {email} = this.state;
-    const {emailIdErr} = this.state.error;
-    return (
-      <div className="ForPassword">
-        <div className="Form-body">
-          <div className="psswd-heading">
-            <h2
+
+  return (
+    <div className="ForPassword">
+      <div className="Form-body">
+        <Formik>
+          <Form>
+            <div className="psswd-heading">
+              <h2
+                style={{
+                  textAlign: "center",
+                  padding: "20px",
+                  fontSize: "1.7rem",
+                  fontFamily: "sans-serif",
+                  color: "white",
+                }}
+              >
+                Forgot Password
+              </h2>
+            </div>
+
+            <div
+              className="form-group"
               style={{
-                textAlign: "center",
-                padding: "12px",
-                fontSize: "1.7rem",
-                fontFamily: "sans-serif",
-                color: "white",
+                marginTop: "30px",
+                marginLeft: "20px",
+                marginRight: "20px",
               }}
             >
-              Forgot Password
-            </h2>
-          </div>
-          <div className="form-cont">
-            <div className="inputGroup2">
-              <InputField
-                value={email}
+              <Field
+                name="email"
+                className="form-control"
                 type="email"
-                placeholder="Enter Registered Email"
-                onChange={this.handleChange("email")}
+                placeholder="Email"
+                style={{ borderRadius: "17px" }}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
               />
             </div>
-            <div className="Error">{emailIdErr}</div>
-            <div style={{color: "green", marginLeft: "5%"}}>
-              {" "}
-              {this.state.msg === "" ? "" : this.state.msg}
+            <div className="formErrors">{emailerr}</div>
+            <div style={{ color: "green",marginRight: "7%", marginLeft: "7%" }}>
+              {msg === "" ? "" : msg}
             </div>
             <div className="row">
               <div className="container">
-                <button onClick={this.handleback} className="back-button">
+                <button onClick={handleback} className="back-button" >
                   BACK
                 </button>
-                <button onClick={this.handleClick} className="psswd-button">
+                <button onClick={handleClick} className="psswd-button">
                   NEXT
                 </button>
               </div>
             </div>
-          </div>
-        </div>
+            {/* </div> */}
+          </Form>
+        </Formik>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default ForgotPassword;

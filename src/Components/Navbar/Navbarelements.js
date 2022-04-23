@@ -35,6 +35,9 @@ export const NavLogo = styled(Link)`
   font-size: 1.6rem;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    font-size:1.3rem;
+  }
 `;
 
 export const NavIcon = styled(GiGreenPower)`
@@ -65,6 +68,12 @@ export const MobileIcon = styled.div`
     transform: translate(-100%, 60%);
     font-size: 1.7rem;
     cursor: pointer;
+  }
+  @media screen and (max-width: 400px) {
+    display: block;
+    position: absolute;
+    top: 3.5px;
+    font-size:1.3rem;
   }
 `;
 

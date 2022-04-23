@@ -11,7 +11,15 @@
 a:hover {
   cursor: pointer;
 }
-
+.navbarCount{
+  color: "white";
+  margin-left: "18px";
+  border-radius: "17px";
+  width: "23px";
+  top: "7px";
+  left: "4px";
+  position: "relative";
+}
 .userreq .center {
   flex: 50%;
   display: flex;
@@ -26,6 +34,9 @@ a:hover {
 .userreq .center #hidden {
   display: flex;
 }
+.notification_button{
+  margin-left: 52%; 
+}
 
 .userreq .center .links a {
   text-decoration: none;
@@ -38,10 +49,17 @@ a:hover {
     font-size: 15px;
   }
 }
+
 @media only screen and (max-width: 650px) {
   .userreq .center .links {
     display: none;
   }
+  .notification_button{
+    margin-left: 15%; 
+  }
+ 
+  
+  
   .userreq .center #hidden {
     position: absolute;
     left: 0px;
@@ -120,8 +138,6 @@ a {
   border-radius: 17px;
   margin: 160px auto;
   overflow: auto;
-
-  z-index: 100001 !important;
 }
 .btn-close {
   cursor: pointer;
@@ -290,7 +306,17 @@ h3 {
   }
 
 }
-@media screen and (max-width: 768px) { 
+@media only screen and (max-width: 450px) {
+  .box{
+    width:90%;
+  }
+  .btn-close{
+    right:4.5%;
+  }
+}
+@media screen and (min-width:500px ) { 
+  @media screen and ( max-width: 768px ) {
+ 
   .containers {
     height: 50%;
     width: 85%;
@@ -315,6 +341,7 @@ h3 {
   .btn-close{
     right:150px;
   }
+}
 }
 .welcome{
   font-family:"Poppins", sans-serif;
@@ -344,11 +371,4 @@ h3 {
   color: rgb(144, 117, 221);
   background-color: #ffffff;
 }
-.bell{
-  margin-left: 41%;
-}
-@media screen and (max-width: 991px) {
-  .bell{
-    margin-left: 55%;
-  }
-}
+

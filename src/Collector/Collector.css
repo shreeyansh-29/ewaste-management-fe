@@ -26,8 +26,16 @@
     margin-left:1%;
   }
 }
+.bell{
+  margin-left: 45%;
+}
+@media only screen and (max-width: 650px) {
+  
+  .bell{
+    margin-left: 15%; 
+  }
 
-
+}
 .collectorbody{
   padding:20px;
 }

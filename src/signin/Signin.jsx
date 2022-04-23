@@ -1,60 +1,53 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Inputfields from "../Components/InputField";
-import "../Components/signin.css";
+import { Formik, Field, Form } from "formik";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ShowIcon from "@mui/icons-material/VisibilityOutlined";
+import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import { toast } from "react-toastify";
+import GoogleSignin from "./GoogleSignin";
 import jwt from "jwt-decode";
 import { notificationcount } from "./notificationcount";
 import { profile } from "./profile";
-import ShowIcon from "@mui/icons-material/VisibilityOutlined";
+const SignIn = () => {
+  const [password, setPassword] = useState("");
 
-import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import GoogleSignin from "./GoogleSignin";
-export default class Signin extends Component {
-  state = {
-    text: "",
-    email: "",
-    error: {},
-    passwordType: "password",
-    msg: "",
-  };
-  handleChange = (key) => (value) => {
-    this.setState({ [key]: value });
-  };
-  togglePassword = () => {
-    if (this.state.passwordType === "password") {
-      this.setState({ passwordType: "text" });
-      return;
-    }
-    this.setState({ passwordType: "password" });
-  };
-  validateForm() {
-    let error = {};
+  const [passwordType, setpasswordType] = useState("password");
+  const [email, setEmail] = useState("");
+  const [passworderr, setpasswordErr] = useState("");
+  const [emailerr, setemailErr] = useState("");
+
+  const validateForm = () => {
     let formIsValid = true;
-    const { email, text } = this.state;
-
     if (!email) {
+      setemailErr("Email id is required.");
       formIsValid = false;
-      error["emailIdErr"] = "Email id is required.";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setemailErr("Invalid email id.");
       formIsValid = false;
-      error["emailIdErr"] = "Invalid email id.";
     }
 
-    if (!text) {
-      formIsValid = false;
+    if (!password) {
       var str1 = "Password is required.";
 
-      error["passwordErr"] = str1;
+      setpasswordErr(str1);
+      formIsValid = false;
     }
 
-    this.setState({ error: error });
     return formIsValid;
-  }
-  handleClick = async (event) => {
+  };
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setpasswordType("text");
+      return;
+    }
+    setpasswordType("password");
+  };
+
+  const handleClick = async (event) => {
     event.preventDefault();
 
-    if (this.validateForm()) {
+    if (validateForm()) {
       try {
         const response = await fetch("http://localhost:8083/signin", {
           method: "POST",
@@ -62,8 +55,8 @@ export default class Signin extends Component {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.text,
+            email: email,
+            password: password,
           }),
         });
         const res = await response.json();
@@ -74,14 +67,11 @@ export default class Signin extends Component {
         if (res.status === "fail") {
           toast.error("Wrong Password", { position: toast.POSITION.TOP_RIGHT });
         }
-        console.log(res);
         localStorage.setItem("token", res.data.token);
         const tokens = localStorage.getItem("token");
         var token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
-        localStorage.setItem("Password", this.state.text);
-        localStorage.setItem("email", this.state.email);
-        // document.cookie = "email=" + this.state.email;
+        localStorage.setItem("email", email);
         if (localStorage.getItem("Roles") === "CUSTOMER") {
           try {
             let val = await profile("customer");
@@ -142,56 +132,73 @@ export default class Signin extends Component {
     }
   };
 
-  render() {
-    const { emailIdErr, passwordErr } = this.state.error;
-    return (
-      <div className="signIn">
-        <div className="Form-Body">
-          <div className="heading">
-            <h2
-              style={{
-                textAlign: "center",
-                padding: "20px",
-                fontSize: "1.7rem",
-                fontFamily: "sans-serif",
-                color: "white",
-              }}
-            >
-              Sign In
-            </h2>
-          </div>
-
-          <div className="form-cont">
-            <div className="inputGroup">
-              <Inputfields
-                value={this.state.email}
-                placeholder="Email address"
-                type="text"
-                onChange={this.handleChange("email")}
-              />
-              <div className="error" data-testid="emailErr">
-                {emailIdErr}
-              </div>
+  return (
+    <div className="signIn">
+      <Formik>
+        <Form>
+          <div className="Form-Body">
+            <div className="heading">
+              <h2
+                style={{
+                  textAlign: "center",
+                  padding: "20px",
+                  fontSize: "1.7rem",
+                  fontFamily: "sans-serif",
+                  color: "white",
+                }}
+              >
+                Sign In
+              </h2>
             </div>
 
-            <div className="inputGroup">
-              <div className="inputWithButton">
-                <Inputfields
-                  value={this.state.text}
-                  type={this.state.passwordType}
+            <div
+              className="form-group"
+              style={{
+                marginTop: "30px",
+                marginLeft: "20px",
+                marginRight: "20px",
+              }}
+            >
+              <Field
+                name="email"
+                className="form-control"
+                type="email"
+                placeholder="Email"
+                style={{ borderRadius: "17px" }}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
+              />
+            </div>
+            <div className="formErrors">{emailerr}</div>
+
+            <div
+              className="form-group"
+              style={{
+                marginTop: "30px",
+                marginLeft: "20px",
+                marginRight: "20px",
+              }}
+            >
+              <div className="inputWithButtons">
+                <Field
+                  name="subject"
+                  className="form-control"
+                  type={passwordType}
                   placeholder="Password"
-                  name="Password"
-                  onChange={this.handleChange("text")}
+                  style={{ borderRadius: "17px" }}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="off"
                 />
                 <div className="input-group-btn">
                   <button
-                    onClick={this.togglePassword}
+                    onClick={togglePassword}
                     style={{
                       border: "1px solid white",
                       backgroundColor: "white",
                     }}
+                    type="button"
                   >
-                    {this.state.passwordType === "password" ? (
+                    {passwordType === "password" ? (
                       <ShowOffIcon />
                     ) : (
                       <ShowIcon />
@@ -199,45 +206,41 @@ export default class Signin extends Component {
                   </button>
                 </div>
               </div>
-              <div className="error" data-testid="passwordErr">
-                {passwordErr}
-              </div>
             </div>
-
-            <div className="inputGroup"></div>
-
-            <div className="forgot-psswd ">
+            <div className="formErrors">{passworderr}</div>
+            <div style={{ float: "right" }}>
               <Link
                 to="/ForgotPassword"
                 style={{
                   color: "gray",
                   fontFamily: "Poppins",
-                  marginRight: "10px",
+                  marginRight: "20px",
                 }}
               >
                 Forgot Password
               </Link>
             </div>
-            <div className="cont">
-              <div className="error" style={{ marginLeft: "12px" }}>
-                {this.state.msg !== "" ? this.state.msg : ""}
-              </div>
+            <div className="text-center" style={{ marginTop: "50px" }}>
               <button
-                onClick={this.handleClick}
-                className="signin-button"
-                data-testid="Submit"
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  backgroundColor: " rgb(30, 28, 54)",
+                  borderRadius: "17px",
+                  width: "250px",
+                }}
+                onClick={handleClick}
               >
-                SIGN IN
+                Sign In
               </button>
             </div>
             <GoogleSignin />
-
             <div
               style={{
                 textAlign: "center",
                 padding: "8px",
                 fontFamily: "Poppins",
-                marginTop: "30px",
+                marginTop: "45px",
               }}
             >
               {" "}
@@ -254,8 +257,10 @@ export default class Signin extends Component {
               </Link>
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-}
+        </Form>
+      </Formik>
+    </div>
+  );
+};
+
+export default SignIn;
