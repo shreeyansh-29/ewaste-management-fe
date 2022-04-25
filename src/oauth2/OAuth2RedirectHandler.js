@@ -79,8 +79,7 @@ class OAuth2RedirectHandler extends Component {
     const error = this.getUrlParameter("error");
     if (token) {
       localStorage.setItem("token", token);
-      // this.apicall();
-      return <div>{this.apicall()}</div>;
+      return <div>{this.apicall()} </div>;
     } else if (error) {
       return <div>{(window.location.href = "/Signin")}</div>;
     }

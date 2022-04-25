@@ -166,6 +166,7 @@ export default function ItemsForSale() {
           ]}
           options={{
             actionsColumnIndex: -1,
+            search:false
           }}
         />
       </div>

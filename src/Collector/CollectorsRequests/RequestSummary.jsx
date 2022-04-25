@@ -1,17 +1,18 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 
+import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../Customer/Popup";
-import {FaUserCircle} from "react-icons/fa";
-import {apicall} from "../../Customer/Api";
+import { FaUserCircle } from "react-icons/fa";
+import { apicall } from "../../Customer/Api";
 
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 export default function CollectorRequests() {
-  const {useState} = React;
+  const { useState } = React;
   const [data, setData] = useState();
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -181,7 +182,7 @@ export default function CollectorRequests() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
+      <div style={{ padding: "150px 30px 0 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -201,6 +202,9 @@ export default function CollectorRequests() {
           columns={columns}
           data={data}
           title=""
+          icons={{
+            Search: () => <SearchIcon style={{ fill: "white" }} />,
+          }}
           localization={{
             header: {
               actions: "Profile",
@@ -218,7 +222,7 @@ export default function CollectorRequests() {
                   onClick={togglepop}
                 >
                   {" "}
-                  <ProfileIcon style={{color: "#e75480"}} />{" "}
+                  <ProfileIcon style={{ color: "#e75480" }} />{" "}
                 </button>
               ),
 

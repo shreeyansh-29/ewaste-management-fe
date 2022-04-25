@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import InputField from "../Components/InputField";
 import "./Customer.css";
 import { toast } from "react-toastify";
 import {statescity} from "../Sign-Up/states";
@@ -225,7 +224,7 @@ class EditProfile extends Component {
                   <label htmlFor="firstName">
                     First Name <i className="text-danger">*</i>{" "}
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="firstName"
                     value={this.state.firstName}
@@ -239,7 +238,7 @@ class EditProfile extends Component {
                   <label htmlFor="lastName">
                     Last Name <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="lastName"
                     value={this.state.lastName}
@@ -255,7 +254,7 @@ class EditProfile extends Component {
                   <label htmlFor="Email">Email</label>
 
                   <input
-                    style={{ borderRadius: "17px", padding: "4px" , backgroundColor:"white", width:"300px"}}
+                    style={{ borderRadius: "17px", padding: "4px" , backgroundColor:"white"}}
                     disabled
                     defaultValue={email}
                   />
@@ -264,7 +263,7 @@ class EditProfile extends Component {
                   <label htmlFor="phoneNumber">
                     Phone Number <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="phoneNumber"
                     onChange={this.handleChange("mobileNo")}
@@ -280,7 +279,7 @@ class EditProfile extends Component {
                   <label htmlFor="address1">
                     Address Line <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="landmark"
                     value={this.state.address1}
@@ -295,7 +294,7 @@ class EditProfile extends Component {
                     State <i className="text-danger">*</i>
                   </label>
                   <select
-                    style={{ borderRadius: "17px", padding:"4px", width:"300px" }}
+                    style={{ borderRadius: "17px", padding:"4px"}}
                     className="form-select"
                     value={this.state.state}
                     onChange={this.changeState}
@@ -314,7 +313,7 @@ class EditProfile extends Component {
                     City <i className="text-danger">*</i>{" "}
                   </label>
                   <select
-                    style={{ borderRadius: "17px" , padding:"4px", width:"300px"}}
+                    style={{ borderRadius: "17px" , padding:"4px"}}
                     className="form-select"
                     value={this.state.city}
                     onChange={this.changeCity}
@@ -330,7 +329,7 @@ class EditProfile extends Component {
                   <label htmlFor="pincode">
                     Pincode <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="pincode"
                     name="pincode"
                     value={this.state.pinCode}

@@ -89,7 +89,7 @@ function CollectorNav() {
                 <NavNotiIcon
                   style={
                     c === "0" || c === null
-                      ? { color: "white", marginLeft: "24px" }
+                      ? { color: "white"}
                       : { color: "white", marginBottom: "20px"}
                   }
                 ></NavNotiIcon>

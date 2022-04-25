@@ -106,7 +106,11 @@ export default function Waste() {
   console.log("data", data);
   return (
     <div>
-      {data.length != 0 ? (
+      {data.length === 0 ? (
+        <div>
+          <h2 style={{ textAlign: "center", margin:"100px" }}> No Upcoming drives </h2>
+        </div>
+      ) : (
         <MDBRow
           style={{
             marginTop: "100px",
@@ -116,8 +120,6 @@ export default function Waste() {
         >
           {data.map(renderCard)}
         </MDBRow>
-      ) : (
-        <h2 style={{textAlign:"center"}}> No Upcoming drives </h2>
       )}
     </div>
   );

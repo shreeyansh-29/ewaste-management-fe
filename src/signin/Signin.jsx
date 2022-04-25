@@ -223,17 +223,14 @@ const SignIn = () => {
             <div className="text-center" style={{ marginTop: "50px" }}>
               <button
                 type="button"
-                className="btn btn-primary"
-                style={{
-                  backgroundColor: " rgb(30, 28, 54)",
-                  borderRadius: "17px",
-                  width: "250px",
-                }}
+                className="signin-button"
                 onClick={handleClick}
               >
-                Sign In
+                SignIn
               </button>
             </div>
+            <div className="separator" style={{marginTop:"20px"}}> or Sign in with</div>
+
             <GoogleSignin />
             <div
               style={{
@@ -264,3 +261,13 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+
+
+
+//  400
+//  500-600
+
+
+
+

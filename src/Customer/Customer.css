@@ -11,7 +11,7 @@
 a:hover {
   cursor: pointer;
 }
-.navbarCount{
+.navbarCount {
   color: "white";
   margin-left: "18px";
   border-radius: "17px";
@@ -34,8 +34,8 @@ a:hover {
 .userreq .center #hidden {
   display: flex;
 }
-.notification_button{
-  margin-left: 52%; 
+.notification_button {
+  margin-left: 52%;
 }
 
 .userreq .center .links a {
@@ -54,12 +54,10 @@ a:hover {
   .userreq .center .links {
     display: none;
   }
-  .notification_button{
-    margin-left: 15%; 
+  .notification_button {
+    margin-left: 15%;
   }
- 
-  
-  
+
   .userreq .center #hidden {
     position: absolute;
     left: 0px;
@@ -148,7 +146,7 @@ a {
   right: 380px;
   top: 150px;
 }
-.inputGroup3{
+.inputGroup3 {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -260,8 +258,7 @@ h3 {
   background-color: #101522;
 }
 .icon-button__badge1 {
-  right:"300%";
-  
+  right: "300%";
 }
 
 .notifications {
@@ -304,52 +301,47 @@ h3 {
   .profilebtn {
     padding: 10px 70px;
   }
-
 }
 @media only screen and (max-width: 450px) {
-  .box{
-    width:90%;
+  .box {
+    width: 90%;
   }
-  .btn-close{
-    right:4.5%;
+  .btn-close {
+    right: 4.5%;
   }
 }
-@media screen and (min-width:500px ) { 
-  @media screen and ( max-width: 768px ) {
- 
-  .containers {
-    height: 50%;
-    width: 85%;
-    margin-left: 7%;
-  }   
- 
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 768px) {
+    .containers {
+      height: 50%;
+      width: 85%;
+      margin-left: 7%;
+    }
 
-  .inputGroup{
-    padding: 4px 1px;
-    width: 10%;
-  }
-  .inputGroup3{
-    width: 100%;
-    margin-left: 0.5%;
-    padding: 2px 1px;
-    margin-top: 1px;
-   
-  }
-  .box{
-    width: 450px;
-  }
-  .btn-close{
-    right:150px;
+    .inputGroup {
+      padding: 4px 1px;
+      width: 10%;
+    }
+    .inputGroup3 {
+      width: 100%;
+      margin-left: 0.5%;
+      padding: 2px 1px;
+      margin-top: 1px;
+    }
+    .box {
+      width: 450px;
+    }
+    .btn-close {
+      right: 150px;
+    }
   }
 }
+.welcome {
+  font-family: "Poppins", sans-serif;
 }
-.welcome{
-  font-family:"Poppins", sans-serif;
+.welcome:hover {
+  color: rgb(27, 116, 233);
 }
-.welcome:hover{
-  color:rgb(27, 116, 233)
-}
-
 
 .notification {
   padding: 5px;
@@ -371,4 +363,64 @@ h3 {
   color: rgb(144, 117, 221);
   background-color: #ffffff;
 }
-
+@media screen and (max-width: 360px) {
+  .containers{
+    width:90%;
+    margin-left:13px;
+    height:100%;
+  }
+  .form-select{
+    width:250px;
+  }
+  .notification_button{
+    margin-left: 90px;
+  }
+}
+@media screen and (min-width: 370px) {
+  @media screen and (max-width: 420px) {
+    .containers{
+      width:90%;
+      margin-left:13px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+    .notification_button{
+      margin-left: 100px;
+    }
+  }
+}
+@media screen and (min-width: 420px) {
+  @media screen and (max-width: 500px) {
+    .containers{
+      width:90%;
+      margin-left:23px;
+      height:100%;
+    }
+  }
+}
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 600px) {
+    .containers{
+      width:95%;
+      margin-left:13px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+  }
+}
+@media screen and (min-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    .containers{
+      width:95%;
+      margin-left:13px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+  }
+}

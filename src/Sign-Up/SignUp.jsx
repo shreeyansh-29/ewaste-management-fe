@@ -1,13 +1,13 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Dropdown from "../Components/Dropdown";
 import InputField from "../Components/InputField";
 import Select from "react-select";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 import "./signUp.css";
-import {statescity} from "./states";
+import { statescity } from "./states";
 import TimeRange from "react-time-range";
 import moment from "moment";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
@@ -22,7 +22,7 @@ const data = [
     value: "Screens",
     label: "Screens, monitors (Televisions , Laptops)",
   },
-  {value: "Lamps", label: "Lamps (LED Lamps)"},
+  { value: "Lamps", label: "Lamps (LED Lamps)" },
   {
     value: "LargeEqip",
     label: "Large Equipment (Washing Machines, Electric Stoves)",
@@ -85,7 +85,7 @@ class SignUp extends Component {
   }
 
   changeState(event) {
-    this.setState({selectedState: event.target.value});
+    this.setState({ selectedState: event.target.value });
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -93,7 +93,7 @@ class SignUp extends Component {
     });
   }
   changeCity(event) {
-    this.setState({city: event.target.value});
+    this.setState({ city: event.target.value });
   }
 
   handleFormValidation() {
@@ -111,9 +111,9 @@ class SignUp extends Component {
       selectedState,
       city,
       gstNo,
-      inputList: [[{categoryAccepted}]],
+      inputList: [[{ categoryAccepted }]],
       registrationNo,
-      role: {name},
+      role: { name },
     } = this.state;
 
     let formErrors = {};
@@ -238,19 +238,19 @@ class SignUp extends Component {
       }
     }
 
-    this.setState({formErrors: formErrors});
+    this.setState({ formErrors: formErrors });
 
     return formIsValid;
   }
   handleChange = (key) => (value) => {
-    this.setState({[key]: value});
+    this.setState({ [key]: value });
   };
   returnFunctionStart = (event) => {
-    this.setState({startTime: event.startTime});
+    this.setState({ startTime: event.startTime });
   };
 
   returnFunctionEnd = (event) => {
-    this.setState({endTime: event.endTime});
+    this.setState({ endTime: event.endTime });
   };
 
   handleSubmit = async (e) => {
@@ -289,7 +289,7 @@ class SignUp extends Component {
             state: this.state.selectedState,
             pinCode: this.state.pincode,
 
-            role: {name: name},
+            role: { name: name },
             gstNo: this.state.gstNo,
             registrationNo: this.state.registrationNo,
             shopTime: dropoff,
@@ -320,17 +320,17 @@ class SignUp extends Component {
     }
   };
 
-  handleInputChange = (e, index) => {
+  handleInputChange = (e) => {
     var list = [...e];
-   
+
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
-    this.setState({inputList: [list]});
+    this.setState({ inputList: [list] });
   };
   handleDropdown = (role) => {
-    this.setState({role: {name: role}});
+    this.setState({ role: { name: role } });
   };
   handleDropdowns = (selectedOption) => {
-    this.setState({selectedOption});
+    this.setState({ selectedOption });
   };
   handleback = () => {
     try {
@@ -341,17 +341,17 @@ class SignUp extends Component {
   };
   togglePassword = () => {
     if (this.state.passwordType === "password") {
-      this.setState({passwordType: "text"});
+      this.setState({ passwordType: "text" });
       return;
     }
-    this.setState({passwordType: "password"});
+    this.setState({ passwordType: "password" });
   };
   confirmtogglePassword = () => {
     if (this.state.confirmPasswordType === "password") {
-      this.setState({confirmPasswordType: "text"});
+      this.setState({ confirmPasswordType: "text" });
       return;
     }
-    this.setState({confirmPasswordType: "password"});
+    this.setState({ confirmPasswordType: "password" });
   };
   render() {
     const {
@@ -371,19 +371,19 @@ class SignUp extends Component {
       timeErr,
       registrationErr,
     } = this.state.formErrors;
-    const {role} = this.state;
+    const { role } = this.state;
     let fields;
     if (role.name === "Vendor") {
       fields = (
         <div className="row">
           <div
             className="inputGroup"
-            style={{paddingLeft: "23px", marginTop: "32px"}}
+            style={{ paddingLeft: "23px", marginTop: "32px" }}
           >
             <label htmlFor="GSTIN">
               GST-IN <i className="text-danger">*</i>
             </label>
-            <InputField
+            <input
               type="text"
               name="GSTIN"
               value={this.state.gstNo}
@@ -394,16 +394,16 @@ class SignUp extends Component {
           </div>
           <div
             className="inputGroup"
-            style={{marginTop: "30px", marginLeft: "0.75%"}}
+            style={{ marginTop: "30px", marginLeft: "0.75%" }}
           >
             <label htmlFor="reg">
               Registration Number <i className="text-danger">*</i>
             </label>
-            <InputField
+            <input
               type="text"
               name="reg"
               value={this.state.registrationNo}
-              placeholder="Enter Registration Number"
+              placeholder="Enter Number"
               onChange={this.handleChange("registrationNo")}
             />
             <div className="formErrors">{registrationErr}</div>
@@ -415,28 +415,45 @@ class SignUp extends Component {
       fields = (
         <div>
           <div className="row">
-            <div
-              className="inputGroup"
-              style={{paddingLeft: "25px", marginTop: "32px"}}
-            >
-              <label htmlFor="GSTIN">
-                GST-IN <i className="text-danger">*</i>
-              </label>
-              <InputField
-                type="text"
-                name="GSTIN"
-                value={this.state.gstNo}
-                placeholder="Enter GST-IN"
-                onChange={this.handleChange("gstNo")}
-              />
-              <div className="formErrors">{gstErr}</div>
+            <div className="inputGroup" style={{ marginLeft: "2%" }}>
+              <div className="gst">
+                <label htmlFor="GSTIN">
+                  GST-IN <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  name="GSTIN"
+                  value={this.state.gstNo}
+                  placeholder="Enter GST-IN"
+                  onChange={this.handleChange("gstNo")}
+                />
+                <div className="formErrors">{gstErr}</div>
+              </div>
             </div>
+            <div className="inputGroup">
+              <div className="reg">
+                <label htmlFor="reg">
+                  Registration Number <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  name="reg"
+                  value={this.state.registrationNo}
+                  placeholder="Enter Number"
+                  onChange={this.handleChange("registrationNo")}
+                />
+                <div className="formErrors">{registrationErr}</div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
             <div className="inputGroup">
               <label
                 htmlFor="time"
                 data-tip
                 data-for="registerTip"
-                style={{marginTop: "22px"}}
+                style={{ marginTop: "22px" }}
+                className="timelabel"
               >
                 Drop-Off Time <i className="text-danger">*</i>
               </label>
@@ -451,31 +468,19 @@ class SignUp extends Component {
                 onChange={this.onChange}
                 use24Hours={true}
                 minuteIncrement="60"
+                className="time"
               />
               <div className="formErrors">{timeErr}</div>
             </div>
           </div>
-          <div className="row">
-            <div className="inputGroup" style={{paddingLeft: "25px"}}>
-              <label htmlFor="reg">
-                Registration Number <i className="text-danger">*</i>
-              </label>
-              <InputField
-                type="text"
-                name="reg"
-                value={this.state.registrationNo}
-                placeholder="Enter Registration Number"
-                onChange={this.handleChange("registrationNo")}
-              />
-              <div className="formErrors">{registrationErr}</div>
-            </div>
-            <div className="inputGroup"></div>
-          </div>
+
+          <div className="inputGroup"></div>
+
           <label
             htmlFor="categories"
             data-tip
             data-for="Tip"
-            style={{paddingLeft: "7px"}}
+            style={{ paddingLeft: "7px" }}
           >
             Categories <i className="text-danger">*</i>
           </label>
@@ -486,7 +491,7 @@ class SignUp extends Component {
             console.log(v);
             return (
               // eslint-disable-next-line react/jsx-key
-              <div className="inputGroups" style={{paddingLeft: "15px"}}>
+              <div className="inputGroups" style={{ paddingLeft: "15px" }}>
                 <Select
                   value={this.state.categoryAccepted}
                   options={data}
@@ -525,7 +530,7 @@ class SignUp extends Component {
                 <label htmlFor="firstName">
                   First Name <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
                   name="firstName"
                   value={this.state.firstName}
@@ -539,7 +544,7 @@ class SignUp extends Component {
                 <label htmlFor="lastName">
                   Last Name <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
                   name="lastName"
                   value={this.state.lastName}
@@ -555,7 +560,7 @@ class SignUp extends Component {
                 <label htmlFor="emailId">
                   E-mail Id <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="email"
                   name="emailId"
                   value={this.state.email}
@@ -569,7 +574,7 @@ class SignUp extends Component {
                 <label htmlFor="mobileNo">
                   Mobile Number <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
                   name="mobileNo"
                   onChange={this.handleChange("mobileNo")}
@@ -586,7 +591,7 @@ class SignUp extends Component {
                   Password <i className="text-danger">*</i>
                 </label>
                 <div className="inputWithButton">
-                  <InputField
+                  <input
                     type={this.state.passwordType}
                     name="password"
                     value={this.state.password}
@@ -618,7 +623,7 @@ class SignUp extends Component {
                   Confirm Password <i className="text-danger">*</i>
                 </label>
                 <div className="inputWithButton">
-                  <InputField
+                  <input
                     type={this.state.confirmPasswordType}
                     name="confirmPassword"
                     value={this.state.confirmPassword}
@@ -650,7 +655,7 @@ class SignUp extends Component {
                 <label htmlFor="address">
                   Address Line <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
                   name="address"
                   value={this.state.address1}
@@ -669,7 +674,6 @@ class SignUp extends Component {
                   style={{
                     borderRadius: "17px",
                     padding: "4px",
-                    width: "300px",
                   }}
                   value={this.state.selectedState}
                   onChange={this.changeState}
@@ -692,7 +696,6 @@ class SignUp extends Component {
                   style={{
                     borderRadius: "17px",
                     padding: "4px 4px 5px ",
-                    width: "300px",
                     marginLeft: "0.49%",
                   }}
                   value={this.state.selectedCity}
@@ -710,7 +713,7 @@ class SignUp extends Component {
                 <label htmlFor="pincode">
                   Pincode <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="pincode"
                   name="pincode"
                   value={this.state.pincode}
@@ -722,26 +725,28 @@ class SignUp extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="inputGroup" style={{marginLeft: "-10px"}}>
-                <label htmlFor="role" style={{paddingLeft: "6px"}}>
+              <div className="inputGroup">
+                <label htmlFor="role">
                   Role <i className="text-danger">*</i>
                 </label>
-                <>
-                  <Dropdown
-                    data={[
-                      {label: "Customer"},
-                      {label: "Collector"},
-                      {label: "Vendor"},
-                    ]}
-                    name="role"
-                    value={this.state.role.name}
-                    placeholder="Select your Role"
-                    onChange={this.handleDropdown}
-                    optionValues={this.optionValues}
-                  />
-                  {fields}
-                </>
-                <div className="formErrors">{roleErr}</div>
+                <div className="role">
+                  <>
+                    <Dropdown
+                      data={[
+                        { label: "Customer" },
+                        { label: "Collector" },
+                        { label: "Vendor" },
+                      ]}
+                      name="role"
+                      value={this.state.role.name}
+                      placeholder="Select your Role"
+                      onChange={this.handleDropdown}
+                      optionValues={this.optionValues}
+                    />
+                    {fields}
+                  </>
+                  <div className="formErrors">{roleErr}</div>
+                </div>
               </div>
             </div>
             <span className="error">

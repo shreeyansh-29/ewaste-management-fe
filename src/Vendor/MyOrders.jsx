@@ -4,6 +4,7 @@ import {} from "@material-ui/icons";
 import Popup from ".././Customer/Popup";
 import {FaUserCircle} from "react-icons/fa";
 import {toast} from "react-toastify";
+import SearchIcon from "@material-ui/icons/Search";
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 export default function MyOrders() {
@@ -191,6 +192,9 @@ export default function MyOrders() {
             header: {
               actions: "Profile",
             },
+          }}
+          icons={{
+            Search: () => <SearchIcon style={{ fill: "white" }} />,
           }}
           actions={[
             {

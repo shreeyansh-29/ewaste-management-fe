@@ -201,6 +201,7 @@ export default function CollectorRequests() {
         ]}
         options={{
           actionsColumnIndex: -1,
+          search:false
         }}
       />
     </div>

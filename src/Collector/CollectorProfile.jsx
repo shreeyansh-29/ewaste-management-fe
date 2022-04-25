@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import InputField from "../Components/InputField";
 import "./Collector.css";
 import { toast } from "react-toastify";
 import TimeRange from "react-time-range";
@@ -288,7 +287,7 @@ class CollectorProfile extends Component {
                   <label htmlFor="firstName">
                     First Name <i className="text-danger">*</i>{" "}
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="firstName"
                     value={this.state.firstName}
@@ -302,7 +301,7 @@ class CollectorProfile extends Component {
                   <label htmlFor="lastName">
                     Last Name <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="lastName"
                     value={this.state.lastName}
@@ -326,7 +325,6 @@ class CollectorProfile extends Component {
                     style={{
                       borderRadius: "17px",
                       padding: "4px",
-                      width: "95%",
                       backgroundColor: "#fff",
                     }}
                     disabled
@@ -337,7 +335,7 @@ class CollectorProfile extends Component {
                   <label htmlFor="phoneNumber">
                     Phone Number <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="phoneNumber"
                     onChange={this.handleChange("mobileNo")}
@@ -353,7 +351,7 @@ class CollectorProfile extends Component {
                   <label htmlFor="address1">
                     Address Line <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="landmark"
                     value={this.state.address1}
@@ -372,7 +370,6 @@ class CollectorProfile extends Component {
                     style={{
                       borderRadius: "17px",
                       padding: "4px",
-                      width: "95%",
                     }}
                     value={this.state.state}
                     onChange={this.changeState}
@@ -395,7 +392,6 @@ class CollectorProfile extends Component {
                     style={{
                       borderRadius: "17px",
                       padding: "4px",
-                      width: "95%",
                     }}
                     value={this.state.city}
                     onChange={this.changeCity}
@@ -411,7 +407,7 @@ class CollectorProfile extends Component {
                   <label htmlFor="pincode">
                     Pincode <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="pincode"
                     name="pincode"
                     value={this.state.pinCode}
@@ -427,7 +423,7 @@ class CollectorProfile extends Component {
                   <label htmlFor="GSTIN">
                     GSTNo <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="GSTIN"
                     value={this.state.gstNo}
@@ -440,7 +436,7 @@ class CollectorProfile extends Component {
                   <label htmlFor="Registration Certificate No.">
                     Registration Number <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="Certificate_Num"
                     value={this.state.registrationNo}

@@ -40,6 +40,7 @@ export default function PickUp() {
     {
       title: "Category",
       field: "category",
+      emptyValue: '(empty)',
       lookup: {
         Temp: "Temperature exchange equipment (such as air conditioners, freezers)",
         Screens: "Screens, monitors (TVs, laptops)",
@@ -48,6 +49,7 @@ export default function PickUp() {
         SmallEquip: "Small equipment (microwaves, electric shavers)",
         SmallIT:
           "Small IT and telecommunication equipment (such as mobile phones, printers)",
+        
       },
       cellStyle: {
         textAlign: "center",
@@ -105,6 +107,7 @@ export default function PickUp() {
     {
       title: "Time",
       field: "time",
+      emptyValue:"00:00 - 00:00",
       lookup: {
         10: "10:00 -12:00",
         12: "12:00 -14:00",
@@ -122,7 +125,7 @@ export default function PickUp() {
     },
   ]);
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([ ]);
   const handleSubmit = async (event) => {
     event.preventDefault();
     setDisable(true);
@@ -192,7 +195,7 @@ export default function PickUp() {
   };
   const handleClick = async (event) => {
     event.preventDefault();
-    setEditable(false);
+    
     if (
       data[0].category === undefined ||
       data[0].name === "" ||
@@ -265,6 +268,7 @@ export default function PickUp() {
                 new Promise((resolve) => {
                   setTimeout(() => {
                     setData([...data, newData]);
+                    setEditable(false);
                     resolve();
                   }, 1000);
                 })
@@ -284,6 +288,7 @@ export default function PickUp() {
             pageSize: 1,
             actionsColumnIndex: -1,
             addRowPosition: "first",
+            search: false
           }}
         />
 

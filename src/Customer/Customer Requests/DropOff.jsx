@@ -4,6 +4,7 @@ import {} from "@material-ui/icons";
 import "../Customer.css";
 import ViewCollectors from "./ViewCollectors";
 import AddIcon from "@material-ui/icons/AddBox";
+import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
 toast.configure();
 export default function DropOff() {
@@ -65,7 +66,7 @@ export default function DropOff() {
 
   const handleClick = async (event) => {
     event.preventDefault();
-    setEditable(false);
+    
     if (
       data[0].category === undefined ||
       data[0].itemName === "" ||
@@ -136,6 +137,7 @@ export default function DropOff() {
           data={data}
           icons={{
             Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Search: ()=><SearchIcon style={{fill:"white"}}/>
           }}
           editable={{
             onRowAdd: isEditable
@@ -143,7 +145,7 @@ export default function DropOff() {
                 new Promise((resolve) => {
                   setTimeout(() => {
                     setData([...data, newData]);
-
+                    setEditable(false);
                     resolve();
                   }, 1000);
                 })
@@ -160,7 +162,7 @@ export default function DropOff() {
                 }, 1000);
               }),
           }}
-          options={{pageSize: 1, actionsColumnIndex: -1}}
+          options={{pageSize: 1, actionsColumnIndex: -1, search:false}}
         />
 
         <div className="a">

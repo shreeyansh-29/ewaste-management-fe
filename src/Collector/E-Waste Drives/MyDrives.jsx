@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-
+import SearchIcon from "@material-ui/icons/Search";
 export default function MyDrives() {
   const { useState } = React;
 
@@ -108,6 +108,7 @@ export default function MyDrives() {
       lookup: {
         Upcoming: "Upcoming",
         Cancelled: "Cancelled",
+        completed: "Completed"
       },
       cellStyle: {
         textAlign: "center",
@@ -196,6 +197,9 @@ export default function MyDrives() {
         title=""
         columns={columns}
         data={data}
+        icons={{
+          Search: ()=><SearchIcon style={{fill:"white"}}/>
+        }}
         editable={{
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {

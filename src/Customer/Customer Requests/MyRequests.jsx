@@ -4,6 +4,7 @@ import Popup from "../Popup";
 import "../Customer.css";
 import {FaUserCircle} from "react-icons/fa";
 
+import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
 export const ProfileIcon = FaUserCircle;
 
@@ -214,6 +215,10 @@ export default function MyRequests() {
             title=""
             columns={columns}
             data={data}
+            icons={{
+              Search: ()=><SearchIcon style={{fill:"white"}}/>
+            }}
+           
             localization={{
               header: {
                 actions: "Profile",

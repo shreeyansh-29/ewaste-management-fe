@@ -1,17 +1,18 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
 import PuchaseData from "./PuchaseData";
 import "./vendor.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import Popup from ".././Customer/Popup";
-import {FaUserCircle} from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import SearchIcon from "@material-ui/icons/Search";
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
 export default function Sales() {
-  const {useState} = React;
+  const { useState } = React;
   const [details, setDetails] = useState([]);
   const [detail, setdetail] = useState();
   const [isopen2, setopen2] = useState(false);
@@ -32,7 +33,7 @@ export default function Sales() {
           onClick={() => profile(rowData)}
         >
           {" "}
-          <ProfileIcon style={{color: "#e75480"}} />
+          <ProfileIcon style={{ color: "#e75480" }} />
         </button>
       ),
       filtering: false,
@@ -100,7 +101,7 @@ export default function Sales() {
       field: "price",
       editable: "never",
       type: "currency",
-      currencySetting: {currencyCode: "INR"},
+      currencySetting: { currencyCode: "INR" },
       filtering: false,
       cellStyle: {
         fontSize: "13px",
@@ -139,7 +140,7 @@ export default function Sales() {
       title: "Total Price",
       field: "purchaseprice",
       type: "currency",
-      currencySetting: {currencyCode: "INR"},
+      currencySetting: { currencyCode: "INR" },
       initialEditValue: 0,
       editable: "never",
 
@@ -202,13 +203,13 @@ export default function Sales() {
   const [data, setData] = useState([]);
   const CalTotal = (index, newData) => {
     if (parseInt(newData.quantities) > data[index].availableQuantity) {
-      toast.error("Invalid quantity", {position: toast.POSITION.TOP_RIGHT});
+      toast.error("Invalid quantity", { position: toast.POSITION.TOP_RIGHT });
 
       newData.quantities = null;
     } else {
       newData.purchaseprice = newData.price * newData.quantities;
       newData.quantities = newData.quantities.toString();
-      
+
       var dataUpdate = [...data];
       dataUpdate[index] = newData;
       setData([...dataUpdate]);
@@ -261,7 +262,7 @@ export default function Sales() {
     setopen2(!isopen2);
   };
   return (
-    <div style={{padding: "150px 30px   "}}>
+    <div style={{ padding: "150px 30px   " }}>
       <h2
         style={{
           textAlign: "center",
@@ -282,7 +283,9 @@ export default function Sales() {
         columns={columns}
         data={data}
         icons={{
-          Edit: () => <Edit style={{color: "black", alignContent: "left"}} />,
+          Edit: () => <Edit style={{ color: "black", alignContent: "left" }} />,
+
+          Search: () => <SearchIcon style={{ fill: "white" }} />,
         }}
         editable={{
           onRowUpdate: (newData, oldData) =>
@@ -315,7 +318,7 @@ export default function Sales() {
         }}
       />
 
-      <Link to={{pathname: "/MyOrders", data: [details]}}></Link>
+      <Link to={{ pathname: "/MyOrders", data: [details] }}></Link>
       <div>{isopen && <PuchaseData quantity={quantity} item={item} />}</div>
       <div>
         {isopen2 && detail != null && (
