@@ -35,13 +35,14 @@
 }
 
 .Form-bodY {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flexbox;
   justify-content: center;
   align-items: center;
   margin-left: 23%;
   width: 55%;
 
+  margin-top: 100px;
   flex-direction: column;
   background-color: white;
   border: 1px solid white;
@@ -183,6 +184,9 @@ width:300px;
       padding: 10px 1px;
       width: 100%;
     }
+    .form-select{
+      width:300px;
+    }
   }
 }
 @media screen and (min-width: 420px) {
@@ -248,9 +252,6 @@ width:300px;
     .role {
       margin-left: 1px;
       margin-top: 2.5px;
-    }
-    .dropdown {
-      margin-top: -15%;
     }
     .reg{
       margin-left: 3px;

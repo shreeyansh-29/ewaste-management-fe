@@ -11,3 +11,39 @@
 .app-button:hover {
   background: orange;
 }
+.title{
+  font-size: 30px;
+}
+@media screen and (max-width: 360px) {
+  .title{
+    font-size:18px;
+  }
+}
+@media screen and (min-width: 370px) {
+  @media screen and (max-width: 420px) {
+    .title{
+      font-size:22px;
+    }
+  }
+}
+@media screen and (min-width: 420px) {
+  @media screen and (max-width: 500px) {
+    .title{
+      font-size: 20px;
+    }
+  }
+}
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 600px) {
+    .title{
+      font-size: 25px;
+    }
+  }
+}
+@media screen and (min-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    .title{
+      font-size: 30px;
+    }
+  }
+}

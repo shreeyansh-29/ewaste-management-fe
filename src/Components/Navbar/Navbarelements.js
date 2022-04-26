@@ -42,7 +42,7 @@ export const NavLogo = styled(Link)`
 }
   @media screen and (min-width: 280px) {
     @media screen and (max-width: 360px) {
-    font-size:0.8rem;
+    font-size:1.5rem;
   }
 }
 `;

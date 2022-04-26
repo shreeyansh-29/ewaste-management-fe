@@ -229,7 +229,7 @@ const SignIn = () => {
                 SignIn
               </button>
             </div>
-            <div className="separator" style={{marginTop:"20px"}}> or Sign in with</div>
+           
 
             <GoogleSignin />
             <div
@@ -265,8 +265,6 @@ export default SignIn;
 
 
 
-//  400
-//  500-600
 
 
 

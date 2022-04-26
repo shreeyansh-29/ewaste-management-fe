@@ -17,7 +17,8 @@ function CustomerNav() {
   var list = ["hh"];
   const c = localStorage.getItem("count");
   const name = localStorage.getItem("name");
-
+  
+  
   const markAsRead = async () => {
     try {
       const res = await navbarapi("customer");

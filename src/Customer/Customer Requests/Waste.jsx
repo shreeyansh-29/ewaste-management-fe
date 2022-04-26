@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   MDBCard,
-  MDBCardImage,
+  // MDBCardImage,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
@@ -10,16 +10,16 @@ import {
   MDBCardFooter,
 } from "mdb-react-ui-kit";
 
-import img1 from "../../images/microwave.jpg";
-import img2 from "../../images/printer1.jpeg";
-import img3 from "../../images/tubelight1.jpg";
-import img4 from "../../images/monitor.jpg";
-import img5 from "../../images/img71.jpg";
-import img6 from "../../images/machine1.jpg";
-import img7 from "../../images/mobile1.jpg";
-const image = [img1, img2, img3, img4, img5, img6, img7];
-var min = 1;
-var max = 7;
+// import img1 from "../../images/microwave.jpg";
+// import img2 from "../../images/printer1.jpeg";
+// import img3 from "../../images/tubelight1.jpg";
+// import img4 from "../../images/monitor.jpg";
+// import img5 from "../../images/img71.jpg";
+// import img6 from "../../images/machine1.jpg";
+// import img7 from "../../images/mobile1.jpg";
+// const image = [img1, img2, img3, img4, img5, img6, img7];
+// var min = 1;
+// var max = 7;
 
 export default function Waste() {
   useEffect(() => {
@@ -67,16 +67,15 @@ export default function Waste() {
   }, []);
 
   const renderCard = (card) => {
-    var random = parseInt(min + Math.random() * (max - min));
+    // var random = parseInt(min + Math.random() * (max - min));
     return (
       <MDBCol className="col-sm-4">
         <MDBCard className="h-100">
-          <MDBCardImage
-            // src="https://mdbootstrap.com/img/new/standard/city/042.webp"
+          {/* <MDBCardImage
             src={image[random]}
             alt="..."
             position="top"
-          />
+          /> */}
           <MDBCardBody>
             <MDBCardTitle>{card.driveName}</MDBCardTitle>
             <MDBCardText>

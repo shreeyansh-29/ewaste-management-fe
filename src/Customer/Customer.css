@@ -380,14 +380,20 @@ h3 {
   @media screen and (max-width: 420px) {
     .containers{
       width:90%;
-      margin-left:13px;
+      margin-left:20px;
       height:100%;
     }
     .form-select{
       width:90%;
     }
     .notification_button{
-      margin-left: 100px;
+      margin-left: 180px;
+    }
+    .card-body{
+      width:300px;
+    }
+    .card-footer{
+      width:300px;
     }
   }
 }
@@ -412,6 +418,17 @@ h3 {
     }
   }
 }
+@media screen and (min-width: 600px) {
+  @media screen and (max-width: 800px) {
+    .card-body{
+      width:340px;
+      
+    }
+    .card-footer{
+      width:300px;
+    }
+  }
+}
 @media screen and (min-width: 800px) {
   @media screen and (max-width: 1200px) {
     .containers{
@@ -424,3 +441,6 @@ h3 {
     }
   }
 }
+
+
+
