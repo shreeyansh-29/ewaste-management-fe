@@ -36,17 +36,16 @@ import Popup from "./Customer/Popup";
 import Waste from "./Customer/Customer Requests/Waste";
 
 function App() {
+  // const [ authenticated, setauthen] = useState(false);
   const role = localStorage.getItem("Roles");
 
   console.log(role);
   return (
-    // <div className="App">
-    //   <GoogleSignin />
-    // </div>
     <BrowserRouter>
       {role === "CUSTOMER" ? (
         <>
-          <CustomerNav />
+          
+          <CustomerNav  />
           <GlobalStyle />
           <ScrollToTop />
         </>
@@ -82,7 +81,7 @@ function App() {
       )}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Signin" element={<Signin />} />
+        <Route path="/Signin"   element={<Signin />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route
@@ -91,7 +90,7 @@ function App() {
           element={<ResetPass />}
         />
         <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler/>}></Route>  
-        <Route path="/CustomerHome" element={<CustomerHome />} />
+        <Route path="/CustomerHome"  element={<CustomerHome />} />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/Popup" element={<Popup />} />
         <Route path="/CollectorHome" element={<CollectorHome />} />

@@ -5,6 +5,9 @@
 select{
   width:70px;
 }
+.icon-button__badge1{
+  margin-left: -40px;
+}
 .Formbody {
   display: flexbox;
   justify-content: center;

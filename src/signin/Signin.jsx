@@ -133,139 +133,132 @@ const SignIn = () => {
   };
 
   return (
-    <div className="signIn">
-      <Formik>
-        <Form>
-          <div className="Form-Body">
-            <div className="heading">
-              <h2
-                style={{
-                  textAlign: "center",
-                  padding: "20px",
-                  fontSize: "1.7rem",
-                  fontFamily: "sans-serif",
-                  color: "white",
-                }}
-              >
-                Sign In
-              </h2>
-            </div>
-
-            <div
-              className="form-group"
-              style={{
-                marginTop: "30px",
-                marginLeft: "20px",
-                marginRight: "20px",
-              }}
-            >
-              <Field
-                name="email"
-                className="form-control"
-                type="email"
-                placeholder="Email"
-                style={{ borderRadius: "17px" }}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="off"
-              />
-            </div>
-            <div className="formErrors">{emailerr}</div>
-
-            <div
-              className="form-group"
-              style={{
-                marginTop: "30px",
-                marginLeft: "20px",
-                marginRight: "20px",
-              }}
-            >
-              <div className="inputWithButtons">
-                <Field
-                  name="subject"
-                  className="form-control"
-                  type={passwordType}
-                  placeholder="Password"
-                  style={{ borderRadius: "17px" }}
-                  onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="off"
-                />
-                <div className="input-group-btn">
-                  <button
-                    onClick={togglePassword}
-                    style={{
-                      border: "1px solid white",
-                      backgroundColor: "white",
-                    }}
-                    type="button"
-                  >
-                    {passwordType === "password" ? (
-                      <ShowOffIcon />
-                    ) : (
-                      <ShowIcon />
-                    )}
-                  </button>
-                </div>
+    <>
+      <div className="signIn">
+        <Formik>
+          <Form>
+            <div className="Form-Body">
+              <div className="heading">
+                <h2
+                  style={{
+                    textAlign: "center",
+                    padding: "20px",
+                    fontSize: "1.7rem",
+                    fontFamily: "sans-serif",
+                    color: "white",
+                  }}
+                >
+                  Sign In
+                </h2>
               </div>
-            </div>
-            <div className="formErrors">{passworderr}</div>
-            <div style={{ float: "right" }}>
-              <Link
-                to="/ForgotPassword"
+
+              <div
+                className="form-group"
                 style={{
-                  color: "gray",
-                  fontFamily: "Poppins",
+                  marginTop: "30px",
+                  marginLeft: "20px",
                   marginRight: "20px",
                 }}
               >
-                Forgot Password
-              </Link>
-            </div>
-            <div className="text-center" style={{ marginTop: "50px" }}>
-              <button
-                type="button"
-                className="signin-button"
-                onClick={handleClick}
-              >
-                SignIn
-              </button>
-            </div>
-           
+                <Field
+                  name="email"
+                  className="form-control"
+                  type="email"
+                  placeholder="Email"
+                  style={{ borderRadius: "17px" }}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="off"
+                />
+              </div>
+              <div className="formErrors">{emailerr}</div>
 
-            <GoogleSignin />
-            <div
-              style={{
-                textAlign: "center",
-                padding: "8px",
-                fontFamily: "Poppins",
-                marginTop: "45px",
-              }}
-            >
-              {" "}
-              New User?{" "}
-              <Link
-                to="/SignUp"
+              <div
+                className="form-group"
                 style={{
-                  color: "grey",
-                  fontFamily: "Poppins",
-                  fontSize: "16.5px",
+                  marginTop: "30px",
+                  marginLeft: "20px",
+                  marginRight: "20px",
                 }}
               >
-                <strong>SIGN UP</strong>
-              </Link>
+                <div className="inputWithButtons">
+                  <Field
+                    name="subject"
+                    className="form-control"
+                    type={passwordType}
+                    placeholder="Password"
+                    style={{ borderRadius: "17px" }}
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="off"
+                  />
+                  <div className="input-group-btn">
+                    <button
+                      onClick={togglePassword}
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "white",
+                      }}
+                      type="button"
+                    >
+                      {passwordType === "password" ? (
+                        <ShowOffIcon />
+                      ) : (
+                        <ShowIcon />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="formErrors">{passworderr}</div>
+              <div style={{ float: "right" }}>
+                <Link
+                  to="/ForgotPassword"
+                  style={{
+                    color: "gray",
+                    fontFamily: "Poppins",
+                    marginRight: "20px",
+                  }}
+                >
+                  Forgot Password
+                </Link>
+              </div>
+              <div className="text-center" style={{ marginTop: "50px" }}>
+                <button
+                  type="button"
+                  className="signin-button"
+                  onClick={handleClick}
+                >
+                  SignIn
+                </button>
+              </div>
+
+              <GoogleSignin />
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "8px",
+                  fontFamily: "Poppins",
+                  marginTop: "45px",
+                }}
+              >
+                {" "}
+                New User?{" "}
+                <Link
+                  to="/SignUp"
+                  style={{
+                    color: "grey",
+                    fontFamily: "Poppins",
+                    fontSize: "16.5px",
+                  }}
+                >
+                  <strong>SIGN UP</strong>
+                </Link>
+              </div>
             </div>
-          </div>
-        </Form>
-      </Formik>
-    </div>
+          </Form>
+        </Formik>
+      </div>
+    </>
   );
 };
 
 export default SignIn;
-
-
-
-
-
-
-
-

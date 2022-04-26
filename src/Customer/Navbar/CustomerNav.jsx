@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   NavLogoutBtn,
@@ -10,13 +10,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 import { navbarapi } from "./navbarApi";
 
-function CustomerNav() {
+function CustomerNav(props) {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [List, setList] = useState([]);
   var list = ["hh"];
   const c = localStorage.getItem("count");
   const name = localStorage.getItem("name");
+  // props.authenticated = true;
+  // console.log("nav",props);
   
   
   const markAsRead = async () => {
@@ -72,7 +74,7 @@ function CustomerNav() {
               style={{ background: "#101522", border: "none" }}
               onClick={() => markAsRead()}
             >
-              <div className="icon-button__badge1">
+              <div className="icon-button__badge">
                 {c === "0" ? "" : <div className="navbarCount">{c}</div>}
                 <NavNotiIcon
                   style={
@@ -129,6 +131,8 @@ function CustomerNav() {
                         navigate("/Signin");
                         localStorage.clear();
                         document.location.reload();
+                        props.authenticated = false;
+                        
                       }
                     });
                   }}

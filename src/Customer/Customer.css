@@ -257,8 +257,8 @@ h3 {
 .bg-myblue {
   background-color: #101522;
 }
-.icon-button__badge1 {
-  right: "300%";
+.icon-button__badge {
+  margin-left: 20px;
 }
 
 .notifications {
