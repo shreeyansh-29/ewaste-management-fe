@@ -41,7 +41,9 @@ button {
 a:hover {
   cursor: pointer;
 }
-
+.form-select{
+  width:300px;
+}
 .userreq .center {
   flex: 50%;
   display: flex;

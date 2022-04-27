@@ -227,6 +227,7 @@ class EditProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
+                    style={{ borderRadius: "17px"}}
                     value={this.state.firstName}
                     onChange={this.handleChange("firstName")}
                     placeholder="First name"
@@ -240,6 +241,7 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
+                    style={{ borderRadius: "17px"}}
                     name="lastName"
                     value={this.state.lastName}
                     onChange={this.handleChange("lastName")}
@@ -265,6 +267,7 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
+                    style={{ borderRadius: "17px"}}
                     name="phoneNumber"
                     onChange={this.handleChange("mobileNo")}
                     value={this.state.mobileNo}
@@ -281,6 +284,7 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
+                    style={{ borderRadius: "17px"}}
                     name="landmark"
                     value={this.state.address1}
                     onChange={this.handleChange("address1")}
@@ -331,6 +335,7 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="pincode"
+                    style={{ borderRadius: "17px"}}
                     name="pincode"
                     value={this.state.pinCode}
                     onChange={this.handleChange("pinCode")}

@@ -255,6 +255,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.firstName}
                     onChange={this.handleChange("firstName")}
                     placeholder="First name"
@@ -269,6 +270,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="lastName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.lastName}
                     onChange={this.handleChange("lastName")}
                     placeholder="Last name"
@@ -297,6 +299,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="phoneNumber"
+                    style={{borderRadius:"17px"}}
                     onChange={this.handleChange("mobileNo")}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
@@ -312,6 +315,7 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="text"
+                    style={{borderRadius:"17px"}}
                     name="landmark"
                     value={this.state.address1}
                     onChange={this.handleChange("address1")}
@@ -368,6 +372,7 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="pincode"
+                    style={{borderRadius:"17px"}}
                     name="pincode"
                     value={this.state.pinCode}
                     onChange={this.handleChange("pinCode")}
@@ -384,6 +389,7 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="text"
+                    style={{borderRadius:"17px"}}
                     name="GSTIN"
                     value={this.state.gstNo}
                     onChange={this.handleChange("gstNo")}
@@ -398,6 +404,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="Certificate_Num"
+                    style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
                     onChange={this.handleChange("registrationNo")}
                     placeholder="Enter Registration Number"

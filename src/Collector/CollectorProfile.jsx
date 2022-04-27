@@ -290,6 +290,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.firstName}
                     onChange={this.handleChange("firstName")}
                     placeholder="First name"
@@ -304,6 +305,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="lastName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.lastName}
                     onChange={this.handleChange("lastName")}
                     placeholder="Last name"
@@ -338,6 +340,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="phoneNumber"
+                    style={{borderRadius:"17px"}}
                     onChange={this.handleChange("mobileNo")}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
@@ -354,6 +357,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="landmark"
+                    style={{borderRadius:"17px"}}
                     value={this.state.address1}
                     onChange={this.handleChange("address1")}
                     placeholder="Address Line"
@@ -410,6 +414,7 @@ class CollectorProfile extends Component {
                   <input
                     type="pincode"
                     name="pincode"
+                    style={{borderRadius:"17px"}}
                     value={this.state.pinCode}
                     onChange={this.handleChange("pinCode")}
                     placeholder="Pincode"
@@ -426,6 +431,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="GSTIN"
+                    style={{borderRadius:"17px"}}
                     value={this.state.gstNo}
                     onChange={this.handleChange("gstNo")}
                     placeholder="Enter GSTIN"
@@ -439,6 +445,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="Certificate_Num"
+                    style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
                     onChange={this.handleChange("registrationNo")}
                     placeholder="Enter Registration Number"

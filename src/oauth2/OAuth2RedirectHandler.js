@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { notificationcount } from "../signin/notificationcount";
 import { profile } from "../signin/profile";
 import jwt from "jwt-decode";
-
+import * as ReactBootstrap from 'react-bootstrap';
 class OAuth2RedirectHandler extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading:false
+    };
+  }
   getUrlParameter(name) {
     name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -14,6 +20,7 @@ class OAuth2RedirectHandler extends Component {
   }
 
   apicall = async () => {
+    this.setState({loading:true});
     var tokens = localStorage.getItem("token");
     tokens = jwt(tokens);
     localStorage.setItem("Roles", tokens.Roles[0]);
@@ -79,9 +86,9 @@ class OAuth2RedirectHandler extends Component {
     const error = this.getUrlParameter("error");
     if (token) {
       localStorage.setItem("token", token);
-      return <div>{this.apicall()} </div>;
+      return <div>{this.apicall()}{<ReactBootstrap.Spinner animation="border"/>} </div>;
     } else if (error) {
-      return <div>{(window.location.href = "/Signin")}</div>;
+      return <div>{<ReactBootstrap.Spinner animation="border"/>}{(window.location.href = "/Signin")}</div>;
     }
   }
 }
