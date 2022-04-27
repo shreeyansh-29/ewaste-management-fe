@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   NavLogoutBtn,
@@ -9,18 +9,14 @@ import "../Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 import { navbarapi } from "./navbarApi";
-
-function CustomerNav(props) {
+function CustomerNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [List, setList] = useState([]);
   var list = ["hh"];
   const c = localStorage.getItem("count");
   const name = localStorage.getItem("name");
-  // props.authenticated = true;
-  // console.log("nav",props);
-  
-  
+
   const markAsRead = async () => {
     try {
       const res = await navbarapi("customer");
@@ -69,7 +65,7 @@ function CustomerNav(props) {
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
 
-          <Nav.Item  className="notification_button" >
+          <Nav.Item className="notification_button">
             <button
               style={{ background: "#101522", border: "none" }}
               onClick={() => markAsRead()}
@@ -128,11 +124,15 @@ function CustomerNav(props) {
                       confirmButtonText: "Logout",
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        navigate("/Signin");
+                       
+
                         localStorage.clear();
+                        // sessionStorage.clear();
+                        // alert(document.cookie);
+                        // document.cookie = document.cookie + "=;expires=" + new Date(0).toUTCString();
+                        // alert(document.cookie);
+                        navigate("/Signin");
                         document.location.reload();
-                        props.authenticated = false;
-                        
                       }
                     });
                   }}

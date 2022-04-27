@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import Dropdown from "../Components/Dropdown";
-import InputField from "../Components/InputField";
 import Select from "react-select";
 import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";

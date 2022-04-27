@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   MDBCard,
-  // MDBCardImage,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
@@ -9,18 +8,10 @@ import {
   MDBCol,
   MDBCardFooter,
 } from "mdb-react-ui-kit";
-
-// import img1 from "../../images/microwave.jpg";
-// import img2 from "../../images/printer1.jpeg";
-// import img3 from "../../images/tubelight1.jpg";
-// import img4 from "../../images/monitor.jpg";
-// import img5 from "../../images/img71.jpg";
-// import img6 from "../../images/machine1.jpg";
-// import img7 from "../../images/mobile1.jpg";
-// const image = [img1, img2, img3, img4, img5, img6, img7];
-// var min = 1;
-// var max = 7;
-
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
+import "../Customer.css";
 export default function Waste() {
   useEffect(() => {
     const tokens = localStorage.getItem("token");
@@ -67,32 +58,40 @@ export default function Waste() {
   }, []);
 
   const renderCard = (card) => {
-    // var random = parseInt(min + Math.random() * (max - min));
     return (
-      <MDBCol className="col-sm-4">
-        <MDBCard className="h-100">
-          {/* <MDBCardImage
-            src={image[random]}
-            alt="..."
-            position="top"
-          /> */}
-          <MDBCardBody>
-            <MDBCardTitle>{card.driveName}</MDBCardTitle>
-            <MDBCardText>
+      <MDBCol className="col-lg-4">
+        <MDBCard style={{ borderRadius: "15px" }}>
+          <MDBCardBody style={{ borderRadius: "15px" }}>
+            <MDBCardTitle style={{ textAlign: "center" }}>
+              <h4>{card.driveName}</h4>
+            </MDBCardTitle>
+            <hr></hr>
+            <MDBCardText style={{ fontStyle: "Poppins" }}>
               {card.description}
               <br></br>
-              Items Accepted: {card.eWasteCategoryAccepted[0].categoryAccepted}
+              <strong>Items Accepted:</strong>{" "}
+              {card.eWasteCategoryAccepted[0].categoryAccepted}
               <br></br>
-              Organized by: {card.organizerName}
+              <strong> </strong>
             </MDBCardText>
-            <MDBCardFooter>
+            <MDBCardFooter
+              style={{
+                backgroundColor: "rgb(30, 28, 54)",
+                color: "white",
+                borderRadius: " 0px 0px 17px 17px",
+              }}
+            >
               <small>
-                {" "}
+                <PersonOutlineOutlinedIcon style={{ fontSize: "large" }} />
+                {"   "}
+                {card.organizerName}<br></br>
+                <LocationOnOutlinedIcon style={{ fontSize: "medium" }} />
+                {"    "}
                 {card.location}
                 <br></br>
-                {card.date}
-                <br></br>
-                {card.time}
+                <EventNoteOutlinedIcon style={{ fontSize: "medium" }} />
+                {"    "}
+                {card.date} {card.time}
               </small>
             </MDBCardFooter>
           </MDBCardBody>
@@ -107,7 +106,10 @@ export default function Waste() {
     <div>
       {data.length === 0 ? (
         <div>
-          <h2 style={{ textAlign: "center", margin:"100px" }}> No Upcoming drives </h2>
+          <h2 style={{ textAlign: "center", margin: "100px" }}>
+            {" "}
+            No Upcoming drives{" "}
+          </h2>
         </div>
       ) : (
         <MDBRow
@@ -123,3 +125,5 @@ export default function Waste() {
     </div>
   );
 }
+//textAlign:"center",color:"white", backgroundColor:"rgb(30, 28, 54)"
+//padding: "7px"

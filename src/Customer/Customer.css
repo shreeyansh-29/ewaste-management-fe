@@ -192,6 +192,18 @@ h2 {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
 }
+
+.card {
+  height: 280px;
+}
+.card-footer {
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+  
+  /* top:14px; */
+}
 h3 {
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
@@ -242,6 +254,7 @@ h3 {
   background-color: rgb(22, 21, 43);
   border-radius: 10px 10px 0px 0px;
 }
+
 .find-btn {
   padding: 3px 7px;
   border-radius: 5px;
@@ -274,6 +287,14 @@ h3 {
   border-radius: 10px;
   border: 1px solid black;
   z-index: 100001 !important;
+}
+.card:hover{
+    transform: scale(1.02);
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+    /* color: white; */
+    /* background-color: rgb(144, 117, 221); */
+  
 }
 .notifications1 {
   position: absolute;
@@ -334,6 +355,19 @@ h3 {
     .btn-close {
       right: 150px;
     }
+    .card{
+      display: flex;
+      flex-direction: row;
+      width:330px;
+    }
+    .card-body{
+      
+      width:340px;
+      
+    }
+    .card-footer{
+      width:330px;
+    }
   }
 }
 .welcome {
@@ -389,12 +423,16 @@ h3 {
     .notification_button{
       margin-left: 180px;
     }
+    .card{
+      margin-bottom: 13px;
+    }
     .card-body{
       width:300px;
     }
     .card-footer{
-      width:300px;
+      width:100%;
     }
+    
   }
 }
 @media screen and (min-width: 420px) {
@@ -415,17 +453,6 @@ h3 {
     }
     .form-select{
       width:90%;
-    }
-  }
-}
-@media screen and (min-width: 600px) {
-  @media screen and (max-width: 800px) {
-    .card-body{
-      width:340px;
-      
-    }
-    .card-footer{
-      width:300px;
     }
   }
 }
