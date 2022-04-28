@@ -11,10 +11,10 @@ import {
 
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 toast.configure();
 export default function PickUp() {
-  const {useState} = React;
+  const { useState } = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
   const [isEditable, setEditable] = useState(true);
@@ -49,7 +49,6 @@ export default function PickUp() {
         SmallEquip: "Small equipment (microwaves, electric shavers)",
         SmallIT:
           "Small IT and telecommunication equipment (such as mobile phones, printers)",
-        
       },
       cellStyle: {
         textAlign: "center",
@@ -80,7 +79,7 @@ export default function PickUp() {
       field: "date",
       type: "date",
 
-      editComponent: ({value, onChange}) => (
+      editComponent: ({ value, onChange }) => (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             margin="normal"
@@ -107,7 +106,7 @@ export default function PickUp() {
     {
       title: "Time",
       field: "time",
-      emptyValue:"00:00 - 00:00",
+      emptyValue: "00:00 - 00:00",
       lookup: {
         10: "10:00 -12:00",
         12: "12:00 -14:00",
@@ -125,7 +124,7 @@ export default function PickUp() {
     },
   ]);
 
-  const [data, setData] = useState([ ]);
+  const [data, setData] = useState([]);
   const handleSubmit = async (event) => {
     event.preventDefault();
     setDisable(true);
@@ -195,7 +194,7 @@ export default function PickUp() {
   };
   const handleClick = async (event) => {
     event.preventDefault();
-    
+
     if (
       data[0].category === undefined ||
       data[0].name === "" ||
@@ -203,7 +202,7 @@ export default function PickUp() {
       data[0].date === undefined ||
       data[0].time === undefined
     ) {
-      toast.error("Enter all fields", {position: toast.POSITION.TOP_RIGHT});
+      toast.error("Enter all fields", { position: toast.POSITION.TOP_RIGHT });
     } else if (
       data[0].quantity === 0 ||
       data[0].quantity > 20 ||
@@ -239,7 +238,7 @@ export default function PickUp() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px"}}>
+      <div style={{ padding: "150px 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -260,7 +259,7 @@ export default function PickUp() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
           }}
           editable={{
             onRowAdd: isEditable
@@ -288,7 +287,7 @@ export default function PickUp() {
             pageSize: 1,
             actionsColumnIndex: -1,
             addRowPosition: "first",
-            search: false
+            search: false,
           }}
         />
 
@@ -315,23 +314,13 @@ export default function PickUp() {
             <button
               onClick={handleSubmit}
               disabled={disable}
-              style={
-                disable
-                  ? {
-                    color: "black",
-                    background: "grey",
-                    padding: "10px",
-                    borderRadius: "3px",
-                    border: "1px solid grey",
-                  }
-                  : {
-                    color: "white",
-                    background: "black",
-                    padding: "10px",
-                    borderRadius: "3px",
-                    border: "1px solid black",
-                  }
-              }
+              style={{
+                color: "white",
+                background: "black",
+                padding: "10px",
+                borderRadius: "3px",
+                border: "1px solid black",
+              }}
             >
               Send Request
             </button>

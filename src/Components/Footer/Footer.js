@@ -20,7 +20,6 @@ const Footer = () => {
   const navigate = useNavigate();
   function handleClick() {
     navigate("/SignIn");
-    // window.location.reload();
   }
   return (
     <>

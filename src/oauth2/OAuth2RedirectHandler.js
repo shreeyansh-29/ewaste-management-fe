@@ -73,6 +73,9 @@ class OAuth2RedirectHandler extends Component {
   vendorRedirect = () => {
     window.location.href = "/VendorHome";
   };
+  redirect=()=>{
+    window.location.href = "/Signin";
+  }
   render() {
     const token = this.getUrlParameter("token");
     const error = this.getUrlParameter("error");
@@ -80,7 +83,7 @@ class OAuth2RedirectHandler extends Component {
       localStorage.setItem("token", token);
       return <div>{this.apicall()}</div>;
     } else if (error) {
-      return <div>{(window.location.href = "/Signin")}</div>;
+      return <div>{this.redirect()}</div>;
     }
   }
 }
