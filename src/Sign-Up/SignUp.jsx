@@ -263,6 +263,7 @@ class SignUp extends Component {
     end = (parseInt(end[0]) + 6) % 24;
     end = end + ":" + "00";
     var dropoff = start.toString() + end.toString();
+
     if (this.handleFormValidation()) {
       const fname =
         this.state.firstName.charAt(0).toUpperCase() +
@@ -374,40 +375,40 @@ class SignUp extends Component {
     let fields;
     if (role.name === "Vendor") {
       fields = (
-        <div className="row">
-          <div
-            className="inputGroup"
-            style={{ paddingLeft: "23px", marginTop: "32px" }}
-          >
-            <label htmlFor="GSTIN">
-              GST-IN <i className="text-danger">*</i>
-            </label>
-            <input
-              type="text"
-              style={{ borderRadius: "17px"}}
-              name="GSTIN"
-              value={this.state.gstNo}
-              placeholder="Enter GST-IN"
-              onChange={this.handleChange("gstNo")}
-            />
-            <div className="formErrors">{gstErr}</div>
-          </div>
-          <div
-            className="inputGroup"
-            style={{ marginTop: "30px", marginLeft: "0.75%" }}
-          >
-            <label htmlFor="reg">
-              Registration Number <i className="text-danger">*</i>
-            </label>
-            <input
-              type="text"
-              name="reg"
-              style={{ borderRadius: "17px"}}
-              value={this.state.registrationNo}
-              placeholder="Enter Number"
-              onChange={this.handleChange("registrationNo")}
-            />
-            <div className="formErrors">{registrationErr}</div>
+        <div >
+          <div className="row">
+            <div className="inputGroup-gst" >
+            
+              <label htmlFor="GSTIN" >
+                GST-IN <i className="text-danger">*</i>
+              </label>
+              <input
+                type="text"
+                style={{ borderRadius: "17px" }}
+                name="GSTIN"
+                value={this.state.gstNo}
+                placeholder="Enter GST-IN"
+                onChange={this.handleChange("gstNo")}
+              />
+              <div className="formErrors">{gstErr}</div>
+            </div>
+            <div
+              className="inputGroup-reg" 
+              // style={{ marginTop: "30px", marginLeft: "0.75%" }}
+            >
+              <label htmlFor="reg">
+                Registration Number <i className="text-danger">*</i>
+              </label>
+              <input
+                type="text"
+                name="reg"
+                style={{ borderRadius: "17px" }}
+                value={this.state.registrationNo}
+                placeholder="Enter Number"
+                onChange={this.handleChange("registrationNo")}
+              />
+              <div className="formErrors">{registrationErr}</div>
+            </div>
           </div>
         </div>
       );
@@ -416,14 +417,14 @@ class SignUp extends Component {
       fields = (
         <div>
           <div className="row">
-            <div className="inputGroup" >
+            <div className="inputGroup-gst">
               <div className="gst">
                 <label htmlFor="GSTIN">
                   GST-IN <i className="text-danger">*</i>
                 </label>
                 <input
                   type="text"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   name="GSTIN"
                   value={this.state.gstNo}
                   placeholder="Enter GST-IN"
@@ -432,7 +433,7 @@ class SignUp extends Component {
                 <div className="formErrors">{gstErr}</div>
               </div>
             </div>
-            <div className="inputGroup">
+            <div className="inputGroup-reg">
               <div className="reg">
                 <label htmlFor="reg">
                   Registration Number <i className="text-danger">*</i>
@@ -440,7 +441,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="reg"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   value={this.state.registrationNo}
                   placeholder="Enter Number"
                   onChange={this.handleChange("registrationNo")}
@@ -536,7 +537,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="firstName"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   value={this.state.firstName}
                   onChange={this.handleChange("firstName")}
                   placeholder="First Name"
@@ -551,7 +552,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="lastName"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   value={this.state.lastName}
                   onChange={this.handleChange("lastName")}
                   placeholder="Last Name"
@@ -568,7 +569,7 @@ class SignUp extends Component {
                 <input
                   type="email"
                   name="emailId"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   value={this.state.email}
                   onChange={this.handleChange("email")}
                   placeholder="Mail"
@@ -583,7 +584,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="mobileNo"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   onChange={this.handleChange("mobileNo")}
                   value={this.state.mobileNo}
                   placeholder="Mobile Number"
@@ -601,7 +602,7 @@ class SignUp extends Component {
                   <input
                     type={this.state.passwordType}
                     name="password"
-                    style={{ borderRadius: "17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.password}
                     onChange={this.handleChange("password")}
                     placeholder="Enter Password"
@@ -634,7 +635,7 @@ class SignUp extends Component {
                   <input
                     type={this.state.confirmPasswordType}
                     name="confirmPassword"
-                    style={{ borderRadius: "17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.confirmPassword}
                     onChange={this.handleChange("confirmPassword")}
                     placeholder="Confirm Password"
@@ -667,7 +668,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="address"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   value={this.state.address1}
                   onChange={this.handleChange("address1")}
                   placeholder="Address"
@@ -680,7 +681,7 @@ class SignUp extends Component {
                   State <i className="text-danger">*</i>
                 </label>
                 <select
-                  className="form-select"
+                  className="forms-select"
                   style={{
                     borderRadius: "17px",
                     padding: "4px",
@@ -702,7 +703,7 @@ class SignUp extends Component {
                   City <i className="text-danger">*</i>
                 </label>
                 <select
-                  className="form-select"
+                  className="forms-select"
                   style={{
                     borderRadius: "17px",
                     padding: "4px 4px 5px ",
@@ -725,7 +726,7 @@ class SignUp extends Component {
                 </label>
                 <input
                   type="pincode"
-                  style={{ borderRadius: "17px"}}
+                  style={{ borderRadius: "17px" }}
                   name="pincode"
                   value={this.state.pincode}
                   onChange={this.handleChange("pincode")}
@@ -750,7 +751,7 @@ class SignUp extends Component {
                       ]}
                       name="role"
                       value={this.state.role.name}
-                      style={{ borderRadius: "17px"}}
+                      style={{ borderRadius: "17px" }}
                       placeholder="Select your Role"
                       onChange={this.handleDropdown}
                       optionValues={this.optionValues}

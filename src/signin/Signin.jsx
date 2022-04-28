@@ -137,7 +137,7 @@ const SignIn = () => {
       <div className="signIn">
         <Formik>
           <Form>
-            <div className="Form-Body">
+            <div className="Form-BOdy">
               <div className="heading">
                 <h2
                   style={{

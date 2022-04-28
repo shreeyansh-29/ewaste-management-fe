@@ -40,7 +40,7 @@ export default function PickUp() {
     {
       title: "Category",
       field: "category",
-      emptyValue: '(empty)',
+      // emptyValue: '(empty)',
       lookup: {
         Temp: "Temperature exchange equipment (such as air conditioners, freezers)",
         Screens: "Screens, monitors (TVs, laptops)",

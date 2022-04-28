@@ -25,10 +25,10 @@
   background-color: rgb(30, 28, 54);
   color: white;
   font-weight: bold;
-  width: 250px;
+  width: 200px;
   margin-left:-5px;
 }
-.Form-Body {
+.Form-BOdy {
   resize: none;
   background-color: white;
   border-radius: 10px;
@@ -38,7 +38,7 @@
  
 }
 @media screen and (max-width: 400px) {
-  .Form-Body{
+  .Form-BOdy{
     width:40vh;
   }
  
@@ -53,7 +53,7 @@
   background-color: rgb(30, 28, 54);
   color: white;
   font-weight: bold;
-  width: 250px;
+  width: 200px;
   margin-left:-5px;
 }
 .signin-button:hover {
@@ -185,7 +185,11 @@ span {
     .googlebtn{
       width:9.3rem;
       height:2.3rem;
-      padding-left:50px;
+      /* padding-left:50px; */
+    }
+    .Form-BOdy{
+      margin-top: 35px;
+      width:40vh;
     }
    }
 

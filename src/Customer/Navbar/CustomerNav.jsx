@@ -4,11 +4,13 @@ import {
   NavLogoutBtn,
   NavNotiIcon,
 } from "../../Components/Navbar/Navbarelements";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
+// import { cookie } from 'react-cookie';
 import "../Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 import { navbarapi } from "./navbarApi";
+
 function CustomerNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -16,7 +18,28 @@ function CustomerNav() {
   var list = ["hh"];
   const c = localStorage.getItem("count");
   const name = localStorage.getItem("name");
+  const handleLogout = async () => {
+    // const tokens = localStorage.getItem("token");
+    // const email = localStorage.getItem("email");
 
+    // const response = await fetch("http://localhost:8083/logout/google", {
+    //   method: "POST",
+    //   credentials: "same-origin",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: "Bearer " + tokens,
+    //     EMAIL: email,
+    //   },
+    // });
+    // console.log(response);
+    // cookie: { httpOnly: false }
+    // cookie.get("redirect_uri");
+    // alert(cookie.getItem('redirect_uri'));
+
+    localStorage.clear();
+    navigate("/Signin");
+    document.location.reload();
+  };
   const markAsRead = async () => {
     try {
       const res = await navbarapi("customer");
@@ -114,28 +137,30 @@ function CustomerNav() {
               <Nav.Link>
                 <button
                   className="Btn"
-                  onClick={() => {
-                    Swal.fire({
-                      title: "Are you sure?",
-                      icon: "warning",
-                      showCancelButton: true,
-                      confirmButtonColor: "#228B22",
-                      cancelButtonColor: "#d33",
-                      confirmButtonText: "Logout",
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                       
+                  // onClick={() => {
+                  //   Swal.fire({
+                  //     title: "Are you sure?",
+                  //     icon: "warning",
+                  //     showCancelButton: true,
+                  //     confirmButtonColor: "#228B22",
+                  //     cancelButtonColor: "#d33",
+                  //     confirmButtonText: "Logout",
+                  //   }).then((result) => {
+                  //     if (result.isConfirmed) {
+                  //       localStorage.clear();
 
-                        localStorage.clear();
-                        // sessionStorage.clear();
-                        // alert(document.cookie);
-                        // document.cookie = document.cookie + "=;expires=" + new Date(0).toUTCString();
-                        // alert(document.cookie);
-                        navigate("/Signin");
-                        document.location.reload();
-                      }
-                    });
-                  }}
+                  //       document.cookie.split(";").forEach((c) => {
+                  //         alert(c);
+                  //         document.cookie = c
+                  //           .replace(/^ +/, "")
+                  //           .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                  //       });
+                  //       navigate("/Signin");
+                  //       document.location.reload();
+                  //     }
+                  //   });
+                  // }}
+                  onClick={handleLogout}
                 >
                   <NavLogoutBtn />
                 </button>
