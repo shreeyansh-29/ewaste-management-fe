@@ -9,10 +9,10 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 toast.configure();
 export default function OrganizeDrive() {
-  const {useState} = React;
+  const { useState } = React;
   var maxDate = new Date();
 
   const [status, setStatus] = useState("");
@@ -61,7 +61,7 @@ export default function OrganizeDrive() {
       field: "date",
       type: "date",
 
-      editComponent: ({value, onChange}) => (
+      editComponent: ({ value, onChange }) => (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             margin="normal"
@@ -105,6 +105,36 @@ export default function OrganizeDrive() {
       },
     },
   ]);
+  const dateformat = (datas) => {
+    var scheduledate = datas.date.toString().split(" ");
+    if (scheduledate[1] === "Jan") {
+      scheduledate[1] = "01";
+    } else if (scheduledate[1] === "Feb") {
+      scheduledate[1] = "02";
+    } else if (scheduledate[1] === "Mar") {
+      scheduledate[1] = "03";
+    } else if (scheduledate[1] === "Apr") {
+      scheduledate[1] = "04";
+    } else if (scheduledate[1] === "May") {
+      scheduledate[1] = "05";
+    } else if (scheduledate[1] === "Jun") {
+      scheduledate[1] = "06";
+    } else if (scheduledate[1] === "Jul") {
+      scheduledate[1] = "07";
+    } else if (scheduledate[1] === "Aug") {
+      scheduledate[1] = "08";
+    } else if (scheduledate[1] === "Sep") {
+      scheduledate[1] = "09";
+    } else if (scheduledate[1] === "Oct") {
+      scheduledate[1] = "10";
+    } else if (scheduledate[1] === "Nov") {
+      scheduledate[1] = "11";
+    } else if (scheduledate[1] === "Dec") {
+      scheduledate[1] = "12";
+    }
+    scheduledate = scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
+    return scheduledate;
+  };
   const handleDone = async (e, datas) => {
     console.log(e);
 
@@ -116,39 +146,11 @@ export default function OrganizeDrive() {
       datas.time === "" ||
       datas.description === undefined
     ) {
-      toast.error("Enter all data", {position: toast.POSITION.TOP_RIGHT});
+      toast.error("Enter all data", { position: toast.POSITION.TOP_RIGHT });
     } else {
       const tokens = localStorage.getItem("token");
       const email = localStorage.getItem("email");
-      var scheduledate = datas.date.toString().split(" ");
-      if (scheduledate[1] === "Jan") {
-        scheduledate[1] = "01";
-      } else if (scheduledate[1] === "Feb") {
-        scheduledate[1] = "02";
-      } else if (scheduledate[1] === "Mar") {
-        scheduledate[1] = "03";
-      } else if (scheduledate[1] === "Apr") {
-        scheduledate[1] = "04";
-      } else if (scheduledate[1] === "May") {
-        scheduledate[1] = "05";
-      } else if (scheduledate[1] === "Jun") {
-        scheduledate[1] = "06";
-      } else if (scheduledate[1] === "Jul") {
-        scheduledate[1] = "07";
-      } else if (scheduledate[1] === "Aug") {
-        scheduledate[1] = "08";
-      } else if (scheduledate[1] === "Sep") {
-        scheduledate[1] = "09";
-      } else if (scheduledate[1] === "Oct") {
-        scheduledate[1] = "10";
-      } else if (scheduledate[1] === "Nov") {
-        scheduledate[1] = "11";
-      } else if (scheduledate[1] === "Dec") {
-        scheduledate[1] = "12";
-      }
-      scheduledate =
-        scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
-      datas.date = scheduledate;
+      datas.date = dateformat(datas);
       try {
         const response = await fetch(
           "http://localhost:8083/collector/drive/organize",
@@ -191,7 +193,7 @@ export default function OrganizeDrive() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
+      <div style={{ padding: "150px 30px 0 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -211,7 +213,7 @@ export default function OrganizeDrive() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
           }}
           editable={{
             onRowAdd: (newData) =>
@@ -238,7 +240,7 @@ export default function OrganizeDrive() {
           ]}
           options={{
             actionsColumnIndex: -1,
-            search:false
+            search: false,
           }}
         />
       </div>
