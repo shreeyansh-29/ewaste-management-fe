@@ -126,12 +126,7 @@ function CustomerNav() {
                       if (result.isConfirmed) {
                         localStorage.clear();
 
-                        document.cookie.split(";").forEach((c) => {
-                          alert(c);
-                          document.cookie = c
-                            .replace(/^ +/, "")
-                            .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-                        });
+                        
                         navigate("/Signin");
                         document.location.reload();
                       }
