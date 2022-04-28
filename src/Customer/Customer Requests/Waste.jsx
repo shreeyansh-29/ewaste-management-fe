@@ -13,6 +13,19 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 import "../Customer.css";
 export default function Waste() {
+  const handledate = (res) => {
+    res.data.map((obj) => {
+      if (obj.scheduledTime === "10") {
+        obj.scheduledTime = " 10:00-12:00";
+      } else if (obj.scheduledTime === "12") {
+        obj.scheduledTime = " 12:00-14:00";
+      } else if (obj.scheduledTime === "14") {
+        obj.scheduledTime = " 14:00-16:00";
+      } else if (obj.scheduledTime === "16") {
+        obj.scheduledTime = " 16:00-18:00";
+      }
+    });
+  };
   useEffect(() => {
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
@@ -34,20 +47,7 @@ export default function Waste() {
         console.log(response);
         console.log(res);
         if (res.status === "success") {
-          res.data.map((obj) => {
-            if (obj.time === "10") {
-              obj.time = "10:00-12:00";
-            }
-            if (obj.time === "12") {
-              obj.time = "12:00-14:00";
-            }
-            if (obj.time === "14") {
-              obj.time = "14:00-16:00";
-            }
-            if (obj.time === "16") {
-              obj.time = "16:00-18:00";
-            }
-          });
+          handledate(res);
 
           setData(res.data);
         }
@@ -84,7 +84,8 @@ export default function Waste() {
               <small>
                 <PersonOutlineOutlinedIcon style={{ fontSize: "large" }} />
                 {"   "}
-                {card.organizerName}<br></br>
+                {card.organizerName}
+                <br></br>
                 <LocationOnOutlinedIcon style={{ fontSize: "medium" }} />
                 {"    "}
                 {card.location}

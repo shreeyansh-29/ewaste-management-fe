@@ -140,38 +140,46 @@ export default function CollectorRequests() {
   const togglepop = () => {
     setopen(!isopen);
   };
-
+  const handledate = (res) => {
+    res.data.map((obj) => {
+      if (obj.requestType === "PickUp") {
+        if (obj.scheduledTime === "10") {
+          obj.scheduledTime = " 10:00-12:00";
+        } else if (obj.scheduledTime === "12") {
+          obj.scheduledTime = " 12:00-14:00";
+        } else if (obj.scheduledTime === "14") {
+          obj.scheduledTime = " 14:00-16:00";
+        } else if (obj.scheduledTime === "16") {
+          obj.scheduledTime = " 16:00-18:00";
+        }
+      }
+    })
+  };
+  const handledata=(res)=>{
+    handledate(res);
+    res.data.map((obj) => {
+      if (obj.requestType === "PickUp") {
+        obj.id = "CP" + obj.id;
+      }
+      if (obj.requestType === "DropOff") {
+        obj.id = "CD" + obj.id;
+      }
+      if (obj.requestType === "DropOff" && obj.status === "pending") {
+        obj.status = "Scheduled";
+      }
+      if (obj.requestType === "DropOff") {
+        obj.scheduledTime = "---";
+        obj.scheduledDate = "---";
+      }
+    });
+  }
   useEffect(() => {
     (async function () {
       try {
         const res = await apicall("summary");
         if (res.status === "success") {
-          res.data.map((obj) => {
-            if (obj.requestType === "PickUp") {
-              obj.id = "CP" + obj.id;
-            }
-            if (obj.requestType === "DropOff") {
-              obj.id = "CD" + obj.id;
-            }
-            if (obj.requestType === "DropOff" && obj.status === "pending") {
-              obj.status = "Scheduled";
-            }
-            if (obj.requestType === "PickUp") {
-              if (obj.scheduledTime === "10") {
-                obj.scheduledTime = " 10:00-12:00";
-              } else if (obj.scheduledTime === "12") {
-                obj.scheduledTime = " 12:00-14:00";
-              } else if (obj.scheduledTime === "14") {
-                obj.scheduledTime = " 14:00-16:00";
-              } else if (obj.scheduledTime === "16") {
-                obj.scheduledTime = " 16:00-18:00";
-              }
-            }
-            if (obj.requestType === "DropOff") {
-              obj.scheduledTime = "---";
-              obj.scheduledDate = "---";
-            }
-          });
+          handledata(res);
+          
           setData(res.data);
         }
       } catch (err) {

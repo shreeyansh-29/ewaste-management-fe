@@ -130,7 +130,21 @@ export default function CollectorRequests() {
       console.log(err);
     }
   };
-
+  const handledate = (res) => {
+    res.map((obj) => {
+      if (obj.requestType === "PickUp") {
+        if (obj.scheduledTime === "10") {
+          obj.scheduledTime = " 10:00-12:00";
+        } else if (obj.scheduledTime === "12") {
+          obj.scheduledTime = " 12:00-14:00";
+        } else if (obj.scheduledTime === "14") {
+          obj.scheduledTime = " 14:00-16:00";
+        } else if (obj.scheduledTime === "16") {
+          obj.scheduledTime = " 16:00-18:00";
+        }
+      }
+    })
+  };
   useEffect(() => {
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
@@ -151,19 +165,7 @@ export default function CollectorRequests() {
         const res = await response.json();
 
         if (res.status === "success") {
-          res.data.map((obj) => {
-            if (obj.requestType === "PickUp") {
-              if (obj.scheduledTime === "10") {
-                obj.scheduledTime = " 10:00-12:00";
-              } else if (obj.scheduledTime === "12") {
-                obj.scheduledTime = " 12:00-14:00";
-              } else if (obj.scheduledTime === "14") {
-                obj.scheduledTime = " 14:00-16:00";
-              } else if (obj.scheduledTime === "16") {
-                obj.scheduledTime = " 16:00-18:00";
-              }
-            }
-          });
+          handledate(res.data);
           setData(res.data);
         }
       } catch (err) {
