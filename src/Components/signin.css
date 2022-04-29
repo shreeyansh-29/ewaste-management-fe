@@ -43,8 +43,13 @@
   }
  
 }
-.formErrors{
+.formError{
   padding-left: 8.5%;
+  color: red;
+  text-align: justify;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "poppins", sans-serif;
 }
 .signin-button {
   border-radius: 17px;

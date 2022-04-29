@@ -170,7 +170,7 @@ const SignIn = () => {
                   autoComplete="off"
                 />
               </div>
-              <div className="formErrors">{emailerr}</div>
+              <div className="formError">{emailerr}</div>
 
               <div
                 className="form-group"
@@ -208,7 +208,7 @@ const SignIn = () => {
                   </div>
                 </div>
               </div>
-              <div className="formErrors">{passworderr}</div>
+              <div className="formError">{passworderr}</div>
               <div style={{ float: "right" }}>
                 <Link
                   to="/ForgotPassword"

@@ -631,7 +631,6 @@ class SignUp extends Component {
                       type={this.state.confirmPasswordType}
                       name="confirmPassword"
                       style={{ borderRadius: "17px" }}
-                      // value={this.state.confirmPassword}
                       onChange={this.handleChange}
                       placeholder="Confirm Password"
                       className={confirmPasswordErr ? " showError" : ""}
@@ -751,8 +750,9 @@ class SignUp extends Component {
                       />
                       {fields}
                     </>
-                    <div className="formErrors">{roleErr}</div>
+                    
                   </div>
+                  <div className="formErrors">{roleErr}</div>
                 </div>
               </div>
               <span className="error">
