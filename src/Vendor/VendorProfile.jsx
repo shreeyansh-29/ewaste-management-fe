@@ -42,7 +42,7 @@ class VendorProfile extends Component {
       firstName,
       lastName,
       registrationNo,
-      password,
+      // password,
       mobileNo,
       address1,
       city,
@@ -67,15 +67,15 @@ class VendorProfile extends Component {
     const pass = localStorage.getItem("Password");
     this.setState({password: pass});
     //password
-    if (!password) {
-      formIsValid = false;
-      var str1 = "Password is required.";
-      formErrors["passwordErr"] = str1;
-    } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-      formIsValid = false;
-      var str = "Password should be of atleast six characters";
-      formErrors["passwordErr"] = str;
-    }
+    // if (!password) {
+    //   formIsValid = false;
+    //   var str1 = "Password is required.";
+    //   formErrors["passwordErr"] = str1;
+    // } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
+    //   formIsValid = false;
+    //   var str = "Password should be of atleast six characters";
+    //   formErrors["passwordErr"] = str;
+    // }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -139,7 +139,7 @@ class VendorProfile extends Component {
 
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
-      const pass = localStorage.getItem("Password");
+      // const pass = localStorage.getItem("Password");
       const email = localStorage.getItem("email");
 
       try {
@@ -162,7 +162,7 @@ class VendorProfile extends Component {
               city: this.state.city,
               state: this.state.state,
               pinCode: this.state.pinCode,
-              password: pass,
+              password: "123456",
               gstNo: this.state.gstNo,
               registrationNo: this.state.registrationNo,
               shopTime: "10",
@@ -187,7 +187,7 @@ class VendorProfile extends Component {
       states: statescity,
     });
     const tokens = localStorage.getItem("token");
-    const pass = localStorage.getItem("Password");
+    // const pass = localStorage.getItem("Password");
     const email = localStorage.getItem("email");
     try {
       const response = await fetch(
@@ -203,7 +203,7 @@ class VendorProfile extends Component {
         }
       );
       const res = await response.json();
-      res.data.password = pass;
+      // res.data.password = pass;
       this.setState(res.data);
     } catch (err) {
       console.log(err);
@@ -257,7 +257,7 @@ class VendorProfile extends Component {
                     name="firstName"
                     style={{borderRadius:"17px"}}
                     value={this.state.firstName}
-                    onChange={this.handleChange("firstName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -272,7 +272,7 @@ class VendorProfile extends Component {
                     name="lastName"
                     style={{borderRadius:"17px"}}
                     value={this.state.lastName}
-                    onChange={this.handleChange("lastName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -300,7 +300,7 @@ class VendorProfile extends Component {
                     type="text"
                     name="phoneNumber"
                     style={{borderRadius:"17px"}}
-                    onChange={this.handleChange("mobileNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -318,7 +318,7 @@ class VendorProfile extends Component {
                     style={{borderRadius:"17px"}}
                     name="landmark"
                     value={this.state.address1}
-                    onChange={this.handleChange("address1")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -375,7 +375,7 @@ class VendorProfile extends Component {
                     style={{borderRadius:"17px"}}
                     name="pincode"
                     value={this.state.pinCode}
-                    onChange={this.handleChange("pinCode")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
@@ -392,7 +392,7 @@ class VendorProfile extends Component {
                     style={{borderRadius:"17px"}}
                     name="GSTIN"
                     value={this.state.gstNo}
-                    onChange={this.handleChange("gstNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter GSTIN"
                   />
                   <div className="formErrors">{gstErr}</div>
@@ -406,7 +406,7 @@ class VendorProfile extends Component {
                     name="Certificate_Num"
                     style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
-                    onChange={this.handleChange("registrationNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter Registration Number"
                   />
                   <div className="formErrors">{registrationErr}</div>

@@ -53,7 +53,7 @@ class CollectorProfile extends Component {
       firstName,
       lastName,
       mobileNo,
-      password,
+      // password,
       address1,
       city,
       state,
@@ -76,15 +76,15 @@ class CollectorProfile extends Component {
     const pass = localStorage.getItem("Password");
     this.setState({ password: pass });
     //password
-    if (!password) {
-      formIsValid = false;
-      var str1 = "Password is required.";
-      formErrors["passwordErr"] = str1;
-    } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-      formIsValid = false;
-      var str = "Password should be of atleast six characters";
-      formErrors["passwordErr"] = str;
-    }
+    // if (!password) {
+    //   formIsValid = false;
+    //   var str1 = "Password is required.";
+    //   formErrors["passwordErr"] = str1;
+    // } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
+    //   formIsValid = false;
+    //   var str = "Password should be of atleast six characters";
+    //   formErrors["passwordErr"] = str;
+    // }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -156,7 +156,7 @@ class CollectorProfile extends Component {
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
       const email = localStorage.getItem("email");
-      const pass = localStorage.getItem("Password");
+      // const pass = localStorage.getItem("Password");
       try {
         const response = await fetch(
           "http://localhost:8083/collector/profile/edit",
@@ -172,7 +172,7 @@ class CollectorProfile extends Component {
               firstName: this.state.firstName,
               lastName: this.state.lastName,
               email: email,
-              password: pass,
+              password: 123456,
               mobileNo: this.state.mobileNo,
               address1: this.state.address1,
               city: this.state.city,
@@ -292,7 +292,7 @@ class CollectorProfile extends Component {
                     name="firstName"
                     style={{borderRadius:"17px"}}
                     value={this.state.firstName}
-                    onChange={this.handleChange("firstName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -307,7 +307,7 @@ class CollectorProfile extends Component {
                     name="lastName"
                     style={{borderRadius:"17px"}}
                     value={this.state.lastName}
-                    onChange={this.handleChange("lastName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -341,7 +341,7 @@ class CollectorProfile extends Component {
                     type="text"
                     name="phoneNumber"
                     style={{borderRadius:"17px"}}
-                    onChange={this.handleChange("mobileNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -359,7 +359,7 @@ class CollectorProfile extends Component {
                     name="landmark"
                     style={{borderRadius:"17px"}}
                     value={this.state.address1}
-                    onChange={this.handleChange("address1")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -416,7 +416,7 @@ class CollectorProfile extends Component {
                     name="pincode"
                     style={{borderRadius:"17px"}}
                     value={this.state.pinCode}
-                    onChange={this.handleChange("pinCode")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
@@ -433,7 +433,7 @@ class CollectorProfile extends Component {
                     name="GSTIN"
                     style={{borderRadius:"17px"}}
                     value={this.state.gstNo}
-                    onChange={this.handleChange("gstNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter GSTIN"
                   />
                   <div className="formErrors">{gstErr}</div>
@@ -447,7 +447,7 @@ class CollectorProfile extends Component {
                     name="Certificate_Num"
                     style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
-                    onChange={this.handleChange("registrationNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter Registration Number"
                   />
                   <div className="formErrors">{registrationErr}</div>

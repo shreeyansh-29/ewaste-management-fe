@@ -37,7 +37,7 @@ class EditProfile extends Component {
     const {
       firstName,
       lastName,
-      password,
+      // password,
       mobileNo,
       address1,
       city,
@@ -60,16 +60,16 @@ class EditProfile extends Component {
     const pass = localStorage.getItem("Password");
     this.setState({ password: pass });
     //password
-    if (!password) {
-      formIsValid = false;
-      var str1 = "Password is required.";
-      formErrors["passwordErr"] = str1;
-    } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-      formIsValid = false;
-      var str = "Password should be of atleast six characters";
-      formErrors["passwordErr"] =
-        str;
-    }
+    // if (!password) {
+    //   formIsValid = false;
+    //   var str1 = "Password is required.";
+    //   formErrors["passwordErr"] = str1;
+    // } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
+    //   formIsValid = false;
+    //   var str = "Password should be of atleast six characters";
+    //   formErrors["passwordErr"] =
+    //     str;
+    // }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -136,7 +136,7 @@ class EditProfile extends Component {
               city: this.state.city,
               state: this.state.state,
               pinCode: this.state.pinCode,
-              password: this.state.password,
+              password: "123456",
               shopTime: "10",
             }),
           }
@@ -183,15 +183,8 @@ class EditProfile extends Component {
       this.setState(res.data);
     } catch (err) {
       console.log(err);
-      //   }
     }
   };
-
-  handleChange=(e) =>{
-    e.preventDefault();
-    console.log(e.target.name);
-    this.setState({ [e.target.name]: e.target.value });
-  }
   render() {
     const email = localStorage.getItem("email");
     const {
@@ -231,7 +224,7 @@ class EditProfile extends Component {
                     name="firstName"
                     style={{ borderRadius: "17px"}}
                     value={this.state.firstName}
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -246,7 +239,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px"}}
                     name="lastName"
                     value={this.state.lastName}
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -271,7 +264,7 @@ class EditProfile extends Component {
                     type="text"
                     style={{ borderRadius: "17px"}}
                     name="phoneNumber"
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -289,7 +282,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px"}}
                     name="landmark"
                     value={this.state.address1}
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -340,7 +333,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px"}}
                     name="pincode"
                     value={this.state.pinCode}
-                    onChange={this.handleChange}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
