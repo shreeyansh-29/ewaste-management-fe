@@ -40,7 +40,6 @@ export default function PickUp() {
     {
       title: "Category",
       field: "category",
-      // emptyValue: '(empty)',
       lookup: {
         Temp: "Temperature exchange equipment (such as air conditioners, freezers)",
         Screens: "Screens, monitors (TVs, laptops)",
@@ -106,7 +105,6 @@ export default function PickUp() {
     {
       title: "Time",
       field: "time",
-      emptyValue: "00:00 - 00:00",
       lookup: {
         10: "10:00 -12:00",
         12: "12:00 -14:00",

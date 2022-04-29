@@ -187,9 +187,11 @@ class EditProfile extends Component {
     }
   };
 
-  handleChange = (key) => (value) => {
-    this.setState({ [key]: value });
-  };
+  handleChange=(e) =>{
+    e.preventDefault();
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+  }
   render() {
     const email = localStorage.getItem("email");
     const {
@@ -229,7 +231,7 @@ class EditProfile extends Component {
                     name="firstName"
                     style={{ borderRadius: "17px"}}
                     value={this.state.firstName}
-                    onChange={this.handleChange("firstName")}
+                    onChange={this.handleChange}
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -244,7 +246,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px"}}
                     name="lastName"
                     value={this.state.lastName}
-                    onChange={this.handleChange("lastName")}
+                    onChange={this.handleChange}
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -269,7 +271,7 @@ class EditProfile extends Component {
                     type="text"
                     style={{ borderRadius: "17px"}}
                     name="phoneNumber"
-                    onChange={this.handleChange("mobileNo")}
+                    onChange={this.handleChange}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -287,7 +289,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px"}}
                     name="landmark"
                     value={this.state.address1}
-                    onChange={this.handleChange("address1")}
+                    onChange={this.handleChange}
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -338,7 +340,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px"}}
                     name="pincode"
                     value={this.state.pinCode}
-                    onChange={this.handleChange("pinCode")}
+                    onChange={this.handleChange}
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
