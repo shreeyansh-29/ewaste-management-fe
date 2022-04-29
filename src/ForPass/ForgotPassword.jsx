@@ -87,7 +87,7 @@ const ForgotPassword = () => {
                 autoComplete="off"
               />
             </div>
-            <div className="formErrors">{emailerr}</div>
+            <div className="formerrors">{emailerr}</div>
             <div style={{ color: "green",marginRight: "7%", marginLeft: "7%" }}>
               {msg === "" ? "" : msg}
             </div>
