@@ -3,7 +3,7 @@ import "./vendor.css";
 
 import {statescity} from "../Sign-Up/states";
 import {toast} from "react-toastify";
-
+// const crypto = require ("crypto");
 class VendorProfile extends Component {
   constructor(props) {
     super(props);
@@ -204,6 +204,10 @@ class VendorProfile extends Component {
       );
       const res = await response.json();
       // res.data.password = pass;
+      console.log(res.data.password);
+      // var bytes = CryptoJS.AES.decrypt(res.data.password,'123456');
+      // var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      // console.log(decryptedData);
       this.setState(res.data);
     } catch (err) {
       console.log(err);
@@ -298,7 +302,7 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    name="phoneNumber"
+                    name="mobileNo"
                     style={{borderRadius:"17px"}}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
@@ -316,7 +320,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     style={{borderRadius:"17px"}}
-                    name="landmark"
+                    name="address1"
                     value={this.state.address1}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Address Line"
@@ -373,7 +377,7 @@ class VendorProfile extends Component {
                   <input
                     type="pincode"
                     style={{borderRadius:"17px"}}
-                    name="pincode"
+                    name="pinCode"
                     value={this.state.pinCode}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Pincode"
@@ -390,7 +394,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     style={{borderRadius:"17px"}}
-                    name="GSTIN"
+                    name="gstNo"
                     value={this.state.gstNo}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter GSTIN"
@@ -403,7 +407,7 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    name="Certificate_Num"
+                    name="registrationNo"
                     style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}

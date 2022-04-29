@@ -339,7 +339,7 @@ class CollectorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    name="phoneNumber"
+                    name="mobileNo"
                     style={{borderRadius:"17px"}}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
@@ -356,7 +356,7 @@ class CollectorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    name="landmark"
+                    name="address1"
                     style={{borderRadius:"17px"}}
                     value={this.state.address1}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
@@ -413,7 +413,7 @@ class CollectorProfile extends Component {
                   </label>
                   <input
                     type="pincode"
-                    name="pincode"
+                    name="pinCode"
                     style={{borderRadius:"17px"}}
                     value={this.state.pinCode}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
@@ -430,7 +430,7 @@ class CollectorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    name="GSTIN"
+                    name="gstNo"
                     style={{borderRadius:"17px"}}
                     value={this.state.gstNo}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
@@ -444,7 +444,7 @@ class CollectorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    name="Certificate_Num"
+                    name="registrationNo"
                     style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}

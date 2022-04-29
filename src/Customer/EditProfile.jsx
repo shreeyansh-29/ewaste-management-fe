@@ -263,7 +263,7 @@ class EditProfile extends Component {
                   <input
                     type="text"
                     style={{ borderRadius: "17px"}}
-                    name="phoneNumber"
+                    name="mobileNo"
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
@@ -280,7 +280,7 @@ class EditProfile extends Component {
                   <input
                     type="text"
                     style={{ borderRadius: "17px"}}
-                    name="landmark"
+                    name="address1"
                     value={this.state.address1}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Address Line"
@@ -331,7 +331,7 @@ class EditProfile extends Component {
                   <input
                     type="pincode"
                     style={{ borderRadius: "17px"}}
-                    name="pincode"
+                    name="pinCode"
                     value={this.state.pinCode}
                     onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Pincode"
