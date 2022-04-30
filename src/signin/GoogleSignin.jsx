@@ -1,10 +1,12 @@
 import React from "react";
 import "../Components/signin.css";
 import googleLogo from "../images/google-logo.png";
+
+import { GOOGLE_AUTH_URL } from "../constant/constant";
 function GoogleSignin() {
+  
   const handleClick = () => {
-    window.location.href =
-      "http://localhost:8083/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect";
+    window.location.href = GOOGLE_AUTH_URL;
   };
   return (
     <div className="text-center" style={{ marginTop: "8px" }}>

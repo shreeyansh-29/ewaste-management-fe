@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 import TimeRange from "react-time-range";
 import { statescity } from "../Sign-Up/states";
 import moment from "moment";
-import { profile } from "../signin/profile";
+import { profile } from "../utils/profile";
+import { COLLECTOR_AUTH_URL } from "../constant/constant";
 class CollectorProfile extends Component {
   constructor(props) {
     super(props);
@@ -73,18 +74,7 @@ class CollectorProfile extends Component {
       formIsValid = false;
       formErrors["lastNameErr"] = " Last Name is required.";
     }
-    const pass = localStorage.getItem("Password");
-    this.setState({ password: pass });
-    //password
-    // if (!password) {
-    //   formIsValid = false;
-    //   var str1 = "Password is required.";
-    //   formErrors["passwordErr"] = str1;
-    // } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-    //   formIsValid = false;
-    //   var str = "Password should be of atleast six characters";
-    //   formErrors["passwordErr"] = str;
-    // }
+   
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -156,7 +146,6 @@ class CollectorProfile extends Component {
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
       const email = localStorage.getItem("email");
-      // const pass = localStorage.getItem("Password");
       try {
         const response = await fetch(
           "http://localhost:8083/collector/profile/edit",
@@ -172,7 +161,7 @@ class CollectorProfile extends Component {
               firstName: this.state.firstName,
               lastName: this.state.lastName,
               email: email,
-              password: 123456,
+              password:this.state.password,
               mobileNo: this.state.mobileNo,
               address1: this.state.address1,
               city: this.state.city,
@@ -212,10 +201,9 @@ class CollectorProfile extends Component {
     })();
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
-    const pass = localStorage.getItem("Password");
     try {
       const response = await fetch(
-        "http://localhost:8083/collector/profile/view",
+        COLLECTOR_AUTH_URL,
         {
           method: "GET",
           credentials: "same-origin",
@@ -227,7 +215,6 @@ class CollectorProfile extends Component {
         }
       );
       const res = await response.json();
-      res.data.password = pass;
       this.setState(res.data);
       var times;
       const shopTimes = res.data.shopTime.toString().split("-");

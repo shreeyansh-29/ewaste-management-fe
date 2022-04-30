@@ -63,12 +63,14 @@ export default function Waste() {
         <MDBCard style={{ borderRadius: "15px" }}>
           <MDBCardBody style={{ borderRadius: "15px" }}>
             <MDBCardTitle style={{ textAlign: "center" }}>
-              <h4>{card.driveName}</h4>
+              <strong>
+                <h4>{card.driveName}</h4>
+              </strong>
             </MDBCardTitle>
             <hr></hr>
             <MDBCardText style={{ fontStyle: "Poppins" }}>
-              {card.description}
-              <br></br>
+              <em>{card.description}</em>
+              <br></br><br></br>
               <strong>Items Accepted:</strong>{" "}
               {card.eWasteCategoryAccepted[0].categoryAccepted}
               <br></br>
@@ -76,7 +78,8 @@ export default function Waste() {
             </MDBCardText>
             <MDBCardFooter
               style={{
-                backgroundColor: "rgb(30, 28, 54)",
+                // backgroundColor: "rgb(30, 28, 54)",
+                backgroundColor:"#00008B",
                 color: "white",
                 borderRadius: " 0px 0px 17px 17px",
               }}

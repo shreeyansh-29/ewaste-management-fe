@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {apicall} from "../../Customer/Api";
+import {apicall} from "../../utils/Api";
 export const data = [
   ["name", "Registered Vendors", {role: "style"}],
   ["Vendors in the Country", 5, "lightblue"],

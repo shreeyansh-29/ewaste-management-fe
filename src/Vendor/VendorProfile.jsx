@@ -3,6 +3,7 @@ import "./vendor.css";
 
 import {statescity} from "../Sign-Up/states";
 import {toast} from "react-toastify";
+import { VENDOR_AUTH_URL } from "../constant/constant";
 // const crypto = require ("crypto");
 class VendorProfile extends Component {
   constructor(props) {
@@ -64,18 +65,6 @@ class VendorProfile extends Component {
       formIsValid = false;
       formErrors["lastNameErr"] = " Last Name is required.";
     }
-    const pass = localStorage.getItem("Password");
-    this.setState({password: pass});
-    //password
-    // if (!password) {
-    //   formIsValid = false;
-    //   var str1 = "Password is required.";
-    //   formErrors["passwordErr"] = str1;
-    // } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-    //   formIsValid = false;
-    //   var str = "Password should be of atleast six characters";
-    //   formErrors["passwordErr"] = str;
-    // }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -139,7 +128,6 @@ class VendorProfile extends Component {
 
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
-      // const pass = localStorage.getItem("Password");
       const email = localStorage.getItem("email");
 
       try {
@@ -162,7 +150,7 @@ class VendorProfile extends Component {
               city: this.state.city,
               state: this.state.state,
               pinCode: this.state.pinCode,
-              password: "123456",
+              password: this.state.password,
               gstNo: this.state.gstNo,
               registrationNo: this.state.registrationNo,
               shopTime: "10",
@@ -187,11 +175,10 @@ class VendorProfile extends Component {
       states: statescity,
     });
     const tokens = localStorage.getItem("token");
-    // const pass = localStorage.getItem("Password");
     const email = localStorage.getItem("email");
     try {
       const response = await fetch(
-        "http://localhost:8083/vendor/profile/view",
+        VENDOR_AUTH_URL,
         {
           method: "GET",
           credentials: "same-origin",
@@ -203,11 +190,6 @@ class VendorProfile extends Component {
         }
       );
       const res = await response.json();
-      // res.data.password = pass;
-      console.log(res.data.password);
-      // var bytes = CryptoJS.AES.decrypt(res.data.password,'123456');
-      // var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      // console.log(decryptedData);
       this.setState(res.data);
     } catch (err) {
       console.log(err);

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Customer.css";
 import { toast } from "react-toastify";
-import {statescity} from "../Sign-Up/states";
+import { statescity } from "../Sign-Up/states";
+import { CUSTOMER_AUTH_URL } from "../constant/constant";
 class EditProfile extends Component {
   constructor(props) {
     super(props);
@@ -57,19 +58,6 @@ class EditProfile extends Component {
       formIsValid = false;
       formErrors["lastNameErr"] = " Last Name is required.";
     }
-    const pass = localStorage.getItem("Password");
-    this.setState({ password: pass });
-    //password
-    // if (!password) {
-    //   formIsValid = false;
-    //   var str1 = "Password is required.";
-    //   formErrors["passwordErr"] = str1;
-    // } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-    //   formIsValid = false;
-    //   var str = "Password should be of atleast six characters";
-    //   formErrors["passwordErr"] =
-    //     str;
-    // }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -136,7 +124,7 @@ class EditProfile extends Component {
               city: this.state.city,
               state: this.state.state,
               pinCode: this.state.pinCode,
-              password: "123456",
+              password: this.state.password,
               shopTime: "10",
             }),
           }
@@ -159,27 +147,21 @@ class EditProfile extends Component {
   };
   componentDidMount = async () => {
     this.setState({
-      states: statescity
-      
+      states: statescity,
     });
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
-    const pass = localStorage.getItem("Password");
     try {
-      const response = await fetch(
-        "http://localhost:8083/customer/profile/view",
-        {
-          method: "GET",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
-        }
-      );
+      const response = await fetch(CUSTOMER_AUTH_URL, {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + tokens,
+          EMAIL: email,
+        },
+      });
       const res = await response.json();
-      res.data.password = pass;
       this.setState(res.data);
     } catch (err) {
       console.log(err);
@@ -197,7 +179,7 @@ class EditProfile extends Component {
       pincodeErr,
     } = this.state.formErrors;
     return (
-      <div className="profile"  style={{marginTop:"85px"}}>
+      <div className="profile" style={{ marginTop: "85px" }}>
         <form>
           <div className="containers">
             <div className="customersprofile">
@@ -222,9 +204,11 @@ class EditProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
-                    style={{ borderRadius: "17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.firstName}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -236,10 +220,12 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{ borderRadius: "17px"}}
+                    style={{ borderRadius: "17px" }}
                     name="lastName"
                     value={this.state.lastName}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -251,7 +237,11 @@ class EditProfile extends Component {
                   <label htmlFor="Email">Email</label>
 
                   <input
-                    style={{ borderRadius: "17px", padding: "4px" , backgroundColor:"white"}}
+                    style={{
+                      borderRadius: "17px",
+                      padding: "4px",
+                      backgroundColor: "white",
+                    }}
                     disabled
                     defaultValue={email}
                   />
@@ -262,9 +252,11 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{ borderRadius: "17px"}}
+                    style={{ borderRadius: "17px" }}
                     name="mobileNo"
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -279,10 +271,12 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{ borderRadius: "17px"}}
+                    style={{ borderRadius: "17px" }}
                     name="address1"
                     value={this.state.address1}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -293,7 +287,7 @@ class EditProfile extends Component {
                     State <i className="text-danger">*</i>
                   </label>
                   <select
-                    style={{ borderRadius: "17px", padding:"4px"}}
+                    style={{ borderRadius: "17px", padding: "4px" }}
                     className="form-select"
                     value={this.state.state}
                     onChange={this.changeState}
@@ -312,7 +306,7 @@ class EditProfile extends Component {
                     City <i className="text-danger">*</i>{" "}
                   </label>
                   <select
-                    style={{ borderRadius: "17px" , padding:"4px"}}
+                    style={{ borderRadius: "17px", padding: "4px" }}
                     className="form-select"
                     value={this.state.city}
                     onChange={this.changeCity}
@@ -330,10 +324,12 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="pincode"
-                    style={{ borderRadius: "17px"}}
+                    style={{ borderRadius: "17px" }}
                     name="pinCode"
                     value={this.state.pinCode}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />

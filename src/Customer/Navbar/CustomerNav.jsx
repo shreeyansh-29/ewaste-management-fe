@@ -7,7 +7,7 @@ import {
 import "../Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
-import { navbarapi } from "./navbarApi";
+import { navbarapi } from "../../utils/navbarApi";
 import Swal from "sweetalert2";
 function CustomerNav() {
   const navigate = useNavigate();
@@ -65,10 +65,11 @@ function CustomerNav() {
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
 
-          <Nav.Item className="notification_button">
+          <Nav.Item >
             <button
               style={{ background: "#101522", border: "none" }}
               onClick={() => markAsRead()}
+              className="notification_button"
             >
               <div className="icon-button__badge">
                 {c === "0" ? "" : <div className="navbarCount">{c}</div>}
@@ -125,9 +126,10 @@ function CustomerNav() {
                     }).then((result) => {
                       if (result.isConfirmed) {
                         localStorage.clear();
-
-                        
+                        console.log(window.history);
+                        window.history.replaceState(null, null, "/Signin");
                         navigate("/Signin");
+                        // <Redirect  to="/Signin" />
                         document.location.reload();
                       }
                     });

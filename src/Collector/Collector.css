@@ -5,9 +5,13 @@
 select{
   width:70px;
 }
-.icon-button__badge1{
-  margin-left: -40px;
+/* .icon-button__badge1{
+  margin-left: 0px;
+} */
+.bell{
+  margin-left: 700px;
 }
+
 .Formbody {
   display: flexbox;
   justify-content: center;

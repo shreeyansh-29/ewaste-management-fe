@@ -35,7 +35,7 @@ a:hover {
   display: flex;
 }
 .notification_button {
-  margin-left: 48%;
+  margin-left: 550px;
 }
 
 .userreq .center .links a {
@@ -194,15 +194,13 @@ h2 {
 }
 
 .card {
-  height: 280px;
+  height: 300px;
 }
 .card-footer {
   position:absolute;
   left:0;
   bottom:0;
   right:0;
-  
-  /* top:14px; */
 }
 h3 {
   font-family: "Poppins", sans-serif;
@@ -350,6 +348,9 @@ h3 {
       padding: 2px 1px;
       margin-top: 1px;
     }
+    .notification_button{
+      margin-left: 350px;
+    }
     .box {
       width: 450px;
     }
@@ -412,9 +413,12 @@ h3 {
   }
   .card{
     margin-bottom: 13px;
+    width:280px;
+    margin-left: -15px;
+
   }
   .card-body{
-    width:300px;
+    width:280px;
   }
   .card-footer{
     width:100%;

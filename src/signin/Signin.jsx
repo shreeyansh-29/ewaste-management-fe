@@ -7,8 +7,9 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import { toast } from "react-toastify";
 import GoogleSignin from "./GoogleSignin";
 import jwt from "jwt-decode";
-import { notificationcount } from "./notificationcount";
-import { profile } from "./profile";
+import { notificationcount } from "../utils/notificationcount";
+import { profile } from "../utils/profile";
+
 const SignIn = () => {
   const [password, setPassword] = useState("");
 
@@ -43,7 +44,18 @@ const SignIn = () => {
     }
     setpasswordType("password");
   };
-
+  const handleRedirect = () => {
+    const role = localStorage.getItem("Roles");
+    if (role === "CUSTOMER") {
+      window.location.href = "/CustomerHome";
+    } else if (role === "COLLECTOR") {
+      window.location.href = "/CollectorHome";
+    } else if (role === "VENDOR") {
+      window.location.href = "/VendorHome";
+    } else {
+      window.location.href = "/";
+    }
+  };
   const handleClick = async (event) => {
     event.preventDefault();
 
@@ -72,59 +84,46 @@ const SignIn = () => {
         var token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
         localStorage.setItem("email", email);
+        var val;
+        var result;
         if (localStorage.getItem("Roles") === "CUSTOMER") {
           try {
-            let val = await profile("customer");
-
-            localStorage.setItem("name", val.data.firstName);
-
-            let result = await notificationcount("customer");
-            if (result.status === "fail") {
-              localStorage.setItem("count", "0");
-            } else if (result.status === "success") {
-              localStorage.setItem("count", result.data.length);
-            }
-          } catch (err) {
-            console.log(err);
+            val = await profile("customer");
+            result = await notificationcount("customer");
+          } catch (e) {
+            console.log(e);
           }
         }
         if (localStorage.getItem("Roles") === "COLLECTOR") {
           try {
-            let res1 = await profile("collector");
-
-            localStorage.setItem("name", res1.data.firstName);
-
-            let result = await notificationcount("collector");
-            if (result.status === "fail") {
-              localStorage.setItem("count", "0");
-            } else if (result.status === "success") {
-              localStorage.setItem("count", result.data[0].length);
-            }
-          } catch (err) {
-            console.log(err);
+            val = await profile("collector");
+            result = await notificationcount("collector");
+          } catch (e) {
+            console.log(e);
           }
         }
         if (localStorage.getItem("Roles") === "VENDOR") {
           try {
-            let ress = await profile("vendor");
-
-            localStorage.setItem("name", ress.data.firstName);
-          } catch (err) {
-            console.log(err);
+            val = await profile("vendor");
+          } catch (e) {
+            console.log(e);
+          }
+        }
+        localStorage.setItem("name", val.data.firstName);
+        console.log(localStorage.getItem("name"));
+        if (
+          localStorage.getItem("Roles") === "CUSTOMER" ||
+          localStorage.getItem("Roles") === "COLLECTOR"
+        ) {
+          if (result.status === "fail") {
+            localStorage.setItem("count", "0");
+          } else if (result.status === "success") {
+            localStorage.setItem("count", result.data.length);
           }
         }
 
         if (res.status === "success") {
-          const role = localStorage.getItem("Roles");
-          if (role === "CUSTOMER") {
-            window.location.href = "/CustomerHome";
-          } else if (role === "COLLECTOR") {
-            window.location.href = "/CollectorHome";
-          } else if (role === "VENDOR") {
-            window.location.href = "/VendorHome";
-          } else {
-            window.location.href = "/";
-          }
+          handleRedirect();
         }
       } catch (err) {
         console.log(err);

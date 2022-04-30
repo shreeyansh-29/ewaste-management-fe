@@ -14,7 +14,7 @@ const options = {
   chartArea: {width: "70%"},
   hAxis: {
     textStyle: {
-      fontSize: 15,
+      fontSize: 13,
       maxRotation: 80,
       minRotation: 80,
     },

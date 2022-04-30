@@ -1,15 +1,16 @@
+import { COLLECTOR_AUTH_URL, CUSTOMER_AUTH_URL, VENDOR_AUTH_URL } from "../constant/constant";
 export async function profile(value) {
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
   let url;
   if (value === "vendor") {
-    url = "http://localhost:8083/vendor/profile/view";
+    url = VENDOR_AUTH_URL;
   }
   if (value === "collector") {
-    url = "http://localhost:8083/collector/profile/view";
+    url = COLLECTOR_AUTH_URL;
   }
   if (value === "customer") {
-    url = "http://localhost:8083/customer/profile/view";
+    url = CUSTOMER_AUTH_URL;
   }
   const response5 = await fetch(url, {
     method: "GET",

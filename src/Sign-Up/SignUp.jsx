@@ -242,11 +242,11 @@ class SignUp extends Component {
 
     return formIsValid;
   }
-  handleChange=(e) =>{
+  handleChange = (e) => {
     e.preventDefault();
     console.log(e.target.name);
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
   returnFunctionStart = (event) => {
     this.setState({ startTime: event.startTime });
   };
@@ -389,6 +389,7 @@ class SignUp extends Component {
                 type="text"
                 style={{ borderRadius: "17px" }}
                 name="GSTIN"
+                autoComplete="off"
                 placeholder="Enter GST-IN"
                 onChange={this.handleChange}
               />
@@ -406,6 +407,7 @@ class SignUp extends Component {
                 name="reg"
                 style={{ borderRadius: "17px" }}
                 placeholder="Enter Number"
+                autoComplete="off"
                 onChange={this.handleChange}
               />
               <div className="formErrors">{registrationErr}</div>
@@ -428,6 +430,7 @@ class SignUp extends Component {
                   style={{ borderRadius: "17px" }}
                   name="GSTIN"
                   placeholder="Enter GST-IN"
+                  autoComplete="off"
                   onChange={this.handleChange}
                 />
                 <div className="formErrors">{gstErr}</div>
@@ -443,6 +446,7 @@ class SignUp extends Component {
                   name="reg"
                   style={{ borderRadius: "17px" }}
                   placeholder="Enter Number"
+                  autoComplete="off"
                   onChange={this.handleChange}
                 />
                 <div className="formErrors">{registrationErr}</div>
@@ -513,265 +517,270 @@ class SignUp extends Component {
 
     return (
       <div className="signUp">
-        <form onSubmit={this.handleSubmit}>
-          <div className="Form-bodY">
-            <div className="signup-heading">
-              <h2
-                style={{
-                  textAlign: "center",
-                  padding: "20px",
-                  fontSize: "1.7rem",
-                  fontFamily: "Poppins",
-                  color: "white",
-                }}
-              >
-                Sign Up
-              </h2>
+        <div className="Form-bodY">
+          <div className="signup-heading">
+            <h2
+              style={{
+                textAlign: "center",
+                padding: "20px",
+                fontSize: "1.7rem",
+                fontFamily: "Poppins",
+                color: "white",
+              }}
+            >
+              Sign Up
+            </h2>
+          </div>
+          <div className="signup-form-cont">
+            <div className="row">
+              <div className="inputGroup">
+                <label htmlFor="firstName">
+                  First Name <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
+                  placeholder="First Name"
+                  autoComplete="off"
+                  className={firstNameErr ? " showError" : ""}
+                />
+                <div className="formErrors">{firstNameErr}</div>
+              </div>
+              <div className="inputGroup">
+                <label htmlFor="lastName">
+                  Last Name <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
+                  placeholder="Last Name"
+                  autoComplete="off"
+                  className={lastNameErr ? " showError" : ""}
+                />
+                <div className="formErrors">{lastNameErr}</div>
+              </div>
             </div>
-            <div className="signup-form-cont">
-              <div className="row">
-                <div className="inputGroup">
-                  <label htmlFor="firstName">
-                    First Name <i className="text-danger">*</i>
-                  </label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    style={{ borderRadius: "17px" }}
-                    onChange={this.handleChange}
-                    placeholder="First Name"
-                    className={firstNameErr ? " showError" : ""}
-                  />
-                  <div className="formErrors">{firstNameErr}</div>
-                </div>
-                <div className="inputGroup">
-                  <label htmlFor="lastName">
-                    Last Name <i className="text-danger">*</i>
-                  </label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    style={{ borderRadius: "17px" }}
-                    onChange={this.handleChange}
-                    placeholder="Last Name"
-                    className={lastNameErr ? " showError" : ""}
-                  />
-                  <div className="formErrors">{lastNameErr}</div>
-                </div>
+            <div className="row">
+              <div className="inputGroup">
+                <label htmlFor="emailId">
+                  E-mail Id <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
+                  placeholder="Mail"
+                  autoComplete="off"
+                  className={emailIdErr ? " showError" : ""}
+                />
+                <div className="formErrors">{emailIdErr}</div>
               </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <label htmlFor="emailId">
-                    E-mail Id <i className="text-danger">*</i>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    style={{ borderRadius: "17px" }}
-                    onChange={this.handleChange}
-                    placeholder="Mail"
-                    className={emailIdErr ? " showError" : ""}
-                  />
-                  <div className="formErrors">{emailIdErr}</div>
-                </div>
-                <div className="inputGroup">
-                  <label htmlFor="mobileNo">
-                    Mobile Number <i className="text-danger">*</i>
-                  </label>
-                  <input
-                    type="text"
-                    name="mobileNo"
-                    style={{ borderRadius: "17px" }}
-                    onChange={this.handleChange}
-                    placeholder="Mobile Number"
-                    className={mobileNoErr ? " showError" : ""}
-                  />
-                  <div className="formErrors">{mobileNoErr}</div>
-                </div>
+              <div className="inputGroup">
+                <label htmlFor="mobileNo">
+                  Mobile Number <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  name="mobileNo"
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
+                  placeholder="Mobile Number"
+                  autoComplete="off"
+                  className={mobileNoErr ? " showError" : ""}
+                />
+                <div className="formErrors">{mobileNoErr}</div>
               </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <label htmlFor="password">
-                    Password <i className="text-danger">*</i>
-                  </label>
-                  <div className="inputWithButton">
-                    <input
-                      type={this.state.passwordType}
-                      name="password"
-                      style={{ borderRadius: "17px" }}
-                      onChange={this.handleChange}
-                      placeholder="Enter Password"
-                      className={passwordErr ? " showError" : ""}
-                    />
-                    <div className="input-group-btn">
-                      <button
-                        onClick={this.togglePassword}
-                        style={{
-                          border: "1px solid white",
-                          backgroundColor: "white",
-                        }}
-                      >
-                        {this.state.passwordType === "password" ? (
-                          <ShowOffIcon />
-                        ) : (
-                          <ShowIcon />
-                        )}
-                      </button>
-                    </div>
+            </div>
+            <div className="row">
+              <div className="inputGroup">
+                <label htmlFor="password">
+                  Password <i className="text-danger">*</i>
+                </label>
+                <div className="inputWithButton">
+                  <input
+                    type={this.state.passwordType}
+                    name="password"
+                    style={{ borderRadius: "17px" }}
+                    onChange={this.handleChange}
+                    placeholder="Enter Password"
+                    autoComplete="off"
+                    className={passwordErr ? " showError" : ""}
+                  />
+                  <div className="input-group-btn">
+                    <button
+                      onClick={this.togglePassword}
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "white",
+                      }}
+                    >
+                      {this.state.passwordType === "password" ? (
+                        <ShowOffIcon />
+                      ) : (
+                        <ShowIcon />
+                      )}
+                    </button>
                   </div>
-                  <i className="fa-solid fa-eye-slash"></i>
-                  <div className="formErrors">{passwordErr}</div>
                 </div>
-                <div className="inputGroup">
-                  <label htmlFor="confirmPassword">
-                    Confirm Password <i className="text-danger">*</i>
-                  </label>
-                  <div className="inputWithButton">
-                    <input
-                      type={this.state.confirmPasswordType}
-                      name="confirmPassword"
-                      style={{ borderRadius: "17px" }}
-                      onChange={this.handleChange}
-                      placeholder="Confirm Password"
-                      className={confirmPasswordErr ? " showError" : ""}
-                    />
-                    <div className="input-group-btn">
-                      <button
-                        onClick={this.confirmtogglePassword}
-                        style={{
-                          border: "1px solid white",
-                          backgroundColor: "white",
-                        }}
-                      >
-                        {this.state.confirmPasswordType === "password" ? (
-                          <ShowOffIcon />
-                        ) : (
-                          <ShowIcon />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="formErrors">{confirmPasswordErr}</div>
-                </div>
+                <i className="fa-solid fa-eye-slash"></i>
+                <div className="formErrors">{passwordErr}</div>
               </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <label htmlFor="address1">
-                    Address Line <i className="text-danger">*</i>
-                  </label>
+              <div className="inputGroup">
+                <label htmlFor="confirmPassword">
+                  Confirm Password <i className="text-danger">*</i>
+                </label>
+                <div className="inputWithButton">
                   <input
-                    type="text"
-                    name="address1"
+                    type={this.state.confirmPasswordType}
+                    name="confirmPassword"
                     style={{ borderRadius: "17px" }}
                     onChange={this.handleChange}
-                    placeholder="Address"
-                    className={addressErr ? " showError" : ""}
+                    placeholder="Confirm Password"
+                    autoComplete="off"
+                    className={confirmPasswordErr ? " showError" : ""}
                   />
-                  <div className="formErrors">{addressErr}</div>
+                  <div className="input-group-btn">
+                    <button
+                      onClick={this.confirmtogglePassword}
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "white",
+                      }}
+                    >
+                      {this.state.confirmPasswordType === "password" ? (
+                        <ShowOffIcon />
+                      ) : (
+                        <ShowIcon />
+                      )}
+                    </button>
+                  </div>
                 </div>
-                <div className="inputGroup">
-                  <label>
-                    State <i className="text-danger">*</i>
-                  </label>
-                  <select
-                    className="forms-select"
-                    style={{
-                      borderRadius: "17px",
-                      padding: "4px",
-                    }}
-                    value={this.state.selectedState}
-                    onChange={this.changeState}
-                  >
-                    <option value="Select State">{"Select State"} </option>
-                    {this.state.states.map((e, key) => {
-                      return <option key={key}>{e.name}</option>;
-                    })}
-                  </select>
-                  <div className="formErrors">{stateErr}</div>
-                </div>
+                <div className="formErrors">{confirmPasswordErr}</div>
               </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <label>
-                    City <i className="text-danger">*</i>
-                  </label>
-                  <select
-                    className="forms-select"
-                    style={{
-                      borderRadius: "17px",
-                      padding: "4px 4px 5px ",
-                      marginLeft: "0.49%",
-                    }}
-                    value={this.state.selectedCity}
-                    onChange={this.changeCity}
-                  >
-                    <option value="Select City">{" Select City"}</option>
-                    {this.state.cities.map((e, key) => {
-                      return <option key={key}>{e}</option>;
-                    })}
-                  </select>
-                  <div className="formErrors">{cityErr}</div>
-                </div>
+            </div>
+            <div className="row">
+              <div className="inputGroup">
+                <label htmlFor="address1">
+                  Address Line <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  name="address1"
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
+                  placeholder="Address"
+                  autoComplete="off"
+                  className={addressErr ? " showError" : ""}
+                />
+                <div className="formErrors">{addressErr}</div>
+              </div>
+              <div className="inputGroup">
+                <label>
+                  State <i className="text-danger">*</i>
+                </label>
+                <select
+                  className="forms-select"
+                  style={{
+                    borderRadius: "17px",
+                    padding: "4px",
+                  }}
+                  value={this.state.selectedState}
+                  onChange={this.changeState}
+                >
+                  <option value="Select State">{"Select State"} </option>
+                  {this.state.states.map((e, key) => {
+                    return <option key={key}>{e.name}</option>;
+                  })}
+                </select>
+                <div className="formErrors">{stateErr}</div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="inputGroup">
+                <label>
+                  City <i className="text-danger">*</i>
+                </label>
+                <select
+                  className="forms-select"
+                  style={{
+                    borderRadius: "17px",
+                    padding: "4px 4px 5px ",
+                    marginLeft: "0.49%",
+                  }}
+                  value={this.state.selectedCity}
+                  onChange={this.changeCity}
+                >
+                  <option value="Select City">{" Select City"}</option>
+                  {this.state.cities.map((e, key) => {
+                    return <option key={key}>{e}</option>;
+                  })}
+                </select>
+                <div className="formErrors">{cityErr}</div>
+              </div>
 
-                <div className="inputGroup">
-                  <label htmlFor="pincode">
-                    Pincode <i className="text-danger">*</i>
-                  </label>
-                  <input
-                    type="pincode"
-                    style={{ borderRadius: "17px" }}
-                    name="pincode"
-                    onChange={this.handleChange}
-                    placeholder="Pincode"
-                    className={pincodeErr ? " showError" : ""}
-                  />
-                  <div className="formErrors">{pincodeErr}</div>
-                </div>
+              <div className="inputGroup">
+                <label htmlFor="pincode">
+                  Pincode <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="pincode"
+                  style={{ borderRadius: "17px" }}
+                  name="pincode"
+                  onChange={this.handleChange}
+                  placeholder="Pincode"
+                  autoComplete="off"
+                  className={pincodeErr ? " showError" : ""}
+                />
+                <div className="formErrors">{pincodeErr}</div>
               </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <label htmlFor="role">
-                    Role <i className="text-danger">*</i>
-                  </label>
-                  <div className="role">
-                    <>
-                      <Dropdown
-                        data={[
-                          { label: "Customer" },
-                          { label: "Collector" },
-                          { label: "Vendor" },
-                        ]}
-                        name="role"
-                        value={this.state.role.name}
-                        style={{ borderRadius: "17px" }}
-                        placeholder="Select your Role"
-                        onChange={this.handleDropdown}
-                        optionValues={this.optionValues}
-                      />
-                      {fields}
-                    </>
-                    
-                  </div>
-                  <div className="formErrors">{roleErr}</div>
+            </div>
+            <div className="row">
+              <div className="inputGroup">
+                <label htmlFor="role">
+                  Role <i className="text-danger">*</i>
+                </label>
+                <div className="role">
+                  <>
+                    <Dropdown
+                      data={[
+                        { label: "Customer" },
+                        { label: "Collector" },
+                        { label: "Vendor" },
+                      ]}
+                      name="role"
+                      value={this.state.role.name}
+                      style={{ borderRadius: "17px" }}
+                      placeholder="Select your Role"
+                      onChange={this.handleDropdown}
+                      optionValues={this.optionValues}
+                    />
+                    {fields}
+                  </>
                 </div>
+                <div className="formErrors">{roleErr}</div>
               </div>
-              <span className="error">
-                {this.state.msg !== "" ? this.state.msg : ""}
-              </span>
+            </div>
+            <span className="error">
+              {this.state.msg !== "" ? this.state.msg : ""}
+            </span>
 
-              <div className="row">
-                <div className="cont">
-                  <button onClick={this.handleback} className="backbutton">
-                    BACK
-                  </button>
-                  <button type="submit" className="signup-button">
-                    SIGN UP
-                  </button>
-                </div>
+            <div className="row">
+              <div className="cont">
+                <button onClick={this.handleback} className="backbutton">
+                  BACK
+                </button>
+                <button onClick={this.handleSubmit} className="signup-button">
+                  SIGN UP
+                </button>
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     );
   }
