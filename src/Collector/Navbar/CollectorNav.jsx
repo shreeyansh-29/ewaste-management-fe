@@ -9,7 +9,7 @@ import {
 import "../../Customer/Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
-import {navbarapi} from "../../Customer/Navbar/navbarApi";
+import {navbarapi} from "../../utils/navbarApi";
 function CollectorNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -89,7 +89,7 @@ function CollectorNav() {
                 <NavNotiIcon
                   style={
                     c === "0" || c === null
-                      ? { color: "white", marginLeft: "24px" }
+                      ? { color: "white"}
                       : { color: "white", marginBottom: "20px"}
                   }
                 ></NavNotiIcon>

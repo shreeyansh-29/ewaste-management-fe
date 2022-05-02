@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import "./Customer.css";
 
+import { Formik, Field, Form } from "formik";
 function Popup(props) {
   const [data, setData] = useState();
   const [add, setadd] = useState();
@@ -11,7 +12,7 @@ function Popup(props) {
   useEffect(() => {
     (async function () {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       if (props.content) {
         url = `http://localhost:8083/collector/request/pending/customerProfile?id=${props.content}`;
       } else if (props.contents) {
@@ -28,7 +29,7 @@ function Popup(props) {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         });
         const res = await response.json();
@@ -50,74 +51,83 @@ function Popup(props) {
   return (
     <>
       <div className="popup-box">
-        <div className="box">
-          <button className="btn-close" onClick={props.handleClose}>
-            x
-          </button>
-          <form>
-            <div className="customersprofile">
-              <h1
-                style={{
-                  textAlign: "center",
-                  padding: "7px",
-                  fontSize: "2.5rem",
-                  fontFamily: "sans-serif",
-                  color: "white",
-                }}
-              >
-                Profile
-              </h1>
-            </div>
-            <div className="popupbody">
-              <label>Name</label>
-              <div className="inputGroup3">
-                <input
-                  name="lastName"
-                  style={{
-                    fontWeight: "bold",
-                    textDecorationColor: "black",
-                    borderRadius: "17px",
-                    padding: "10px",
-                  }}
-                  disabled
-                  value={data}
-                />
-              </div>
+        <Formik>
+          <Form>
+            <div className="box">
+              <button className="btn-close" onClick={props.handleClose}>
+                x
+              </button>
 
-              <label>Address</label>
-              <div className="inputGroup3">
-                <input
-                  name="address"
-                  disabled
+              <div className="customersprofile">
+                <h1
+                  style={{
+                    textAlign: "center",
+                    padding: "7px",
+                    fontSize: "2.5rem",
+                    fontFamily: "sans-serif",
+                    color: "white",
+                  }}
+                >
+                  Profile
+                </h1>
+              </div>
+              <div className="popupbody">
+                <label>Name</label>
+                <Field
+                  name="lastName"
+                  className="form-control"
+                  type="text"
                   style={{
                     fontWeight: "bold",
                     textDecorationColor: "black",
                     borderRadius: "17px",
                     padding: "10px",
+                    margin: "10px",
+                    fontSize:"14px"
+                  }}
+                  value={data}
+                  disabled
+                />
+
+                <label>Address</label>
+                <Field
+                  name="address"
+                  className="form-control"
+                  type="text"
+                  style={{
+                    fontWeight: "bold",
+                    textDecorationColor: "black",
+                    borderRadius: "17px",
+                    padding: "10px",
+                    margin: "10px",
+                    fontSize:"14px"
                   }}
                   value={add}
+                  disabled
                 />
-              </div>
 
-              <label>Contact Number</label>
-              <div className="inputGroup3">
-                <input
+                <label>Contact Number</label>
+                <Field
                   name="mobileNo"
+                  className="form-control"
+                  type="text"
                   style={{
                     fontWeight: "bold",
                     textDecorationColor: "black",
                     borderRadius: "17px",
-                    padding: "10px",
+                    fontSize:"14px",
+                    margin: "10px",
                   }}
-                  disabled
                   value={mobile}
+                  disabled
                 />
               </div>
             </div>
-          </form>
-        </div>
+          </Form>
+        </Formik>
       </div>
     </>
   );
 }
 export default Popup;
+

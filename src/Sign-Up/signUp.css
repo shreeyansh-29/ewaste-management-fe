@@ -9,7 +9,7 @@
 }
 .signup-button {
   border-radius: 17px;
-  padding: 10px 48px;
+  padding: 10px 46px;
   margin-left: 2.5rem;
   border: none;
   background-color: rgb(30, 28, 54);
@@ -20,7 +20,7 @@
 .signup-button:hover {
   background-color: rgb(39, 35, 75);
 }
-.backbutton{
+.backbutton {
   border-radius: 17px;
   padding: 10px 50px;
   margin-left: 10.2rem;
@@ -30,26 +30,42 @@
   font-weight: bold;
   transition: all 0.4s;
 }
-.backbutton:hover{
+.backbutton:hover {
   background-color: rgb(39, 35, 75);
-} 
+}
 
 .Form-bodY {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flexbox;
   justify-content: center;
   align-items: center;
   margin-left: 23%;
   width: 55%;
 
+  margin-top: 100px;
   flex-direction: column;
   background-color: white;
   border: 1px solid white;
- 
+
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
 }
 
+.inputGroup-gst{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top:3%;
+  margin-left:2.5%;
+}
+
+.inputGroup-reg{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top:3%;
+  margin-left:1%;
+}
 .row {
   display: flex;
   flex-direction: row;
@@ -57,30 +73,27 @@
 .signup-form-cont {
   padding: 30px;
 }
-.inputGroup 
- {
+.inputGroup {
   flex: 1;
   display: flex;
   flex-direction: column;
   margin: 10px 5px;
 }
 label {
-  margin-left:3.5%;
+  margin-left: 3.5%;
   color: black;
   font-size: 18px;
   font-weight: 200;
-
 }
 .inputWithButton {
   position: relative;
-  width : 300px;
+  width: 300px;
 }
 
 .inputWithButton button {
   position: absolute;
   right: 7px;
-  top : 4px;
-
+  top: 4px;
 }
 
 input[type="text"],
@@ -95,7 +108,6 @@ input[type="pincode"],
   padding-right: 10px;
   color: #666;
   border: 1px solid #d6d6d6;
-  border-radius: 4px;
   background: white;
   outline: none;
 }
@@ -103,7 +115,24 @@ input[type="pincode"],
   background: white;
   padding: 5px 10px;
 }
+select{
+  width:300px;
+  
+}
+.forms-select{
+  width:300px;
+  background-color: white;
+  border-color: lightgrey;
+  /* padding:300px; */
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 3px;
 
+}
+.reg{
+  margin-left: "-2%";
+}
 @media only screen and (max-width: 100px) {
   .row {
     flex-direction: both;
@@ -117,13 +146,15 @@ input[type="pincode"],
 .formErrors {
   color: red;
   margin-bottom: 10px;
-  margin-left: 3.5%;
+  margin-left: 8px;
   text-align: justify;
   font-size: 14px;
   font-weight: normal;
   font-family: "poppins", sans-serif;
 }
-
+.role {
+  margin-left: -2%;
+}
 .app-button {
   padding: 10px 70px;
   place-content: center;
@@ -154,37 +185,238 @@ input[type="pincode"],
 .Req {
   color: green;
 }
-
-@media screen and (max-width:768px) {
-  .signup-button{
-    margin-left: 1.8rem;
-    padding: 10px 30px;
-  }
-  .backbutton{
-    margin-left: 10.5rem;
-    padding: 10px 40px;
-  }
-  .Form-bodY{
-    width: 90%;
-    margin-left: 5.2%;
-  }
-  .inputGroup{
-    padding: 10px 1px;
-  }
-  .inputGroups{
-    padding: 10px 1px;
-    width:100%;
+input{
+width:300px;
+}
+@media screen and (min-width: 600px) {
+  @media screen and (max-width: 800px) {
+    .signup-button {
+      margin-left: 1.8rem;
+      padding: 10px 30px;
+    }
+    .backbutton {
+      margin-left: 10.5rem;
+      padding: 10px 40px;
+    }
+    .Form-bodY {
+      width: 90%;
+      margin-left: 5.2%;
+    }
+    .inputGroup {
+      padding: 10px 1px;
+    }
+    .inputGroups {
+      padding: 10px 1px;
+      width: 100%;
+    }
+    .form-select{
+      width:300px;
+    }
   }
 }
-@media screen and (max-width: 425px) {
-  .inputGroup{
-   padding: 10px 20px;
-  }
-  #role{
-  padding-left:20px;
-  margin-left: 10px;
-  }
-  .backbutton{
-    margin-left: 20px;
+@media screen and (min-width: 420px) {
+  @media screen and (max-width: 500px) {
+    .signup-button {
+      margin-left: 0.8rem;
+      padding: 10px 30px;
+    }
+    .backbutton {
+      margin-left: 0.5rem;
+      padding: 10px 40px;
+    }
+    .Form-bodY {
+      width: 90%;
+      margin-left: 5.2%;
+    }
+    .inputGroup {
+      padding: 10px 1px;
+    }
+    .inputGroups {
+      padding: 10px 1px;
+      width: 100%;
+    }
+    .form-select{
+      width:19rem;
+      padding:7px;
+    }
+    .reg{
+      margin-left: 10px;
+    }
+    .time{
+      margin-left: 10px;
+    }
+    .gst{
+      margin-left: 10px;
+    }
+    .timelabel{
+      margin-left: 20px;
+    }
   }
 }
+@media screen and (min-width: 370px) {
+  @media screen and (max-width: 420px) {
+    
+    .signup-button {
+      margin-left: 0.8rem;
+      padding: 10px 30px;
+    }
+    .backbutton {
+      margin-left: 0.5rem;
+      padding: 10px 40px;
+    }
+    .Form-bodY {
+      width: 90%;
+      margin-left: 5.2%;
+    }
+    .inputGroup {
+      padding: 10px 1px;
+    }
+    .inputGroups {
+      padding: 10px 1px;
+      width: 100%;
+    }
+    .role {
+      margin-left: 1px;
+      margin-top: 1%;
+    }
+    .reg{
+      margin-left: 3px;
+    }
+    .form-select{
+      width:300px;
+    }
+    input{
+      width:300px;
+    }
+    .inputGroup-gst{
+      margin-left: 1.2%;
+      margin-top:10%;
+    }
+    .inputGroup-reg{
+      margin-left: 1.2%;
+      margin-top:10%;
+    }
+    .time{
+      margin-left: 3%;
+    }
+    .timelabel{
+      margin-left: 6%;
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .signup-button {
+    margin-left: 0.5rem;
+    padding: 7px 14px;
+  }
+  .backbutton {
+    margin-left: 2rem;
+    padding: 7px 16px;
+  }
+  .Form-bodY {
+    width: 95%;
+    margin-left: 3%;
+  }
+  .inputGroup {
+    padding: 3px 1px;
+  }
+  .inputGroups {
+    padding: 8px 1px;
+    width: 100%;
+  }
+  .role {
+    margin-left: -14px;
+    margin-top: 1px
+  }
+  .dropdown {
+    margin-top: -10%;
+  }
+  input{
+    width:15rem;
+  }
+  .inputWithButton button{
+    margin-right:55px;
+  }
+  .reg{
+    margin-left: 17px;
+  }
+  .time{
+    margin-left: 17px;
+  }
+  .gst{
+    margin-left: 17px;
+  }
+  .timelabel{
+    margin-left: 27px;
+  }
+  .forms-select{
+    width:15rem;
+  }
+}
+@media screen and (min-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    .signup-button {
+      margin-left: 1.8rem;
+      padding: 10px 30px;
+    }
+    .backbutton {
+      margin-left: 13.5rem;
+      padding: 10px 40px;
+    }
+    .Form-bodY {
+      width: 90%;
+      margin-left: 5.2%;
+    }
+    .inputGroup {
+      padding: 10px 1px;
+    }
+    .inputGroups {
+      padding: 10px 1px;
+      width: 100%;
+    }
+  }
+}
+@media screen and (min-width:500px){
+  @media screen and (max-width:600px) {
+    .signup-button{
+      margin-left: 1.8rem;
+      padding: 10px 30px;
+    }
+    .backbutton{
+      margin-left: 5.5rem;
+      padding: 10px 40px;
+    }
+    .Form-bodY{
+      width: 90%;
+      margin-left: 5.2%;
+    }
+    .inputGroup{
+      padding: 10px 1px;
+    }
+    .inputGroups{
+      padding: 10px 1px;
+      width:100%;
+    }
+    input{
+      width:13rem;
+    }
+    .row{
+      display: flex;
+      flex-direction: row;
+    }
+    select{
+      width:10rem;
+    }
+    label{
+      width:13rem;
+    }
+    .role{
+      margin-left: 3px;
+      margin-top: -20px;
+      width: 13%;
+    }
+    .time{
+      width:1rem;
+    }
+  }
+  }

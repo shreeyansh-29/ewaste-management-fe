@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {apicall} from "../../Customer/Api";
+import {apicall} from "../../utils/Api";
 export const data = [
   ["name", "Organized", {role: "style"}],
   ["E-Waste Drives in the City", 4, "blue"],
@@ -28,8 +28,8 @@ export default function EWasteDrives() {
     (async function () {
       try {
         const res = await apicall("EwasteDrive");
-        data[2][1] = res.data.EWasteDriveCity;
-        data[1][1] = res.data.EWasteDriveCollector;
+        data[1][1] = res.data.EWasteDriveCity;
+        data[2][1] = res.data.EWasteDriveCollector;
       } catch (err) {
         console.log(err);
       }

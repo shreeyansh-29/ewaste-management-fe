@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-
+import SearchIcon from "@material-ui/icons/Search";
 export default function MyDrives() {
   const { useState } = React;
 
@@ -108,6 +108,7 @@ export default function MyDrives() {
       lookup: {
         Upcoming: "Upcoming",
         Cancelled: "Cancelled",
+        completed: "Completed"
       },
       cellStyle: {
         textAlign: "center",
@@ -121,7 +122,7 @@ export default function MyDrives() {
   ]);
   const callApi = (newData) => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -132,7 +133,7 @@ export default function MyDrives() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );
@@ -146,7 +147,7 @@ export default function MyDrives() {
 
   useEffect(() => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -157,7 +158,7 @@ export default function MyDrives() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );
@@ -196,6 +197,9 @@ export default function MyDrives() {
         title=""
         columns={columns}
         data={data}
+        icons={{
+          Search: ()=><SearchIcon style={{fill:"white"}}/>
+        }}
         editable={{
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {

@@ -14,7 +14,7 @@ const options = {
   chartArea: {width: "70%"},
   hAxis: {
     textStyle: {
-      fontSize: 15,
+      fontSize: 13,
       maxRotation: 80,
       minRotation: 80,
     },
@@ -26,7 +26,7 @@ const options = {
 export default function CollectorsCategories() {
   useEffect(() => {
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
         const response = await fetch(
@@ -37,7 +37,7 @@ export default function CollectorsCategories() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );

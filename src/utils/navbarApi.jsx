@@ -1,12 +1,14 @@
+import { COLLECTOR_NOTIFICATION_MARKASREAD, CUSTOMER_NOTIFICATION_MARKASREAD } from "../constant/constant";
+
 export async function navbarapi(value) {
   const tokens = localStorage.getItem("token");
-  const email = document.cookie.split("=");
+  const email = localStorage.getItem("email");
   let url;
   if(value ==="customer"){
-    url = "http://localhost:8083/customer/notification/markAsRead";
+    url = CUSTOMER_NOTIFICATION_MARKASREAD;
   }
   if(value ==="collector"){
-    url =  "http://localhost:8083/collector/notification/markAsRead";
+    url = COLLECTOR_NOTIFICATION_MARKASREAD;
   }
  
   const response = await fetch(
@@ -17,7 +19,7 @@ export async function navbarapi(value) {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + tokens,
-        EMAIL: email[1],
+        EMAIL: email,
       },
     }
   );

@@ -1,13 +1,12 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Dropdown from "../Components/Dropdown";
-import InputField from "../Components/InputField";
 import Select from "react-select";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 import "./signUp.css";
-import {statescity} from "./states";
+import { statescity } from "./states";
 import TimeRange from "react-time-range";
 import moment from "moment";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
@@ -22,7 +21,7 @@ const data = [
     value: "Screens",
     label: "Screens, monitors (Televisions , Laptops)",
   },
-  {value: "Lamps", label: "Lamps (LED Lamps)"},
+  { value: "Lamps", label: "Lamps (LED Lamps)" },
   {
     value: "LargeEqip",
     label: "Large Equipment (Washing Machines, Electric Stoves)",
@@ -85,7 +84,7 @@ class SignUp extends Component {
   }
 
   changeState(event) {
-    this.setState({selectedState: event.target.value});
+    this.setState({ selectedState: event.target.value });
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -93,7 +92,7 @@ class SignUp extends Component {
     });
   }
   changeCity(event) {
-    this.setState({city: event.target.value});
+    this.setState({ city: event.target.value });
   }
 
   handleFormValidation() {
@@ -111,9 +110,9 @@ class SignUp extends Component {
       selectedState,
       city,
       gstNo,
-      inputList: [[{categoryAccepted}]],
+      inputList: [[{ categoryAccepted }]],
       registrationNo,
-      role: {name},
+      role: { name },
     } = this.state;
 
     let formErrors = {};
@@ -165,6 +164,7 @@ class SignUp extends Component {
       var mobPattern = /^[6-9]\d{9}$/;
       if (!mobPattern.test(mobileNo)) {
         formIsValid = false;
+        console.log(mobileNo);
         formErrors["mobileNoErr"] = "Invalid mobile number.";
       }
     }
@@ -238,19 +238,21 @@ class SignUp extends Component {
       }
     }
 
-    this.setState({formErrors: formErrors});
+    this.setState({ formErrors: formErrors });
 
     return formIsValid;
   }
-  handleChange = (key) => (value) => {
-    this.setState({[key]: value});
+  handleChange = (e) => {
+    e.preventDefault();
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
   };
   returnFunctionStart = (event) => {
-    this.setState({startTime: event.startTime});
+    this.setState({ startTime: event.startTime });
   };
 
   returnFunctionEnd = (event) => {
-    this.setState({endTime: event.endTime});
+    this.setState({ endTime: event.endTime });
   };
 
   handleSubmit = async (e) => {
@@ -264,6 +266,7 @@ class SignUp extends Component {
     end = (parseInt(end[0]) + 6) % 24;
     end = end + ":" + "00";
     var dropoff = start.toString() + end.toString();
+
     if (this.handleFormValidation()) {
       const fname =
         this.state.firstName.charAt(0).toUpperCase() +
@@ -289,7 +292,7 @@ class SignUp extends Component {
             state: this.state.selectedState,
             pinCode: this.state.pincode,
 
-            role: {name: name},
+            role: { name: name },
             gstNo: this.state.gstNo,
             registrationNo: this.state.registrationNo,
             shopTime: dropoff,
@@ -297,6 +300,7 @@ class SignUp extends Component {
           }),
         });
         const res = await response.json();
+        console.log(res);
         if (res.status === "success") {
           toast.success("Registered successfully", {
             position: toast.POSITION.TOP_RIGHT,
@@ -320,17 +324,17 @@ class SignUp extends Component {
     }
   };
 
-  handleInputChange = (e, index) => {
+  handleInputChange = (e) => {
     var list = [...e];
-   
+
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
-    this.setState({inputList: [list]});
+    this.setState({ inputList: [list] });
   };
   handleDropdown = (role) => {
-    this.setState({role: {name: role}});
+    this.setState({ role: { name: role } });
   };
   handleDropdowns = (selectedOption) => {
-    this.setState({selectedOption});
+    this.setState({ selectedOption });
   };
   handleback = () => {
     try {
@@ -341,17 +345,17 @@ class SignUp extends Component {
   };
   togglePassword = () => {
     if (this.state.passwordType === "password") {
-      this.setState({passwordType: "text"});
+      this.setState({ passwordType: "text" });
       return;
     }
-    this.setState({passwordType: "password"});
+    this.setState({ passwordType: "password" });
   };
   confirmtogglePassword = () => {
     if (this.state.confirmPasswordType === "password") {
-      this.setState({confirmPasswordType: "text"});
+      this.setState({ confirmPasswordType: "text" });
       return;
     }
-    this.setState({confirmPasswordType: "password"});
+    this.setState({ confirmPasswordType: "password" });
   };
   render() {
     const {
@@ -371,42 +375,43 @@ class SignUp extends Component {
       timeErr,
       registrationErr,
     } = this.state.formErrors;
-    const {role} = this.state;
+    const { role } = this.state;
     let fields;
     if (role.name === "Vendor") {
       fields = (
-        <div className="row">
-          <div
-            className="inputGroup"
-            style={{paddingLeft: "23px", marginTop: "32px"}}
-          >
-            <label htmlFor="GSTIN">
-              GST-IN <i className="text-danger">*</i>
-            </label>
-            <InputField
-              type="text"
-              name="GSTIN"
-              value={this.state.gstNo}
-              placeholder="Enter GST-IN"
-              onChange={this.handleChange("gstNo")}
-            />
-            <div className="formErrors">{gstErr}</div>
-          </div>
-          <div
-            className="inputGroup"
-            style={{marginTop: "30px", marginLeft: "0.75%"}}
-          >
-            <label htmlFor="reg">
-              Registration Number <i className="text-danger">*</i>
-            </label>
-            <InputField
-              type="text"
-              name="reg"
-              value={this.state.registrationNo}
-              placeholder="Enter Registration Number"
-              onChange={this.handleChange("registrationNo")}
-            />
-            <div className="formErrors">{registrationErr}</div>
+        <div>
+          <div className="row">
+            <div className="inputGroup-gst">
+              <label htmlFor="GSTIN">
+                GST-IN <i className="text-danger">*</i>
+              </label>
+              <input
+                type="text"
+                style={{ borderRadius: "17px" }}
+                name="GSTIN"
+                autoComplete="off"
+                placeholder="Enter GST-IN"
+                onChange={this.handleChange}
+              />
+              <div className="formErrors">{gstErr}</div>
+            </div>
+            <div
+              className="inputGroup-reg"
+              // style={{ marginTop: "30px", marginLeft: "0.75%" }}
+            >
+              <label htmlFor="reg">
+                Registration Number <i className="text-danger">*</i>
+              </label>
+              <input
+                type="text"
+                name="reg"
+                style={{ borderRadius: "17px" }}
+                placeholder="Enter Number"
+                autoComplete="off"
+                onChange={this.handleChange}
+              />
+              <div className="formErrors">{registrationErr}</div>
+            </div>
           </div>
         </div>
       );
@@ -415,28 +420,47 @@ class SignUp extends Component {
       fields = (
         <div>
           <div className="row">
-            <div
-              className="inputGroup"
-              style={{paddingLeft: "25px", marginTop: "32px"}}
-            >
-              <label htmlFor="GSTIN">
-                GST-IN <i className="text-danger">*</i>
-              </label>
-              <InputField
-                type="text"
-                name="GSTIN"
-                value={this.state.gstNo}
-                placeholder="Enter GST-IN"
-                onChange={this.handleChange("gstNo")}
-              />
-              <div className="formErrors">{gstErr}</div>
+            <div className="inputGroup-gst">
+              <div className="gst">
+                <label htmlFor="GSTIN">
+                  GST-IN <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  style={{ borderRadius: "17px" }}
+                  name="GSTIN"
+                  placeholder="Enter GST-IN"
+                  autoComplete="off"
+                  onChange={this.handleChange}
+                />
+                <div className="formErrors">{gstErr}</div>
+              </div>
             </div>
+            <div className="inputGroup-reg">
+              <div className="reg">
+                <label htmlFor="reg">
+                  Registration Number <i className="text-danger">*</i>
+                </label>
+                <input
+                  type="text"
+                  name="reg"
+                  style={{ borderRadius: "17px" }}
+                  placeholder="Enter Number"
+                  autoComplete="off"
+                  onChange={this.handleChange}
+                />
+                <div className="formErrors">{registrationErr}</div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
             <div className="inputGroup">
               <label
                 htmlFor="time"
                 data-tip
                 data-for="registerTip"
-                style={{marginTop: "22px"}}
+                style={{ marginTop: "22px" }}
+                className="timelabel"
               >
                 Drop-Off Time <i className="text-danger">*</i>
               </label>
@@ -451,31 +475,19 @@ class SignUp extends Component {
                 onChange={this.onChange}
                 use24Hours={true}
                 minuteIncrement="60"
+                className="time"
               />
               <div className="formErrors">{timeErr}</div>
             </div>
           </div>
-          <div className="row">
-            <div className="inputGroup" style={{paddingLeft: "25px"}}>
-              <label htmlFor="reg">
-                Registration Number <i className="text-danger">*</i>
-              </label>
-              <InputField
-                type="text"
-                name="reg"
-                value={this.state.registrationNo}
-                placeholder="Enter Registration Number"
-                onChange={this.handleChange("registrationNo")}
-              />
-              <div className="formErrors">{registrationErr}</div>
-            </div>
-            <div className="inputGroup"></div>
-          </div>
+
+          <div className="inputGroup"></div>
+
           <label
             htmlFor="categories"
             data-tip
             data-for="Tip"
-            style={{paddingLeft: "7px"}}
+            style={{ paddingLeft: "7px" }}
           >
             Categories <i className="text-danger">*</i>
           </label>
@@ -486,7 +498,7 @@ class SignUp extends Component {
             console.log(v);
             return (
               // eslint-disable-next-line react/jsx-key
-              <div className="inputGroups" style={{paddingLeft: "15px"}}>
+              <div className="inputGroups" style={{ paddingLeft: "15px" }}>
                 <Select
                   value={this.state.categoryAccepted}
                   options={data}
@@ -525,12 +537,13 @@ class SignUp extends Component {
                 <label htmlFor="firstName">
                   First Name <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
                   name="firstName"
-                  value={this.state.firstName}
-                  onChange={this.handleChange("firstName")}
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
                   placeholder="First Name"
+                  autoComplete="off"
                   className={firstNameErr ? " showError" : ""}
                 />
                 <div className="formErrors">{firstNameErr}</div>
@@ -539,12 +552,13 @@ class SignUp extends Component {
                 <label htmlFor="lastName">
                   Last Name <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
                   name="lastName"
-                  value={this.state.lastName}
-                  onChange={this.handleChange("lastName")}
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
                   placeholder="Last Name"
+                  autoComplete="off"
                   className={lastNameErr ? " showError" : ""}
                 />
                 <div className="formErrors">{lastNameErr}</div>
@@ -555,12 +569,13 @@ class SignUp extends Component {
                 <label htmlFor="emailId">
                   E-mail Id <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="email"
-                  name="emailId"
-                  value={this.state.email}
-                  onChange={this.handleChange("email")}
+                  name="email"
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
                   placeholder="Mail"
+                  autoComplete="off"
                   className={emailIdErr ? " showError" : ""}
                 />
                 <div className="formErrors">{emailIdErr}</div>
@@ -569,12 +584,13 @@ class SignUp extends Component {
                 <label htmlFor="mobileNo">
                   Mobile Number <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
                   name="mobileNo"
-                  onChange={this.handleChange("mobileNo")}
-                  value={this.state.mobileNo}
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
                   placeholder="Mobile Number"
+                  autoComplete="off"
                   className={mobileNoErr ? " showError" : ""}
                 />
                 <div className="formErrors">{mobileNoErr}</div>
@@ -586,12 +602,13 @@ class SignUp extends Component {
                   Password <i className="text-danger">*</i>
                 </label>
                 <div className="inputWithButton">
-                  <InputField
+                  <input
                     type={this.state.passwordType}
                     name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange("password")}
+                    style={{ borderRadius: "17px" }}
+                    onChange={this.handleChange}
                     placeholder="Enter Password"
+                    autoComplete="off"
                     className={passwordErr ? " showError" : ""}
                   />
                   <div className="input-group-btn">
@@ -618,12 +635,13 @@ class SignUp extends Component {
                   Confirm Password <i className="text-danger">*</i>
                 </label>
                 <div className="inputWithButton">
-                  <InputField
+                  <input
                     type={this.state.confirmPasswordType}
                     name="confirmPassword"
-                    value={this.state.confirmPassword}
-                    onChange={this.handleChange("confirmPassword")}
+                    style={{ borderRadius: "17px" }}
+                    onChange={this.handleChange}
                     placeholder="Confirm Password"
+                    autoComplete="off"
                     className={confirmPasswordErr ? " showError" : ""}
                   />
                   <div className="input-group-btn">
@@ -647,15 +665,16 @@ class SignUp extends Component {
             </div>
             <div className="row">
               <div className="inputGroup">
-                <label htmlFor="address">
+                <label htmlFor="address1">
                   Address Line <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="text"
-                  name="address"
-                  value={this.state.address1}
-                  onChange={this.handleChange("address1")}
+                  name="address1"
+                  style={{ borderRadius: "17px" }}
+                  onChange={this.handleChange}
                   placeholder="Address"
+                  autoComplete="off"
                   className={addressErr ? " showError" : ""}
                 />
                 <div className="formErrors">{addressErr}</div>
@@ -665,11 +684,10 @@ class SignUp extends Component {
                   State <i className="text-danger">*</i>
                 </label>
                 <select
-                  className="form-select"
+                  className="forms-select"
                   style={{
                     borderRadius: "17px",
                     padding: "4px",
-                    width: "300px",
                   }}
                   value={this.state.selectedState}
                   onChange={this.changeState}
@@ -688,11 +706,10 @@ class SignUp extends Component {
                   City <i className="text-danger">*</i>
                 </label>
                 <select
-                  className="form-select"
+                  className="forms-select"
                   style={{
                     borderRadius: "17px",
                     padding: "4px 4px 5px ",
-                    width: "300px",
                     marginLeft: "0.49%",
                   }}
                   value={this.state.selectedCity}
@@ -710,37 +727,41 @@ class SignUp extends Component {
                 <label htmlFor="pincode">
                   Pincode <i className="text-danger">*</i>
                 </label>
-                <InputField
+                <input
                   type="pincode"
+                  style={{ borderRadius: "17px" }}
                   name="pincode"
-                  value={this.state.pincode}
-                  onChange={this.handleChange("pincode")}
+                  onChange={this.handleChange}
                   placeholder="Pincode"
+                  autoComplete="off"
                   className={pincodeErr ? " showError" : ""}
                 />
                 <div className="formErrors">{pincodeErr}</div>
               </div>
             </div>
             <div className="row">
-              <div className="inputGroup" style={{marginLeft: "-10px"}}>
-                <label htmlFor="role" style={{paddingLeft: "6px"}}>
+              <div className="inputGroup">
+                <label htmlFor="role">
                   Role <i className="text-danger">*</i>
                 </label>
-                <>
-                  <Dropdown
-                    data={[
-                      {label: "Customer"},
-                      {label: "Collector"},
-                      {label: "Vendor"},
-                    ]}
-                    name="role"
-                    value={this.state.role.name}
-                    placeholder="Select your Role"
-                    onChange={this.handleDropdown}
-                    optionValues={this.optionValues}
-                  />
-                  {fields}
-                </>
+                <div className="role">
+                  <>
+                    <Dropdown
+                      data={[
+                        { label: "Customer" },
+                        { label: "Collector" },
+                        { label: "Vendor" },
+                      ]}
+                      name="role"
+                      value={this.state.role.name}
+                      style={{ borderRadius: "17px" }}
+                      placeholder="Select your Role"
+                      onChange={this.handleDropdown}
+                      optionValues={this.optionValues}
+                    />
+                    {fields}
+                  </>
+                </div>
                 <div className="formErrors">{roleErr}</div>
               </div>
             </div>

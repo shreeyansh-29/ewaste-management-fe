@@ -74,7 +74,7 @@ export default function ItemsForSale() {
   const handleSubmit = async (e, datas) => {
     e.preventDefault();
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     if (
       datas.itemName === "" ||
       datas.price === null ||
@@ -90,7 +90,7 @@ export default function ItemsForSale() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
 
           body: JSON.stringify({
@@ -166,6 +166,7 @@ export default function ItemsForSale() {
           ]}
           options={{
             actionsColumnIndex: -1,
+            search:false
           }}
         />
       </div>

@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import InputField from "../Components/InputField";
 import "./vendor.css";
 
 import {statescity} from "../Sign-Up/states";
 import {toast} from "react-toastify";
-
+import { VENDOR_AUTH_URL } from "../constant/constant";
+// const crypto = require ("crypto");
 class VendorProfile extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +43,7 @@ class VendorProfile extends Component {
       firstName,
       lastName,
       registrationNo,
-      password,
+      // password,
       mobileNo,
       address1,
       city,
@@ -64,18 +64,6 @@ class VendorProfile extends Component {
     if (!lastName) {
       formIsValid = false;
       formErrors["lastNameErr"] = " Last Name is required.";
-    }
-    const pass = localStorage.getItem("Password");
-    this.setState({password: pass});
-    //password
-    if (!password) {
-      formIsValid = false;
-      var str1 = "Password is required.";
-      formErrors["passwordErr"] = str1;
-    } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-      formIsValid = false;
-      var str = "Password should be of atleast six characters";
-      formErrors["passwordErr"] = str;
     }
     //Phone number
     if (!mobileNo) {
@@ -140,8 +128,7 @@ class VendorProfile extends Component {
 
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
-      const pass = localStorage.getItem("Password");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
 
       try {
         const response = await fetch(
@@ -152,18 +139,18 @@ class VendorProfile extends Component {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
             body: JSON.stringify({
               firstName: this.state.firstName,
               lastName: this.state.lastName,
-              email: email[1],
+              email: email,
               address1: this.state.address1,
               mobileNo: this.state.mobileNo,
               city: this.state.city,
               state: this.state.state,
               pinCode: this.state.pinCode,
-              password: pass,
+              password: this.state.password,
               gstNo: this.state.gstNo,
               registrationNo: this.state.registrationNo,
               shopTime: "10",
@@ -188,23 +175,21 @@ class VendorProfile extends Component {
       states: statescity,
     });
     const tokens = localStorage.getItem("token");
-    const pass = localStorage.getItem("Password");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     try {
       const response = await fetch(
-        "http://localhost:8083/vendor/profile/view",
+        VENDOR_AUTH_URL,
         {
           method: "GET",
           credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         }
       );
       const res = await response.json();
-      res.data.password = pass;
       this.setState(res.data);
     } catch (err) {
       console.log(err);
@@ -216,7 +201,8 @@ class VendorProfile extends Component {
   };
 
   render() {
-    const email = document.cookie.split("=");
+   
+    const email = localStorage.getItem("email");
     const {
       firstNameErr,
       lastNameErr,
@@ -252,11 +238,12 @@ class VendorProfile extends Component {
                   <label htmlFor="firstName">
                     First Name <i className="text-danger">*</i>{" "}
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="firstName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.firstName}
-                    onChange={this.handleChange("firstName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -266,11 +253,12 @@ class VendorProfile extends Component {
                   <label htmlFor="lastName">
                     Last Name <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="lastName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.lastName}
-                    onChange={this.handleChange("lastName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -284,21 +272,21 @@ class VendorProfile extends Component {
                     style={{
                       borderRadius: "17px",
                       padding: "4px",
-                      width: "300px",
                       backgroundColor: "#fff",
                     }}
                     disabled
-                    defaultValue={email[1]}
+                    defaultValue={email}
                   />
                 </div>
                 <div className="inputGroup">
                   <label htmlFor="phoneNumber">
                     Phone Number <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="phoneNumber"
-                    onChange={this.handleChange("mobileNo")}
+                    name="mobileNo"
+                    style={{borderRadius:"17px"}}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -311,11 +299,12 @@ class VendorProfile extends Component {
                   <label htmlFor="address1">
                     Address Line <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="landmark"
+                    style={{borderRadius:"17px"}}
+                    name="address1"
                     value={this.state.address1}
-                    onChange={this.handleChange("address1")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -329,7 +318,6 @@ class VendorProfile extends Component {
                     style={{
                       borderRadius: "17px",
                       padding: "4px",
-                      width: "300px",
                     }}
                     className="form-select"
                     value={this.state.state}
@@ -352,7 +340,6 @@ class VendorProfile extends Component {
                     style={{
                       borderRadius: "17px",
                       padding: "4px",
-                      width: "300px",
                     }}
                     className="form-select"
                     value={this.state.city}
@@ -369,11 +356,12 @@ class VendorProfile extends Component {
                   <label htmlFor="pincode">
                     Pincode <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="pincode"
-                    name="pincode"
+                    style={{borderRadius:"17px"}}
+                    name="pinCode"
                     value={this.state.pinCode}
-                    onChange={this.handleChange("pinCode")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
@@ -385,11 +373,12 @@ class VendorProfile extends Component {
                   <label htmlFor="GSTIN">
                     GSTNo <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="GSTIN"
+                    style={{borderRadius:"17px"}}
+                    name="gstNo"
                     value={this.state.gstNo}
-                    onChange={this.handleChange("gstNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter GSTIN"
                   />
                   <div className="formErrors">{gstErr}</div>
@@ -398,11 +387,12 @@ class VendorProfile extends Component {
                   <label htmlFor="Registration Certificate No.">
                     Registration Number <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="Certificate_Num"
+                    name="registrationNo"
+                    style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
-                    onChange={this.handleChange("registrationNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter Registration Number"
                   />
                   <div className="formErrors">{registrationErr}</div>

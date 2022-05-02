@@ -1,12 +1,14 @@
+import { COLLECTOR_NOTIFICATION_URL, CUSTOMER_NOTIFICATION_URL } from "../constant/constant";
+
 export async function notificationcount(value) {
   const token = localStorage.getItem("token");
-  const email = document.cookie.split("=");
+  const email = localStorage.getItem("email");
   let url;
   if (value === "collector") {
-    url = "http://localhost:8083/collector/notification";
+    url = COLLECTOR_NOTIFICATION_URL;
   }
   if (value === "customer") {
-    url = "http://localhost:8083/customer/notification";
+    url = CUSTOMER_NOTIFICATION_URL;
   }
   const response5 = await fetch(url, {
     method: "GET",
@@ -14,7 +16,7 @@ export async function notificationcount(value) {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
-      EMAIL: email[1],
+      EMAIL: email,
     },
   });
   console.log(response5);

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { NavLogoutBtn } from "../../Components/Navbar/Navbarelements";
 import { Navbar, NavDropdown, Container, Nav } from "react-bootstrap";
-import "../../Customer/Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function VendorNav() {

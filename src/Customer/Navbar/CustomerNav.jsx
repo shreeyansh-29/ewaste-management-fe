@@ -1,14 +1,14 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   NavLogoutBtn,
   NavNotiIcon,
 } from "../../Components/Navbar/Navbarelements";
-import Swal from "sweetalert2";
 import "../Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
-import {navbarapi} from "./navbarApi";
+import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
+import { navbarapi } from "../../utils/navbarApi";
+import Swal from "sweetalert2";
 function CustomerNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -16,6 +16,7 @@ function CustomerNav() {
   var list = ["hh"];
   const c = localStorage.getItem("count");
   const name = localStorage.getItem("name");
+
   const markAsRead = async () => {
     try {
       const res = await navbarapi("customer");
@@ -60,38 +61,23 @@ function CustomerNav() {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="./CustomerHome" style={{marginLeft: "1%"}}>
+          <Navbar.Brand href="./CustomerHome" style={{ marginLeft: "1%" }}>
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
 
-          <Nav.Item style={{marginLeft: "52%"}}>
+          <Nav.Item >
             <button
-              style={{background: "#101522", border: "none"}}
+              style={{ background: "#101522", border: "none" }}
               onClick={() => markAsRead()}
+              className="notification_button"
             >
-              <div className="icon-button__badge1">
-                {c === "0" ? (
-                  ""
-                ) : (
-                  <div
-                    style={{
-                      color: "white",
-                      marginLeft: "18px",
-                      borderRadius: "17px",
-                      width: "23px",
-                      top: "7px",
-                      left: "4px",
-                      position: "relative",
-                    }}
-                  >
-                    {c}
-                  </div>
-                )}
+              <div className="icon-button__badge">
+                {c === "0" ? "" : <div className="navbarCount">{c}</div>}
                 <NavNotiIcon
                   style={
                     c === "0" || c === null
-                      ? {color: "white", marginLeft: "24.5px"}
-                      : {color: "white", marginBottom: "20px"}
+                      ? { color: "white", marginLeft: "24.5px" }
+                      : { color: "white", marginBottom: "20px" }
                   }
                 ></NavNotiIcon>
               </div>
@@ -108,11 +94,11 @@ function CustomerNav() {
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto" style={{marginRight: "2%"}}>
+            <Nav className="ms-auto" style={{ marginRight: "2%" }}>
               <NavDropdown
                 title="Requests"
                 id="collasible-nav-dropdown"
-                style={{padding: "10px"}}
+                style={{ padding: "10px" }}
               >
                 <NavDropdown.Item href="./PickUp">Pick Up</NavDropdown.Item>
                 <NavDropdown.Item href="./DropOff">Drop Off</NavDropdown.Item>
@@ -120,10 +106,10 @@ function CustomerNav() {
                   My Requests
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="./EWasteDrive" style={{padding: "18px"}}>
+              <Nav.Link href="./Waste" style={{ padding: "18px" }}>
                 Drives
               </Nav.Link>
-              <Nav.Link style={{padding: "18px"}} href="./EditProfile">
+              <Nav.Link style={{ padding: "18px" }} href="./EditProfile">
                 Profile
               </Nav.Link>
               <Nav.Link>
@@ -139,8 +125,11 @@ function CustomerNav() {
                       confirmButtonText: "Logout",
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        navigate("/Signin");
                         localStorage.clear();
+                        console.log(window.history);
+                        window.history.replaceState(null, null, "/Signin");
+                        navigate("/Signin");
+                        // <Redirect  to="/Signin" />
                         document.location.reload();
                       }
                     });

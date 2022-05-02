@@ -11,10 +11,10 @@ import {
 
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 toast.configure();
 export default function PickUp() {
-  const {useState} = React;
+  const { useState } = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
   const [isEditable, setEditable] = useState(true);
@@ -78,7 +78,7 @@ export default function PickUp() {
       field: "date",
       type: "date",
 
-      editComponent: ({value, onChange}) => (
+      editComponent: ({ value, onChange }) => (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             margin="normal"
@@ -155,7 +155,7 @@ export default function PickUp() {
     date = date[3] + "-" + date[1] + "-" + date[2];
     data[0].date = date;
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     try {
       const response = await fetch(
         "http://localhost:8083/customer/request/pickUp",
@@ -165,7 +165,7 @@ export default function PickUp() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
           body: JSON.stringify({
             category: data[0].category,
@@ -192,7 +192,7 @@ export default function PickUp() {
   };
   const handleClick = async (event) => {
     event.preventDefault();
-    setEditable(false);
+
     if (
       data[0].category === undefined ||
       data[0].name === "" ||
@@ -200,7 +200,7 @@ export default function PickUp() {
       data[0].date === undefined ||
       data[0].time === undefined
     ) {
-      toast.error("Enter all fields", {position: toast.POSITION.TOP_RIGHT});
+      toast.error("Enter all fields", { position: toast.POSITION.TOP_RIGHT });
     } else if (
       data[0].quantity === 0 ||
       data[0].quantity > 20 ||
@@ -211,7 +211,7 @@ export default function PickUp() {
       });
     } else {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
+      const email = localStorage.getItem("email");
       try {
         const response = await fetch(
           `http://localhost:8083/customer/request/pickUp/viewCollectors?category=${data[0].category}`,
@@ -221,7 +221,7 @@ export default function PickUp() {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
           }
         );
@@ -236,7 +236,7 @@ export default function PickUp() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px"}}>
+      <div style={{ padding: "150px 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -257,7 +257,7 @@ export default function PickUp() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
           }}
           editable={{
             onRowAdd: isEditable
@@ -265,6 +265,7 @@ export default function PickUp() {
                 new Promise((resolve) => {
                   setTimeout(() => {
                     setData([...data, newData]);
+                    setEditable(false);
                     resolve();
                   }, 1000);
                 })
@@ -284,6 +285,7 @@ export default function PickUp() {
             pageSize: 1,
             actionsColumnIndex: -1,
             addRowPosition: "first",
+            search: false,
           }}
         />
 
@@ -310,23 +312,13 @@ export default function PickUp() {
             <button
               onClick={handleSubmit}
               disabled={disable}
-              style={
-                disable
-                  ? {
-                    color: "black",
-                    background: "grey",
-                    padding: "10px",
-                    borderRadius: "3px",
-                    border: "1px solid grey",
-                  }
-                  : {
-                    color: "white",
-                    background: "black",
-                    padding: "10px",
-                    borderRadius: "3px",
-                    border: "1px solid black",
-                  }
-              }
+              style={{
+                color: "white",
+                background: "black",
+                padding: "10px",
+                borderRadius: "3px",
+                border: "1px solid black",
+              }}
             >
               Send Request
             </button>

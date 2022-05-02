@@ -1,9 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-import {apicall} from "../Customer/Api";
+import { apicall } from "../utils/Api";
 import {} from "@material-ui/icons";
+
+import SearchIcon from "@material-ui/icons/Search";
 export default function SummarySales() {
-  const {useState} = React;
+  const { useState } = React;
 
   const [columns] = useState([
     {
@@ -76,7 +78,7 @@ export default function SummarySales() {
       editable: "never",
       field: "price",
       type: "currency",
-      currencySetting: {currencyCode: "INR"},
+      currencySetting: { currencyCode: "INR" },
       cellStyle: {
         fontSize: "15px",
       },
@@ -127,7 +129,7 @@ export default function SummarySales() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
+      <div style={{ padding: "150px 30px 0 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -144,6 +146,9 @@ export default function SummarySales() {
         </h2>
         <MaterialTable
           title=""
+          icons={{
+            Search: () => <SearchIcon style={{ fill: "white" }} />,
+          }}
           columns={columns}
           data={data}
           options={{

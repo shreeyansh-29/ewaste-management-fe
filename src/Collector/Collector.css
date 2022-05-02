@@ -2,6 +2,16 @@
   height: 110vh;
 
 }
+select{
+  width:70px;
+}
+/* .icon-button__badge1{
+  margin-left: 0px;
+} */
+.bell{
+  margin-left: 700px;
+}
+
 .Formbody {
   display: flexbox;
   justify-content: center;
@@ -18,16 +28,27 @@
 }
 @media screen and (max-width:768px) {
   .Formbody{
-    height: 120vh;
+    height: 100%;
     width: 85%;
     margin-left: 8%;
   }
   .inputGroup{
     margin-left:1%;
   }
+  select{
+    width:70px;
+  }
 }
+.bell{
+  margin-left: 45%;
+}
+@media only screen and (max-width: 650px) {
+  
+  .bell{
+    margin-left: 15%; 
+  }
 
-
+}
 .collectorbody{
   padding:20px;
 }
@@ -169,4 +190,99 @@ a {
   border-radius: 10px 10px 0px 0px;
 }
 
+
+@media screen and (max-width: 360px) {
+  .Formbody{
+    width:90%;
+    margin-left:15px;
+    height:100%;
+    margin-top: 50px;
+  }
+  .form-select{
+    width:250px;
+  }
+  select{
+    width:90%;
+  }
+  .bell{
+    margin-left:50%;
+  }
+  .welcome{
+    width:20px;
+    font-size: 15px;
+  }
+ 
+}
+@media screen and (min-width: 370px) {
+  @media screen and (max-width: 420px) {
+    .Formbody{
+      width:90%;
+      margin-left:20px;
+      height:100%;
+      margin-top: 50px;
+    }
+    .form-select{
+      width:250px;
+    }
+    select{
+      width:90%;
+    }
+    .bell{
+      margin-left:50%;
+    }
+    .welcome{
+      width:20px;
+      font-size: 15px;
+    }
+  }
+}
+@media screen and (min-width: 420px) {
+  @media screen and (max-width: 500px) {
+    .Formbody{
+      width:90%;
+      margin-left:23px;
+      height:100%;
+    }
+  }
+}
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 600px) {
+    .Formbody{
+      width:95%;
+      margin-left:13px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+    .bell{
+      margin-left:60%;
+    }
+    .welcome{
+      width:20px;
+      font-size: 20px;
+    }
+  }
+}
+@media screen and (min-width: 800px) {
+  @media screen and (max-width: 1280px) {
+    .Formbody{
+      width:95%;
+      margin-left:28px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+    input{
+      width:90%;
+    }
+    select{
+      width:100px;
+    }
+    .bell{
+      margin-left: 450px;
+    }
+  }
+}
 

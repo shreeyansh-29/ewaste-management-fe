@@ -1,50 +1,49 @@
+import { COLLECTOR_ANALYTICS_V1, COLLECTOR_ANALYTICS_V2, COLLECTOR_ANALYTICS_V4, COLLECTOR_ANALYTICS_V5, COLLECTOR_REQUEST_SUMMARY, COLLECTOR_SELL_SUMMARY, CUSTOMER_ANALYTICS_V1, CUSTOMER_ANALYTICS_V2, VENDOR_ANALYTICS_V1, VENDOR_ANALYTICS_V2 } from "../constant/constant";
+
 export async function apicall(value) {
   const tokens = localStorage.getItem("token");
-  const email = document.cookie.split("=");
+  const email = localStorage.getItem("email");
   let url;
   if (value === "summary") {
-    url = "http://localhost:8083/collector/request/summary";
+    url = COLLECTOR_REQUEST_SUMMARY;
   }
   if (value === "vendordata") {
-    url = "http://localhost:8083/vendor/analytics/v1";
+    url = VENDOR_ANALYTICS_V1;
   }
   if (value === "collectordata") {
-    url = "http://localhost:8083/vendor/analytics/v1";
+    url = VENDOR_ANALYTICS_V1;
   }
   if (value === "EwasteDrive") {
-    url = "http://localhost:8083/collector/analytics/v1";
+    url = COLLECTOR_ANALYTICS_V1;
   }
   if (value === "vendor") {
-    url = "http://localhost:8083/collector/analytics/v4";
+    url = COLLECTOR_ANALYTICS_V4;
   }
   if (value === "users") {
-    url = "http://localhost:8083/collector/analytics/v5";
+    url = COLLECTOR_ANALYTICS_V5;
   }
   if (value === "Drives") {
-    url = "http://localhost:8083/customer/analytics/v2";
+    url = CUSTOMER_ANALYTICS_V2;
   }
   if (value === "wastegenerated") {
-    url = "http://localhost:8083/customer/analytics/v1";
+    url = CUSTOMER_ANALYTICS_V1;
   }
   if (value === "items") {
-    url = "http://localhost:8083/vendor/analytics/v2";
+    url = VENDOR_ANALYTICS_V2;
   }
   if (value === "ewaste") {
-    url = "http://localhost:8083/collector/analytics/v2";
+    url = COLLECTOR_ANALYTICS_V2;
   }
   if (value === "summarysell") {
-    url = "http://localhost:8083/collector/sell/summary";
+    url = COLLECTOR_SELL_SUMMARY;
   }
-  
- 
-  
   const response = await fetch(url, {
     method: "GET",
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + tokens,
-      EMAIL: email[1],
+      EMAIL: email,
     },
   });
   console.log(response);

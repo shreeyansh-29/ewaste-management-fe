@@ -23,9 +23,9 @@
 }
 @media screen and (max-width:768px) {
   .formbody{
-    height: 100vh;
+    height: 100%;
     width: 85%;
-    margin-left: 8.5%;
+    margin-left: 7.5%;
   }
 }
 button {
@@ -41,7 +41,9 @@ button {
 a:hover {
   cursor: pointer;
 }
-
+.form-select{
+  width:300px;
+}
 .userreq .center {
   flex: 50%;
   display: flex;
@@ -144,3 +146,64 @@ a {
 .List:hover {
   background-color: rgb(243, 250, 249);
 }
+
+@media screen and (max-width: 360px) {
+  .formbody{
+    width:90%;
+    margin-left:18px;
+    height:100%;
+  }
+  .form-select{
+    width:250px;
+  }
+}
+@media screen and (min-width: 370px) {
+  @media screen and (max-width: 420px) {
+    .formbody{
+      width:90%;
+      margin-left:20px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+  }
+}
+@media screen and (min-width: 420px) {
+  @media screen and (max-width: 500px) {
+    .formbody{
+      width:90%;
+      margin-left:23px;
+      height:100%;
+     
+    }
+  }
+}
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 600px) {
+    .formbody{
+      width:95%;
+      margin-left:13px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+  }
+}
+@media screen and (min-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    .formbody{
+      width:95%;
+      margin-left:20px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+    input{
+      width:90%;
+    }
+  }
+}
+

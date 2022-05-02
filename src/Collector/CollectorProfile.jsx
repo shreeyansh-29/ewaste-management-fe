@@ -1,11 +1,11 @@
-import React, {Component} from "react";
-import InputField from "../Components/InputField";
+import React, { Component } from "react";
 import "./Collector.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import TimeRange from "react-time-range";
-import {statescity} from "../Sign-Up/states";
+import { statescity } from "../Sign-Up/states";
 import moment from "moment";
-import {profile} from "../signin/profile";
+import { profile } from "../utils/profile";
+import { COLLECTOR_AUTH_URL } from "../constant/constant";
 class CollectorProfile extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,7 @@ class CollectorProfile extends Component {
     this.changeCity = this.changeCity.bind(this);
   }
   changeState(event) {
-    this.setState({state: event.target.value});
+    this.setState({ state: event.target.value });
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -47,14 +47,14 @@ class CollectorProfile extends Component {
     });
   }
   changeCity(event) {
-    this.setState({city: event.target.value});
+    this.setState({ city: event.target.value });
   }
   handleFormValidation() {
     const {
       firstName,
       lastName,
       mobileNo,
-      password,
+      // password,
       address1,
       city,
       state,
@@ -74,18 +74,7 @@ class CollectorProfile extends Component {
       formIsValid = false;
       formErrors["lastNameErr"] = " Last Name is required.";
     }
-    const pass = localStorage.getItem("Password");
-    this.setState({password: pass});
-    //password
-    if (!password) {
-      formIsValid = false;
-      var str1 = "Password is required.";
-      formErrors["passwordErr"] = str1;
-    } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-      formIsValid = false;
-      var str = "Password should be of atleast six characters";
-      formErrors["passwordErr"] = str;
-    }
+   
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -140,7 +129,7 @@ class CollectorProfile extends Component {
         formErrors["gstErr"] = "Invalid GSTNo";
       }
     }
-    this.setState({formErrors: formErrors});
+    this.setState({ formErrors: formErrors });
     return formIsValid;
   }
   handleSubmit = async (e) => {
@@ -156,8 +145,7 @@ class CollectorProfile extends Component {
     var dropoff = start.toString() + end.toString();
     if (this.handleFormValidation()) {
       const tokens = localStorage.getItem("token");
-      const email = document.cookie.split("=");
-      const pass = localStorage.getItem("Password");
+      const email = localStorage.getItem("email");
       try {
         const response = await fetch(
           "http://localhost:8083/collector/profile/edit",
@@ -167,13 +155,13 @@ class CollectorProfile extends Component {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + tokens,
-              EMAIL: email[1],
+              EMAIL: email,
             },
             body: JSON.stringify({
               firstName: this.state.firstName,
               lastName: this.state.lastName,
-              email: email[1],
-              password: pass,
+              email: email,
+              password:this.state.password,
               mobileNo: this.state.mobileNo,
               address1: this.state.address1,
               city: this.state.city,
@@ -205,56 +193,53 @@ class CollectorProfile extends Component {
     (async function () {
       try {
         let val = await profile("collector");
-        val.then(function (ress) {
-          localStorage.setItem("name", ress.data.firstName);
-        });
+
+        localStorage.setItem("name", val.data.firstName);
       } catch (err) {
         console.log(err);
       }
     })();
     const tokens = localStorage.getItem("token");
-    const email = document.cookie.split("=");
-    const pass = localStorage.getItem("Password");
+    const email = localStorage.getItem("email");
     try {
       const response = await fetch(
-        "http://localhost:8083/collector/profile/view",
+        COLLECTOR_AUTH_URL,
         {
           method: "GET",
           credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + tokens,
-            EMAIL: email[1],
+            EMAIL: email,
           },
         }
       );
       const res = await response.json();
-      res.data.password = pass;
       this.setState(res.data);
       var times;
       const shopTimes = res.data.shopTime.toString().split("-");
       times = shopTimes[0].split(":");
       const dates = moment.utc().hour(times[0]).minute(0);
-      this.setState({startTime: dates});
+      this.setState({ startTime: dates });
       times = shopTimes[1].split(":");
       const enddates = moment.utc().hour(times[0]).minute(0);
-      this.setState({endTime: enddates});
+      this.setState({ endTime: enddates });
     } catch (err) {
       console.log(err);
       //   }
     }
   };
   returnFunctionStart = (event) => {
-    this.setState({startTime: event.startTime});
+    this.setState({ startTime: event.startTime });
   };
   returnFunctionEnd = (event) => {
-    this.setState({endTime: event.endTime});
+    this.setState({ endTime: event.endTime });
   };
   handleChange = (key) => (value) => {
-    this.setState({[key]: value});
+    this.setState({ [key]: value });
   };
   render() {
-    const email = document.cookie.split("=");
+    const email = localStorage.getItem("email");
     const {
       firstNameErr,
       lastNameErr,
@@ -267,7 +252,7 @@ class CollectorProfile extends Component {
       pincodeErr,
     } = this.state.formErrors;
     return (
-      <div className="collector_profile" style={{marginTop: "85px"}}>
+      <div className="collector_profile" style={{ marginTop: "85px" }}>
         <form>
           <div className="Formbody">
             <div className="collectorsprofile">
@@ -289,11 +274,12 @@ class CollectorProfile extends Component {
                   <label htmlFor="firstName">
                     First Name <i className="text-danger">*</i>{" "}
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="firstName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.firstName}
-                    onChange={this.handleChange("firstName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -303,11 +289,12 @@ class CollectorProfile extends Component {
                   <label htmlFor="lastName">
                     Last Name <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
                     name="lastName"
+                    style={{borderRadius:"17px"}}
                     value={this.state.lastName}
-                    onChange={this.handleChange("lastName")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -327,21 +314,21 @@ class CollectorProfile extends Component {
                     style={{
                       borderRadius: "17px",
                       padding: "4px",
-                      width: "95%",
                       backgroundColor: "#fff",
                     }}
                     disabled
-                    defaultValue={email[1]}
+                    defaultValue={email}
                   ></input>
                 </div>
                 <div className="inputGroup">
                   <label htmlFor="phoneNumber">
                     Phone Number <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="phoneNumber"
-                    onChange={this.handleChange("mobileNo")}
+                    name="mobileNo"
+                    style={{borderRadius:"17px"}}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -354,11 +341,12 @@ class CollectorProfile extends Component {
                   <label htmlFor="address1">
                     Address Line <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="landmark"
+                    name="address1"
+                    style={{borderRadius:"17px"}}
                     value={this.state.address1}
-                    onChange={this.handleChange("address1")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -370,7 +358,10 @@ class CollectorProfile extends Component {
                   </label>
                   <select
                     className="form-select"
-                    style={{borderRadius: "17px", padding: "4px", width: "95%"}}
+                    style={{
+                      borderRadius: "17px",
+                      padding: "4px",
+                    }}
                     value={this.state.state}
                     onChange={this.changeState}
                   >
@@ -389,7 +380,10 @@ class CollectorProfile extends Component {
                   </label>
                   <select
                     className="form-select"
-                    style={{borderRadius: "17px", padding: "4px", width: "95%"}}
+                    style={{
+                      borderRadius: "17px",
+                      padding: "4px",
+                    }}
                     value={this.state.city}
                     onChange={this.changeCity}
                   >
@@ -404,11 +398,12 @@ class CollectorProfile extends Component {
                   <label htmlFor="pincode">
                     Pincode <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="pincode"
-                    name="pincode"
+                    name="pinCode"
+                    style={{borderRadius:"17px"}}
                     value={this.state.pinCode}
-                    onChange={this.handleChange("pinCode")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
@@ -420,11 +415,12 @@ class CollectorProfile extends Component {
                   <label htmlFor="GSTIN">
                     GSTNo <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="GSTIN"
+                    name="gstNo"
+                    style={{borderRadius:"17px"}}
                     value={this.state.gstNo}
-                    onChange={this.handleChange("gstNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter GSTIN"
                   />
                   <div className="formErrors">{gstErr}</div>
@@ -433,11 +429,12 @@ class CollectorProfile extends Component {
                   <label htmlFor="Registration Certificate No.">
                     Registration Number <i className="text-danger">*</i>
                   </label>
-                  <InputField
+                  <input
                     type="text"
-                    name="Certificate_Num"
+                    name="registrationNo"
+                    style={{borderRadius:"17px"}}
                     value={this.state.registrationNo}
-                    onChange={this.handleChange("registrationNo")}
+                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
                     placeholder="Enter Registration Number"
                   />
                   <div className="formErrors">{registrationErr}</div>
@@ -449,7 +446,7 @@ class CollectorProfile extends Component {
                     htmlFor="time"
                     data-tip
                     data-for="registerTip"
-                    style={{marginLeft: "11px"}}
+                    style={{ marginLeft: "11px" }}
                   >
                     Drop-Off Time <i className="text-danger">*</i>
                   </label>

@@ -18,36 +18,52 @@
 .form-cont {
   padding: 15px 10px;
 }
-.Form-Body {
-  resize: none;
-  background-color: white;
-  border-radius: 10px;
-  max-width: 50vh;
-  /* width:100%; */
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.signin-button {
+.googlebtn{
   border-radius: 17px;
-  padding: .5rem 5rem;
-  margin-left: 2.9rem;
-  /* margin-top:20px; */
+  padding: 3px 8px;
   border: none;
   background-color: rgb(30, 28, 54);
   color: white;
   font-weight: bold;
-  transition: all 0.4s;
+  width: 200px;
+  margin-left:-5px;
+}
+.Form-BOdy {
+  resize: none;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 50vh;
+  margin-top: 150px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ 
+}
+@media screen and (max-width: 400px) {
+  .Form-BOdy{
+    width:40vh;
+  }
+ 
+}
+.formError{
+  padding-left: 8.5%;
+  color: red;
+  text-align: justify;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "poppins", sans-serif;
+}
+.signin-button {
+  border-radius: 17px;
+  padding: .5rem 5rem;
+  border: none;
+  background-color: rgb(30, 28, 54);
+  color: white;
+  font-weight: bold;
+  width: 200px;
+  margin-left:-5px;
 }
 .signin-button:hover {
   background-color: rgb(39, 35, 75);
 }
-/* .formDiv {
-  flex: 1;
-  max-width: 100px;
-  max-height: 100px;
-  background-color: #eff0f1;
-  border-radius: 10px;
-  border: 1px solid #999;
-} */
 .inputGroup {
   flex: 1;
   display: flex;
@@ -72,6 +88,17 @@ label {
   text-align: left;
   font-weight: normal;
   font-size: "12px";
+}
+.inputWithButtons {
+  position: relative;
+  /* width : 300px; */
+}
+
+.inputWithButtons button {
+  position: absolute;
+  right: 7px;
+  top : 4px;
+
 }
 input[type="text"],
 input[type="email"],
@@ -135,3 +162,41 @@ span {
 .Req {
   color: rgb(0, 128, 111);
 }
+
+@media screen and (min-width:500px){
+  @media screen and (max-width:600px) {
+    .signin-button{
+      width:12.3rem;
+      height:2.3rem;
+      /* text-align: center; */
+      padding-left:60px;
+      /* padding-right: 90px; */
+    }
+    .googlebtn{
+      width:12.3rem;
+      height:2.3rem;
+      /* text-align: center; */
+      padding-left:60px;
+      /* padding-right: 90px; */
+    }
+   }
+}
+  @media screen and (max-width:375px) {
+    .signin-button{
+      width:9.3rem;
+      height:2.3rem;
+      padding-left:50px;
+    }
+    .googlebtn{
+      width:9.3rem;
+      height:2.3rem;
+      /* padding-left:50px; */
+    }
+    .Form-BOdy{
+      margin-top: 35px;
+      width:40vh;
+    }
+   }
+
+   
+

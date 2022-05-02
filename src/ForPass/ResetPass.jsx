@@ -1,18 +1,18 @@
-import React, {useState} from "react";
-import InputField from "../Components/InputField";
-
-import {useParams} from "react-router-dom";
+import React, { useState } from "react";
+import { Formik, Field, Form } from "formik";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useParams } from "react-router-dom";
 import "../Components/signin.css";
-import {NotificationContainer} from "react-notifications";
+import { NotificationContainer } from "react-notifications";
 
 import "./password.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 function ResetPass() {
-  const {token} = useParams();
+  const { token } = useParams();
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPsswd] = useState("");
   const [passwordErr, setErr] = useState();
@@ -73,7 +73,7 @@ function ResetPass() {
           }
         );
         if (response.status === 200) {
-          toast.success("Password updated successfully", {
+          toast.success("Password updated succefully", {
             position: toast.POSITION.TOP_RIGHT,
           });
           setTimeout(() => change(), 2000);
@@ -90,80 +90,107 @@ function ResetPass() {
 
   return (
     <div className="ForPassword">
-      <div className="Form-body" style={{marginLeft: "30px"}}>
+      <div className="Form-body" >
         <NotificationContainer />
-        <div className="psswd-heading">
-          <h2
-            style={{
-              textAlign: "center",
-              padding: "12px",
-              fontSize: "1.7rem",
-              fontFamily: "sans-serif",
-              color: "white",
-            }}
-          >
-            Reset Password
-          </h2>
-        </div>
-        <div className="Req"> {msg === "" ? "" : msg}</div>
+        <Formik>
+          <Form>
+            <div className="psswd-heading">
+              <h2
+                style={{
+                  textAlign: "center",
+                  padding: "12px",
+                  fontSize: "1.7rem",
+                  fontFamily: "sans-serif",
+                  color: "white",
+                }}
+              >
+                Reset Password
+              </h2>
+            </div>
+            <div className="Req"> {msg === "" ? "" : msg}</div>
 
-        <div className="form-cont">
-          <div className="inputGroup1">
-            <div className="inputWithButton">
-              <InputField
-                value={password}
-                type={passwordType}
-                placeholder="Password"
-                onChange={(e) => setpassword(e)}
-              />
-              <div className="input-group-btn">
-                <button
-                  onClick={togglePassword}
-                  style={{
-                    border: "1px solid white",
-                    backgroundColor: "white",
-                  }}
-                >
-                  {passwordType === "password" ? <ShowOffIcon /> : <ShowIcon />}
-                </button>
+            <div
+              className="form-group"
+              style={{
+                marginTop: "30px",
+                marginLeft: "20px",
+                marginRight: "20px",
+              }}
+            >
+              <div className="inputWithButtons">
+                <Field
+                  name="password"
+                  className="form-control"
+                  type={passwordType}
+                  placeholder="New Password"
+                  style={{ borderRadius: "17px" }}
+                  onChange={(e) => setpassword(e.target.value)}
+                  autoComplete="off"
+                />
+                <div className="input-group-btn">
+                  <button
+                    onClick={togglePassword}
+                    style={{
+                      border: "1px solid white",
+                      backgroundColor: "white",
+                    }}
+                    type="button"
+                  >
+                    {passwordType === "password" ? (
+                      <ShowOffIcon />
+                    ) : (
+                      <ShowIcon />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="formErrors1">{passwordErr}</div>
-
-          <div className="inputGroup1">
-            <div className="inputWithButton">
-              <InputField
-                value={confirmPassword}
-                type={confirmPasswordType}
-                placeholder="Confirm Password"
-                onChange={(e) => setconfirmPsswd(e)}
-              />
-              <div className="input-group-btn">
-                <button
-                  onClick={confirmtogglePassword}
-                  style={{
-                    border: "1px solid white",
-                    backgroundColor: "white",
-                  }}
-                >
-                  {confirmPasswordType === "password" ? (
-                    <ShowOffIcon />
-                  ) : (
-                    <ShowIcon />
-                  )}
-                </button>
+            <div className="formErrors1">{passwordErr}</div>
+            <div
+              className="form-group"
+              style={{
+                marginTop: "30px",
+                marginLeft: "20px",
+                marginRight: "20px",
+              }}
+            >
+              <div className="inputWithButtons">
+                <Field
+                  name="confirm-password"
+                  className="form-control"
+                  type={confirmPasswordType}
+                  style={{ borderRadius: "17px" }}
+                  placeholder="Confirm Password"
+                  onChange={(e) => setconfirmPsswd(e.target.value)}
+                />
+                <div className="input-group-btn">
+                  <button
+                    onClick={confirmtogglePassword}
+                    style={{
+                      border: "1px solid white",
+                      backgroundColor: "white",
+                    }}
+                    type="button"
+                  >
+                    {confirmPasswordType === "password" ? (
+                      <ShowOffIcon />
+                    ) : (
+                      <ShowIcon />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="formErrors1">{confirmPasswordErr}</div>
 
-          <div className="cont" style={{marginLeft: "25px"}}>
-            <button onClick={handleClick} className="reset-button">
-              Reset
-            </button>
-          </div>
-        </div>
+            <div className="formErrors1">{confirmPasswordErr}</div>
+
+            <div className="cont" style={{ marginLeft: "25px" }}>
+              <button onClick={handleClick} className="reset-button">
+                Reset
+              </button>
+            </div>
+          </Form>
+        </Formik>
       </div>
     </div>
   );

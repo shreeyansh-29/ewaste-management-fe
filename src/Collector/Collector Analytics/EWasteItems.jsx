@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {apicall} from "../../Customer/Api";
+import {apicall} from "../../utils/Api";
 export const data = [
   ["Category", "Requests Accepted", "Items Sold"],
   ["Temperature Exchange Equipment", 1, 1],
