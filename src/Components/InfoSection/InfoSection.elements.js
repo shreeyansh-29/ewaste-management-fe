@@ -62,10 +62,13 @@ export const TopLine = styled.div`
 export const Img = styled.img`
   padding-left: 20%;
   border: 0;
-  max-width: 13zz0%;
+  max-width: 130%;
   vertical-align: middle;
   display: inline-block;
   max-height: 400px;
+  @media screen and (max-width:412px){
+    padding-left:30%;
+  }
 `;
 
 export const Heading = styled.h1`

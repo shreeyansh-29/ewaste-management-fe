@@ -65,7 +65,7 @@ function CustomerNav() {
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
 
-          <Nav.Item >
+          <Nav.Item>
             <button
               style={{ background: "#101522", border: "none" }}
               onClick={() => markAsRead()}
@@ -127,7 +127,7 @@ function CustomerNav() {
                       if (result.isConfirmed) {
                         localStorage.clear();
                         console.log(window.history);
-                        window.history.replaceState(null, null, "/Signin");
+                        // history.deleteAll();
                         navigate("/Signin");
                         // <Redirect  to="/Signin" />
                         document.location.reload();

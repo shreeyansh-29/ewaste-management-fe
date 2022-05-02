@@ -35,7 +35,7 @@ a:hover {
   display: flex;
 }
 .notification_button {
-  margin-left: 550px;
+  margin-left: 630px;
 }
 
 .userreq .center .links a {
@@ -195,6 +195,7 @@ h2 {
 
 .card {
   height: 300px;
+  margin-bottom: 40px;
 }
 .card-footer {
   position:absolute;
