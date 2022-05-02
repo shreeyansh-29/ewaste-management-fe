@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import { toast } from "react-toastify";
-import GoogleSignin from "./GoogleSignin";
 import jwt from "jwt-decode";
 import { notificationcount } from "../utils/notificationcount";
 import { profile } from "../utils/profile";
@@ -229,8 +228,6 @@ const SignIn = () => {
                   SignIn
                 </button>
               </div>
-
-              <GoogleSignin />
               <div
                 style={{
                   textAlign: "center",

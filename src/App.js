@@ -3,7 +3,6 @@ import Navbar from "./Components/Navbar/Navbars";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./signin/Signin";
-import OAuth2RedirectHandler from "./oauth2/OAuth2RedirectHandler";
 import Home from "./HomePage/Home";
 import SignUp from "./Sign-Up/SignUp";
 import ForgotPassword from "./ForPass/ForgotPassword";
@@ -87,10 +86,6 @@ function App() {
           render={(props) => <ResetPass {...props} />}
           element={<ResetPass />}
         />
-        <Route
-          path="/oauth2/redirect"
-          element={<OAuth2RedirectHandler />}
-        ></Route>
         <Route
           path="/CustomerHome"
           element={<CustomerHome />}
