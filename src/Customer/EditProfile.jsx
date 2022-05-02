@@ -187,7 +187,7 @@ class EditProfile extends Component {
                 style={{
                   textAlign: "center",
                   padding: "20px",
-                  fontSize: "2.5rem",
+                  fontSize: "2rem",
                   fontFamily: "sans-serif",
                   color: "white",
                 }}

@@ -35,7 +35,7 @@ function CollectorHome() {
           Items
         </h3>
         <EWasteOrg />
-        <h3 style={{textAlign: "center", padding: "4% 0 2% 0"}}>
+        <h3 style={{textAlign: "center", padding: "6% 0 8% 0"}}>
           Revenue Generated With Respect to Category
         </h3>
         <Revenue />

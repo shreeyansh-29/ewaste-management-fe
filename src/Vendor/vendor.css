@@ -164,9 +164,6 @@ a {
       margin-left:20px;
       height:100%;
     }
-    .form-select{
-      width:90%;
-    }
   }
 }
 @media screen and (min-width: 420px) {

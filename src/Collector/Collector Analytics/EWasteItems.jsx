@@ -3,9 +3,10 @@ import {Chart} from "react-google-charts";
 import {apicall} from "../../utils/Api";
 export const data = [
   ["Category", "Requests Accepted", "Items Sold"],
+  ["Lamps", 1, 0],
   ["Temperature Exchange Equipment", 1, 1],
   ["Screens and Monitors", 1, 0],
-  ["Lamps", 1, 0],
+ 
   ["Large equipment", 0, 0],
   ["Small equipment", 0, 0],
   ["Small IT and Telecommunication", 0, 0],
@@ -20,7 +21,6 @@ const options = {
     beginAtZero: true,
   },
   hAxis: {
-    title: "Category",
     scaleType: "decimal",
     textStyle: {
       fontSize: 12,
@@ -30,7 +30,7 @@ const options = {
   },
   backgroundColor: "transparent",
   width: "100%",
-  height: "400px",
+  height: "800px",
 };
 
 export default function EWasteOrg() {
@@ -38,15 +38,15 @@ export default function EWasteOrg() {
     (async function () {
       try {
         const res = await apicall("ewaste");
-        data[1][1] = res.data.TempCollected;
-        data[2][1] = res.data.ScreensCollected;
-        data[3][1] = res.data.LapmsCollected;
+        data[2][1] = res.data.TempCollected;
+        data[3][1] = res.data.ScreensCollected;
+        data[1][1] = res.data.LapmsCollected;
         data[4][1] = res.data.LargeEqipCollected;
         data[5][1] = res.data.SmallEquipCollected;
         data[6][1] = res.data.SmallITCollected;
-        data[1][2] = res.data.TempSell;
-        data[2][2] = res.data.ScreensSell;
-        data[3][2] = res.data.LapmsSell;
+        data[2][2] = res.data.TempSell;
+        data[3][2] = res.data.ScreensSell;
+        data[1][2] = res.data.LapmsSell;
         data[4][2] = res.data.LargeEqipSell;
         data[5][2] = res.data.SmallEquipSell;
         data[6][2] = res.data.SmallITSell;
