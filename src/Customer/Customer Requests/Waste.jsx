@@ -60,7 +60,7 @@ export default function Waste() {
   const renderCard = (card) => {
     return (
       <MDBCol className="col-lg-4">
-        <MDBCard style={{ borderRadius: "15px" }}>
+        <MDBCard style={{ borderRadius: "15px" , boxShadow: "rgba(0, 0, 0, 0.55) 0px 5px 15px"}}>
           <MDBCardBody style={{ borderRadius: "15px" }}>
             <MDBCardTitle style={{ textAlign: "center" }}>
               <strong>
@@ -70,7 +70,8 @@ export default function Waste() {
             <hr></hr>
             <MDBCardText style={{ fontStyle: "Poppins" }}>
               <em>{card.description}</em>
-              <br></br><br></br>
+              <br></br>
+              <br></br>
               <strong>Items Accepted:</strong>{" "}
               {card.eWasteCategoryAccepted[0].categoryAccepted}
               <br></br>
@@ -78,8 +79,7 @@ export default function Waste() {
             </MDBCardText>
             <MDBCardFooter
               style={{
-                // backgroundColor: "rgb(30, 28, 54)",
-                backgroundColor:"#00008B",
+                backgroundColor: "rgb(30, 28, 54)",
                 color: "white",
                 borderRadius: " 0px 0px 17px 17px",
               }}
