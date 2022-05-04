@@ -98,6 +98,7 @@ const SignIn = () => {
           try {
             val = await profile("collector");
             result = await notificationcount("collector");
+            console.log(result);
           } catch (e) {
             console.log(e);
           }
@@ -110,7 +111,6 @@ const SignIn = () => {
           }
         }
         localStorage.setItem("name", val.data.firstName);
-        console.log(localStorage.getItem("name"));
         if (
           localStorage.getItem("Roles") === "CUSTOMER" ||
           localStorage.getItem("Roles") === "COLLECTOR"
@@ -120,7 +120,9 @@ const SignIn = () => {
           } else if (result.status === "success") {
             localStorage.setItem("count", result.data.length);
           }
+          console.log(localStorage.getItem("count"));
         }
+
 
         if (res.status === "success") {
           handleRedirect();
