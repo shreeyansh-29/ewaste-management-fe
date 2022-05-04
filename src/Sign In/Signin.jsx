@@ -6,8 +6,8 @@ import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import { toast } from "react-toastify";
 import jwt from "jwt-decode";
-import { notificationcount } from "../utils/notificationcount";
-import { profile } from "../utils/profile";
+import { notificationcount } from "../Utils/notificationcount";
+import { profile } from "../Utils/profile";
 
 const SignIn = () => {
   const [password, setPassword] = useState("");

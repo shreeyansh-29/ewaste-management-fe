@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import "./vendor.css";
 
-import {statescity} from "../Sign-Up/states";
+import {statescity} from "../Sign Up/States";
 import {toast} from "react-toastify";
-import { VENDOR_AUTH_URL } from "../constant/constant";
+import { VENDOR_AUTH_URL } from "../constant/Constant";
 // const crypto = require ("crypto");
 class VendorProfile extends Component {
   constructor(props) {

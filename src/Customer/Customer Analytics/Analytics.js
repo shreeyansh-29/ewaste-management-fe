@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import EWaste from "./WasteGeneratedAnly";
+import EWaste from "./WasteGenerated";
 import "../Customer.css";
 import CollectorsCategories from "./CollectorsCategories";
 import Drives from "./Drives";

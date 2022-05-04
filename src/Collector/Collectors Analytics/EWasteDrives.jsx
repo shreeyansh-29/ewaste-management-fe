@@ -1,17 +1,16 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import "../Customer.css";
-import {apicall} from "../../utils/Api";
+import {apicall} from "../../Utils/Api";
 export const data = [
-  ["name", "Count by Order", {role: "style"}],
-  ["E-Waste Generated", 5, "yellowgreen"],
-  ["E-Waste you Donated", 4, "lightblue"],
+  ["name", "Organized", {role: "style"}],
+  ["E-Waste Drives in the City", 4, "blue"],
+  ["E-Waste Drives you organized", 3, "orange"],
 ];
 export const options = {
-  chartArea: {width: "50%"},
-  colors: ["yellowgreen", "lightblue"],
-  legend: "none",
-  align: "center",
+  legend: {position: "none"},
+
+  chartArea: {width: "40%"},
+
   axes: {
     x: {
       0: {scaleType: "decimal", label: ""},
@@ -24,25 +23,23 @@ export const options = {
   },
 };
 
-export default function EWaste() {
+export default function EWasteDrives() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("wastegenerated");
-
-        data[1][1] = res.data.orderInCity;
-        data[2][1] = res.data.orderCustomer;
+        const res = await apicall("EwasteDrive");
+        data[1][1] = res.data.EWasteDriveCity;
+        data[2][1] = res.data.EWasteDriveCollector;
       } catch (err) {
         console.log(err);
       }
     })();
   }, []);
-
   return (
     <Chart
       chartType="BarChart"
       width="100%"
-      height="400px"
+      height="500px"
       data={data}
       options={options}
     />

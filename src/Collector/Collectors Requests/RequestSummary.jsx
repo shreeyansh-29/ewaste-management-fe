@@ -5,7 +5,7 @@ import {} from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../Customer/Popup";
 import { FaUserCircle } from "react-icons/fa";
-import {apicall} from "../../utils/Api";
+import {apicall} from "../../Utils/Api";
 import { toast } from "react-toastify";
 
 toast.configure();

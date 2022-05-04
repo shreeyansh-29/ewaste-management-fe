@@ -6,7 +6,7 @@ import Select from "react-select";
 import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 import "./signUp.css";
-import { statescity } from "./states";
+import { statescity } from "./States";
 import TimeRange from "react-time-range";
 import moment from "moment";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";

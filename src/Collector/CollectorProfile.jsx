@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./Collector.css";
 import { toast } from "react-toastify";
 import TimeRange from "react-time-range";
-import { statescity } from "../Sign-Up/states";
+import { statescity } from "../Sign Up/States";
 import moment from "moment";
-import { profile } from "../utils/profile";
-import { COLLECTOR_AUTH_URL } from "../constant/constant";
+import { profile } from "../Utils/profile";
+import { COLLECTOR_AUTH_URL } from "../constant/Constant";
 class CollectorProfile extends Component {
   constructor(props) {
     super(props);

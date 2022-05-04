@@ -1,7 +1,7 @@
 import React from "react";
 import CollectorsCategories from "./CollectorsCategories";
 import Drives from "./Drives";
-import EWaste from "./WasteGeneratedAnly";
+import EWaste from "./WasteGenerated";
 import "../Customer.css";
 import CategoryCarousel from "./CategoryCarousel";
 

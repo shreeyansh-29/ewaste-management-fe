@@ -1,34 +1,43 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import { apicall} from "../../Utils/Api";
+import "../Customer.css";
+import {apicall} from "../../Utils/Api";
 export const data = [
-  ["name", "Count", {role: "style"}],
-  ["Total Collectors", 56, "blue"],
-  ["Collectors in your City", 13, "orange"],
+  ["name", "Count by Order", {role: "style"}],
+  ["E-Waste Generated", 5, "yellowgreen"],
+  ["E-Waste you Donated", 4, "lightblue"],
 ];
 export const options = {
   chartArea: {width: "50%"},
-  align: "center",
+  colors: ["yellowgreen", "lightblue"],
   legend: "none",
-  scaleType: "decimal",
+  align: "center",
+  axes: {
+    x: {
+      0: {scaleType: "decimal", label: ""},
+    },
+  },
   textStyle: {
     fontSize: 12,
     maxRotation: 80,
     minRotation: 80,
   },
 };
-export default function CollectorData() {
+
+export default function EWaste() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("collectordata");
-        data[1][1] = res.data.allCollector;
-        data[2][1] = res.data.collectorInCity;
+        const res = await apicall("wastegenerated");
+
+        data[1][1] = res.data.orderInCity;
+        data[2][1] = res.data.orderCustomer;
       } catch (err) {
         console.log(err);
       }
     })();
   }, []);
+
   return (
     <Chart
       chartType="BarChart"
