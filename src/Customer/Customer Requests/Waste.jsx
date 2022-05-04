@@ -129,5 +129,3 @@ export default function Waste() {
     </div>
   );
 }
-//textAlign:"center",color:"white", backgroundColor:"rgb(30, 28, 54)"
-//padding: "7px"

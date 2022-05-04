@@ -12,6 +12,7 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
 import { toast } from "react-toastify";
+import { TOAST_ERROR4, TOAST_SUCCESS3, TOAST_WARN1 } from "../../constant/constant";
 toast.configure();
 export default function PickUp() {
   const { useState } = React;
@@ -182,7 +183,7 @@ export default function PickUp() {
       console.log(res);
 
       if (response.status === 200) {
-        toast.success("Request send successfully", {
+        toast.success(TOAST_SUCCESS3, {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
@@ -200,13 +201,13 @@ export default function PickUp() {
       data[0].date === undefined ||
       data[0].time === undefined
     ) {
-      toast.error("Enter all fields", { position: toast.POSITION.TOP_RIGHT });
+      toast.error(TOAST_ERROR4, { position: toast.POSITION.TOP_RIGHT });
     } else if (
       data[0].quantity === 0 ||
       data[0].quantity > 20 ||
       data[0].quantity < 0
     ) {
-      toast.warn("Enter quantity between 1 to 20", {
+      toast.warn(TOAST_WARN1, {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {

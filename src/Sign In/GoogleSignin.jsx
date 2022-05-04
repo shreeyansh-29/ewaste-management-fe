@@ -1,6 +1,6 @@
 import React from "react";
 import "../Components/signin.css";
-import googleLogo from "../images/google-logo.png";
+import googleLogo from "../Images/google-logo.png";
 
 import { GOOGLE_AUTH_URL } from "../constant/constant";
 function GoogleSignin() {

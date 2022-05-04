@@ -3,8 +3,7 @@ import "./vendor.css";
 
 import {statescity} from "../Sign-Up/states";
 import {toast} from "react-toastify";
-import { VENDOR_AUTH_URL } from "../constant/constant";
-// const crypto = require ("crypto");
+import { ADDRESS_REQUIRED, CITY_REQUIRED, FNAME_REQUIRED, GSTNO_INVALID, GSTNO_REQUIRED, LNAME_REQUIRED, MOBILE_INVALID, MOBILE_REQUIRED, PINCODE_INVALID, PINCODE_REQUIRED, REGISTRATION_INVALID, REGISTRATION_REQUIRED, STATE_REQUIRED, TOAST_SUCCESS5, VENDOR_AUTH_URL } from "../constant/constant";
 class VendorProfile extends Component {
   constructor(props) {
     super(props);
@@ -58,65 +57,65 @@ class VendorProfile extends Component {
     //FirstName
     if (!firstName) {
       formIsValid = false;
-      formErrors["firstNameErr"] = " First Name is required.";
+      formErrors["firstNameErr"] = FNAME_REQUIRED;
     }
     //Lastname
     if (!lastName) {
       formIsValid = false;
-      formErrors["lastNameErr"] = " Last Name is required.";
+      formErrors["lastNameErr"] = LNAME_REQUIRED;
     }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
-      formErrors["phoneNumberErr"] = "Phone number is required.";
+      formErrors["phoneNumberErr"] = MOBILE_REQUIRED;
     } else {
       var mobPattern = /^[6-9]\d{9}$/;
       if (!mobPattern.test(mobileNo)) {
         formIsValid = false;
-        formErrors["phoneNumberErr"] = "Invalid phone number.";
+        formErrors["phoneNumberErr"] = MOBILE_INVALID;
       }
     }
     //Landmark
     if (!address1) {
       formIsValid = false;
-      formErrors["landmarkErr"] = " Address is required.";
+      formErrors["landmarkErr"] = ADDRESS_REQUIRED;
     }
     //City
     if (!city) {
       formIsValid = false;
-      formErrors["cityErr"] = " City is required.";
+      formErrors["cityErr"] = CITY_REQUIRED;
     }
     //State
     if (!state) {
       formIsValid = false;
-      formErrors["stateErr"] = " State is required.";
+      formErrors["stateErr"] = STATE_REQUIRED;
     }
     //Pincode
     if (!pinCode) {
       formIsValid = false;
-      formErrors["pincodeErr"] = "Pincode is required";
+      formErrors["pincodeErr"] = PINCODE_REQUIRED;
     } else if (!/^\d{6}$/.test(pinCode)) {
       formIsValid = false;
-      formErrors["pincodeErr"] = "Invalid Pincode";
+      formErrors["pincodeErr"] = PINCODE_INVALID;
     }
     if (!gstNo) {
       formIsValid = false;
-      formErrors["gstErr"] = " GSTNo is required.";
+      formErrors["gstErr"] = GSTNO_REQUIRED;
     } else {
       var gst = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}Z\d{1}$/;
       if (!gst.test(gstNo)) {
         formIsValid = false;
-        formErrors["gstErr"] = "Invalid GSTNo";
+        formErrors["gstErr"] = GSTNO_INVALID;
       }
     }
     if (!registrationNo) {
       formIsValid = false;
-      formErrors["registrationErr"] = " Registration number is required.";
+      formErrors["registrationErr"] = REGISTRATION_REQUIRED;
     } else {
       var reg = /^\d{6,}$/;
       if (!reg.test(registrationNo)) {
         formIsValid = false;
-        formErrors["registrationErr"] = "Invalid number";
+        formErrors["registrationErr"] = REGISTRATION_INVALID;
       }
     }
 
@@ -161,7 +160,7 @@ class VendorProfile extends Component {
 
         localStorage.removeItem("name");
         localStorage.setItem("name", this.state.firstName);
-        toast.success("Updated successfully", {
+        toast.success(TOAST_SUCCESS5, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 1500,
         });

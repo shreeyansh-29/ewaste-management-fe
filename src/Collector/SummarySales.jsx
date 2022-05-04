@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-import { apicall } from "../utils/Api";
+import { apicall } from "../Utils/Api";
 import {} from "@material-ui/icons";
 
 import SearchIcon from "@material-ui/icons/Search";

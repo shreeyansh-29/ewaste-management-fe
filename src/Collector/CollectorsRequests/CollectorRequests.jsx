@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import "../Collector.css";
 import { toast } from "react-toastify";
+import { TOAST_SUCCESS8 } from "../../constant/constant";
 toast.configure();
 export default function CollectorRequests() {
   const { useState } = React;
@@ -119,7 +120,7 @@ export default function CollectorRequests() {
         }
       );
       console.log(response);
-      toast.success("Request accepted successfully", {
+      toast.success(TOAST_SUCCESS8, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 1500,
       });

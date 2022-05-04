@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Popup from ".././Customer/Popup";
 import { FaUserCircle } from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
+import { INVALID_QUANTITY, TOAST_ERROR5, TOAST_WARN3, VALID_QUANTITY } from "../constant/constant";
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
@@ -124,7 +125,7 @@ export default function Sales() {
         rowData.quantities === null ||
         rowData.quantities === undefined
           ? ""
-          : "Enter valid quantity",
+          : VALID_QUANTITY,
       filtering: false,
       cellStyle: {
         textAlign: "center",
@@ -157,7 +158,7 @@ export default function Sales() {
   ]);
   const profile = (e) => {
     if (e.id === null) {
-      toast.warn("Request is not acccepted yet", {
+      toast.warn(TOAST_WARN3, {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {
@@ -203,7 +204,7 @@ export default function Sales() {
   const [data, setData] = useState([]);
   const CalTotal = (index, newData) => {
     if (parseInt(newData.quantities) > data[index].availableQuantity) {
-      toast.error("Invalid quantity", { position: toast.POSITION.TOP_RIGHT });
+      toast.error(INVALID_QUANTITY, { position: toast.POSITION.TOP_RIGHT });
 
       newData.quantities = null;
     } else {
@@ -218,7 +219,7 @@ export default function Sales() {
   const handleBuy = async (e, datas) => {
     e.preventDefault();
     if (datas.quantities === 0 || datas.quantities === undefined) {
-      toast.error("Choose the quantity you want to purchase", {
+      toast.error(TOAST_ERROR5, {
         position: toast.POSITION.TOP_RIGHT,
       });
 

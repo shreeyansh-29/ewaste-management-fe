@@ -10,6 +10,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
 import { toast } from "react-toastify";
+import { TOAST_ERROR4, TOAST_SUCCESS7 } from "../../constant/constant";
 toast.configure();
 export default function OrganizeDrive() {
   const { useState } = React;
@@ -146,7 +147,7 @@ export default function OrganizeDrive() {
       datas.time === "" ||
       datas.description === undefined
     ) {
-      toast.error("Enter all data", { position: toast.POSITION.TOP_RIGHT });
+      toast.error(TOAST_ERROR4, { position: toast.POSITION.TOP_RIGHT });
     } else {
       const tokens = localStorage.getItem("token");
       const email = localStorage.getItem("email");
@@ -179,7 +180,7 @@ export default function OrganizeDrive() {
           }
         );
         const res = await response.json();
-        toast.success(" Drive organized successfully", {
+        toast.success(TOAST_SUCCESS7, {
           position: toast.POSITION.TOP_RIGHT,
         });
         setStatus(res.data.status);

@@ -12,6 +12,7 @@ import moment from "moment";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
+import { ADDRESS_REQUIRED, CATEGORY_REQUIRED, CITY_REQUIRED, CONFIRM_PASSWORD_INVALID, CONFIRM_PASSWORD_REQUIRED, EMAIL_INVALID, EMAIL_REQUIRED, FNAME_REQUIRED, GSTNO_INVALID, GSTNO_REQUIRED, LNAME_REQUIRED, MOBILE_INVALID, MOBILE_REQUIRED,  PASSWORD_INVALID,  PASSWORD_REQUIRED,  PINCODE_INVALID, PINCODE_REQUIRED, REGISTRATION_INVALID, REGISTRATION_REQUIRED, ROLE_REQUIRED, SERVER_MSG, STATE_REQUIRED, TIME_REQUIRED, TOAST_ERROR3, TOAST_SUCCESS1 } from "../constant/constant";
 const data = [
   {
     value: "Temp",
@@ -121,83 +122,83 @@ class SignUp extends Component {
     //FirstName
     if (!firstName) {
       formIsValid = false;
-      formErrors["firstNameErr"] = " First Name is required.";
+      formErrors["firstNameErr"] = FNAME_REQUIRED;
     }
 
     //Lastname
     if (!lastName) {
       formIsValid = false;
-      formErrors["lastNameErr"] = " Last Name is required.";
+      formErrors["lastNameErr"] = LNAME_REQUIRED;
     }
 
     //Email
     if (!email) {
       formIsValid = false;
-      formErrors["emailIdErr"] = "Email id is required.";
+      formErrors["emailIdErr"] = EMAIL_REQUIRED;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       formIsValid = false;
-      formErrors["emailIdErr"] = "Invalid email id.";
+      formErrors["emailIdErr"] = EMAIL_INVALID;
     }
     //Password
     if (!password) {
       formIsValid = false;
-      var str1 = "Password is required.";
+      var str1 = PASSWORD_REQUIRED;
       formErrors["passwordErr"] = str1;
     } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
       formIsValid = false;
-      var str = "Password should be of atleast six characters";
+      var str = PASSWORD_INVALID;
       formErrors["passwordErr"] = str;
     }
     //Confirm Password
     if (!confirmPassword) {
       formIsValid = false;
-      formErrors["confirmPasswordErr"] = "Confirm password required";
+      formErrors["confirmPasswordErr"] = CONFIRM_PASSWORD_REQUIRED;
     } else if (password !== confirmPassword) {
       formIsValid = false;
-      formErrors["confirmPasswordErr"] = "Passwords should match";
+      formErrors["confirmPasswordErr"] = CONFIRM_PASSWORD_INVALID;
     }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
-      formErrors["mobileNoErr"] = "Mobile number is required.";
+      formErrors["mobileNoErr"] = MOBILE_REQUIRED;
     } else {
       var mobPattern = /^[6-9]\d{9}$/;
       if (!mobPattern.test(mobileNo)) {
         formIsValid = false;
         console.log(mobileNo);
-        formErrors["mobileNoErr"] = "Invalid mobile number.";
+        formErrors["mobileNoErr"] = MOBILE_INVALID;
       }
     }
     //Address
     if (!address1) {
       formIsValid = false;
-      formErrors["addressErr"] = " Address is required.";
+      formErrors["addressErr"] = ADDRESS_REQUIRED;
     }
     //City
     if (city === "" || city === "Select City") {
       formIsValid = false;
-      formErrors["cityErr"] = " City is required.";
+      formErrors["cityErr"] = CITY_REQUIRED;
     }
     //State
     if (selectedState === "" || selectedState === "Select State") {
       formIsValid = false;
-      formErrors["stateErr"] = " State is required.";
+      formErrors["stateErr"] = STATE_REQUIRED;
     }
     //Pincode
     if (!pincode) {
       formIsValid = false;
-      formErrors["pincodeErr"] = "Pincode is required";
+      formErrors["pincodeErr"] = PINCODE_REQUIRED;
     } else {
       var pincodes = /^\d{6}$/;
       if (!pincodes.test(pincode)) {
         formIsValid = false;
-        formErrors["pincodeErr"] = "Invalid Pincode";
+        formErrors["pincodeErr"] = PINCODE_INVALID;
       }
     }
     //role
     if (name === "" || name === "select") {
       formIsValid = false;
-      formErrors["roleErr"] = "Select role.";
+      formErrors["roleErr"] = ROLE_REQUIRED;
     }
     if (
       this.state.role.name === "Collector" ||
@@ -205,22 +206,22 @@ class SignUp extends Component {
     ) {
       if (!gstNo) {
         formIsValid = false;
-        formErrors["gstErr"] = " GSTNo is required.";
+        formErrors["gstErr"] = GSTNO_REQUIRED;
       } else {
         var gst = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}Z\d{1}$/;
         if (!gst.test(gstNo)) {
           formIsValid = false;
-          formErrors["gstErr"] = "Invalid GSTNo";
+          formErrors["gstErr"] = GSTNO_INVALID;
         }
       }
       if (!registrationNo) {
         formIsValid = false;
-        formErrors["registrationErr"] = " Registration number is required.";
+        formErrors["registrationErr"] = REGISTRATION_REQUIRED;
       } else {
         var reg = /^\d{6}$/;
         if (!reg.test(registrationNo)) {
           formIsValid = false;
-          formErrors["registrationErr"] = "Invalid registration number";
+          formErrors["registrationErr"] = REGISTRATION_INVALID;
         }
       }
     }
@@ -230,11 +231,11 @@ class SignUp extends Component {
         endTime._isAMomentObject === true
       ) {
         formIsValid = false;
-        formErrors["timeErr"] = " Time is Required";
+        formErrors["timeErr"] = TIME_REQUIRED;
       }
       if (categoryAccepted === "Select Categories" || categoryAccepted === "") {
         formIsValid = false;
-        formErrors["categoryErr"] = " Category is Required";
+        formErrors["categoryErr"] = CATEGORY_REQUIRED;
       }
     }
 
@@ -302,7 +303,7 @@ class SignUp extends Component {
         const res = await response.json();
         console.log(res);
         if (res.status === "success") {
-          toast.success("Registered successfully", {
+          toast.success(TOAST_SUCCESS1, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 1500,
           });
@@ -310,12 +311,12 @@ class SignUp extends Component {
             window.location.href = "/SignIn";
           }, 2000);
         } else if (res.status === "fail") {
-          toast.error("Already registered with this mail ID", {
+          toast.error(TOAST_ERROR3, {
             position: toast.POSITION.TOP_RIGHT,
           });
         } else {
           this.setState({
-            msg: "Server Error. Try again later..",
+            msg: SERVER_MSG,
           });
         }
       } catch (error) {

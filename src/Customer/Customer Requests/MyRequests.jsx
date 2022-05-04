@@ -6,6 +6,7 @@ import {FaUserCircle} from "react-icons/fa";
 
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
+import { TOAST_WARN2, TOAST_WARN3 } from "../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
@@ -258,11 +259,11 @@ export default function MyRequests() {
                     datas.collectorUid === null &&
                     datas.status === "Expired"
                   ) {
-                    toast.warn("Request Expired", {
+                    toast.warn(TOAST_WARN2, {
                       position: toast.POSITION.TOP_RIGHT,
                     });
                   } else if (datas.collectorUid === null) {
-                    toast.warn("Request  not acccepted yet", {
+                    toast.warn(TOAST_WARN3, {
                       position: toast.POSITION.TOP_RIGHT,
                     });
                   }

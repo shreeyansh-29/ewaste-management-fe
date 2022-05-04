@@ -7,7 +7,7 @@ import {
 import "../Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
-import { navbarapi } from "../../utils/navbarApi";
+import { navbarapi } from "../../Utils/navbarApi";
 import Swal from "sweetalert2";
 function CustomerNav() {
   const navigate = useNavigate();
@@ -126,10 +126,7 @@ function CustomerNav() {
                     }).then((result) => {
                       if (result.isConfirmed) {
                         localStorage.clear();
-                        console.log(window.history);
-                        // history.deleteAll();
                         navigate("/Signin");
-                        // <Redirect  to="/Signin" />
                         document.location.reload();
                       }
                     });

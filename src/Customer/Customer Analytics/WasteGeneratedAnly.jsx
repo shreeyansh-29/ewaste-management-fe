@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import "../Customer.css";
-import {apicall} from "../../utils/Api";
+import {apicall} from "../../Utils/Api";
 export const data = [
   ["name", "Count by Order", {role: "style"}],
   ["E-Waste Generated", 5, "yellowgreen"],

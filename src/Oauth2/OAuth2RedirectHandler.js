@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { notificationcount } from "../utils/notificationcount";
-import { profile } from "../utils/profile";
+import { notificationcount } from "../Utils/notificationcount";
+import { profile } from "../Utils/profile";
 import jwt from "jwt-decode";
 class OAuth2RedirectHandler extends Component {
   

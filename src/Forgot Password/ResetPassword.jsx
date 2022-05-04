@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
+import { CONFIRM_PASSWORD_INVALID, CONFIRM_PASSWORD_REQUIRED, PASSWORD_INVALID, PASSWORD_REQUIRED, TOAST_SUCCESS2 } from "../constant/constant";
 function ResetPass() {
   const { token } = useParams();
   const [password, setpassword] = useState("");
@@ -25,18 +26,18 @@ function ResetPass() {
 
     if (!password) {
       formIsValid = false;
-      setErr("Password is required.");
+      setErr(PASSWORD_REQUIRED);
     } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
       formIsValid = false;
-      setErr("Password should be of atleast six characters/numbers  ");
+      setErr(PASSWORD_INVALID);
     }
     //Confirm Password
     if (!confirmPassword) {
       formIsValid = false;
-      setConfirmErr("Confirm password required");
+      setConfirmErr(CONFIRM_PASSWORD_REQUIRED);
     } else if (password !== confirmPassword) {
       formIsValid = false;
-      setConfirmErr("Passwords should match");
+      setConfirmErr(CONFIRM_PASSWORD_INVALID);
     }
 
     return formIsValid;
@@ -73,7 +74,7 @@ function ResetPass() {
           }
         );
         if (response.status === 200) {
-          toast.success("Password updated succefully", {
+          toast.success(TOAST_SUCCESS2, {
             position: toast.POSITION.TOP_RIGHT,
           });
           setTimeout(() => change(), 2000);

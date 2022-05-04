@@ -2,7 +2,19 @@ import React, { Component } from "react";
 import "./Customer.css";
 import { toast } from "react-toastify";
 import { statescity } from "../Sign-Up/states";
-import { CUSTOMER_AUTH_URL } from "../constant/constant";
+import {
+  ADDRESS_REQUIRED,
+  CITY_REQUIRED,
+  CUSTOMER_AUTH_URL,
+  FNAME_REQUIRED,
+  LNAME_REQUIRED,
+  MOBILE_INVALID,
+  MOBILE_REQUIRED,
+  PINCODE_INVALID,
+  PINCODE_REQUIRED,
+  STATE_REQUIRED,
+  TOAST_SUCCESS5,
+} from "../constant/constant";
 class EditProfile extends Component {
   constructor(props) {
     super(props);
@@ -51,46 +63,46 @@ class EditProfile extends Component {
     //FirstName
     if (!firstName) {
       formIsValid = false;
-      formErrors["firstNameErr"] = " First Name is required.";
+      formErrors["firstNameErr"] = FNAME_REQUIRED;
     }
     //Lastname
     if (!lastName) {
       formIsValid = false;
-      formErrors["lastNameErr"] = " Last Name is required.";
+      formErrors["lastNameErr"] = LNAME_REQUIRED;
     }
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
-      formErrors["phoneNumberErr"] = "Phone number is required.";
+      formErrors["phoneNumberErr"] = MOBILE_REQUIRED;
     } else {
       var mobPattern = /^[6-9]\d{9}$/;
       if (!mobPattern.test(mobileNo)) {
         formIsValid = false;
-        formErrors["phoneNumberErr"] = "Invalid phone number.";
+        formErrors["phoneNumberErr"] = MOBILE_INVALID;
       }
     }
     //Landmark
     if (!address1) {
       formIsValid = false;
-      formErrors["landmarkErr"] = " Address is required.";
+      formErrors["landmarkErr"] = ADDRESS_REQUIRED;
     }
     //City
     if (!city) {
       formIsValid = false;
-      formErrors["cityErr"] = " City is required.";
+      formErrors["cityErr"] = CITY_REQUIRED;
     }
     //State
     if (!state) {
       formIsValid = false;
-      formErrors["stateErr"] = " State is required.";
+      formErrors["stateErr"] = STATE_REQUIRED;
     }
     //Pincode
     if (!pinCode) {
       formIsValid = false;
-      formErrors["pincodeErr"] = "Pincode is required";
+      formErrors["pincodeErr"] = PINCODE_REQUIRED;
     } else if (!/^\d{6}$/.test(pinCode)) {
       formIsValid = false;
-      formErrors["pincodeErr"] = "Invalid Pincode";
+      formErrors["pincodeErr"] = PINCODE_INVALID;
     }
 
     this.setState({ formErrors: formErrors });
@@ -133,7 +145,7 @@ class EditProfile extends Component {
         localStorage.removeItem("name");
         localStorage.setItem("name", this.state.firstName);
         const res = await response.json();
-        toast.success("Updated successfully", {
+        toast.success(TOAST_SUCCESS5, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 1500,
         });

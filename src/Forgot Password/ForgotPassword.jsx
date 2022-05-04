@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { EMAIL_INVALID, EMAIL_REQUIRED, MSG } from "../constant/constant";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
@@ -9,10 +10,10 @@ const ForgotPassword = () => {
   const validateForm = () => {
     let formIsValid = true;
     if (!email) {
-      setemailErr("Email id is required.");
+      setemailErr(EMAIL_REQUIRED);
       formIsValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setemailErr("Invalid email id.");
+      setemailErr(EMAIL_INVALID);
       formIsValid = false;
     }
 
@@ -35,7 +36,7 @@ const ForgotPassword = () => {
         });
 
         if (response.status === 200) {
-          setMsg("An email has been sent to you to reset the password.");
+          setMsg(MSG);
         }
       } catch (error) {
         console.log(error);

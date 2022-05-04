@@ -9,7 +9,7 @@ export const homeObjOne = {
   description:
     "Ending E-Waste is ambitious. Nevertheless, through collaboration and collective action that this complex problem can be solved.",
   imgStart: "",
-  img: require("../images/recycle-img.png"),
+  img: require("../Images/recycle-img.png"),
   alt: "Image",
   start: "",
 };
@@ -26,7 +26,7 @@ export const homeObjTwo = {
   description:
     "Based on the traditional management strategies of the 3R’s (Reuse, Reduce and Recycle) , we aim to develop an interface that acts as a platform for the stakeholders involved and provides a solution for the careful management of the disposed waste through recycling and reusablility. ",
   imgStart: "start",
-  img: require("../images/work3.jpg"),
+  img: require("../Images/work3.jpg"),
   alt: "Image",
   start: "",
 };
@@ -42,7 +42,7 @@ export const homeObjThree = {
   description:
     "Feel free to join if you’d like to work with us to end E-waste, explore membership opportunities, media partnerships, or other enquiries.",
   imgStart: "start",
-  img: require("../images/work9.jpg"),
+  img: require("../Images/work9.jpg"),
   alt: "Image",
   start: "",
 };
@@ -59,7 +59,7 @@ export const InfoData = {
   description:
     "With technological advancements and our rapid transit to an automated world, the challenge of protecting the planet and working towards the sustainablity of the planet becomes difficult.",
   imgStart: "start",
-  img: require("../images/work7.jpg"),
+  img: require("../Images/work7.jpg"),
   alt: "Image",
   start: "true",
 };
@@ -74,7 +74,7 @@ export const InfoDataTwo = {
   description:
     "We aim to provide a feasible and practically possible solution by acting as an interface for all our customers based on the different roles which include someone who generates the waste , someone who collect it for future processing and reusability or a recycling vendor who can purchase the waste generated and recycle it. ",
   imgStart: "start",
-  img: require("../images/image1.jpg"),
+  img: require("../Images/image1.jpg"),
   alt: "Image",
   start: "true",
 };

@@ -5,6 +5,7 @@ import Popup from ".././Customer/Popup";
 import {FaUserCircle} from "react-icons/fa";
 import {toast} from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";
+import { TOAST_WARN3 } from "../constant/constant";
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 export default function MyOrders() {
@@ -215,7 +216,7 @@ export default function MyOrders() {
               onClick: (e, datas) => {
                 console.log(e);
                 if (datas.id === null) {
-                  toast.warn("Request is not acccepted yet", {
+                  toast.warn(TOAST_WARN3, {
                     position: toast.POSITION.TOP_RIGHT,
                   });
                 } else {

@@ -3,6 +3,7 @@ import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/AddBox";
 import "./Collector.css";
 import {toast} from "react-toastify";
+import { TOAST_ERROR4, TOAST_SUCCESS6 } from "../constant/constant";
 toast.configure();
 export default function ItemsForSale() {
   const {useState} = React;
@@ -81,7 +82,7 @@ export default function ItemsForSale() {
       datas.quantity === null ||
       datas.category === undefined
     ) {
-      toast.error("Enter all data", {position: toast.POSITION.TOP_RIGHT});
+      toast.error(TOAST_ERROR4, {position: toast.POSITION.TOP_RIGHT});
     } else {
       try {
         const response = await fetch("http://localhost:8083/collector/sell", {
@@ -102,7 +103,7 @@ export default function ItemsForSale() {
           }),
         });
         const res = await response.json();
-        toast.success("Item is on sale", {
+        toast.success(TOAST_SUCCESS6, {
           position: toast.POSITION.TOP_RIGHT,
         });
         setStatus(res.data.status);

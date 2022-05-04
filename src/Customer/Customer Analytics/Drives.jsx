@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {apicall} from "../../utils/Api";
+import {apicall} from "../../Utils/Api";
 export const data = [
   ["name", "Count", {role: "style"}],
   ["E-Waste Drives Organized", 4, "hotpink"],

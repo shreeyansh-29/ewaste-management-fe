@@ -5,8 +5,9 @@ import {} from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../Customer/Popup";
 import { FaUserCircle } from "react-icons/fa";
-import {apicall} from "../../utils/Api";
+import {apicall} from "../../Utils/Api";
 import { toast } from "react-toastify";
+import { TOAST_WARN3 } from "../../constant/constant";
 
 toast.configure();
 export const ProfileIcon = FaUserCircle;
@@ -238,7 +239,7 @@ export default function CollectorRequests() {
 
                 setdetail(datas.customerUid);
                 if (datas.customerUid === null) {
-                  toast.warn("Request is not accepted yet", {
+                  toast.warn(TOAST_WARN3, {
                     position: toast.POSITION.TOP_RIGHT,
                   });
                 }

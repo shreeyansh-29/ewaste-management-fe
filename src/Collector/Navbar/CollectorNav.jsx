@@ -9,7 +9,7 @@ import {
 import "../../Customer/Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
-import {navbarapi} from "../../utils/navbarApi";
+import {navbarapi} from "../../Utils/navbarApi";
 function CollectorNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);

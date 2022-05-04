@@ -7,8 +7,9 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import { toast } from "react-toastify";
 import GoogleSignin from "./GoogleSignin";
 import jwt from "jwt-decode";
-import { notificationcount } from "../utils/notificationcount";
-import { profile } from "../utils/profile";
+import { notificationcount } from "../Utils/notificationcount";
+import { profile } from "../Utils/profile";
+import { EMAIL_INVALID, EMAIL_REQUIRED, PASSWORD_REQUIRED, TOAST_ERROR1, TOAST_ERROR2 } from "../constant/constant";
 
 const SignIn = () => {
   const [password, setPassword] = useState("");
@@ -21,15 +22,15 @@ const SignIn = () => {
   const validateForm = () => {
     let formIsValid = true;
     if (!email) {
-      setemailErr("Email id is required.");
+      setemailErr(EMAIL_REQUIRED);
       formIsValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setemailErr("Invalid email id.");
+      setemailErr(EMAIL_INVALID);
       formIsValid = false;
     }
 
     if (!password) {
-      var str1 = "Password is required.";
+      var str1 = PASSWORD_REQUIRED;
 
       setpasswordErr(str1);
       formIsValid = false;
@@ -74,10 +75,10 @@ const SignIn = () => {
         const res = await response.json();
 
         if (res.status === "Fail") {
-          toast.error("Wrong Email ID", { position: toast.POSITION.TOP_RIGHT });
+          toast.error(TOAST_ERROR1, { position: toast.POSITION.TOP_RIGHT });
         }
         if (res.status === "fail") {
-          toast.error("Wrong Password", { position: toast.POSITION.TOP_RIGHT });
+          toast.error(TOAST_ERROR2, { position: toast.POSITION.TOP_RIGHT });
         }
         localStorage.setItem("token", res.data.token);
         const tokens = localStorage.getItem("token");

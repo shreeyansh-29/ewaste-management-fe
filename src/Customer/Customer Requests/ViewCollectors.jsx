@@ -6,6 +6,7 @@ import {} from "@material-ui/icons";
 
 import "../Customer.css";
 import {toast} from "react-toastify";
+import { TOAST_SUCCESS4 } from "../../constant/constant";
 toast.configure();
 export default function ViewCollectors(props) {
   const {useState} = React;
@@ -105,7 +106,7 @@ export default function ViewCollectors(props) {
 
       console.log(response);
 
-      toast.success("Scheduled successfully", {
+      toast.success(TOAST_SUCCESS4, {
         position: toast.POSITION.TOP_RIGHT,
       });
     } catch (err) {
