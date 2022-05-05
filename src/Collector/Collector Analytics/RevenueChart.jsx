@@ -1,5 +1,8 @@
-import React, {useEffect} from "react";
-import {Chart} from "react-google-charts";
+import React, { useEffect } from "react";
+import { Chart } from "react-google-charts";
+
+import api from "../../api";
+import { COLLECTOR_ANALYTICS_V6 } from "../../constant/constant";
 export const data = [
   ["Category", "Sales"],
   ["Temperature Exchange Equipment", 4000],
@@ -11,7 +14,7 @@ export const data = [
 ];
 const options = {
   legend: "right",
-  chartArea: {width: "65%"},
+  chartArea: { width: "65%" },
   colors: ["violet"],
   vAxis: {
     scaleType: "decimal",
@@ -34,32 +37,15 @@ const options = {
 
 export default function Revenue() {
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
-      try {
-        const response = await fetch(
-          "http://localhost:8083/collector/analytics/v6",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-        data[1][1] = res.data.Temp;
-        data[2][1] = res.data.Screens;
-        data[3][1] = res.data.Lapms;
-        data[4][1] = res.data.LargeEqip;
-        data[5][1] = res.data.SmallEquip;
-        data[6][1] = res.data.SmallIT;
-      } catch (err) {
-        console.log(err);
-      }
+      const res = await api.get(COLLECTOR_ANALYTICS_V6);
+
+      data[1][1] = res.data.Temp;
+      data[2][1] = res.data.Screens;
+      data[3][1] = res.data.Lapms;
+      data[4][1] = res.data.LargeEqip;
+      data[5][1] = res.data.SmallEquip;
+      data[6][1] = res.data.SmallIT;
     })();
   }, []);
   return (

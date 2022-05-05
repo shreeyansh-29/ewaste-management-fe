@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import "./Customer.css";
 import { toast } from "react-toastify";
 import { statescity } from "../Sign-Up/states";
+import api from "../api";
 import {
   ADDRESS_REQUIRED,
   CITY_REQUIRED,
   CUSTOMER_AUTH_URL,
+  CUSTOMER_PROFILE_EDIT,
   FNAME_REQUIRED,
   LNAME_REQUIRED,
   MOBILE_INVALID,
@@ -113,46 +115,29 @@ class EditProfile extends Component {
     e.preventDefault();
 
     if (this.handleFormValidation()) {
-      const tokens = localStorage.getItem("token");
       const email = localStorage.getItem("email");
+      const data = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: email,
+        address1: this.state.address1,
+        mobileNo: this.state.mobileNo,
+        city: this.state.city,
+        state: this.state.state,
+        pinCode: this.state.pinCode,
+        password: this.state.password,
+        shopTime: "10",
+      };
+      const res = await api.put(CUSTOMER_PROFILE_EDIT, data);
+      console.log(res);
 
-      try {
-        const response = await fetch(
-          "http://localhost:8083/customer/profile/edit",
-          {
-            method: "PUT",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-            body: JSON.stringify({
-              firstName: this.state.firstName,
-              lastName: this.state.lastName,
-              email: email,
-              address1: this.state.address1,
-              mobileNo: this.state.mobileNo,
-              city: this.state.city,
-              state: this.state.state,
-              pinCode: this.state.pinCode,
-              password: this.state.password,
-              shopTime: "10",
-            }),
-          }
-        );
-
-        localStorage.removeItem("name");
-        localStorage.setItem("name", this.state.firstName);
-        const res = await response.json();
-        toast.success(TOAST_SUCCESS5, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 1500,
-        });
-        this.setState(res.data);
-      } catch (error) {
-        console.log(error);
-      }
+      localStorage.removeItem("name");
+      localStorage.setItem("name", this.state.firstName);
+      toast.success(TOAST_SUCCESS5, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1500,
+      });
+      this.setState(res.data);
     } else {
       console.log(this.state.formErrors);
     }
@@ -161,23 +146,8 @@ class EditProfile extends Component {
     this.setState({
       states: statescity,
     });
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    try {
-      const response = await fetch(CUSTOMER_AUTH_URL, {
-        method: "GET",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + tokens,
-          EMAIL: email,
-        },
-      });
-      const res = await response.json();
-      this.setState(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await api.get(CUSTOMER_AUTH_URL);
+    this.setState(res.data);
   };
   render() {
     const email = localStorage.getItem("email");
@@ -221,6 +191,7 @@ class EditProfile extends Component {
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
                     }
+                    autoComplete="off"
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -235,6 +206,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px" }}
                     name="lastName"
                     value={this.state.lastName}
+                    autoComplete="off"
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
                     }
@@ -266,6 +238,7 @@ class EditProfile extends Component {
                     type="text"
                     style={{ borderRadius: "17px" }}
                     name="mobileNo"
+                    autoComplete="off"
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
                     }
@@ -286,6 +259,7 @@ class EditProfile extends Component {
                     style={{ borderRadius: "17px" }}
                     name="address1"
                     value={this.state.address1}
+                    autoComplete="off"
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
                     }
@@ -338,6 +312,7 @@ class EditProfile extends Component {
                     type="pincode"
                     style={{ borderRadius: "17px" }}
                     name="pinCode"
+                    autoComplete="off"
                     value={this.state.pinCode}
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })

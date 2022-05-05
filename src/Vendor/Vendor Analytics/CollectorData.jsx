@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import { apicall} from "../../Utils/Api";
+import { VENDOR_ANALYTICS_V1 } from "../../constant/constant";
+import api from "../../api";
 export const data = [
   ["name", "Count", {role: "style"}],
   ["Total Collectors", 56, "blue"],
@@ -21,7 +22,7 @@ export default function CollectorData() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("collectordata");
+        const res = await api.get(VENDOR_ANALYTICS_V1);
         data[1][1] = res.data.allCollector;
         data[2][1] = res.data.collectorInCity;
       } catch (err) {

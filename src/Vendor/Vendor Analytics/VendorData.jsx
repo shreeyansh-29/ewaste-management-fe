@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {apicall} from "../../Utils/Api";
+import { VENDOR_ANALYTICS_V1 } from "../../constant/constant";
+import api from "../../api";
 export const data = [
   ["name", "Count", {role: "style"}],
-  ["Total Vendors", 56, "lightblue"],
-  ["Vendors in your City", 13, "yellowgreen"],
+  ["Total Vendors", 5, "lightblue"],
+  ["Vendors in your City", 1, "yellowgreen"],
 ];
 export const options = {
   chartArea: {width: "50%"},
@@ -22,7 +23,7 @@ export default function Drives() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("vendordata");
+        const res = await api.get(VENDOR_ANALYTICS_V1);
         data[1][1] = res.data.allVendor;
         data[2][1] = res.data.vendorInCity;
       } catch (err) {

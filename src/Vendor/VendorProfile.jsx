@@ -1,9 +1,26 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./vendor.css";
-
-import {statescity} from "../Sign-Up/states";
-import {toast} from "react-toastify";
-import { ADDRESS_REQUIRED, CITY_REQUIRED, FNAME_REQUIRED, GSTNO_INVALID, GSTNO_REQUIRED, LNAME_REQUIRED, MOBILE_INVALID, MOBILE_REQUIRED, PINCODE_INVALID, PINCODE_REQUIRED, REGISTRATION_INVALID, REGISTRATION_REQUIRED, STATE_REQUIRED, TOAST_SUCCESS5, VENDOR_AUTH_URL } from "../constant/constant";
+import api from "../api";
+import { statescity } from "../Sign-Up/states";
+import { toast } from "react-toastify";
+import {
+  ADDRESS_REQUIRED,
+  CITY_REQUIRED,
+  FNAME_REQUIRED,
+  GSTNO_INVALID,
+  GSTNO_REQUIRED,
+  LNAME_REQUIRED,
+  MOBILE_INVALID,
+  MOBILE_REQUIRED,
+  PINCODE_INVALID,
+  PINCODE_REQUIRED,
+  REGISTRATION_INVALID,
+  REGISTRATION_REQUIRED,
+  STATE_REQUIRED,
+  TOAST_SUCCESS5,
+  VENDOR_AUTH_URL,
+  VENDOR_PROFILE_EDIT,
+} from "../constant/constant";
 class VendorProfile extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +44,7 @@ class VendorProfile extends Component {
     this.changeCity = this.changeCity.bind(this);
   }
   changeState(event) {
-    this.setState({state: event.target.value});
+    this.setState({ state: event.target.value });
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -35,7 +52,7 @@ class VendorProfile extends Component {
     });
   }
   changeCity(event) {
-    this.setState({city: event.target.value});
+    this.setState({ city: event.target.value });
   }
   handleFormValidation() {
     const {
@@ -119,88 +136,54 @@ class VendorProfile extends Component {
       }
     }
 
-    this.setState({formErrors: formErrors});
+    this.setState({ formErrors: formErrors });
     return formIsValid;
   }
   handleSubmit = async (e) => {
     e.preventDefault();
 
     if (this.handleFormValidation()) {
-      const tokens = localStorage.getItem("token");
       const email = localStorage.getItem("email");
-
-      try {
-        const response = await fetch(
-          "http://localhost:8083/vendor/profile/edit",
-          {
-            method: "PUT",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-            body: JSON.stringify({
-              firstName: this.state.firstName,
-              lastName: this.state.lastName,
-              email: email,
-              address1: this.state.address1,
-              mobileNo: this.state.mobileNo,
-              city: this.state.city,
-              state: this.state.state,
-              pinCode: this.state.pinCode,
-              password: this.state.password,
-              gstNo: this.state.gstNo,
-              registrationNo: this.state.registrationNo,
-              shopTime: "10",
-            }),
-          }
-        );
-        console.log(response);
-
-        localStorage.removeItem("name");
-        localStorage.setItem("name", this.state.firstName);
-        toast.success(TOAST_SUCCESS5, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 1500,
-        });
-      } catch (err) {
-        console.log(err);
-      }
+      const data = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: email,
+        address1: this.state.address1,
+        mobileNo: this.state.mobileNo,
+        city: this.state.city,
+        state: this.state.state,
+        pinCode: this.state.pinCode,
+        password: this.state.password,
+        gstNo: this.state.gstNo,
+        registrationNo: this.state.registrationNo,
+        shopTime: "10",
+      };
+      
+      const res = await api.put(VENDOR_PROFILE_EDIT, data);
+      console.log(res);
+    
+      localStorage.removeItem("name");
+      localStorage.setItem("name", this.state.firstName);
+      toast.success(TOAST_SUCCESS5, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1500,
+      });
     }
   };
   componentDidMount = async () => {
     this.setState({
       states: statescity,
     });
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    try {
-      const response = await fetch(
-        VENDOR_AUTH_URL,
-        {
-          method: "GET",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
-        }
-      );
-      const res = await response.json();
-      this.setState(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+
+    var res = await api.get(VENDOR_AUTH_URL);
+    this.setState(res.data);
   };
 
   handleChange = (key) => (value) => {
-    this.setState({[key]: value});
+    this.setState({ [key]: value });
   };
 
   render() {
-   
     const email = localStorage.getItem("email");
     const {
       firstNameErr,
@@ -215,7 +198,7 @@ class VendorProfile extends Component {
       registrationErr,
     } = this.state.formErrors;
     return (
-      <div className="vendor" style={{marginTop: "85px"}}>
+      <div className="vendor" style={{ marginTop: "85px" }}>
         <form>
           <div className="formbody">
             <div className="vendorsprofile">
@@ -240,9 +223,11 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.firstName}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -255,9 +240,11 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="lastName"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.lastName}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -284,8 +271,10 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="mobileNo"
-                    style={{borderRadius:"17px"}}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    style={{ borderRadius: "17px" }}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -300,10 +289,12 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     name="address1"
                     value={this.state.address1}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -357,10 +348,12 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="pincode"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     name="pinCode"
                     value={this.state.pinCode}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
@@ -374,10 +367,12 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     name="gstNo"
                     value={this.state.gstNo}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Enter GSTIN"
                   />
                   <div className="formErrors">{gstErr}</div>
@@ -389,9 +384,11 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="registrationNo"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.registrationNo}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Enter Registration Number"
                   />
                   <div className="formErrors">{registrationErr}</div>

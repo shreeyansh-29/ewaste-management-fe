@@ -8,11 +8,15 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-
+import api from "../../api";
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
 import { toast } from "react-toastify";
-import { TOAST_ERROR4, TOAST_SUCCESS3, TOAST_WARN1 } from "../../constant/constant";
+import {
+  TOAST_ERROR4,
+  TOAST_SUCCESS3,
+  TOAST_WARN1,
+} from "../../constant/constant";
 toast.configure();
 export default function PickUp() {
   const { useState } = React;
@@ -211,27 +215,12 @@ export default function PickUp() {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {
-      const tokens = localStorage.getItem("token");
-      const email = localStorage.getItem("email");
-      try {
-        const response = await fetch(
-          `http://localhost:8083/customer/request/pickUp/viewCollectors?category=${data[0].category}`,
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-        setCollectors(res);
-        setExpanded(true);
-      } catch (err) {
-        console.log(err);
-      }
+      const res = await api.get(
+        `http://localhost:8083/customer/request/pickUp/viewCollectors?category=${data[0].category}`
+      );
+
+      setCollectors(res);
+      setExpanded(true);
     }
   };
 

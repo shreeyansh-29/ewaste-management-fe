@@ -1,6 +1,7 @@
-import React, {useEffect} from "react";
-import {Chart} from "react-google-charts";
-import {apicall} from "../../Utils/Api";
+import React, { useEffect } from "react";
+import { Chart } from "react-google-charts";
+import api from "../../api";
+import { COLLECTOR_ANALYTICS_V2 } from "../../constant/constant";
 export const data = [
   ["Category", "Requests Accepted", "Items Sold"],
   ["Temperature Exchange Equipment", 1, 1],
@@ -13,7 +14,7 @@ export const data = [
 
 const options = {
   legend: "right",
-  chartArea: {width: "65%"},
+  chartArea: { width: "65%" },
   colors: ["yellow", "green"],
   vAxis: {
     scaleType: "decimal",
@@ -36,23 +37,20 @@ const options = {
 export default function EWasteOrg() {
   useEffect(() => {
     (async function () {
-      try {
-        const res = await apicall("ewaste");
-        data[1][1] = res.data.TempCollected;
-        data[2][1] = res.data.ScreensCollected;
-        data[3][1] = res.data.LapmsCollected;
-        data[4][1] = res.data.LargeEqipCollected;
-        data[5][1] = res.data.SmallEquipCollected;
-        data[6][1] = res.data.SmallITCollected;
-        data[1][2] = res.data.TempSell;
-        data[2][2] = res.data.ScreensSell;
-        data[3][2] = res.data.LapmsSell;
-        data[4][2] = res.data.LargeEqipSell;
-        data[5][2] = res.data.SmallEquipSell;
-        data[6][2] = res.data.SmallITSell;
-      } catch (err) {
-        console.log(err);
-      }
+      const res = await api.get(COLLECTOR_ANALYTICS_V2);
+
+      data[1][1] = res.data.TempCollected;
+      data[2][1] = res.data.ScreensCollected;
+      data[3][1] = res.data.LapmsCollected;
+      data[4][1] = res.data.LargeEqipCollected;
+      data[5][1] = res.data.SmallEquipCollected;
+      data[6][1] = res.data.SmallITCollected;
+      data[1][2] = res.data.TempSell;
+      data[2][2] = res.data.ScreensSell;
+      data[3][2] = res.data.LapmsSell;
+      data[4][2] = res.data.LargeEqipSell;
+      data[5][2] = res.data.SmallEquipSell;
+      data[6][2] = res.data.SmallITSell;
     })();
   }, []);
   return (

@@ -7,9 +7,19 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import { toast } from "react-toastify";
 import GoogleSignin from "./GoogleSignin";
 import jwt from "jwt-decode";
-import { notificationcount } from "../Utils/notificationcount";
-import { profile } from "../Utils/profile";
-import { EMAIL_INVALID, EMAIL_REQUIRED, PASSWORD_REQUIRED, TOAST_ERROR1, TOAST_ERROR2 } from "../constant/constant";
+import api from "../api";
+import {
+  COLLECTOR_AUTH_URL,
+  COLLECTOR_NOTIFICATION_URL,
+  CUSTOMER_AUTH_URL,
+  CUSTOMER_NOTIFICATION_URL,
+  EMAIL_INVALID,
+  EMAIL_REQUIRED,
+  PASSWORD_REQUIRED,
+  TOAST_ERROR1,
+  TOAST_ERROR2,
+  VENDOR_AUTH_URL,
+} from "../constant/constant";
 
 const SignIn = () => {
   const [password, setPassword] = useState("");
@@ -85,37 +95,23 @@ const SignIn = () => {
         var token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
         localStorage.setItem("email", email);
+        const role = localStorage.getItem("Roles");
         var val;
         var result;
-        if (localStorage.getItem("Roles") === "CUSTOMER") {
-          try {
-            val = await profile("customer");
-            result = await notificationcount("customer");
-          } catch (e) {
-            console.log(e);
-          }
+
+        if (role === "CUSTOMER") {
+          val = await api.get(CUSTOMER_AUTH_URL);
+          result = await api.get(CUSTOMER_NOTIFICATION_URL);
         }
-        if (localStorage.getItem("Roles") === "COLLECTOR") {
-          try {
-            val = await profile("collector");
-            result = await notificationcount("collector");
-            console.log(result);
-          } catch (e) {
-            console.log(e);
-          }
+        if (role === "COLLECTOR") {
+          val = await api.get(COLLECTOR_AUTH_URL);
+          result = await api.get(COLLECTOR_NOTIFICATION_URL);
         }
-        if (localStorage.getItem("Roles") === "VENDOR") {
-          try {
-            val = await profile("vendor");
-          } catch (e) {
-            console.log(e);
-          }
+        if (role === "VENDOR") {
+          val = await api.get(VENDOR_AUTH_URL);
         }
         localStorage.setItem("name", val.data.firstName);
-        if (
-          localStorage.getItem("Roles") === "CUSTOMER" ||
-          localStorage.getItem("Roles") === "COLLECTOR"
-        ) {
+        if (role === "CUSTOMER" || role === "COLLECTOR") {
           if (result.status === "fail") {
             localStorage.setItem("count", "0");
           } else if (result.status === "success") {
@@ -123,7 +119,6 @@ const SignIn = () => {
           }
           console.log(localStorage.getItem("count"));
         }
-
 
         if (res.status === "success") {
           handleRedirect();

@@ -9,14 +9,26 @@ export const VENDOR_AUTH_URL = API_BASE_URL + '/vendor/profile/view';
 export const CUSTOMER_NOTIFICATION_URL = API_BASE_URL+'/customer/notification';
 export const COLLECTOR_NOTIFICATION_URL = API_BASE_URL+'/collector/notification';
 export const COLLECTOR_REQUEST_SUMMARY = API_BASE_URL+'/collector/request/summary';
+export const COLLECTOR_REQUEST_PENDING = API_BASE_URL+'/collector/request/pending';
 export const VENDOR_ANALYTICS_V1 = API_BASE_URL+'/vendor/analytics/v1';
 export const VENDOR_ANALYTICS_V2 = API_BASE_URL+'/vendor/analytics/v2';
+export const VENDOR_ANALYTICS_V4 = API_BASE_URL+'/vendor/analytic/v4';
 export const COLLECTOR_ANALYTICS_V1 = API_BASE_URL+'/collector/analytics/v1';
 
+export const VENDOR_PROFILE_EDIT = API_BASE_URL+'/vendor/profile/edit';
+export const COLLECTOR_PROFILE_EDIT = API_BASE_URL+'/collector/profile/edit';
+export const CUSTOMER_PROFILE_EDIT = API_BASE_URL+'/customer/profile/edit';
+
+export const COLLECTOR_DRIVE_MYDRIVE = API_BASE_URL+'/collector/drive/myDrive';
+export const VENDOR_SUMMARY =API_BASE_URL+'/vendor/summary';
+export const CUSTOMER_VIEW_DRIVES = API_BASE_URL+'/customer/viewDrives';
+export const VENDOR_VIEW_ITEMS =API_BASE_URL+'/vendor/view/items';
 export const COLLECTOR_SELL_SUMMARY = API_BASE_URL+'/collector/sell/summary';
 export const COLLECTOR_ANALYTICS_V2 = API_BASE_URL+'/collector/analytics/v2';
 export const CUSTOMER_ANALYTICS_V2 = API_BASE_URL+'/customer/analytics/v2';
+export const CUSTOMER_ANALYTICS_V3 = API_BASE_URL+'/customer/analytics/v3';
 export const COLLECTOR_ANALYTICS_V5 = API_BASE_URL+'/collector/analytics/v5';
+export const COLLECTOR_ANALYTICS_V6 = API_BASE_URL+'/collector/analytics/v6';
 export const COLLECTOR_ANALYTICS_V4 = API_BASE_URL+'/collector/analytics/v4';
 export const CUSTOMER_ANALYTICS_V1 = API_BASE_URL+'/customer/analytics/v1';
 export const CUSTOMER_NOTIFICATION_MARKASREAD = API_BASE_URL+'/customer/notification/markAsRead';

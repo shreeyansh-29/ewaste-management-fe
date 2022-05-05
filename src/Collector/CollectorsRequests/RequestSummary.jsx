@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-
+import api from "../../api";
 import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../Customer/Popup";
 import { FaUserCircle } from "react-icons/fa";
-import {apicall} from "../../Utils/Api";
 import { toast } from "react-toastify";
-import { TOAST_WARN3 } from "../../constant/constant";
+import { COLLECTOR_REQUEST_SUMMARY, TOAST_WARN3 } from "../../constant/constant";
 
 toast.configure();
 export const ProfileIcon = FaUserCircle;
@@ -176,7 +175,7 @@ export default function CollectorRequests() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("summary");
+        const res = await api.get(COLLECTOR_REQUEST_SUMMARY);
         if (res.status === "success") {
           handledata(res);
           

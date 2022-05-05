@@ -3,13 +3,14 @@ import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import "../Customer.css";
 import ViewCollectors from "./ViewCollectors";
+import api from "../../api";
 import AddIcon from "@material-ui/icons/AddBox";
 import SearchIcon from "@material-ui/icons/Search";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { TOAST_ERROR4, TOAST_WARN1 } from "../../constant/constant";
 toast.configure();
 export default function DropOff() {
-  const {useState} = React;
+  const { useState } = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState([]);
   const [isEditable, setEditable] = useState(true);
@@ -67,14 +68,14 @@ export default function DropOff() {
 
   const handleClick = async (event) => {
     event.preventDefault();
-    
+
     if (
       data[0].category === undefined ||
       data[0].itemName === "" ||
       data[0].quantity === "" ||
       data[0].quantity === undefined
     ) {
-      toast.error(TOAST_ERROR4, {position: toast.POSITION.TOP_RIGHT});
+      toast.error(TOAST_ERROR4, { position: toast.POSITION.TOP_RIGHT });
     } else if (
       data[0].quantity === 0 ||
       data[0].quantity > 20 ||
@@ -84,24 +85,12 @@ export default function DropOff() {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {
-      const tokens = localStorage.getItem("token");
-      const email = localStorage.getItem("email");
       try {
-        const response = await fetch(
-          `http://localhost:8083/customer/request/dropOff/viewCollectors?category=${data[0].category}`,
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
+        const res = await api.get(
+          `http://localhost:8083/customer/request/dropOff/viewCollectors?category=${data[0].category}`
         );
-        const res = await response.json();
-        if (res.status === "success") {
 
+        if (res.status === "success") {
           setCollectors([...res.data]);
           setExpanded(true);
         } else {
@@ -116,7 +105,7 @@ export default function DropOff() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px"}}>
+      <div style={{ padding: "150px 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -137,8 +126,8 @@ export default function DropOff() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
-            Search: ()=><SearchIcon style={{fill:"white"}}/>
+            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
+            Search: () => <SearchIcon style={{ fill: "white" }} />,
           }}
           editable={{
             onRowAdd: isEditable
@@ -163,7 +152,7 @@ export default function DropOff() {
                 }, 1000);
               }),
           }}
-          options={{pageSize: 1, actionsColumnIndex: -1, search:false}}
+          options={{ pageSize: 1, actionsColumnIndex: -1, search: false }}
         />
 
         <div className="a">

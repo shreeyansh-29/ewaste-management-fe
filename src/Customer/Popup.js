@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import "./Customer.css";
-
+import api from "../api";
 import { Formik, Field, Form } from "formik";
 function Popup(props) {
   const [data, setData] = useState();
@@ -11,8 +11,6 @@ function Popup(props) {
   let url;
   useEffect(() => {
     (async function () {
-      const tokens = localStorage.getItem("token");
-      const email = localStorage.getItem("email");
       if (props.content) {
         url = `http://localhost:8083/collector/request/pending/customerProfile?id=${props.content}`;
       } else if (props.contents) {
@@ -22,28 +20,16 @@ function Popup(props) {
       } else if (props.cont) {
         url = `http://localhost:8083/vendor/view/items/collectorProfile?id=${props.cont}`;
       }
-      try {
-        const response = await fetch(url, {
-          method: "GET",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
-        });
-        const res = await response.json();
 
-        if (res.status === "success") {
-          const name = res.data.firstName + " " + res.data.lastName;
-          const address1 =
-            res.data.address1 + " " + res.data.city + " " + res.data.state;
-          setmobile(res.data.mobileNo);
-          setData(name);
-          setadd(address1);
-        }
-      } catch (err) {
-        console.log(err);
+      const res = await api.get(url);
+
+      if (res.status === "success") {
+        const name = res.data.firstName + " " + res.data.lastName;
+        const address1 =
+          res.data.address1 + " " + res.data.city + " " + res.data.state;
+        setmobile(res.data.mobileNo);
+        setData(name);
+        setadd(address1);
       }
     })();
   }, []);
@@ -83,7 +69,7 @@ function Popup(props) {
                     borderRadius: "17px",
                     padding: "10px",
                     margin: "10px",
-                    fontSize:"14px"
+                    fontSize: "14px",
                   }}
                   value={data}
                   disabled
@@ -100,7 +86,7 @@ function Popup(props) {
                     borderRadius: "17px",
                     padding: "10px",
                     margin: "10px",
-                    fontSize:"14px"
+                    fontSize: "14px",
                   }}
                   value={add}
                   disabled
@@ -115,7 +101,7 @@ function Popup(props) {
                     fontWeight: "bold",
                     textDecorationColor: "black",
                     borderRadius: "17px",
-                    fontSize:"14px",
+                    fontSize: "14px",
                     margin: "10px",
                   }}
                   value={mobile}
@@ -130,4 +116,3 @@ function Popup(props) {
   );
 }
 export default Popup;
-

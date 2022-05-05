@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {apicall} from "../../Utils/Api";
+import api from "../../api";
+import { CUSTOMER_ANALYTICS_V2 } from "../../constant/constant";
 export const data = [
   ["name", "Count", {role: "style"}],
   ["E-Waste Drives Organized", 4, "hotpink"],
@@ -26,7 +27,7 @@ export default function Drives() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("Drives");
+        const res = await api.get(CUSTOMER_ANALYTICS_V2);
 
         data[1][1] = res.data.eWasteDriveListAll;
         data[2][1] = res.data.eWasteDriveListCity;

@@ -12,6 +12,8 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 import "../Customer.css";
+import api from "../../api";
+import { CUSTOMER_VIEW_DRIVES } from "../../constant/constant";
 export default function Waste() {
   const handledate = (res) => {
     res.data.map((obj) => {
@@ -27,25 +29,10 @@ export default function Waste() {
     });
   };
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
       try {
-        const response = await fetch(
-          "http://localhost:8083/customer/viewDrives",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-        console.log(response);
-        console.log(res);
+        const res = await api.get(CUSTOMER_VIEW_DRIVES);
+         
         if (res.status === "success") {
           handledate(res);
 

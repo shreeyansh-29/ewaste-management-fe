@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {apicall} from "../../Utils/Api";
+import api from "../../api";
+import { COLLECTOR_ANALYTICS_V5 } from "../../constant/constant";
 export const data = [
   ["name", "Registered Customers", {role: "style"}],
   ["Customers in your Country  ", 5, "hotpink"],
@@ -27,7 +28,7 @@ export default function Users() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("users");
+        const res = await api.get(COLLECTOR_ANALYTICS_V5);
         data[1][1] = res.data.customerAllCity;
         data[2][1] = res.data.customerCity;
       } catch (err) {

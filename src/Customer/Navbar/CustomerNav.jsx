@@ -7,8 +7,9 @@ import {
 import "../Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
-import { navbarapi } from "../../Utils/navbarApi";
+import api from "../../api";
 import Swal from "sweetalert2";
+import { CUSTOMER_NOTIFICATION_MARKASREAD } from "../../constant/constant";
 function CustomerNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -18,21 +19,17 @@ function CustomerNav() {
   const name = localStorage.getItem("name");
 
   const markAsRead = async () => {
-    try {
-      const res = await navbarapi("customer");
+    const res = await api.get(CUSTOMER_NOTIFICATION_MARKASREAD);
 
-      if (res.status === "success") {
-        for (var i = 0; i < res.data.length; i++) {
-          list[i] = res.data[i].message;
-        }
-      } else {
-        list = ["No New Notifications"];
+    if (res.status === "success") {
+      for (var i = 0; i < res.data.length; i++) {
+        list[i] = res.data[i].message;
       }
-      setList(list);
-      handle();
-    } catch (err) {
-      console.log(err);
+    } else {
+      list = ["No New Notifications"];
     }
+    setList(list);
+    handle();
   };
 
   const displayNotification = (n) => {

@@ -3,9 +3,26 @@ import "./Collector.css";
 import { toast } from "react-toastify";
 import TimeRange from "react-time-range";
 import { statescity } from "../Sign-Up/states";
+import api from "../api";
 import moment from "moment";
-import { profile } from "../Utils/profile";
-import { ADDRESS_REQUIRED, CITY_REQUIRED, COLLECTOR_AUTH_URL, FNAME_REQUIRED, GSTNO_INVALID, GSTNO_REQUIRED, LNAME_REQUIRED, MOBILE_INVALID, MOBILE_REQUIRED, PINCODE_INVALID, PINCODE_REQUIRED, REGISTRATION_INVALID, REGISTRATION_REQUIRED, STATE_REQUIRED, TOAST_SUCCESS5 } from "../constant/constant";
+import {
+  ADDRESS_REQUIRED,
+  CITY_REQUIRED,
+  COLLECTOR_AUTH_URL,
+  COLLECTOR_PROFILE_EDIT,
+  FNAME_REQUIRED,
+  GSTNO_INVALID,
+  GSTNO_REQUIRED,
+  LNAME_REQUIRED,
+  MOBILE_INVALID,
+  MOBILE_REQUIRED,
+  PINCODE_INVALID,
+  PINCODE_REQUIRED,
+  REGISTRATION_INVALID,
+  REGISTRATION_REQUIRED,
+  STATE_REQUIRED,
+  TOAST_SUCCESS5,
+} from "../constant/constant";
 class CollectorProfile extends Component {
   constructor(props) {
     super(props);
@@ -74,7 +91,7 @@ class CollectorProfile extends Component {
       formIsValid = false;
       formErrors["lastNameErr"] = LNAME_REQUIRED;
     }
-   
+
     //Phone number
     if (!mobileNo) {
       formIsValid = false;
@@ -89,7 +106,7 @@ class CollectorProfile extends Component {
     //Landmark
     if (!address1) {
       formIsValid = false;
-      formErrors["landmarkErr"] =ADDRESS_REQUIRED;
+      formErrors["landmarkErr"] = ADDRESS_REQUIRED;
     }
     //City
     if (!city) {
@@ -99,7 +116,7 @@ class CollectorProfile extends Component {
     //State
     if (!state) {
       formIsValid = false;
-      formErrors["stateErr"] =STATE_REQUIRED;
+      formErrors["stateErr"] = STATE_REQUIRED;
     }
     //Pincode
     if (!pinCode) {
@@ -132,8 +149,7 @@ class CollectorProfile extends Component {
     this.setState({ formErrors: formErrors });
     return formIsValid;
   }
-  handleSubmit = async (e) => {
-    e.preventDefault();
+  setTime = () => {
     var start = this.state.startTime.toString().split("T");
     start = start[1].split(":");
     start = (parseInt(start[0]) + 6) % 24;
@@ -142,92 +158,56 @@ class CollectorProfile extends Component {
     end = end[1].split(":");
     end = (parseInt(end[0]) + 6) % 24;
     end = end + ":" + "00";
-    var dropoff = start.toString() + end.toString();
+    return( start.toString() + end.toString());
+   
+  };
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    var dropoff = this.setTime();
     if (this.handleFormValidation()) {
-      const tokens = localStorage.getItem("token");
       const email = localStorage.getItem("email");
-      try {
-        const response = await fetch(
-          "http://localhost:8083/collector/profile/edit",
-          {
-            method: "PUT",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-            body: JSON.stringify({
-              firstName: this.state.firstName,
-              lastName: this.state.lastName,
-              email: email,
-              password:this.state.password,
-              mobileNo: this.state.mobileNo,
-              address1: this.state.address1,
-              city: this.state.city,
-              state: this.state.state,
-              pinCode: this.state.pinCode,
-              shopTime: dropoff,
-              gstNo: this.state.gstNo,
-              registrationNo: this.state.registrationNo,
-              categoriesAcceptedSet: [...this.state.categoriesAcceptedSet],
-            }),
-          }
-        );
-        localStorage.removeItem("name");
-        localStorage.setItem("name", this.state.firstName);
-        console.log(response);
-        toast.success(TOAST_SUCCESS5, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 1500,
-        });
-      } catch (error) {
-        console.log(error);
-      }
+      const data = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: email,
+        password: this.state.password,
+        mobileNo: this.state.mobileNo,
+        address1: this.state.address1,
+        city: this.state.city,
+        state: this.state.state,
+        pinCode: this.state.pinCode,
+        shopTime: dropoff,
+        gstNo: this.state.gstNo,
+        registrationNo: this.state.registrationNo,
+        categoriesAcceptedSet: [...this.state.categoriesAcceptedSet],
+      };
+
+      const res = await api.put(COLLECTOR_PROFILE_EDIT, data);
+      console.log(res);
+
+      localStorage.removeItem("name");
+      localStorage.setItem("name", this.state.firstName);
+      toast.success(TOAST_SUCCESS5, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1500,
+      });
     }
   };
   componentDidMount = async () => {
     this.setState({
       states: statescity,
     });
-    (async function () {
-      try {
-        let val = await profile("collector");
+    const res = await api.get(COLLECTOR_AUTH_URL);
 
-        localStorage.setItem("name", val.data.firstName);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    try {
-      const response = await fetch(
-        COLLECTOR_AUTH_URL,
-        {
-          method: "GET",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
-        }
-      );
-      const res = await response.json();
-      this.setState(res.data);
-      var times;
-      const shopTimes = res.data.shopTime.toString().split("-");
-      times = shopTimes[0].split(":");
-      const dates = moment.utc().hour(times[0]).minute(0);
-      this.setState({ startTime: dates });
-      times = shopTimes[1].split(":");
-      const enddates = moment.utc().hour(times[0]).minute(0);
-      this.setState({ endTime: enddates });
-    } catch (err) {
-      console.log(err);
-      //   }
-    }
+    this.setState(res.data);
+    var times;
+    const shopTimes = res.data.shopTime.toString().split("-");
+    times = shopTimes[0].split(":");
+    const dates = moment.utc().hour(times[0]).minute(0);
+    this.setState({ startTime: dates });
+    times = shopTimes[1].split(":");
+    const enddates = moment.utc().hour(times[0]).minute(0);
+    this.setState({ endTime: enddates });
   };
   returnFunctionStart = (event) => {
     this.setState({ startTime: event.startTime });
@@ -277,9 +257,11 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.firstName}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
                   />
@@ -292,9 +274,11 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="lastName"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.lastName}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
                   />
@@ -327,8 +311,10 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="mobileNo"
-                    style={{borderRadius:"17px"}}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    style={{ borderRadius: "17px" }}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
                     className={phoneNumberErr ? " showError" : ""}
@@ -344,9 +330,11 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="address1"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.address1}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
                   />
@@ -401,9 +389,11 @@ class CollectorProfile extends Component {
                   <input
                     type="pincode"
                     name="pinCode"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.pinCode}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
                   />
@@ -418,9 +408,11 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="gstNo"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.gstNo}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Enter GSTIN"
                   />
                   <div className="formErrors">{gstErr}</div>
@@ -432,9 +424,11 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="registrationNo"
-                    style={{borderRadius:"17px"}}
+                    style={{ borderRadius: "17px" }}
                     value={this.state.registrationNo}
-                    onChange={(e)=>this.setState({ [e.target.name]: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ [e.target.name]: e.target.value })
+                    }
                     placeholder="Enter Registration Number"
                   />
                   <div className="formErrors">{registrationErr}</div>

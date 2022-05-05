@@ -1,15 +1,16 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import Popup from ".././Customer/Popup";
-import {FaUserCircle} from "react-icons/fa";
-import {toast} from "react-toastify";
+import { FaUserCircle } from "react-icons/fa";
+import { toast } from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";
-import { TOAST_WARN3 } from "../constant/constant";
+import { TOAST_WARN3, VENDOR_SUMMARY } from "../constant/constant";
+import api from "../api";
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 export default function MyOrders() {
-  const {useState} = React;
+  const { useState } = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
 
@@ -21,11 +22,11 @@ export default function MyOrders() {
       filtering: false,
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
     {
@@ -35,11 +36,11 @@ export default function MyOrders() {
       filtering: false,
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
     {
@@ -55,11 +56,11 @@ export default function MyOrders() {
       },
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
 
@@ -70,11 +71,11 @@ export default function MyOrders() {
       filtering: false,
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
 
@@ -83,14 +84,14 @@ export default function MyOrders() {
       field: "price",
       filtering: false,
       type: "currency",
-      currencySetting: {currencyCode: "INR"},
+      currencySetting: { currencyCode: "INR" },
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
 
@@ -99,11 +100,11 @@ export default function MyOrders() {
       field: "address",
       editable: false,
       cellStyle: {
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
     {
@@ -111,11 +112,11 @@ export default function MyOrders() {
       field: "date",
       editable: false,
       cellStyle: {
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
     {
@@ -128,7 +129,7 @@ export default function MyOrders() {
       },
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
   ]);
@@ -136,32 +137,17 @@ export default function MyOrders() {
     setopen(!isopen);
   };
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
-      try {
-        const response = await fetch("http://localhost:8083/vendor/summary", {
-          method: "GET",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
+      const res = await api.get(VENDOR_SUMMARY);
+
+      if (res.status === "success") {
+        res.data.map((obj) => {
+          const date = obj.date.split("T");
+          obj.date = date[0];
+          obj.id = "ORD" + obj.id;
         });
-        const res = await response.json();
 
-        if (res.status === "success") {
-          res.data.map((obj) => {
-            const date = obj.date.split("T");
-            obj.date = date[0];
-            obj.id = "ORD" + obj.id;
-          });
-
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
+        setData(res.data);
       }
     })();
   }, []);
@@ -170,7 +156,7 @@ export default function MyOrders() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px"}}>
+      <div style={{ padding: "150px 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -209,7 +195,7 @@ export default function MyOrders() {
                   onClick={togglepop}
                 >
                   {" "}
-                  <ProfileIcon style={{color: "#e75480"}} />
+                  <ProfileIcon style={{ color: "#e75480" }} />
                 </button>
               ),
 

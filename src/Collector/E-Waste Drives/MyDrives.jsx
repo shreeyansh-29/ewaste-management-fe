@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
+import api from "../../api";
+import { COLLECTOR_DRIVE_MYDRIVE } from "../../constant/constant";
 export default function MyDrives() {
   const { useState } = React;
 
@@ -108,7 +110,7 @@ export default function MyDrives() {
       lookup: {
         Upcoming: "Upcoming",
         Cancelled: "Cancelled",
-        completed: "Completed"
+        completed: "Completed",
       },
       cellStyle: {
         textAlign: "center",
@@ -120,58 +122,24 @@ export default function MyDrives() {
       },
     },
   ]);
-  const callApi = (newData) => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    (async function () {
-      try {
-        const response = await fetch(
-          `http://localhost:8083/collector/drive/myDrive/edit?id=${newData.id}&status=${newData.status}`,
-          {
-            method: "PUT",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-        console.log(res);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+  const callApi = async (newData) => {
+    newData.id = newData.id.substring(2);
+    const res = await api.put(
+      `http://localhost:8083/collector/drive/myDrive/edit?id=${newData.id}&status=${newData.status}`
+    );
+    console.log(res);
   };
 
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
-      try {
-        const response = await fetch(
-          "http://localhost:8083/collector/drive/myDrive",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-        if (res.status === "success") {
-          res.data.map((obj) => {
-            obj.id = "DR" + obj.id;
-          });
+      const res = await api.get(COLLECTOR_DRIVE_MYDRIVE);
 
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
+      if (res.status === "success") {
+        res.data.map((obj) => {
+          obj.id = "DR" + obj.id;
+        });
+
+        setData(res.data);
       }
     })();
   }, []);
@@ -198,7 +166,7 @@ export default function MyDrives() {
         columns={columns}
         data={data}
         icons={{
-          Search: ()=><SearchIcon style={{fill:"white"}}/>
+          Search: () => <SearchIcon style={{ fill: "white" }} />,
         }}
         editable={{
           onRowUpdate: (newData, oldData) =>

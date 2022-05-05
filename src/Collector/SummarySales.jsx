@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-import { apicall } from "../Utils/Api";
+import api from "../api";
 import {} from "@material-ui/icons";
 
 import SearchIcon from "@material-ui/icons/Search";
+import { COLLECTOR_SELL_SUMMARY } from "../constant/constant";
 export default function SummarySales() {
   const { useState } = React;
 
@@ -107,7 +108,8 @@ export default function SummarySales() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("summarysell");
+        const res = await api.get(COLLECTOR_SELL_SUMMARY);
+        
         if (res.status === "success") {
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;

@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import "../Collector.css";
 import { toast } from "react-toastify";
-import { TOAST_SUCCESS8 } from "../../constant/constant";
+import {
+  COLLECTOR_REQUEST_PENDING,
+  TOAST_SUCCESS8,
+} from "../../constant/constant";
+import api from "../../api";
 toast.configure();
 export default function CollectorRequests() {
   const { useState } = React;
@@ -144,33 +148,14 @@ export default function CollectorRequests() {
           obj.scheduledTime = " 16:00-18:00";
         }
       }
-    })
+    });
   };
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
-      try {
-        const response = await fetch(
-          "http://localhost:8083/collector/request/pending",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-
-        if (res.status === "success") {
-          handledate(res.data);
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
+      const res = await api.get(COLLECTOR_REQUEST_PENDING);
+      if (res.status === "success") {
+        handledate(res.data);
+        setData(res.data);
       }
     })();
   }, []);
@@ -204,7 +189,7 @@ export default function CollectorRequests() {
         ]}
         options={{
           actionsColumnIndex: -1,
-          search:false
+          search: false,
         }}
       />
     </div>

@@ -8,7 +8,14 @@ import { toast } from "react-toastify";
 import Popup from ".././Customer/Popup";
 import { FaUserCircle } from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
-import { INVALID_QUANTITY, TOAST_ERROR5, TOAST_WARN3, VALID_QUANTITY } from "../constant/constant";
+import {
+  INVALID_QUANTITY,
+  TOAST_ERROR5,
+  TOAST_WARN3,
+  VALID_QUANTITY,
+  VENDOR_VIEW_ITEMS,
+} from "../constant/constant";
+import api from "../api";
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
@@ -169,38 +176,19 @@ export default function Sales() {
   };
 
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
-      try {
-        const response = await fetch(
-          "http://localhost:8083/vendor/view/items",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
+      const res = await api.get(VENDOR_VIEW_ITEMS);
+      if (res.status === "success") {
+        res.data.map((obj) => {
+          if (parseInt(obj.quantity) > parseInt(obj.availableQuantity)) {
+            obj.quantity = obj.availableQuantity;
           }
-        );
-
-        const res = await response.json();
-        if (res.status === "success") {
-          res.data.map((obj) => {
-            if (parseInt(obj.quantity) > parseInt(obj.availableQuantity)) {
-              obj.quantity = obj.availableQuantity;
-            }
-          });
-
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
+        });
       }
+      setData(res.data);
     })();
   }, []);
+  
   const [data, setData] = useState([]);
   const CalTotal = (index, newData) => {
     if (parseInt(newData.quantities) > data[index].availableQuantity) {

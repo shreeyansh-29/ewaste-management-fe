@@ -1,7 +1,8 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import "../Customer.css";
-import {apicall} from "../../Utils/Api";
+import api from "../../api";
+import { CUSTOMER_ANALYTICS_V1 } from "../../constant/constant";
 export const data = [
   ["name", "Count by Order", {role: "style"}],
   ["E-Waste Generated", 5, "yellowgreen"],
@@ -28,7 +29,7 @@ export default function EWaste() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await apicall("wastegenerated");
+        const res = await api.get(CUSTOMER_ANALYTICS_V1);
 
         data[1][1] = res.data.orderInCity;
         data[2][1] = res.data.orderCustomer;
