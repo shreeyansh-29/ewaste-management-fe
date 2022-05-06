@@ -10,7 +10,13 @@ import DateFnsUtils from "@date-io/date-fns";
 import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
 import { toast } from "react-toastify";
-import { TOAST_ERROR4, TOAST_SUCCESS7 } from "../../constant/constant";
+import {
+  COLLECTOR_ORGANIZE_DRIVE,
+  TOAST_ERROR4,
+  TOAST_SUCCESS7,
+} from "../../constant/constant";
+import api from "../../api";
+import Toast from "../../Components/Toast";
 toast.configure();
 export default function OrganizeDrive() {
   const { useState } = React;
@@ -133,7 +139,8 @@ export default function OrganizeDrive() {
     } else if (scheduledate[1] === "Dec") {
       scheduledate[1] = "12";
     }
-    scheduledate = scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
+    scheduledate =
+      scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
     return scheduledate;
   };
   const handleDone = async (e, datas) => {
@@ -147,46 +154,27 @@ export default function OrganizeDrive() {
       datas.time === "" ||
       datas.description === undefined
     ) {
-      toast.error(TOAST_ERROR4, { position: toast.POSITION.TOP_RIGHT });
+      Toast.error(TOAST_ERROR4);
     } else {
-      const tokens = localStorage.getItem("token");
-      const email = localStorage.getItem("email");
       datas.date = dateformat(datas);
-      try {
-        const response = await fetch(
-          "http://localhost:8083/collector/drive/organize",
-          {
-            method: "POST",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-            body: JSON.stringify({
-              driveName: datas.name,
-              description: datas.description,
+      const data = {
+        driveName: datas.name,
+        description: datas.description,
 
-              eWasteCategoryAccepted: [
-                {
-                  categoryAccepted: datas.itemsAcc,
-                },
-              ],
-              date: datas.date,
-              time: datas.time,
-              location: datas.address,
-              status: "Upcoming",
-            }),
-          }
-        );
-        const res = await response.json();
-        toast.success(TOAST_SUCCESS7, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-        setStatus(res.data.status);
-      } catch (err) {
-        console.log(err);
-      }
+        eWasteCategoryAccepted: [
+          {
+            categoryAccepted: datas.itemsAcc,
+          },
+        ],
+        date: datas.date,
+        time: datas.time,
+        location: datas.address,
+        status: "Upcoming",
+      };
+      const res = await api.post(COLLECTOR_ORGANIZE_DRIVE, data);
+      Toast.success(TOAST_SUCCESS7);
+     
+      setStatus(res.data.status);
     }
   };
 

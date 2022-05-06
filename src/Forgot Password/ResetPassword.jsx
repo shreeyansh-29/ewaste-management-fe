@@ -6,12 +6,19 @@ import "../Components/signin.css";
 import { NotificationContainer } from "react-notifications";
 
 import "./password.css";
-import { toast } from "react-toastify";
 
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import { CONFIRM_PASSWORD_INVALID, CONFIRM_PASSWORD_REQUIRED, PASSWORD_INVALID, PASSWORD_REQUIRED, TOAST_SUCCESS2 } from "../constant/constant";
+import {
+  CONFIRM_PASSWORD_INVALID,
+  CONFIRM_PASSWORD_REQUIRED,
+  PASSWORD_INVALID,
+  PASSWORD_REQUIRED,
+  TOAST_SUCCESS2,
+} from "../constant/constant";
+import api from "../api";
+import Toast from "../Components/Toast";
 function ResetPass() {
   const { token } = useParams();
   const [password, setpassword] = useState("");
@@ -59,28 +66,19 @@ function ResetPass() {
   const handleClick = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      try {
-        const response = await fetch(
-          `http://localhost:8083/password/save?token=${token}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              oldPassword: password,
-              newPassword: confirmPassword,
-            }),
-          }
-        );
-        if (response.status === 200) {
-          toast.success(TOAST_SUCCESS2, {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          setTimeout(() => change(), 2000);
-        }
-      } catch (error) {
-        console.log(error);
+      const data = {
+        oldPassword: password,
+        newPassword: confirmPassword,
+      };
+
+      const response = await api.post(
+        `http://localhost:8083/password/save?token=${token}`,
+        data
+      );
+
+      if (response.status === 200) {
+        Toast.success(TOAST_SUCCESS2);
+        setTimeout(() => change(), 2000);
       }
     }
   };
@@ -91,7 +89,7 @@ function ResetPass() {
 
   return (
     <div className="ForPassword">
-      <div className="Form-body" >
+      <div className="Form-body">
         <NotificationContainer />
         <Formik>
           <Form>

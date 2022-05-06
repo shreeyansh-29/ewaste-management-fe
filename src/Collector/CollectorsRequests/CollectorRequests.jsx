@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import "../Collector.css";
-import { toast } from "react-toastify";
 import {
   COLLECTOR_REQUEST_PENDING,
   TOAST_SUCCESS8,
 } from "../../constant/constant";
 import api from "../../api";
-toast.configure();
+import Toast from "../../Components/Toast";
 export default function CollectorRequests() {
   const { useState } = React;
   var orderid = 0;
@@ -108,32 +107,15 @@ export default function CollectorRequests() {
   const handleAccept = async (e, datas) => {
     e.preventDefault();
     orderid = datas.orderId;
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    try {
-      const response = await fetch(
-        `http://localhost:8083/collector/request/pending/accept?order=${orderid}`,
-        {
-          method: "POST",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
-        }
-      );
-      console.log(response);
-      toast.success(TOAST_SUCCESS8, {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 1500,
-      });
-      setTimeout(() => {
-        window.location.href = "/RequestSummary";
-      }, 3000);
-    } catch (err) {
-      console.log(err);
-    }
+
+    await api.post(
+      `http://localhost:8083/collector/request/pending/accept?order=${orderid}`
+    );
+    Toast.success(TOAST_SUCCESS8,1500);
+
+    setTimeout(() => {
+      window.location.href = "/RequestSummary";
+    }, 3000);
   };
   const handledate = (res) => {
     res.map((obj) => {

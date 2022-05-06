@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Collector.css";
-import { toast } from "react-toastify";
 import TimeRange from "react-time-range";
 import { statescity } from "../Sign-Up/states";
 import api from "../api";
@@ -23,6 +22,7 @@ import {
   STATE_REQUIRED,
   TOAST_SUCCESS5,
 } from "../constant/constant";
+import Toast from "../Components/Toast";
 class CollectorProfile extends Component {
   constructor(props) {
     super(props);
@@ -187,10 +187,8 @@ class CollectorProfile extends Component {
 
       localStorage.removeItem("name");
       localStorage.setItem("name", this.state.firstName);
-      toast.success(TOAST_SUCCESS5, {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 1500,
-      });
+      Toast.success(TOAST_SUCCESS5,1500)
+     
     }
   };
   componentDidMount = async () => {
@@ -257,6 +255,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.firstName}
                     onChange={(e) =>
@@ -274,6 +273,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="lastName"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.lastName}
                     onChange={(e) =>
@@ -311,6 +311,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="mobileNo"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
@@ -330,6 +331,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="address1"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.address1}
                     onChange={(e) =>
@@ -389,6 +391,7 @@ class CollectorProfile extends Component {
                   <input
                     type="pincode"
                     name="pinCode"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.pinCode}
                     onChange={(e) =>
@@ -408,6 +411,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="gstNo"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.gstNo}
                     onChange={(e) =>
@@ -424,6 +428,7 @@ class CollectorProfile extends Component {
                   <input
                     type="text"
                     name="registrationNo"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.registrationNo}
                     onChange={(e) =>

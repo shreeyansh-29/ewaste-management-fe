@@ -22,8 +22,8 @@ const GetRequest = async (method, url) => {
   }
 };
 const ApiRequest = async (method, url,data) => {
-  const tokens = localStorage.getItem("token");
-  const email = localStorage.getItem("email");
+  const tokens = localStorage.getItem("token")||"";
+  const email = localStorage.getItem("email")||"" ;
 
   const headerconfig = {
     "Content-Type": "application/json",
@@ -51,5 +51,8 @@ export default {
   },
   put(url,data){
     return ApiRequest("PUT",url,data || "");
+  },
+  post(url,data){
+    return ApiRequest("POST",url,data || "");
   }
 };

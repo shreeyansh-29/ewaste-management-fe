@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { EMAIL_INVALID, EMAIL_REQUIRED, MSG } from "../constant/constant";
+import api from "../api";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
@@ -24,22 +25,13 @@ const ForgotPassword = () => {
     event.preventDefault();
 
     if (validateForm()) {
-      try {
-        const response = await fetch("http://localhost:8083/password/reset", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-          }),
-        });
+      const data = {
+        email: email,
+      };
+      const res = await api.post("http://localhost:8083/password/reset", data);
 
-        if (response.status === 200) {
-          setMsg(MSG);
-        }
-      } catch (error) {
-        console.log(error);
+      if (res.status === 200) {
+        setMsg(MSG);
       }
     }
   };
@@ -89,12 +81,14 @@ const ForgotPassword = () => {
               />
             </div>
             <div className="formerrors">{emailerr}</div>
-            <div style={{ color: "green",marginRight: "7%", marginLeft: "7%" }}>
+            <div
+              style={{ color: "green", marginRight: "7%", marginLeft: "7%" }}
+            >
               {msg === "" ? "" : msg}
             </div>
             <div className="row">
               <div className="container">
-                <button onClick={handleback} className="back-button" >
+                <button onClick={handleback} className="back-button">
                   BACK
                 </button>
                 <button onClick={handleClick} className="psswd-button">

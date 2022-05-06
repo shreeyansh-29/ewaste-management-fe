@@ -11,13 +11,13 @@ import {
 import api from "../../api";
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
-import { toast } from "react-toastify";
 import {
+  CUSTOMER_PICKUP,
   TOAST_ERROR4,
   TOAST_SUCCESS3,
   TOAST_WARN1,
 } from "../../constant/constant";
-toast.configure();
+import Toast from "../../Components/Toast";
 export default function PickUp() {
   const { useState } = React;
   const [expanded, setExpanded] = useState(false);
@@ -159,40 +159,19 @@ export default function PickUp() {
     }
     date = date[3] + "-" + date[1] + "-" + date[2];
     data[0].date = date;
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    try {
-      const response = await fetch(
-        "http://localhost:8083/customer/request/pickUp",
-        {
-          method: "POST",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
-          body: JSON.stringify({
-            category: data[0].category,
-            itemName: data[0].name,
-            quantity: data[0].quantity,
+    const body = {
+      category: data[0].category,
+      itemName: data[0].name,
+      quantity: data[0].quantity,
 
-            scheduledDate: data[0].date,
-            scheduledTime: data[0].time,
-          }),
-        }
-      );
+      scheduledDate: data[0].date,
+      scheduledTime: data[0].time,
+    };
+    const res = await api.post(CUSTOMER_PICKUP, body);
+    console.log(res);
 
-      const res = await response.json();
-      console.log(res);
-
-      if (response.status === 200) {
-        toast.success(TOAST_SUCCESS3, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      }
-    } catch (err) {
-      console.log(err);
+    if (res.status === 200) {
+      Toast.success(TOAST_SUCCESS3);
     }
   };
   const handleClick = async (event) => {
@@ -205,15 +184,14 @@ export default function PickUp() {
       data[0].date === undefined ||
       data[0].time === undefined
     ) {
-      toast.error(TOAST_ERROR4, { position: toast.POSITION.TOP_RIGHT });
+      Toast.error(TOAST_ERROR4);
     } else if (
       data[0].quantity === 0 ||
       data[0].quantity > 20 ||
       data[0].quantity < 0
     ) {
-      toast.warn(TOAST_WARN1, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      Toast.warn(TOAST_WARN1);
+      
     } else {
       const res = await api.get(
         `http://localhost:8083/customer/request/pickUp/viewCollectors?category=${data[0].category}`

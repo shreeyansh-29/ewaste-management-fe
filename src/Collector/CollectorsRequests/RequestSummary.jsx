@@ -5,10 +5,10 @@ import api from "../../api";
 import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../Customer/Popup";
 import { FaUserCircle } from "react-icons/fa";
-import { toast } from "react-toastify";
 import { COLLECTOR_REQUEST_SUMMARY, TOAST_WARN3 } from "../../constant/constant";
+import Toast from "../../Components/Toast";
 
-toast.configure();
+
 export const ProfileIcon = FaUserCircle;
 export default function CollectorRequests() {
   const { useState } = React;
@@ -238,9 +238,7 @@ export default function CollectorRequests() {
 
                 setdetail(datas.customerUid);
                 if (datas.customerUid === null) {
-                  toast.warn(TOAST_WARN3, {
-                    position: toast.POSITION.TOP_RIGHT,
-                  });
+                  Toast.warn(TOAST_WARN3);
                 }
               },
             },

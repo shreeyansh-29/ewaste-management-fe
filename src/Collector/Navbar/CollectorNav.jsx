@@ -6,10 +6,11 @@ import {
   NavNotiIcon,
 } from "../../Components/Navbar/Navbarelements";
 
+import api from "../../api";
 import "../../Customer/Customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
-import {navbarapi} from "../../Utils/navbarApi";
+import { COLLECTOR_NOTIFICATION_MARKASREAD } from "../../constant/constant";
 function CollectorNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -19,7 +20,8 @@ function CollectorNav() {
   const name = localStorage.getItem("name");
   const markAsRead = async () => {
     try {
-      const res = await navbarapi("collector");
+      const res = await api.post(COLLECTOR_NOTIFICATION_MARKASREAD);
+      
       if (res.status === "success") {
         for (var i = 0; i < res.data.length; i++) {
           list[i] = res.data[i].message;

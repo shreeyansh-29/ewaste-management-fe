@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Customer.css";
-import { toast } from "react-toastify";
 import { statescity } from "../Sign-Up/states";
 import api from "../api";
 import {
@@ -17,6 +16,7 @@ import {
   STATE_REQUIRED,
   TOAST_SUCCESS5,
 } from "../constant/constant";
+import Toast from "../Components/Toast";
 class EditProfile extends Component {
   constructor(props) {
     super(props);
@@ -133,10 +133,8 @@ class EditProfile extends Component {
 
       localStorage.removeItem("name");
       localStorage.setItem("name", this.state.firstName);
-      toast.success(TOAST_SUCCESS5, {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 1500,
-      });
+      Toast.success(TOAST_SUCCESS5,1500);
+     
       this.setState(res.data);
     } else {
       console.log(this.state.formErrors);

@@ -6,9 +6,8 @@ import ViewCollectors from "./ViewCollectors";
 import api from "../../api";
 import AddIcon from "@material-ui/icons/AddBox";
 import SearchIcon from "@material-ui/icons/Search";
-import { toast } from "react-toastify";
 import { TOAST_ERROR4, TOAST_WARN1 } from "../../constant/constant";
-toast.configure();
+import Toast from "../../Components/Toast";
 export default function DropOff() {
   const { useState } = React;
   const [expanded, setExpanded] = useState(false);
@@ -75,15 +74,13 @@ export default function DropOff() {
       data[0].quantity === "" ||
       data[0].quantity === undefined
     ) {
-      toast.error(TOAST_ERROR4, { position: toast.POSITION.TOP_RIGHT });
+      Toast.error(TOAST_ERROR4);
     } else if (
       data[0].quantity === 0 ||
       data[0].quantity > 20 ||
       data[0].quantity < 0
     ) {
-      toast.warn(TOAST_WARN1, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      Toast.warn(TOAST_WARN1);
     } else {
       try {
         const res = await api.get(

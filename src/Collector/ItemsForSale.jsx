@@ -2,11 +2,11 @@ import React from "react";
 import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/AddBox";
 import "./Collector.css";
-import {toast} from "react-toastify";
-import { TOAST_ERROR4, TOAST_SUCCESS6 } from "../constant/constant";
-toast.configure();
+import { COLLECTOR_SELL, TOAST_ERROR4, TOAST_SUCCESS6 } from "../constant/constant";
+import api from "../api";
+import Toast from "../Components/Toast";
 export default function ItemsForSale() {
-  const {useState} = React;
+  const { useState } = React;
   const [status, setStatus] = useState("");
   const [columns] = useState([
     {
@@ -61,7 +61,7 @@ export default function ItemsForSale() {
       title: "Price/Item",
       field: "price",
       type: "currency",
-      currencySetting: {currencyCode: "INR"},
+      currencySetting: { currencyCode: "INR" },
       cellStyle: {
         textAlign: "center",
         fontSize: "15px",
@@ -74,42 +74,25 @@ export default function ItemsForSale() {
   ]);
   const handleSubmit = async (e, datas) => {
     e.preventDefault();
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     if (
       datas.itemName === "" ||
       datas.price === null ||
       datas.quantity === null ||
       datas.category === undefined
     ) {
-      toast.error(TOAST_ERROR4, {position: toast.POSITION.TOP_RIGHT});
+      Toast.error(TOAST_ERROR4);
     } else {
-      try {
-        const response = await fetch("http://localhost:8083/collector/sell", {
-          method: "POST",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
+      const data = {
+        itemName: datas.itemName,
+        category: datas.category,
+        quantity: datas.quantity,
+        price: datas.price,
+        status: "Available",
+      };
+      const res = await api.post(COLLECTOR_SELL, data);
+      Toast.success(TOAST_SUCCESS6);
 
-          body: JSON.stringify({
-            itemName: datas.itemName,
-            category: datas.category,
-            quantity: datas.quantity,
-            price: datas.price,
-            status: "Available",
-          }),
-        });
-        const res = await response.json();
-        toast.success(TOAST_SUCCESS6, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-        setStatus(res.data.status);
-      } catch (err) {
-        console.log(err);
-      }
+      setStatus(res.data.status);
     }
   };
 
@@ -117,7 +100,7 @@ export default function ItemsForSale() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
+      <div style={{ padding: "150px 30px 0 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -137,7 +120,7 @@ export default function ItemsForSale() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
           }}
           editable={{
             onRowAdd: (newData) =>
@@ -167,7 +150,7 @@ export default function ItemsForSale() {
           ]}
           options={{
             actionsColumnIndex: -1,
-            search:false
+            search: false,
           }}
         />
       </div>

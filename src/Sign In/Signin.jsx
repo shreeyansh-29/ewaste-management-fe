@@ -4,7 +4,6 @@ import { Formik, Field, Form } from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import { toast } from "react-toastify";
 import GoogleSignin from "./GoogleSignin";
 import jwt from "jwt-decode";
 import api from "../api";
@@ -20,6 +19,7 @@ import {
   TOAST_ERROR2,
   VENDOR_AUTH_URL,
 } from "../constant/constant";
+import Toast from "../Components/Toast";
 
 const SignIn = () => {
   const [password, setPassword] = useState("");
@@ -71,25 +71,20 @@ const SignIn = () => {
     event.preventDefault();
 
     if (validateForm()) {
-      try {
-        const response = await fetch("http://localhost:8083/signin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        });
-        const res = await response.json();
-
-        if (res.status === "Fail") {
-          toast.error(TOAST_ERROR1, { position: toast.POSITION.TOP_RIGHT });
-        }
-        if (res.status === "fail") {
-          toast.error(TOAST_ERROR2, { position: toast.POSITION.TOP_RIGHT });
-        }
+      const data = {
+        email: email,
+        password: password,
+      };
+      var res = await api.post("http://localhost:8083/signin", data);
+      console.log(res);
+      res = await res.json();
+      console.log(res);
+      if (res.status === "Fail") {
+        Toast.error(TOAST_ERROR1);
+      }
+      if (res.status === "fail") {
+        Toast.error(TOAST_ERROR2);
+      } else  if (res.status === "success") {
         localStorage.setItem("token", res.data.token);
         const tokens = localStorage.getItem("token");
         var token = jwt(tokens);
@@ -117,14 +112,11 @@ const SignIn = () => {
           } else if (result.status === "success") {
             localStorage.setItem("count", result.data.length);
           }
-          console.log(localStorage.getItem("count"));
         }
+      }
 
-        if (res.status === "success") {
-          handleRedirect();
-        }
-      } catch (err) {
-        console.log(err);
+      if (res.status === "success") {
+        handleRedirect();
       }
     }
   };

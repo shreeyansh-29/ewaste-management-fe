@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 
 import "../Customer.css";
-import {toast} from "react-toastify";
-import { TOAST_SUCCESS4 } from "../../constant/constant";
-toast.configure();
+import { CUSTOMER_DROPOFF, TOAST_SUCCESS4 } from "../../constant/constant";
+import api from "../../api";
+import Toast from "../../Components/Toast";
 export default function ViewCollectors(props) {
-  const {useState} = React;
+  const { useState } = React;
   const [btndisable, setdisable] = useState(false);
 
   const [columns] = useState([
@@ -79,44 +79,25 @@ export default function ViewCollectors(props) {
 
   const handleAccept = async (e, datas) => {
     e.preventDefault();
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
+    const data = {
+      category: props.customerdata[0].category,
+      itemName: props.customerdata[0].itemName,
+      quantity: props.customerdata[0].quantity,
+      scheduledTime: datas.shopTime,
+      scheduledDate: props.customerdata[0].date,
+      collectorUid: datas.uid,
+    };
+
     setdisable(true);
-    try {
-      const response = await fetch(
-        "http://localhost:8083/customer/request/dropOff",
-        {
-          method: "POST",
-          credentials: "same-origin",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + tokens,
-            EMAIL: email,
-          },
-          body: JSON.stringify({
-            category: props.customerdata[0].category,
-            itemName: props.customerdata[0].itemName,
-            quantity: props.customerdata[0].quantity,
-            scheduledTime: datas.shopTime,
-            scheduledDate: props.customerdata[0].date,
-            collectorUid: datas.uid,
-          }),
-        }
-      );
 
-      console.log(response);
-
-      toast.success(TOAST_SUCCESS4, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    await api.post(CUSTOMER_DROPOFF, data);
+    Toast.success(TOAST_SUCCESS4);
+    
   };
 
   return (
     <div>
-      <div style={{padding: "10px"}}>
+      <div style={{ padding: "10px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -143,8 +124,8 @@ export default function ViewCollectors(props) {
                   disabled={btndisable}
                   style={
                     btndisable === true
-                      ? {color: "red", background: "grey"}
-                      : {color: "white", background: "rgb(14, 185, 207)"}
+                      ? { color: "red", background: "grey" }
+                      : { color: "white", background: "rgb(14, 185, 207)" }
                   }
                 >
                   Accept

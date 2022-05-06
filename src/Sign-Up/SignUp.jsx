@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 import Dropdown from "../Components/Dropdown";
 import Select from "react-select";
-import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 import "./signUp.css";
 import { statescity } from "./states";
@@ -12,7 +11,10 @@ import moment from "moment";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import { ADDRESS_REQUIRED, CATEGORY_REQUIRED, CITY_REQUIRED, CONFIRM_PASSWORD_INVALID, CONFIRM_PASSWORD_REQUIRED, EMAIL_INVALID, EMAIL_REQUIRED, FNAME_REQUIRED, GSTNO_INVALID, GSTNO_REQUIRED, LNAME_REQUIRED, MOBILE_INVALID, MOBILE_REQUIRED,  PASSWORD_INVALID,  PASSWORD_REQUIRED,  PINCODE_INVALID, PINCODE_REQUIRED, REGISTRATION_INVALID, REGISTRATION_REQUIRED, ROLE_REQUIRED, SERVER_MSG, STATE_REQUIRED, TIME_REQUIRED, TOAST_ERROR3, TOAST_SUCCESS1 } from "../constant/constant";
+import { SERVER_MSG, TOAST_ERROR3, TOAST_SUCCESS1 } from "../constant/constant";
+import api from "../api";
+import Toast from "../Components/Toast";
+import validationForm from "../FormValidation";
 const data = [
   {
     value: "Temp",
@@ -97,146 +99,13 @@ class SignUp extends Component {
   }
 
   handleFormValidation() {
-    const {
-      firstName,
-      lastName,
-      email,
-      startTime,
-      endTime,
-      password,
-      confirmPassword,
-      mobileNo,
-      address1,
-      pincode,
-      selectedState,
-      city,
-      gstNo,
-      inputList: [[{ categoryAccepted }]],
-      registrationNo,
-      role: { name },
-    } = this.state;
-
+    console.log(this.state);
     let formErrors = {};
     let formIsValid = true;
 
-    //FirstName
-    if (!firstName) {
+    formErrors = validationForm(this.state);
+    if (formErrors != {}) {
       formIsValid = false;
-      formErrors["firstNameErr"] = FNAME_REQUIRED;
-    }
-
-    //Lastname
-    if (!lastName) {
-      formIsValid = false;
-      formErrors["lastNameErr"] = LNAME_REQUIRED;
-    }
-
-    //Email
-    if (!email) {
-      formIsValid = false;
-      formErrors["emailIdErr"] = EMAIL_REQUIRED;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      formIsValid = false;
-      formErrors["emailIdErr"] = EMAIL_INVALID;
-    }
-    //Password
-    if (!password) {
-      formIsValid = false;
-      var str1 = PASSWORD_REQUIRED;
-      formErrors["passwordErr"] = str1;
-    } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-      formIsValid = false;
-      var str = PASSWORD_INVALID;
-      formErrors["passwordErr"] = str;
-    }
-    //Confirm Password
-    if (!confirmPassword) {
-      formIsValid = false;
-      formErrors["confirmPasswordErr"] = CONFIRM_PASSWORD_REQUIRED;
-    } else if (password !== confirmPassword) {
-      formIsValid = false;
-      formErrors["confirmPasswordErr"] = CONFIRM_PASSWORD_INVALID;
-    }
-    //Phone number
-    if (!mobileNo) {
-      formIsValid = false;
-      formErrors["mobileNoErr"] = MOBILE_REQUIRED;
-    } else {
-      var mobPattern = /^[6-9]\d{9}$/;
-      if (!mobPattern.test(mobileNo)) {
-        formIsValid = false;
-        console.log(mobileNo);
-        formErrors["mobileNoErr"] = MOBILE_INVALID;
-      }
-    }
-    //Address
-    if (!address1) {
-      formIsValid = false;
-      formErrors["addressErr"] = ADDRESS_REQUIRED;
-    }
-    //City
-    if (city === "" || city === "Select City") {
-      formIsValid = false;
-      formErrors["cityErr"] = CITY_REQUIRED;
-    }
-    //State
-    if (selectedState === "" || selectedState === "Select State") {
-      formIsValid = false;
-      formErrors["stateErr"] = STATE_REQUIRED;
-    }
-    //Pincode
-    if (!pincode) {
-      formIsValid = false;
-      formErrors["pincodeErr"] = PINCODE_REQUIRED;
-    } else {
-      var pincodes = /^\d{6}$/;
-      if (!pincodes.test(pincode)) {
-        formIsValid = false;
-        formErrors["pincodeErr"] = PINCODE_INVALID;
-      }
-    }
-    //role
-    if (name === "" || name === "select") {
-      formIsValid = false;
-      formErrors["roleErr"] = ROLE_REQUIRED;
-    }
-    if (
-      this.state.role.name === "Collector" ||
-      this.state.role.name === "Vendor"
-    ) {
-      if (!gstNo) {
-        formIsValid = false;
-        formErrors["gstErr"] = GSTNO_REQUIRED;
-      } else {
-        var gst = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}Z\d{1}$/;
-        if (!gst.test(gstNo)) {
-          formIsValid = false;
-          formErrors["gstErr"] = GSTNO_INVALID;
-        }
-      }
-      if (!registrationNo) {
-        formIsValid = false;
-        formErrors["registrationErr"] = REGISTRATION_REQUIRED;
-      } else {
-        var reg = /^\d{6}$/;
-        if (!reg.test(registrationNo)) {
-          formIsValid = false;
-          formErrors["registrationErr"] = REGISTRATION_INVALID;
-        }
-      }
-    }
-    if (this.state.role.name === "Collector") {
-      if (
-        startTime._isAMomentObject === true ||
-        endTime._isAMomentObject === true
-      ) {
-        formIsValid = false;
-        formErrors["timeErr"] = TIME_REQUIRED;
-      }
-      if (categoryAccepted === "Select Categories" || categoryAccepted === "") {
-        formIsValid = false;
-        formErrors["categoryErr"] = CATEGORY_REQUIRED;
-      }
     }
 
     this.setState({ formErrors: formErrors });
@@ -245,7 +114,6 @@ class SignUp extends Component {
   }
   handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
   returnFunctionStart = (event) => {
@@ -274,53 +142,39 @@ class SignUp extends Component {
         this.state.firstName.slice(1);
 
       const name = this.state.role.name.toUpperCase();
+      const data = {
+        firstName: fname,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        mobileNo: this.state.mobileNo,
+        address1: this.state.address1,
+        city: this.state.city,
 
-      try {
-        const response = await fetch("http://localhost:8083/user", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName: fname,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            password: this.state.password,
-            mobileNo: this.state.mobileNo,
-            address1: this.state.address1,
-            city: this.state.city,
+        state: this.state.selectedState,
+        pinCode: this.state.pincode,
 
-            state: this.state.selectedState,
-            pinCode: this.state.pincode,
+        role: { name: name },
+        gstNo: this.state.gstNo,
+        registrationNo: this.state.registrationNo,
+        shopTime: dropoff,
+        categoriesAcceptedSet: [...this.state.inputList[0]],
+      };
+      var res = await api.post("http://localhost:8083/user", data);
 
-            role: { name: name },
-            gstNo: this.state.gstNo,
-            registrationNo: this.state.registrationNo,
-            shopTime: dropoff,
-            categoriesAcceptedSet: [...this.state.inputList[0]],
-          }),
+      res = await res.json();
+
+      if (res.status === "success") {
+        Toast.success(TOAST_SUCCESS1, 1500);
+        setTimeout(() => {
+          window.location.href = "/SignIn";
+        }, 2000);
+      } else if (res.status === "fail") {
+        Toast.error(TOAST_ERROR3);
+      } else {
+        this.setState({
+          msg: SERVER_MSG,
         });
-        const res = await response.json();
-        console.log(res);
-        if (res.status === "success") {
-          toast.success(TOAST_SUCCESS1, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 1500,
-          });
-          setTimeout(() => {
-            window.location.href = "/SignIn";
-          }, 2000);
-        } else if (res.status === "fail") {
-          toast.error(TOAST_ERROR3, {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-        } else {
-          this.setState({
-            msg: SERVER_MSG,
-          });
-        }
-      } catch (error) {
-        console.log(error);
       }
     }
   };

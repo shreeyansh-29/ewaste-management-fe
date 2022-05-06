@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
 import PuchaseData from "./PuchaseData";
 import "./vendor.css";
-import { toast } from "react-toastify";
 import Popup from ".././Customer/Popup";
 import { FaUserCircle } from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
@@ -14,10 +13,11 @@ import {
   TOAST_WARN3,
   VALID_QUANTITY,
   VENDOR_VIEW_ITEMS,
+  VENDOR_ACCEPT_ITEMS
 } from "../constant/constant";
 import api from "../api";
+import Toast from "../Components/Toast";
 export const ProfileIcon = FaUserCircle;
-toast.configure();
 
 export default function Sales() {
   const { useState } = React;
@@ -165,9 +165,8 @@ export default function Sales() {
   ]);
   const profile = (e) => {
     if (e.id === null) {
-      toast.warn(TOAST_WARN3, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      Toast.warn(TOAST_WARN3)
+      
     } else {
       const id = e.id;
       setdetail(id);
@@ -178,6 +177,7 @@ export default function Sales() {
   useEffect(() => {
     (async function () {
       const res = await api.get(VENDOR_VIEW_ITEMS);
+
       if (res.status === "success") {
         res.data.map((obj) => {
           if (parseInt(obj.quantity) > parseInt(obj.availableQuantity)) {
@@ -188,11 +188,11 @@ export default function Sales() {
       setData(res.data);
     })();
   }, []);
-  
+
   const [data, setData] = useState([]);
   const CalTotal = (index, newData) => {
     if (parseInt(newData.quantities) > data[index].availableQuantity) {
-      toast.error(INVALID_QUANTITY, { position: toast.POSITION.TOP_RIGHT });
+      Toast.error(INVALID_QUANTITY);
 
       newData.quantities = null;
     } else {
@@ -207,41 +207,22 @@ export default function Sales() {
   const handleBuy = async (e, datas) => {
     e.preventDefault();
     if (datas.quantities === 0 || datas.quantities === undefined) {
-      toast.error(TOAST_ERROR5, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      Toast.error(TOAST_ERROR5);
 
       setopen(false);
     } else {
       setQuantity(datas.quantities);
       setItem(datas.itemName);
-      const tokens = localStorage.getItem("token");
-      const email = localStorage.getItem("email");
-      try {
-        const response = await fetch(
-          "http://localhost:8083/vendor/view/items/accept",
-          {
-            method: "POST",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-            body: JSON.stringify({
-              id: datas.id,
-              quantity: datas.quantities,
-              price: datas.purchaseprice,
-              date: new Date(),
-            }),
-          }
-        );
-        const res = await response.json();
 
-        setDetails(res.data);
-      } catch (err) {
-        console.log(err);
-      }
+      const data = {
+        id: datas.id,
+        quantity: datas.quantities,
+        price: datas.purchaseprice,
+        date: new Date(),
+      };
+      const res = await api.post(VENDOR_ACCEPT_ITEMS, data);
+
+      setDetails(res.data);
     }
   };
   const togglePop = () => {

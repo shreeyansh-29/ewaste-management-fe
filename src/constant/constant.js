@@ -19,6 +19,12 @@ export const VENDOR_PROFILE_EDIT = API_BASE_URL+'/vendor/profile/edit';
 export const COLLECTOR_PROFILE_EDIT = API_BASE_URL+'/collector/profile/edit';
 export const CUSTOMER_PROFILE_EDIT = API_BASE_URL+'/customer/profile/edit';
 
+export const COLLECTOR_SELL = API_BASE_URL+'/collector/sell';
+export const COLLECTOR_ORGANIZE_DRIVE = API_BASE_URL+'/collector/drive/organize';
+
+export const CUSTOMER_PICKUP = API_BASE_URL+'/customer/request/pickUp';
+export const CUSTOMER_DROPOFF = API_BASE_URL+'/customer/request/dropOff';
+export const VENDOR_ACCEPT_ITEMS = API_BASE_URL+'/vendor/view/items/accept';
 export const COLLECTOR_DRIVE_MYDRIVE = API_BASE_URL+'/collector/drive/myDrive';
 export const VENDOR_SUMMARY =API_BASE_URL+'/vendor/summary';
 export const CUSTOMER_VIEW_DRIVES = API_BASE_URL+'/customer/viewDrives';

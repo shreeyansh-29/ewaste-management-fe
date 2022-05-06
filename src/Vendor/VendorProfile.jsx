@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./vendor.css";
 import api from "../api";
 import { statescity } from "../Sign-Up/states";
-import { toast } from "react-toastify";
 import {
   ADDRESS_REQUIRED,
   CITY_REQUIRED,
@@ -21,6 +20,7 @@ import {
   VENDOR_AUTH_URL,
   VENDOR_PROFILE_EDIT,
 } from "../constant/constant";
+import Toast from "../Components/Toast";
 class VendorProfile extends Component {
   constructor(props) {
     super(props);
@@ -164,10 +164,7 @@ class VendorProfile extends Component {
     
       localStorage.removeItem("name");
       localStorage.setItem("name", this.state.firstName);
-      toast.success(TOAST_SUCCESS5, {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 1500,
-      });
+      Toast.success(TOAST_SUCCESS5,1500);
     }
   };
   componentDidMount = async () => {
@@ -223,6 +220,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.firstName}
                     onChange={(e) =>
@@ -240,6 +238,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="lastName"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     value={this.state.lastName}
                     onChange={(e) =>
@@ -271,6 +270,7 @@ class VendorProfile extends Component {
                   <input
                     type="text"
                     name="mobileNo"
+                    autoComplete="off"
                     style={{ borderRadius: "17px" }}
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
@@ -291,6 +291,7 @@ class VendorProfile extends Component {
                     type="text"
                     style={{ borderRadius: "17px" }}
                     name="address1"
+                    autoComplete="off"
                     value={this.state.address1}
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
@@ -350,6 +351,7 @@ class VendorProfile extends Component {
                     type="pincode"
                     style={{ borderRadius: "17px" }}
                     name="pinCode"
+                    autoComplete="off"
                     value={this.state.pinCode}
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
@@ -369,6 +371,7 @@ class VendorProfile extends Component {
                     type="text"
                     style={{ borderRadius: "17px" }}
                     name="gstNo"
+                    autoComplete="off"
                     value={this.state.gstNo}
                     onChange={(e) =>
                       this.setState({ [e.target.name]: e.target.value })
@@ -383,6 +386,7 @@ class VendorProfile extends Component {
                   </label>
                   <input
                     type="text"
+                    autoComplete="off"
                     name="registrationNo"
                     style={{ borderRadius: "17px" }}
                     value={this.state.registrationNo}

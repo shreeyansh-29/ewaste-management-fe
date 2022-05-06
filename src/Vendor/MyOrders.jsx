@@ -138,6 +138,7 @@ export default function MyOrders() {
   };
   useEffect(() => {
     (async function () {
+      
       const res = await api.get(VENDOR_SUMMARY);
 
       if (res.status === "success") {

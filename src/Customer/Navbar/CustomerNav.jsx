@@ -19,7 +19,7 @@ function CustomerNav() {
   const name = localStorage.getItem("name");
 
   const markAsRead = async () => {
-    const res = await api.get(CUSTOMER_NOTIFICATION_MARKASREAD);
+    const res = await api.post(CUSTOMER_NOTIFICATION_MARKASREAD);
 
     if (res.status === "success") {
       for (var i = 0; i < res.data.length; i++) {
