@@ -21,7 +21,7 @@ import {
   ROLE_REQUIRED,
   STATE_REQUIRED,
   TIME_REQUIRED,
-} from "./constant/constant";
+} from "../constant/constant";
 export default function validationForm(values) {
   let formErrors = {};
   if (!values.firstName) {
@@ -87,10 +87,7 @@ export default function validationForm(values) {
   if (values.role.name === "" || values.role.name === "select") {
     formErrors["roleErr"] = ROLE_REQUIRED;
   }
-  if (
-    values.role.name === "Collector" ||
-    values.role.name === "Vendor"
-  ) {
+  if (values.role.name === "Collector" || values.role.name === "Vendor") {
     if (!values.gstNo) {
       formErrors["gstErr"] = GSTNO_REQUIRED;
     } else {
@@ -117,7 +114,7 @@ export default function validationForm(values) {
     }
     if (
       values.inputList[0][0].categoryAccepted === "Select Categories" ||
-      values.inputList[0][0].categoryAccepted  === ""
+      values.inputList[0][0].categoryAccepted === ""
     ) {
       formErrors["categoryErr"] = CATEGORY_REQUIRED;
     }

@@ -3,23 +3,11 @@ import "./Collector.css";
 import TimeRange from "react-time-range";
 import { statescity } from "../Sign-Up/states";
 import api from "../api";
+import validationCollector from "./ValidationCollector";
 import moment from "moment";
 import {
-  ADDRESS_REQUIRED,
-  CITY_REQUIRED,
   COLLECTOR_AUTH_URL,
   COLLECTOR_PROFILE_EDIT,
-  FNAME_REQUIRED,
-  GSTNO_INVALID,
-  GSTNO_REQUIRED,
-  LNAME_REQUIRED,
-  MOBILE_INVALID,
-  MOBILE_REQUIRED,
-  PINCODE_INVALID,
-  PINCODE_REQUIRED,
-  REGISTRATION_INVALID,
-  REGISTRATION_REQUIRED,
-  STATE_REQUIRED,
   TOAST_SUCCESS5,
 } from "../constant/constant";
 import Toast from "../Components/Toast";
@@ -67,87 +55,11 @@ class CollectorProfile extends Component {
     this.setState({ city: event.target.value });
   }
   handleFormValidation() {
-    const {
-      firstName,
-      lastName,
-      mobileNo,
-      // password,
-      address1,
-      city,
-      state,
-      pinCode,
-      gstNo,
-      registrationNo,
-    } = this.state;
-    let formErrors = {};
-    let formIsValid = true;
-    //FirstName
-    if (!firstName) {
-      formIsValid = false;
-      formErrors["firstNameErr"] = FNAME_REQUIRED;
-    }
-    //Lastname
-    if (!lastName) {
-      formIsValid = false;
-      formErrors["lastNameErr"] = LNAME_REQUIRED;
-    }
+    let Errors = {};
+    Errors = validationCollector(this.state);
+    this.setState({ formErrors: Errors.formErrors });
 
-    //Phone number
-    if (!mobileNo) {
-      formIsValid = false;
-      formErrors["phoneNumberErr"] = MOBILE_REQUIRED;
-    } else {
-      var mobPattern = /^[6-9]\d{9}$/;
-      if (!mobPattern.test(mobileNo)) {
-        formIsValid = false;
-        formErrors["phoneNumberErr"] = MOBILE_INVALID;
-      }
-    }
-    //Landmark
-    if (!address1) {
-      formIsValid = false;
-      formErrors["landmarkErr"] = ADDRESS_REQUIRED;
-    }
-    //City
-    if (!city) {
-      formIsValid = false;
-      formErrors["cityErr"] = CITY_REQUIRED;
-    }
-    //State
-    if (!state) {
-      formIsValid = false;
-      formErrors["stateErr"] = STATE_REQUIRED;
-    }
-    //Pincode
-    if (!pinCode) {
-      formIsValid = false;
-      formErrors["pincodeErr"] = PINCODE_REQUIRED;
-    } else if (!/^\d{6}$/.test(pinCode)) {
-      formIsValid = false;
-      formErrors["pincodeErr"] = PINCODE_INVALID;
-    }
-    if (!registrationNo) {
-      formIsValid = false;
-      formErrors["registrationErr"] = REGISTRATION_REQUIRED;
-    } else {
-      var reg = /^\d{6}$/;
-      if (!reg.test(registrationNo)) {
-        formIsValid = false;
-        formErrors["registrationErr"] = REGISTRATION_INVALID;
-      }
-    }
-    if (!gstNo) {
-      formIsValid = false;
-      formErrors["gstErr"] = GSTNO_REQUIRED;
-    } else {
-      var gst = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}Z\d{1}$/;
-      if (!gst.test(gstNo)) {
-        formIsValid = false;
-        formErrors["gstErr"] = GSTNO_INVALID;
-      }
-    }
-    this.setState({ formErrors: formErrors });
-    return formIsValid;
+    return Errors.formIsValid;
   }
   setTime = () => {
     var start = this.state.startTime.toString().split("T");
@@ -158,8 +70,7 @@ class CollectorProfile extends Component {
     end = end[1].split(":");
     end = (parseInt(end[0]) + 6) % 24;
     end = end + ":" + "00";
-    return( start.toString() + end.toString());
-   
+    return start.toString() + end.toString();
   };
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -187,8 +98,7 @@ class CollectorProfile extends Component {
 
       localStorage.removeItem("name");
       localStorage.setItem("name", this.state.firstName);
-      Toast.success(TOAST_SUCCESS5,1500)
-     
+      Toast.success(TOAST_SUCCESS5, 1500);
     }
   };
   componentDidMount = async () => {

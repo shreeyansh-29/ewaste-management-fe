@@ -14,7 +14,7 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import { SERVER_MSG, TOAST_ERROR3, TOAST_SUCCESS1 } from "../constant/constant";
 import api from "../api";
 import Toast from "../Components/Toast";
-import validationForm from "../FormValidation";
+import validationForm from "./FormValidation";
 const data = [
   {
     value: "Temp",
@@ -99,7 +99,6 @@ class SignUp extends Component {
   }
 
   handleFormValidation() {
-    console.log(this.state);
     let formErrors = {};
     let formIsValid = true;
 

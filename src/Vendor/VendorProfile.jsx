@@ -1,21 +1,9 @@
 import React, { Component } from "react";
 import "./vendor.css";
 import api from "../api";
+import validationVendor from "./VendorValidation";
 import { statescity } from "../Sign-Up/states";
 import {
-  ADDRESS_REQUIRED,
-  CITY_REQUIRED,
-  FNAME_REQUIRED,
-  GSTNO_INVALID,
-  GSTNO_REQUIRED,
-  LNAME_REQUIRED,
-  MOBILE_INVALID,
-  MOBILE_REQUIRED,
-  PINCODE_INVALID,
-  PINCODE_REQUIRED,
-  REGISTRATION_INVALID,
-  REGISTRATION_REQUIRED,
-  STATE_REQUIRED,
   TOAST_SUCCESS5,
   VENDOR_AUTH_URL,
   VENDOR_PROFILE_EDIT,
@@ -55,89 +43,11 @@ class VendorProfile extends Component {
     this.setState({ city: event.target.value });
   }
   handleFormValidation() {
-    const {
-      firstName,
-      lastName,
-      registrationNo,
-      // password,
-      mobileNo,
-      address1,
-      city,
-      state,
-      pinCode,
-      gstNo,
-    } = this.state;
+    let Errors = {};
+    Errors = validationVendor(this.state);
+    this.setState({ formErrors: Errors.formErrors });
 
-    let formErrors = {};
-    let formIsValid = true;
-
-    //FirstName
-    if (!firstName) {
-      formIsValid = false;
-      formErrors["firstNameErr"] = FNAME_REQUIRED;
-    }
-    //Lastname
-    if (!lastName) {
-      formIsValid = false;
-      formErrors["lastNameErr"] = LNAME_REQUIRED;
-    }
-    //Phone number
-    if (!mobileNo) {
-      formIsValid = false;
-      formErrors["phoneNumberErr"] = MOBILE_REQUIRED;
-    } else {
-      var mobPattern = /^[6-9]\d{9}$/;
-      if (!mobPattern.test(mobileNo)) {
-        formIsValid = false;
-        formErrors["phoneNumberErr"] = MOBILE_INVALID;
-      }
-    }
-    //Landmark
-    if (!address1) {
-      formIsValid = false;
-      formErrors["landmarkErr"] = ADDRESS_REQUIRED;
-    }
-    //City
-    if (!city) {
-      formIsValid = false;
-      formErrors["cityErr"] = CITY_REQUIRED;
-    }
-    //State
-    if (!state) {
-      formIsValid = false;
-      formErrors["stateErr"] = STATE_REQUIRED;
-    }
-    //Pincode
-    if (!pinCode) {
-      formIsValid = false;
-      formErrors["pincodeErr"] = PINCODE_REQUIRED;
-    } else if (!/^\d{6}$/.test(pinCode)) {
-      formIsValid = false;
-      formErrors["pincodeErr"] = PINCODE_INVALID;
-    }
-    if (!gstNo) {
-      formIsValid = false;
-      formErrors["gstErr"] = GSTNO_REQUIRED;
-    } else {
-      var gst = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}Z\d{1}$/;
-      if (!gst.test(gstNo)) {
-        formIsValid = false;
-        formErrors["gstErr"] = GSTNO_INVALID;
-      }
-    }
-    if (!registrationNo) {
-      formIsValid = false;
-      formErrors["registrationErr"] = REGISTRATION_REQUIRED;
-    } else {
-      var reg = /^\d{6,}$/;
-      if (!reg.test(registrationNo)) {
-        formIsValid = false;
-        formErrors["registrationErr"] = REGISTRATION_INVALID;
-      }
-    }
-
-    this.setState({ formErrors: formErrors });
-    return formIsValid;
+    return Errors.formIsValid;
   }
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -158,13 +68,13 @@ class VendorProfile extends Component {
         registrationNo: this.state.registrationNo,
         shopTime: "10",
       };
-      
+
       const res = await api.put(VENDOR_PROFILE_EDIT, data);
       console.log(res);
-    
+
       localStorage.removeItem("name");
       localStorage.setItem("name", this.state.firstName);
-      Toast.success(TOAST_SUCCESS5,1500);
+      Toast.success(TOAST_SUCCESS5, 1500);
     }
   };
   componentDidMount = async () => {

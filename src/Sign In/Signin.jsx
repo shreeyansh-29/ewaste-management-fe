@@ -20,7 +20,6 @@ import {
   VENDOR_AUTH_URL,
 } from "../constant/constant";
 import Toast from "../Components/Toast";
-
 const SignIn = () => {
   const [password, setPassword] = useState("");
 
@@ -84,7 +83,7 @@ const SignIn = () => {
       }
       if (res.status === "fail") {
         Toast.error(TOAST_ERROR2);
-      } else  if (res.status === "success") {
+      } else if (res.status === "success") {
         localStorage.setItem("token", res.data.token);
         const tokens = localStorage.getItem("token");
         var token = jwt(tokens);
