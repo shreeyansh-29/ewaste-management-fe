@@ -1,7 +1,12 @@
-import React, { useState } from "react";
-import { Formik, Field, Form } from "formik";
+import React, {useState} from "react";
+import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { EMAIL_INVALID, EMAIL_REQUIRED, MSG } from "../constant/constant";
+import {
+  EMAIL_INVALID,
+  EMAIL_REQUIRED,
+  FORGOT_PASSWORD,
+  MSG,
+} from "../constant/constant";
 import api from "../../core/utilities/httpProvider";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +33,7 @@ const ForgotPassword = () => {
       const data = {
         email: email,
       };
-      const res = await api.post("http://localhost:8083/password/reset", data);
+      const res = await api.post(FORGOT_PASSWORD, data);
 
       if (res.status === 200) {
         setMsg(MSG);
@@ -75,15 +80,13 @@ const ForgotPassword = () => {
                 className="form-control"
                 type="email"
                 placeholder="Email"
-                style={{ borderRadius: "17px" }}
+                style={{borderRadius: "17px"}}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="off"
               />
             </div>
             <div className="formerrors">{emailerr}</div>
-            <div
-              style={{ color: "green", marginRight: "7%", marginLeft: "7%" }}
-            >
+            <div style={{color: "green", marginRight: "7%", marginLeft: "7%"}}>
               {msg === "" ? "" : msg}
             </div>
             <div className="row">

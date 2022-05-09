@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Formik, Field, Form } from "formik";
+import React, {useState} from "react";
+import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import "../components/signin.css";
-import { NotificationContainer } from "react-notifications";
+import {NotificationContainer} from "react-notifications";
 
 import "./password.css";
 
@@ -20,7 +20,7 @@ import {
 import api from "../../core/utilities/httpProvider";
 import Toast from "../components/toast";
 function ResetPass() {
-  const { token } = useParams();
+  const {token} = useParams();
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPsswd] = useState("");
   const [passwordErr, setErr] = useState();
@@ -122,7 +122,7 @@ function ResetPass() {
                   className="form-control"
                   type={passwordType}
                   placeholder="New Password"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={(e) => setpassword(e.target.value)}
                   autoComplete="off"
                 />
@@ -158,7 +158,7 @@ function ResetPass() {
                   name="confirm-password"
                   className="form-control"
                   type={confirmPasswordType}
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   placeholder="Confirm Password"
                   onChange={(e) => setconfirmPsswd(e.target.value)}
                 />
@@ -183,7 +183,7 @@ function ResetPass() {
 
             <div className="formErrors1">{confirmPasswordErr}</div>
 
-            <div className="cont" style={{ marginLeft: "25px" }}>
+            <div className="cont" style={{marginLeft: "25px"}}>
               <button onClick={handleClick} className="reset-button">
                 Reset
               </button>
