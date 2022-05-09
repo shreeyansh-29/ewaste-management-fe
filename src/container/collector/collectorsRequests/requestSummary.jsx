@@ -176,6 +176,7 @@ export default function CollectorRequests() {
     (async function () {
       try {
         const res = await api.get(COLLECTOR_REQUEST_SUMMARY);
+        console.log(res);
         if (res.status === "success") {
           handledata(res);
           

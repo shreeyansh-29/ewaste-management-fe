@@ -5,11 +5,11 @@
 select{
   width:70px;
 }
-/* .icon-button__badge1{
-  margin-left: 0px;
-} */
+.icon-button__badge1{
+  margin-left: -20px;
+}
 .bell{
-  margin-left: 700px;
+  margin-left:700px;
 }
 
 .Formbody {

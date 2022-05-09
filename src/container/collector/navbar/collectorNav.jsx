@@ -8,6 +8,7 @@ import {
 
 import api from "../../../core/utilities/httpProvider";
 import "../../customer/Customer.css";
+import "../Collector.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import { COLLECTOR_NOTIFICATION_MARKASREAD } from "../../constant/constant";
@@ -69,6 +70,7 @@ function CollectorNav() {
             <button
               style={{background: "#101522", border: "none"}}
               onClick={() => markAsRead()}
+              
             >
               <div className="icon-button__badge1">
                 {c === "0" ? (
