@@ -100,6 +100,7 @@ const SignIn = () => {
         if (role === "COLLECTOR") {
           val = await api.get(COLLECTOR_AUTH_URL);
           result = await api.get(COLLECTOR_NOTIFICATION_URL);
+          console.log(result);
         }
         if (role === "VENDOR") {
           val = await api.get(VENDOR_AUTH_URL);
@@ -215,7 +216,7 @@ const SignIn = () => {
                   className="signin-button"
                   onClick={handleClick}
                 >
-                  SignIn
+                  <div style={{ textAlign: "center" }}>Sign In</div>
                 </button>
               </div>
 

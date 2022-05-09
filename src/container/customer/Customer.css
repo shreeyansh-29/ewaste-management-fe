@@ -12,12 +12,12 @@ a:hover {
   cursor: pointer;
 }
 .navbarCount {
-  color: "white";
-  margin-left: "18px";
-  border-radius: "17px";
-  width: "23px";
-  top: "7px";
-  left: "4px";
+  color: white;
+  margin-left: 18px;
+  border-radius: 17px;
+  width: 23px;
+  top: 7px;
+  left: 4px;
   position: "relative";
 }
 .userreq .center {
