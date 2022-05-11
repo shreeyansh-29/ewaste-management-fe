@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./container/sign-In/signin";
 import OAuth2RedirectHandler from "./container/oauth2/oAuth2RedirectHandler";
 import Home from "./container/homePage/home";
+import SaleItems from "./container/collector/collectorSaleItems/salesItems";
 import SignUp from "./container/sign-Up/signUp";
 import ForgotPassword from "./container/forgotPassword/forgotPassword";
 import ResetPass from "./container/forgotPassword/resetPassword";
@@ -31,7 +32,7 @@ import ItemsForSale from "./container/collector/collectorSaleItems/itemsForSale"
 
 import GlobalStyle from "./container/globalStyles";
 import ScrollToTop from "./container/components/scrollToTop";
-import SummarySales from "./container/collector/collectorSaleItems/summarySales";
+import SummarySales from "./container/collector/collectorSaleItems/availableSales";
 import Popup from "./container/customer/popup";
 import Waste from "./container/customer/customerRequests/waste";
 
@@ -102,6 +103,7 @@ function App() {
         <Route path="/MyDrives" element={<MyDrives />} />
         <Route path="/ItemsForSale" element={<ItemsForSale />} />
         <Route path="/MyRequests" element={<MyRequests />} />
+        <Route path="/SaleItems" element={<SaleItems />} />
 
         <Route path="/OrganizeDrive" element={<OrganizeDrive />} />
         <Route path="/CollectorRequests" element={<CollectorRequests />} />

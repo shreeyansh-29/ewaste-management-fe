@@ -60,7 +60,7 @@ export default function SummarySales() {
       },
     },
     {
-      title: " Quantity",
+      title: "Available Quantity",
       editable: "never",
       field: "quantity",
       type: "numeric",
@@ -75,7 +75,7 @@ export default function SummarySales() {
     },
 
     {
-      title: "Price",
+      title: "Unit Price",
       editable: "never",
       field: "price",
       type: "currency",
@@ -88,18 +88,15 @@ export default function SummarySales() {
       },
     },
     {
-      title: "Status",
-      field: "status",
-      lookup: {
-        Available: "Available",
-        Sold: "Sold",
-      },
+      title: "Total Price",
+      editable: "never",
+      field: "price",
+      type: "currency",
+      currencySetting: { currencyCode: "INR" },
       cellStyle: {
-        textAlign: "center",
         fontSize: "15px",
       },
       headerStyle: {
-        textAlign: "center",
         fontSize: "15px",
       },
     },
@@ -131,7 +128,7 @@ export default function SummarySales() {
 
   return (
     <div>
-      <div style={{ padding: "150px 30px 0 30px" }}>
+      <div style={{ padding: "20px 30px 0 30px" }}>
         <h2
           style={{
             textAlign: "center",
