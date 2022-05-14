@@ -9,7 +9,7 @@ import SoldItems from "./soldItems";
 
 export default function SaleItems() {
   const [value, setValue] = useState(0);
-  const handleChange = (event,newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   function TabPanel(props) {
@@ -23,7 +23,7 @@ export default function SaleItems() {
         {...other}
       >
         {value === index && (
-          <Box >
+          <Box>
             <Typography>{children}</Typography>
           </Box>
         )}
@@ -31,25 +31,42 @@ export default function SaleItems() {
     );
   }
   return (
-    <Paper square style={{margin:"80px auto", width:"100%"  }}>
-      <Tabs 
-        value={value}
-        indicatorColor="primary"
-        textColor="primary"
-        onChange={handleChange}
-        aria-label="disabled tabs example"
-        centered
-        variant="fullWidth"
+    <div style={{ padding: "150px 30px 0 30px" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "30px",
+          padding: "2px,",
+          color: "white",
+          marginBottom: "2.5%",
+          backgroundColor: " rgb(30, 28, 54)",
+          borderRadius: "5px",
+        }}
       >
-        <Tab label="Available" />
-        <Tab label="Sold" />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        <SummarySales />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <SoldItems /> 
-      </TabPanel>
-    </Paper>
+        {" "}
+        Invoices{" "}
+      </h2>
+      <Paper square style={{ margin: "20px auto", width: "100%" }}>
+        <Tabs
+          value={value}
+          indicatorColor="primary"
+          textColor="primary"
+          onChange={handleChange}
+          aria-label="disabled tabs example"
+          centered
+          variant="fullWidth"
+          elevation={20}
+        >
+          <Tab label="Available" />
+          <Tab label="Sold" />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <SummarySales />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <SoldItems />
+        </TabPanel>
+      </Paper>
+    </div>
   );
 }

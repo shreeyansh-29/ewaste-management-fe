@@ -113,7 +113,7 @@ export default function ItemsForSale() {
           }}
         >
           {" "}
-          For Sale{" "}
+          On Sale{" "}
         </h2>
         <MaterialTable
           title=""

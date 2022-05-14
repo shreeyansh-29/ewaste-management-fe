@@ -140,10 +140,10 @@ function CollectorNav() {
                 style={{padding: "10px"}}
               >
                 <NavDropdown.Item href="./ItemsForSale">
-                  For Sale
+                  On Sale
                 </NavDropdown.Item>
                 <NavDropdown.Item href="./SaleItems">
-                  Sales Summary
+                  Invoices
                 </NavDropdown.Item>
               </NavDropdown>
 

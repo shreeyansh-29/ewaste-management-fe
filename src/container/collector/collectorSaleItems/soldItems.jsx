@@ -17,11 +17,11 @@ export default function SoldItems() {
       editable: "never",
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
     {
@@ -30,11 +30,11 @@ export default function SoldItems() {
       field: "itemName",
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
     {
@@ -52,11 +52,11 @@ export default function SoldItems() {
       initialEditValue: "initial edit value",
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
     {
@@ -66,11 +66,11 @@ export default function SoldItems() {
       type: "numeric",
       cellStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "13px",
       },
     },
 
@@ -81,10 +81,10 @@ export default function SoldItems() {
       type: "currency",
       currencySetting: { currencyCode: "INR" },
       cellStyle: {
-        fontSize: "15px",
+        fontSize: "13px",textAlign: "center",
       },
       headerStyle: {
-        fontSize: "15px",
+        fontSize: "13px",textAlign: "center",
       },
     },
     {
@@ -94,10 +94,10 @@ export default function SoldItems() {
       type: "currency",
       currencySetting: { currencyCode: "INR" },
       cellStyle: {
-        fontSize: "15px",
+        fontSize: "13px",textAlign: "center",
       },
       headerStyle: {
-        fontSize: "15px",
+        fontSize: "13px",textAlign: "center",
       },
     },
   ]);
@@ -128,33 +128,30 @@ export default function SoldItems() {
 
   return (
     <div>
-      <div style={{ padding: "20px 30px 0 30px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "30px",
-            padding: "2px,",
-            color: "white",
-            marginBottom: "2.5%",
-            backgroundColor: " rgb(30, 28, 54)",
-            borderRadius: "5px",
-          }}
-        >
-          {" "}
-          Sales Summary{" "}
-        </h2>
-        <MaterialTable
-          title=""
-          icons={{
-            Search: () => <SearchIcon style={{ fill: "white" }} />,
-          }}
-          columns={columns}
-          data={data}
-          options={{
-            actionsColumnIndex: -1,
-          }}
-        />
-      </div>
+      <MaterialTable
+        editable={{
+          onRowUpdate: (newData, oldData) =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                const dataUpdate = [...data];
+                const index = oldData.tableData.id;
+                dataUpdate[index] = newData;
+                setData([...dataUpdate]);
+
+                resolve();
+              }, 1000);
+            }),
+        }}
+        title=""
+        icons={{
+          Search: () => <SearchIcon style={{ fill: "white" }} />,
+        }}
+        columns={columns}
+        data={data}
+        options={{
+          actionsColumnIndex: -1,
+        }}
+      />
     </div>
   );
 }
