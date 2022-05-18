@@ -81,10 +81,12 @@ export default function SoldItems() {
       type: "currency",
       currencySetting: { currencyCode: "INR" },
       cellStyle: {
-        fontSize: "13px",textAlign: "center",
+        fontSize: "13px",
+        textAlign: "center",
       },
       headerStyle: {
-        fontSize: "13px",textAlign: "center",
+        fontSize: "13px",
+        textAlign: "center",
       },
     },
     {
@@ -94,10 +96,12 @@ export default function SoldItems() {
       type: "currency",
       currencySetting: { currencyCode: "INR" },
       cellStyle: {
-        fontSize: "13px",textAlign: "center",
+        fontSize: "13px",
+        textAlign: "center",
       },
       headerStyle: {
-        fontSize: "13px",textAlign: "center",
+        fontSize: "13px",
+        textAlign: "center",
       },
     },
   ]);
@@ -106,14 +110,12 @@ export default function SoldItems() {
     (async function () {
       try {
         const res = await api.get(COLLECTOR_SELL_SUMMARY);
-
+        console.log(res);
         if (res.status === "success") {
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;
-            obj.price = obj.price * obj.quantity;
-            if (obj.availableQuantity === "0") {
-              obj.status = "Sold";
-            }
+
+            obj.Totalprice = obj.price * obj.quantity;
           });
 
           setData(res.data);

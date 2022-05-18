@@ -4,7 +4,7 @@ import api from "../../../core/utilities/httpProvider";
 import {} from "@material-ui/icons";
 
 import SearchIcon from "@material-ui/icons/Search";
-import { COLLECTOR_SELL_SUMMARY } from "../../constant/constant";
+import {  COLLECTOR_SELL_SUMMARY_AVAILABE } from "../../constant/constant";
 export default function SummarySales() {
   const { useState } = React;
 
@@ -20,7 +20,7 @@ export default function SummarySales() {
         fontSize: "13px",
       },
       headerStyle: {
-        textAlign: "center",
+        textAlign: "right",
         fontSize: "13px",
       },
     },
@@ -61,8 +61,7 @@ export default function SummarySales() {
     },
     {
       title: "Available Quantity",
-      editable: "never",
-      field: "quantity",
+      field: "availableQuantity",
       type: "numeric",
       cellStyle: {
         textAlign: "center",
@@ -92,7 +91,7 @@ export default function SummarySales() {
     {
       title: "Total Price",
       editable: "never",
-      field: "price",
+      field: "Totalprice",
       type: "currency",
       currencySetting: { currencyCode: "INR" },
       cellStyle: {
@@ -109,15 +108,14 @@ export default function SummarySales() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await api.get(COLLECTOR_SELL_SUMMARY);
+        const res = await api.get(COLLECTOR_SELL_SUMMARY_AVAILABE);
+        console.log(res);
 
         if (res.status === "success") {
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;
-            obj.price = obj.price * obj.quantity;
-            if (obj.availableQuantity === "0") {
-              obj.status = "Sold";
-            }
+            obj.Totalprice = obj.price*obj.quantity;
+           
           });
 
           setData(res.data);
