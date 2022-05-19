@@ -38,7 +38,7 @@ import Waste from "./container/customer/customerRequests/waste";
 
 function App() {
   const role = localStorage.getItem("Roles");
-  
+
   console.log(role);
   return (
     <BrowserRouter>
@@ -79,8 +79,12 @@ function App() {
         ""
       )}
       <Routes>
+        <Route
+          path="/oauth2/redirect"
+          element={<OAuth2RedirectHandler />}
+        ></Route>
         <Route path="/" element={<Home />} />
-        <Route path="/Signin"  element={<Signin />} />
+        <Route path="/Signin" element={<Signin />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route
@@ -88,14 +92,7 @@ function App() {
           render={(props) => <ResetPass {...props} />}
           element={<ResetPass />}
         />
-        <Route
-          path="/oauth2/redirect"
-          element={<OAuth2RedirectHandler />}
-        ></Route>
-        <Route
-          path="/CustomerHome"
-          element={<CustomerHome />}
-        />
+        <Route path="/CustomerHome" element={<CustomerHome />} />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/Popup" element={<Popup />} />
         <Route path="/CollectorHome" element={<CollectorHome />} />

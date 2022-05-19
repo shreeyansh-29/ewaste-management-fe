@@ -162,6 +162,11 @@ span {
 .Req {
   color: rgb(0, 128, 111);
 }
+  @media screen and (max-width:768px) {
+    .signIn{
+      margin-top: -30px;
+    }
+   }
 
 @media screen and (min-width:500px){
   @media screen and (max-width:600px) {
@@ -193,7 +198,7 @@ span {
       /* padding-left:50px; */
     }
     .Form-BOdy{
-      margin-top: 35px;
+      margin-top: 55px;
       width:40vh;
     }
    }

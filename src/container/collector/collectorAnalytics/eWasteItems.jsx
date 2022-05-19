@@ -4,9 +4,10 @@ import api from "../../../core/utilities/httpProvider";
 import { COLLECTOR_ANALYTICS_V2 } from "../../constant/constant";
 export const data = [
   ["Category", "Requests Accepted", "Items Sold"],
+  ["Lamps", 1, 0],
   ["Temperature Exchange Equipment", 1, 1],
   ["Screens and Monitors", 1, 0],
-  ["Lamps", 1, 0],
+ 
   ["Large equipment", 0, 0],
   ["Small equipment", 0, 0],
   ["Small IT and Telecommunication", 0, 0],
@@ -21,7 +22,6 @@ const options = {
     beginAtZero: true,
   },
   hAxis: {
-    title: "Category",
     scaleType: "decimal",
     textStyle: {
       fontSize: 12,
@@ -31,7 +31,7 @@ const options = {
   },
   backgroundColor: "transparent",
   width: "100%",
-  height: "400px",
+  height: "800px",
 };
 
 export default function EWasteOrg() {
