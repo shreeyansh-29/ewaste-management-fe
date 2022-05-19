@@ -1,42 +1,44 @@
 import React from "react";
-import Navbar from "./Components/Navbar/Navbars";
+import Navbar from "./container/components/navbar/navbars";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Signin from "./Sign In/Signin";
-import Home from "./Home Page/Home";
-import SignUp from "./Sign Up/SignUp";
-import ForgotPassword from "./Forgot Password/ForgotPassword";
-import ResetPass from "./Forgot Password/ResetPassword";
-import CustomerHome from "./Customer/Customer Analytics/CustomerHome";
-import EditProfile from "./Customer/EditProfile";
-import CustomerNav from "./Customer/Navbar/CustomerNav";
-import CollectorNav from "./Collector/Navbar/CollectorNav";
-import CollectorHome from "./Collector/Collectors Analytics/CollectorHome";
-import CollectorProfile from "./Collector/CollectorProfile";
-import MyDrives from "./Collector/E-Waste Drives/MyDrives";
-import MyRequests from "./Customer/Customer Requests/MyRequests";
-import OrganizeDrive from "./Collector/E-Waste Drives/OrganizeDrive";
-import CollectorRequests from "./Collector/Collectors Requests/CollectorRequests";
-import PickUp from "./Customer/Customer Requests/PickUp";
-import DropOff from "./Customer/Customer Requests/DropOff";
-import ViewCollectors from "./Customer/Customer Requests/ViewCollectors";
-import VendorHome from "./Vendor/Vendor Analytics/VendorHome";
-import VendorNav from "./Vendor/Navbar/VendorNav";
-import VendorProfile from "./Vendor/VendorProfile";
-import Sales from "./Vendor/Sales";
-import MyOrders from "./Vendor/MyOrders";
-import RequestSummary from "./Collector/Collectors Requests/RequestSummary";
-import ItemsForSale from "./Collector/ItemsForSale";
+import Signin from "./container/sign-In/signin";
+import OAuth2RedirectHandler from "./container/oauth2/oAuth2RedirectHandler";
+import Home from "./container/homePage/home";
+import SaleItems from "./container/collector/collectorSaleItems/salesItems";
+import SignUp from "./container/sign-Up/signUp";
+import ForgotPassword from "./container/forgotPassword/forgotPassword";
+import ResetPass from "./container/forgotPassword/resetPassword";
+import CustomerHome from "./container/customer/customerAnalytics/customerHome";
+import EditProfile from "./container/customer/customerProfile/editProfile";
+import CustomerNav from "./container/customer/navbar/customerNav";
+import CollectorNav from "./container/collector/navbar/collectorNav";
+import CollectorHome from "./container/collector/collectorAnalytics/collectorHome";
+import CollectorProfile from "./container/collector/profile/collectorProfile";
+import MyDrives from "./container/collector/e-Waste Drives/myDrives";
+import MyRequests from "./container/customer/customerRequests/myRequests";
+import OrganizeDrive from "./container/collector/e-Waste Drives/organizeDrive";
+import CollectorRequests from "./container/collector/collectorsRequests/collectorRequests";
+import PickUp from "./container/customer/customerRequests/pickUp";
+import DropOff from "./container/customer/customerRequests/dropOff";
+import ViewCollectors from "./container/customer/customerRequests/viewCollectors";
+import VendorHome from "./container/vendor/vendor Analytics/vendorHome";
+import VendorNav from "./container/vendor/navbar/vendorNav";
+import VendorProfile from "./container/vendor/vendorProfile/vendorProfile";
+import Sales from "./container/vendor/sales";
+import MyOrders from "./container/vendor/myOrders";
+import RequestSummary from "./container/collector/collectorsRequests/requestSummary";
+import ItemsForSale from "./container/collector/collectorSaleItems/itemsForSale";
 
-import GlobalStyle from "./globalStyles";
-import ScrollToTop from "./Components/ScrollToTop";
-import SummarySales from "./Collector/SummarySales";
-import Popup from "./Customer/Popup";
-import Waste from "./Customer/Customer Requests/Waste";
+import GlobalStyle from "./container/globalStyles";
+import ScrollToTop from "./container/components/scrollToTop";
+import SummarySales from "./container/collector/collectorSaleItems/availableSales";
+import Popup from "./container/customer/popup";
+import Waste from "./container/customer/customerRequests/waste";
 
 function App() {
   const role = localStorage.getItem("Roles");
-  
+
   console.log(role);
   return (
     <BrowserRouter>
@@ -77,8 +79,12 @@ function App() {
         ""
       )}
       <Routes>
+        <Route
+          path="/oauth2/redirect"
+          element={<OAuth2RedirectHandler />}
+        ></Route>
         <Route path="/" element={<Home />} />
-        <Route path="/Signin"  element={<Signin />} />
+        <Route path="/Signin" element={<Signin />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route
@@ -86,10 +92,7 @@ function App() {
           render={(props) => <ResetPass {...props} />}
           element={<ResetPass />}
         />
-        <Route
-          path="/CustomerHome"
-          element={<CustomerHome />}
-        />
+        <Route path="/CustomerHome" element={<CustomerHome />} />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/Popup" element={<Popup />} />
         <Route path="/CollectorHome" element={<CollectorHome />} />
@@ -97,6 +100,7 @@ function App() {
         <Route path="/MyDrives" element={<MyDrives />} />
         <Route path="/ItemsForSale" element={<ItemsForSale />} />
         <Route path="/MyRequests" element={<MyRequests />} />
+        <Route path="/SaleItems" element={<SaleItems />} />
 
         <Route path="/OrganizeDrive" element={<OrganizeDrive />} />
         <Route path="/CollectorRequests" element={<CollectorRequests />} />
