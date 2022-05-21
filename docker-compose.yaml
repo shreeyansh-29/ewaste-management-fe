@@ -1,7 +1,0 @@
-ewaste_management_frontend:
-  build: ./
-  container_name: ewaste_management_frontend_c
-  ports:
-    - '3000-3000'
-  stdin_open: true
-  tty: true
