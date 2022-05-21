@@ -129,21 +129,23 @@ export default function SummarySales() {
   const [data, setData] = useState([]);
 
   return (
-    <div>
-      <MaterialTable
-        editable={{
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-
-                resolve();
-              }, 1000);
-            }),
+    <div style={{ padding: "150px 30px 0 30px" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "30px",
+          padding: "2px,",
+          color: "white",
+          marginBottom: "2.5%",
+          backgroundColor: " rgb(30, 28, 54)",
+          borderRadius: "5px",
         }}
+      >
+        {" "}
+        Invoices{" "}
+      </h2>
+      <MaterialTable
+       
         title=""
         icons={{
           Search: () => <SearchIcon style={{ fill: "white" }} />,

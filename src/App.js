@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./container/sign-In/signin";
 import OAuth2RedirectHandler from "./container/oauth2/oAuth2RedirectHandler";
 import Home from "./container/homePage/home";
-import SaleItems from "./container/collector/collectorSaleItems/salesItems";
+import SaleItems from "./container/collector/collectorSaleItems/availableSales";
 import SignUp from "./container/sign-Up/signUp";
 import ForgotPassword from "./container/forgotPassword/forgotPassword";
 import ResetPass from "./container/forgotPassword/resetPassword";
