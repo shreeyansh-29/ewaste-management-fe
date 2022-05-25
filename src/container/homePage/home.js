@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import InfoSection from "../components/infoSection/InfoSection";
 import {
   homeObjOne,
@@ -9,7 +9,7 @@ import {
 } from "./data";
 import Footer from "../components/footer/footer";
 import Info from "../components/infoSection/Info";
-import Services from "../components/services/services";
+import Personas from "../components/personas/personas";
 
 function Home() {
   return (
@@ -19,7 +19,7 @@ function Home() {
       <InfoSection {...homeObjTwo} />
       <Info {...InfoDataTwo} />
       <InfoSection {...homeObjThree} />
-      <Services />
+      <Personas />
       <Footer />
     </>
   );
