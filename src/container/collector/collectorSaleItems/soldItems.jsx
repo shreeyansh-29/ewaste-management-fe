@@ -4,8 +4,8 @@ import api from "../../../core/utilities/httpProvider";
 import {} from "@material-ui/icons";
 
 import SearchIcon from "@material-ui/icons/Search";
-import {COLLECTOR_SELL_SUMMARY_AVAILABE} from "../../constant/constant";
-export default function SummarySales() {
+import {COLLECTOR_SELL_SUMMARY} from "../../constant/constant";
+export default function SoldItems() {
   const {useState} = React;
 
   const [columns] = useState([
@@ -20,7 +20,7 @@ export default function SummarySales() {
         fontSize: "13px",
       },
       headerStyle: {
-        textAlign: "right",
+        textAlign: "center",
         fontSize: "13px",
       },
     },
@@ -60,8 +60,9 @@ export default function SummarySales() {
       },
     },
     {
-      title: "Available Quantity",
-      field: "availableQuantity",
+      title: " Sold Quantity",
+      editable: "never",
+      field: "quantity",
       type: "numeric",
       cellStyle: {
         textAlign: "center",
@@ -91,7 +92,7 @@ export default function SummarySales() {
     {
       title: "Total Price",
       editable: "never",
-      field: "Totalprice",
+      field: "price",
       type: "currency",
       currencySetting: {currencyCode: "INR"},
       cellStyle: {
@@ -108,12 +109,12 @@ export default function SummarySales() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await api.get(COLLECTOR_SELL_SUMMARY_AVAILABE);
+        const res = await api.get(COLLECTOR_SELL_SUMMARY);
         console.log(res);
-
         if (res.status === "success") {
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;
+
             obj.Totalprice = obj.price * obj.quantity;
           });
 
