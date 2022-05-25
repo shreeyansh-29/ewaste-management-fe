@@ -1,10 +1,9 @@
-const {apiUrl, oauthUrl} = require("../../core/config/index");
+const { apiUrl} = require("../../core/config/index");
 
 export const SIGN_IN = `${apiUrl}/signin`;
 export const SIGN_UP = `${apiUrl}/user`;
 export const FORGOT_PASSWORD = `${apiUrl}/password/reset`;
-export const GOOGLE_AUTH_URL =
-  `${apiUrl}/oauth2/authorize/google?redirect_uri=` + `${oauthUrl}`;
+export const GOOGLE_AUTH_URL = `${apiUrl}/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect`;
 export const CUSTOMER_AUTH_URL = `${apiUrl}/customer/profile/view`;
 export const COLLECTOR_AUTH_URL = `${apiUrl}/collector/profile/view`;
 export const VENDOR_AUTH_URL = `${apiUrl}/vendor/profile/view`;

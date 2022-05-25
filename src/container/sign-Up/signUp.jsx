@@ -105,10 +105,7 @@ class SignUp extends Component {
 
   handleFormValidation() {
     let value = validationForm(this.state);
-    console.log(this.state)
     this.setState({ formErrors: value.formErrors });
-    console.log(value.formErrors);
-    console.log(value.formIsValid);
     return value.formIsValid;
   }
   handleChange = (e) => {
@@ -641,7 +638,7 @@ class SignUp extends Component {
               </div>
             </div>
           </div>
-          1
+          
         </div>
       </div>
     );

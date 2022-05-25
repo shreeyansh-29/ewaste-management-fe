@@ -5,6 +5,7 @@ import {
   NavNotiIcon,
 } from "../../components/navbar/navbarelements";
 import "../Customer.css";
+// import Cookies from 'universal-cookie';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 import api from "../../../core/utilities/httpProvider";
@@ -123,6 +124,9 @@ function CustomerNav() {
                     }).then((result) => {
                       if (result.isConfirmed) {
                         localStorage.clear();
+                        // const cookies = new Cookies();
+                        // cookies.remove('LSOLH');
+
                         navigate("/Signin");
                         document.location.reload();
                       }

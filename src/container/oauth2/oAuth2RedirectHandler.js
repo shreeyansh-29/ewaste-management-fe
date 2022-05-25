@@ -5,10 +5,10 @@ import React, { Component } from "react";import {
   CUSTOMER_NOTIFICATION_URL,
   VENDOR_AUTH_URL,
 } from "../constant/constant";
-
 import api from "../../core/utilities/httpProvider";
 import jwt from "jwt-decode";
 class OAuth2RedirectHandler extends Component {
+
   getUrlParameter(name) {
     name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -45,7 +45,6 @@ class OAuth2RedirectHandler extends Component {
       } else if (result.status === "success") {
         localStorage.setItem("count", result.data.length);
       }
-      console.log(localStorage.getItem("count"));
     }
 
     if (role === "CUSTOMER") {
@@ -63,6 +62,7 @@ class OAuth2RedirectHandler extends Component {
     window.location.href = "/CollectorHome";
   };
   vendorRedirect = () => {
+  
     window.location.href = "/VendorHome";
   };
   redirect = () => {
@@ -71,6 +71,7 @@ class OAuth2RedirectHandler extends Component {
   render() {
     const token = this.getUrlParameter("token");
     const error = this.getUrlParameter("error");
+   
     if (token) {
       localStorage.setItem("token", token);
       return <div>{this.apicall()}</div>;
