@@ -1,11 +1,11 @@
 import React from "react";
-import EWasteDrives from "./eWasteDrives";
-import EWasteOrg from "./eWasteItems";
-import Users from "./users";
-import Data from "./vendor.jsx";
-import Revenue from "./revenueChart";
-import "../Collector.css";
-import CategoryCarousel from "../../customer/customerAnalytics/categoryCarousel";
+import EWasteDrives from "./collectorAnalytics/eWasteDrives";
+import EWasteOrg from "./collectorAnalytics/eWasteItems";
+import Users from "./collectorAnalytics/users";
+import Data from "./collectorAnalytics/vendor.jsx";
+import Revenue from "./collectorAnalytics/revenueChart";
+import "./Collector.css";
+import CategoryCarousel from "../categoryCarousel";
 
 function CollectorHome() {
   return (

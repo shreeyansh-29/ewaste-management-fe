@@ -1,13 +1,12 @@
 import React from "react";
 import {Carousel} from "react-bootstrap";
-import img1 from "../../images/microwave.jpg";
-import img2 from "../../images/printer1.jpeg";
-import img3 from "../../images/tubelight1.jpg";
-import img4 from "../../images/monitor.jpg";
-import img5 from "../../images/img71.jpg";
-import img6 from "../../images/machine1.jpg";
-import img7 from "../../images/mobile1.jpg";
-import "../Customer.css";
+import img1 from "./images/microwave.jpg";
+import img2 from "./images/printer1.jpeg";
+import img3 from "./images/tubelight1.jpg";
+import img4 from "./images/monitor.jpg";
+import img5 from "./images/img71.jpg";
+import img6 from "./images/machine1.jpg";
+import img7 from "./images/mobile1.jpg";
 function CategoryCarousel() {
   return (
     <>

@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-import Popup from "../customer/popup";
+import Popup from "../../customer/popup";
 import {FaUserCircle} from "react-icons/fa";
 import {toast} from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";
-import {TOAST_WARN3, VENDOR_SUMMARY} from "../constant/constant";
-import api from "../../core/utilities/httpProvider";
+import {TOAST_WARN3, VENDOR_SUMMARY} from "../../constant/constant";
+import api from "../../../core/utilities/httpProvider";
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 export default function MyOrders() {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
   MDBCard,
   MDBCardBody,
@@ -11,9 +11,9 @@ import {
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
-import "../Customer.css";
+import "../customer.css";
 import api from "../../../core/utilities/httpProvider";
-import { CUSTOMER_VIEW_DRIVES } from "../../constant/constant";
+import {CUSTOMER_VIEW_DRIVES} from "../../constant/constant";
 export default function Waste() {
   const handledate = (res) => {
     res.data.map((obj) => {
@@ -32,7 +32,7 @@ export default function Waste() {
     (async function () {
       try {
         const res = await api.get(CUSTOMER_VIEW_DRIVES);
-         
+
         if (res.status === "success") {
           handledate(res);
 
@@ -47,15 +47,20 @@ export default function Waste() {
   const renderCard = (card) => {
     return (
       <MDBCol className="col-lg-4">
-        <MDBCard style={{ borderRadius: "15px" , boxShadow: "rgba(0, 0, 0, 0.55) 0px 5px 15px"}}>
-          <MDBCardBody style={{ borderRadius: "15px" }}>
-            <MDBCardTitle style={{ textAlign: "center" }}>
+        <MDBCard
+          style={{
+            borderRadius: "15px",
+            boxShadow: "rgba(0, 0, 0, 0.55) 0px 5px 15px",
+          }}
+        >
+          <MDBCardBody style={{borderRadius: "15px"}}>
+            <MDBCardTitle style={{textAlign: "center"}}>
               <strong>
                 <h4>{card.driveName}</h4>
               </strong>
             </MDBCardTitle>
             <hr></hr>
-            <MDBCardText style={{ fontStyle: "Poppins" }}>
+            <MDBCardText style={{fontStyle: "Poppins"}}>
               <em>{card.description}</em>
               <br></br>
               <br></br>
@@ -72,15 +77,15 @@ export default function Waste() {
               }}
             >
               <small>
-                <PersonOutlineOutlinedIcon style={{ fontSize: "large" }} />
+                <PersonOutlineOutlinedIcon style={{fontSize: "large"}} />
                 {"   "}
                 {card.organizerName}
                 <br></br>
-                <LocationOnOutlinedIcon style={{ fontSize: "medium" }} />
+                <LocationOnOutlinedIcon style={{fontSize: "medium"}} />
                 {"    "}
                 {card.location}
                 <br></br>
-                <EventNoteOutlinedIcon style={{ fontSize: "medium" }} />
+                <EventNoteOutlinedIcon style={{fontSize: "medium"}} />
                 {"    "}
                 {card.date} {card.time}
               </small>
@@ -97,7 +102,7 @@ export default function Waste() {
     <div>
       {data.length === 0 ? (
         <div>
-          <h2 style={{ textAlign: "center", margin: "100px" }}>
+          <h2 style={{textAlign: "center", margin: "100px"}}>
             {" "}
             No Upcoming drives{" "}
           </h2>

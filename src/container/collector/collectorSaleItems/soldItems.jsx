@@ -4,16 +4,14 @@ import api from "../../../core/utilities/httpProvider";
 import {} from "@material-ui/icons";
 
 import SearchIcon from "@material-ui/icons/Search";
-import {COLLECTOR_SELL_SUMMARY} from "../../constant/constant";
+import {COLLECTOR_SELL_SUMMARY_SOLD} from "../../constant/constant";
 export default function SoldItems() {
   const {useState} = React;
 
   const [columns] = useState([
     {
       title: "ID",
-
       field: "id",
-
       editable: "never",
       cellStyle: {
         textAlign: "center",
@@ -73,26 +71,10 @@ export default function SoldItems() {
         fontSize: "13px",
       },
     },
-
-    {
-      title: "Unit Price",
-      editable: "never",
-      field: "price",
-      type: "currency",
-      currencySetting: {currencyCode: "INR"},
-      cellStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-      headerStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-    },
     {
       title: "Total Price",
       editable: "never",
-      field: "price",
+      field: "Totalprice",
       type: "currency",
       currencySetting: {currencyCode: "INR"},
       cellStyle: {
@@ -109,12 +91,11 @@ export default function SoldItems() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await api.get(COLLECTOR_SELL_SUMMARY);
+        const res = await api.get(COLLECTOR_SELL_SUMMARY_SOLD);
         console.log(res);
         if (res.status === "success") {
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;
-
             obj.Totalprice = obj.price * obj.quantity;
           });
 
@@ -131,19 +112,7 @@ export default function SoldItems() {
   return (
     <div>
       <MaterialTable
-        editable={{
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-
-                resolve();
-              }, 1000);
-            }),
-        }}
+       
         title=""
         icons={{
           Search: () => <SearchIcon style={{fill: "white"}} />,

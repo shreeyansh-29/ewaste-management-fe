@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import Popup from "../popup";
-import "../Customer.css";
+import "../customer.css";
 import {FaUserCircle} from "react-icons/fa";
 
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-import { TOAST_WARN2, TOAST_WARN3 } from "../../constant/constant";
+import {TOAST_WARN2, TOAST_WARN3} from "../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
@@ -136,7 +136,7 @@ export default function MyRequests() {
   const togglepop = () => {
     setopen(!isopen);
   };
-  const handledate=(res)=>{
+  const handledate = (res) => {
     res.data.map((obj) => {
       if (obj.requestType === "PickUp") {
         if (obj.scheduledTime === "10") {
@@ -149,9 +149,9 @@ export default function MyRequests() {
           obj.scheduledTime = " 16:00-18:00";
         }
       }
-    })
-  }
-  const handledata=(res)=>{
+    });
+  };
+  const handledata = (res) => {
     handledate(res);
     res.data.map((obj) => {
       if (obj.scheduledDate !== null) {
@@ -171,7 +171,7 @@ export default function MyRequests() {
         obj.status = "Pending";
       }
     });
-  }
+  };
   useEffect(() => {
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
@@ -225,9 +225,8 @@ export default function MyRequests() {
             columns={columns}
             data={data}
             icons={{
-              Search: ()=><SearchIcon style={{fill:"white"}}/>
+              Search: () => <SearchIcon style={{fill: "white"}} />,
             }}
-           
             localization={{
               header: {
                 actions: "Profile",

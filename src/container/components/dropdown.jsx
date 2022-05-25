@@ -1,17 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./signin.css";
+import "../sign-In/signin";
 
-const Dropdown = ({ values, data, placeholder, onChange, label }) => {
+const Dropdown = ({values, data, placeholder, onChange, label}) => {
   const handleChange = (event) => {
-    const { value } = event.target;
+    const {value} = event.target;
     onChange(value);
   };
 
   return (
     <div>
       <label>{label}</label>
-      <select className="dropdown"  value={values} onChange={handleChange} style={{marginLeft:"-7px",borderRadius:"17px",padding:"7px",  width: "300px", background:"white", border:"1px solid lightgrey"}}>
+      <select
+        className="dropdown"
+        value={values}
+        onChange={handleChange}
+        style={{
+          marginLeft: "-7px",
+          borderRadius: "17px",
+          padding: "7px",
+          width: "300px",
+          background: "white",
+          border: "1px solid lightgrey",
+        }}
+      >
         <option value="">{placeholder}</option>
         {data.map((item, key) => (
           <option key={key}>{item.label}</option>
@@ -22,7 +34,7 @@ const Dropdown = ({ values, data, placeholder, onChange, label }) => {
 };
 
 Dropdown.propTypes = {
-  label:PropTypes.string,
+  label: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   data: PropTypes.array.isRequired,

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
 import PuchaseData from "./puchaseData";
-import "./vendor.css";
-import Popup from "../customer/popup";
-import { FaUserCircle } from "react-icons/fa";
+import "../vendor.css";
+import Popup from "../../customer/popup";
+import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
 import {
   INVALID_QUANTITY,
@@ -13,14 +13,14 @@ import {
   TOAST_WARN3,
   VALID_QUANTITY,
   VENDOR_VIEW_ITEMS,
-  VENDOR_ACCEPT_ITEMS
-} from "../constant/constant";
-import api from "../../core/utilities/httpProvider";
-import Toast from "../components/toast";
+  VENDOR_ACCEPT_ITEMS,
+} from "../../constant/constant";
+import api from "../../../core/utilities/httpProvider";
+import Toast from "../../components/toast";
 export const ProfileIcon = FaUserCircle;
 
 export default function Sales() {
-  const { useState } = React;
+  const {useState} = React;
   const [details, setDetails] = useState([]);
   const [detail, setdetail] = useState();
   const [isopen2, setopen2] = useState(false);
@@ -41,7 +41,7 @@ export default function Sales() {
           onClick={() => profile(rowData)}
         >
           {" "}
-          <ProfileIcon style={{ color: "#e75480" }} />
+          <ProfileIcon style={{color: "#e75480"}} />
         </button>
       ),
       filtering: false,
@@ -109,7 +109,7 @@ export default function Sales() {
       field: "price",
       editable: "never",
       type: "currency",
-      currencySetting: { currencyCode: "INR" },
+      currencySetting: {currencyCode: "INR"},
       filtering: false,
       cellStyle: {
         fontSize: "13px",
@@ -148,7 +148,7 @@ export default function Sales() {
       title: "Total Price",
       field: "purchaseprice",
       type: "currency",
-      currencySetting: { currencyCode: "INR" },
+      currencySetting: {currencyCode: "INR"},
       initialEditValue: 0,
       editable: "never",
 
@@ -165,8 +165,7 @@ export default function Sales() {
   ]);
   const profile = (e) => {
     if (e.id === null) {
-      Toast.warn(TOAST_WARN3)
-      
+      Toast.warn(TOAST_WARN3);
     } else {
       const id = e.id;
       setdetail(id);
@@ -232,7 +231,7 @@ export default function Sales() {
     setopen2(!isopen2);
   };
   return (
-    <div style={{ padding: "150px 30px   " }}>
+    <div style={{padding: "150px 30px   "}}>
       <h2
         style={{
           textAlign: "center",
@@ -253,9 +252,9 @@ export default function Sales() {
         columns={columns}
         data={data}
         icons={{
-          Edit: () => <Edit style={{ color: "black", alignContent: "left" }} />,
+          Edit: () => <Edit style={{color: "black", alignContent: "left"}} />,
 
-          Search: () => <SearchIcon style={{ fill: "white" }} />,
+          Search: () => <SearchIcon style={{fill: "white"}} />,
         }}
         editable={{
           onRowUpdate: (newData, oldData) =>
@@ -288,7 +287,7 @@ export default function Sales() {
         }}
       />
 
-      <Link to={{ pathname: "/MyOrders", data: [details] }}></Link>
+      <Link to={{pathname: "/MyOrders", data: [details]}}></Link>
       <div>{isopen && <PuchaseData quantity={quantity} item={item} />}</div>
       <div>
         {isopen2 && detail != null && (

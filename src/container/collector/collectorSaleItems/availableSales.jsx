@@ -11,9 +11,7 @@ export default function SummarySales() {
   const [columns] = useState([
     {
       title: "ID",
-
       field: "id",
-
       editable: "never",
       cellStyle: {
         textAlign: "center",
@@ -109,7 +107,6 @@ export default function SummarySales() {
     (async function () {
       try {
         const res = await api.get(COLLECTOR_SELL_SUMMARY_AVAILABE);
-        console.log(res);
 
         if (res.status === "success") {
           res.data.map((obj) => {
@@ -130,19 +127,7 @@ export default function SummarySales() {
   return (
     <div>
       <MaterialTable
-        editable={{
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-
-                resolve();
-              }, 1000);
-            }),
-        }}
+        
         title=""
         icons={{
           Search: () => <SearchIcon style={{fill: "white"}} />,

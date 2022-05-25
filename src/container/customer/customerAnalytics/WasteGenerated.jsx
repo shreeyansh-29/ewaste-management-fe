@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import "../Customer.css";
+import "../customer.css";
 import api from "../../../core/utilities/httpProvider";
-import { CUSTOMER_ANALYTICS_V1 } from "../../constant/constant";
+import {CUSTOMER_ANALYTICS_V1} from "../../constant/constant";
 export const data = [
   ["name", "Count by Order", {role: "style"}],
   ["E-Waste Generated", 5, "yellowgreen"],

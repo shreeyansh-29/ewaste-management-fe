@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import "../Customer.css";
-import { statescity } from "../../sign-Up/states";
+import React, {Component} from "react";
+import "../customer.css";
+import {statescity} from "../../sign-Up/states";
 import api from "../../../core/utilities/httpProvider";
-import validation from "./customer_validation";
+import validation from "./customerValidations";
 import {
   CUSTOMER_AUTH_URL,
   CUSTOMER_PROFILE_EDIT,
@@ -30,7 +30,7 @@ class EditProfile extends Component {
     this.changeCity = this.changeCity.bind(this);
   }
   changeState(event) {
-    this.setState({ state: event.target.value });
+    this.setState({state: event.target.value});
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -38,12 +38,12 @@ class EditProfile extends Component {
     });
   }
   changeCity(event) {
-    this.setState({ city: event.target.value });
+    this.setState({city: event.target.value});
   }
   handleFormValidation() {
     let Errors = {};
     Errors = validation(this.state);
-    this.setState({ formErrors: Errors.formErrors });
+    this.setState({formErrors: Errors.formErrors});
 
     return Errors.formIsValid;
   }
@@ -66,15 +66,12 @@ class EditProfile extends Component {
         shopTime: "10",
       };
       const res = await api.put(CUSTOMER_PROFILE_EDIT, data);
-      console.log(res);
 
       localStorage.removeItem("name");
       localStorage.setItem("name", this.state.firstName);
       Toast.success(TOAST_SUCCESS5, 1500);
 
       this.setState(res.data);
-    } else {
-      console.log(this.state.formErrors);
     }
   };
   componentDidMount = async () => {
@@ -96,7 +93,7 @@ class EditProfile extends Component {
       pincodeErr,
     } = this.state.formErrors;
     return (
-      <div className="profile" style={{ marginTop: "85px" }}>
+      <div className="profile" style={{marginTop: "85px"}}>
         <form>
           <div className="containers">
             <div className="customersprofile">
@@ -121,10 +118,10 @@ class EditProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     value={this.state.firstName}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     autoComplete="off"
                     placeholder="First name"
@@ -138,12 +135,12 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     name="lastName"
                     value={this.state.lastName}
                     autoComplete="off"
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
@@ -171,11 +168,11 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     name="mobileNo"
                     autoComplete="off"
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
@@ -191,12 +188,12 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="text"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     name="address1"
                     value={this.state.address1}
                     autoComplete="off"
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
@@ -208,7 +205,7 @@ class EditProfile extends Component {
                     State <i className="text-danger">*</i>
                   </label>
                   <select
-                    style={{ borderRadius: "17px", padding: "4px" }}
+                    style={{borderRadius: "17px", padding: "4px"}}
                     className="form-select"
                     value={this.state.state}
                     onChange={this.changeState}
@@ -227,7 +224,7 @@ class EditProfile extends Component {
                     City <i className="text-danger">*</i>{" "}
                   </label>
                   <select
-                    style={{ borderRadius: "17px", padding: "4px" }}
+                    style={{borderRadius: "17px", padding: "4px"}}
                     className="form-select"
                     value={this.state.city}
                     onChange={this.changeCity}
@@ -245,12 +242,12 @@ class EditProfile extends Component {
                   </label>
                   <input
                     type="pincode"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     name="pinCode"
                     autoComplete="off"
                     value={this.state.pinCode}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}

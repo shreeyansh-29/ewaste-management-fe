@@ -3,17 +3,16 @@ import Navbar from "./container/components/navbar/navbars";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Signin from "./container/sign-In/signin";
-import OAuth2RedirectHandler from "./container/oauth2/oAuth2RedirectHandler";
 import Home from "./container/homePage/home";
 import SaleItems from "./container/collector/collectorSaleItems/salesItems";
 import SignUp from "./container/sign-Up/signUp";
 import ForgotPassword from "./container/forgotPassword/forgotPassword";
 import ResetPass from "./container/forgotPassword/resetPassword";
-import CustomerHome from "./container/customer/customerAnalytics/customerHome";
+import CustomerHome from "./container/customer/customerHome";
 import EditProfile from "./container/customer/customerProfile/editProfile";
 import CustomerNav from "./container/customer/navbar/customerNav";
 import CollectorNav from "./container/collector/navbar/collectorNav";
-import CollectorHome from "./container/collector/collectorAnalytics/collectorHome";
+import CollectorHome from "./container/collector/collectorHome";
 import CollectorProfile from "./container/collector/profile/collectorProfile";
 import MyDrives from "./container/collector/e-Waste Drives/myDrives";
 import MyRequests from "./container/customer/customerRequests/myRequests";
@@ -22,11 +21,11 @@ import CollectorRequests from "./container/collector/collectorsRequests/collecto
 import PickUp from "./container/customer/customerRequests/pickUp";
 import DropOff from "./container/customer/customerRequests/dropOff";
 import ViewCollectors from "./container/customer/customerRequests/viewCollectors";
-import VendorHome from "./container/vendor/vendor Analytics/vendorHome";
+import VendorHome from "./container/vendor/vendorHome";
 import VendorNav from "./container/vendor/navbar/vendorNav";
 import VendorProfile from "./container/vendor/vendorProfile/vendorProfile";
-import Sales from "./container/vendor/sales";
-import MyOrders from "./container/vendor/myOrders";
+import Sales from "./container/vendor/vendorSales/sales";
+import MyOrders from "./container/vendor/vendorSales/myOrders";
 import RequestSummary from "./container/collector/collectorsRequests/requestSummary";
 import ItemsForSale from "./container/collector/collectorSaleItems/itemsForSale";
 
@@ -38,8 +37,6 @@ import Waste from "./container/customer/customerRequests/waste";
 
 function App() {
   const role = localStorage.getItem("Roles");
-
-  console.log(role);
   return (
     <BrowserRouter>
       {role === "CUSTOMER" ? (
@@ -79,10 +76,7 @@ function App() {
         ""
       )}
       <Routes>
-        <Route
-          path="/oauth2/redirect"
-          element={<OAuth2RedirectHandler />}
-        ></Route>
+       
         <Route path="/" element={<Home />} />
         <Route path="/Signin" element={<Signin />} />
         <Route path="/signUp" element={<SignUp />} />

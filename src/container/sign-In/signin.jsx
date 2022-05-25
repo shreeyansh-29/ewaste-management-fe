@@ -21,7 +21,7 @@ import {
   VENDOR_AUTH_URL,
 } from "../constant/constant";
 import Toast from "../components/toast";
-
+import "./signin.css";
 const SignIn = () => {
   const [password, setPassword] = useState("");
 
@@ -77,9 +77,9 @@ const SignIn = () => {
         password: password,
       };
       var res = await api.post(SIGN_IN, data);
-      console.log(res);
+
       res = await res.json();
-      console.log(res);
+
       if (res.status === "Fail") {
         Toast.error(TOAST_ERROR1);
       }
@@ -102,7 +102,6 @@ const SignIn = () => {
         if (role === "COLLECTOR") {
           val = await api.get(COLLECTOR_AUTH_URL);
           result = await api.get(COLLECTOR_NOTIFICATION_URL);
-          console.log(result);
         }
         if (role === "VENDOR") {
           val = await api.get(VENDOR_AUTH_URL);
@@ -126,9 +125,9 @@ const SignIn = () => {
   return (
     <>
       <div className="signIn">
-        <Formik>
-          <Form>
-            <div className="Form-BOdy">
+        <div className="Form-BOdy">
+          <Formik>
+            <Form>
               <div className="heading">
                 <h2
                   style={{
@@ -221,8 +220,10 @@ const SignIn = () => {
                   <div style={{ textAlign: "center" }}>Sign In</div>
                 </button>
               </div>
+              <div >
+                <GoogleSignin />
+              </div>
 
-              <GoogleSignin />
               <div
                 style={{
                   textAlign: "center",
@@ -244,9 +245,9 @@ const SignIn = () => {
                   <strong>SIGN UP</strong>
                 </Link>
               </div>
-            </div>
-          </Form>
-        </Formik>
+            </Form>
+          </Formik>
+        </div>
       </div>
     </>
   );
