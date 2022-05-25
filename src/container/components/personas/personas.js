@@ -6,9 +6,9 @@ import {
   ServicesCard,
   ServicesH2,
   ServicesP,
-} from "./servicesElements";
+} from "./personasElements";
 
-const Services = () => {
+const Personas = () => {
   return (
     <ServicesContainer id="Services">
       <ServicesH1>Our Services</ServicesH1>
@@ -56,4 +56,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Personas;
