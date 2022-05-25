@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "../Collector.css";
 import TimeRange from "react-time-range";
-import { statescity } from "../../sign-Up/states";
+import {statescity} from "../../sign-Up/states";
 import api from "../../../core/utilities/httpProvider";
-import validationCollector from "./validationCollector";
+import validationCollector from "./collectorValidations";
 import moment from "moment";
 import {
   COLLECTOR_AUTH_URL,
@@ -44,7 +44,7 @@ class CollectorProfile extends Component {
     this.changeCity = this.changeCity.bind(this);
   }
   changeState(event) {
-    this.setState({ state: event.target.value });
+    this.setState({state: event.target.value});
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -52,12 +52,12 @@ class CollectorProfile extends Component {
     });
   }
   changeCity(event) {
-    this.setState({ city: event.target.value });
+    this.setState({city: event.target.value});
   }
   handleFormValidation() {
     let Errors = {};
     Errors = validationCollector(this.state);
-    this.setState({ formErrors: Errors.formErrors });
+    this.setState({formErrors: Errors.formErrors});
 
     return Errors.formIsValid;
   }
@@ -94,11 +94,11 @@ class CollectorProfile extends Component {
       };
 
       const res = await api.put(COLLECTOR_PROFILE_EDIT, data);
-      console.log(res);
 
       localStorage.removeItem("name");
       localStorage.setItem("name", this.state.firstName);
       Toast.success(TOAST_SUCCESS5, 1500);
+      this.setState(res.data);
     }
   };
   componentDidMount = async () => {
@@ -112,19 +112,19 @@ class CollectorProfile extends Component {
     const shopTimes = res.data.shopTime.toString().split("-");
     times = shopTimes[0].split(":");
     const dates = moment.utc().hour(times[0]).minute(0);
-    this.setState({ startTime: dates });
+    this.setState({startTime: dates});
     times = shopTimes[1].split(":");
     const enddates = moment.utc().hour(times[0]).minute(0);
-    this.setState({ endTime: enddates });
+    this.setState({endTime: enddates});
   };
   returnFunctionStart = (event) => {
-    this.setState({ startTime: event.startTime });
+    this.setState({startTime: event.startTime});
   };
   returnFunctionEnd = (event) => {
-    this.setState({ endTime: event.endTime });
+    this.setState({endTime: event.endTime});
   };
   handleChange = (key) => (value) => {
-    this.setState({ [key]: value });
+    this.setState({[key]: value});
   };
   render() {
     const email = localStorage.getItem("email");
@@ -140,7 +140,7 @@ class CollectorProfile extends Component {
       pincodeErr,
     } = this.state.formErrors;
     return (
-      <div className="collector_profile" style={{ marginTop: "85px" }}>
+      <div className="collector_profile" style={{marginTop: "85px"}}>
         <form>
           <div className="Formbody">
             <div className="collectorsprofile">
@@ -166,10 +166,10 @@ class CollectorProfile extends Component {
                     type="text"
                     name="firstName"
                     autoComplete="off"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     value={this.state.firstName}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="First name"
                     className={firstNameErr ? " showError" : ""}
@@ -184,10 +184,10 @@ class CollectorProfile extends Component {
                     type="text"
                     name="lastName"
                     autoComplete="off"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     value={this.state.lastName}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Last name"
                     className={lastNameErr ? " showError" : ""}
@@ -222,9 +222,9 @@ class CollectorProfile extends Component {
                     type="text"
                     name="mobileNo"
                     autoComplete="off"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     value={this.state.mobileNo}
                     placeholder="Phone Number"
@@ -242,10 +242,10 @@ class CollectorProfile extends Component {
                     type="text"
                     name="address1"
                     autoComplete="off"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     value={this.state.address1}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Address Line"
                     className={landmarkErr ? " showError" : ""}
@@ -302,10 +302,10 @@ class CollectorProfile extends Component {
                     type="pincode"
                     name="pinCode"
                     autoComplete="off"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     value={this.state.pinCode}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Pincode"
                     className={pincodeErr ? " showError" : ""}
@@ -322,10 +322,10 @@ class CollectorProfile extends Component {
                     type="text"
                     name="gstNo"
                     autoComplete="off"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     value={this.state.gstNo}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Enter GSTIN"
                   />
@@ -339,10 +339,10 @@ class CollectorProfile extends Component {
                     type="text"
                     name="registrationNo"
                     autoComplete="off"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     value={this.state.registrationNo}
                     onChange={(e) =>
-                      this.setState({ [e.target.name]: e.target.value })
+                      this.setState({[e.target.name]: e.target.value})
                     }
                     placeholder="Enter Registration Number"
                   />
@@ -355,7 +355,7 @@ class CollectorProfile extends Component {
                     htmlFor="time"
                     data-tip
                     data-for="registerTip"
-                    style={{ marginLeft: "11px" }}
+                    style={{marginLeft: "11px"}}
                   >
                     Drop-Off Time <i className="text-danger">*</i>
                   </label>

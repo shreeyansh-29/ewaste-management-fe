@@ -2,7 +2,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-import "../Customer.css";
+import "../customer.css";
 import AddIcon from "@material-ui/icons/AddBox";
 import {
   MuiPickersUtilsProvider,
@@ -19,7 +19,7 @@ import {
 } from "../../constant/constant";
 import Toast from "../../components/toast";
 export default function PickUp() {
-  const { useState } = React;
+  const {useState} = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
   const [isEditable, setEditable] = useState(true);
@@ -83,7 +83,7 @@ export default function PickUp() {
       field: "date",
       type: "date",
 
-      editComponent: ({ value, onChange }) => (
+      editComponent: ({value, onChange}) => (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             margin="normal"
@@ -191,7 +191,6 @@ export default function PickUp() {
       data[0].quantity < 0
     ) {
       Toast.warn(TOAST_WARN1);
-      
     } else {
       const res = await api.get(
         `http://localhost:8083/customer/request/pickUp/viewCollectors?category=${data[0].category}`
@@ -204,7 +203,7 @@ export default function PickUp() {
 
   return (
     <div>
-      <div style={{ padding: "150px 30px" }}>
+      <div style={{padding: "150px 30px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -225,18 +224,18 @@ export default function PickUp() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
+            Add: () => <AddIcon style={{fill: "#e75480"}} />,
           }}
           editable={{
             onRowAdd: isEditable
               ? (newData) =>
-                new Promise((resolve) => {
-                  setTimeout(() => {
-                    setData([...data, newData]);
-                    setEditable(false);
-                    resolve();
-                  }, 1000);
-                })
+                  new Promise((resolve) => {
+                    setTimeout(() => {
+                      setData([...data, newData]);
+                      setEditable(false);
+                      resolve();
+                    }, 1000);
+                  })
               : null,
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {

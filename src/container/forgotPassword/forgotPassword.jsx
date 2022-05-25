@@ -86,7 +86,7 @@ const ForgotPassword = () => {
               />
             </div>
             <div className="formerrors">{emailerr}</div>
-            <div style={{color: "green", marginRight: "7%", marginLeft: "7%"}}>
+            <div style={{color: "green", marginRight: "7%", marginLeft: "9%"}}>
               {msg === "" ? "" : msg}
             </div>
             <div className="row">
@@ -99,7 +99,6 @@ const ForgotPassword = () => {
                 </button>
               </div>
             </div>
-            {/* </div> */}
           </Form>
         </Formik>
       </div>

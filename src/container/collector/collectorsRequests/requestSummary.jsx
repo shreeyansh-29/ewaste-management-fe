@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import api from "../../../core/utilities/httpProvider";
 import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../customer/popup";
-import { FaUserCircle } from "react-icons/fa";
-import { COLLECTOR_REQUEST_SUMMARY, TOAST_WARN3 } from "../../constant/constant";
+import {FaUserCircle} from "react-icons/fa";
+import {COLLECTOR_REQUEST_SUMMARY, TOAST_WARN3} from "../../constant/constant";
 import Toast from "../../components/toast";
-
 
 export const ProfileIcon = FaUserCircle;
 export default function CollectorRequests() {
-  const { useState } = React;
+  const {useState} = React;
   const [data, setData] = useState();
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -152,9 +151,9 @@ export default function CollectorRequests() {
           obj.scheduledTime = " 16:00-18:00";
         }
       }
-    })
+    });
   };
-  const handledata=(res)=>{
+  const handledata = (res) => {
     handledate(res);
     res.data.map((obj) => {
       if (obj.requestType === "PickUp") {
@@ -171,15 +170,14 @@ export default function CollectorRequests() {
         obj.scheduledDate = "---";
       }
     });
-  }
+  };
   useEffect(() => {
     (async function () {
       try {
         const res = await api.get(COLLECTOR_REQUEST_SUMMARY);
-        console.log(res);
         if (res.status === "success") {
           handledata(res);
-          
+
           setData(res.data);
         }
       } catch (err) {
@@ -190,7 +188,7 @@ export default function CollectorRequests() {
 
   return (
     <div>
-      <div style={{ padding: "150px 30px 0 30px" }}>
+      <div style={{padding: "150px 30px 0 30px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -211,7 +209,7 @@ export default function CollectorRequests() {
           data={data}
           title=""
           icons={{
-            Search: () => <SearchIcon style={{ fill: "white" }} />,
+            Search: () => <SearchIcon style={{fill: "white"}} />,
           }}
           localization={{
             header: {
@@ -230,7 +228,7 @@ export default function CollectorRequests() {
                   onClick={togglepop}
                 >
                   {" "}
-                  <ProfileIcon style={{ color: "#e75480" }} />{" "}
+                  <ProfileIcon style={{color: "#e75480"}} />{" "}
                 </button>
               ),
 

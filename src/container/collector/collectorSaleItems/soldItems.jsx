@@ -4,16 +4,14 @@ import api from "../../../core/utilities/httpProvider";
 import {} from "@material-ui/icons";
 
 import SearchIcon from "@material-ui/icons/Search";
-import {COLLECTOR_SELL_SUMMARY} from "../../constant/constant";
+import {COLLECTOR_SELL_SUMMARY_SOLD} from "../../constant/constant";
 export default function SoldItems() {
   const {useState} = React;
 
   const [columns] = useState([
     {
       title: "ID",
-
       field: "id",
-
       editable: "never",
       cellStyle: {
         textAlign: "center",
@@ -109,12 +107,11 @@ export default function SoldItems() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await api.get(COLLECTOR_SELL_SUMMARY);
+        const res = await api.get(COLLECTOR_SELL_SUMMARY_SOLD);
         console.log(res);
         if (res.status === "success") {
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;
-
             obj.Totalprice = obj.price * obj.quantity;
           });
 

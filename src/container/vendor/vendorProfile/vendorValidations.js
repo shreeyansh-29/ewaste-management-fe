@@ -80,5 +80,5 @@ export default function validationVendor(values) {
       formErrors["registrationErr"] = REGISTRATION_INVALID;
     }
   }
-  return { formErrors, formIsValid };
+  return {formErrors, formIsValid};
 }

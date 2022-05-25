@@ -7,11 +7,11 @@ import {
 } from "../../components/navbar/navbarelements";
 
 import api from "../../../core/utilities/httpProvider";
-import "../../customer/Customer.css";
+import "../../customer/customer.css";
 import "../Collector.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
-import { COLLECTOR_NOTIFICATION_MARKASREAD } from "../../constant/constant";
+import {COLLECTOR_NOTIFICATION_MARKASREAD} from "../../constant/constant";
 function CollectorNav() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -23,7 +23,7 @@ function CollectorNav() {
     try {
       var res = await api.post(COLLECTOR_NOTIFICATION_MARKASREAD);
       res = await res.json();
-      
+
       if (res.status === "success") {
         for (var i = 0; i < res.data.length; i++) {
           list[i] = res.data[i].message;
@@ -71,7 +71,6 @@ function CollectorNav() {
             <button
               style={{background: "#101522", border: "none"}}
               onClick={() => markAsRead()}
-              
             >
               <div className="icon-button__badge1">
                 {c === "0" ? (
@@ -94,8 +93,8 @@ function CollectorNav() {
                 <NavNotiIcon
                   style={
                     c === "0" || c === null
-                      ? { color: "white"}
-                      : { color: "white", marginBottom: "20px"}
+                      ? {color: "white"}
+                      : {color: "white", marginBottom: "20px"}
                   }
                 ></NavNotiIcon>
               </div>
@@ -142,9 +141,7 @@ function CollectorNav() {
                 <NavDropdown.Item href="./ItemsForSale">
                   On Sale
                 </NavDropdown.Item>
-                <NavDropdown.Item href="./SaleItems">
-                  Invoices
-                </NavDropdown.Item>
+                <NavDropdown.Item href="./SaleItems">Invoices</NavDropdown.Item>
               </NavDropdown>
 
               <Nav.Link href="/CollectorProfile" style={{padding: "18px"}}>

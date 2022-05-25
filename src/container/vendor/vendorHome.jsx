@@ -1,10 +1,10 @@
 import React from "react";
-import CatgItems from "./catgItems";
-import VendorData from "./vendorData";
-import "./vendorAnalytics.css";
-import CollectorData from "./collectorData";
-import CollCat from "./category";
-import CategoryCarousel from "../../customer/customerAnalytics/categoryCarousel";
+import CatgItems from "./vendor Analytics/catgItems";
+import VendorData from "./vendor Analytics/vendorData";
+import "./vendor Analytics/vendorAnalytics.css";
+import CollectorData from "./vendor Analytics/collectorData";
+import CollCat from "./vendor Analytics/category";
+import CategoryCarousel from "../categoryCarousel";
 
 function VendorHome() {
   return (

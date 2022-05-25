@@ -1,14 +1,14 @@
 import React from "react";
-import { Carousel } from "react-bootstrap";
+import {Carousel} from "react-bootstrap";
 import EWaste from "./WasteGenerated";
-import "../Customer.css";
-import CollectorsCategories from "./CollectorsCategories";
-import Drives from "./Drives";
+import "../customer.css";
+import CollectorsCategories from "./collectorsCategories";
+import Drives from "./drives";
 function Analytics() {
   return (
     <Carousel>
       <Carousel.Item>
-        <h3 style={{ textAlign: "center" }}>
+        <h3 style={{textAlign: "center"}}>
           Your Contribution towards the Sustainability of our Planet
         </h3>
         <div>

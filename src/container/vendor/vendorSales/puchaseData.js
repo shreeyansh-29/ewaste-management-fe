@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import "../customer/Customer.css";
+import "../../customer/customer.css";
 
 function PuchaseData(props) {
   return (
@@ -20,7 +20,9 @@ function PuchaseData(props) {
               Invoice Details
             </h2>
           </div>
-          <div style={{textAlign: "center", marginTop: "40px"}}>
+          <div
+            style={{textAlign: "center", marginTop: "40px", padding: "0 50px"}}
+          >
             <h3>
               Congratulations, you have purchased {props.quantity} quantity of{" "}
               {props.item}.

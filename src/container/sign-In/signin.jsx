@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
+import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
@@ -77,9 +77,9 @@ const SignIn = () => {
         password: password,
       };
       var res = await api.post(SIGN_IN, data);
-      console.log(res);
+
       res = await res.json();
-      console.log(res);
+
       if (res.status === "Fail") {
         Toast.error(TOAST_ERROR1);
       }
@@ -102,7 +102,6 @@ const SignIn = () => {
         if (role === "COLLECTOR") {
           val = await api.get(COLLECTOR_AUTH_URL);
           result = await api.get(COLLECTOR_NOTIFICATION_URL);
-          console.log(result);
         }
         if (role === "VENDOR") {
           val = await api.get(VENDOR_AUTH_URL);
@@ -156,7 +155,7 @@ const SignIn = () => {
                   className="form-control"
                   type="email"
                   placeholder="Email"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="off"
                 />
@@ -177,7 +176,7 @@ const SignIn = () => {
                     className="form-control"
                     type={passwordType}
                     placeholder="Password"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="off"
                   />
@@ -200,7 +199,7 @@ const SignIn = () => {
                 </div>
               </div>
               <div className="formError">{passworderr}</div>
-              <div style={{ float: "right" }}>
+              <div style={{float: "right"}}>
                 <Link
                   to="/ForgotPassword"
                   style={{
@@ -212,13 +211,13 @@ const SignIn = () => {
                   Forgot Password
                 </Link>
               </div>
-              <div className="text-center" style={{ marginTop: "50px" }}>
+              <div className="text-center" style={{marginTop: "50px"}}>
                 <button
                   type="button"
                   className="signin-button"
                   onClick={handleClick}
                 >
-                  <div style={{ textAlign: "center" }}>Sign In</div>
+                  <div style={{textAlign: "center"}}>Sign In</div>
                 </button>
               </div>
 

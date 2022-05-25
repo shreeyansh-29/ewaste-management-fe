@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import "./signin.css";
+import "../sign-In/signin";
 
 const Button = ({value, onClick}) => (
   <button className="app-button1" onClick={(event) => onClick(event)}>

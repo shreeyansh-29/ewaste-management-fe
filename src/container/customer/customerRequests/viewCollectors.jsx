@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 
-import "../Customer.css";
-import { CUSTOMER_DROPOFF, TOAST_SUCCESS4 } from "../../constant/constant";
+import "../customer.css";
+import {CUSTOMER_DROPOFF, TOAST_SUCCESS4} from "../../constant/constant";
 import api from "../../../core/utilities/httpProvider";
 import Toast from "../../components/toast";
 export default function ViewCollectors(props) {
-  const { useState } = React;
+  const {useState} = React;
   const [btndisable, setdisable] = useState(false);
 
   const [columns] = useState([
@@ -92,12 +92,11 @@ export default function ViewCollectors(props) {
 
     await api.post(CUSTOMER_DROPOFF, data);
     Toast.success(TOAST_SUCCESS4);
-    
   };
 
   return (
     <div>
-      <div style={{ padding: "10px" }}>
+      <div style={{padding: "10px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -124,8 +123,8 @@ export default function ViewCollectors(props) {
                   disabled={btndisable}
                   style={
                     btndisable === true
-                      ? { color: "red", background: "grey" }
-                      : { color: "white", background: "rgb(14, 185, 207)" }
+                      ? {color: "red", background: "grey"}
+                      : {color: "white", background: "rgb(14, 185, 207)"}
                   }
                 >
                   Accept

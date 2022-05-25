@@ -33,6 +33,7 @@ export const CUSTOMER_VIEW_DRIVES = `${apiUrl}/customer/viewDrives`;
 export const VENDOR_VIEW_ITEMS = `${apiUrl}/vendor/view/items`;
 export const COLLECTOR_SELL_SUMMARY = `${apiUrl}/collector/sell/summary/sold`;
 export const COLLECTOR_SELL_SUMMARY_AVAILABE = `${apiUrl}/collector/sell/summary/available`;
+export const COLLECTOR_SELL_SUMMARY_SOLD = `${apiUrl}/collector/sell/summary/sold`;
 export const COLLECTOR_ANALYTICS_V2 = `${apiUrl}/collector/analytics/v2`;
 export const CUSTOMER_ANALYTICS_V2 = `${apiUrl}/customer/analytics/v2`;
 export const CUSTOMER_ANALYTICS_V3 = `${apiUrl}/customer/analytics/v3`;

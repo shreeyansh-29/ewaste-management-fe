@@ -1,15 +1,15 @@
 import React from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-import "../Customer.css";
+import "../customer.css";
 import ViewCollectors from "./viewCollectors";
 import api from "../../../core/utilities/httpProvider";
 import AddIcon from "@material-ui/icons/AddBox";
 import SearchIcon from "@material-ui/icons/Search";
-import { TOAST_ERROR4, TOAST_WARN1 } from "../../constant/constant";
+import {TOAST_ERROR4, TOAST_WARN1} from "../../constant/constant";
 import Toast from "../../components/toast";
 export default function DropOff() {
-  const { useState } = React;
+  const {useState} = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState([]);
   const [isEditable, setEditable] = useState(true);
@@ -102,7 +102,7 @@ export default function DropOff() {
 
   return (
     <div>
-      <div style={{ padding: "150px 30px" }}>
+      <div style={{padding: "150px 30px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -123,19 +123,19 @@ export default function DropOff() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
-            Search: () => <SearchIcon style={{ fill: "white" }} />,
+            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Search: () => <SearchIcon style={{fill: "white"}} />,
           }}
           editable={{
             onRowAdd: isEditable
               ? (newData) =>
-                new Promise((resolve) => {
-                  setTimeout(() => {
-                    setData([...data, newData]);
-                    setEditable(false);
-                    resolve();
-                  }, 1000);
-                })
+                  new Promise((resolve) => {
+                    setTimeout(() => {
+                      setData([...data, newData]);
+                      setEditable(false);
+                      resolve();
+                    }, 1000);
+                  })
               : null,
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {
@@ -149,7 +149,7 @@ export default function DropOff() {
                 }, 1000);
               }),
           }}
-          options={{ pageSize: 1, actionsColumnIndex: -1, search: false }}
+          options={{pageSize: 1, actionsColumnIndex: -1, search: false}}
         />
 
         <div className="a">
