@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import Popup from "../customer/popup";
-import { FaUserCircle } from "react-icons/fa";
-import { toast } from "react-toastify";
+import {FaUserCircle} from "react-icons/fa";
+import {toast} from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";
-import { TOAST_WARN3, VENDOR_SUMMARY } from "../constant/constant";
+import {TOAST_WARN3, VENDOR_SUMMARY} from "../constant/constant";
 import api from "../../core/utilities/httpProvider";
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 export default function MyOrders() {
-  const { useState } = React;
+  const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
 
@@ -84,7 +84,7 @@ export default function MyOrders() {
       field: "price",
       filtering: false,
       type: "currency",
-      currencySetting: { currencyCode: "INR" },
+      currencySetting: {currencyCode: "INR"},
       cellStyle: {
         textAlign: "center",
         fontSize: "13px",
@@ -125,7 +125,7 @@ export default function MyOrders() {
       field: "status",
       lookup: {
         Open: "Open",
-        completed: "completed",
+        completed: "Completed",
       },
       cellStyle: {
         textAlign: "center",
@@ -138,7 +138,6 @@ export default function MyOrders() {
   };
   useEffect(() => {
     (async function () {
-      
       const res = await api.get(VENDOR_SUMMARY);
 
       if (res.status === "success") {
@@ -157,7 +156,7 @@ export default function MyOrders() {
 
   return (
     <div>
-      <div style={{ padding: "150px 30px" }}>
+      <div style={{padding: "150px 30px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -182,7 +181,7 @@ export default function MyOrders() {
             },
           }}
           icons={{
-            Search: () => <SearchIcon style={{ fill: "white" }} />,
+            Search: () => <SearchIcon style={{fill: "white"}} />,
           }}
           actions={[
             {
@@ -196,7 +195,7 @@ export default function MyOrders() {
                   onClick={togglepop}
                 >
                   {" "}
-                  <ProfileIcon style={{ color: "#e75480" }} />
+                  <ProfileIcon style={{color: "#e75480"}} />
                 </button>
               ),
 
