@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import "../Collector.css";
-import TimeRange from "react-time-range";
 import {statescity} from "../../sign-Up/states";
 import api from "../../../core/utilities/httpProvider";
 import validationCollector from "./collectorValidations";
-import moment from "moment";
 import {
   COLLECTOR_AUTH_URL,
   COLLECTOR_PROFILE_EDIT,
@@ -26,8 +24,7 @@ class CollectorProfile extends Component {
       state: "",
       gstNo: "",
       msg: "",
-      startTime: moment(),
-      endTime: moment(),
+      shopTime: "",
       registrationNo: "",
       categoriesAcceptedSet: [
         [
@@ -61,20 +58,9 @@ class CollectorProfile extends Component {
 
     return Errors.formIsValid;
   }
-  setTime = () => {
-    var start = this.state.startTime.toString().split("T");
-    start = start[1].split(":");
-    start = (parseInt(start[0]) + 6) % 24;
-    start = start + ":" + "00" + "-";
-    var end = this.state.endTime.toString().split("T");
-    end = end[1].split(":");
-    end = (parseInt(end[0]) + 6) % 24;
-    end = end + ":" + "00";
-    return start.toString() + end.toString();
-  };
   handleSubmit = async (e) => {
     e.preventDefault();
-    var dropoff = this.setTime();
+    console.log(this.state.shopTime);
     if (this.handleFormValidation()) {
       const email = localStorage.getItem("email");
       const data = {
@@ -87,7 +73,7 @@ class CollectorProfile extends Component {
         city: this.state.city,
         state: this.state.state,
         pinCode: this.state.pinCode,
-        shopTime: dropoff,
+        shopTime: this.state.shopTime,
         gstNo: this.state.gstNo,
         registrationNo: this.state.registrationNo,
         categoriesAcceptedSet: [...this.state.categoriesAcceptedSet],
@@ -106,23 +92,10 @@ class CollectorProfile extends Component {
       states: statescity,
     });
     const res = await api.get(COLLECTOR_AUTH_URL);
-
     this.setState(res.data);
-    var times;
-    const shopTimes = res.data.shopTime.toString().split("-");
-    times = shopTimes[0].split(":");
-    const dates = moment.utc().hour(times[0]).minute(0);
-    this.setState({startTime: dates});
-    times = shopTimes[1].split(":");
-    const enddates = moment.utc().hour(times[0]).minute(0);
-    this.setState({endTime: enddates});
+    
   };
-  returnFunctionStart = (event) => {
-    this.setState({startTime: event.startTime});
-  };
-  returnFunctionEnd = (event) => {
-    this.setState({endTime: event.endTime});
-  };
+
   handleChange = (key) => (value) => {
     this.setState({[key]: value});
   };
@@ -347,27 +320,6 @@ class CollectorProfile extends Component {
                     placeholder="Enter Registration Number"
                   />
                   <div className="formErrors">{registrationErr}</div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <label
-                    htmlFor="time"
-                    data-tip
-                    data-for="registerTip"
-                    style={{marginLeft: "11px"}}
-                  >
-                    Drop-Off Time <i className="text-danger">*</i>
-                  </label>
-                  <TimeRange
-                    onStartTimeChange={this.returnFunctionStart}
-                    onEndTimeChange={this.returnFunctionEnd}
-                    startMoment={this.state.startTime}
-                    endMoment={this.state.endTime}
-                    onChange={this.onChange}
-                    use24Hours={true}
-                    minuteIncrement="60"
-                  />
                 </div>
               </div>
               <div className="cont">

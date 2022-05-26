@@ -17,14 +17,14 @@ import {CUSTOMER_VIEW_DRIVES} from "../../constant/constant";
 export default function Waste() {
   const handledate = (res) => {
     res.data.map((obj) => {
-      if (obj.scheduledTime === "10") {
-        obj.scheduledTime = " 10:00-12:00";
-      } else if (obj.scheduledTime === "12") {
-        obj.scheduledTime = " 12:00-14:00";
-      } else if (obj.scheduledTime === "14") {
-        obj.scheduledTime = " 14:00-16:00";
-      } else if (obj.scheduledTime === "16") {
-        obj.scheduledTime = " 16:00-18:00";
+      if (obj.time === "10") {
+        obj.time = " 10:00-12:00";
+      } else if (obj.time === "12") {
+        obj.time = " 12:00-14:00";
+      } else if (obj.time === "14") {
+        obj.time = " 14:00-16:00";
+      } else if (obj.time === "16") {
+        obj.time = " 16:00-18:00";
       }
     });
   };

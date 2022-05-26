@@ -109,9 +109,10 @@ export default function SummarySales() {
         const res = await api.get(COLLECTOR_SELL_SUMMARY_AVAILABE);
 
         if (res.status === "success") {
+          console.log(res);
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;
-            obj.Totalprice = obj.price * obj.quantity;
+            obj.Totalprice = obj.price * obj.availableQuantity;
           });
 
           setData(res.data);
