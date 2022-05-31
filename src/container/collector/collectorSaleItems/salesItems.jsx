@@ -44,7 +44,7 @@ export default function SaleItems() {
         }}
       >
         {" "}
-        Invoices{" "}
+        Sales Summary{" "}
       </h2>
       <Paper square style={{margin: "20px auto", width: "100%"}}>
         <Tabs

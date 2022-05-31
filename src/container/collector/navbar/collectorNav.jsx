@@ -141,7 +141,7 @@ function CollectorNav() {
                 <NavDropdown.Item href="./ItemsForSale">
                   On Sale
                 </NavDropdown.Item>
-                <NavDropdown.Item href="./SaleItems">Invoices</NavDropdown.Item>
+                <NavDropdown.Item href="./SaleItems">Sales Summary</NavDropdown.Item>
               </NavDropdown>
 
               <Nav.Link href="/CollectorProfile" style={{padding: "18px"}}>

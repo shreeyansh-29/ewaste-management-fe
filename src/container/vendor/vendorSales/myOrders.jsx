@@ -100,7 +100,7 @@ export default function MyOrders() {
       field: "address",
       editable: false,
       cellStyle: {
-        fontSize: "13px",
+        fontSize: "13px",textAlign: "center",
       },
       headerStyle: {
         textAlign: "center",
@@ -112,7 +112,7 @@ export default function MyOrders() {
       field: "date",
       editable: false,
       cellStyle: {
-        fontSize: "13px",
+        fontSize: "13px",textAlign: "center",
       },
       headerStyle: {
         textAlign: "center",
@@ -128,6 +128,10 @@ export default function MyOrders() {
         completed: "Completed",
       },
       cellStyle: {
+        textAlign: "center",
+        fontSize: "13px",
+      },
+      headerStyle: {
         textAlign: "center",
         fontSize: "13px",
       },

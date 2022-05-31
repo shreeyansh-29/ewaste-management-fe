@@ -123,7 +123,7 @@ export default function ViewCollectors(props) {
                   disabled={btndisable}
                   style={
                     btndisable === true
-                      ? {color: "red", background: "grey"}
+                      ? {color: "white", background: "rgb(14, 185, 207)"}
                       : {color: "white", background: "rgb(14, 185, 207)"}
                   }
                 >

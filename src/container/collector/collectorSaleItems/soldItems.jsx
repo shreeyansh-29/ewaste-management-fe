@@ -74,7 +74,7 @@ export default function SoldItems() {
     {
       title: "Total Price",
       editable: "never",
-      field: "Totalprice",
+      field: "price",
       type: "currency",
       currencySetting: {currencyCode: "INR"},
       cellStyle: {
@@ -96,7 +96,6 @@ export default function SoldItems() {
         if (res.status === "success") {
           res.data.map((obj) => {
             obj.id = "IS" + obj.id;
-            obj.Totalprice = obj.price * obj.quantity;
           });
 
           setData(res.data);

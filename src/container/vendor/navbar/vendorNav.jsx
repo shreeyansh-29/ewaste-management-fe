@@ -26,7 +26,7 @@ function VendorNav() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto" style={{ marginRight: "1%" }}>
               <NavDropdown
-                title="Sales"
+                title="My Orders"
                 id="collasible-nav-dropdown"
                 style={{ padding: "10px" }}
               >

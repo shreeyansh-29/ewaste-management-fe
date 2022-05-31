@@ -4,12 +4,12 @@ import { VENDOR_ANALYTICS_V2 } from "../../constant/constant";
 import api from "../../../core/utilities/httpProvider";
 const data = [
   ["Category", "Items Available", "Purchased Items"],
-  ["Temperature Exchange Equipment", 18, 7],
-  ["Screens and Monitors", 16, 6],
-  ["Lamps", 16, 2],
-  ["Large equipment", 13, 5],
-  ["Small equipment", 22, 12],
-  ["Small IT and Telecommunication", 12, 4],
+  ["Temperature Exchange Equipment", 5, 3],
+  ["Screens and Monitors", 2, 2],
+  ["Lamps", 2, 2],
+  ["Large equipment", 6, 5],
+  ["Small equipment", 3, 1],
+  ["Small IT and Telecommunication", 2, 1],
 ];
 const options = {
   legend: "right",
