@@ -82,6 +82,7 @@ export default function ItemsForSale() {
       datas.itemName === "" ||
       datas.price === null ||
       datas.quantity === null ||
+      datas.quantity === undefined ||
       datas.category === undefined
     ) {
       Toast.error(TOAST_ERROR4);
