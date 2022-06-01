@@ -129,13 +129,13 @@ export default function DropOff() {
           editable={{
             onRowAdd: isEditable
               ? (newData) =>
-                  new Promise((resolve) => {
-                    setTimeout(() => {
-                      setData([...data, newData]);
-                      setEditable(false);
-                      resolve();
-                    }, 1000);
-                  })
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    setData([...data, newData]);
+                    setEditable(false);
+                    resolve();
+                  }, 1000);
+                })
               : null,
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {
