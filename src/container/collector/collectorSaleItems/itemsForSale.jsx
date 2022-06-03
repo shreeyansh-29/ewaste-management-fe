@@ -6,11 +6,12 @@ import {
   COLLECTOR_SELL,
   TOAST_ERROR4,
   TOAST_SUCCESS6,
+  TOAST_WARN1,
 } from "../../constant/constant";
 import api from "../../../core/utilities/httpProvider";
 import Toast from "../../components/toast";
 export default function ItemsForSale() {
-  const {useState} = React;
+  const { useState } = React;
   const [status, setStatus] = useState("");
   const [columns] = useState([
     {
@@ -65,7 +66,7 @@ export default function ItemsForSale() {
       title: "Price/Item",
       field: "price",
       type: "currency",
-      currencySetting: {currencyCode: "INR"},
+      currencySetting: { currencyCode: "INR" },
       cellStyle: {
         textAlign: "center",
         fontSize: "15px",
@@ -86,6 +87,12 @@ export default function ItemsForSale() {
       datas.category === undefined
     ) {
       Toast.error(TOAST_ERROR4);
+    } else if (
+      data[0].quantity === 0 ||
+      data[0].quantity > 20 ||
+      data[0].quantity < 0
+    ) {
+      Toast.warn(TOAST_WARN1);
     } else {
       const data = {
         itemName: datas.itemName,
@@ -105,7 +112,7 @@ export default function ItemsForSale() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
+      <div style={{ padding: "150px 30px 0 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -125,7 +132,7 @@ export default function ItemsForSale() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
           }}
           editable={{
             onRowAdd: (newData) =>
