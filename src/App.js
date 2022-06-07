@@ -2,10 +2,10 @@ import React from "react";
 import Navbar from "./container/components/navbar/navbars";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Signin from "./container/sign-In/signin";
+import Signin from "./container/signIn/signIn";
 import Home from "./container/homePage/home";
 import SaleItems from "./container/collector/collectorSaleItems/salesItems";
-import SignUp from "./container/sign-Up/signUp";
+import SignUp from "./container/signUp/signUp";
 import ForgotPassword from "./container/forgotPassword/forgotPassword";
 import ResetPass from "./container/forgotPassword/resetPassword";
 import CustomerHome from "./container/customer/customerHome";
@@ -76,7 +76,6 @@ function App() {
         ""
       )}
       <Routes>
-       
         <Route path="/" element={<Home />} />
         <Route path="/Signin" element={<Signin />} />
         <Route path="/signUp" element={<SignUp />} />

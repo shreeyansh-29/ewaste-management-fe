@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
+import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
@@ -22,7 +22,7 @@ import {
 } from "../constant/constant";
 import Toast from "../components/toast";
 import "./signin.css";
-const SignIn = () => {
+const signIn = () => {
   const [password, setPassword] = useState("");
 
   const [passwordType, setpasswordType] = useState("password");
@@ -155,7 +155,7 @@ const SignIn = () => {
                   className="form-control"
                   type="email"
                   placeholder="Email"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="off"
                 />
@@ -176,7 +176,7 @@ const SignIn = () => {
                     className="form-control"
                     type={passwordType}
                     placeholder="Password"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="off"
                   />
@@ -199,7 +199,7 @@ const SignIn = () => {
                 </div>
               </div>
               <div className="formError">{passworderr}</div>
-              <div style={{ float: "right" }}>
+              <div style={{float: "right"}}>
                 <Link
                   to="/ForgotPassword"
                   style={{
@@ -211,16 +211,16 @@ const SignIn = () => {
                   Forgot Password
                 </Link>
               </div>
-              <div className="text-center" style={{ marginTop: "50px" }}>
+              <div className="text-center" style={{marginTop: "50px"}}>
                 <button
                   type="button"
                   className="signin-button"
                   onClick={handleClick}
                 >
-                  <div style={{ textAlign: "center" }}>Sign In</div>
+                  <div style={{textAlign: "center"}}>Sign In</div>
                 </button>
               </div>
-              <div >
+              <div>
                 <GoogleSignin />
               </div>
 
@@ -253,4 +253,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default signIn;

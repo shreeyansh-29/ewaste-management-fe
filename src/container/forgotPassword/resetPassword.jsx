@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useParams} from "react-router-dom";
-import "../sign-In/signin";
+import "../signIn/signIn";
 import {NotificationContainer} from "react-notifications";
 
 import "./password.css";
