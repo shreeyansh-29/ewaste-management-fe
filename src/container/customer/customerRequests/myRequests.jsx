@@ -1,17 +1,19 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import Popup from "../popup";
 import "../customer.css";
-import {FaUserCircle} from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+
+import api from "../../../core/utilities/httpProvider";
 
 import SearchIcon from "@material-ui/icons/Search";
-import {toast} from "react-toastify";
-import {TOAST_WARN2, TOAST_WARN3} from "../../constant/constant";
+import { toast } from "react-toastify";
+import { CUSTOMER_MYREQUEST, TOAST_WARN2, TOAST_WARN3 } from "../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
 export default function MyRequests() {
-  const {useState} = React;
+  const { useState } = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
 
@@ -173,23 +175,9 @@ export default function MyRequests() {
     });
   };
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
       try {
-        const response = await fetch(
-          "http://localhost:8083/customer/request/all",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
+        var res = await api.get(CUSTOMER_MYREQUEST);
         if (res.status === "success") {
           handledata(res);
           setData(res.data);
@@ -204,7 +192,7 @@ export default function MyRequests() {
   return (
     <div>
       <div>
-        <div style={{padding: " 150px 30px"}}>
+        <div style={{ padding: " 150px 30px" }}>
           <h2
             style={{
               textAlign: "center",
@@ -225,7 +213,7 @@ export default function MyRequests() {
             columns={columns}
             data={data}
             icons={{
-              Search: () => <SearchIcon style={{fill: "white"}} />,
+              Search: () => <SearchIcon style={{ fill: "white" }} />,
             }}
             localization={{
               header: {
@@ -244,7 +232,7 @@ export default function MyRequests() {
                       }}
                       onClick={togglepop}
                     >
-                      <ProfileIcon style={{color: "#e75480"}} />
+                      <ProfileIcon style={{ color: "#e75480" }} />
                     </button>
                   </>
                 ),

@@ -42,7 +42,7 @@ export const COLLECTOR_ANALYTICS_V4 = `${apiUrl}/collector/analytics/v4`;
 export const CUSTOMER_ANALYTICS_V1 = `${apiUrl}/customer/analytics/v1`;
 export const CUSTOMER_NOTIFICATION_MARKASREAD = `${apiUrl}/customer/notification/markAsRead`;
 export const COLLECTOR_NOTIFICATION_MARKASREAD = `${apiUrl}/collector/notification/markAsRead`;
-
+export const CUSTOMER_MYREQUEST = `${apiUrl}/customer/request/all`;
 export const TOAST_ERROR1 = "Wrong Email ID";
 export const TOAST_ERROR2 = "Wrong Password";
 export const TOAST_ERROR3 = "Already registered with this mail ID";
