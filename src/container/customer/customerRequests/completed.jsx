@@ -1,28 +1,25 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import {} from "@material-ui/icons";
-import api from "../../../core/utilities/httpProvider";
-import SearchIcon from "@material-ui/icons/Search";
-import Popup from "../../customer/popup";
-import { FaUserCircle } from "react-icons/fa";
-import {
-  COLLECTOR_REQUEST_SUMMARY,
-  TOAST_WARN3,
-} from "../../constant/constant";
-import Toast from "../../components/toast";
+import Popup from "../popup";
+import "../customer.css";
+import {FaUserCircle} from "react-icons/fa";
 
+import SearchIcon from "@material-ui/icons/Search";
+import {toast} from "react-toastify";
+import {TOAST_WARN2, TOAST_WARN3} from "../../constant/constant";
 export const ProfileIcon = FaUserCircle;
-export default function CollectorRequests() {
-  const { useState } = React;
-  const [data, setData] = useState();
+
+toast.configure();
+export default function Completed() {
+  const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
+
   const [columns] = useState([
     {
       title: "ID",
 
       field: "id",
-
       editable: "never",
       cellStyle: {
         textAlign: "center",
@@ -35,8 +32,8 @@ export default function CollectorRequests() {
     },
     {
       title: "Request Name",
-      editable: "never",
       field: "itemName",
+      editable: "never",
       cellStyle: {
         textAlign: "center",
         fontSize: "13px",
@@ -48,17 +45,17 @@ export default function CollectorRequests() {
     },
     {
       title: "Category",
-      editable: "never",
       field: "category",
+      editable: "never",
       lookup: {
         Temp: "Temperature exchange equipment ",
-        Screens: "Screens, monitors",
-        Lapms: "Lamps",
-        LargeEqip: "Large equipment ",
+        Screens: "Screens, monitors ",
+        Lapms: "Lamps ",
+        LargeEqip: "Large equipment",
         SmallEquip: "Small equipment ",
-        SmallIT: "Small IT and telecommunication equipment ",
+        SmallIT:
+          "Small IT and telecommunication equipment (such as mobile phones, printers)",
       },
-      initialEditValue: "initial edit value",
       cellStyle: {
         textAlign: "center",
         fontSize: "13px",
@@ -70,9 +67,21 @@ export default function CollectorRequests() {
     },
     {
       title: "Quantity",
-      editable: "never",
       field: "quantity",
-      type: "numeric",
+      editable: "never",
+      cellStyle: {
+        textAlign: "center",
+        fontSize: "13px",
+      },
+      headerStyle: {
+        textAlign: "center",
+        fontSize: "13px",
+      },
+    },
+    {
+      title: "Request Type",
+      field: "requestType",
+      editable: "never",
       cellStyle: {
         textAlign: "center",
         fontSize: "13px",
@@ -84,9 +93,8 @@ export default function CollectorRequests() {
     },
     {
       title: "Date",
-      editable: "never",
       field: "scheduledDate",
-      type: "date",
+      editable: "never",
       cellStyle: {
         textAlign: "center",
         fontSize: "13px",
@@ -109,27 +117,11 @@ export default function CollectorRequests() {
         fontSize: "13px",
       },
     },
-    {
-      title: "Request Type",
-      editable: "never",
-      field: "requestType",
 
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
     {
       title: "Status",
       field: "status",
-      lookup: {
-        Scheduled: "Scheduled",
-        Completed: "Completed",
-      },
+      editable: "never",
       cellStyle: {
         textAlign: "center",
         fontSize: "13px",
@@ -162,6 +154,10 @@ export default function CollectorRequests() {
   const handledata = (res) => {
     handledate(res);
     res.data.map((obj) => {
+      if (obj.scheduledDate !== null) {
+        const date = obj.scheduledDate.split("T");
+        obj.scheduledDate = date[0];
+      }
       if (obj.requestType === "PickUp") {
         obj.id = "CP" + obj.id;
       }
@@ -171,20 +167,31 @@ export default function CollectorRequests() {
       if (obj.requestType === "DropOff" && obj.status === "pending") {
         obj.status = "Scheduled";
       }
-      if (obj.requestType === "DropOff") {
-        obj.scheduledTime = "---";
-        obj.scheduledDate = "---";
+      if (obj.requestType === "PickUp" && obj.status === "pending") {
+        obj.status = "Pending";
       }
     });
   };
   useEffect(() => {
+    const tokens = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
     (async function () {
       try {
-        const res = await api.get(COLLECTOR_REQUEST_SUMMARY);
+        const response = await fetch(
+          "http://localhost:8083/customer/request/all",
+          {
+            method: "GET",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + tokens,
+              EMAIL: email,
+            },
+          }
+        );
+        const res = await response.json();
         if (res.status === "success") {
-          console.log(res);
           handledata(res);
-
           setData(res.data);
         }
       } catch (err) {
@@ -192,85 +199,72 @@ export default function CollectorRequests() {
       }
     })();
   }, []);
+  const [data, setData] = useState();
 
   return (
     <div>
-      <div style={{ padding: "150px 30px 0 30px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "30px",
-            padding: "2px,",
-            color: "white",
-            marginBottom: "2.5%",
-            backgroundColor: " rgb(30, 28, 54)",
-            borderRadius: "5px",
-          }}
-        >
-          {" "}
-          My Requests{" "}
-        </h2>
-        <MaterialTable
-          align="center"
-          columns={columns}
-          data={data}
-          title=""
-          icons={{
-            Search: () => <SearchIcon style={{ fill: "white" }} />,
-          }}
-          localization={{
-            header: {
-              actions: "Profile",
-            },
-          }}
-          editable={{
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  const dataUpdate = [...data];
-                  const index = oldData.tableData.id;
-                  dataUpdate[index] = newData;
-                  //callApi(newData);
-                  setData([...dataUpdate]);
-  
-                  resolve();
-                }, 1000);
-              }),
-          }}
-          actions={[
-            {
-              icon: () => (
-                <button
-                  style={{
-                    background: "white",
-                    border: "1px solid white",
-                    fontSize: "15px",
-                  }}
-                  onClick={togglepop}
-                >
-                  {" "}
-                  <ProfileIcon style={{ color: "#e75480" }} />{" "}
-                </button>
-              ),
-
-              onClick: (e, datas) => {
-                console.log(e);
-
-                setdetail(datas.customerUid);
-                if (datas.customerUid === null) {
-                  Toast.warn(TOAST_WARN3);
-                }
+      <div>
+        <div style={{padding: " 10px 30px"}}>
+         
+          <MaterialTable
+            align="center"
+            title=""
+            columns={columns}
+            data={data}
+            icons={{
+              Search: () => <SearchIcon style={{fill: "white"}} />,
+            }}
+            localization={{
+              header: {
+                actions: "Profile",
               },
-            },
-          ]}
-          options={{
-            actionsColumnIndex: -1,
-          }}
-        />
+            }}
+            actions={[
+              {
+                icon: () => (
+                  <>
+                    <button
+                      style={{
+                        background: "white",
+                        border: "1px solid white",
+                        fontSize: "15px",
+                      }}
+                      onClick={togglepop}
+                    >
+                      <ProfileIcon style={{color: "#e75480"}} />
+                    </button>
+                  </>
+                ),
+
+                onClick: (e, datas) => {
+                  console.log(e);
+
+                  setdetail(datas.collectorUid);
+
+                  if (
+                    datas.collectorUid === null &&
+                    datas.status === "Expired"
+                  ) {
+                    toast.warn(TOAST_WARN2, {
+                      position: toast.POSITION.TOP_RIGHT,
+                    });
+                  } else if (datas.collectorUid === null) {
+                    toast.warn(TOAST_WARN3, {
+                      position: toast.POSITION.TOP_RIGHT,
+                    });
+                  }
+                },
+              },
+            ]}
+            options={{
+              actionsColumnIndex: -1,
+            }}
+          />
+        </div>
       </div>
       <div>
         {isopen && detail != null && (
-          <Popup handleClose={togglepop} content={detail} />
+          <Popup handleClose={togglepop} contents={detail} />
         )}
       </div>
     </div>
