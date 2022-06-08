@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../sign-In/signin";
+import "../signIn/signIn";
 
 const Dropdown = ({values, data, placeholder, onChange, label}) => {
   const handleChange = (event) => {

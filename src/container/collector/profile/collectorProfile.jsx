@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "../Collector.css";
-import {statescity} from "../../sign-Up/states";
+import {statescity} from "../../signUp/states";
 import api from "../../../core/utilities/httpProvider";
 import validationCollector from "./collectorValidations";
 import {
@@ -93,7 +93,6 @@ class CollectorProfile extends Component {
     });
     const res = await api.get(COLLECTOR_AUTH_URL);
     this.setState(res.data);
-    
   };
 
   handleChange = (key) => (value) => {

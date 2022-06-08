@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "../customer.css";
-import {statescity} from "../../sign-Up/states";
+import {statescity} from "../../signUp/states";
 import api from "../../../core/utilities/httpProvider";
 import validation from "./customerValidations";
 import {

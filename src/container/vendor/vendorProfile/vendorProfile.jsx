@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "../vendor.css";
 import api from "../../../core/utilities/httpProvider";
 import validationVendor from "./vendorValidations";
-import {statescity} from "../../sign-Up/states";
+import {statescity} from "../../signUp/states";
 import {
   TOAST_SUCCESS5,
   VENDOR_AUTH_URL,
