@@ -3,7 +3,8 @@ import MaterialTable from "material-table";
 import "../../customer.css";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-
+import { CUSTOMER_REQUEST_COMPLETED } from "../../../constant/constant";
+import api from "../../../../core/utilities/httpProvider";
 toast.configure();
 export default function Completed() {
   const {useState} = React;
@@ -139,32 +140,12 @@ export default function Completed() {
       if (obj.requestType === "DropOff") {
         obj.id = "CD" + obj.id;
       }
-      if (obj.requestType === "DropOff" && obj.status === "pending") {
-        obj.status = "Scheduled";
-      }
-      if (obj.requestType === "PickUp" && obj.status === "pending") {
-        obj.status = "Pending";
-      }
     });
   };
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
       try {
-        const response = await fetch(
-          "http://localhost:8083/customer/request/all",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
+        const res = await api.get(CUSTOMER_REQUEST_COMPLETED);
         if (res.status === "success") {
           handledata(res);
           setData(res.data);

@@ -7,7 +7,7 @@ import { FaUserCircle } from "react-icons/fa";
 import FeedbackPopup from "../MyRequests/Feedback/feedbackPopup";
 import SearchIcon from "@material-ui/icons/Search";
 import { toast } from "react-toastify";
-import { CUSTOMER_REQUEST_ALL } from "../../../constant/constant";
+import { CUSTOMER_REQUEST_COMPLETED } from "../../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
@@ -146,17 +146,11 @@ export default function Completed() {
         const date = obj.scheduledDate.split("T");
         obj.scheduledDate = date[0];
       }
-      if (obj.requestType === "DropOff" && obj.status === "pending") {
-        obj.status = "Scheduled";
-      }
-      if (obj.requestType === "PickUp" && obj.status === "pending") {
-        obj.status = "Pending";
-      }
     });
   };
   useEffect(() => {
     (async function () {
-      const res = await api.get(CUSTOMER_REQUEST_ALL);
+      const res = await api.get(CUSTOMER_REQUEST_COMPLETED);
 
       if (res.status === "success") {
         handledata(res);

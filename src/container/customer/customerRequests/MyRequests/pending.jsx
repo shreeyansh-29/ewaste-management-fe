@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import "../../customer.css";
 import { FaUserCircle } from "react-icons/fa";
-
+import api from "../../../../core/utilities/httpProvider";
 import SearchIcon from "@material-ui/icons/Search";
 import { toast } from "react-toastify";
+import { CUSTOMER_REQUEST_PENDING } from "../../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
@@ -130,6 +131,27 @@ export default function Pending() {
       }
     });
   };
+  const handleDecline =async(e,datas)=>{
+    console.log(datas);
+    const tokens = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
+    const id = datas.id.slice(2);
+    const response = await fetch(
+      `http://localhost:3000/customer/deleteById?${id}`,
+      {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + tokens,
+          EMAIL: email,
+        },
+      }
+    );
+    console.log(response);
+    document.location.reload();
+    
+  }
   const handledata = (res) => {
     handledate(res);
     res.data.map((obj) => {
@@ -146,29 +168,11 @@ export default function Pending() {
     });
   };
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
-      try {
-        const response = await fetch(
-          "http://localhost:8083/customer/request/all",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-        if (res.status === "success") {
-          handledata(res);
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
+      const res = await api.get(CUSTOMER_REQUEST_PENDING);
+      if (res.status === "success") {
+        handledata(res);
+        setData(res.data);
       }
     })();
   }, []);
@@ -194,7 +198,7 @@ export default function Pending() {
             actions={[
               {
                 icon: () => <button className="bttn"> Decline </button>,
-                //onClick: (e, datas) => handleDecline(e, datas),
+                onClick: (e, datas) => handleDecline(e, datas),
               },
             ]}
             options={{
