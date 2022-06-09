@@ -55,6 +55,8 @@ class SignUp extends Component {
       confirmPassword: "",
       mobileNo: "",
       location: "",
+      lat: "",
+      lng: "",
       address1: "",
       time: "",
       passwordType: "password",
@@ -110,7 +112,11 @@ class SignUp extends Component {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           localStorage.setItem("collector_lat", position.coords.latitude);
+          this.setState({lat: position.coords.latitude});
+          console.log("lat", this.location.lat);
           localStorage.setItem("collector_lng", position.coords.longitude);
+          this.setState({location: {lng: position.coords.longitude}});
+          console.log("lng", this.location.lng);
         },
         () => {
           Toast.error("Unable to retrieve your location");
