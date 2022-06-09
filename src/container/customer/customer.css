@@ -112,6 +112,9 @@ a {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+textarea {
+  max-width: 100%;
+}
 .popup-box {
   position: fixed;
   background-color: rgb(46, 46, 46, 0.8);
@@ -145,6 +148,15 @@ a {
   background-color: white;
   right: 380px;
   top: 150px;
+}
+.btn-close-feedback {
+  cursor: pointer;
+  border: 1px solid rgb(8, 5, 5);
+  border-radius: 50%;
+  position: fixed;
+  background-color: white;
+  right: 380px;
+  top:50px;
 }
 .inputGroup3 {
   flex: 1;
@@ -329,6 +341,9 @@ h3 {
   .btn-close {
     right: 4.5%;
   }
+  .btn-close-feedback {
+    right: 4.1%;
+  }
 }
 @media screen and (min-width: 500px) {
   @media screen and (max-width: 768px) {
@@ -356,6 +371,9 @@ h3 {
       width: 450px;
     }
     .btn-close {
+      right: 150px;
+    }
+    .btn-close-feedback {
       right: 150px;
     }
     .card{

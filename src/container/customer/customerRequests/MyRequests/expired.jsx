@@ -1,19 +1,12 @@
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import Popup from "../popup";
-import "../customer.css";
-import {FaUserCircle} from "react-icons/fa";
-
+import "../../customer.css";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-import {TOAST_WARN2, TOAST_WARN3} from "../../constant/constant";
-export const ProfileIcon = FaUserCircle;
 
 toast.configure();
 export default function Completed() {
   const {useState} = React;
-  const [isopen, setopen] = useState(false);
-  const [detail, setdetail] = useState();
 
   const [columns] = useState([
     {
@@ -117,25 +110,7 @@ export default function Completed() {
         fontSize: "13px",
       },
     },
-
-    {
-      title: "Status",
-      field: "status",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
   ]);
-
-  const togglepop = () => {
-    setopen(!isopen);
-  };
   const handledate = (res) => {
     res.data.map((obj) => {
       if (obj.requestType === "PickUp") {
@@ -214,58 +189,12 @@ export default function Completed() {
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,
             }}
-            localization={{
-              header: {
-                actions: "Profile",
-              },
-            }}
-            actions={[
-              {
-                icon: () => (
-                  <>
-                    <button
-                      style={{
-                        background: "white",
-                        border: "1px solid white",
-                        fontSize: "15px",
-                      }}
-                      onClick={togglepop}
-                    >
-                      <ProfileIcon style={{color: "#e75480"}} />
-                    </button>
-                  </>
-                ),
-
-                onClick: (e, datas) => {
-                  console.log(e);
-
-                  setdetail(datas.collectorUid);
-
-                  if (
-                    datas.collectorUid === null &&
-                    datas.status === "Expired"
-                  ) {
-                    toast.warn(TOAST_WARN2, {
-                      position: toast.POSITION.TOP_RIGHT,
-                    });
-                  } else if (datas.collectorUid === null) {
-                    toast.warn(TOAST_WARN3, {
-                      position: toast.POSITION.TOP_RIGHT,
-                    });
-                  }
-                },
-              },
-            ]}
+                      
             options={{
               actionsColumnIndex: -1,
             }}
           />
         </div>
-      </div>
-      <div>
-        {isopen && detail != null && (
-          <Popup handleClose={togglepop} contents={detail} />
-        )}
       </div>
     </div>
   );

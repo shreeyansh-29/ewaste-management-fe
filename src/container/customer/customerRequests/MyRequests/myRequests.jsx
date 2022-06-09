@@ -5,7 +5,8 @@ import Paper from "@mui/material/Paper";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Pending from "./pending";
-import Completed from "./completed"
+import Completed from "./completed";
+import Expired from "./expired";
 export default function myRequests() {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
@@ -57,12 +58,17 @@ export default function myRequests() {
           elevation={20}
         >
           <Tab label="Pending" />
+          <Tab label ="Expired" />
           <Tab label="Completed" />
+          
         </Tabs>
         <TabPanel value={value} index={0}>
           <Pending />
         </TabPanel>
         <TabPanel value={value} index={1}>
+          <Expired />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
           <Completed />
         </TabPanel>
       </Paper>

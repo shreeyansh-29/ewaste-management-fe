@@ -15,7 +15,7 @@ import CollectorNav from "./container/collector/navbar/collectorNav";
 import CollectorHome from "./container/collector/collectorHome";
 import CollectorProfile from "./container/collector/profile/collectorProfile";
 import MyDrives from "./container/collector/e-Waste Drives/myDrives";
-import MyRequests from "./container/customer/customerRequests/myRequests";
+import MyRequests from "./container/customer/customerRequests/MyRequests/myRequests";
 import OrganizeDrive from "./container/collector/e-Waste Drives/organizeDrive";
 import CollectorRequests from "./container/collector/collectorsRequests/collectorRequests";
 import PickUp from "./container/customer/customerRequests/pickUp";
