@@ -110,20 +110,6 @@ export default function Completed() {
         fontSize: "13px",
       },
     },
-
-    {
-      title: "Status",
-      field: "status",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
   ]);
   const handledate = (res) => {
     res.data.map((obj) => {

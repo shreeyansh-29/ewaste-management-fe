@@ -1,19 +1,21 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import Popup from "../popup";
 import "../customer.css";
-import {FaUserCircle} from "react-icons/fa";
+import api from "../../../core/utilities/httpProvider";
+import { FaUserCircle } from "react-icons/fa";
 import FeedbackPopup from "./feedbackPopup";
 import SearchIcon from "@material-ui/icons/Search";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
+import { CUSTOMER_REQUEST_ALL } from "../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
 export default function Completed() {
-  const {useState} = React;
+  const { useState } = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
-  const[feedback, setfeedback] = useState([]);
+  const [feedback, setfeedback] = useState([]);
 
   const [columns] = useState([
     {
@@ -153,111 +155,119 @@ export default function Completed() {
     });
   };
   useEffect(() => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
     (async function () {
-      try {
-        const response = await fetch(
-          "http://localhost:8083/customer/request/all",
-          {
-            method: "GET",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + tokens,
-              EMAIL: email,
-            },
-          }
-        );
-        const res = await response.json();
-        if (res.status === "success") {
-          handledata(res);
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
+      const res = await api.get(CUSTOMER_REQUEST_ALL);
+
+      if (res.status === "success") {
+        handledata(res);
+        setData(res.data);
       }
     })();
   }, []);
   const [data, setData] = useState();
 
   return (
-    <div>
+    <>
       <div>
-        <div style={{padding: " 10px 30px"}}>
-         
-          <MaterialTable
-            align="center"
-            title=""
-            columns={columns}
-            data={data}
-            icons={{
-              Search: () => <SearchIcon style={{fill: "white"}} />,
-            }}
-            localization={{
-              header: {
-                actions: "Profile",
-              },
-            }}
-            actions={[
-              {
-                icon: () => (
-                  <>
-                    <button
-                      style={{
-                        background: "white",
-                        border: "1px solid white",
-                        fontSize: "15px",
-                      }}
-                      onClick={togglepop}
-                    >
-                      <ProfileIcon style={{color: "#e75480"}} />
-                    </button>
-                  </>
-                ),
-
-                onClick: (e, datas) => {
-                  console.log(e);
-
-                  setdetail(datas.collectorUid);
+        <div>
+          <div style={{ padding: " 10px 30px" }}>
+            <MaterialTable
+              align="center"
+              title=""
+              columns={columns}
+              data={data}
+              icons={{
+                Search: () => <SearchIcon style={{ fill: "white" }} />,
+              }}
+              localization={{
+                header: {
+                  actions: "Actions",
                 },
-              },
-              {
-                icon:()=>(
-                  <>
-                    <button
-                      style={{
-                        background: "white",
-                        color:"blue",
-                        border: "1px solid white",
-                        fontSize: "8px",
-                      }}
-                      onClick={togglepop}
-                    >
-                      Give Feedback
-                    </button>
-                  </>
-                ),
-                onClick:(e,datas)=>{
-                  console.log(e);
-                  setfeedback(datas);
-                }
-              }
-            ]}
-            options={{
-              actionsColumnIndex: -1,
-            }}
-          />
+              }}
+              actions={[
+                {
+                  icon: () => (
+                    <>
+                      <button
+                        style={{
+                          background: "white",
+                          border: "1px solid white",
+                          fontSize: "15px",
+                        }}
+                        onClick={togglepop}
+                      >
+                        <ProfileIcon style={{ color: "#e75480" }} />
+                      </button>
+                    </>
+                  ),
+
+                  onClick: (e, datas) => {
+                    console.log(e);
+
+                    setdetail(datas.collectorUid);
+                  },
+                },
+                (rowData) =>
+                  rowData.status === "Scheduled"
+                    ? {
+                      icon: () => (
+                        <>
+                          <button
+                            style={{
+                              background: "white",
+                              color: "blue",
+                              border: "1px solid white",
+                              fontSize: "10px",
+                            }}
+                            onClick={togglepop}
+                            disabled 
+                          >
+                              Feedback
+                          </button>
+                        </>
+                      ),
+                      onClick: (e, datas) => {
+                        console.log(e);
+                        setfeedback(datas);
+                      },
+                    }
+                    : {
+                      icon: () => (
+                        <>
+                          <button
+                            style={{
+                              background: "white",
+                              color: "blue",
+                              border: "1px solid white",
+                              fontSize: "10px",
+                            }}
+                            onClick={togglepop}
+                          >
+                              Feedback
+                          </button>
+                        </>
+                      ),
+                      onClick: (e, datas) => {
+                        console.log(e);
+                        setfeedback(datas);
+                      },
+                    },
+              ]}
+              options={{
+                actionsColumnIndex: -1,
+              }}
+            />
+          </div>
+        </div>
+        <div>
+          {isopen && detail != null && (
+            <Popup handleClose={togglepop} contents={detail} />
+          )}
+          {isopen && feedback != null && (
+            <FeedbackPopup handleClose={togglepop} contents={feedback} />
+          )}
         </div>
       </div>
-      <div>
-        {isopen && detail != null && (
-          <Popup handleClose={togglepop} contents={detail} />
-        )}
-        {isopen && feedback != null && (
-          <FeedbackPopup handleClose={togglepop} contents={feedback} />
-        )}
-      </div>
-    </div>
+    </>
   );
 }
