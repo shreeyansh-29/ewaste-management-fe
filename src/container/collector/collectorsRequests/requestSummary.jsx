@@ -1,16 +1,19 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import api from "../../../core/utilities/httpProvider";
 import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../customer/popup";
-import {FaUserCircle} from "react-icons/fa";
-import {COLLECTOR_REQUEST_SUMMARY, TOAST_WARN3} from "../../constant/constant";
+import { FaUserCircle } from "react-icons/fa";
+import {
+  COLLECTOR_REQUEST_SUMMARY,
+  TOAST_WARN3,
+} from "../../constant/constant";
 import Toast from "../../components/toast";
 
 export const ProfileIcon = FaUserCircle;
 export default function CollectorRequests() {
-  const {useState} = React;
+  const { useState } = React;
   const [data, setData] = useState();
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -123,7 +126,10 @@ export default function CollectorRequests() {
     {
       title: "Status",
       field: "status",
-      editable: "never",
+      lookup: {
+        Scheduled: "Scheduled",
+        Completed: "Completed",
+      },
       cellStyle: {
         textAlign: "center",
         fontSize: "13px",
@@ -176,6 +182,7 @@ export default function CollectorRequests() {
       try {
         const res = await api.get(COLLECTOR_REQUEST_SUMMARY);
         if (res.status === "success") {
+          console.log(res);
           handledata(res);
 
           setData(res.data);
@@ -188,7 +195,7 @@ export default function CollectorRequests() {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
+      <div style={{ padding: "150px 30px 0 30px" }}>
         <h2
           style={{
             textAlign: "center",
@@ -209,12 +216,26 @@ export default function CollectorRequests() {
           data={data}
           title=""
           icons={{
-            Search: () => <SearchIcon style={{fill: "white"}} />,
+            Search: () => <SearchIcon style={{ fill: "white" }} />,
           }}
           localization={{
             header: {
               actions: "Profile",
             },
+          }}
+          editable={{
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  const dataUpdate = [...data];
+                  const index = oldData.tableData.id;
+                  dataUpdate[index] = newData;
+                  //callApi(newData);
+                  setData([...dataUpdate]);
+  
+                  resolve();
+                }, 1000);
+              }),
           }}
           actions={[
             {
@@ -228,7 +249,7 @@ export default function CollectorRequests() {
                   onClick={togglepop}
                 >
                   {" "}
-                  <ProfileIcon style={{color: "#e75480"}} />{" "}
+                  <ProfileIcon style={{ color: "#e75480" }} />{" "}
                 </button>
               ),
 

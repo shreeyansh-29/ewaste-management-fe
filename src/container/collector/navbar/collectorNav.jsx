@@ -122,6 +122,9 @@ function CollectorNav() {
                 <NavDropdown.Item href="./RequestSummary">
                   My Requests
                 </NavDropdown.Item>
+                <NavDropdown.Item href="./Feedbacks">
+                  My Feedback
+                </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
                 title="Drives"

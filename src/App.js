@@ -2,10 +2,10 @@ import React from "react";
 import Navbar from "./container/components/navbar/navbars";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Signin from "./container/sign-In/signin";
+import Signin from "./container/signIn/signIn";
 import Home from "./container/homePage/home";
 import SaleItems from "./container/collector/collectorSaleItems/salesItems";
-import SignUp from "./container/sign-Up/signUp";
+import SignUp from "./container/signUp/signUp";
 import ForgotPassword from "./container/forgotPassword/forgotPassword";
 import ResetPass from "./container/forgotPassword/resetPassword";
 import CustomerHome from "./container/customer/customerHome";
@@ -28,7 +28,7 @@ import Sales from "./container/vendor/vendorSales/sales";
 import MyOrders from "./container/vendor/vendorSales/myOrders";
 import RequestSummary from "./container/collector/collectorsRequests/requestSummary";
 import ItemsForSale from "./container/collector/collectorSaleItems/itemsForSale";
-
+import Feedbacks from "./container/collector/collectorsRequests/feedbacks"
 import GlobalStyle from "./container/globalStyles";
 import ScrollToTop from "./container/components/scrollToTop";
 import SummarySales from "./container/collector/collectorSaleItems/availableSales";
@@ -76,7 +76,6 @@ function App() {
         ""
       )}
       <Routes>
-       
         <Route path="/" element={<Home />} />
         <Route path="/Signin" element={<Signin />} />
         <Route path="/signUp" element={<SignUp />} />
@@ -88,6 +87,7 @@ function App() {
         />
         <Route path="/CustomerHome" element={<CustomerHome />} />
         <Route path="/EditProfile" element={<EditProfile />} />
+        <Route path="/Feedbacks" element={<Feedbacks/>}/>
         <Route path="/Popup" element={<Popup />} />
         <Route path="/CollectorHome" element={<CollectorHome />} />
         <Route path="/CollectorProfile" element={<CollectorProfile />} />

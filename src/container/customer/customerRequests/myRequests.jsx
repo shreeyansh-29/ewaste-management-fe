@@ -1,273 +1,77 @@
-import React, { useEffect } from "react";
-import MaterialTable from "material-table";
-import Popup from "../popup";
-import "../customer.css";
-import { FaUserCircle } from "react-icons/fa";
-
-import api from "../../../core/utilities/httpProvider";
-
-import SearchIcon from "@material-ui/icons/Search";
-import { toast } from "react-toastify";
-import { CUSTOMER_MYREQUEST, TOAST_WARN2, TOAST_WARN3 } from "../../constant/constant";
-export const ProfileIcon = FaUserCircle;
-
-toast.configure();
-export default function MyRequests() {
-  const { useState } = React;
-  const [isopen, setopen] = useState(false);
-  const [detail, setdetail] = useState();
-
-  const [columns] = useState([
-    {
-      title: "ID",
-
-      field: "id",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Request Name",
-      field: "itemName",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Category",
-      field: "category",
-      editable: "never",
-      lookup: {
-        Temp: "Temperature exchange equipment ",
-        Screens: "Screens, monitors ",
-        Lapms: "Lamps ",
-        LargeEqip: "Large equipment",
-        SmallEquip: "Small equipment ",
-        SmallIT:
-          "Small IT and telecommunication equipment (such as mobile phones, printers)",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Quantity",
-      field: "quantity",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Request Type",
-      field: "requestType",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Date",
-      field: "scheduledDate",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Time",
-      field: "scheduledTime",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-
-    {
-      title: "Status",
-      field: "status",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-  ]);
-
-  const togglepop = () => {
-    setopen(!isopen);
+import React, { useState } from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Paper from "@mui/material/Paper";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Pending from "./pending";
+import Completed from "./completed";
+import Expired from "./expired";
+export default function myRequests() {
+  const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
-  const handledate = (res) => {
-    res.data.map((obj) => {
-      if (obj.requestType === "PickUp") {
-        if (obj.scheduledTime === "10") {
-          obj.scheduledTime = " 10:00-12:00";
-        } else if (obj.scheduledTime === "12") {
-          obj.scheduledTime = " 12:00-14:00";
-        } else if (obj.scheduledTime === "14") {
-          obj.scheduledTime = " 14:00-16:00";
-        } else if (obj.scheduledTime === "16") {
-          obj.scheduledTime = " 16:00-18:00";
-        }
-      }
-    });
-  };
-  const handledata = (res) => {
-    handledate(res);
-    res.data.map((obj) => {
-      if (obj.scheduledDate !== null) {
-        const date = obj.scheduledDate.split("T");
-        obj.scheduledDate = date[0];
-      }
-      if (obj.requestType === "PickUp") {
-        obj.id = "CP" + obj.id;
-      }
-      if (obj.requestType === "DropOff") {
-        obj.id = "CD" + obj.id;
-      }
-      if (obj.requestType === "DropOff" && obj.status === "pending") {
-        obj.status = "Scheduled";
-      }
-      if (obj.requestType === "PickUp" && obj.status === "pending") {
-        obj.status = "Pending";
-      }
-    });
-  };
-  useEffect(() => {
-    (async function () {
-      try {
-        var res = await api.get(CUSTOMER_MYREQUEST);
-        if (res.status === "success") {
-          handledata(res);
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
-  const [data, setData] = useState();
-
-  return (
-    <div>
-      <div>
-        <div style={{ padding: " 150px 30px" }}>
-          <h2
-            style={{
-              textAlign: "center",
-              fontSize: "30px",
-              padding: "2px,",
-              color: "white",
-              marginBottom: "2.5%",
-              backgroundColor: " rgb(30, 28, 54)",
-              borderRadius: "5px",
-            }}
-          >
-            {" "}
-            My Requests{" "}
-          </h2>
-          <MaterialTable
-            align="center"
-            title=""
-            columns={columns}
-            data={data}
-            icons={{
-              Search: () => <SearchIcon style={{ fill: "white" }} />,
-            }}
-            localization={{
-              header: {
-                actions: "Profile",
-              },
-            }}
-            actions={[
-              {
-                icon: () => (
-                  <>
-                    <button
-                      style={{
-                        background: "white",
-                        border: "1px solid white",
-                        fontSize: "15px",
-                      }}
-                      onClick={togglepop}
-                    >
-                      <ProfileIcon style={{ color: "#e75480" }} />
-                    </button>
-                  </>
-                ),
-
-                onClick: (e, datas) => {
-                  console.log(e);
-
-                  setdetail(datas.collectorUid);
-
-                  if (
-                    datas.collectorUid === null &&
-                    datas.status === "Expired"
-                  ) {
-                    toast.warn(TOAST_WARN2, {
-                      position: toast.POSITION.TOP_RIGHT,
-                    });
-                  } else if (datas.collectorUid === null) {
-                    toast.warn(TOAST_WARN3, {
-                      position: toast.POSITION.TOP_RIGHT,
-                    });
-                  }
-                },
-              },
-            ]}
-            options={{
-              actionsColumnIndex: -1,
-            }}
-          />
-        </div>
-      </div>
-      <div>
-        {isopen && detail != null && (
-          <Popup handleClose={togglepop} contents={detail} />
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box>
+            <Typography>{children}</Typography>
+          </Box>
         )}
       </div>
+    );
+  }
+  return (
+    <div style={{ padding: "150px 30px 0 30px" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "30px",
+          padding: "2px,",
+          color: "white",
+          marginBottom: "2.5%",
+          backgroundColor: " rgb(30, 28, 54)",
+          borderRadius: "5px",
+        }}
+      >
+        {" "}
+        My Requests{" "}
+      </h2>
+      <Paper square style={{ margin: "20px auto", width: "100%" }}>
+        <Tabs
+          value={value}
+          indicatorColor="primary"
+          textColor="primary"
+          onChange={handleChange}
+          aria-label="disabled tabs example"
+          centered
+          variant="fullWidth"
+          elevation={20}
+        >
+          <Tab label="Pending" />
+          <Tab label ="Expired" />
+          <Tab label="Completed" />
+          
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <Pending />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Expired />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Completed />
+        </TabPanel>
+      </Paper>
     </div>
   );
 }
