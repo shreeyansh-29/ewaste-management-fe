@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import Toast from "../../components/toast";
+import Toast from "../../../../components/toast";
 import Rating from "./rating";
-import { TOAST_SUCCESS9 } from "../../constant/constant";
+import { TOAST_SUCCESS9 } from "../../../../constant/constant";
 function FeedbackPopup(props) {
   const handleClick = () => {
     props.handleClose();

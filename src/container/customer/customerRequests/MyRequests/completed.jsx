@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import MaterialTable from "material-table";
-import Popup from "../popup";
-import "../customer.css";
-import api from "../../../core/utilities/httpProvider";
+import Popup from "../../popup";
+import "../../customer.css";
+import api from "../../../../core/utilities/httpProvider";
 import { FaUserCircle } from "react-icons/fa";
-import FeedbackPopup from "./feedbackPopup";
+import FeedbackPopup from "../MyRequests/Feedback/feedbackPopup";
 import SearchIcon from "@material-ui/icons/Search";
 import { toast } from "react-toastify";
-import { CUSTOMER_REQUEST_ALL } from "../../constant/constant";
+import { CUSTOMER_REQUEST_ALL } from "../../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();

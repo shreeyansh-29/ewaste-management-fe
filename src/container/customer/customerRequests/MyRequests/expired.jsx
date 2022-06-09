@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import "../customer.css";
+import "../../customer.css";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
 
