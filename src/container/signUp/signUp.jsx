@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Dropdown from "../components/dropdown";
 import Select from "react-select";
 import ReactTooltip from "react-tooltip";
 import "./signUp.css";
-import { statescity } from "./states";
+import {statescity} from "./states";
 import TimeRange from "react-time-range";
 import moment from "moment";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
-
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {
   SERVER_MSG,
@@ -28,7 +28,7 @@ const data = [
     value: "Screens",
     label: "Screens, monitors (Televisions , Laptops)",
   },
-  { value: "Lamps", label: "Lamps (LED Lamps)" },
+  {value: "Lamps", label: "Lamps (LED Lamps)"},
   {
     value: "LargeEqip",
     label: "Large Equipment (Washing Machines, Electric Stoves)",
@@ -54,6 +54,7 @@ class SignUp extends Component {
       password: "",
       confirmPassword: "",
       mobileNo: "",
+      location: "",
       address1: "",
       time: "",
       passwordType: "password",
@@ -92,7 +93,7 @@ class SignUp extends Component {
   }
 
   changeState(event) {
-    this.setState({ selectedState: event.target.value });
+    this.setState({selectedState: event.target.value});
     this.setState({
       cities: this.state.states.find(
         (states) => states.name === event.target.value
@@ -100,24 +101,38 @@ class SignUp extends Component {
     });
   }
   changeCity(event) {
-    this.setState({ city: event.target.value });
+    this.setState({city: event.target.value});
   }
-
+  getLocation() {
+    if (!navigator.geolocation) {
+      Toast.error("Geolocation is not supported by your browser");
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          localStorage.setItem("collector_lat", position.coords.latitude);
+          localStorage.setItem("collector_lng", position.coords.longitude);
+        },
+        () => {
+          Toast.error("Unable to retrieve your location");
+        }
+      );
+    }
+  }
   handleFormValidation() {
     let value = validationForm(this.state);
-    this.setState({ formErrors: value.formErrors });
+    this.setState({formErrors: value.formErrors});
     return value.formIsValid;
   }
   handleChange = (e) => {
     e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   };
   returnFunctionStart = (event) => {
-    this.setState({ startTime: event.startTime });
+    this.setState({startTime: event.startTime});
   };
 
   returnFunctionEnd = (event) => {
-    this.setState({ endTime: event.endTime });
+    this.setState({endTime: event.endTime});
   };
 
   handleSubmit = async (e) => {
@@ -150,7 +165,7 @@ class SignUp extends Component {
         state: this.state.selectedState,
         pinCode: this.state.pincode,
 
-        role: { name: name },
+        role: {name: name},
         gstNo: this.state.gstNo,
         registrationNo: this.state.registrationNo,
         shopTime: dropoff,
@@ -179,30 +194,30 @@ class SignUp extends Component {
     var list = [...e];
 
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
-    this.setState({ inputList: [list] });
+    this.setState({inputList: [list]});
   };
   handleDropdown = (role) => {
-    this.setState({ role: { name: role } });
+    this.setState({role: {name: role}});
   };
   handleDropdowns = (selectedOption) => {
-    this.setState({ selectedOption });
+    this.setState({selectedOption});
   };
   handleback = () => {
     window.location.href = "/Signin";
   };
   togglePassword = () => {
     if (this.state.passwordType === "password") {
-      this.setState({ passwordType: "text" });
+      this.setState({passwordType: "text"});
       return;
     }
-    this.setState({ passwordType: "password" });
+    this.setState({passwordType: "password"});
   };
   confirmtogglePassword = () => {
     if (this.state.confirmPasswordType === "password") {
-      this.setState({ confirmPasswordType: "text" });
+      this.setState({confirmPasswordType: "text"});
       return;
     }
-    this.setState({ confirmPasswordType: "password" });
+    this.setState({confirmPasswordType: "password"});
   };
   render() {
     const {
@@ -222,7 +237,7 @@ class SignUp extends Component {
       timeErr,
       registrationErr,
     } = this.state.formErrors;
-    const { role } = this.state;
+    const {role} = this.state;
     let fields;
     if (role.name === "Vendor") {
       fields = (
@@ -234,7 +249,7 @@ class SignUp extends Component {
               </label>
               <input
                 type="text"
-                style={{ borderRadius: "17px" }}
+                style={{borderRadius: "17px"}}
                 name="gstNo"
                 autoComplete="off"
                 placeholder="Enter GST-IN"
@@ -249,7 +264,7 @@ class SignUp extends Component {
               <input
                 type="text"
                 name="registrationNo"
-                style={{ borderRadius: "17px" }}
+                style={{borderRadius: "17px"}}
                 placeholder="Enter Number"
                 autoComplete="off"
                 onChange={this.handleChange}
@@ -271,7 +286,7 @@ class SignUp extends Component {
                 </label>
                 <input
                   type="text"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   name="gstNo"
                   placeholder="Enter GST-IN"
                   autoComplete="off"
@@ -288,7 +303,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="registrationNo"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   placeholder="Enter Number"
                   autoComplete="off"
                   onChange={this.handleChange}
@@ -303,7 +318,7 @@ class SignUp extends Component {
                 htmlFor="time"
                 data-tip
                 data-for="registerTip"
-                style={{ marginTop: "22px" }}
+                style={{marginTop: "22px"}}
                 className="timelabel"
               >
                 Drop-Off Time <i className="text-danger">*</i>
@@ -321,19 +336,47 @@ class SignUp extends Component {
                 minuteIncrement="60"
                 className="time"
               />
-              <div className="formErrors" style={{ marginLeft: "22px" }}>
+              <div className="formErrors" style={{marginLeft: "22px"}}>
                 {timeErr}
               </div>
             </div>
-          </div>
+            <div
+              className="inputGroup"
+              style={{marginTop: "30px", marginLeft: "17px"}}
+            >
+              <label htmlFo r="maps">
+                Centre Location <i className="text-danger">*</i>
+              </label>
+              <div className="inputWithButton">
+                <input
+                  type="text"
+                  name="location"
+                  style={{borderRadius: "17px"}}
+                  placeholder="Location"
+                  disabled
+                />
 
-          <div className="inputGroup"></div>
+                <div className="input-group-btn">
+                  <button
+                    onClick={this.getLocation}
+                    style={{
+                      border: "1px solid white",
+                      backgroundColor: "white",
+                      marginTop: "-2px",
+                    }}
+                  >
+                    <LocationOnIcon />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <label
             htmlFor="categories"
             data-tip
             data-for="Tip"
-            style={{ paddingLeft: "7px" }}
+            style={{paddingLeft: "7px"}}
           >
             Categories <i className="text-danger">*</i>
           </label>
@@ -344,7 +387,7 @@ class SignUp extends Component {
             console.log(v);
             return (
               // eslint-disable-next-line react/jsx-key
-              <div className="inputGroups" style={{ paddingLeft: "15px" }}>
+              <div className="inputGroups" style={{paddingLeft: "15px"}}>
                 <Select
                   value={this.state.categoryAccepted}
                   options={data}
@@ -386,7 +429,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="firstName"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={this.handleChange}
                   placeholder="First Name"
                   autoComplete="off"
@@ -401,7 +444,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="lastName"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={this.handleChange}
                   placeholder="Last Name"
                   autoComplete="off"
@@ -418,7 +461,7 @@ class SignUp extends Component {
                 <input
                   type="email"
                   name="email"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={this.handleChange}
                   placeholder="Mail"
                   autoComplete="off"
@@ -433,7 +476,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="mobileNo"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={this.handleChange}
                   placeholder="Mobile Number"
                   autoComplete="off"
@@ -451,7 +494,7 @@ class SignUp extends Component {
                   <input
                     type={this.state.passwordType}
                     name="password"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     onChange={this.handleChange}
                     placeholder="Enter Password"
                     autoComplete="off"
@@ -484,7 +527,7 @@ class SignUp extends Component {
                   <input
                     type={this.state.confirmPasswordType}
                     name="confirmPassword"
-                    style={{ borderRadius: "17px" }}
+                    style={{borderRadius: "17px"}}
                     onChange={this.handleChange}
                     placeholder="Confirm Password"
                     autoComplete="off"
@@ -517,7 +560,7 @@ class SignUp extends Component {
                 <input
                   type="text"
                   name="address1"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   onChange={this.handleChange}
                   placeholder="Address"
                   autoComplete="off"
@@ -575,7 +618,7 @@ class SignUp extends Component {
                 </label>
                 <input
                   type="pincode"
-                  style={{ borderRadius: "17px" }}
+                  style={{borderRadius: "17px"}}
                   name="pincode"
                   onChange={this.handleChange}
                   placeholder="Pincode"
@@ -594,13 +637,13 @@ class SignUp extends Component {
                   <>
                     <Dropdown
                       data={[
-                        { label: "Customer" },
-                        { label: "Collector" },
-                        { label: "Vendor" },
+                        {label: "Customer"},
+                        {label: "Collector"},
+                        {label: "Vendor"},
                       ]}
                       name="role"
                       value={this.state.role.name}
-                      style={{ borderRadius: "17px" }}
+                      style={{borderRadius: "17px"}}
                       placeholder="Select your Role"
                       onChange={this.handleDropdown}
                       optionValues={this.optionValues}
