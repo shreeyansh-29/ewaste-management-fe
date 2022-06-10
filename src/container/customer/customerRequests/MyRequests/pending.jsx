@@ -139,7 +139,7 @@ export default function Pending() {
     const response = await fetch(
       `http://localhost:3000/customer/deleteById?${id}`,
       {
-        method: "GET",
+        method: "DELETE",
         credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
