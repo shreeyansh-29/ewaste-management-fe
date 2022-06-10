@@ -113,9 +113,6 @@ class SignUp extends Component {
         (position) => {
           localStorage.setItem("collector_lat", position.coords.latitude);
           localStorage.setItem("collector_lng", position.coords.longitude);
-          var address = this.state.address1 + " " + this.state.city + " " + this.state.selectedState;
-          this.setState({location: address});
-          console.log(this.state.location)
         },
         () => {
           Toast.error("Unable to retrieve your location");
