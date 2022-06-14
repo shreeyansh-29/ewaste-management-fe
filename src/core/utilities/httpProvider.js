@@ -1,19 +1,16 @@
 const GetRequest = async (method, url) => {
   const tokens = localStorage.getItem("token");
   const email = localStorage.getItem("email");
-
   const headerconfig = {
     "Content-Type": "application/json",
     Authorization: "Bearer " + tokens || "",
     EMAIL: email || "",
   };
-
   const options = {
     method,
     credentials: "same-origin",
     headers: headerconfig,
   };
-
   try {
     const res = fetch(url, options);
     return (await res).json();
@@ -24,20 +21,17 @@ const GetRequest = async (method, url) => {
 const ApiRequest = async (method, url, data) => {
   const tokens = localStorage.getItem("token") || "";
   const email = localStorage.getItem("email") || "";
-
   const headerconfig = {
     "Content-Type": "application/json",
     Authorization: "Bearer " + tokens || "",
     EMAIL: email || "",
   };
-
   const options = {
     method,
     credentials: "same-origin",
     headers: headerconfig,
     body: JSON.stringify(data),
   };
-
   try {
     const res = fetch(url, options);
     return await res;

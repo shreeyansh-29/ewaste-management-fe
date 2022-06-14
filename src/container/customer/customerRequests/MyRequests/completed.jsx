@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import Popup from "../../popup";
 import "../../customer.css";
 import api from "../../../../core/utilities/httpProvider";
-import { FaUserCircle } from "react-icons/fa";
+import {FaUserCircle} from "react-icons/fa";
 import FeedbackPopup from "../MyRequests/Feedback/feedbackPopup";
 import SearchIcon from "@material-ui/icons/Search";
-import { toast } from "react-toastify";
-import { CUSTOMER_REQUEST_COMPLETED } from "../../../constant/constant";
+import {toast} from "react-toastify";
+import {CUSTOMER_REQUEST_COMPLETED} from "../../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
 export default function Completed() {
-  const { useState } = React;
+  const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
   const [feedback, setfeedback] = useState([]);
@@ -164,14 +164,14 @@ export default function Completed() {
     <>
       <div>
         <div>
-          <div style={{ padding: " 10px 30px" }}>
+          <div style={{padding: " 10px 30px"}}>
             <MaterialTable
               align="center"
               title=""
               columns={columns}
               data={data}
               icons={{
-                Search: () => <SearchIcon style={{ fill: "white" }} />,
+                Search: () => <SearchIcon style={{fill: "white"}} />,
               }}
               localization={{
                 header: {
@@ -190,7 +190,7 @@ export default function Completed() {
                         }}
                         onClick={togglepop}
                       >
-                        <ProfileIcon style={{ color: "#e75480" }} />
+                        <ProfileIcon style={{color: "#e75480"}} />
                       </button>
                     </>
                   ),
@@ -202,50 +202,50 @@ export default function Completed() {
                   },
                 },
                 (rowData) =>
-                  rowData.status === "Scheduled"
+                  rowData.status === "Completed"
                     ? {
-                      icon: () => (
-                        <>
-                          <button
-                            style={{
-                              background: "white",
-                              color: "blue",
-                              border: "1px solid white",
-                              fontSize: "10px",
-                            }}
-                            onClick={togglepop}
-                            disabled 
-                          >
+                        icon: () => (
+                          <>
+                            <button
+                              style={{
+                                background: "white",
+                                color: "blue",
+                                border: "1px solid white",
+                                fontSize: "10px",
+                              }}
+                              onClick={togglepop}
+                              disabled
+                            >
                               Feedback
-                          </button>
-                        </>
-                      ),
-                      onClick: (e, datas) => {
-                        console.log(e);
-                        setfeedback(datas);
-                      },
-                    }
+                            </button>
+                          </>
+                        ),
+                        onClick: (e, datas) => {
+                          console.log(e);
+                          setfeedback(datas);
+                        },
+                      }
                     : {
-                      icon: () => (
-                        <>
-                          <button
-                            style={{
-                              background: "white",
-                              color: "blue",
-                              border: "1px solid white",
-                              fontSize: "10px",
-                            }}
-                            onClick={togglepop}
-                          >
+                        icon: () => (
+                          <>
+                            <button
+                              style={{
+                                background: "white",
+                                color: "blue",
+                                border: "1px solid white",
+                                fontSize: "10px",
+                              }}
+                              onClick={togglepop}
+                            >
                               Feedback
-                          </button>
-                        </>
-                      ),
-                      onClick: (e, datas) => {
-                        console.log(e);
-                        setfeedback(datas);
+                            </button>
+                          </>
+                        ),
+                        onClick: (e, datas) => {
+                          console.log(e);
+                          setfeedback(datas);
+                        },
                       },
-                    },
               ]}
               options={{
                 actionsColumnIndex: -1,

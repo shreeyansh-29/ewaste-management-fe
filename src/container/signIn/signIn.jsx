@@ -16,7 +16,6 @@ import {
   EMAIL_REQUIRED,
   PASSWORD_REQUIRED,
   TOAST_ERROR1,
-  SIGN_IN,
   TOAST_ERROR2,
   VENDOR_AUTH_URL,
 } from "../constant/constant";
@@ -76,7 +75,7 @@ const signIn = () => {
         email: email,
         password: password,
       };
-      var res = await api.post(SIGN_IN, data);
+      var res = await api.post("http://localhost:8083/signin", data);
 
       res = await res.json();
 
