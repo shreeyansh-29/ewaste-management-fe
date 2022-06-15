@@ -34,7 +34,6 @@ import ScrollToTop from "./container/components/scrollToTop";
 import SummarySales from "./container/collector/collectorSaleItems/availableSales";
 import Popup from "./container/customer/popup";
 import Waste from "./container/customer/customerRequests/waste";
-
 function App() {
   const role = localStorage.getItem("Roles");
   return (

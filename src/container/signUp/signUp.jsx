@@ -105,7 +105,7 @@ class SignUp extends Component {
   changeCity(event) {
     this.setState({ city: event.target.value });
   }
-  getLocation() {
+  getLocation(e) {
     if (!navigator.geolocation) {
       Toast.error("Geolocation is not supported by your browser");
     } else {
@@ -163,10 +163,8 @@ class SignUp extends Component {
         mobileNo: this.state.mobileNo,
         address1: this.state.address1,
         city: this.state.city,
-
         state: this.state.selectedState,
         pinCode: this.state.pincode,
-
         role: { name: name },
         gstNo: this.state.gstNo,
         registrationNo: this.state.registrationNo,
@@ -355,12 +353,13 @@ class SignUp extends Component {
                   name="location"
                   style={{ borderRadius: "17px" }}
                   placeholder="Location"
-                  disabled
+                  // onChange={(e)=>this.getLocation(e)}
+                  // disabled
                 />
 
                 <div className="input-group-btn">
                   <button
-                    onClick={this.getLocation}
+                    onClick={(e)=>this.getLocation(e)}
                     style={{
                       border: "1px solid white",
                       backgroundColor: "white",
@@ -386,7 +385,6 @@ class SignUp extends Component {
             Select the categories of ewaste you can collect from customers
           </ReactTooltip>
           {this.state.inputList.map((v, i) => {
-            console.log(v);
             return (
               // eslint-disable-next-line react/jsx-key
               <div className="inputGroups" style={{ paddingLeft: "15px" }}>

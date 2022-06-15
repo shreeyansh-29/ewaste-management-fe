@@ -135,11 +135,11 @@ export default function Pending() {
     console.log(datas);
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
-    const id = datas.id.slice(2);
+    
     const response = await fetch(
-      `http://localhost:3000/customer/deleteById?${id}`,
+      `http://localhost:8083/customer/deleteById?orderId=${datas.orderUid}`,
       {
-        method: "GET",
+        method: "DELETE",
         credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
@@ -170,6 +170,7 @@ export default function Pending() {
   useEffect(() => {
     (async function () {
       const res = await api.get(CUSTOMER_REQUEST_PENDING);
+      console.log(res);
       if (res.status === "success") {
         handledata(res);
         setData(res.data);
