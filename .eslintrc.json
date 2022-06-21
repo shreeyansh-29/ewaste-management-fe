@@ -38,6 +38,7 @@
     "ecmaFeatures": {
       "jsx": true
     }
+   // "complexity": ["error", { "max": 2 }]
   },
   "env": {
     "es6": true,
@@ -56,5 +57,6 @@
       "modules": ["path.resolve(__dirname, 'public/src')", "'node_modules'", "path.resolve('node_modules')"]
   }
   }
+  
   }
 }

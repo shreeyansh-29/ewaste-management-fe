@@ -230,7 +230,6 @@ export default function CollectorRequests() {
                   const dataUpdate = [...data];
                   const index = oldData.tableData.id;
                   dataUpdate[index] = newData;
-                  //callApi(newData);
                   setData([...dataUpdate]);
   
                   resolve();

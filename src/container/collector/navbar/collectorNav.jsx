@@ -24,7 +24,7 @@ function CollectorNav() {
       var res = await api.post(COLLECTOR_NOTIFICATION_MARKASREAD);
       res = await res.json();
 
-      if (res.status === "success") {
+      if (res.status == "success") {
         for (var i = 0; i < res.data.length; i++) {
           list[i] = res.data[i].message;
         }

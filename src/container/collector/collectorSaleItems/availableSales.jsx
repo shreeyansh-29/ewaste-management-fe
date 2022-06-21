@@ -5,7 +5,7 @@ import {} from "@material-ui/icons";
 
 import SearchIcon from "@material-ui/icons/Search";
 import {COLLECTOR_SELL_SUMMARY_AVAILABE} from "../../constant/constant";
-export default function SummarySales() {
+export default function availableSales() {
   const {useState} = React;
 
   const [columns] = useState([
