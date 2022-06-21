@@ -8,10 +8,8 @@ import {
   MDBCol,
   MDBCardFooter,
 } from "mdb-react-ui-kit";
-// import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-// import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-// import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
-export default function Waste() {
+
+export default function feedbacks() {
   return (
     <div>
       <MDBRow

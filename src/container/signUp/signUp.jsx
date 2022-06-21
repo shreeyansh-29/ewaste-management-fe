@@ -175,12 +175,12 @@ class SignUp extends Component {
 
       res = await res.json();
 
-      if (res.status === "success") {
+      if (res.status == "success") {
         Toast.success(TOAST_SUCCESS1, 1500);
         setTimeout(() => {
           window.location.href = "/SignIn";
         }, 2000);
-      } else if (res.status === "fail") {
+      } else if (res.status == "fail") {
         Toast.error(TOAST_ERROR3);
       } else {
         this.setState({

@@ -5,7 +5,7 @@ import MapPicker from "react-google-map-picker";
 const DefaultLocation = { lat: 10, lng: 106 };
 const DefaultZoom = 10;
 
-export default function ResponsiveDialog() {
+export default function googleMap() {
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
 
   const [location, setLocation] = useState(defaultLocation);

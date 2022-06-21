@@ -13,7 +13,7 @@ export default function myRequests() {
     setValue(newValue);
   };
   function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const { children, index, ...other } = props;
     return (
       <div
         role="tabpanel"

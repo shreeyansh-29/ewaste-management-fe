@@ -80,12 +80,12 @@ const signIn = () => {
 
       res = await res.json();
 
-      if (res.status === "Fail") {
+      if (res.status == "Fail") {
         Toast.error(TOAST_ERROR1);
       }
-      if (res.status === "fail") {
+      if (res.status == "fail") {
         Toast.error(TOAST_ERROR2);
-      } else if (res.status === "success") {
+      } else if (res.status == "success") {
         localStorage.setItem("token", res.data.token);
         const tokens = localStorage.getItem("token");
         var token = jwt(tokens);
@@ -116,7 +116,7 @@ const signIn = () => {
         }
       }
 
-      if (res.status === "success") {
+      if (res.status == "success") {
         handleRedirect();
       }
     }

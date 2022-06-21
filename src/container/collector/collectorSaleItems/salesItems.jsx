@@ -7,13 +7,13 @@ import Box from "@material-ui/core/Box";
 import SummarySales from "./availableSales";
 import SoldItems from "./soldItems";
 
-export default function SaleItems() {
+export default function salesItems() {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   function TabPanel(props) {
-    const {children, value, index, ...other} = props;
+    const {children, index, ...other} = props;
     return (
       <div
         role="tabpanel"

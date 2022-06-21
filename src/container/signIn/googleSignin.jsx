@@ -20,7 +20,7 @@ function googleSignin() {
         `http://localhost:8083/signin/google?email=${email}`
       );
       res = await res.json();
-      if (res.status === "Fail") {
+      if (res.status == "Fail") {
         toast.error("Wrong Email ID", { position: toast.POSITION.TOP_RIGHT });
       }
       localStorage.setItem("token", res.data.token);
@@ -50,7 +50,7 @@ function googleSignin() {
         }
       }
 
-      if (res.status === "success") {
+      if (res.status == "success") {
         if (role === "CUSTOMER") {
           window.location.href = "/CustomerHome";
         } else if (role === "COLLECTOR") {

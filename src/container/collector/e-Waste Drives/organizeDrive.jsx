@@ -157,7 +157,7 @@ export default function OrganizeDrive() {
       Toast.error(TOAST_ERROR4);
     } else {
       datas.date = dateformat(datas);
-      const data = {
+      const datas = {
         driveName: datas.name,
         description: datas.description,
 
@@ -173,7 +173,7 @@ export default function OrganizeDrive() {
       };
       const res = await api.post(COLLECTOR_ORGANIZE_DRIVE, data);
       Toast.success(TOAST_SUCCESS7);
-     
+
       setStatus(res.data.status);
     }
   };
