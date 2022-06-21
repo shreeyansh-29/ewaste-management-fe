@@ -30,6 +30,7 @@
     "react-dom": "^17.0.2",
     "react-google-charts": "^4.0.0",
     "react-google-login": "^5.2.2",
+    "react-google-map-picker": "^1.2.3",
     "react-icons": "^4.3.1",
     "react-notifications": "^1.7.3",
     "react-render": "^4.0.0",
@@ -39,6 +40,8 @@
     "react-time-range": "^1.0.4",
     "react-toastify": "^8.2.0",
     "react-tooltip": "^4.2.21",
+    "sonar-scanner": "^3.1.0",
+    "sonarqube-scanner": "^2.8.1",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.4.8",
     "web-vitals": "^2.1.4",
@@ -50,7 +53,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix"
+    "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
+    "sonar": "node sonar-project.js"
   },
   "eslintConfig": {
     "extends": [

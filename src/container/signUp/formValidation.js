@@ -22,7 +22,7 @@ import {
   STATE_REQUIRED,
   TIME_REQUIRED,
 } from "../constant/constant";
-export default function validationForm(values) {
+export default function formValidation(values) {
   let formErrors = {};
   let formIsValid=true;
   if (!values.firstName) {

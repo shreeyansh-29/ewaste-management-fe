@@ -19,7 +19,7 @@ import {
 } from "../constant/constant";
 import api from "../../core/utilities/httpProvider";
 import Toast from "../components/toast";
-function ResetPass() {
+function resetPassword() {
   const {token} = useParams();
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPsswd] = useState("");
@@ -195,4 +195,4 @@ function ResetPass() {
   );
 }
 
-export default ResetPass;
+export default resetPassword;

@@ -13,7 +13,7 @@ import {
   REGISTRATION_INVALID,
   REGISTRATION_REQUIRED,
 } from "../../constant/constant";
-export default function validationCollector(values) {
+export default function collectorValidations(values) {
   let formErrors = {};
   let formIsValid = true;
   if (!values.firstName) {
