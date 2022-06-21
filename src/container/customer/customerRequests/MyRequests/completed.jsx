@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import Popup from "../../popup";
