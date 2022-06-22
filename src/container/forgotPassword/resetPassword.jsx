@@ -19,7 +19,18 @@ import {
 } from "../constant/constant";
 import api from "../../core/utilities/httpProvider";
 import Toast from "../components/toast";
+// import * as Yup from "yup";
+// import { useDispatch } from "react-redux";
+
+// let validationSchema = Yup.object().shape({
+//   password: Yup.string().password().required("Password is Required"),
+//   confirmPassword: Yup.string()
+//     .password()
+//     .required("Confirm Password is Required"),
+// });
+
 function resetPassword() {
+  // const dispatch = useDispatch();
   const {token} = useParams();
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPsswd] = useState("");
@@ -91,7 +102,17 @@ function resetPassword() {
     <div className="ForPassword">
       <div className="Form-body">
         <NotificationContainer />
-        <Formik>
+        <Formik
+          // initialValues={{
+          //   password: "",
+          //   confirmPassword: "",
+          // }}
+          // validationSchema={validationSchema}
+          // onSubmit={(values) => {
+          //   console.log("value", values);
+          //   // dispatch(forgotPasswordRequest(values));
+          // }}
+        >
           <Form>
             <div className="psswd-heading">
               <h2

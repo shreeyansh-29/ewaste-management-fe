@@ -9,7 +9,7 @@ import {helper} from "../service/forgotPasswordService";
 function* forgotPassword(email) {
   try {
     let response = yield call(helper, email);
-    // console.log("heyyy", response);
+    console.log("heyyy", response);
     yield put(forgotPasswordSuccess(response.status));
   } catch (err) {
     console.log(err);

@@ -6,18 +6,26 @@ import {
 } from "../config/actionType";
 
 const initialState = {
-  email: "",
+  // email: "",
+  data: {},
+  isLoading: false,
+  error: "",
 };
 
 export const forgotPasswordReducer = (state = initialState, action) => {
   switch (action.type) {
     case FORGOT_PASSWORD_REQUEST:
-      return {};
+      console.log(action);
+      return {
+        ...state,
+        isLoading: true,
+      };
     case FORGOT_PASSWORD_SUCCESS:
       console.log(action);
       return action;
     case FORGOT_PASSWORD_ERROR:
       return action;
+
     default:
       return state;
   }

@@ -7,10 +7,10 @@ export const forgotPasswordRequest = (email) => {
   };
 };
 
-export const forgotPasswordSuccess = (email) => {
+export const forgotPasswordSuccess = (status) => {
   return {
     type: types.FORGOT_PASSWORD_SUCCESS,
-    email,
+    status,
   };
 };
 export const forgotPasswordError = (error) => {

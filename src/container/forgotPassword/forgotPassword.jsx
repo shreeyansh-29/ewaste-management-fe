@@ -6,16 +6,17 @@ import {useDispatch} from "react-redux";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {forgotPasswordRequest} from "../../redux/action/forgotPasswordAction";
-import {MSG} from "../constant/constant";
+import {EMAIL_INVALID, EMAIL_REQUIRED, MSG} from "../constant/constant";
 import {useNavigate} from "react-router-dom";
 let validationSchema = Yup.object().shape({
-  email: Yup.string().email().required("Email is Required"),
+  email: Yup.string().email(EMAIL_INVALID).required(EMAIL_REQUIRED),
 });
 
 const forgot = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.forgotPassword);
+  // console.log("data", data);
 
   return (
     <div className="ForPassword">
@@ -63,17 +64,22 @@ const forgot = () => {
                   style={{borderRadius: "17px"}}
                 />
               </div>
-              <div></div>
               {touched.email && errors.email ? (
                 <div className="formerrors">{errors.email}</div>
               ) : null}
-              {data?.email === 200 && (
-                <div
-                  style={{color: "green", marginRight: "7%", marginLeft: "9%"}}
-                >
-                  {MSG}
-                </div>
-              )}
+              {setTimeout(() => {
+                data?.status === 200 && (
+                  <div
+                    style={{
+                      color: "green",
+                      marginRight: "7%",
+                      marginLeft: "9%",
+                    }}
+                  >
+                    {MSG}
+                  </div>
+                );
+              }, 3000)}
               <div className="row">
                 <div className="container">
                   <button

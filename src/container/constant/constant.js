@@ -1,4 +1,4 @@
-const { apiUrl} = require("../../core/config/index");
+const {apiUrl} = require("../../core/config/index");
 
 export const SIGN_IN = `${apiUrl}/signin`;
 export const SIGN_UP = `${apiUrl}/user`;
