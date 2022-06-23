@@ -1,65 +1,31 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useParams} from "react-router-dom";
 import "../signIn/signIn";
 import {NotificationContainer} from "react-notifications";
-
 import "./password.css";
-
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
-
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import {
-  CONFIRM_PASSWORD_INVALID,
-  CONFIRM_PASSWORD_REQUIRED,
-  PASSWORD_INVALID,
-  PASSWORD_REQUIRED,
-  TOAST_SUCCESS2,
-} from "../constant/constant";
-import api from "../../core/utilities/httpProvider";
+import {TOAST_SUCCESS2} from "../constant/constant";
 import Toast from "../components/toast";
-// import * as Yup from "yup";
-// import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import {useDispatch} from "react-redux";
+import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";
+import {useSelector} from "react-redux";
 
-// let validationSchema = Yup.object().shape({
-//   password: Yup.string().password().required("Password is Required"),
-//   confirmPassword: Yup.string()
-//     .password()
-//     .required("Confirm Password is Required"),
-// });
+let validationSchema = Yup.object().shape({
+  password: Yup.string().required("Password is Required"),
+  confirmPassword: Yup.string().required("Confirm Password is Required"),
+});
 
 function resetPassword() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const {token} = useParams();
-  const [password, setpassword] = useState("");
-  const [confirmPassword, setconfirmPsswd] = useState("");
-  const [passwordErr, setErr] = useState();
-  const [confirmPasswordErr, setConfirmErr] = useState();
+  const res = useSelector((state) => state.resetPassword?.data);
+  console.log("response", res);
   const [passwordType, setpasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
-  const [msg, setMsg] = useState("");
-  const validateForm = () => {
-    let formIsValid = true;
-
-    if (!password) {
-      formIsValid = false;
-      setErr(PASSWORD_REQUIRED);
-    } else if (!/^[a-zA-Z0-9]{6,20}$/.test(password)) {
-      formIsValid = false;
-      setErr(PASSWORD_INVALID);
-    }
-    //Confirm Password
-    if (!confirmPassword) {
-      formIsValid = false;
-      setConfirmErr(CONFIRM_PASSWORD_REQUIRED);
-    } else if (password !== confirmPassword) {
-      formIsValid = false;
-      setConfirmErr(CONFIRM_PASSWORD_INVALID);
-    }
-
-    return formIsValid;
-  };
   const togglePassword = () => {
     if (passwordType === "password") {
       setpasswordType("text");
@@ -74,28 +40,19 @@ function resetPassword() {
     }
     setConfirmPasswordType("password");
   };
-  const handleClick = async (event) => {
-    event.preventDefault();
-    if (validateForm()) {
-      const data = {
-        oldPassword: password,
-        newPassword: confirmPassword,
-      };
-
-      const response = await api.post(
-        `http://localhost:8083/password/save?token=${token}`,
-        data
-      );
-
-      if (response.status === 200) {
+  useEffect(() => {
+    if (res !== undefined) {
+      if (res === 200) {
         Toast.success(TOAST_SUCCESS2);
-        setTimeout(() => change(), 2000);
+        setTimeout(() => {
+          window.location.href = "/Signin";
+        }, 3000);
       }
     }
-  };
-  const change = () => {
-    setMsg("");
-    window.location.href = "/Signin";
+  }, [res]);
+  const handleClick = async (values) => {
+    const data = {values, token};
+    dispatch(resetPasswordRequest(data));
   };
 
   return (
@@ -103,113 +60,116 @@ function resetPassword() {
       <div className="Form-body">
         <NotificationContainer />
         <Formik
-          // initialValues={{
-          //   password: "",
-          //   confirmPassword: "",
-          // }}
-          // validationSchema={validationSchema}
-          // onSubmit={(values) => {
-          //   console.log("value", values);
-          //   // dispatch(forgotPasswordRequest(values));
-          // }}
+          initialValues={{
+            password: "",
+            confirmPassword: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            // console.log("value", values);
+            handleClick(values);
+          }}
         >
-          <Form>
-            <div className="psswd-heading">
-              <h2
+          {({errors, touched, handleChange}) => (
+            <Form>
+              <div className="psswd-heading">
+                <h2
+                  style={{
+                    textAlign: "center",
+                    padding: "12px",
+                    fontSize: "1.7rem",
+                    fontFamily: "sans-serif",
+                    color: "white",
+                  }}
+                >
+                  Reset Password
+                </h2>
+              </div>
+              <div
+                className="form-group"
                 style={{
-                  textAlign: "center",
-                  padding: "12px",
-                  fontSize: "1.7rem",
-                  fontFamily: "sans-serif",
-                  color: "white",
+                  marginTop: "30px",
+                  marginLeft: "20px",
+                  marginRight: "20px",
                 }}
               >
-                Reset Password
-              </h2>
-            </div>
-            <div className="Req"> {msg === "" ? "" : msg}</div>
-
-            <div
-              className="form-group"
-              style={{
-                marginTop: "30px",
-                marginLeft: "20px",
-                marginRight: "20px",
-              }}
-            >
-              <div className="inputWithButtons">
-                <Field
-                  name="password"
-                  className="form-control"
-                  type={passwordType}
-                  placeholder="New Password"
-                  style={{borderRadius: "17px"}}
-                  onChange={(e) => setpassword(e.target.value)}
-                  autoComplete="off"
-                />
-                <div className="input-group-btn">
-                  <button
-                    onClick={togglePassword}
-                    style={{
-                      border: "1px solid white",
-                      backgroundColor: "white",
-                    }}
-                    type="button"
-                  >
-                    {passwordType === "password" ? (
-                      <ShowOffIcon />
-                    ) : (
-                      <ShowIcon />
-                    )}
-                  </button>
+                <div className="inputWithButtons">
+                  <Field
+                    name="password"
+                    className="form-control"
+                    type={passwordType}
+                    placeholder="New Password"
+                    style={{borderRadius: "17px"}}
+                    onChange={handleChange}
+                    autoComplete="off"
+                  />
+                  <div className="input-group-btn">
+                    <button
+                      onClick={togglePassword}
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "white",
+                      }}
+                      type="button"
+                    >
+                      {passwordType === "password" ? (
+                        <ShowOffIcon />
+                      ) : (
+                        <ShowIcon />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="formErrors1">{passwordErr}</div>
-            <div
-              className="form-group"
-              style={{
-                marginTop: "30px",
-                marginLeft: "20px",
-                marginRight: "20px",
-              }}
-            >
-              <div className="inputWithButtons">
-                <Field
-                  name="confirm-password"
-                  className="form-control"
-                  type={confirmPasswordType}
-                  style={{borderRadius: "17px"}}
-                  placeholder="Confirm Password"
-                  onChange={(e) => setconfirmPsswd(e.target.value)}
-                />
-                <div className="input-group-btn">
-                  <button
-                    onClick={confirmtogglePassword}
-                    style={{
-                      border: "1px solid white",
-                      backgroundColor: "white",
-                    }}
-                    type="button"
-                  >
-                    {confirmPasswordType === "password" ? (
-                      <ShowOffIcon />
-                    ) : (
-                      <ShowIcon />
-                    )}
-                  </button>
+              {touched.password && errors.password ? (
+                <div className="formErrors1">{errors.password}</div>
+              ) : null}
+              <div
+                className="form-group"
+                style={{
+                  marginTop: "30px",
+                  marginLeft: "20px",
+                  marginRight: "20px",
+                }}
+              >
+                <div className="inputWithButtons">
+                  <Field
+                    name="confirmPassword"
+                    className="form-control"
+                    type={confirmPasswordType}
+                    style={{borderRadius: "17px"}}
+                    placeholder="Confirm Password"
+                    onChange={handleChange}
+                  />
+                  <div className="input-group-btn">
+                    <button
+                      onClick={confirmtogglePassword}
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "white",
+                      }}
+                      type="button"
+                    >
+                      {confirmPasswordType === "password" ? (
+                        <ShowOffIcon />
+                      ) : (
+                        <ShowIcon />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+              {touched.confirmPassword && errors.confirmPassword ? (
+                <div className="formErrors1">{errors.confirmPassword}</div>
+              ) : null}
 
-            <div className="formErrors1">{confirmPasswordErr}</div>
-
-            <div className="cont" style={{marginLeft: "25px"}}>
-              <button onClick={handleClick} className="reset-button">
-                Reset
-              </button>
-            </div>
-          </Form>
+              <div className="cont" style={{marginLeft: "25px"}}>
+                <button type="submit" className="reset-button">
+                  Reset
+                </button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>

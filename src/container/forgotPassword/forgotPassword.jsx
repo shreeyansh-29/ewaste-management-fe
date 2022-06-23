@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {forgotPasswordRequest} from "../../redux/action/forgotPasswordAction";
+import {forgotPasswordRequest} from "../../redux/action/forgotPasswordAction/forgotPasswordAction";
 import {EMAIL_INVALID, EMAIL_REQUIRED, MSG} from "../constant/constant";
 import {useNavigate} from "react-router-dom";
 let validationSchema = Yup.object().shape({
@@ -67,19 +67,17 @@ const forgot = () => {
               {touched.email && errors.email ? (
                 <div className="formerrors">{errors.email}</div>
               ) : null}
-              {setTimeout(() => {
-                data?.status === 200 && (
-                  <div
-                    style={{
-                      color: "green",
-                      marginRight: "7%",
-                      marginLeft: "9%",
-                    }}
-                  >
-                    {MSG}
-                  </div>
-                );
-              }, 3000)}
+              {data?.status === 200 && (
+                <div
+                  style={{
+                    color: "green",
+                    marginRight: "7%",
+                    marginLeft: "9%",
+                  }}
+                >
+                  {MSG}
+                </div>
+              )}
               <div className="row">
                 <div className="container">
                   <button

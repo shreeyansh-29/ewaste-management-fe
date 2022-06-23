@@ -1,22 +1,37 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import {
   NavLogoutBtn,
   NavNotiIcon,
 } from "../../components/navbar/navbarelements";
 import ".././customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
+import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
 import api from "../../../core/utilities/httpProvider";
 import Swal from "sweetalert2";
-import { CUSTOMER_NOTIFICATION_MARKASREAD } from "../../constant/constant";
+import {CUSTOMER_NOTIFICATION_MARKASREAD} from "../../constant/constant";
+import {customerNameRequest} from "../../../redux/action/customerNameAction/customerNameAction";
+import {useDispatch, useSelector} from "react-redux";
+import {customerNotificationRequest} from "../../../redux/action/customerNotificationAction/customerNotificationAction";
+
 function CustomerNav() {
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.customerName);
+  // console.log("res", res);
+  // let result = useSelector((state) => state.customerNotification);
+  // console.log("notication", result);
+
+  useEffect(() => {
+    dispatch(customerNameRequest());
+    dispatch(customerNotificationRequest());
+  }, []);
+
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [List, setList] = useState([]);
   var list = ["hh"];
   const c = localStorage.getItem("count");
-  const name = localStorage.getItem("name");
+  const name = res.data.payload;
   const markAsRead = async () => {
     var res = await api.post(CUSTOMER_NOTIFICATION_MARKASREAD);
     res = await res.json();
@@ -58,13 +73,13 @@ function CustomerNav() {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="./CustomerHome" style={{ marginLeft: "1%" }}>
+          <Navbar.Brand href="./CustomerHome" style={{marginLeft: "1%"}}>
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
 
           <Nav.Item>
             <button
-              style={{ background: "#101522", border: "none" }}
+              style={{background: "#101522", border: "none"}}
               onClick={() => markAsRead()}
               className="notification_button"
             >
@@ -73,8 +88,8 @@ function CustomerNav() {
                 <NavNotiIcon
                   style={
                     c === "0" || c === null
-                      ? { color: "white", marginLeft: "24.5px" }
-                      : { color: "white", marginBottom: "20px" }
+                      ? {color: "white", marginLeft: "24.5px"}
+                      : {color: "white", marginBottom: "20px"}
                   }
                 ></NavNotiIcon>
               </div>
@@ -91,11 +106,11 @@ function CustomerNav() {
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto" style={{ marginRight: "2%" }}>
+            <Nav className="ms-auto" style={{marginRight: "2%"}}>
               <NavDropdown
                 title="Requests"
                 id="collasible-nav-dropdown"
-                style={{ padding: "10px" }}
+                style={{padding: "10px"}}
               >
                 <NavDropdown.Item href="./PickUp">Pick Up</NavDropdown.Item>
                 <NavDropdown.Item href="./DropOff">Drop Off</NavDropdown.Item>
@@ -103,10 +118,10 @@ function CustomerNav() {
                   My Requests
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="./Waste" style={{ padding: "18px" }}>
+              <Nav.Link href="./Waste" style={{padding: "18px"}}>
                 Drives
               </Nav.Link>
-              <Nav.Link style={{ padding: "18px" }} href="./EditProfile">
+              <Nav.Link style={{padding: "18px"}} href="./EditProfile">
                 Profile
               </Nav.Link>
               <Nav.Link>

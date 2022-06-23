@@ -2,9 +2,9 @@ import {takeLatest, call, put} from "redux-saga/effects";
 import {
   resetPasswordError,
   resetPasswordSuccess,
-} from "../action/resetPasswordAction";
-import {RESET_PASSWORD_REQUEST} from "../config/actionType";
-import {resetPasswordService} from "../service/resetPasswordService";
+} from "../../action/resetPasswordAction/resetPasswordAction";
+import {RESET_PASSWORD_REQUEST} from "../../config/actionType";
+import {resetPasswordService} from "../../service/resetPasswordService/resetPasswordService";
 
 function* resetPassword(action) {
   try {
