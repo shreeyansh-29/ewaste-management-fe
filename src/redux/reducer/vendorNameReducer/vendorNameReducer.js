@@ -7,17 +7,16 @@ const initialState = {
   error: "",
 };
 
-export const customerNameReducer = (state = initialState, action) => {
+export const vendorNameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.CUSTOMER_PROFILE_REQUEST:
+    case types.VENDOR_PROFILE_REQUEST:
       return {...state, isLoading: true};
-    case types.CUSTOMER_PROFILE_SUCCESS:
+    case types.VENDOR_PROFILE_SUCCESS:
+      // console.log("Success Reducer", action);
       return {...state, data: action};
-    case types.CUSTOMER_PROFILE_ERROR:
+    case types.VENDOR_PROFILE_ERROR:
       return {...state, error: action};
     default:
       return state;
   }
 };
-
-// console.log("success reducer", action);

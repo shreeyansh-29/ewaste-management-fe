@@ -1,13 +1,24 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
-import { NavLogoutBtn } from "../../components/navbar/navbarelements";
-import { Navbar, NavDropdown, Container, Nav } from "react-bootstrap";
+import {NavLogoutBtn} from "../../components/navbar/navbarelements";
+import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {useDispatch} from "react-redux";
+import {vendorNameRequest} from "../../../redux/action/vendorNameAction/vendorNameAction";
+import {useSelector} from "react-redux";
 
 function VendorNav() {
   const navigate = useNavigate();
-  const name = localStorage.getItem("name");
+  const dispatch = useDispatch();
+  const res = useSelector((state) => state.vendorName);
+  console.log(res);
+  // const name = res.data.payload.firstName;
+  // console.log(name);
+
+  React.useEffect(() => {
+    dispatch(vendorNameRequest());
+  }, []);
 
   return (
     <>
@@ -19,16 +30,16 @@ function VendorNav() {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="./VendorHome" style={{ marginLeft: "2%" }}>
+          <Navbar.Brand href="./VendorHome" style={{marginLeft: "2%"}}>
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto" style={{ marginRight: "1%" }}>
+            <Nav className="ms-auto" style={{marginRight: "1%"}}>
               <NavDropdown
                 title="My Orders"
                 id="collasible-nav-dropdown"
-                style={{ padding: "10px" }}
+                style={{padding: "10px"}}
               >
                 <NavDropdown.Item href="./Sales">
                   Purchase Items
@@ -37,7 +48,7 @@ function VendorNav() {
                   Items Summary
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/VendorProfile" style={{ padding: "18px" }}>
+              <Nav.Link href="/VendorProfile" style={{padding: "18px"}}>
                 Profile
               </Nav.Link>
               <Nav.Link>

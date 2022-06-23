@@ -7,17 +7,16 @@ const initialState = {
   error: "",
 };
 
-export const customerNameReducer = (state = initialState, action) => {
+export const collectorNameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.CUSTOMER_PROFILE_REQUEST:
+    case types.COLLECTOR_PROFILE_REQUEST:
       return {...state, isLoading: true};
-    case types.CUSTOMER_PROFILE_SUCCESS:
+    case types.COLLECTOR_PROFILE_SUCCESS:
+      // console.log("success reducer", action);
       return {...state, data: action};
-    case types.CUSTOMER_PROFILE_ERROR:
+    case types.COLLECTOR_PROFILE_ERROR:
       return {...state, error: action};
     default:
       return state;
   }
 };
-
-// console.log("success reducer", action);

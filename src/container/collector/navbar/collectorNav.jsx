@@ -1,24 +1,34 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   NavLogoutBtn,
   NavNotiIcon,
 } from "../../components/navbar/navbarelements";
-
+import {collectorNameRequest} from "../../../redux/action/collectorNameAction/collectorNameAction";
 import api from "../../../core/utilities/httpProvider";
 import "../../customer/customer.css";
 import "../Collector.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import {COLLECTOR_NOTIFICATION_MARKASREAD} from "../../constant/constant";
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 function CollectorNav() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const res = useSelector((state) => state.collectorName);
+  // console.log(res);
+
+  useEffect(() => {
+    dispatch(collectorNameRequest());
+  }, []);
+
   const [show, setShow] = useState(false);
   const [List, setList] = useState([]);
   var list = ["hh"];
   const c = localStorage.getItem("count");
-  const name = localStorage.getItem("name");
+  const name = res.data.payload;
   const markAsRead = async () => {
     try {
       var res = await api.post(COLLECTOR_NOTIFICATION_MARKASREAD);
@@ -144,7 +154,9 @@ function CollectorNav() {
                 <NavDropdown.Item href="./ItemsForSale">
                   On Sale
                 </NavDropdown.Item>
-                <NavDropdown.Item href="./SaleItems">Sales Summary</NavDropdown.Item>
+                <NavDropdown.Item href="./SaleItems">
+                  Sales Summary
+                </NavDropdown.Item>
               </NavDropdown>
 
               <Nav.Link href="/CollectorProfile" style={{padding: "18px"}}>

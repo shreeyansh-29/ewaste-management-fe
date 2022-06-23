@@ -5,6 +5,8 @@ import {watchForgotPasswordSaga} from "./forgotPasswordSaga/forgotPasswordSaga";
 import {watchResetPasswordSaga} from "./resetPasswordSaga/resetPasswordSaga";
 import {watchSignInSaga} from "./signInSaga/signInSaga";
 import {watchSignUpSaga} from "./signUpSaga/signUpSaga";
+import {watchCollectorName} from "./collectorNameSaga/collectorNameSaga";
+import {watchVendorName} from "./vendorNameSaga/vendorNameSaga";
 
 function* rootSaga() {
   yield all([
@@ -14,6 +16,8 @@ function* rootSaga() {
     watchSignUpSaga(),
     watchCustomerName(),
     watchCustomerNotification(),
+    watchCollectorName(),
+    watchVendorName(),
   ]);
 }
 
