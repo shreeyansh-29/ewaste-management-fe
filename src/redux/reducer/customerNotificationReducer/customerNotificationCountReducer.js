@@ -7,21 +7,24 @@ const initialState = {
   error: "",
 };
 
-export const customerNotificationReducer = (state = initialState, action) => {
+export const customerNotificationCountReducer = (
+  state = initialState,
+  action
+) => {
   switch (action.type) {
-    case types.CUSTOMER_NOTIFICATION_REQUEST:
+    case types.CUSTOMER_NOTIFICATION_COUNT_REQUEST:
       // console.log("Reducer", action);
       return {
         ...state,
         isLoading: true,
       };
-    case types.CUSTOMER_NOTIFICATION_SUCCESS:
+    case types.CUSTOMER_NOTIFICATION_COUNT_SUCCESS:
       // console.log("success reducer", action);
       return {
         ...state,
         data: action,
       };
-    case types.CUSTOMER_NOTIFICATION_ERROR:
+    case types.CUSTOMER_NOTIFICATION_COUNT_ERROR:
       return {
         ...state,
         error: action,

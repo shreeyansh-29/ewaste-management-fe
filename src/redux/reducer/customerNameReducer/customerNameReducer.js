@@ -9,11 +9,11 @@ const initialState = {
 
 export const customerNameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.CUSTOMER_PROFILE_REQUEST:
+    case types.CUSTOMER_NAME_REQUEST:
       return {...state, isLoading: true};
-    case types.CUSTOMER_PROFILE_SUCCESS:
+    case types.CUSTOMER_NAME_SUCCESS:
       return {...state, data: action};
-    case types.CUSTOMER_PROFILE_ERROR:
+    case types.CUSTOMER_NAME_ERROR:
       return {...state, error: action};
     default:
       return state;

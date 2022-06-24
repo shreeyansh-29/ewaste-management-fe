@@ -14,5 +14,5 @@ function* vendorNameSaga() {
 }
 
 export function* watchVendorName() {
-  yield takeLatest(types.VENDOR_PROFILE_REQUEST, vendorNameSaga);
+  yield takeLatest(types.VENDOR_NAME_REQUEST, vendorNameSaga);
 }

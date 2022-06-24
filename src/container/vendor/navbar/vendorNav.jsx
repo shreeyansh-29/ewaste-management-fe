@@ -12,8 +12,8 @@ function VendorNav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const res = useSelector((state) => state.vendorName);
-  console.log(res);
-  // const name = res.data.payload.firstName;
+  // console.log(res);
+  const name = res.data.payload;
   // console.log(name);
 
   React.useEffect(() => {

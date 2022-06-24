@@ -12,18 +12,18 @@ import Swal from "sweetalert2";
 import {CUSTOMER_NOTIFICATION_MARKASREAD} from "../../constant/constant";
 import {customerNameRequest} from "../../../redux/action/customerNameAction/customerNameAction";
 import {useDispatch, useSelector} from "react-redux";
-import {customerNotificationRequest} from "../../../redux/action/customerNotificationAction/customerNotificationAction";
+import {customerNotificationCountRequest} from "../../../redux/action/customerNotificationAction/customerNotificationCountAction";
 
 function CustomerNav() {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerName);
   // console.log("res", res);
-  // let result = useSelector((state) => state.customerNotification);
-  // console.log("notication", result);
+  let result = useSelector((state) => state.customerNotification);
+  console.log("notication", result);
 
   useEffect(() => {
     dispatch(customerNameRequest());
-    dispatch(customerNotificationRequest());
+    dispatch(customerNotificationCountRequest());
   }, []);
 
   const navigate = useNavigate();

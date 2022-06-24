@@ -14,14 +14,18 @@ import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import {COLLECTOR_NOTIFICATION_MARKASREAD} from "../../constant/constant";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
+import {collectorNotificationCountRequest} from "../../../redux/action/collectorNotificationAction/collectorNotificationCountAction";
 function CollectorNav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const res = useSelector((state) => state.collectorName);
+  let result = useSelector((state) => state.collectorNotificationCount);
   // console.log(res);
+  console.log("notification", result);
 
   useEffect(() => {
     dispatch(collectorNameRequest());
+    dispatch(collectorNotificationCountRequest());
   }, []);
 
   const [show, setShow] = useState(false);

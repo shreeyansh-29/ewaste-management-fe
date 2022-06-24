@@ -9,12 +9,12 @@ const initialState = {
 
 export const collectorNameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.COLLECTOR_PROFILE_REQUEST:
+    case types.COLLECTOR_NAME_REQUEST:
       return {...state, isLoading: true};
-    case types.COLLECTOR_PROFILE_SUCCESS:
+    case types.COLLECTOR_NAME_SUCCESS:
       // console.log("success reducer", action);
       return {...state, data: action};
-    case types.COLLECTOR_PROFILE_ERROR:
+    case types.COLLECTOR_NAME_ERROR:
       return {...state, error: action};
     default:
       return state;

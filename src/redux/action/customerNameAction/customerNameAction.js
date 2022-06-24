@@ -1,13 +1,13 @@
 import * as types from "../../config/actionType";
 
 export const customerNameRequest = () => {
-  return {type: types.CUSTOMER_PROFILE_REQUEST};
+  return {type: types.CUSTOMER_NAME_REQUEST};
 };
 
 export const customerNameSuccess = (payload) => {
-  return {type: types.CUSTOMER_PROFILE_SUCCESS, payload: payload.firstName};
+  return {type: types.CUSTOMER_NAME_SUCCESS, payload: payload.firstName};
 };
 
 export const customerNameError = (payload) => {
-  return {type: types.CUSTOMER_PROFILE_ERROR, payload};
+  return {type: types.CUSTOMER_NAME_ERROR, payload};
 };

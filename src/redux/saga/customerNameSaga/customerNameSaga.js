@@ -16,5 +16,5 @@ function* customerNameSaga() {
 }
 
 export function* watchCustomerName() {
-  yield takeLatest(types.CUSTOMER_PROFILE_REQUEST, customerNameSaga);
+  yield takeLatest(types.CUSTOMER_NAME_REQUEST, customerNameSaga);
 }

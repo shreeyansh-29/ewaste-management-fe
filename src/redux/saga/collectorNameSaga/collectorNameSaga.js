@@ -17,5 +17,5 @@ function* collectorNameSaga() {
 }
 
 export function* watchCollectorName() {
-  yield takeLatest(types.COLLECTOR_PROFILE_REQUEST, collectorNameSaga);
+  yield takeLatest(types.COLLECTOR_NAME_REQUEST, collectorNameSaga);
 }
