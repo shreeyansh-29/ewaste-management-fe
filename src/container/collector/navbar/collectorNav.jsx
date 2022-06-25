@@ -5,7 +5,7 @@ import {
   NavLogoutBtn,
   NavNotiIcon,
 } from "../../components/navbar/navbarelements";
-import {collectorNameRequest} from "../../../redux/action/collectorNameAction/collectorNameAction";
+import {collectorNameRequest} from "../../../redux/action/collector/collectorNameAction/collectorNameAction";
 import api from "../../../core/utilities/httpProvider";
 import "../../customer/customer.css";
 import "../Collector.css";
@@ -14,7 +14,7 @@ import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import {COLLECTOR_NOTIFICATION_MARKASREAD} from "../../constant/constant";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
-import {collectorNotificationCountRequest} from "../../../redux/action/collectorNotificationAction/collectorNotificationCountAction";
+import {collectorNotificationCountRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationCountAction";
 function CollectorNav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

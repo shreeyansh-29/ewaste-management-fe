@@ -1,18 +1,18 @@
 import {all} from "redux-saga/effects";
-import {watchCustomerName} from "./customerNameSaga/customerNameSaga";
-import {watchCustomerNotificationCount} from "./customerNotificationSaga/customerNotificationCountSaga";
-import {watchCollectorNotificationData} from "./collectorNotificationSaga/collectorNotificationDataSaga";
+import {watchCustomerName} from "./customer/customerNameSaga/customerNameSaga";
+import {watchCustomerNotificationCount} from "./customer/customerNotificationSaga/customerNotificationCountSaga";
+import {watchCollectorNotificationData} from "./collector/collectorNotificationSaga/collectorNotificationDataSaga";
 import {watchForgotPasswordSaga} from "./forgotPasswordSaga/forgotPasswordSaga";
 import {watchResetPasswordSaga} from "./resetPasswordSaga/resetPasswordSaga";
 import {watchSignInSaga} from "./signInSaga/signInSaga";
 import {watchSignUpSaga} from "./signUpSaga/signUpSaga";
-import {watchCollectorName} from "./collectorNameSaga/collectorNameSaga";
-import {watchVendorName} from "./vendorNameSaga/vendorNameSaga";
-import {watchCollectorNotificationCount} from "./collectorNotificationSaga/collectorNotificationCountSaga";
-import {watchCustomerNotificationData} from "./customerNotificationSaga/customerNotificationDataSaga";
-import {watchCustomerProfile} from "./customerProfileSaga/customerProfileSaga";
-import {watchVendorProfile} from "./vendorProfileSaga/vendorProfileSaga";
-import {watchCollectorProfile} from "./collectorProfileSaga/collectorProfileSaga";
+import {watchCollectorName} from "./collector/collectorNameSaga/collectorNameSaga";
+import {watchVendorName} from "./vendor/vendorNameSaga/vendorNameSaga";
+import {watchCollectorNotificationCount} from "./collector/collectorNotificationSaga/collectorNotificationCountSaga";
+import {watchCustomerNotificationData} from "./customer/customerNotificationSaga/customerNotificationDataSaga";
+import {watchCustomerProfile} from "./customer/customerProfileSaga/customerProfileSaga";
+import {watchVendorProfile} from "./vendor/vendorProfileSaga/vendorProfileSaga";
+import {watchCollectorProfile} from "./collector/collectorProfileSaga/collectorProfileSaga";
 
 function* rootSaga() {
   yield all([

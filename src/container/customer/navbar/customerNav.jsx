@@ -10,9 +10,9 @@ import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
 import api from "../../../core/utilities/httpProvider";
 import Swal from "sweetalert2";
 import {CUSTOMER_NOTIFICATION_MARKASREAD} from "../../constant/constant";
-import {customerNameRequest} from "../../../redux/action/customerNameAction/customerNameAction";
+import {customerNameRequest} from "../../../redux/action/customer/customerNameAction/customerNameAction";
 import {useDispatch, useSelector} from "react-redux";
-import {customerNotificationCountRequest} from "../../../redux/action/customerNotificationAction/customerNotificationCountAction";
+import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
 
 function CustomerNav() {
   const dispatch = useDispatch();

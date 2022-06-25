@@ -5,7 +5,7 @@ import {NavLogoutBtn} from "../../components/navbar/navbarelements";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useDispatch} from "react-redux";
-import {vendorNameRequest} from "../../../redux/action/vendorNameAction/vendorNameAction";
+import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/vendorNameAction";
 import {useSelector} from "react-redux";
 
 function VendorNav() {
