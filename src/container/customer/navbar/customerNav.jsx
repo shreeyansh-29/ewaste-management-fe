@@ -18,8 +18,8 @@ function CustomerNav() {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerName);
   // console.log("res", res);
-  let result = useSelector((state) => state.customerNotification);
-  console.log("notication", result);
+  // let result = useSelector((state) => state.customerNotification);
+  // console.log("notication", result);
 
   useEffect(() => {
     dispatch(customerNameRequest());

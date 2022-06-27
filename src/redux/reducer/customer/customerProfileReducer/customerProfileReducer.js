@@ -12,8 +12,7 @@ export const customerProfileReducer = (state = initialState, action) => {
     case types.CUSTOMER_PROFILE_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_PROFILE_SUCCESS:
-      console.log("success reducer", action);
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.CUSTOMER_PROFILE_ERROR:
       return {...state, error: action};
     default:

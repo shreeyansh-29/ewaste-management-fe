@@ -5,7 +5,7 @@ export const customerNotificationCountRequest = () => {
 };
 
 export const customerNotificationCountSuccess = (payload) => {
-  console.log("action success", payload);
+  // console.log("action success", payload);
   return {type: types.CUSTOMER_NOTIFICATION_COUNT_SUCCESS, payload};
 };
 
