@@ -105,7 +105,6 @@ function EditProfile() {
       {/* {console.log(res.data.firstName)} */}
       {console.log(res)}
       {console.log("..", initialDetails)}
-      <h1>${res.data.firstName}</h1>
       <Formik
         initialValues={{
           firstName: res?.data?.firstName,
