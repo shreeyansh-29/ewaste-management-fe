@@ -9,7 +9,6 @@ import {customerDrivesService} from "../../../service/customer/analyticsService/
 function* customerDrivesSaga() {
   try {
     let response = yield call(customerDrivesService);
-    console.log("saga", response);
     yield put(customerDrivesSuccess(response));
   } catch (error) {
     yield put(customerDrivesError(error));

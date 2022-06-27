@@ -1,4 +1,4 @@
-import * as types from "../../../../config/actionType";
+import * as types from "../../../config/actionType";
 
 export const collectorEWasteDrivesRequest = () => {
   return {type: types.COLLECTOR_EWASTE_DRIVES_REQUEST};

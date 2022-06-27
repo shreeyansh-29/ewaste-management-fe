@@ -1,18 +1,30 @@
-import React from "react";
+/* eslint-disable indent */
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import "../customer.css";
+import {useDispatch, useSelector} from "react-redux";
 import ViewCollectors from "./viewCollectors";
-import api from "../../../core/utilities/httpProvider";
 import AddIcon from "@material-ui/icons/AddBox";
 import SearchIcon from "@material-ui/icons/Search";
 import {TOAST_ERROR4, TOAST_WARN1} from "../../constant/constant";
 import Toast from "../../components/toast";
+import {customerDropOffRequest} from "../../../redux/action/customer/customerDropOffAction/customerDropOffAction";
 export default function DropOff() {
   const {useState} = React;
+
+  const dispatch = useDispatch();
+  let res1 = useSelector((state) => state.customerDropOff);
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState([]);
   const [isEditable, setEditable] = useState(true);
+  useEffect(() => {
+    if (res1?.data?.data !== "") {
+      setCollectors(res1?.data?.data);
+    } else {
+      collectors.length = 0;
+    }
+  }, [res1]);
 
   const [columns] = useState([
     {
@@ -65,9 +77,7 @@ export default function DropOff() {
 
   const [data, setData] = useState([]);
 
-  const handleClick = async (event) => {
-    event.preventDefault();
-
+  const handleClick = (data) => {
     if (
       data[0].category === undefined ||
       data[0].itemName === "" ||
@@ -82,21 +92,8 @@ export default function DropOff() {
     ) {
       Toast.warn(TOAST_WARN1);
     } else {
-      try {
-        const res = await api.get(
-          `http://localhost:8083/customer/request/dropOff/viewCollectors?category=${data[0].category}`
-        );
-
-        if (res.status === "success") {
-          setCollectors([...res.data]);
-          setExpanded(true);
-        } else {
-          collectors.length = 0;
-          setExpanded(true);
-        }
-      } catch (err) {
-        console.log(err);
-      }
+      dispatch(customerDropOffRequest(data[0].category));
+      setExpanded(true);
     }
   };
 
@@ -129,13 +126,14 @@ export default function DropOff() {
           editable={{
             onRowAdd: isEditable
               ? (newData) =>
-                new Promise((resolve) => {
-                  setTimeout(() => {
-                    setData([...data, newData]);
-                    setEditable(false);
-                    resolve();
-                  }, 1000);
-                })
+                  new Promise((resolve) => {
+                    setTimeout(() => {
+                      setData([...data, newData]);
+                      setEditable(false);
+                      resolve();
+                      handleClick([newData]);
+                    }, 1000);
+                  })
               : null,
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {
@@ -149,23 +147,17 @@ export default function DropOff() {
                 }, 1000);
               }),
           }}
-          options={{pageSize: 1, actionsColumnIndex: -1, search: false}}
+          options={{pageSize: 5, actionsColumnIndex: -1, search: false}}
         />
-
-        <div className="a">
-          {" "}
-          <a href="#" onClick={handleClick}>
-            Search Drop-Off Locations
-          </a>
-        </div>
-        {expanded && collectors.length === 0 ? (
+        {console.log("dd", collectors)}
+        {expanded && collectors?.length === 0 ? (
           <div className="textStyle">
             <h4> No Collectors have been found in your area.</h4>
           </div>
         ) : (
           ""
         )}
-        {expanded && collectors.length != 0 ? (
+        {expanded && collectors?.length != 0 ? (
           <ViewCollectors data={collectors} customerdata={data} />
         ) : (
           ""

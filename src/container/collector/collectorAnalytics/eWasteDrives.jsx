@@ -1,7 +1,8 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import api from "../../../core/utilities/httpProvider";
-import { COLLECTOR_ANALYTICS_V1 } from "../../constant/constant";
+import {useDispatch, useSelector} from "react-redux";
+import {collectorEWasteDrivesRequest} from "../../../redux/action/collector/analyticsAction/collectorEWasteDrivesAction";
+
 export const data = [
   ["name", "Organized", {role: "style"}],
   ["E-Waste Drives in the City", 4, "blue"],
@@ -25,17 +26,18 @@ export const options = {
 };
 
 export default function EWasteDrives() {
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.collectorEWasteDrives);
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(COLLECTOR_ANALYTICS_V1);
-        
-        data[1][1] = res.data.EWasteDriveCity;
-        data[2][1] = res.data.EWasteDriveCollector;
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    dispatch(collectorEWasteDrivesRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.EWasteDriveCity;
+      data[2][1] = res?.data?.data.EWasteDriveCollector;
+    }
   }, []);
   return (
     <Chart

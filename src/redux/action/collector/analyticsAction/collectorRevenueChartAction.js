@@ -1,4 +1,4 @@
-import * as types from "../../../../config/actionType";
+import * as types from "../../../config/actionType";
 
 export const collectorRevenueChartRequest = () => {
   return {type: types.COLLECTOR_REVENUE_CHART_REQUEST};

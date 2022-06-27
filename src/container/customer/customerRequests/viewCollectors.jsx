@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, {useEffect} from "react";
+import React from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-
+import {useDispatch} from "react-redux";
 import "../customer.css";
-import {CUSTOMER_DROPOFF, TOAST_SUCCESS4} from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {TOAST_SUCCESS4} from "../../constant/constant";
 import Toast from "../../components/toast";
+import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";
 export default function ViewCollectors(props) {
   const {useState} = React;
+  console.log(props);
+  const dispatch = useDispatch();
   const [btndisable, setdisable] = useState(false);
 
   const [columns] = useState([
@@ -63,19 +65,6 @@ export default function ViewCollectors(props) {
       },
     },
   ]);
-  useEffect(() => {
-    // eslint-disable-next-line react/prop-types
-    var address = props.data.map(function (obj) {
-      return obj.address1 + " " + obj.city + " " + obj.state;
-    });
-
-    props.data.map((obj) =>
-      address.map((obj1) => {
-        obj.address1 = obj1;
-      })
-    );
-  }, []);
-  const [data] = useState([...props.data]);
 
   const handleAccept = async (e, datas) => {
     e.preventDefault();
@@ -90,13 +79,13 @@ export default function ViewCollectors(props) {
 
     setdisable(true);
 
-    await api.post(CUSTOMER_DROPOFF, data);
+    dispatch(customerViewCollectorsRequest(data));
     Toast.success(TOAST_SUCCESS4);
   };
 
   return (
     <div>
-      <div style={{padding: "10px"}}>
+      <div style={{padding: "50px 0 0 0"}}>
         <h2
           style={{
             textAlign: "center",
@@ -114,7 +103,7 @@ export default function ViewCollectors(props) {
         <MaterialTable
           title=""
           columns={columns}
-          data={data}
+          data={props.data}
           actions={[
             {
               icon: () => (

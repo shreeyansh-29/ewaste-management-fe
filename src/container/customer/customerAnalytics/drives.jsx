@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import api from "../../../core/utilities/httpProvider";
-import { CUSTOMER_ANALYTICS_V2 } from "../../constant/constant";
+import {useDispatch, useSelector} from "react-redux";
+import {customerDrivesRequest} from "../../../redux/action/customer/analyticsAction/customerDrivesAction";
+
 export const data = [
   ["name", "Count", {role: "style"}],
   ["E-Waste Drives Organized", 4, "hotpink"],
@@ -24,17 +26,20 @@ export const options = {
 };
 
 export default function Drives() {
-  useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(CUSTOMER_ANALYTICS_V2);
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.customerDrives);
+  console.log(res);
 
-        data[1][1] = res.data.eWasteDriveListAll;
-        data[2][1] = res.data.eWasteDriveListCity;
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+  useEffect(() => {
+    dispatch(customerDrivesRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.eWasteDriveListAll;
+      data[2][1] = res?.data?.data.eWasteDriveListCity;
+    }
   }, []);
   return (
     <Chart

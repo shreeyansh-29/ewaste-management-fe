@@ -5,7 +5,7 @@ export const customerProfileRequest = () => {
 };
 
 export const customerProfileSuccess = (payload) => {
-  console.log("success action", payload);
+  // console.log("success action", payload);
   return {type: types.CUSTOMER_PROFILE_SUCCESS, payload};
 };
 

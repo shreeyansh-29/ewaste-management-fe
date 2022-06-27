@@ -13,6 +13,14 @@ import {customerNotificationDataReducer} from "./customer/customerNotificationRe
 import {customerProfileReducer} from "./customer/customerProfileReducer/customerProfileReducer";
 import {collectorProfileReducer} from "./collector/collectorProfileReducer/collectorProfileReducer";
 import {vendorProfileReducer} from "./vendor/vendorProfileReducer/vendorProfileReducer";
+import {customerEWasteReducer} from "./customer/customerEWasteReducer/customerEWasteReducer";
+import {customerDropOffReducer} from "./customer/customerDropOffReducer/customerDropOffReducer";
+import {customerViewCollectorsReducer} from "./customer/customerViewCollectorReducer/customerViewCollectorReducer";
+import {customerWasteGeneratedReducer} from "./customer/analyticsReducer/customerWasteGeneratedReducer";
+import {customerCollectorCategoriesReducer} from "./customer/analyticsReducer/customerCollectorCategoriesReducer";
+import {customerDrivesReducer} from "./customer/analyticsReducer/customerDrivesReducer";
+import {collectorEWasteDrivesReducer} from "./collector/analyticsReducer/collectorEWasteDrivesReducer";
+import {collectorEWasteItemsReducer} from "./collector/analyticsReducer/collectorEWasteItemsReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -23,10 +31,18 @@ const rootReducer = combineReducers({
   customerNotificationCount: customerNotificationCountReducer,
   customerNotificationData: customerNotificationDataReducer,
   customerProfile: customerProfileReducer,
+  customerDropOff: customerDropOffReducer,
+  customerViewCollector: customerViewCollectorsReducer,
+  customerEWasteDrives: customerEWasteReducer,
+  customerWasteGenerated: customerWasteGeneratedReducer,
+  customerDrives: customerDrivesReducer,
+  customerCollectorCategories: customerCollectorCategoriesReducer,
   collectorName: collectorNameReducer,
   collectorNotificationCount: collectorNotificationCountReducer,
   collectorNotificationData: collectorNotificationDataReducer,
   collectorProfile: collectorProfileReducer,
+  collectorEWasteDrives: collectorEWasteDrivesReducer,
+  collectorEWasteItems: collectorEWasteItemsReducer,
   vendorName: vendorNameReducer,
   vendorProfile: vendorProfileReducer,
 });

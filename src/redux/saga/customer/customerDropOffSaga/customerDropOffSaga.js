@@ -6,9 +6,9 @@ import {
   customerDropOffSuccess,
 } from "../../../action/customer/customerDropOffAction/customerDropOffAction";
 
-function* customerDropOffSaga() {
+function* customerDropOffSaga(action) {
   try {
-    let response = yield call(customerDropOffService);
+    let response = yield call(customerDropOffService, action);
     console.log("Saga", response);
     yield put(customerDropOffSuccess(response));
   } catch (error) {

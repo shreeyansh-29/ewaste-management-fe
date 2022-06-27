@@ -13,6 +13,14 @@ import {watchCustomerNotificationData} from "./customer/customerNotificationSaga
 import {watchCustomerProfile} from "./customer/customerProfileSaga/customerProfileSaga";
 import {watchVendorProfile} from "./vendor/vendorProfileSaga/vendorProfileSaga";
 import {watchCollectorProfile} from "./collector/collectorProfileSaga/collectorProfileSaga";
+import {watchCustomerEWaste} from "./customer/customerEWasteSaga/customerEWasteSaga";
+import {watchCustomerDropOff} from "./customer/customerDropOffSaga/customerDropOffSaga";
+import {watchCustomerViewCollectors} from "./customer/customerViewCollectorSaga/customerViewCollectorSaga";
+import {watchCustomerWasteGenerated} from "./customer/analyticsSaga/customerWasteGeneratedSaga";
+import {watchCustomerCollectorCategories} from "./customer/analyticsSaga/customerCollectorCategoriesSaga";
+import {watchCustomerDrives} from "./customer/analyticsSaga/customerDrivesSaga";
+import {watchCollectorEWasteDrives} from "./collector/analyticsSaga/collectorEWasteDrivesSaga";
+import {watchCollectorEWasteItems} from "./collector/analyticsSaga/collectorEWasteItemsSaga";
 
 function* rootSaga() {
   yield all([
@@ -24,10 +32,18 @@ function* rootSaga() {
     watchCustomerNotificationCount(),
     watchCustomerNotificationData(),
     watchCustomerProfile(),
+    watchCustomerEWaste(),
+    watchCustomerDropOff(),
+    watchCustomerViewCollectors(),
+    watchCustomerWasteGenerated(),
+    watchCustomerCollectorCategories(),
+    watchCustomerDrives(),
     watchCollectorName(),
     watchCollectorNotificationCount(),
     watchCollectorNotificationData(),
     watchCollectorProfile(),
+    watchCollectorEWasteDrives(),
+    watchCollectorEWasteItems(),
     watchVendorName(),
     watchVendorProfile(),
   ]);

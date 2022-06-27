@@ -9,7 +9,6 @@ import {customerWasteGeneratedService} from "../../../service/customer/analytics
 function* customerWasteGeneratedSaga() {
   try {
     let response = yield call(customerWasteGeneratedService);
-    console.log("saga", response);
     yield put(customerWasteGeneratedSuccess(response));
   } catch (error) {
     yield put(customerWasteGeneratedError(error));

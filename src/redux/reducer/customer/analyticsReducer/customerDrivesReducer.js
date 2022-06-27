@@ -12,7 +12,7 @@ export const customerDrivesReducer = (state = initialState, action) => {
     case types.CUSTOMER_DRIVES_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_DRIVES_SUCCESS:
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.CUSTOMER_DRIVES_ERROR:
       return {...state, error: action};
     default:

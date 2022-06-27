@@ -1,8 +1,10 @@
-import React, {useEffect} from "react";
+/* eslint-disable no-unused-vars */
+import React, {useEffect, useState} from "react";
 import {Chart} from "react-google-charts";
 import "../customer.css";
-import api from "../../../core/utilities/httpProvider";
-import {CUSTOMER_ANALYTICS_V1} from "../../constant/constant";
+import {useDispatch, useSelector} from "react-redux";
+import {customerWasteGeneratedRequest} from "../../../redux/action/customer/analyticsAction/customerWasteGeneratedAction";
+
 export const data = [
   ["name", "Count by Order", {role: "style"}],
   ["E-Waste Generated", 5, "yellowgreen"],
@@ -26,17 +28,18 @@ export const options = {
 };
 
 export default function EWaste() {
+  let res = useSelector((state) => state.customerWasteGenerated);
+  const [value, setValue] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(CUSTOMER_ANALYTICS_V1);
-
-        data[1][1] = res.data.orderInCity;
-        data[2][1] = res.data.orderCustomer;
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    dispatch(customerWasteGeneratedRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.orderInCity;
+      data[2][1] = res?.data?.data.orderCustomer;
+    }
   }, []);
 
   return (

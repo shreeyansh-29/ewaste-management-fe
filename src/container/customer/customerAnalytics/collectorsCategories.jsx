@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
-import { Chart } from "react-google-charts";
-import { CUSTOMER_ANALYTICS_V3 } from "../../constant/constant";
+/* eslint-disable no-unused-vars */
+import React, {useEffect} from "react";
+import {Chart} from "react-google-charts";
+import {CUSTOMER_ANALYTICS_V3} from "../../constant/constant";
 import api from "../../../core/utilities/httpProvider";
+import {useDispatch} from "react-redux";
+import {customerCollectorCategoriesRequest} from "../../../redux/action/customer/analyticsAction/customerCollectorCategoriesAction";
+import {useSelector} from "react-redux";
 
 const data = [
   ["Category", "Collectors in your City", " Total Collectors"],
@@ -13,7 +17,7 @@ const data = [
   ["Small IT and Telecommunication", 2, 5],
 ];
 const options = {
-  chartArea: { width: "70%" },
+  chartArea: {width: "70%"},
   hAxis: {
     textStyle: {
       fontSize: 13,
@@ -26,23 +30,32 @@ const options = {
   colors: ["yellow", "green"],
 };
 export default function CollectorsCategories() {
-  useEffect(() => {
-    (async function () {
-      const res = await api.get(CUSTOMER_ANALYTICS_V3);
-      data[1][1] = res.data.TempCity;
-      data[2][1] = res.data.ScreensCity;
-      data[3][1] = res.data.LapmsCity;
-      data[4][1] = res.data.LargeEqipCity;
-      data[5][1] = res.data.SmallEquipCity;
-      data[6][1] = res.data.SmallITCity;
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.customerCollectorCategories);
 
-      data[1][2] = res.data.TempTotal;
-      data[2][2] = res.data.ScreensTotal;
-      data[3][2] = res.data.LapmsTotal;
-      data[4][2] = res.data.LargeEqipTotal;
-      data[5][2] = res.data.SmallEquipTotal;
-      data[6][2] = res.data.SmallITTotal;
-    })();
+  const [value, setValue] = React.useState(false);
+
+  useEffect(() => {
+    dispatch(customerCollectorCategoriesRequest());
+    setValue(true);
+  }, []);
+
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.TempCity;
+      data[2][1] = res?.data?.data.ScreensCity;
+      data[3][1] = res?.data?.data.LapmsCity;
+      data[4][1] = res?.data?.data.LargeEqipCity;
+      data[5][1] = res?.data?.data.SmallEquipCity;
+      data[6][1] = res?.data?.data.SmallITCity;
+
+      data[1][2] = res?.data?.data.TempTotal;
+      data[2][2] = res?.data?.data.ScreensTotal;
+      data[3][2] = res?.data?.data.LapmsTotal;
+      data[4][2] = res?.data?.data.LargeEqipTotal;
+      data[5][2] = res?.data?.data.SmallEquipTotal;
+      data[6][2] = res?.data?.data.SmallITTotal;
+    }
   }, []);
   return <Chart chartType="LineChart" data={data} options={options} />;
 }

@@ -37,28 +37,19 @@ let validationSchema = Yup.object().shape({
 function EditProfile() {
   const dispatch = useDispatch();
   const res = useSelector((state) => state.customerProfile);
-  const {firstName} = res.data;
-  console.log(firstName, "fir");
-  console.log(res.data.firstName);
-  // eslint-disable-next-line no-unused-vars
   const [initialDetails, setInitialDetails] = React.useState({
     firstName: res.data.firstName,
     lastName: res.data.lastName,
-    // email: res.data.email,
     state: res.data.state,
     city: res.data.city,
     mobileNo: res.data.mobileNo,
     address1: res.data.address1,
     pincode: res.data.pinCode,
   });
-  const [dummyState, setDummyState] = React.useState(false);
+  // const [dummyState, setDummyState] = React.useState(false);
   useEffect(() => {
     if (Object.keys(res.data).length !== 0) {
-      setDummyState(true);
-    }
-  }, [res]);
-  useEffect(() => {
-    if (dummyState) {
+      // setDummyState(true);
       setInitialDetails({
         firstName: res.data.firstName,
         lastName: res.data.lastName,
@@ -69,23 +60,23 @@ function EditProfile() {
         pincode: res.data.pinCode,
       });
     }
-  }, [dummyState]);
+  }, [res]);
+  // useEffect(() => {
+  //   if (dummyState) {
+  //     setInitialDetails({
+  //       firstName: res.data.firstName,
+  //       lastName: res.data.lastName,
+  //       state: res.data.state,
+  //       city: res.data.city,
+  //       mobileNo: res.data.mobileNo,
+  //       address1: res.data.address1,
+  //       pincode: res.data.pinCode,
+  //     });
+  //   }
+  // }, [dummyState]);
   useEffect(() => {
-    // setInitialDetails({
-    //   firstName: res.data.firstName,
-    //   lastName: res.data.lastName,
-    //   state: res.data.state,
-    //   city: res.data.city,
-    //   mobileNo: res.data.mobileNo,
-    //   address1: res.data.address1,
-    //   pincode: res.data.pinCode,
-    // });
-
     dispatch(customerProfileRequest());
   }, []);
-  // const [firstName, setFirstName] = React.useState({
-  //   firstName: res?.data?.firstName,
-  // });
 
   function handleSubmit(values) {
     const email = email;
@@ -97,40 +88,24 @@ function EditProfile() {
     }, 3000);
   }
   if (initialDetails.firstName === undefined) {
-    console.log("init", initialDetails);
+    // console.log("init", initialDetails);
     return <></>;
   }
   return (
     <div className="profile" style={{marginTop: "85px"}}>
-      {/* {console.log(res.data.firstName)} */}
-      {console.log(res)}
-      {console.log("..", initialDetails)}
       <Formik
         initialValues={{
           firstName: res?.data?.firstName,
           lastName: res.data.lastName,
-          // email: res.data.email,
           state: res.data.state,
           city: res.data.city,
           mobileNo: res.data.mobileNo,
           address1: res.data.address1,
           pincode: res.data.pinCode,
         }}
-        // initialValues={
-        //   !res.data.firstName === undefined && {
-        //     firstName: res.data.firstName,
-        //     lastName: res.data.lastName,
-        //     // email: res.data.email,
-        //     state: res.data.state,
-        //     city: res.data.city,
-        //     mobileNo: res.data.mobileNo,
-        //     address1: res.data.address1,
-        //     pincode: res.data.pinCode,
-        //   }
-        // }
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          setInitialDetails(values);
+          // setInitialDetails(values);
           // setFirstName(values);
           handleSubmit(values);
         }}

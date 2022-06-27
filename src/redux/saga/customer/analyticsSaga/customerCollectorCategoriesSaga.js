@@ -9,7 +9,6 @@ import {customerCollectorCategoriesService} from "../../../service/customer/anal
 function* customerCollectorCategoriesSaga() {
   try {
     let response = yield call(customerCollectorCategoriesService);
-    console.log("Saga", response);
     yield put(customerCollectorCategoriesSuccess(response));
   } catch (error) {
     yield put(customerCollectorCategoriesError(error));

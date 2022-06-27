@@ -1,4 +1,4 @@
-import * as types from "../../../../config/actionType";
+import * as types from "../../../config/actionType";
 
 export const collectorUsersAction = () => {
   return {type: types.COLLECTOR_USERS_REQUEST};

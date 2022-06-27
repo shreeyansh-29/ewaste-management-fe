@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { Chart } from "react-google-charts";
-import api from "../../../core/utilities/httpProvider";
-import { COLLECTOR_ANALYTICS_V2 } from "../../constant/constant";
+import React, {useEffect} from "react";
+import {Chart} from "react-google-charts";
+import {useDispatch, useSelector} from "react-redux";
+import {collectorEWasteItemsRequest} from "../../../redux/action/collector/analyticsAction/collectorEWasteItemsAction";
+
 export const data = [
   ["Category", "Requests Accepted", "Items Sold"],
   ["Lamps", 1, 0],
   ["Temperature Exchange Equipment", 1, 1],
   ["Screens and Monitors", 1, 0],
- 
+
   ["Large equipment", 0, 0],
   ["Small equipment", 0, 0],
   ["Small IT and Telecommunication", 0, 0],
@@ -15,7 +16,7 @@ export const data = [
 
 const options = {
   legend: "right",
-  chartArea: { width: "65%" },
+  chartArea: {width: "65%"},
   colors: ["yellow", "green"],
   vAxis: {
     scaleType: "decimal",
@@ -35,23 +36,29 @@ const options = {
 };
 
 export default function EWasteOrg() {
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.collectorEWasteItems);
   useEffect(() => {
-    (async function () {
-      const res = await api.get(COLLECTOR_ANALYTICS_V2);
+    dispatch(collectorEWasteItemsRequest());
+    setValue(true);
+  }, []);
 
-      data[1][1] = res.data.TempCollected;
-      data[2][1] = res.data.ScreensCollected;
-      data[3][1] = res.data.LapmsCollected;
-      data[4][1] = res.data.LargeEqipCollected;
-      data[5][1] = res.data.SmallEquipCollected;
-      data[6][1] = res.data.SmallITCollected;
-      data[1][2] = res.data.TempSell;
-      data[2][2] = res.data.ScreensSell;
-      data[3][2] = res.data.LapmsSell;
-      data[4][2] = res.data.LargeEqipSell;
-      data[5][2] = res.data.SmallEquipSell;
-      data[6][2] = res.data.SmallITSell;
-    })();
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.TempCollected;
+      data[2][1] = res?.data?.data.ScreensCollected;
+      data[3][1] = res?.data?.data.LapmsCollected;
+      data[4][1] = res?.data?.data.LargeEqipCollected;
+      data[5][1] = res?.data?.data.SmallEquipCollected;
+      data[6][1] = res?.data?.data.SmallITCollected;
+      data[1][2] = res?.data?.data.TempSell;
+      data[2][2] = res?.data?.data.ScreensSell;
+      data[3][2] = res?.data?.data.LapmsSell;
+      data[4][2] = res?.data?.data.LargeEqipSell;
+      data[5][2] = res?.data?.data.SmallEquipSell;
+      data[6][2] = res?.data?.data.SmallITSell;
+    }
   }, []);
   return (
     <Chart

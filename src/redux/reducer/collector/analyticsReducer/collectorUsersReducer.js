@@ -7,14 +7,13 @@ const initialState = {
   error: "",
 };
 
-export const customerDropOffReducer = (state = initialState, action) => {
+export const collectorUsersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.CUSTOMER_DROPOFF_REQUEST:
+    case types.COLLECTOR_USERS_REQUEST:
       return {...state, isLoading: true};
-    case types.CUSTOMER_DROPOFF_SUCCESS:
-      console.log("success reducer", action.payload);
+    case types.COLLECTOR_USERS_SUCCESS:
       return {...state, data: action.payload};
-    case types.CUSTOMER_DROPOFF_ERROR:
+    case types.COLLECTOR_USERS_ERROR:
       return {...state, error: action};
     default:
       return state;
