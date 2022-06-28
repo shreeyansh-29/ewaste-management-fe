@@ -7,13 +7,13 @@ const initialState = {
   error: "",
 };
 
-export const collectorProfileReducer = (state = initialState, action) => {
+export const vendorMyOrdersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.COLLECTOR_PROFILE_REQUEST:
+    case types.VENDOR_MYORDERS_REQUEST:
       return {...state, isLoading: true};
-    case types.COLLECTOR_PROFILE_SUCCESS:
+    case types.VENDOR_MYORDERS_SUCCESS:
       return {...state, data: action.payload};
-    case types.COLLECTOR_PROFILE_ERROR:
+    case types.VENDOR_MYORDERS_ERROR:
       return {...state, error: action};
     default:
       return state;

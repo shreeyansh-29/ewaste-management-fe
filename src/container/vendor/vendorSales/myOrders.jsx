@@ -5,14 +5,19 @@ import Popup from "../../customer/popup";
 import {FaUserCircle} from "react-icons/fa";
 import {toast} from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";
-import {TOAST_WARN3, VENDOR_SUMMARY} from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {TOAST_WARN3} from "../../constant/constant";
+import {vendorMyOrdersRequest} from "../../../redux/action/vendor/vendorMyOrdersAction/vendorMyOrdersAction";
+import {useDispatch, useSelector} from "react-redux";
+
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 export default function MyOrders() {
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.vendorMyOrders);
   const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
+  const [value, setValue] = useState();
 
   const [columns] = useState([
     {
@@ -100,7 +105,8 @@ export default function MyOrders() {
       field: "address",
       editable: false,
       cellStyle: {
-        fontSize: "13px",textAlign: "center",
+        fontSize: "13px",
+        textAlign: "center",
       },
       headerStyle: {
         textAlign: "center",
@@ -112,7 +118,8 @@ export default function MyOrders() {
       field: "date",
       editable: false,
       cellStyle: {
-        fontSize: "13px",textAlign: "center",
+        fontSize: "13px",
+        textAlign: "center",
       },
       headerStyle: {
         textAlign: "center",
@@ -140,23 +147,21 @@ export default function MyOrders() {
   const togglepop = () => {
     setopen(!isopen);
   };
+  console.log(res);
   useEffect(() => {
-    (async function () {
-      const res = await api.get(VENDOR_SUMMARY);
+    if (res?.data?.status === "success") {
+      res.data.data.map((obj) => {
+        const date = obj.date.split("T");
+        obj.date = date[0];
+        obj.id = "ORD" + obj.id;
+      });
 
-      if (res.status === "success") {
-        res.data.map((obj) => {
-          const date = obj.date.split("T");
-          obj.date = date[0];
-          obj.id = "ORD" + obj.id;
-        });
-
-        setData(res.data);
-      }
-    })();
+      setValue(res.data.data);
+    }
   }, []);
-
-  const [data, setData] = useState();
+  useEffect(() => {
+    dispatch(vendorMyOrdersRequest());
+  }, []);
 
   return (
     <div>
@@ -177,7 +182,7 @@ export default function MyOrders() {
         </h2>
         <MaterialTable
           columns={columns}
-          data={data}
+          data={value}
           title=""
           localization={{
             header: {

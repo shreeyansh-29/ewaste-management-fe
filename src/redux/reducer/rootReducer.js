@@ -28,6 +28,9 @@ import {vendorCategoryReducer} from "./vendor/analyticsReducer/VendorCategoryRed
 import {vendorCatgItemsReducer} from "./vendor/analyticsReducer/VendorCatgItemsReducer";
 import {vendorCollectorDataReducer} from "./vendor/analyticsReducer/VendorCollectorDataReducer";
 import {vendorVendorDataReducer} from "./vendor/analyticsReducer/VendorVendorDataReducer";
+import {vendorMyOrdersReducer} from "./vendor/vendorMyOrdersReducer/vendorMyOrdersReducer";
+import {vendorViewItemsReducer} from "./vendor/vendorSalesReducer/vendorViewItemsReducer";
+import {vendorAcceptItemsReducer} from "./vendor/vendorSalesReducer/vendorAcceptItemsReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -59,6 +62,9 @@ const rootReducer = combineReducers({
   vendorCatgItems: vendorCatgItemsReducer,
   vendorCollectorData: vendorCollectorDataReducer,
   vendorData: vendorVendorDataReducer,
+  vendorMyOrders: vendorMyOrdersReducer,
+  vendorViewItems: vendorViewItemsReducer,
+  vendorAcceptItems: vendorAcceptItemsReducer,
 });
 
 export default rootReducer;

@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {useDispatch, useSelector} from "react-redux";
 import {vendorCategoryRequest} from "../../../redux/action/vendor/analyticsAction/vendorCategoryAction";
+import {isEmpty} from "lodash";
 export const data = [
   ["category", "quantity"],
   ["Temperature Exchange Equipment", 18],
@@ -24,22 +25,22 @@ export const options = {
   },
 };
 
-export default function CollCat() {
+const CollCat = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorCategory);
   useEffect(() => {
     dispatch(vendorCategoryRequest());
-    setValue(true);
+    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
     if (value) {
-      data[1][1] = res?.data?.data.TempCity;
-      data[2][1] = res?.data?.data.ScreensCity;
-      data[3][1] = res?.data?.data.LapmsCity;
-      data[4][1] = res?.data?.data.LargeEqipCity;
-      data[5][1] = res?.data?.data.SmallEqipCity;
-      data[6][1] = res?.data?.data.SmallItCity;
+      data[1][1] = res.data.data.TempCity;
+      data[2][1] = res.data.data.ScreensCity;
+      data[3][1] = res.data.data.LapmsCity;
+      data[4][1] = res.data.data.LargeEqipCity;
+      data[5][1] = res.data.data.SmallEquipCity;
+      data[6][1] = res.data.data.SmallITCity;
     }
   }, []);
   return (
@@ -51,4 +52,6 @@ export default function CollCat() {
       options={options}
     />
   );
-}
+};
+
+export default CollCat;

@@ -5,7 +5,6 @@ export const collectorProfileRequest = () => {
 };
 
 export const collectorProfileSuccess = (payload) => {
-  console.log("succes action", payload);
   return {type: types.COLLECTOR_PROFILE_SUCCESS, payload};
 };
 

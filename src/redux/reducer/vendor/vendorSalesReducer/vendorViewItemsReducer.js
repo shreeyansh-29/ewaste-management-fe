@@ -7,13 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const collectorProfileReducer = (state = initialState, action) => {
+export const vendorViewItemsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.COLLECTOR_PROFILE_REQUEST:
+    case types.VENDOR_VIEW_ITEMS_REQUEST:
       return {...state, isLoading: true};
-    case types.COLLECTOR_PROFILE_SUCCESS:
+    case types.VENDOR_VIEW_ITEMS_SUCCESS:
+      console.log(action);
       return {...state, data: action.payload};
-    case types.COLLECTOR_PROFILE_ERROR:
+    case types.VENDOR_VIEW_ITEMS_ERROR:
       return {...state, error: action};
     default:
       return state;

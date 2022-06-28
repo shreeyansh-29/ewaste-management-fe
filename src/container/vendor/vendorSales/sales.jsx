@@ -7,19 +7,24 @@ import "../vendor.css";
 import Popup from "../../customer/popup";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
+import {vendorViewItemsRequest} from "../../../redux/action/vendor/vendorSalesAction/vendorViewItemsAction";
+import {vendorAcceptItemsRequest} from "../../../redux/action/vendor/vendorSalesAction/vendorAcceptItemsAction";
 import {
   INVALID_QUANTITY,
   TOAST_ERROR5,
   TOAST_WARN3,
   VALID_QUANTITY,
-  VENDOR_VIEW_ITEMS,
-  VENDOR_ACCEPT_ITEMS,
 } from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
 import Toast from "../../components/toast";
+import {useDispatch, useSelector} from "react-redux";
 export const ProfileIcon = FaUserCircle;
 
 export default function Sales() {
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.vendorViewItems);
+  let result = useSelector((state) => state.vendorAcceptItems);
+  console.log(res);
+  console.log(result);
   const {useState} = React;
   const [details, setDetails] = useState([]);
   const [detail, setdetail] = useState();
@@ -172,20 +177,19 @@ export default function Sales() {
     }
     togglepop();
   };
+  useEffect(() => {
+    dispatch(vendorViewItemsRequest());
+  }, []);
 
   useEffect(() => {
-    (async function () {
-      const res = await api.get(VENDOR_VIEW_ITEMS);
-
-      if (res.status === "success") {
-        res.data.map((obj) => {
-          if (parseInt(obj.quantity) > parseInt(obj.availableQuantity)) {
-            obj.quantity = obj.availableQuantity;
-          }
-        });
-      }
-      setData(res.data);
-    })();
+    if (res?.data?.status === "success") {
+      res.data.data.map((obj) => {
+        if (parseInt(obj.quantity) > parseInt(obj.availableQuantity)) {
+          obj.quantity = obj.availableQuantity;
+        }
+      });
+    }
+    setData(res.data.data);
   }, []);
 
   const [data, setData] = useState([]);
@@ -203,6 +207,9 @@ export default function Sales() {
       setData([...dataUpdate]);
     }
   };
+  useEffect(() => {
+    setDetails(result.data.data);
+  }, []);
   const handleBuy = async (e, datas) => {
     e.preventDefault();
     if (datas.quantities === 0 || datas.quantities === undefined) {
@@ -219,9 +226,7 @@ export default function Sales() {
         price: datas.purchaseprice,
         date: new Date(),
       };
-      const res = await api.post(VENDOR_ACCEPT_ITEMS, data);
-
-      setDetails(res.data);
+      dispatch(vendorAcceptItemsRequest(data));
     }
   };
   const togglePop = () => {

@@ -6,8 +6,7 @@ import {vendorProfileService} from "../../../service/vendor/vendorProfileService
 function* vendorProfileSaga() {
   try {
     let response = yield call(vendorProfileService);
-    // console.log("saga", response.data);
-    yield put(actions.vendorProfileSuccess(response));
+    yield put(actions.vendorProfileSuccess(response.data));
   } catch (error) {
     yield put(actions.vendorProfileError(error));
   }

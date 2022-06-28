@@ -28,6 +28,9 @@ import {watchVendorCategory} from "./vendor/analyticsSaga/vendorCategorySaga";
 import {watchVendorCatgItems} from "./vendor/analyticsSaga/vendorCatgItemsSaga";
 import {watchVendorVendorData} from "./vendor/analyticsSaga/vendorVendorDataSaga";
 import {watchVendorCollectorData} from "./vendor/analyticsSaga/vendorCollectorDataSaga";
+import {watchVendorViewItems} from "./vendor/vendorSalesSaga/vendorViewItemsSaga";
+import {watchVendorAcceptItems} from "./vendor/vendorSalesSaga/vendorAcceptItemsSaga";
+import {watchVendorMyOrders} from "./vendor/vendorMyOrdersSaga/vendorMyOrdersSaga";
 
 function* rootSaga() {
   yield all([
@@ -60,6 +63,9 @@ function* rootSaga() {
     watchVendorCategory(),
     watchVendorCollectorData(),
     watchVendorVendorData(),
+    watchVendorMyOrders(),
+    watchVendorViewItems(),
+    watchVendorAcceptItems,
   ]);
 }
 

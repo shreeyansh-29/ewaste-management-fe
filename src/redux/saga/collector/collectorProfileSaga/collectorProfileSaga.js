@@ -9,8 +9,7 @@ import {
 function* collectorProfileSaga() {
   try {
     let response = yield call(collectorProfileService);
-    console.log("Saga", response);
-    yield put(collectorProfileSuccess(response));
+    yield put(collectorProfileSuccess(response.data));
   } catch (error) {
     yield put(collectorProfileError(error));
   }

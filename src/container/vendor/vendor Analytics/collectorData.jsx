@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {useDispatch, useSelector} from "react-redux";
 import {vendorCollectorDataRequest} from "../../../redux/action/vendor/analyticsAction/vendorCollectorDataAction";
+import {isEmpty} from "lodash";
 
 export const data = [
   ["name", "Count", {role: "style"}],
@@ -19,18 +20,19 @@ export const options = {
     minRotation: 80,
   },
 };
-export default function CollectorData() {
+
+const CollectorData = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorCollectorData);
   useEffect(() => {
     dispatch(vendorCollectorDataRequest());
-    setValue(true);
+    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
     if (value) {
-      data[1][1] = res?.data?.data.allCollector;
-      data[2][1] = res?.data?.data.collectorInCity;
+      data[1][1] = res.data.data.allCollector;
+      data[2][1] = res.data.data.collectorInCity;
     }
   }, []);
   return (
@@ -42,4 +44,6 @@ export default function CollectorData() {
       options={options}
     />
   );
-}
+};
+
+export default CollectorData;

@@ -8,6 +8,6 @@ export const vendorProfileSuccess = (payload) => {
   return {type: types.VENDOR_PROFILE_SUCCESS, payload};
 };
 
-export const vendorProfileError = () => {
-  return {type: types.VENDOR_PROFILE_ERROR};
+export const vendorProfileError = (payload) => {
+  return {type: types.VENDOR_PROFILE_ERROR, payload};
 };

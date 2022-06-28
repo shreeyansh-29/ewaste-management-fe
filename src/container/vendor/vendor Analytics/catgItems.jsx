@@ -3,6 +3,7 @@ import {Chart} from "react-google-charts";
 import {useDispatch} from "react-redux";
 import {vendorCatgItemsRequest} from "../../../redux/action/vendor/analyticsAction/vendorCatgItemsAction";
 import {useSelector} from "react-redux";
+import {isEmpty} from "lodash";
 const data = [
   ["Category", "Items Available", "Purchased Items"],
   ["Temperature Exchange Equipment", 5, 3],
@@ -29,28 +30,29 @@ const options = {
   height: "800px",
 };
 
-export default function Catg_Items() {
+const Catg_Items = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorCatgItems);
+  // console.log(res);
   useEffect(() => {
     dispatch(vendorCatgItemsRequest());
-    setValue(true);
+    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
     if (value) {
-      data[1][1] = res?.data?.data.TempCollectorSale;
-      data[2][1] = res?.data?.data.ScreensCollectorSale;
-      data[3][1] = res?.data?.data.LapmsCollectorSale;
-      data[4][1] = res?.data?.data.LargeEqipCollectorSale;
-      data[5][1] = res?.data?.data.SmallEquipCollectorSale;
-      data[6][1] = res?.data?.data.SmallITCollectorSale;
-      data[1][2] = res?.data?.data.TempVendor;
-      data[2][2] = res?.data?.data.ScreensVendor;
-      data[3][2] = res?.data?.data.LapmsVendor;
-      data[4][2] = res?.data?.data.LargeEqipVendor;
-      data[5][2] = res?.data?.data.SmallEquipVendor;
-      data[6][2] = res?.data?.data.SmallITVendor;
+      data[1][1] = res.data.data.TempCollectorSale;
+      data[2][1] = res.data.data.ScreensCollectorSale;
+      data[3][1] = res.data.data.LapmsCollectorSale;
+      data[4][1] = res.data.data.LargeEqipCollectorSale;
+      data[5][1] = res.data.data.SmallEquipCollectorSale;
+      data[6][1] = res.data.data.SmallITCollectorSale;
+      data[1][2] = res.data.data.TempVendor;
+      data[2][2] = res.data.data.ScreensVendor;
+      data[3][2] = res.data.data.LapmsVendor;
+      data[4][2] = res.data.data.LargeEqipVendor;
+      data[5][2] = res.data.data.SmallEquipVendor;
+      data[6][2] = res.data.data.SmallITVendor;
     }
   }, []);
   return (
@@ -62,4 +64,6 @@ export default function Catg_Items() {
       height="500px"
     />
   );
-}
+};
+
+export default Catg_Items;

@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {useDispatch, useSelector} from "react-redux";
 import {vendorVendorDataRequest} from "../../../redux/action/vendor/analyticsAction/vendorVendorDataAction";
+import {isEmpty} from "lodash";
+
 export const data = [
   ["name", "Count", {role: "style"}],
   ["Total Vendors", 5, "lightblue"],
@@ -19,18 +21,19 @@ export const options = {
   },
 };
 
-export default function Drives() {
+const Drives = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorData);
+  // console.log(res);
   useEffect(() => {
     dispatch(vendorVendorDataRequest());
-    setValue(true);
+    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
     if (value) {
-      data[1][1] = res?.data?.data.allVendor;
-      data[2][1] = res?.data?.data.vendorInCity;
+      data[1][1] = res.data.data.allVendor;
+      data[2][1] = res.data.data.vendorInCity;
     }
   }, []);
   return (
@@ -42,4 +45,6 @@ export default function Drives() {
       options={options}
     />
   );
-}
+};
+
+export default Drives;
