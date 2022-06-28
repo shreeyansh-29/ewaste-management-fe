@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
-import { Chart } from "react-google-charts";
-import { VENDOR_ANALYTICS_V2 } from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import React, {useEffect} from "react";
+import {Chart} from "react-google-charts";
+import {useDispatch} from "react-redux";
+import {vendorCatgItemsRequest} from "../../../redux/action/vendor/analyticsAction/vendorCatgItemsAction";
+import {useSelector} from "react-redux";
 const data = [
   ["Category", "Items Available", "Purchased Items"],
   ["Temperature Exchange Equipment", 5, 3],
@@ -13,7 +14,7 @@ const data = [
 ];
 const options = {
   legend: "right",
-  chartArea: { width: "70%" },
+  chartArea: {width: "70%"},
   backgroundColor: "transparent",
   hAxis: {
     textStyle: {
@@ -27,30 +28,30 @@ const options = {
   width: "100%",
   height: "800px",
 };
-const setData = (res) => {
-  data[1][1] = res.data.TempCollectorSale;
-  data[2][1] = res.data.ScreensCollectorSale;
-  data[3][1] = res.data.LapmsCollectorSale;
-  data[4][1] = res.data.LargeEqipCollectorSale;
-  data[5][1] = res.data.SmallEquipCollectorSale;
-  data[6][1] = res.data.SmallITCollectorSale;
-  data[1][2] = res.data.TempVendor;
-  data[2][2] = res.data.ScreensVendor;
-  data[3][2] = res.data.LapmsVendor;
-  data[4][2] = res.data.LargeEqipVendor;
-  data[5][2] = res.data.SmallEquipVendor;
-  data[6][2] = res.data.SmallITVendor;
-};
+
 export default function Catg_Items() {
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.vendorCatgItems);
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(VENDOR_ANALYTICS_V2);
-        setData(res);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    dispatch(vendorCatgItemsRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.TempCollectorSale;
+      data[2][1] = res?.data?.data.ScreensCollectorSale;
+      data[3][1] = res?.data?.data.LapmsCollectorSale;
+      data[4][1] = res?.data?.data.LargeEqipCollectorSale;
+      data[5][1] = res?.data?.data.SmallEquipCollectorSale;
+      data[6][1] = res?.data?.data.SmallITCollectorSale;
+      data[1][2] = res?.data?.data.TempVendor;
+      data[2][2] = res?.data?.data.ScreensVendor;
+      data[3][2] = res?.data?.data.LapmsVendor;
+      data[4][2] = res?.data?.data.LargeEqipVendor;
+      data[5][2] = res?.data?.data.SmallEquipVendor;
+      data[6][2] = res?.data?.data.SmallITVendor;
+    }
   }, []);
   return (
     <Chart

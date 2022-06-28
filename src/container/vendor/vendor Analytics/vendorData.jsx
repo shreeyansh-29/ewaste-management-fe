@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import { VENDOR_ANALYTICS_V1 } from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {useDispatch, useSelector} from "react-redux";
+import {vendorVendorDataRequest} from "../../../redux/action/vendor/analyticsAction/vendorVendorDataAction";
 export const data = [
   ["name", "Count", {role: "style"}],
   ["Total Vendors", 5, "lightblue"],
@@ -20,16 +20,18 @@ export const options = {
 };
 
 export default function Drives() {
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.vendorData);
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(VENDOR_ANALYTICS_V1);
-        data[1][1] = res.data.allVendor;
-        data[2][1] = res.data.vendorInCity;
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    dispatch(vendorVendorDataRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.allVendor;
+      data[2][1] = res?.data?.data.vendorInCity;
+    }
   }, []);
   return (
     <Chart

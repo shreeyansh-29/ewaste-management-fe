@@ -21,6 +21,13 @@ import {watchCustomerCollectorCategories} from "./customer/analyticsSaga/custome
 import {watchCustomerDrives} from "./customer/analyticsSaga/customerDrivesSaga";
 import {watchCollectorEWasteDrives} from "./collector/analyticsSaga/collectorEWasteDrivesSaga";
 import {watchCollectorEWasteItems} from "./collector/analyticsSaga/collectorEWasteItemsSaga";
+import {watchCollectorRevenueChart} from "./collector/analyticsSaga/collectorRevenueChartSaga";
+import {watchCollectorUsers} from "./collector/analyticsSaga/collectorUsersSaga";
+import {watchCollectorVendor} from "./collector/analyticsSaga/collectorVendorSaga";
+import {watchVendorCategory} from "./vendor/analyticsSaga/vendorCategorySaga";
+import {watchVendorCatgItems} from "./vendor/analyticsSaga/vendorCatgItemsSaga";
+import {watchVendorVendorData} from "./vendor/analyticsSaga/vendorVendorDataSaga";
+import {watchVendorCollectorData} from "./vendor/analyticsSaga/vendorCollectorDataSaga";
 
 function* rootSaga() {
   yield all([
@@ -44,8 +51,15 @@ function* rootSaga() {
     watchCollectorProfile(),
     watchCollectorEWasteDrives(),
     watchCollectorEWasteItems(),
+    watchCollectorRevenueChart(),
+    watchCollectorUsers(),
+    watchCollectorVendor(),
     watchVendorName(),
     watchVendorProfile(),
+    watchVendorCatgItems(),
+    watchVendorCategory(),
+    watchVendorCollectorData(),
+    watchVendorVendorData(),
   ]);
 }
 

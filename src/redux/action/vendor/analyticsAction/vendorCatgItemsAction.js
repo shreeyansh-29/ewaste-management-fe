@@ -1,4 +1,4 @@
-import * as types from "../../../../config/actionType";
+import * as types from "../../../config/actionType";
 
 export const vendorCatgItemsRequest = () => {
   return {type: types.VENDOR_CATGITEMS_REQUEST};

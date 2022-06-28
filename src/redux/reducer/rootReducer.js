@@ -21,6 +21,13 @@ import {customerCollectorCategoriesReducer} from "./customer/analyticsReducer/cu
 import {customerDrivesReducer} from "./customer/analyticsReducer/customerDrivesReducer";
 import {collectorEWasteDrivesReducer} from "./collector/analyticsReducer/collectorEWasteDrivesReducer";
 import {collectorEWasteItemsReducer} from "./collector/analyticsReducer/collectorEWasteItemsReducer";
+import {collectorRevenueChartReducer} from "./collector/analyticsReducer/collectorRevenueChartReducer";
+import {collectorUsersReducer} from "./collector/analyticsReducer/collectorUsersReducer";
+import {collectorVendorReducer} from "./collector/analyticsReducer/collectorVendorReducer";
+import {vendorCategoryReducer} from "./vendor/analyticsReducer/VendorCategoryReducer";
+import {vendorCatgItemsReducer} from "./vendor/analyticsReducer/VendorCatgItemsReducer";
+import {vendorCollectorDataReducer} from "./vendor/analyticsReducer/VendorCollectorDataReducer";
+import {vendorVendorDataReducer} from "./vendor/analyticsReducer/VendorVendorDataReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -43,8 +50,15 @@ const rootReducer = combineReducers({
   collectorProfile: collectorProfileReducer,
   collectorEWasteDrives: collectorEWasteDrivesReducer,
   collectorEWasteItems: collectorEWasteItemsReducer,
+  collectorRevenueChart: collectorRevenueChartReducer,
+  collectorUsers: collectorUsersReducer,
+  collectorVendor: collectorVendorReducer,
   vendorName: vendorNameReducer,
   vendorProfile: vendorProfileReducer,
+  vendorCategory: vendorCategoryReducer,
+  vendorCatgItems: vendorCatgItemsReducer,
+  vendorCollectorData: vendorCollectorDataReducer,
+  vendorData: vendorVendorDataReducer,
 });
 
 export default rootReducer;

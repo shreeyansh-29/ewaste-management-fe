@@ -1,6 +1,6 @@
-import * as types from "../../../../config/actionType";
+import * as types from "../../../config/actionType";
 
-export const vendorVendorDataDefault = () => {
+export const vendorVendorDataRequest = () => {
   return {type: types.VENDOR_VENDOR_DATA_REQUEST};
 };
 export const vendorVendorDataSuccess = (payload) => {

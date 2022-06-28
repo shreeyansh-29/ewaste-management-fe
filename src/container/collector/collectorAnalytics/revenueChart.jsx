@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { Chart } from "react-google-charts";
+import React, {useEffect} from "react";
+import {Chart} from "react-google-charts";
+import {useDispatch, useSelector} from "react-redux";
+import {collectorRevenueChartRequest} from "../../../redux/action/collector/analyticsAction/collectorRevenueChartAction";
 
-import api from "../../../core/utilities/httpProvider";
-import { COLLECTOR_ANALYTICS_V6 } from "../../constant/constant";
 export const data = [
   ["Category", "Sales"],
   ["Temperature Exchange Equipment", 4000],
@@ -14,7 +14,7 @@ export const data = [
 ];
 const options = {
   legend: "right",
-  chartArea: { width: "65%" },
+  chartArea: {width: "65%"},
   colors: ["violet"],
   vAxis: {
     scaleType: "decimal",
@@ -36,17 +36,23 @@ const options = {
 };
 
 export default function Revenue() {
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.collectorRevenueChart);
+  // console.log(res);
   useEffect(() => {
-    (async function () {
-      const res = await api.get(COLLECTOR_ANALYTICS_V6);
-
-      data[1][1] = res.data.Temp;
-      data[2][1] = res.data.Screens;
-      data[3][1] = res.data.Lapms;
-      data[4][1] = res.data.LargeEqip;
-      data[5][1] = res.data.SmallEquip;
-      data[6][1] = res.data.SmallIT;
-    })();
+    dispatch(collectorRevenueChartRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res.data.data.Temp;
+      data[2][1] = res.data.data.Screens;
+      data[3][1] = res.data.data.Lapms;
+      data[4][1] = res.data.data.LargeEqip;
+      data[5][1] = res.data.data.SmallEquip;
+      data[6][1] = res.data.data.SmallIT;
+    }
   }, []);
   return (
     <Chart

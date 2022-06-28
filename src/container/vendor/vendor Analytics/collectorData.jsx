@@ -1,7 +1,8 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import { VENDOR_ANALYTICS_V1 } from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {useDispatch, useSelector} from "react-redux";
+import {vendorCollectorDataRequest} from "../../../redux/action/vendor/analyticsAction/vendorCollectorDataAction";
+
 export const data = [
   ["name", "Count", {role: "style"}],
   ["Total Collectors", 56, "blue"],
@@ -19,16 +20,18 @@ export const options = {
   },
 };
 export default function CollectorData() {
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.vendorCollectorData);
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(VENDOR_ANALYTICS_V1);
-        data[1][1] = res.data.allCollector;
-        data[2][1] = res.data.collectorInCity;
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    dispatch(vendorCollectorDataRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.allCollector;
+      data[2][1] = res?.data?.data.collectorInCity;
+    }
   }, []);
   return (
     <Chart

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import api from "../../../core/utilities/httpProvider";
-import { COLLECTOR_ANALYTICS_V5 } from "../../constant/constant";
+import {useDispatch, useSelector} from "react-redux";
+import {collectorUsersRequest} from "../../../redux/action/collector/analyticsAction/collectorUsersAction";
 export const data = [
   ["name", "Registered Customers", {role: "style"}],
   ["Customers in your Country  ", 5, "hotpink"],
@@ -25,16 +25,18 @@ export const options = {
 };
 
 export default function Users() {
+  const dispatch = useDispatch();
+  const [value, setValue] = React.useState(false);
+  let res = useSelector((state) => state.collectorUsers);
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(COLLECTOR_ANALYTICS_V5);
-        data[1][1] = res.data.customerAllCity;
-        data[2][1] = res.data.customerCity;
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    dispatch(collectorUsersRequest());
+    setValue(true);
+  }, []);
+  useEffect(() => {
+    if (value) {
+      data[1][1] = res?.data?.data.customerAllCity;
+      data[2][1] = res?.data?.data.customerCity;
+    }
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 import * as types from "../../../config/actionType";
 
-export const collectorVendorAction = () => {
+export const collectorVendorRequest = () => {
   return {type: types.COLLECTOR_VENDOR_REQUEST};
 };
 export const collectorVendorSuccess = (payload) => {
