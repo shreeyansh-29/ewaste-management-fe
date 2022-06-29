@@ -4,9 +4,18 @@ import api from "../../../../core/utilities/httpProvider";
 export const collectorOrganizeDriveService = (data) => {
   console.log(data);
   return api.post(COLLECTOR_ORGANIZE_DRIVE, {
+    driveName: data.payload.driveName,
+    description: data.payload.description,
+
+    eWasteCategoryAccepted: [
+      {
+        categoryAccepted:
+          data.payload.eWasteCategoryAccepted[0].categoryAccepted,
+      },
+    ],
     date: data.payload.date,
     time: data.payload.time,
-    location: data.payload.address,
-    status: data.payload.status,
+    location: "",
+    status: "Upcoming",
   });
 };

@@ -1,8 +1,7 @@
 import api from "../../../../core/utilities/httpProvider";
 
 export const collectorMyDrivesStatusService = (data) => {
-  console.log("data", data);
-  return api.post(
+  return api.put(
     `http://localhost:8083/collector/drive/myDrive/edit?id=${data.payload.id}&status=${data.payload.status}`
   );
 };

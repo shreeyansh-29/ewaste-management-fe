@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {useDispatch, useSelector} from "react-redux";
 import {collectorEWasteDrivesRequest} from "../../../redux/action/collector/analyticsAction/collectorEWasteDrivesAction";
+import {isEmpty} from "lodash";
 
 export const data = [
   ["name", "Organized", {role: "style"}],
@@ -27,18 +28,17 @@ export const options = {
 
 export default function EWasteDrives() {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.collectorEWasteDrives);
+
   useEffect(() => {
     dispatch(collectorEWasteDrivesRequest());
-    setValue(true);
   }, []);
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res?.data?.data.EWasteDriveCity;
       data[2][1] = res?.data?.data.EWasteDriveCollector;
     }
-  }, []);
+  }, [res]);
   return (
     <Chart
       chartType="BarChart"

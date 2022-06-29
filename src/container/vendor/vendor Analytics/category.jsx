@@ -27,15 +27,12 @@ export const options = {
 
 const CollCat = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorCategory);
-  console.log(res);
   useEffect(() => {
     dispatch(vendorCategoryRequest());
-    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res.data.data.TempCity;
       data[2][1] = res.data.data.ScreensCity;
       data[3][1] = res.data.data.LapmsCity;
@@ -43,7 +40,7 @@ const CollCat = () => {
       data[5][1] = res.data.data.SmallEquipCity;
       data[6][1] = res.data.data.SmallITCity;
     }
-  }, []);
+  }, [res]);
   return (
     <Chart
       chartType="PieChart"

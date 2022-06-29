@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
-
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -12,18 +11,22 @@ import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
 import {toast} from "react-toastify";
 import {TOAST_ERROR4, TOAST_SUCCESS7} from "../../constant/constant";
-import {isEmpty} from "lodash";
 import Toast from "../../components/toast";
 import {collectorOrganizeDriveRequest} from "../../../redux/action/collector/collectorOrganizeDriveAction/collectorOrganizeDriveAction";
 toast.configure();
-export default function OrganizeDrive() {
+export default function organizeDrive() {
   const {useState} = React;
   var maxDate = new Date();
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorOrganizeDrive);
+  useEffect(() => {
+    if (res?.status === "success") {
+      setStatus(res.data.status);
+    }
+  });
   const [status, setStatus] = useState("");
   maxDate.setMonth(maxDate.getMonth() + 6);
-  console.log(res);
+
   const [columns] = useState([
     {
       title: "Drive Name",
@@ -96,10 +99,10 @@ export default function OrganizeDrive() {
       field: "time",
 
       lookup: {
-        10: "8:00-16:00",
-        12: "9:00-17:00",
-        14: "10:00-18:00",
-        16: "11:00-19:00",
+        "8:00-16:00": "8:00-16:00",
+        "9:00-17:00": "9:00-17:00",
+        "10:00-18:00": "10:00-18:00",
+        "11:00-19:00": "11:00-19:00",
       },
       cellStyle: {
         textAlign: "center",
@@ -142,13 +145,9 @@ export default function OrganizeDrive() {
       scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
     return scheduledate;
   };
-  React.useEffect(() => {
-    if (isEmpty(res?.data) !== true) {
-      Toast.success(TOAST_SUCCESS7);
-      setStatus(res.data.status);
-    }
-  }, []);
   const handleDone = async (e, datas) => {
+    console.log(e);
+
     if (
       datas.itemsAcc === "" ||
       datas.address === "" ||
@@ -160,7 +159,7 @@ export default function OrganizeDrive() {
       Toast.error(TOAST_ERROR4);
     } else {
       datas.date = dateformat(datas);
-      const datas = {
+      const data = {
         driveName: datas.name,
         description: datas.description,
 
@@ -171,10 +170,9 @@ export default function OrganizeDrive() {
         ],
         date: datas.date,
         time: datas.time,
-        location: datas.address,
-        status: "Upcoming",
       };
-      dispatch(collectorOrganizeDriveRequest(datas));
+      dispatch(collectorOrganizeDriveRequest(data));
+      Toast.success(TOAST_SUCCESS7);
     }
   };
 

@@ -5,6 +5,7 @@ export const vendorProfileRequest = () => {
 };
 
 export const vendorProfileSuccess = (payload) => {
+  console.log(payload);
   return {type: types.VENDOR_PROFILE_SUCCESS, payload};
 };
 

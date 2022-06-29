@@ -2,6 +2,7 @@ import {Field, Form, Formik} from "formik";
 import React, {useEffect} from "react";
 import * as Yup from "yup";
 import "../vendor.css";
+// import {isEmpty} from "lodash";
 import {
   ADDRESS_REQUIRED,
   CITY_REQUIRED,
@@ -26,7 +27,7 @@ let validationSchema = Yup.object().shape({
   password: Yup.string().required(PASSWORD_REQUIRED),
   state: Yup.string().required(STATE_REQUIRED),
   // mobileNo: Yup.string().phone(MOBILE_INVALID).required(MOBILE_REQUIRED),
-  address1: Yup.string().required(ADDRESS_REQUIRED),
+  address: Yup.string().required(ADDRESS_REQUIRED),
   pincode: Yup.string()
     .matches(pinCodeReg, {PINCODE_INVALID})
     .required(PINCODE_REQUIRED),
@@ -34,22 +35,45 @@ let validationSchema = Yup.object().shape({
 
 const profile = () => {
   const dispatch = useDispatch();
+  // const [initialDetails, setInitialDetails] = React.useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  // });
   useEffect(() => {
     dispatch(vendorProfileRequest());
   }, []);
   let res = useSelector((state) => state.vendorProfile);
-  console.log("res", res?.data.firstName);
-  const [firstName, setFirstName] = React.useState(res?.data.firstName);
+  console.log("res", res);
+  // useEffect(() => {
+  //   if (isEmpty(res?.data) !== true) {
+  //     setInitialDetails({
+  //       firstName: res.data.firstName,
+  //       lastName: res.data.lastName,
+  //       email: res.data.email,
+  //       phoneNo: res.data.mobileNo,
+  //     });
+  //   }
+  // }, [res]);
   return (
     <div className="vendor" style={{marginTop: "85px"}}>
       <Formik
-        // initialValues={{
-        //   firstName: res?.data.firstName,
-        // }}
+        enableReinitialize
+        initialValues={{
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          email: res.data.email,
+          mobileNo: res.data.mobileNo,
+          address: res.data.address1,
+          pinCode: res?.data.pinCode,
+          gstNo: res?.data.gstNo,
+          registrationNo: res?.data.registrationNo,
+          state: "",
+          city: "",
+        }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
-          setFirstName(values);
         }}
       >
         {({errors, touched, handleChange}) => (
@@ -79,8 +103,7 @@ const profile = () => {
                       onChange={handleChange}
                       style={{borderRadius: "17px"}}
                       type="text"
-                      value={firstName}
-                      // name={firstName}
+                      name="firstName"
                       placeholder="First name"
                     />
                     {touched.firstName && errors.firstName ? (
@@ -94,10 +117,9 @@ const profile = () => {
                     </label>
                     <Field
                       type="text"
-                      //   name="lastName"
+                      name="lastName"
                       autoComplete="off"
                       style={{borderRadius: "17px"}}
-                      //   value={this.state.lastName}
                       onChange={handleChange}
                       placeholder="Last name"
                     />
@@ -116,7 +138,7 @@ const profile = () => {
                         backgroundColor: "white",
                       }}
                       disabled
-                      value={localStorage.getItem("email")}
+                      name="email"
                     />
                   </div>
                   <div className="inputGroup">
@@ -144,14 +166,13 @@ const profile = () => {
                     <Field
                       type="text"
                       style={{borderRadius: "17px"}}
-                      name="address1"
+                      name="address"
                       autoComplete="off"
-                      // value={this.state.address1}
                       onChange={handleChange}
                       placeholder="Address Line"
                     />
-                    {touched.address1 && errors.address1 ? (
-                      <div className="formErrors">{errors.address1}</div>
+                    {touched.address && errors.address ? (
+                      <div className="formErrors">{errors.address}</div>
                     ) : null}
                   </div>
                   <div className="inputGroup">
@@ -164,7 +185,7 @@ const profile = () => {
                         padding: "4px",
                       }}
                       className="form-select"
-                      //   value={this.state.state}
+                      name="state"
                       onChange={handleChange}
                     >
                       {/* <option value="Select State">{this.state.state} </option>
@@ -188,7 +209,7 @@ const profile = () => {
                         padding: "4px",
                       }}
                       className="form-select"
-                      //   value={this.state.city}
+                      name="city"
                       onChange={handleChange}
                     >
                       {/* <option value="Select City">{this.state.city}</option>
@@ -201,11 +222,11 @@ const profile = () => {
                     ) : null}
                   </div>
                   <div className="inputGroup">
-                    <label htmlFor="pincode">
+                    <label htmlFor="pinCode">
                       Pincode <i className="text-danger">*</i>
                     </label>
                     <input
-                      type="pincode"
+                      type="text"
                       style={{borderRadius: "17px"}}
                       name="pinCode"
                       autoComplete="off"
@@ -227,7 +248,6 @@ const profile = () => {
                       style={{borderRadius: "17px"}}
                       name="gstNo"
                       autoComplete="off"
-                      //   value={this.state.gstNo}
                       onChange={handleChange}
                       placeholder="Enter GSTIN"
                     />
@@ -241,7 +261,6 @@ const profile = () => {
                       autoComplete="off"
                       name="registrationNo"
                       style={{borderRadius: "17px"}}
-                      //   value={this.state.registrationNo}
                       onChange={handleChange}
                       placeholder="Enter Registration Number"
                     />

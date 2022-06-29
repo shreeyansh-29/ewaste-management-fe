@@ -23,19 +23,17 @@ export const options = {
 
 const Drives = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorData);
-  // console.log(res);
+
   useEffect(() => {
     dispatch(vendorVendorDataRequest());
-    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res.data.data.allVendor;
       data[2][1] = res.data.data.vendorInCity;
     }
-  }, []);
+  }, [res]);
   return (
     <Chart
       chartType="BarChart"

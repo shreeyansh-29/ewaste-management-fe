@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {CUSTOMER_ANALYTICS_V3} from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {isEmpty} from "lodash";
 import {useDispatch} from "react-redux";
 import {customerCollectorCategoriesRequest} from "../../../redux/action/customer/analyticsAction/customerCollectorCategoriesAction";
 import {useSelector} from "react-redux";
@@ -33,15 +32,12 @@ export default function CollectorsCategories() {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerCollectorCategories);
 
-  const [value, setValue] = React.useState(false);
-
   useEffect(() => {
     dispatch(customerCollectorCategoriesRequest());
-    setValue(true);
   }, []);
 
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res?.data?.data.TempCity;
       data[2][1] = res?.data?.data.ScreensCity;
       data[3][1] = res?.data?.data.LapmsCity;
@@ -56,6 +52,7 @@ export default function CollectorsCategories() {
       data[5][2] = res?.data?.data.SmallEquipTotal;
       data[6][2] = res?.data?.data.SmallITTotal;
     }
-  }, []);
+  }, [res]);
+
   return <Chart chartType="LineChart" data={data} options={options} />;
 }

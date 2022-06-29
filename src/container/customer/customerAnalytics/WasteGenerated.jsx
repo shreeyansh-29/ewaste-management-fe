@@ -4,6 +4,7 @@ import {Chart} from "react-google-charts";
 import "../customer.css";
 import {useDispatch, useSelector} from "react-redux";
 import {customerWasteGeneratedRequest} from "../../../redux/action/customer/analyticsAction/customerWasteGeneratedAction";
+import {isEmpty} from "lodash";
 
 export const data = [
   ["name", "Count by Order", {role: "style"}],
@@ -29,18 +30,17 @@ export const options = {
 
 export default function EWaste() {
   let res = useSelector((state) => state.customerWasteGenerated);
-  const [value, setValue] = useState(false);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(customerWasteGeneratedRequest());
-    setValue(true);
   }, []);
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res?.data?.data.orderInCity;
       data[2][1] = res?.data?.data.orderCustomer;
     }
-  }, []);
+  }, [res]);
 
   return (
     <Chart

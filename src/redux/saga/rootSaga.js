@@ -37,6 +37,9 @@ import {watchCollectorMyDrives} from "./collector/collectorMyDrivesSaga/collecto
 import {watchCollectorMyDrivesStatus} from "./collector/collectorMyDrivesStatusSaga/collectorMyDrivesStatusSaga";
 import {watchCollectorAvailable} from "./collector/collectorAvailableSaga/collectorAvailableSaga";
 import {watchCollectorSold} from "./collector/collectorSoldSaga/collectorSoldSaga";
+import {watchViewAcceptColProfileSaga} from "./vendor/viewAcceptColProfileSaga";
+import {watchViewCollProfileSaga} from "./vendor/viewCollProfileSaga";
+import {watchViewCollectorProfileSaga} from "./customer/viewCollectorProfileSaga";
 
 function* rootSaga() {
   yield all([
@@ -78,6 +81,9 @@ function* rootSaga() {
     watchVendorMyOrders(),
     watchVendorViewItems(),
     watchVendorAcceptItems(),
+    watchViewAcceptColProfileSaga(),
+    watchViewCollProfileSaga(),
+    watchViewCollectorProfileSaga(),
   ]);
 }
 

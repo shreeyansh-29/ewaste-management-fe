@@ -12,6 +12,7 @@ export const vendorProfileReducer = (state = initialState, action) => {
     case types.VENDOR_PROFILE_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_PROFILE_SUCCESS:
+      console.log(action);
       return {...state, data: action.payload};
     case types.VENDOR_PROFILE_ERROR:
       return {...state, error: action};

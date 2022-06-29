@@ -32,15 +32,13 @@ const options = {
 
 const Catg_Items = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
+
   let res = useSelector((state) => state.vendorCatgItems);
-  // console.log(res);
   useEffect(() => {
     dispatch(vendorCatgItemsRequest());
-    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res.data.data.TempCollectorSale;
       data[2][1] = res.data.data.ScreensCollectorSale;
       data[3][1] = res.data.data.LapmsCollectorSale;
@@ -54,7 +52,7 @@ const Catg_Items = () => {
       data[5][2] = res.data.data.SmallEquipVendor;
       data[6][2] = res.data.data.SmallITVendor;
     }
-  }, []);
+  }, [res]);
   return (
     <Chart
       chartType="ColumnChart"

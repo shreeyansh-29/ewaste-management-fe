@@ -9,9 +9,8 @@ import {
 function* collectorOrganizeDriveSaga(data) {
   try {
     let response = yield call(collectorOrganizeDriveService, data);
-    console.log(response);
     response = yield response.json();
-    yield put(collectorOrganizeDriveSuccess(response.data));
+    yield put(collectorOrganizeDriveSuccess(response));
   } catch (error) {
     yield put(collectorOrganizeDriveError(error));
   }

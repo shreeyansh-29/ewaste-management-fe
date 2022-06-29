@@ -9,8 +9,7 @@ import {
 function* collectorMyDrivesStatusSaga(data) {
   try {
     let response = yield call(collectorMyDrivesStatusService, data);
-    console.log(response);
-    yield put(collectorMyDrivesStatusSuccess(response.data));
+    yield put(collectorMyDrivesStatusSuccess(response));
   } catch (error) {
     yield put(collectorMyDrivesStatusError(error));
   }

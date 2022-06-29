@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {useDispatch, useSelector} from "react-redux";
 import {collectorVendorRequest} from "../../../redux/action/collector/analyticsAction/collectorVendorAction";
+import {isEmpty} from "lodash";
 
 export const data = [
   ["name", "Registered Vendors", {role: "style"}],
@@ -26,19 +27,17 @@ export const options = {
 };
 export default function Data() {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.collectorVendor);
-  console.log(res);
+
   useEffect(() => {
     dispatch(collectorVendorRequest());
-    setValue(true);
   }, []);
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[2][1] = res.data.data.vendorCity;
       data[1][1] = res.data.data.vendorAllCity;
     }
-  }, []);
+  }, [res]);
   return (
     <Chart
       chartType="BarChart"

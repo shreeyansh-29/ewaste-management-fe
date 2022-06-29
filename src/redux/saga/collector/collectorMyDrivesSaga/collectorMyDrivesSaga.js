@@ -9,7 +9,6 @@ import {
 function* collectorMyDrivesSaga() {
   try {
     let response = yield call(collectorMyDrivesService);
-    console.log(response);
     yield put(collectorMyDrivesSuccess(response.data));
   } catch (error) {
     yield put(collectorMyDrivesError(error));

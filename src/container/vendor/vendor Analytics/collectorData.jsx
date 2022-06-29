@@ -23,18 +23,16 @@ export const options = {
 
 const CollectorData = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorCollectorData);
   useEffect(() => {
     dispatch(vendorCollectorDataRequest());
-    if (isEmpty(res) === false) setValue(true);
   }, []);
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res.data.data.allCollector;
       data[2][1] = res.data.data.collectorInCity;
     }
-  }, []);
+  }, [res]);
   return (
     <Chart
       chartType="BarChart"

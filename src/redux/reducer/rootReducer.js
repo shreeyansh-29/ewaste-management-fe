@@ -37,6 +37,10 @@ import {collectorMyDrivesReducer} from "./collector/collectorMyDrivesReducer/col
 import {collectorMyDrivesStatusReducer} from "./collector/collectorMyDrivesStatusReducer/collectorMyDrivesStatusReducer";
 import {collectorAvailableReducer} from "./collector/collectorAvailableReducer/collectorAvailableReducer";
 import {collectorSoldReducer} from "./collector/collectorSoldReducer/collectorSoldReducer";
+import {viewColProfileReducer} from "./vendor/viewColProfileReducer";
+import {viewAcceptColReducer} from "./vendor/viewAcceptColReducer";
+import {viewCollectorProfileReducer} from "./customer/viewCollectorProfileReducer";
+import {viewCustomerProfileReducer} from "./collector/viewCustomerProfileReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -77,6 +81,10 @@ const rootReducer = combineReducers({
   vendorMyOrders: vendorMyOrdersReducer,
   vendorViewItems: vendorViewItemsReducer,
   vendorAcceptItems: vendorAcceptItemsReducer,
+  viewColProfileReducer: viewColProfileReducer,
+  viewAcceptColReducer: viewAcceptColReducer,
+  viewCollectorProfileReducer: viewCollectorProfileReducer,
+  viewCustomerProfileReducer: viewCustomerProfileReducer,
 });
 
 export default rootReducer;
