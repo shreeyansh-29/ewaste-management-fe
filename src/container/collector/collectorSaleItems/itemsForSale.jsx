@@ -3,15 +3,19 @@ import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
 import {
-  COLLECTOR_SELL,
   TOAST_ERROR4,
   TOAST_SUCCESS6,
   TOAST_WARN1,
 } from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {useDispatch, useSelector} from "react-redux";
+import {isEmpty} from "lodash";
 import Toast from "../../components/toast";
+import {collectorForSaleRequest} from "../../../redux/action/collector/collectorForSaleAction/collectorForSaleAction";
 export default function ItemsForSale() {
-  const { useState } = React;
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.collectorForSale);
+  console.log(res);
+  const {useState} = React;
   const [status, setStatus] = useState("");
   const [columns] = useState([
     {
@@ -66,7 +70,7 @@ export default function ItemsForSale() {
       title: "Price/Item",
       field: "price",
       type: "currency",
-      currencySetting: { currencyCode: "INR" },
+      currencySetting: {currencyCode: "INR"},
       cellStyle: {
         textAlign: "center",
         fontSize: "15px",
@@ -77,6 +81,11 @@ export default function ItemsForSale() {
       },
     },
   ]);
+  React.useEffect(() => {
+    if (isEmpty(res?.data) !== true) {
+      setStatus(res.data.status);
+    }
+  }, []);
   const handleSubmit = async (e, datas) => {
     e.preventDefault();
     if (
@@ -101,10 +110,8 @@ export default function ItemsForSale() {
         price: datas.price,
         status: "Available",
       };
-      const res = await api.post(COLLECTOR_SELL, data);
+      dispatch(collectorForSaleRequest(data));
       Toast.success(TOAST_SUCCESS6);
-
-      setStatus(res.data.status);
     }
   };
 
@@ -112,7 +119,7 @@ export default function ItemsForSale() {
 
   return (
     <div>
-      <div style={{ padding: "150px 30px 0 30px" }}>
+      <div style={{padding: "150px 30px 0 30px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -132,7 +139,7 @@ export default function ItemsForSale() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
+            Add: () => <AddIcon style={{fill: "#e75480"}} />,
           }}
           editable={{
             onRowAdd: (newData) =>

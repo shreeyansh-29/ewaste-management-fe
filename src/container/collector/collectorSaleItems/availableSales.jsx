@@ -1,13 +1,16 @@
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import api from "../../../core/utilities/httpProvider";
+import {useDispatch, useSelector} from "react-redux";
 import {} from "@material-ui/icons";
-
+import {collectorAvailableRequest} from "../../../redux/action/collector/collectorAvailableAction/collectorAvailableAction";
 import SearchIcon from "@material-ui/icons/Search";
-import {COLLECTOR_SELL_SUMMARY_AVAILABE} from "../../constant/constant";
+import {isEmpty} from "lodash";
+
 export default function availableSales() {
   const {useState} = React;
-
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.collectorAvailable);
+  console.log("available", res);
   const [columns] = useState([
     {
       title: "ID",
@@ -104,23 +107,19 @@ export default function availableSales() {
   ]);
 
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(COLLECTOR_SELL_SUMMARY_AVAILABE);
+    if (isEmpty(res?.data) !== true) {
+      console.log(res);
+      res.data.map((obj) => {
+        obj.id = "IS" + obj.id;
+        obj.Totalprice = obj.price * obj.availableQuantity;
+      });
 
-        if (res.status === "success") {
-          console.log(res);
-          res.data.map((obj) => {
-            obj.id = "IS" + obj.id;
-            obj.Totalprice = obj.price * obj.availableQuantity;
-          });
+      setData(res.data);
+    }
+  }, [res]);
 
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+  useEffect(() => {
+    dispatch(collectorAvailableRequest());
   }, []);
 
   const [data, setData] = useState([]);
@@ -128,7 +127,6 @@ export default function availableSales() {
   return (
     <div>
       <MaterialTable
-        
         title=""
         icons={{
           Search: () => <SearchIcon style={{fill: "white"}} />,

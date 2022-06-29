@@ -1,6 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
+import {useDispatch, useSelector} from "react-redux";
 
 import {
   MuiPickersUtilsProvider,
@@ -9,22 +10,20 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
-import { toast } from "react-toastify";
-import {
-  COLLECTOR_ORGANIZE_DRIVE,
-  TOAST_ERROR4,
-  TOAST_SUCCESS7,
-} from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {toast} from "react-toastify";
+import {TOAST_ERROR4, TOAST_SUCCESS7} from "../../constant/constant";
+import {isEmpty} from "lodash";
 import Toast from "../../components/toast";
+import {collectorOrganizeDriveRequest} from "../../../redux/action/collector/collectorOrganizeDriveAction/collectorOrganizeDriveAction";
 toast.configure();
 export default function OrganizeDrive() {
-  const { useState } = React;
+  const {useState} = React;
   var maxDate = new Date();
-
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.collectorOrganizeDrive);
   const [status, setStatus] = useState("");
   maxDate.setMonth(maxDate.getMonth() + 6);
-
+  console.log(res);
   const [columns] = useState([
     {
       title: "Drive Name",
@@ -68,7 +67,7 @@ export default function OrganizeDrive() {
       field: "date",
       type: "date",
 
-      editComponent: ({ value, onChange }) => (
+      editComponent: ({value, onChange}) => (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             margin="normal"
@@ -143,9 +142,13 @@ export default function OrganizeDrive() {
       scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
     return scheduledate;
   };
+  React.useEffect(() => {
+    if (isEmpty(res?.data) !== true) {
+      Toast.success(TOAST_SUCCESS7);
+      setStatus(res.data.status);
+    }
+  }, []);
   const handleDone = async (e, datas) => {
-    console.log(e);
-
     if (
       datas.itemsAcc === "" ||
       datas.address === "" ||
@@ -171,10 +174,7 @@ export default function OrganizeDrive() {
         location: datas.address,
         status: "Upcoming",
       };
-      const res = await api.post(COLLECTOR_ORGANIZE_DRIVE, data);
-      Toast.success(TOAST_SUCCESS7);
-
-      setStatus(res.data.status);
+      dispatch(collectorOrganizeDriveRequest(datas));
     }
   };
 
@@ -182,7 +182,7 @@ export default function OrganizeDrive() {
 
   return (
     <div>
-      <div style={{ padding: "150px 30px 0 30px" }}>
+      <div style={{padding: "150px 30px 0 30px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -202,7 +202,7 @@ export default function OrganizeDrive() {
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{ fill: "#e75480" }} />,
+            Add: () => <AddIcon style={{fill: "#e75480"}} />,
           }}
           editable={{
             onRowAdd: (newData) =>

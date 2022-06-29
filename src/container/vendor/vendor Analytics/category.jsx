@@ -29,6 +29,7 @@ const CollCat = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.vendorCategory);
+  console.log(res);
   useEffect(() => {
     dispatch(vendorCategoryRequest());
     if (isEmpty(res) === false) setValue(true);

@@ -1,7 +1,7 @@
 import {
-  vendorViewItemsSuccess,
-  vendorViewItemsError,
-} from "../../../action/vendor/vendorSalesAction/vendorViewItemsAction";
+  vendorAcceptItemsSuccess,
+  vendorAcceptItemsError,
+} from "../../../action/vendor/vendorSalesAction/vendorAcceptItemsAction";
 import {takeLatest, put, call} from "redux-saga/effects";
 import {vendorAcceptItemsService} from "../../../service/vendor/vendorSalesService/vendorAcceptItemsService";
 import {VENDOR_ACCEPT_ITEMS_REQUEST} from "../../../config/actionType";
@@ -11,9 +11,9 @@ function* vendorAcceptItemsSaga(data) {
     let response = yield call(vendorAcceptItemsService, data);
     console.log(response);
     response = yield response.json();
-    yield put(vendorViewItemsSuccess(response));
+    yield put(vendorAcceptItemsSuccess(response.data));
   } catch (error) {
-    yield put(vendorViewItemsError(error));
+    yield put(vendorAcceptItemsError(error));
   }
 }
 

@@ -1,13 +1,18 @@
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import api from "../../../core/utilities/httpProvider";
+import {collectorSoldRequest} from "../../../redux/action/collector/collectorSoldAction/collectorSoldAction";
 import {} from "@material-ui/icons";
-
+import {isEmpty} from "lodash";
 import SearchIcon from "@material-ui/icons/Search";
-import {COLLECTOR_SELL_SUMMARY_SOLD} from "../../constant/constant";
+
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 export default function SoldItems() {
   const {useState} = React;
+  const dispatch = useDispatch();
 
+  let res = useSelector((state) => state.collectorSold);
+  console.log(res);
   const [columns] = useState([
     {
       title: "ID",
@@ -89,21 +94,17 @@ export default function SoldItems() {
   ]);
 
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(COLLECTOR_SELL_SUMMARY_SOLD);
-        console.log(res);
-        if (res.status === "success") {
-          res.data.map((obj) => {
-            obj.id = "IS" + obj.id;
-          });
+    if (isEmpty(res?.data) !== true) {
+      res.data.map((obj) => {
+        obj.id = "IS" + obj.id;
+      });
 
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+      setData(res.data);
+    }
+  }, [res]);
+
+  useEffect(() => {
+    dispatch(collectorSoldRequest());
   }, []);
 
   const [data, setData] = useState([]);
@@ -111,7 +112,6 @@ export default function SoldItems() {
   return (
     <div>
       <MaterialTable
-       
         title=""
         icons={{
           Search: () => <SearchIcon style={{fill: "white"}} />,

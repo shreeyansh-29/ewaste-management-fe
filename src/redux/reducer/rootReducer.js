@@ -31,6 +31,12 @@ import {vendorVendorDataReducer} from "./vendor/analyticsReducer/VendorVendorDat
 import {vendorMyOrdersReducer} from "./vendor/vendorMyOrdersReducer/vendorMyOrdersReducer";
 import {vendorViewItemsReducer} from "./vendor/vendorSalesReducer/vendorViewItemsReducer";
 import {vendorAcceptItemsReducer} from "./vendor/vendorSalesReducer/vendorAcceptItemsReducer";
+import {collectorOrganizeDriveReducer} from "./collector/collectorOrganizeDriveReducer/collectorOrganizeDriveReducer";
+import {collectorForSaleReducer} from "./collector/collectorForSaleReducer/collectorForSaleReducer";
+import {collectorMyDrivesReducer} from "./collector/collectorMyDrivesReducer/collectorMyDrivesReducer";
+import {collectorMyDrivesStatusReducer} from "./collector/collectorMyDrivesStatusReducer/collectorMyDrivesStatusReducer";
+import {collectorAvailableReducer} from "./collector/collectorAvailableReducer/collectorAvailableReducer";
+import {collectorSoldReducer} from "./collector/collectorSoldReducer/collectorSoldReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -56,6 +62,12 @@ const rootReducer = combineReducers({
   collectorRevenueChart: collectorRevenueChartReducer,
   collectorUsers: collectorUsersReducer,
   collectorVendor: collectorVendorReducer,
+  collectorOrganizeDrive: collectorOrganizeDriveReducer,
+  collectorForSale: collectorForSaleReducer,
+  collectorMyDrives: collectorMyDrivesReducer,
+  collectorMyDrivesStatus: collectorMyDrivesStatusReducer,
+  collectorAvailable: collectorAvailableReducer,
+  collectorSold: collectorSoldReducer,
   vendorName: vendorNameReducer,
   vendorProfile: vendorProfileReducer,
   vendorCategory: vendorCategoryReducer,

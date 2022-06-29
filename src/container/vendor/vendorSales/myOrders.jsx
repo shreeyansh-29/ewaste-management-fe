@@ -8,6 +8,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import {TOAST_WARN3} from "../../constant/constant";
 import {vendorMyOrdersRequest} from "../../../redux/action/vendor/vendorMyOrdersAction/vendorMyOrdersAction";
 import {useDispatch, useSelector} from "react-redux";
+import {isEmpty} from "lodash";
 
 toast.configure();
 export const ProfileIcon = FaUserCircle;
@@ -149,16 +150,16 @@ export default function MyOrders() {
   };
   console.log(res);
   useEffect(() => {
-    if (res?.data?.status === "success") {
-      res.data.data.map((obj) => {
+    if (isEmpty(res?.data) !== true) {
+      res.data.map((obj) => {
         const date = obj.date.split("T");
         obj.date = date[0];
         obj.id = "ORD" + obj.id;
       });
 
-      setValue(res.data.data);
+      setValue(res.data);
     }
-  }, []);
+  }, [res]);
   useEffect(() => {
     dispatch(vendorMyOrdersRequest());
   }, []);

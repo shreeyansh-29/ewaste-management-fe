@@ -6,15 +6,14 @@ const initialState = {
   isLoading: false,
   error: "",
 };
-
-export const vendorMyOrdersReducer = (state = initialState, action) => {
+export const collectorOrganizeDriveReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.VENDOR_MYORDERS_REQUEST:
+    case types.COLLECTOR_ORGANIZE_REQUEST:
       return {...state, isLoading: true};
-    case types.VENDOR_MYORDERS_SUCCESS:
+    case types.COLLECTOR_ORGANIZE_SUCCESS:
       console.log(action);
       return {...state, data: action.payload};
-    case types.VENDOR_MYORDERS_ERROR:
+    case types.COLLECTOR_ORGANIZE_ERROR:
       return {...state, error: action};
     default:
       return state;

@@ -9,7 +9,7 @@ import {VENDOR_MYORDERS_REQUEST} from "../../../config/actionType";
 function* vendorMyOrdersSaga() {
   try {
     let response = yield call(vendorMyOrdersService);
-    yield put(vendorMyOrdersSuccess(response));
+    yield put(vendorMyOrdersSuccess(response.data));
   } catch (error) {
     yield put(vendorMyOrdersError(error));
   }

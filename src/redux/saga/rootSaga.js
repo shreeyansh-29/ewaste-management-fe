@@ -31,6 +31,12 @@ import {watchVendorCollectorData} from "./vendor/analyticsSaga/vendorCollectorDa
 import {watchVendorViewItems} from "./vendor/vendorSalesSaga/vendorViewItemsSaga";
 import {watchVendorAcceptItems} from "./vendor/vendorSalesSaga/vendorAcceptItemsSaga";
 import {watchVendorMyOrders} from "./vendor/vendorMyOrdersSaga/vendorMyOrdersSaga";
+import {watchCollectorOrganizeDrive} from "./collector/collectorOrganizeDriveSaga/collectorOrganizeDriveSaga";
+import {watchCollectorForSale} from "./collector/collectorForSaleSaga/collectorForSaleSaga";
+import {watchCollectorMyDrives} from "./collector/collectorMyDrivesSaga/collectorMyDrivesSaga";
+import {watchCollectorMyDrivesStatus} from "./collector/collectorMyDrivesStatusSaga/collectorMyDrivesStatusSaga";
+import {watchCollectorAvailable} from "./collector/collectorAvailableSaga/collectorAvailableSaga";
+import {watchCollectorSold} from "./collector/collectorSoldSaga/collectorSoldSaga";
 
 function* rootSaga() {
   yield all([
@@ -57,6 +63,12 @@ function* rootSaga() {
     watchCollectorRevenueChart(),
     watchCollectorUsers(),
     watchCollectorVendor(),
+    watchCollectorOrganizeDrive(),
+    watchCollectorForSale(),
+    watchCollectorAvailable(),
+    watchCollectorSold(),
+    watchCollectorMyDrives(),
+    watchCollectorMyDrivesStatus(),
     watchVendorName(),
     watchVendorProfile(),
     watchVendorCatgItems(),
@@ -65,7 +77,7 @@ function* rootSaga() {
     watchVendorVendorData(),
     watchVendorMyOrders(),
     watchVendorViewItems(),
-    watchVendorAcceptItems,
+    watchVendorAcceptItems(),
   ]);
 }
 
