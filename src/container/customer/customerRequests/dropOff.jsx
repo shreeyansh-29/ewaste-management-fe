@@ -11,7 +11,7 @@ import {TOAST_ERROR4, TOAST_WARN1} from "../../constant/constant";
 import Toast from "../../components/toast";
 import {customerDropOffRequest} from "../../../redux/action/customer/customerDropOffAction/customerDropOffAction";
 
-const DropOff = () => {
+const DropOffRequest = () => {
   const {useState} = React;
 
   const dispatch = useDispatch();
@@ -168,4 +168,4 @@ const DropOff = () => {
   );
 };
 
-export default DropOff;
+export default DropOffRequest;

@@ -29,7 +29,7 @@ const CustomerNav = () => {
     handle();
   };
   const [show, setShow] = useState(false);
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(0);
   const [List, setList] = useState([]);
   var list = ["No New Notifications"];
   useEffect(() => {
@@ -141,7 +141,7 @@ const CustomerNav = () => {
               <Nav.Link href="/Drives/Waste" style={{padding: "18px"}}>
                 Drives
               </Nav.Link>
-              <Nav.Link style={{padding: "18px"}} href="/EditProfile">
+              <Nav.Link style={{padding: "18px"}} href="/CustomerProfile">
                 Profile
               </Nav.Link>
               <Nav.Link>

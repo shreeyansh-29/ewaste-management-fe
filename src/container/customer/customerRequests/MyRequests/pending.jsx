@@ -2,14 +2,16 @@ import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import "../../customer.css";
 import {FaUserCircle} from "react-icons/fa";
-import api from "../../../../core/utilities/httpProvider";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-import {CUSTOMER_REQUEST_PENDING} from "../../../constant/constant";
+import {useDispatch, useSelector} from "react-redux";
+import {customerPendingRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingRequestAction";
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
-const Pending = () => {
+const PendingRequest = () => {
+  const dispatch = useDispatch();
+  let res1 = useSelector((state) => state.customerPendingRequest);
   const {useState} = React;
 
   const [columns] = useState([
@@ -115,24 +117,7 @@ const Pending = () => {
       },
     },
   ]);
-
-  const handledate = (res) => {
-    res.data.map((obj) => {
-      if (obj.requestType === "PickUp") {
-        if (obj.scheduledTime === "10") {
-          obj.scheduledTime = " 10:00-12:00";
-        } else if (obj.scheduledTime === "12") {
-          obj.scheduledTime = " 12:00-14:00";
-        } else if (obj.scheduledTime === "14") {
-          obj.scheduledTime = " 14:00-16:00";
-        } else if (obj.scheduledTime === "16") {
-          obj.scheduledTime = " 16:00-18:00";
-        }
-      }
-    });
-  };
   const handleDecline = async (e, datas) => {
-    console.log(datas);
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
 
@@ -151,32 +136,9 @@ const Pending = () => {
     console.log(response);
     document.location.reload();
   };
-  const handledata = (res) => {
-    handledate(res);
-    res.data.map((obj) => {
-      if (obj.scheduledDate !== null) {
-        const date = obj.scheduledDate.split("T");
-        obj.scheduledDate = date[0];
-      }
-      if (obj.requestType === "PickUp") {
-        obj.id = "CP" + obj.id;
-      }
-      if (obj.requestType === "DropOff") {
-        obj.id = "CD" + obj.id;
-      }
-    });
-  };
   useEffect(() => {
-    (async function () {
-      const res = await api.get(CUSTOMER_REQUEST_PENDING);
-      console.log(res);
-      if (res.status === "success") {
-        handledata(res);
-        setData(res.data);
-      }
-    })();
+    dispatch(customerPendingRequest());
   }, []);
-  const [data, setData] = useState();
 
   return (
     <div>
@@ -186,7 +148,7 @@ const Pending = () => {
             align="center"
             title=""
             columns={columns}
-            data={data}
+            data={res1?.data.data}
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,
             }}
@@ -210,4 +172,5 @@ const Pending = () => {
     </div>
   );
 };
-export default Pending;
+
+export default PendingRequest;

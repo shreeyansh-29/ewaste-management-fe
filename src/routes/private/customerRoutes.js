@@ -14,7 +14,7 @@ const CustomerPrivateRoutes = () => {
   return (
     <Routes>
       <Route path="/CustomerHome" element={<CustomerHome />} />
-      <Route path="/CustomreProfile" element={<CustomerProfile />} />
+      <Route path="/CustomerProfile" element={<CustomerProfile />} />
       <Route path="/CustomerNav" element={<CustomerNav />} />
       <Route path="/Request/PickUp" element={<PickUp />} />
       <Route path="/Request/DropOff" element={<DropOff />} />

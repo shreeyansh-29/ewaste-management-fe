@@ -15,7 +15,7 @@ import "../customer.css";
 import {useDispatch, useSelector} from "react-redux";
 import {customerEWasteDrivesRequest} from "../../../redux/action/customer/customerEWasteAction/customerEWasteAction";
 
-const Waste = () => {
+const WasteDrives = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerEWasteDrives);
 
@@ -112,6 +112,9 @@ const Waste = () => {
             marginLeft: "20px",
             marginRight: "20px",
           }}
+          export
+          default
+          function
         >
           {data.map(renderCard)}
         </MDBRow>
@@ -119,4 +122,4 @@ const Waste = () => {
     </div>
   );
 };
-export default Waste;
+export default WasteDrives;

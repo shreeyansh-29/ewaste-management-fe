@@ -12,8 +12,7 @@ export const customerPendingRequestReducer = (state = initialState, action) => {
     case types.CUSTOMER_PENDING_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_PENDING_SUCCESS:
-      console.log("Success action", action);
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.CUSTOMER_PENDING_ERROR:
       return {...state, error: action};
     default:

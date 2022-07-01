@@ -49,6 +49,9 @@ import {customerPickUpReducer} from "./customer/customerPickUpReducer/customerPi
 import {collectorPendingReducer} from "./collector/collectorPendingReducer/collectorPendingReducer";
 import {collectorPendingAcceptReducer} from "./collector/collectorPendingAcceptReducer/collectorPendingAcceptReducer";
 import {collectorSummaryReducer} from "./collector/collectorSummaryReducer/collectorSummaryReducer";
+import {customerCompletedRequestReducer} from "./customer/customerCompletedRequestReducer/customerCompletedRequestReducer";
+import {customerPendingRequestReducer} from "./customer/customerPendingRequestReducer/customerPendingRequestReducer";
+import {customerExpiredRequestReducer} from "./customer/customerExpiredRequestReducer/customerExpiredRequestReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -68,6 +71,9 @@ const rootReducer = combineReducers({
   customerWasteGenerated: customerWasteGeneratedReducer,
   customerDrives: customerDrivesReducer,
   customerCollectorCategories: customerCollectorCategoriesReducer,
+  customerCompletedRequest: customerCompletedRequestReducer,
+  customerPendingRequest: customerPendingRequestReducer,
+  customerExpiredRequest: customerExpiredRequestReducer,
   collectorName: collectorNameReducer,
   collectorNotificationCount: collectorNotificationCountReducer,
   collectorNotificationData: collectorNotificationDataReducer,

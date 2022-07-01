@@ -15,7 +15,7 @@ export const customerCompletedRequestReducer = (
     case types.CUSTOMER_COMPLETED_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_COMPLETED_SUCCESS:
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.CUSTOMER_COMPLETED_ERROR:
       return {...state, error: action};
     default:

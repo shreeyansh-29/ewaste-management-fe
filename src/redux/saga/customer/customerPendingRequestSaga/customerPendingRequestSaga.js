@@ -1,12 +1,15 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {CUSTOMER_PENDING_REQUEST} from "../../../config/actionType";
 import {customerPendingRequestService} from "../../../service/customer/customerPendingRequestService/customerPendingRequestService";
-import {customerPendingError} from "../../../action/customer/customerPendingRequestAction/customerPendingRequestAction";
+import {
+  customerPendingError,
+  customerPendingSuccess,
+} from "../../../action/customer/customerPendingRequestAction/customerPendingRequestAction";
 
 function* customerPendingRequestSaga() {
   try {
     let response = yield call(customerPendingRequestService);
-    console.log(response);
+    yield put(customerPendingSuccess(response));
   } catch (error) {
     yield put(customerPendingError(error));
   }

@@ -48,6 +48,9 @@ import {watchCustomerPickUp} from "./customer/customerPickUpSaga/customerPickUpS
 import {watchCollectorPending} from "./collector/collectorPendingSaga/collectorPendingSaga";
 import {watchCollectorPendingAccept} from "./collector/collectorPendingAcceptSaga/collectorPendingAcceptSaga";
 import {watchCollectorSummary} from "./collector/collectorSummarySaga/collectorSummarySaga";
+import {watchCustomerCompletedRequest} from "./customer/customerCompletedRequestSaga/customerCompletedRequestSaga";
+import {watchCustomerPendingRequest} from "./customer/customerPendingRequestSaga/customerPendingRequestSaga";
+import {watchCustomerExpiredRequest} from "./customer/customerExpiredRequestSaga/customerExpiredRequestSaga";
 
 function* rootSaga() {
   yield all([
@@ -68,6 +71,9 @@ function* rootSaga() {
     watchCustomerWasteGenerated(),
     watchCustomerCollectorCategories(),
     watchCustomerDrives(),
+    watchCustomerCompletedRequest(),
+    watchCustomerPendingRequest(),
+    watchCustomerExpiredRequest(),
     watchCollectorName(),
     watchCollectorNotificationCount(),
     watchCollectorNotificationData(),

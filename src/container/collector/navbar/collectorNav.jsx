@@ -20,7 +20,7 @@ const CollectorNav = () => {
   let res = useSelector((state) => state.collectorProfile);
   let result = useSelector((state) => state.collectorNotificationCount);
   let result2 = useSelector((state) => state.collectorNotificationData);
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(0);
   useEffect(() => {
     dispatch(collectorProfileRequest());
     dispatch(collectorNotificationCountRequest());

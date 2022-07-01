@@ -3,16 +3,18 @@ import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import Popup from "../../../components/popup";
 import "../../customer.css";
-import api from "../../../../core/utilities/httpProvider";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-import {CUSTOMER_REQUEST_COMPLETED} from "../../../constant/constant";
 export const ProfileIcon = FaUserCircle;
-
+import {useDispatch, useSelector} from "react-redux";
+import {customerCompletedRequest} from "../../../../redux/action/customer/customerCompletedRequestAction/customerCompletedRequestAction";
 toast.configure();
 
-const Completed = () => {
+const CompletedRequest = () => {
+  const dispatch = useDispatch();
+  let res1 = useSelector((state) => state.customerCompletedRequest);
+  console.log(res1);
   const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -124,41 +126,10 @@ const Completed = () => {
   const togglepop = () => {
     setopen(!isopen);
   };
-  const handledate = (res) => {
-    res.data.map((obj) => {
-      if (obj.requestType === "PickUp") {
-        if (obj.scheduledTime === "10") {
-          obj.scheduledTime = " 10:00-12:00";
-        } else if (obj.scheduledTime === "12") {
-          obj.scheduledTime = " 12:00-14:00";
-        } else if (obj.scheduledTime === "14") {
-          obj.scheduledTime = " 14:00-16:00";
-        } else if (obj.scheduledTime === "16") {
-          obj.scheduledTime = " 16:00-18:00";
-        }
-      }
-    });
-  };
-  const handledata = (res) => {
-    handledate(res);
-    res.data.map((obj) => {
-      if (obj.scheduledDate !== null) {
-        const date = obj.scheduledDate.split("T");
-        obj.scheduledDate = date[0];
-      }
-    });
-  };
-  useEffect(() => {
-    (async function () {
-      const res = await api.get(CUSTOMER_REQUEST_COMPLETED);
 
-      if (res.status === "success") {
-        handledata(res);
-        setData(res.data);
-      }
-    })();
+  useEffect(() => {
+    dispatch(customerCompletedRequest());
   }, []);
-  const [data, setData] = useState();
 
   return (
     <>
@@ -169,7 +140,7 @@ const Completed = () => {
               align="center"
               title=""
               columns={columns}
-              data={data}
+              data={res1?.data.data}
               icons={{
                 Search: () => <SearchIcon style={{fill: "white"}} />,
               }}
@@ -217,5 +188,4 @@ const Completed = () => {
     </>
   );
 };
-
-export default Completed;
+export default CompletedRequest;
