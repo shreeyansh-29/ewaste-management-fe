@@ -1,5 +1,4 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {NavLogoutBtn} from "../../components/navbar/navbarelements";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
@@ -9,7 +8,6 @@ import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/v
 import {useSelector} from "react-redux";
 
 const VendorNav = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const res = useSelector((state) => state.vendorName);
   // console.log(res);
@@ -30,21 +28,21 @@ const VendorNav = () => {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="./VendorHome" style={{marginLeft: "2%"}}>
+          <Navbar.Brand href="/VendorHome" style={{marginLeft: "2%"}}>
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse id="respohttp://localhost:3000/VendorHomensive-navbar-nav">
             <Nav className="ms-auto" style={{marginRight: "1%"}}>
               <NavDropdown
                 title="My Orders"
                 id="collasible-nav-dropdown"
                 style={{padding: "10px"}}
               >
-                <NavDropdown.Item href="./Sales">
+                <NavDropdown.Item href="/MyOrders/PurchaseItems">
                   Purchase Items
                 </NavDropdown.Item>
-                <NavDropdown.Item href="../MyOrders">
+                <NavDropdown.Item href="/MyOrders/SalesSummary">
                   Items Summary
                 </NavDropdown.Item>
               </NavDropdown>
@@ -64,9 +62,8 @@ const VendorNav = () => {
                       confirmButtonText: "Logout",
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        navigate("/Signin");
+                        window.location.href = "/Signin";
                         localStorage.clear();
-                        document.location.reload();
                       }
                     });
                   }}

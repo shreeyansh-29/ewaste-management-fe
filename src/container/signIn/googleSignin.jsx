@@ -1,57 +1,30 @@
 import jwt from "jwt-decode";
 import {toast} from "react-toastify";
-import {
-  COLLECTOR_AUTH_URL,
-  COLLECTOR_NOTIFICATION_URL,
-  CUSTOMER_AUTH_URL,
-  CUSTOMER_NOTIFICATION_URL,
-  VENDOR_AUTH_URL,
-} from "../constant/constant";
-
+import {googleSignInRequest} from "../../redux/action/signInAction/googleSignInAction";
 import googleLogo from "../images/google-logo.png";
-import api from "../../core/utilities/httpProvider";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import GoogleLogin from "react-google-login";
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
+import {isEmpty} from "lodash";
 
 const GoogleSignin = () => {
-  const onSuccess = async (result) => {
-    const email = result.profileObj.email;
-    try {
-      var res = await api.post(
-        `http://localhost:8083/signin/google?email=${email}`
-      );
-      res = await res.json();
+  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.googleSignIn?.data);
+  console.log(res);
+
+  useEffect(() => {
+    if (isEmpty(res) !== true) {
       if (res.status == "Fail") {
         toast.error("Wrong Email ID", {position: toast.POSITION.TOP_RIGHT});
-      }
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("email", email);
-      const tokens = localStorage.getItem("token");
-      const token = jwt(tokens);
-      localStorage.setItem("Roles", token.Roles[0]);
-      var val;
-      const role = token.Roles[0];
-      if (role === "CUSTOMER") {
-        val = await api.get(CUSTOMER_AUTH_URL);
-        result = await api.get(CUSTOMER_NOTIFICATION_URL);
-      }
-      if (role === "COLLECTOR") {
-        val = await api.get(COLLECTOR_AUTH_URL);
-        result = await api.get(COLLECTOR_NOTIFICATION_URL);
-      }
-      if (role === "VENDOR") {
-        val = await api.get(VENDOR_AUTH_URL);
-      }
-      localStorage.setItem("name", val.data.firstName);
-      if (role === "CUSTOMER" || role === "COLLECTOR") {
-        if (result.status === "fail") {
-          localStorage.setItem("count", "0");
-        } else if (result.status === "success") {
-          localStorage.setItem("count", result.data.length);
-        }
-      }
-
-      if (res.status == "success") {
+      } else if (res.status == "success") {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("email", email);
+        const tokens = localStorage.getItem("token");
+        const token = jwt(tokens);
+        localStorage.setItem("Roles", token.Roles[0]);
+        const role = localStorage.getItem("Roles");
         if (role === "CUSTOMER") {
           window.location.href = "/CustomerHome";
         } else if (role === "COLLECTOR") {
@@ -60,9 +33,12 @@ const GoogleSignin = () => {
           window.location.href = "/VendorHome";
         }
       }
-    } catch (e) {
-      console.log(e);
     }
+  }, []);
+
+  const onSuccess = async (result) => {
+    setEmail(result.profileObj.email);
+    dispatch(googleSignInRequest(email));
   };
   const onFailure = (response) => {
     console.log(response);

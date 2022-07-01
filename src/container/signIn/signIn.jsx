@@ -43,7 +43,7 @@ const SignIn = () => {
     setpasswordType("password");
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (res !== undefined) {
       if (res.status == "Fail") {
         Toast.error(TOAST_ERROR1);
