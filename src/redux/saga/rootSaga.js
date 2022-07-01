@@ -51,6 +51,7 @@ import {watchCollectorSummary} from "./collector/collectorSummarySaga/collectorS
 import {watchCustomerCompletedRequest} from "./customer/customerCompletedRequestSaga/customerCompletedRequestSaga";
 import {watchCustomerPendingRequest} from "./customer/customerPendingRequestSaga/customerPendingRequestSaga";
 import {watchCustomerExpiredRequest} from "./customer/customerExpiredRequestSaga/customerExpiredRequestSaga";
+import {watchCustomerPendingDecline} from "./customer/customerPendingRequestSaga/customerPendingDeclineSaga";
 
 function* rootSaga() {
   yield all([
@@ -74,6 +75,7 @@ function* rootSaga() {
     watchCustomerCompletedRequest(),
     watchCustomerPendingRequest(),
     watchCustomerExpiredRequest(),
+    watchCustomerPendingDecline(),
     watchCollectorName(),
     watchCollectorNotificationCount(),
     watchCollectorNotificationData(),

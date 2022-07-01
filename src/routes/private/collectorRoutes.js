@@ -1,6 +1,5 @@
 import React from "react";
 import {Routes, Route} from "react-router-dom";
-
 import CollectorHome from "../../container/collector/collectorHome";
 import CollectorNav from "../../container/collector/navbar/collectorNav";
 import CollectorProfile from "../../container/collector/profile/collectorProfile";
@@ -11,6 +10,8 @@ import RequestSummary from "../../container/collector/collectorsRequests/request
 import ItemsForSale from "../../container/collector/collectorSaleItems/itemsForSale";
 import SummarySales from "../../container/collector/collectorSaleItems/availableSales";
 import SaleItems from "../../container/collector/collectorSaleItems/salesItems";
+import PageNotFound from "../../container/pageNotFound/pageNotFound";
+import AuthProtected from "../authProtected/authProtected";
 
 const CollectorPrivateRoutes = () => {
   return (
@@ -28,6 +29,8 @@ const CollectorPrivateRoutes = () => {
       <Route path="/Sales/ItemsForSale" element={<ItemsForSale />} />
       <Route path="/Sales/SummarySales" element={<SummarySales />} />
       <Route path="/Sales/SaleItems" element={<SaleItems />} />
+      <Route path="/" element={<AuthProtected />} />
+      <Route exact path="*" element={<PageNotFound />} />
     </Routes>
   );
 };

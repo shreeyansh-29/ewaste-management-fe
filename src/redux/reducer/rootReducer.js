@@ -52,6 +52,7 @@ import {collectorSummaryReducer} from "./collector/collectorSummaryReducer/colle
 import {customerCompletedRequestReducer} from "./customer/customerCompletedRequestReducer/customerCompletedRequestReducer";
 import {customerPendingRequestReducer} from "./customer/customerPendingRequestReducer/customerPendingRequestReducer";
 import {customerExpiredRequestReducer} from "./customer/customerExpiredRequestReducer/customerExpiredRequestReducer";
+import {customerPendingDeclineReducer} from "./customer/customerPendingRequestReducer/customerPendingDeclineReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -74,6 +75,7 @@ const rootReducer = combineReducers({
   customerCompletedRequest: customerCompletedRequestReducer,
   customerPendingRequest: customerPendingRequestReducer,
   customerExpiredRequest: customerExpiredRequestReducer,
+  customerPendingDecline: customerPendingDeclineReducer,
   collectorName: collectorNameReducer,
   collectorNotificationCount: collectorNotificationCountReducer,
   collectorNotificationData: collectorNotificationDataReducer,

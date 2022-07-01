@@ -5,6 +5,7 @@ import Home from "../../container/homePage/home";
 import SignUp from "../../container/signUp/signUp";
 import ForgotPassword from "../../container/forgotPassword/forgotPassword";
 import ResetPass from "../../container/forgotPassword/resetPassword";
+import PageNotFound from "../../container/pageNotFound/pageNotFound";
 
 const PublicRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const PublicRoutes = () => {
         render={(props) => <ResetPass {...props} />}
         element={<ResetPass />}
       />
+      <Route exact path="*" element={<PageNotFound />} />
     </Routes>
   );
 };

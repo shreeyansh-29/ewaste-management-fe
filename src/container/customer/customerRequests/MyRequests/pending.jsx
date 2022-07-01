@@ -6,6 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
 import {customerPendingRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingRequestAction";
+import {customerPendingDeclineRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingDeclineAction";
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
@@ -117,23 +118,9 @@ const PendingRequest = () => {
       },
     },
   ]);
-  const handleDecline = async (e, datas) => {
-    const tokens = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-
-    const response = await fetch(
-      `http://localhost:8083/customer/deleteById?orderId=${datas.orderUid}`,
-      {
-        method: "DELETE",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + tokens,
-          EMAIL: email,
-        },
-      }
-    );
-    console.log(response);
+  const handleDecline = (e, datas) => {
+    alert("hello");
+    dispatch(customerPendingDeclineRequest(datas.orderUid));
     document.location.reload();
   };
   useEffect(() => {

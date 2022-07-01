@@ -13,7 +13,7 @@ const MyRequests = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  function TabPanel(props) {
+  const TabPanel = (props) => {
     const {children, index, ...other} = props;
     return (
       <div
@@ -30,7 +30,7 @@ const MyRequests = () => {
         )}
       </div>
     );
-  }
+  };
   return (
     <div style={{padding: "150px 30px 0 30px"}}>
       <h2

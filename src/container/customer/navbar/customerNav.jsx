@@ -79,7 +79,7 @@ const CustomerNav = () => {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="./CustomerHome" style={{marginLeft: "1%"}}>
+          <Navbar.Brand href="/CustomerHome" style={{marginLeft: "1%"}}>
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
 

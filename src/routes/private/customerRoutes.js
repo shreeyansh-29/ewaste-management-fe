@@ -9,6 +9,8 @@ import MyRequests from "../../container/customer/customerRequests/MyRequests/myR
 import Popup from "../../container/components/popup";
 import ViewCollectors from "../../container/customer/customerRequests/viewCollectors";
 import Waste from "../../container/customer/customerRequests/waste";
+import PageNotFound from "../../container/pageNotFound/pageNotFound";
+import AuthProtected from "../authProtected/authProtected";
 
 const CustomerPrivateRoutes = () => {
   return (
@@ -22,6 +24,8 @@ const CustomerPrivateRoutes = () => {
       <Route path="/Popup" element={<Popup />} />
       <Route path="/Drives/Waste" element={<Waste />} />
       <Route path="/ViewCollectors" element={<ViewCollectors />} />
+      <Route path="/" element={<AuthProtected />} />
+      <Route exact path="*" element={<PageNotFound />} />
     </Routes>
   );
 };

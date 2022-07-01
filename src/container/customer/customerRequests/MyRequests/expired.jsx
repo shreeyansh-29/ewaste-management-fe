@@ -3,12 +3,14 @@ import MaterialTable from "material-table";
 import "../../customer.css";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-import {CUSTOMER_REQUEST_COMPLETED} from "../../../constant/constant";
-import api from "../../../../core/utilities/httpProvider";
+import {customerExpiredRequest} from "../../../../redux/action/customer/customerExpiredRequestAction/customerExpiredRequestAction";
+import {useDispatch, useSelector} from "react-redux";
 toast.configure();
 
 const Completed = () => {
   const {useState} = React;
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.customerExpiredRequest?.data);
 
   const [columns] = useState([
     {
@@ -113,50 +115,10 @@ const Completed = () => {
       },
     },
   ]);
-  const handledate = (res) => {
-    res.data.map((obj) => {
-      if (obj.requestType === "PickUp") {
-        if (obj.scheduledTime === "10") {
-          obj.scheduledTime = " 10:00-12:00";
-        } else if (obj.scheduledTime === "12") {
-          obj.scheduledTime = " 12:00-14:00";
-        } else if (obj.scheduledTime === "14") {
-          obj.scheduledTime = " 14:00-16:00";
-        } else if (obj.scheduledTime === "16") {
-          obj.scheduledTime = " 16:00-18:00";
-        }
-      }
-    });
-  };
-  const handledata = (res) => {
-    handledate(res);
-    res.data.map((obj) => {
-      if (obj.scheduledDate !== null) {
-        const date = obj.scheduledDate.split("T");
-        obj.scheduledDate = date[0];
-      }
-      if (obj.requestType === "PickUp") {
-        obj.id = "CP" + obj.id;
-      }
-      if (obj.requestType === "DropOff") {
-        obj.id = "CD" + obj.id;
-      }
-    });
-  };
+
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(CUSTOMER_REQUEST_COMPLETED);
-        if (res.status === "success") {
-          handledata(res);
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    dispatch(customerExpiredRequest());
   }, []);
-  const [data, setData] = useState();
 
   return (
     <div>
@@ -166,7 +128,7 @@ const Completed = () => {
             align="center"
             title=""
             columns={columns}
-            data={data}
+            data={res?.data}
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,
             }}

@@ -14,7 +14,6 @@ toast.configure();
 const CompletedRequest = () => {
   const dispatch = useDispatch();
   let res1 = useSelector((state) => state.customerCompletedRequest);
-  console.log(res1);
   const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();

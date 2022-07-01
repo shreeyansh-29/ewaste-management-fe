@@ -12,7 +12,8 @@ export const customerExpiredRequestReducer = (state = initialState, action) => {
     case types.CUSTOMER_EXPIRED_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_EXPIRED_SUCCESS:
-      return {...state, data: action};
+      console.log(action);
+      return {...state, data: action.payload};
     case types.CUSTOMER_EXPIRED_ERROR:
       return {...state, error: action};
     default:

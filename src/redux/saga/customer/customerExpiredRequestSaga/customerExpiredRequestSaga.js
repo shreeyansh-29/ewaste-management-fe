@@ -1,17 +1,20 @@
-import {CUSTOMER_COMPLETED_REQUEST} from "../../../config/actionType";
+import {CUSTOMER_EXPIRED_REQUEST} from "../../../config/actionType";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {customerCompletedRequestService} from "../../../service/customer/customerCompletedRequestService/customerCompletedRequestService";
-import {customerCompletedError} from "../../../action/customer/customerCompletedRequestAction/customerCompletedRequestAction";
+import {customerExpiredRequestService} from "../../../service/customer/customerExpiredRequestService/customerExpiredRequestService";
+import {
+  customerExpiredSuccess,
+  customerExpiredError,
+} from "../../../action/customer/customerExpiredRequestAction/customerExpiredRequestAction";
 
-function* customerCompletedRequestSaga() {
+function* customerExpiredRequestSaga() {
   try {
-    let response = yield call(customerCompletedRequestService);
-    console.log("Saga", response);
+    let response = yield call(customerExpiredRequestService);
+    yield put(customerExpiredSuccess(response));
   } catch (error) {
-    yield put(customerCompletedError(error));
+    yield put(customerExpiredError(error));
   }
 }
 
 export function* watchCustomerExpiredRequest() {
-  yield takeLatest(CUSTOMER_COMPLETED_REQUEST, customerCompletedRequestSaga);
+  yield takeLatest(CUSTOMER_EXPIRED_REQUEST, customerExpiredRequestSaga);
 }
