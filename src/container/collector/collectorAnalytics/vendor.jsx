@@ -25,7 +25,7 @@ export const options = {
     minRotation: 80,
   },
 };
-export default function Data() {
+const VendorData = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorVendor);
 
@@ -47,4 +47,6 @@ export default function Data() {
       options={options}
     />
   );
-}
+};
+
+export default VendorData;

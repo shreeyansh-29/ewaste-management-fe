@@ -31,7 +31,7 @@ let validationSchema = Yup.object().shape({
   password: Yup.string().required(PASSWORD_REQUIRED),
 });
 
-const signIn = () => {
+const SignIn = () => {
   const dispatch = useDispatch();
   const [passwordType, setpasswordType] = useState("password");
   const res = useSelector((state) => state.signIn?.data);
@@ -70,7 +70,7 @@ const signIn = () => {
     }
   }, [res]);
 
-  const handleClick = async (values) => {
+  const handleClick = (values) => {
     dispatch(signInRequest(values));
   };
 
@@ -220,4 +220,4 @@ const signIn = () => {
   );
 };
 
-export default signIn;
+export default SignIn;

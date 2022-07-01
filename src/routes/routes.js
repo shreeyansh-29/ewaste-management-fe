@@ -5,7 +5,8 @@ import PublicRoutes from "./public/publicRoutes";
 import CustomerPrivateRoutes from "./private/customerRoutes";
 import CollectorPrivateRoutes from "./private/collectorRoutes";
 import VendorPrivateRoutes from "./private/vendorRoutes";
-const allRoutes = () => {
+
+const AllRoutes = () => {
   var role = localStorage.getItem("Roles");
   return (
     <BrowserRouter>
@@ -17,4 +18,4 @@ const allRoutes = () => {
   );
 };
 
-export default allRoutes;
+export default AllRoutes;

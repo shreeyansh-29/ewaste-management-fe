@@ -14,7 +14,8 @@ import {TOAST_ERROR4, TOAST_SUCCESS7} from "../../constant/constant";
 import Toast from "../../components/toast";
 import {collectorOrganizeDriveRequest} from "../../../redux/action/collector/collectorOrganizeDriveAction/collectorOrganizeDriveAction";
 toast.configure();
-export default function organizeDrive() {
+
+const OrganizeDrive = () => {
   const {useState} = React;
   var maxDate = new Date();
   const dispatch = useDispatch();
@@ -233,4 +234,6 @@ export default function organizeDrive() {
       </div>
     </div>
   );
-}
+};
+
+export default OrganizeDrive;

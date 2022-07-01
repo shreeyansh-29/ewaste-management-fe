@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import "../../customer.css";
-import { FaUserCircle } from "react-icons/fa";
+import {FaUserCircle} from "react-icons/fa";
 import api from "../../../../core/utilities/httpProvider";
 import SearchIcon from "@material-ui/icons/Search";
-import { toast } from "react-toastify";
-import { CUSTOMER_REQUEST_PENDING } from "../../../constant/constant";
+import {toast} from "react-toastify";
+import {CUSTOMER_REQUEST_PENDING} from "../../../constant/constant";
 export const ProfileIcon = FaUserCircle;
-
 toast.configure();
-export default function Pending() {
-  const { useState } = React;
+
+const Pending = () => {
+  const {useState} = React;
 
   const [columns] = useState([
     {
@@ -131,11 +131,11 @@ export default function Pending() {
       }
     });
   };
-  const handleDecline =async(e,datas)=>{
+  const handleDecline = async (e, datas) => {
     console.log(datas);
     const tokens = localStorage.getItem("token");
     const email = localStorage.getItem("email");
-    
+
     const response = await fetch(
       `http://localhost:8083/customer/deleteById?orderId=${datas.orderUid}`,
       {
@@ -150,8 +150,7 @@ export default function Pending() {
     );
     console.log(response);
     document.location.reload();
-    
-  }
+  };
   const handledata = (res) => {
     handledate(res);
     res.data.map((obj) => {
@@ -182,14 +181,14 @@ export default function Pending() {
   return (
     <div>
       <div>
-        <div style={{ padding: " 10px 30px" }}>
+        <div style={{padding: " 10px 30px"}}>
           <MaterialTable
             align="center"
             title=""
             columns={columns}
             data={data}
             icons={{
-              Search: () => <SearchIcon style={{ fill: "white" }} />,
+              Search: () => <SearchIcon style={{fill: "white"}} />,
             }}
             localization={{
               header: {
@@ -210,4 +209,5 @@ export default function Pending() {
       </div>
     </div>
   );
-}
+};
+export default Pending;

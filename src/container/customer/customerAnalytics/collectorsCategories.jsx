@@ -28,7 +28,7 @@ const options = {
   height: "400px",
   colors: ["yellow", "green"],
 };
-export default function CollectorsCategories() {
+const CollectorsCategories = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerCollectorCategories);
 
@@ -55,4 +55,5 @@ export default function CollectorsCategories() {
   }, [res]);
 
   return <Chart chartType="LineChart" data={data} options={options} />;
-}
+};
+export default CollectorsCategories;

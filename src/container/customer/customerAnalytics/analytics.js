@@ -1,10 +1,11 @@
 import React from "react";
 import {Carousel} from "react-bootstrap";
-import EWaste from "./WasteGenerated";
+import EWaste from "./wasteGenerated";
 import "../customer.css";
 import CollectorsCategories from "./collectorsCategories";
 import Drives from "./drives";
-function Analytics() {
+
+const Analytics = () => {
   return (
     <Carousel>
       <Carousel.Item>
@@ -29,6 +30,6 @@ function Analytics() {
       </Carousel.Item>
     </Carousel>
   );
-}
+};
 
 export default Analytics;

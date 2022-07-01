@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/vendorNameAction";
 import {useSelector} from "react-redux";
 
-function VendorNav() {
+const VendorNav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const res = useSelector((state) => state.vendorName);
@@ -80,6 +80,6 @@ function VendorNav() {
       </Navbar>
     </>
   );
-}
+};
 
 export default VendorNav;

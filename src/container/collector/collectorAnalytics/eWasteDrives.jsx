@@ -26,7 +26,7 @@ export const options = {
   },
 };
 
-export default function EWasteDrives() {
+const EWasteDrives = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorEWasteDrives);
 
@@ -48,4 +48,6 @@ export default function EWasteDrives() {
       options={options}
     />
   );
-}
+};
+
+export default EWasteDrives;

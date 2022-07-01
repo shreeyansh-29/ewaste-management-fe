@@ -28,7 +28,7 @@ export const options = {
   },
 };
 
-export default function EWaste() {
+const EWaste = () => {
   let res = useSelector((state) => state.customerWasteGenerated);
 
   const dispatch = useDispatch();
@@ -51,4 +51,5 @@ export default function EWaste() {
       options={options}
     />
   );
-}
+};
+export default EWaste;

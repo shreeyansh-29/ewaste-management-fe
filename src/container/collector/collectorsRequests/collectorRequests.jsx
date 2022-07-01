@@ -9,7 +9,7 @@ import {collectorPendingRequest} from "../../../redux/action/collector/collector
 import {isEmpty} from "lodash";
 import {collectorPendingAcceptRequest} from "../../../redux/action/collector/collectorPendingAcceptAction/collectorPendingAcceptAction";
 
-export default function CollectorRequests() {
+const CollectorRequests = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorPending);
   console.log(res);
@@ -163,4 +163,6 @@ export default function CollectorRequests() {
       />
     </div>
   );
-}
+};
+
+export default CollectorRequests;

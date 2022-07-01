@@ -5,7 +5,8 @@ import VendorNav from "../../container/vendor/navbar/vendorNav";
 import VendorProfile from "../../container/vendor/vendorProfile/vendorProfile";
 import Sales from "../../container/vendor/vendorSales/sales";
 import MyOrders from "../../container/vendor/vendorSales/myOrders";
-export default function vendorPrivateRoutes() {
+
+const VendorPrivateRoutes = () => {
   return (
     <Routes>
       <Route exact path="/VendorHome" element={<VendorHome />} />
@@ -15,4 +16,6 @@ export default function vendorPrivateRoutes() {
       <Route exact path="/MyOrders/SalesSummary" element={<MyOrders />} />
     </Routes>
   );
-}
+};
+
+export default VendorPrivateRoutes;

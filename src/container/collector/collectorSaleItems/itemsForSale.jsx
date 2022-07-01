@@ -11,7 +11,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
 import Toast from "../../components/toast";
 import {collectorForSaleRequest} from "../../../redux/action/collector/collectorForSaleAction/collectorForSaleAction";
-export default function ItemsForSale() {
+
+const ItemsForSale = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorForSale);
   console.log(res);
@@ -175,4 +176,6 @@ export default function ItemsForSale() {
       </div>
     </div>
   );
-}
+};
+
+export default ItemsForSale;

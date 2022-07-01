@@ -9,9 +9,9 @@ import Toast from "../../components/toast";
 import {collectorSummaryRequest} from "../../../redux/action/collector/collectorSummaryAction/collectorSummaryAction";
 import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
-
 export const ProfileIcon = FaUserCircle;
-export default function CollectorRequests() {
+
+const CollectorRequests = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorSummary);
   console.log(res);
@@ -248,4 +248,5 @@ export default function CollectorRequests() {
       </div>
     </div>
   );
-}
+};
+export default CollectorRequests;

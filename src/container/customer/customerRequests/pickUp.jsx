@@ -22,7 +22,7 @@ import {customerCountCollRequest} from "../../../redux/action/customer/customerP
 import {customerPickUpRequest} from "../../../redux/action/customer/customerPickUpAction/customerPickUpAction";
 import Toast from "../../components/toast";
 
-export default function pickUp() {
+const PickUp = () => {
   const dispatch = useDispatch();
   let result = useSelector((state) => state.customerCountColl);
   let res = useSelector((state) => state.customerPickUp);
@@ -141,7 +141,7 @@ export default function pickUp() {
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15px",
+        fontSize: "15pexport default functionx",
       },
     },
   ]);
@@ -302,4 +302,6 @@ export default function pickUp() {
       </div>
     </div>
   );
-}
+};
+
+export default PickUp;

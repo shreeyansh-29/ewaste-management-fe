@@ -19,7 +19,7 @@ let validationSchema = Yup.object().shape({
   confirmPassword: Yup.string().required("Confirm Password is Required"),
 });
 
-function resetPassword() {
+const ResetPassword = () => {
   const dispatch = useDispatch();
   const {token} = useParams();
   const res = useSelector((state) => state.resetPassword?.data);
@@ -174,6 +174,6 @@ function resetPassword() {
       </div>
     </div>
   );
-}
+};
 
-export default resetPassword;
+export default ResetPassword;

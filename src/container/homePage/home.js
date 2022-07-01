@@ -11,7 +11,7 @@ import Footer from "../components/footer/footer";
 import Info from "../components/infoSection/Info";
 import Personas from "../components/personas/personas";
 
-function Home() {
+const Home = () => {
   return (
     <>
       <InfoSection {...homeObjOne} />
@@ -23,6 +23,6 @@ function Home() {
       <Footer />
     </>
   );
-}
+};
 
 export default Home;

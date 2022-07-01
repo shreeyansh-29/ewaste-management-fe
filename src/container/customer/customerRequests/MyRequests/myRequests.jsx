@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Paper from "@mui/material/Paper";
@@ -7,13 +7,14 @@ import Box from "@material-ui/core/Box";
 import Pending from "./pending";
 import Completed from "./completed";
 import Expired from "./expired";
-export default function myRequests() {
+
+const MyRequests = () => {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   function TabPanel(props) {
-    const { children, index, ...other } = props;
+    const {children, index, ...other} = props;
     return (
       <div
         role="tabpanel"
@@ -31,7 +32,7 @@ export default function myRequests() {
     );
   }
   return (
-    <div style={{ padding: "150px 30px 0 30px" }}>
+    <div style={{padding: "150px 30px 0 30px"}}>
       <h2
         style={{
           textAlign: "center",
@@ -46,7 +47,7 @@ export default function myRequests() {
         {" "}
         My Requests{" "}
       </h2>
-      <Paper square style={{ margin: "20px auto", width: "100%" }}>
+      <Paper square style={{margin: "20px auto", width: "100%"}}>
         <Tabs
           value={value}
           indicatorColor="primary"
@@ -58,9 +59,8 @@ export default function myRequests() {
           elevation={20}
         >
           <Tab label="Pending" />
-          <Tab label ="Expired" />
+          <Tab label="Expired" />
           <Tab label="Completed" />
-          
         </Tabs>
         <TabPanel value={value} index={0}>
           <Pending />
@@ -74,4 +74,5 @@ export default function myRequests() {
       </Paper>
     </div>
   );
-}
+};
+export default MyRequests;

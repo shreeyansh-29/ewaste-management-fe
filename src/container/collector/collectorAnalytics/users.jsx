@@ -25,7 +25,7 @@ export const options = {
   },
 };
 
-export default function Users() {
+const CustomerData = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorUsers);
 
@@ -49,4 +49,5 @@ export default function Users() {
       backgroundcolor="transparent"
     />
   );
-}
+};
+export default CustomerData;

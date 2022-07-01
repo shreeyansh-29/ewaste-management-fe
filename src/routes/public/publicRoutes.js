@@ -5,7 +5,8 @@ import Home from "../../container/homePage/home";
 import SignUp from "../../container/signUp/signUp";
 import ForgotPassword from "../../container/forgotPassword/forgotPassword";
 import ResetPass from "../../container/forgotPassword/resetPassword";
-const publicRoutes = () => {
+
+const PublicRoutes = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
@@ -22,4 +23,4 @@ const publicRoutes = () => {
   );
 };
 
-export default publicRoutes;
+export default PublicRoutes;

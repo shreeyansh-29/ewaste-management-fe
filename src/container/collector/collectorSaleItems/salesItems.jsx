@@ -7,12 +7,12 @@ import Box from "@material-ui/core/Box";
 import SummarySales from "./availableSales";
 import SoldItems from "./soldItems";
 
-export default function salesItems() {
+const SalesItems = () => {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  function TabPanel(props) {
+  const TabPanel = (props) => {
     const {children, index, ...other} = props;
     return (
       <div
@@ -29,7 +29,7 @@ export default function salesItems() {
         )}
       </div>
     );
-  }
+  };
   return (
     <div style={{padding: "150px 30px 0 30px"}}>
       <h2
@@ -69,4 +69,5 @@ export default function salesItems() {
       </Paper>
     </div>
   );
-}
+};
+export default SalesItems;

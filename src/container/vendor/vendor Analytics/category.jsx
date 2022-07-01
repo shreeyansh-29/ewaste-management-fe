@@ -25,7 +25,7 @@ export const options = {
   },
 };
 
-const CollCat = () => {
+const CollectorCategory = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.vendorCategory);
   useEffect(() => {
@@ -52,4 +52,4 @@ const CollCat = () => {
   );
 };
 
-export default CollCat;
+export default CollectorCategory;

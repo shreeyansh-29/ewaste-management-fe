@@ -7,7 +7,8 @@ import img4 from "./images/monitor.jpg";
 import img5 from "./images/img71.jpg";
 import img6 from "./images/machine1.jpg";
 import img7 from "./images/mobile1.jpg";
-function CategoryCarousel() {
+
+const CategoryCarousel = () => {
   return (
     <>
       <Carousel fade>
@@ -35,6 +36,6 @@ function CategoryCarousel() {
       </Carousel>
     </>
   );
-}
+};
 
 export default CategoryCarousel;

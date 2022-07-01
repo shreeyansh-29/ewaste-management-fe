@@ -21,7 +21,7 @@ export const options = {
   },
 };
 
-const Drives = () => {
+const VendorData = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.vendorData);
 
@@ -45,4 +45,4 @@ const Drives = () => {
   );
 };
 
-export default Drives;
+export default VendorData;

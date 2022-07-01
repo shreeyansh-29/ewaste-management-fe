@@ -26,7 +26,7 @@ export const options = {
   },
 };
 
-export default function Drives() {
+const Drives = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerDrives);
   useEffect(() => {
@@ -47,4 +47,5 @@ export default function Drives() {
       options={options}
     />
   );
-}
+};
+export default Drives;

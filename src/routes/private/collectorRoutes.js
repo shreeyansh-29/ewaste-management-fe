@@ -11,7 +11,7 @@ import ItemsForSale from "../../container/collector/collectorSaleItems/itemsForS
 import SummarySales from "../../container/collector/collectorSaleItems/availableSales";
 import SaleItems from "../../container/collector/collectorSaleItems/salesItems";
 
-const collectorPrivateRoutes = () => {
+const CollectorPrivateRoutes = () => {
   return (
     <Routes>
       <Route path="/CollectorHome" element={<CollectorHome />} />
@@ -31,4 +31,4 @@ const collectorPrivateRoutes = () => {
   );
 };
 
-export default collectorPrivateRoutes;
+export default CollectorPrivateRoutes;

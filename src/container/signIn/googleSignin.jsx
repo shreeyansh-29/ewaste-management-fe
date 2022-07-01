@@ -1,5 +1,5 @@
 import jwt from "jwt-decode";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 import {
   COLLECTOR_AUTH_URL,
   COLLECTOR_NOTIFICATION_URL,
@@ -12,7 +12,8 @@ import googleLogo from "../images/google-logo.png";
 import api from "../../core/utilities/httpProvider";
 import React from "react";
 import GoogleLogin from "react-google-login";
-function googleSignin() {
+
+const GoogleSignin = () => {
   const onSuccess = async (result) => {
     const email = result.profileObj.email;
     try {
@@ -21,7 +22,7 @@ function googleSignin() {
       );
       res = await res.json();
       if (res.status == "Fail") {
-        toast.error("Wrong Email ID", { position: toast.POSITION.TOP_RIGHT });
+        toast.error("Wrong Email ID", {position: toast.POSITION.TOP_RIGHT});
       }
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("email", email);
@@ -68,7 +69,7 @@ function googleSignin() {
   };
 
   return (
-    <div style={{  marginTop: "4%" }}>
+    <div style={{marginTop: "4%"}}>
       <GoogleLogin
         clientId="890963815850-bguvaqnq3mc0jt0q3l459oufv2b7uocu.apps.googleusercontent.com"
         render={(renderProps) => (
@@ -82,7 +83,7 @@ function googleSignin() {
                 src={googleLogo}
                 alt="Google"
                 width="30px"
-                style={{ paddingBottom: "4px" }}
+                style={{paddingBottom: "4px"}}
               />
               Sign in
             </button>
@@ -93,9 +94,9 @@ function googleSignin() {
         cookiePolicy={"single_host_origin"}
         approvalPrompt="force"
         prompt="consent"
-        style={{ backgroundColor: "blue", width: 50, height: "50px" }}
+        style={{backgroundColor: "blue", width: 50, height: "50px"}}
       />
     </div>
   );
-}
-export default googleSignin;
+};
+export default GoogleSignin;

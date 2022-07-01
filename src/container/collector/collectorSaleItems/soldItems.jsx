@@ -7,7 +7,8 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
-export default function SoldItems() {
+
+const SoldItems = () => {
   const {useState} = React;
   const dispatch = useDispatch();
 
@@ -124,4 +125,6 @@ export default function SoldItems() {
       />
     </div>
   );
-}
+};
+
+export default SoldItems;

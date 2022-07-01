@@ -3,10 +3,11 @@ import MaterialTable from "material-table";
 import "../../customer.css";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-import { CUSTOMER_REQUEST_COMPLETED } from "../../../constant/constant";
+import {CUSTOMER_REQUEST_COMPLETED} from "../../../constant/constant";
 import api from "../../../../core/utilities/httpProvider";
 toast.configure();
-export default function Completed() {
+
+const Completed = () => {
   const {useState} = React;
 
   const [columns] = useState([
@@ -161,7 +162,6 @@ export default function Completed() {
     <div>
       <div>
         <div style={{padding: " 10px 30px"}}>
-         
           <MaterialTable
             align="center"
             title=""
@@ -170,7 +170,6 @@ export default function Completed() {
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,
             }}
-                      
             options={{
               actionsColumnIndex: -1,
             }}
@@ -179,4 +178,5 @@ export default function Completed() {
       </div>
     </div>
   );
-}
+};
+export default Completed;

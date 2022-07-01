@@ -14,7 +14,8 @@ import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 import "../customer.css";
 import api from "../../../core/utilities/httpProvider";
 import {CUSTOMER_VIEW_DRIVES} from "../../constant/constant";
-export default function Waste() {
+
+const Waste = () => {
   const handledate = (res) => {
     res.data.map((obj) => {
       if (obj.time === "10") {
@@ -120,4 +121,5 @@ export default function Waste() {
       )}
     </div>
   );
-}
+};
+export default Waste;

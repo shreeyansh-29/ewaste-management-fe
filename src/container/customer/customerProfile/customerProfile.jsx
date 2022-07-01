@@ -2,77 +2,76 @@ import {Field, Form, Formik} from "formik";
 import React, {useEffect} from "react";
 import Toast from "../../components/toast";
 import "../customer.css";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import {
-  ADDRESS_REQUIRED,
-  CITY_REQUIRED,
-  FNAME_REQUIRED,
-  LNAME_REQUIRED,
-  MOBILE_INVALID,
-  MOBILE_REQUIRED,
-  PASSWORD_REQUIRED,
-  PINCODE_REQUIRED,
-  STATE_REQUIRED,
+  // ADDRESS_REQUIRED,
+  // CITY_REQUIRED,
+  // FNAME_REQUIRED,
+  // LNAME_REQUIRED,
+  // MOBILE_INVALID,
+  // MOBILE_REQUIRED,
+  // PASSWORD_REQUIRED,
+  // PINCODE_REQUIRED,
+  // STATE_REQUIRED,
   TOAST_SUCCESS5,
-  PINCODE_INVALID,
+  // PINCODE_INVALID,
 } from "../../constant/constant";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {customerProfileEditRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileEditAction";
 import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
-// import { useSelector } from "react-redux";
-const pinCodeReg = /^\d{6}$/;
 
-let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required(FNAME_REQUIRED),
-  lastName: Yup.string().required(LNAME_REQUIRED),
-  city: Yup.string().required(CITY_REQUIRED),
-  password: Yup.string().required(PASSWORD_REQUIRED),
-  state: Yup.string().required(STATE_REQUIRED),
-  mobileNo: Yup.string().phone(MOBILE_INVALID).required(MOBILE_REQUIRED),
-  address1: Yup.string().required(ADDRESS_REQUIRED),
-  pincode: Yup.string()
-    .matches(pinCodeReg, {PINCODE_INVALID})
-    .required(PINCODE_REQUIRED),
-});
-const email = localStorage.getItem("email");
-function profile() {
+// let validationSchema = Yup.object().shape({
+//   firstName: Yup.string().required(FNAME_REQUIRED),
+//   lastName: Yup.string().required(LNAME_REQUIRED),
+//   city: Yup.string().required(CITY_REQUIRED),
+//   password: Yup.string().required(PASSWORD_REQUIRED),
+//   state: Yup.string().required(STATE_REQUIRED),
+//   mobileNo: Yup.string().phone(MOBILE_INVALID).required(MOBILE_REQUIRED),
+//   address1: Yup.string().required(ADDRESS_REQUIRED),
+//   pincode: Yup.string()
+//     .matches(pinCodeReg, {PINCODE_INVALID})
+//     .required(PINCODE_REQUIRED),
+// });
+
+const CustomerProfile = () => {
   const dispatch = useDispatch();
-  //   const res = useSelector(state => state.)
+
+  let res = useSelector((state) => state.customerProfile);
+  console.log("res", res);
   useEffect(() => {
     dispatch(customerProfileRequest());
-  });
-  function handleSubmit(values) {
-    const email = email;
-    const {data} = {values, email};
+  }, []);
+
+  const handleSubmit = (values) => {
+    const data = {values, password: res?.data.password};
+    console.log(data);
     dispatch(customerProfileEditRequest(data));
     Toast.success(TOAST_SUCCESS5, 1500);
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
-  }
+  };
 
   return (
     <div className="profile" style={{marginTop: "85px"}}>
       <Formik
+        enableReinitialize
         initialValues={{
-          firstName: "",
-          lastName: "",
-          email: "",
-          state: "",
-          city: "",
-          password: "",
-          mobileNo: "",
-          address1: "",
-          pincode: "",
+          firstName: res?.data?.firstName,
+          lastName: res.data.lastName,
+          state: res.data.state,
+          city: res?.data.city,
+          mobileNo: res.data.mobileNo,
+          address1: res.data.address1,
+          pinCode: res.data.pinCode,
+          email: res.data.email,
         }}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
+        // validator={() => ({})}
         onSubmit={(values) => {
           handleSubmit(values);
         }}
       >
         {({errors, touched, handleChange}) => (
           <Form>
-            <div className="constainers">
+            <div className="containers">
               <div className="customersprofile">
                 <h1
                   style={{
@@ -98,12 +97,13 @@ function profile() {
                       name="firstName"
                       style={{borderRadius: "17px"}}
                       onChange={handleChange}
-                      placeholder="First name"
+                      placeholder="First Name"
                     />
+                    {touched.firstName && errors.firstName ? (
+                      <div className="formErrors">{errors.firstName}</div>
+                    ) : null}
                   </div>
-                  {touched.firstName && errors.firstName ? (
-                    <div className="formErrors">{errors.firstName}</div>
-                  ) : null}
+
                   <div className="inputGroup">
                     <label htmlFor="lastName">
                       Last Name<i className="text-danger">*</i>
@@ -111,15 +111,16 @@ function profile() {
                     <Field
                       autoComplete="off"
                       onChange={handleChange}
-                      placeholder="Last name"
+                      placeholder="Last Name"
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="lastName"
                     />
+                    {touched.lastName && errors.lastName ? (
+                      <div className="formErrors">{errors.lastName}</div>
+                    ) : null}
                   </div>
-                  {touched.lastName && errors.lastName ? (
-                    <div className="formErrors">{errors.lastName}</div>
-                  ) : null}
+
                   <div className="row">
                     <div className="inputGroup">
                       <label htmlFor="email">Email</label>
@@ -130,7 +131,7 @@ function profile() {
                           backgroundColor: "white",
                         }}
                         disabled
-                        defaultValue={email}
+                        name="email"
                       />
                     </div>
                     <div className="inputGroup">
@@ -145,10 +146,10 @@ function profile() {
                         onChange={handleChange}
                         placeholder="Phone Number"
                       />
+                      {touched.mobileNo && errors.mobileNo ? (
+                        <div className="formErrors">{errors.mobileNo}</div>
+                      ) : null}
                     </div>
-                    {touched.mobileNo && errors.mobileNo ? (
-                      <div className="formErrors">{errors.mobileNo}</div>
-                    ) : null}
                   </div>
                   <div className="row">
                     <div className="inputGroup">
@@ -163,50 +164,55 @@ function profile() {
                         onChange={handleChange}
                         placeholder="Address Line"
                       />
+                      {touched.address1 && errors.address1 ? (
+                        <div className="formErrors">{errors.address1}</div>
+                      ) : null}
                     </div>
-                    {touched.address1 && errors.address1 ? (
-                      <div className="formErrors">{errors.address1}</div>
-                    ) : null}
+
                     <div className="inputGroup">
                       <label>
                         State <i className="text-danger">*</i>
                       </label>
-                      <select
+                      <Field
+                        type="select"
                         style={{borderRadius: "17px", padding: "4px"}}
                         className="form-select"
                         onChange={handleChange}
+                        name="state"
                       >
-                        <option value="Select State">
+                        {/* <option value="Select State">
                           {this.state.state}{" "}
                         </option>
                         {this.state.states.map((e, key) => {
                           return <option key={key}>{e.name}</option>;
-                        })}
-                      </select>
+                        })} */}
+                      </Field>
+                      {touched.state && errors.state ? (
+                        <div className="formErrors">{errors.state}</div>
+                      ) : null}
                     </div>
-                    {touched.state && errors.state ? (
-                      <div className="formErrors">{errors.state}</div>
-                    ) : null}
                   </div>
                   <div className="row">
                     <div className="inputGroup">
                       <label>
                         City <i className="text-danger">*</i>{" "}
                       </label>
-                      <select
+                      <Field
                         style={{borderRadius: "17px", padding: "4px"}}
                         className="form-select"
                         onChange={handleChange}
+                        name="city"
                       >
-                        <option value="Select City">{this.state.city}</option>
+                        {/* <option value="Select City">{this.state.city}</option>
                         {this.state.cities.map((e, key) => {
                           return <option key={key}>{e}</option>;
-                        })}
-                      </select>
+                        })} */}
+                      </Field>
+                      {touched.city && errors.city ? (
+                        <div className="formErrors">{errors.city}</div>
+                      ) : null}
                     </div>
-                    {touched.city && errors.city ? (
-                      <div className="formErrors">{errors.city}</div>
-                    ) : null}
+
                     <div className="inputGroup">
                       <label htmlFor="pincode">
                         Pincode <i className="text-danger">*</i>
@@ -214,15 +220,15 @@ function profile() {
                       <Field
                         type="pincode"
                         style={{borderRadius: "17px"}}
-                        name="pincode"
+                        name="pinCode"
                         autoComplete="off"
                         onChange={handleChange}
                         placeholder="Pincode"
                       />
+                      {touched.pinCode && errors.pinCode ? (
+                        <div className="formErrors">{errors.pinCode}</div>
+                      ) : null}
                     </div>
-                    {touched.pincode && errors.pincode ? (
-                      <div className="formErrors">{errors.pincode}</div>
-                    ) : null}
                   </div>
                   <div className="cont">
                     <div className="vertical-center">
@@ -239,6 +245,6 @@ function profile() {
       </Formik>
     </div>
   );
-}
+};
 
-export default profile;
+export default CustomerProfile;

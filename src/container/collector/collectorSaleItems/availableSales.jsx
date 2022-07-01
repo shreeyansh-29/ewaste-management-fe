@@ -6,7 +6,7 @@ import {collectorAvailableRequest} from "../../../redux/action/collector/collect
 import SearchIcon from "@material-ui/icons/Search";
 import {isEmpty} from "lodash";
 
-export default function availableSales() {
+const AvailableSales = () => {
   const {useState} = React;
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorAvailable);
@@ -139,4 +139,6 @@ export default function availableSales() {
       />
     </div>
   );
-}
+};
+
+export default AvailableSales;

@@ -35,7 +35,7 @@ const options = {
   height: "800px",
 };
 
-export default function EWasteOrg() {
+const EWasteOrg = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(false);
   let res = useSelector((state) => state.collectorEWasteItems);
@@ -69,4 +69,6 @@ export default function EWasteOrg() {
       options={options}
     />
   );
-}
+};
+
+export default EWasteOrg;

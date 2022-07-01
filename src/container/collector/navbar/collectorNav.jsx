@@ -15,7 +15,7 @@ import {collectorNotificationCountRequest} from "../../../redux/action/collector
 import {isEmpty} from "lodash";
 import {collectorNotificationDataRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationDataAction";
 
-function collectorNav() {
+const CollectorNav = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorProfile);
   let result = useSelector((state) => state.collectorNotificationCount);
@@ -203,6 +203,6 @@ function collectorNav() {
       </Navbar>
     </>
   );
-}
+};
 
-export default collectorNav;
+export default CollectorNav;

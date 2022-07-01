@@ -36,7 +36,7 @@ const options = {
   height: "400px",
 };
 
-export default function Revenue() {
+const Revenue = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorRevenueChart);
   useEffect(() => {
@@ -61,4 +61,5 @@ export default function Revenue() {
       options={options}
     />
   );
-}
+};
+export default Revenue;

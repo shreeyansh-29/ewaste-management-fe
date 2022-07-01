@@ -8,7 +8,8 @@ import "../customer.css";
 import {TOAST_SUCCESS4} from "../../constant/constant";
 import Toast from "../../components/toast";
 import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";
-export default function ViewCollectors(props) {
+
+const ViewCollectors = (props) => {
   const {useState} = React;
   console.log(props);
   const dispatch = useDispatch();
@@ -130,4 +131,5 @@ export default function ViewCollectors(props) {
       </div>
     </div>
   );
-}
+};
+export default ViewCollectors;

@@ -6,7 +6,7 @@ import CollectorData from "./vendor Analytics/collectorData";
 import CollCat from "./vendor Analytics/category";
 import CategoryCarousel from "../categoryCarousel";
 
-function VendorHome() {
+const VendorHome = () => {
   return (
     <>
       <div className="home">
@@ -58,6 +58,6 @@ function VendorHome() {
       </div>
     </>
   );
-}
+};
 
 export default VendorHome;

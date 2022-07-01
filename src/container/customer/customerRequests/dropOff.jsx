@@ -10,7 +10,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import {TOAST_ERROR4, TOAST_WARN1} from "../../constant/constant";
 import Toast from "../../components/toast";
 import {customerDropOffRequest} from "../../../redux/action/customer/customerDropOffAction/customerDropOffAction";
-export default function DropOff() {
+
+const DropOff = () => {
   const {useState} = React;
 
   const dispatch = useDispatch();
@@ -165,4 +166,6 @@ export default function DropOff() {
       </div>
     </div>
   );
-}
+};
+
+export default DropOff;

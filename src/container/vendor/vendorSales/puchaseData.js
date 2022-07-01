@@ -2,7 +2,7 @@
 import React from "react";
 import "../../customer/customer.css";
 
-function PuchaseData(props) {
+const PuchaseData = (props) => {
   return (
     <>
       <div className="popup-box">
@@ -50,5 +50,5 @@ function PuchaseData(props) {
       </div>
     </>
   );
-}
+};
 export default PuchaseData;

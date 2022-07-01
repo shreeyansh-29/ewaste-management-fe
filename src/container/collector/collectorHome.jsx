@@ -7,7 +7,7 @@ import Revenue from "./collectorAnalytics/revenueChart";
 import "./Collector.css";
 import CategoryCarousel from "../categoryCarousel";
 
-function CollectorHome() {
+const CollectorHome = () => {
   return (
     <div className="home">
       <div className="lg_container">
@@ -62,6 +62,6 @@ function CollectorHome() {
       </div>
     </div>
   );
-}
+};
 
 export default CollectorHome;

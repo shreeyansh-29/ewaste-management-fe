@@ -9,10 +9,10 @@ import {TOAST_WARN3} from "../../constant/constant";
 import {vendorMyOrdersRequest} from "../../../redux/action/vendor/vendorMyOrdersAction/vendorMyOrdersAction";
 import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
-
 toast.configure();
 export const ProfileIcon = FaUserCircle;
-export default function MyOrders() {
+
+const MyOrders = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.vendorMyOrders);
   const {useState} = React;
@@ -235,4 +235,5 @@ export default function MyOrders() {
       </div>
     </div>
   );
-}
+};
+export default MyOrders;

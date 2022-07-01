@@ -11,7 +11,8 @@ import {CUSTOMER_REQUEST_COMPLETED} from "../../../constant/constant";
 export const ProfileIcon = FaUserCircle;
 
 toast.configure();
-export default function Completed() {
+
+const Completed = () => {
   const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -215,4 +216,6 @@ export default function Completed() {
       </div>
     </>
   );
-}
+};
+
+export default Completed;
