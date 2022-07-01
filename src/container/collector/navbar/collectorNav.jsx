@@ -18,8 +18,8 @@ import {collectorNotificationDataRequest} from "../../../redux/action/collector/
 function collectorNav() {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorProfile);
-  let result2 = useSelector((state) => state.collectorNotificationData);
   let result = useSelector((state) => state.collectorNotificationCount);
+  let result2 = useSelector((state) => state.collectorNotificationData);
   const [count, setCount] = useState();
   useEffect(() => {
     dispatch(collectorProfileRequest());

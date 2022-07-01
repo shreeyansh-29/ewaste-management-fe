@@ -9,8 +9,7 @@ import * as types from "../../../config/actionType";
 function* customerNotificationCountSaga() {
   try {
     let response = yield call(customerNotificationCountService);
-    // console.log("saga", response);
-    yield put(customerNotificationCountSuccess(response));
+    yield put(customerNotificationCountSuccess(response.data));
   } catch (error) {
     yield put(customerNotificationCountError(error));
   }

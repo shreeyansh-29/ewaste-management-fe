@@ -15,7 +15,6 @@ export const collectorNotificationDataReducer = (
     case types.COLLECTOR_NOTIFICATION_DATA_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_NOTIFICATION_DATA_SUCCESS:
-      console.log("Success reducer", action);
       return {...state, data: action.payload};
     case types.COLLECTOR_NOTIFICATION_DATA_ERROR:
       return {...state, error: action};

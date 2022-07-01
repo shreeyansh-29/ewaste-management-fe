@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+/* eslint-disable indent */
+import React, {useEffect, useState} from "react";
 import {
   NavLogoutBtn,
   NavNotiIcon,
@@ -7,50 +7,54 @@ import {
 import ".././customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
-import api from "../../../core/utilities/httpProvider";
 import Swal from "sweetalert2";
-import {CUSTOMER_NOTIFICATION_MARKASREAD} from "../../constant/constant";
-import {customerNameRequest} from "../../../redux/action/customer/customerNameAction/customerNameAction";
 import {useDispatch, useSelector} from "react-redux";
-// import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
-
-function CustomerNav() {
+import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
+import {customerNotificationDataRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationDataAction";
+import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
+import {isEmpty} from "lodash";
+function customerNav() {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerName);
-  // console.log("res", res);
-  // let result = useSelector((state) => state.customerNotification);
-  // console.log("notication", result);
-
+  let res = useSelector((state) => state.customerProfile);
+  let result = useSelector((state) => state.customerNotificationCount);
+  let result2 = useSelector((state) => state.customerNotificationData);
+  const name = res.data.firstName;
   useEffect(() => {
-    dispatch(customerNameRequest());
-    // dispatch(customerNotificationCountRequest());
+    dispatch(customerProfileRequest());
+    dispatch(customerNotificationCountRequest());
   }, []);
-
-  const navigate = useNavigate();
-  const [show, setShow] = useState(false);
-  const [List, setList] = useState([]);
-  var list = ["hh"];
-  const c = localStorage.getItem("count");
-  const name = res.data.payload;
-  const markAsRead = async () => {
-    var res = await api.post(CUSTOMER_NOTIFICATION_MARKASREAD);
-    res = await res.json();
-
-    if (res.status == "success") {
-      for (var i = 0; i < res.data.length; i++) {
-        list[i] = res.data[i].message;
-      }
-    } else {
-      list = ["No New Notifications"];
-    }
-    setList(list);
+  const markAsRead = () => {
+    dispatch(customerNotificationDataRequest());
     handle();
   };
+  const [show, setShow] = useState(false);
+  const [count, setCount] = useState();
+  const [List, setList] = useState([]);
+  var list = ["No New Notifications"];
+  useEffect(() => {
+    if (
+      result?.data.payload !== "No New Notification" &&
+      isEmpty(result?.data) !== true
+    ) {
+      localStorage.setItem("count", result?.data?.payload.length);
+      setCount(localStorage.getItem("count"));
+    }
+  }, [result]);
 
+  useEffect(() => {
+    if (result2?.data.status === "success") {
+      for (var i = 0; i < result2.data.data.length; i++) {
+        list[i] = result2.data.data[i].message;
+      }
+      setList(list);
+    } else {
+      list = ["No New Notifications"];
+      setList(list);
+    }
+  }, [result2]);
   const displayNotification = (n) => {
     return (
       <h1>
-        {" "}
         <span className="notification">{n}</span>
       </h1>
     );
@@ -62,6 +66,7 @@ function CustomerNav() {
       setList(list);
     }
     localStorage.removeItem("count");
+    setCount(0);
   };
   return (
     <>
@@ -84,10 +89,20 @@ function CustomerNav() {
               className="notification_button"
             >
               <div className="icon-button__badge">
-                {c === "0" ? "" : <div className="navbarCount">{c}</div>}
+                {count === "" ||
+                count === "undefined" ||
+                count === null ||
+                count === 0 ? (
+                  ""
+                ) : (
+                  <div className="navbarCount">{count}</div>
+                )}
                 <NavNotiIcon
                   style={
-                    c === "0" || c === null
+                    count === "" ||
+                    count === null ||
+                    count === "undefined" ||
+                    count === 0
                       ? {color: "white", marginLeft: "24.5px"}
                       : {color: "white", marginBottom: "20px"}
                   }
@@ -112,16 +127,20 @@ function CustomerNav() {
                 id="collasible-nav-dropdown"
                 style={{padding: "10px"}}
               >
-                <NavDropdown.Item href="./PickUp">Pick Up</NavDropdown.Item>
-                <NavDropdown.Item href="./DropOff">Drop Off</NavDropdown.Item>
-                <NavDropdown.Item href="/MyRequests">
+                <NavDropdown.Item href="/Request/PickUp">
+                  Pick Up
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/Request/DropOff">
+                  Drop Off
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/Request/MyRequests">
                   My Requests
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="./Waste" style={{padding: "18px"}}>
+              <Nav.Link href="/Drives/Waste" style={{padding: "18px"}}>
                 Drives
               </Nav.Link>
-              <Nav.Link style={{padding: "18px"}} href="./EditProfile">
+              <Nav.Link style={{padding: "18px"}} href="/EditProfile">
                 Profile
               </Nav.Link>
               <Nav.Link>
@@ -138,9 +157,7 @@ function CustomerNav() {
                     }).then((result) => {
                       if (result.isConfirmed) {
                         localStorage.clear();
-
-                        navigate("/Signin");
-                        document.location.reload();
+                        window.location.href = "/Signin";
                       }
                     });
                   }}
@@ -156,4 +173,4 @@ function CustomerNav() {
   );
 }
 
-export default CustomerNav;
+export default customerNav;
