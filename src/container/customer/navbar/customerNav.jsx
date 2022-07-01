@@ -13,7 +13,8 @@ import {customerProfileRequest} from "../../../redux/action/customer/customerPro
 import {customerNotificationDataRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationDataAction";
 import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
 import {isEmpty} from "lodash";
-function customerNav() {
+
+export const customerNav = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerProfile);
   let result = useSelector((state) => state.customerNotificationCount);
@@ -171,6 +172,6 @@ function customerNav() {
       </Navbar>
     </>
   );
-}
+};
 
 export default customerNav;
