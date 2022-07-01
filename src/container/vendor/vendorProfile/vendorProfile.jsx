@@ -1,55 +1,61 @@
+/* eslint-disable indent */
 import {Field, Form, Formik} from "formik";
-import React, {useEffect} from "react";
-// import * as Yup from "yup";
+import React, {useEffect, useState} from "react";
+import * as Yup from "yup";
 import "../vendor.css";
-// import {isEmpty} from "lodash";
+import {statescity} from "../../signUp/states";
 import Toast from "../../components/toast";
 import {
-  //   ADDRESS_REQUIRED,
-  //   // CITY_REQUIRED,
-  //   FNAME_REQUIRED,
-  //   GSTNO_REQUIRED,
-  //   LNAME_REQUIRED,
-  //   MOBILE_REQUIRED,
-  //   PASSWORD_REQUIRED,
-  //   PINCODE_REQUIRED,
-  //   REGISTRATION_REQUIRED,
-  //   // STATE_REQUIRED,
+  ADDRESS_REQUIRED,
+  FNAME_REQUIRED,
+  GSTNO_REQUIRED,
+  LNAME_REQUIRED,
+  MOBILE_REQUIRED,
+  PINCODE_REQUIRED,
+  REGISTRATION_REQUIRED,
   TOAST_SUCCESS5,
-  //   // PINCODE_INVALID,
 } from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {vendorProfileRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileAction";
 import {vendorProfileEditRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileEditAction";
+import {isEmpty} from "lodash";
 
-// const pinCodeReg = /^\d{6}$/;
-// let validationSchema = Yup.object().shape({
-//   firstName: Yup.string().required(FNAME_REQUIRED),
-//   lastName: Yup.string().required(LNAME_REQUIRED),
-//   // city: Yup.string().required(CITY_REQUIRED),
-//   password: Yup.string().required(PASSWORD_REQUIRED),
-//   // state: Yup.string().required(STATE_REQUIRED),
-//   mobileNo: Yup.string().required(MOBILE_REQUIRED),
-//   address1: Yup.string().required(ADDRESS_REQUIRED),
-//   pinCode: Yup.string().required(PINCODE_REQUIRED),
-//   gstNo: Yup.string().required(GSTNO_REQUIRED),
-//   registrationNo: Yup.string().required(REGISTRATION_REQUIRED),
-// });
+let validationSchema = Yup.object().shape({
+  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
+  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
+  mobileNo: Yup.string().required(MOBILE_REQUIRED).nullable(),
+  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
+  pinCode: Yup.string().required(PINCODE_REQUIRED).nullable(),
+  gstNo: Yup.string().required(GSTNO_REQUIRED).nullable(),
+  registrationNo: Yup.string().required(REGISTRATION_REQUIRED).nullable(),
+});
 
 const VendorProfile = () => {
+  const [state, setState] = useState();
+  const [city, setCity] = useState();
   const dispatch = useDispatch();
 
-  let res = useSelector((state) => state.vendorProfile);
-  console.log("res", res);
+  let res = useSelector((state) => state.vendorProfile?.data);
   useEffect(() => {
     dispatch(vendorProfileRequest());
   }, []);
-
+  const [initialcities, setCities] = useState([]);
+  useEffect(() => {
+    setState(res.state);
+    setCity(res.city);
+  }, [res]);
   const handleSubmit = (values) => {
-    const data = {values, password: res?.data.password};
-    console.log(data);
+    const data = {values, password: res?.password, state: state, city: city};
     dispatch(vendorProfileEditRequest(data));
     Toast.success(TOAST_SUCCESS5, 1500);
+    setState();
+  };
+  const changeState = (event) => {
+    setState(event.target.value);
+    setCities(statescity.find((obj) => obj.name === event.target.value));
+  };
+  const changeCity = (event) => {
+    setCity(event.target.value);
   };
 
   return (
@@ -57,20 +63,19 @@ const VendorProfile = () => {
       <Formik
         enableReinitialize
         initialValues={{
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          email: res.data.email,
-          mobileNo: res.data.mobileNo,
-          address1: res.data.address1,
-          state: res?.data.state,
-          city: res?.data.city,
-          pinCode: res.data.pinCode,
-          gstNo: res?.data.gstNo,
-          registrationNo: res?.data.registrationNo,
+          firstName: res.firstName,
+          lastName: res.lastName,
+          email: res.email,
+          mobileNo: res.mobileNo,
+          address1: res.address1,
+          pinCode: res.pinCode,
+          gstNo: res?.gstNo,
+          registrationNo: res?.registrationNo,
         }}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         validator={() => ({})}
         onSubmit={(values) => {
+          console.log(values);
           handleSubmit(values);
         }}
       >
@@ -177,20 +182,20 @@ const VendorProfile = () => {
                     <label>
                       State <i className="text-danger">*</i>
                     </label>
-                    <Field
+                    <select
                       style={{
                         borderRadius: "17px",
                         padding: "4px",
                       }}
                       className="form-select"
-                      name="state"
-                      onChange={handleChange}
+                      value={state}
+                      onChange={(e) => changeState(e)}
                     >
-                      {/* <option value="Select State">{this.state.state} </option>
-                      {this.state.states.map((e, key) => {
+                      <option value="Select State">{state} </option>
+                      {statescity.map((e, key) => {
                         return <option key={key}>{e.name}</option>;
-                      })} */}
-                    </Field>
+                      })}
+                    </select>
                     {touched.state && errors.state ? (
                       <div className="formErrors">{errors.state}</div>
                     ) : null}
@@ -201,21 +206,22 @@ const VendorProfile = () => {
                     <label>
                       City <i className="text-danger">*</i>{" "}
                     </label>
-                    <Field
+                    <select
                       style={{
                         borderRadius: "17px",
                         padding: "4px",
                       }}
-                      type="select"
                       className="form-select"
-                      name="city"
-                      onChange={handleChange}
+                      value={city}
+                      onChange={(e) => changeCity(e)}
                     >
-                      {/* <option value="Select City">{this.state.city}</option>
-                      {this.state.cities.map((e, key) => {arget.valu
-                        return <option key={key}>{e}</option>;
-                      })} */}
-                    </Field>
+                      <option value="Select City">{city}</option>
+                      {isEmpty(initialcities) !== true
+                        ? initialcities?.cities.map((e, key) => {
+                            return <option key={key}>{e}</option>;
+                          })
+                        : ""}
+                    </select>
                     {touched.city && errors.city ? (
                       <div className="formErrors">{errors.city}</div>
                     ) : null}
@@ -273,11 +279,7 @@ const VendorProfile = () => {
                 </div>
                 <div className="cont">
                   <div className="vertical-center">
-                    <button
-                      type="button"
-                      className="profilebtn"
-                      // onClick={submitForm}
-                    >
+                    <button type="submit" className="profilebtn">
                       Update
                     </button>
                   </div>

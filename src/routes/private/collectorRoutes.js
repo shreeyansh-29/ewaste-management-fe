@@ -1,5 +1,6 @@
 import React from "react";
 import {Routes, Route} from "react-router-dom";
+
 import CollectorHome from "../../container/collector/collectorHome";
 import CollectorNav from "../../container/collector/navbar/collectorNav";
 import CollectorProfile from "../../container/collector/profile/collectorProfile";

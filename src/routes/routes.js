@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import PublicRoutes from "./public/publicRoutes";
 import CustomerPrivateRoutes from "./private/customerRoutes";
@@ -14,6 +15,17 @@ const AllRoutes = () => {
       {role === "CUSTOMER" ? <CustomerPrivateRoutes /> : ""}
       {role === "COLLECTOR" ? <CollectorPrivateRoutes /> : ""}
       {role === "VENDOR" ? <VendorPrivateRoutes /> : ""}
+      {/* <Routes>
+        <Route
+          path="/*"
+          element={
+            <Box>
+              <Heading>404</Heading>
+              <Text>Page Not Found</Text>
+            </Box>
+          }
+        />
+      </Routes> */}
     </BrowserRouter>
   );
 };

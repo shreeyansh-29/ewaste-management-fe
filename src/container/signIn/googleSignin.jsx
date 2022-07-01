@@ -12,7 +12,7 @@ const GoogleSignin = () => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   let res = useSelector((state) => state.googleSignIn?.data);
-  console.log(res);
+  // console.log(res);
 
   useEffect(() => {
     if (isEmpty(res) !== true) {
@@ -34,7 +34,7 @@ const GoogleSignin = () => {
         }
       }
     }
-  }, []);
+  }, [res]);
 
   const onSuccess = async (result) => {
     setEmail(result.profileObj.email);
