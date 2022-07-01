@@ -1,6 +1,7 @@
 import api from "../../../../core/utilities/httpProvider";
-import * as types from "../../../../container/constant/constant";
+import {COLLECTOR_NOTIFICATION_MARKASREAD} from "../../../../container/constant/constant";
 
 export const collectorNotificationDataService = () => {
-  return api.post(types.COLLECTOR_NOTIFICATION_MARKASREAD);
+  console.log("hy");
+  return api.post(COLLECTOR_NOTIFICATION_MARKASREAD);
 };

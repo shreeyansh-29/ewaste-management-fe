@@ -1,15 +1,28 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MaterialTable from "material-table";
 import "../Collector.css";
-import {
-  COLLECTOR_REQUEST_PENDING,
-  TOAST_SUCCESS8,
-} from "../../constant/constant";
-import api from "../../../core/utilities/httpProvider";
+import {TOAST_SUCCESS8} from "../../constant/constant";
 import Toast from "../../components/toast";
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
+import {collectorPendingRequest} from "../../../redux/action/collector/collectorPendingAction/collectorPendingAction";
+import {isEmpty} from "lodash";
+import {collectorPendingAcceptRequest} from "../../../redux/action/collector/collectorPendingAcceptAction/collectorPendingAcceptAction";
+
 export default function CollectorRequests() {
-  const { useState } = React;
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.collectorPending);
+  console.log(res);
+  React.useEffect(() => {
+    dispatch(collectorPendingRequest());
+  }, []);
+  const {useState} = React;
   var orderid = 0;
+  React.useEffect(() => {
+    if (isEmpty(res?.data) !== true || res?.data.status === "success") {
+      setData(res.data.data);
+    }
+  }, [res]);
   const [data, setData] = useState();
   const [columns] = useState([
     {
@@ -108,42 +121,16 @@ export default function CollectorRequests() {
     e.preventDefault();
     orderid = datas.orderId;
 
-    await api.post(
-      `http://localhost:8083/collector/request/pending/accept?order=${orderid}`
-    );
-    Toast.success(TOAST_SUCCESS8,1500);
+    dispatch(collectorPendingAcceptRequest(orderid));
+    Toast.success(TOAST_SUCCESS8, 1500);
 
     setTimeout(() => {
       window.location.href = "/RequestSummary";
     }, 3000);
   };
-  const handledate = (res) => {
-    res.map((obj) => {
-      if (obj.requestType === "PickUp") {
-        if (obj.scheduledTime === "10") {
-          obj.scheduledTime = " 10:00-12:00";
-        } else if (obj.scheduledTime === "12") {
-          obj.scheduledTime = " 12:00-14:00";
-        } else if (obj.scheduledTime === "14") {
-          obj.scheduledTime = " 14:00-16:00";
-        } else if (obj.scheduledTime === "16") {
-          obj.scheduledTime = " 16:00-18:00";
-        }
-      }
-    });
-  };
-  useEffect(() => {
-    (async function () {
-      const res = await api.get(COLLECTOR_REQUEST_PENDING);
-      if (res.status === "success") {
-        handledate(res.data);
-        setData(res.data);
-      }
-    })();
-  }, []);
 
   return (
-    <div style={{ padding: "150px 30px 0 30px" }}>
+    <div style={{padding: "150px 30px 0 30px"}}>
       <h2
         style={{
           textAlign: "center",

@@ -41,6 +41,14 @@ import {viewColProfileReducer} from "./vendor/viewColProfileReducer";
 import {viewAcceptColReducer} from "./vendor/viewAcceptColReducer";
 import {viewCollectorProfileReducer} from "./customer/viewCollectorProfileReducer";
 import {viewCustomerProfileReducer} from "./collector/viewCustomerProfileReducer";
+import {vendorProfileEditReducer} from "./vendor/vendorProfileReducer/vendorProfileEditReducer";
+import {customerProfileEditReducer} from "./customer/customerProfileReducer/customerProfileEditReducer";
+import {collectorProfileEditReducer} from "./collector/collectorProfileReducer/collectorProfileEditReducer";
+import {customerCountCollReducer} from "./customer/customerPickUpReducer/customerCountCollReducer";
+import {customerPickUpReducer} from "./customer/customerPickUpReducer/customerPickUpReducer";
+import {collectorPendingReducer} from "./collector/collectorPendingReducer/collectorPendingReducer";
+import {collectorPendingAcceptReducer} from "./collector/collectorPendingAcceptReducer/collectorPendingAcceptReducer";
+import {collectorSummaryReducer} from "./collector/collectorSummaryReducer/collectorSummaryReducer";
 
 const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
@@ -51,6 +59,9 @@ const rootReducer = combineReducers({
   customerNotificationCount: customerNotificationCountReducer,
   customerNotificationData: customerNotificationDataReducer,
   customerProfile: customerProfileReducer,
+  customerProfileEdit: customerProfileEditReducer,
+  customerPickUp: customerPickUpReducer,
+  customerCountColl: customerCountCollReducer,
   customerDropOff: customerDropOffReducer,
   customerViewCollector: customerViewCollectorsReducer,
   customerEWasteDrives: customerEWasteReducer,
@@ -61,6 +72,7 @@ const rootReducer = combineReducers({
   collectorNotificationCount: collectorNotificationCountReducer,
   collectorNotificationData: collectorNotificationDataReducer,
   collectorProfile: collectorProfileReducer,
+  collectorProfileEdit: collectorProfileEditReducer,
   collectorEWasteDrives: collectorEWasteDrivesReducer,
   collectorEWasteItems: collectorEWasteItemsReducer,
   collectorRevenueChart: collectorRevenueChartReducer,
@@ -72,8 +84,12 @@ const rootReducer = combineReducers({
   collectorMyDrivesStatus: collectorMyDrivesStatusReducer,
   collectorAvailable: collectorAvailableReducer,
   collectorSold: collectorSoldReducer,
+  collectorPending: collectorPendingReducer,
+  collectorPendingAccept: collectorPendingAcceptReducer,
+  collectorSummary: collectorSummaryReducer,
   vendorName: vendorNameReducer,
   vendorProfile: vendorProfileReducer,
+  vendorProfileEdit: vendorProfileEditReducer,
   vendorCategory: vendorCategoryReducer,
   vendorCatgItems: vendorCatgItemsReducer,
   vendorCollectorData: vendorCollectorDataReducer,

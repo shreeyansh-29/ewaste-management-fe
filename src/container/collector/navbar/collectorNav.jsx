@@ -1,57 +1,58 @@
+/* eslint-disable indent */
 import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   NavLogoutBtn,
   NavNotiIcon,
 } from "../../components/navbar/navbarelements";
-import {collectorNameRequest} from "../../../redux/action/collector/collectorNameAction/collectorNameAction";
-import api from "../../../core/utilities/httpProvider";
 import "../../customer/customer.css";
 import "../Collector.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
-import {COLLECTOR_NOTIFICATION_MARKASREAD} from "../../constant/constant";
-import {useDispatch} from "react-redux";
-import {useSelector} from "react-redux";
-// import {collectorNotificationCountRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationCountAction";
-function CollectorNav() {
-  const navigate = useNavigate();
+import {useDispatch, useSelector} from "react-redux";
+import {collectorProfileRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileAction";
+import {collectorNotificationCountRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationCountAction";
+import {isEmpty} from "lodash";
+import {collectorNotificationDataRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationDataAction";
+
+function collectorNav() {
   const dispatch = useDispatch();
-  const res = useSelector((state) => state.collectorName);
-  // let result = useSelector((state) => state.collectorNotificationCount);
-  // console.log(res);
-  // console.log("notification", result);
-
+  let res = useSelector((state) => state.collectorProfile);
+  let result2 = useSelector((state) => state.collectorNotificationData);
+  let result = useSelector((state) => state.collectorNotificationCount);
+  const [count, setCount] = useState();
   useEffect(() => {
-    dispatch(collectorNameRequest());
-    // dispatch(collectorNotificationCountRequest());
+    dispatch(collectorProfileRequest());
+    dispatch(collectorNotificationCountRequest());
   }, []);
-
+  const markAsRead = () => {
+    dispatch(collectorNotificationDataRequest());
+    handle();
+  };
+  useEffect(() => {
+    if (
+      result?.data.payload !== "No New Notification" &&
+      isEmpty(result?.data) !== true
+    ) {
+      localStorage.setItem("count", result?.data?.payload.length);
+      setCount(localStorage.getItem("count"));
+    }
+  }, [result]);
+  useEffect(() => {
+    if (result2?.data.status === "success") {
+      for (var i = 0; i < result2.data.data.length; i++) {
+        list[i] = result2.data.data[i].message;
+      }
+      setList(list);
+    } else {
+      list = ["No New Notifications"];
+      setList(list);
+    }
+  }, [result2]);
   const [show, setShow] = useState(false);
   const [List, setList] = useState([]);
   var list = ["hh"];
-  const c = localStorage.getItem("count");
-  const name = res.data.payload;
-  const markAsRead = async () => {
-    try {
-      var res = await api.post(COLLECTOR_NOTIFICATION_MARKASREAD);
-      res = await res.json();
-
-      if (res.status == "success") {
-        for (var i = 0; i < res.data.length; i++) {
-          list[i] = res.data[i].message;
-        }
-      } else {
-        list = ["No New Notifications"];
-      }
-      setList(list);
-      handle();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const name = res.data.firstName;
   const displayNotification = (n) => {
     return (
       <h1>
@@ -66,7 +67,9 @@ function CollectorNav() {
       list = ["No New Notifications"];
       setList(list);
     }
+
     localStorage.removeItem("count");
+    setCount(0);
   };
   return (
     <>
@@ -78,7 +81,7 @@ function CollectorNav() {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="./CollectorHome" style={{marginLeft: "0.5%"}}>
+          <Navbar.Brand href="/CollectorHome" style={{marginLeft: "0.5%"}}>
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
           <Nav.Item className="bell">
@@ -87,7 +90,10 @@ function CollectorNav() {
               onClick={() => markAsRead()}
             >
               <div className="icon-button__badge1">
-                {c === "0" ? (
+                {count === "" ||
+                count === "undefined" ||
+                count === null ||
+                count === 0 ? (
                   ""
                 ) : (
                   <div
@@ -101,12 +107,15 @@ function CollectorNav() {
                       position: "relative",
                     }}
                   >
-                    {c}
+                    {count}
                   </div>
                 )}
                 <NavNotiIcon
                   style={
-                    c === "0" || c === null
+                    count === "" ||
+                    count === null ||
+                    count === "undefined" ||
+                    count === 0
                       ? {color: "white"}
                       : {color: "white", marginBottom: "20px"}
                   }
@@ -130,14 +139,11 @@ function CollectorNav() {
                 id="collasible-nav-dropdown"
                 style={{padding: "10px"}}
               >
-                <NavDropdown.Item href="./CollectorRequests">
+                <NavDropdown.Item href="/Request/CollectorRequests">
                   Request
                 </NavDropdown.Item>
-                <NavDropdown.Item href="./RequestSummary">
+                <NavDropdown.Item href="/Request/MyRequests">
                   My Requests
-                </NavDropdown.Item>
-                <NavDropdown.Item href="./Feedbacks">
-                  My Feedback
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
@@ -145,20 +151,22 @@ function CollectorNav() {
                 id="collasible-nav-dropdown"
                 style={{padding: "10px"}}
               >
-                <NavDropdown.Item href="./OrganizeDrive">
+                <NavDropdown.Item href="/Drive/OrganizeDrive">
                   Organize Drive
                 </NavDropdown.Item>
-                <NavDropdown.Item href="./MyDrives">My Drives</NavDropdown.Item>
+                <NavDropdown.Item href="/Drive/MyDrives">
+                  My Drives
+                </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown
                 title="Sales"
                 id="collasible-nav-dropdown"
                 style={{padding: "10px"}}
               >
-                <NavDropdown.Item href="./ItemsForSale">
+                <NavDropdown.Item href="/Sales/ItemsForSale">
                   On Sale
                 </NavDropdown.Item>
-                <NavDropdown.Item href="./SaleItems">
+                <NavDropdown.Item href="/Sales/SaleItems">
                   Sales Summary
                 </NavDropdown.Item>
               </NavDropdown>
@@ -181,9 +189,8 @@ function CollectorNav() {
                     confirmButtonText: "Logout",
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      navigate("/Signin");
+                      window.location.href = "/Signin";
                       localStorage.clear();
-                      document.location.reload();
                     }
                   });
                 }}
@@ -198,4 +205,4 @@ function CollectorNav() {
   );
 }
 
-export default CollectorNav;
+export default collectorNav;

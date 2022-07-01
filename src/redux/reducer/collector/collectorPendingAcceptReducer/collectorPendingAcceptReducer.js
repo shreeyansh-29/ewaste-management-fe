@@ -13,7 +13,7 @@ export const collectorPendingAcceptReducer = (state = initialState, action) => {
       return {...state, isLoading: false};
     case types.COLLECTOR_PENDING_ACCEPT_SUCCESS:
       console.log(action);
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.COLLECTOR_PENDING_ACCEPT_ERROR:
       return {...state, error: action};
     default:

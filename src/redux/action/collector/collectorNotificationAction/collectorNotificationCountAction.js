@@ -7,7 +7,6 @@ export const collectorNotificationCountRequest = () => {
 };
 
 export const collectorNotificationCountSuccess = (payload) => {
-  console.log("success action", payload);
   return {
     type: types.COLLECTOR_NOTIFICATION_COUNT_SUCCESS,
     payload,

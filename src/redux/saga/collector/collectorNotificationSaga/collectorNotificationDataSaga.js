@@ -9,7 +9,7 @@ import {collectorNotificationDataService} from "../../../service/collector/colle
 function* collectorNotificationDataSaga() {
   try {
     let response = yield call(collectorNotificationDataService);
-    console.log("saga", response);
+    response = yield response.json();
     yield put(collectorNotificationDataSuccess(response));
   } catch (error) {
     yield put(collectorNotificationDataError(error));

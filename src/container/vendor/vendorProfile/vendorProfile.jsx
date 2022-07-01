@@ -1,60 +1,57 @@
 import {Field, Form, Formik} from "formik";
 import React, {useEffect} from "react";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import "../vendor.css";
 // import {isEmpty} from "lodash";
+import Toast from "../../components/toast";
 import {
-  ADDRESS_REQUIRED,
-  CITY_REQUIRED,
-  FNAME_REQUIRED,
-  LNAME_REQUIRED,
-  // MOBILE_INVALID,
-  // MOBILE_REQUIRED,
-  PASSWORD_REQUIRED,
-  PINCODE_REQUIRED,
-  STATE_REQUIRED,
-  //   TOAST_SUCCESS5,
-  PINCODE_INVALID,
+  //   ADDRESS_REQUIRED,
+  //   // CITY_REQUIRED,
+  //   FNAME_REQUIRED,
+  //   GSTNO_REQUIRED,
+  //   LNAME_REQUIRED,
+  //   MOBILE_REQUIRED,
+  //   PASSWORD_REQUIRED,
+  //   PINCODE_REQUIRED,
+  //   REGISTRATION_REQUIRED,
+  //   // STATE_REQUIRED,
+  TOAST_SUCCESS5,
+  //   // PINCODE_INVALID,
 } from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {vendorProfileRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileAction";
+import {vendorProfileEditRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileEditAction";
 
-const pinCodeReg = /^\d{6}$/;
-let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required(FNAME_REQUIRED),
-  lastName: Yup.string().required(LNAME_REQUIRED),
-  city: Yup.string().required(CITY_REQUIRED),
-  password: Yup.string().required(PASSWORD_REQUIRED),
-  state: Yup.string().required(STATE_REQUIRED),
-  // mobileNo: Yup.string().phone(MOBILE_INVALID).required(MOBILE_REQUIRED),
-  address: Yup.string().required(ADDRESS_REQUIRED),
-  pincode: Yup.string()
-    .matches(pinCodeReg, {PINCODE_INVALID})
-    .required(PINCODE_REQUIRED),
-});
+// const pinCodeReg = /^\d{6}$/;
+// let validationSchema = Yup.object().shape({
+//   firstName: Yup.string().required(FNAME_REQUIRED),
+//   lastName: Yup.string().required(LNAME_REQUIRED),
+//   // city: Yup.string().required(CITY_REQUIRED),
+//   password: Yup.string().required(PASSWORD_REQUIRED),
+//   // state: Yup.string().required(STATE_REQUIRED),
+//   mobileNo: Yup.string().required(MOBILE_REQUIRED),
+//   address1: Yup.string().required(ADDRESS_REQUIRED),
+//   pinCode: Yup.string().required(PINCODE_REQUIRED),
+//   gstNo: Yup.string().required(GSTNO_REQUIRED),
+//   registrationNo: Yup.string().required(REGISTRATION_REQUIRED),
+// });
 
-const profile = () => {
+const vendorProfile = () => {
   const dispatch = useDispatch();
-  // const [initialDetails, setInitialDetails] = React.useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  // });
+
+  let res = useSelector((state) => state.vendorProfile);
+  console.log("res", res);
   useEffect(() => {
     dispatch(vendorProfileRequest());
   }, []);
-  let res = useSelector((state) => state.vendorProfile);
-  console.log("res", res);
-  // useEffect(() => {
-  //   if (isEmpty(res?.data) !== true) {
-  //     setInitialDetails({
-  //       firstName: res.data.firstName,
-  //       lastName: res.data.lastName,
-  //       email: res.data.email,
-  //       phoneNo: res.data.mobileNo,
-  //     });
-  //   }
-  // }, [res]);
+
+  const handleSubmit = (values) => {
+    const data = {values, password: res?.data.password};
+    console.log(data);
+    dispatch(vendorProfileEditRequest(data));
+    Toast.success(TOAST_SUCCESS5, 1500);
+  };
+
   return (
     <div className="vendor" style={{marginTop: "85px"}}>
       <Formik
@@ -64,16 +61,17 @@ const profile = () => {
           lastName: res.data.lastName,
           email: res.data.email,
           mobileNo: res.data.mobileNo,
-          address: res.data.address1,
-          pinCode: res?.data.pinCode,
+          address1: res.data.address1,
+          state: res?.data.state,
+          city: res?.data.city,
+          pinCode: res.data.pinCode,
           gstNo: res?.data.gstNo,
           registrationNo: res?.data.registrationNo,
-          state: "",
-          city: "",
         }}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
+        validator={() => ({})}
         onSubmit={(values) => {
-          console.log(values);
+          handleSubmit(values);
         }}
       >
         {({errors, touched, handleChange}) => (
@@ -104,7 +102,7 @@ const profile = () => {
                       style={{borderRadius: "17px"}}
                       type="text"
                       name="firstName"
-                      placeholder="First name"
+                      placeholder="First Name"
                     />
                     {touched.firstName && errors.firstName ? (
                       <div className="formErrors">{errors.firstName}</div>
@@ -121,7 +119,7 @@ const profile = () => {
                       autoComplete="off"
                       style={{borderRadius: "17px"}}
                       onChange={handleChange}
-                      placeholder="Last name"
+                      placeholder="Last Name"
                     />
                     {touched.lastName && errors.lastName ? (
                       <div className="formErrors">{errors.lastName}</div>
@@ -166,20 +164,20 @@ const profile = () => {
                     <Field
                       type="text"
                       style={{borderRadius: "17px"}}
-                      name="address"
+                      name="address1"
                       autoComplete="off"
                       onChange={handleChange}
                       placeholder="Address Line"
                     />
-                    {touched.address && errors.address ? (
-                      <div className="formErrors">{errors.address}</div>
+                    {touched.address1 && errors.address1 ? (
+                      <div className="formErrors">{errors.address1}</div>
                     ) : null}
                   </div>
                   <div className="inputGroup">
                     <label>
                       State <i className="text-danger">*</i>
                     </label>
-                    <select
+                    <Field
                       style={{
                         borderRadius: "17px",
                         padding: "4px",
@@ -192,7 +190,7 @@ const profile = () => {
                       {this.state.states.map((e, key) => {
                         return <option key={key}>{e.name}</option>;
                       })} */}
-                    </select>
+                    </Field>
                     {touched.state && errors.state ? (
                       <div className="formErrors">{errors.state}</div>
                     ) : null}
@@ -203,20 +201,21 @@ const profile = () => {
                     <label>
                       City <i className="text-danger">*</i>{" "}
                     </label>
-                    <select
+                    <Field
                       style={{
                         borderRadius: "17px",
                         padding: "4px",
                       }}
+                      type="select"
                       className="form-select"
                       name="city"
                       onChange={handleChange}
                     >
                       {/* <option value="Select City">{this.state.city}</option>
-                      {this.state.cities.map((e, key) => {
+                      {this.state.cities.map((e, key) => {arget.valu
                         return <option key={key}>{e}</option>;
                       })} */}
-                    </select>
+                    </Field>
                     {touched.city && errors.city ? (
                       <div className="formErrors">{errors.city}</div>
                     ) : null}
@@ -225,7 +224,7 @@ const profile = () => {
                     <label htmlFor="pinCode">
                       Pincode <i className="text-danger">*</i>
                     </label>
-                    <input
+                    <Field
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="pinCode"
@@ -233,8 +232,8 @@ const profile = () => {
                       onChange={handleChange}
                       placeholder="Pincode"
                     />
-                    {touched.pincode && errors.pincode ? (
-                      <div className="formErrors">{errors.pincode}</div>
+                    {touched.pinCode && errors.pinCode ? (
+                      <div className="formErrors">{errors.pinCode}</div>
                     ) : null}
                   </div>
                 </div>
@@ -243,7 +242,7 @@ const profile = () => {
                     <label htmlFor="GSTIN">
                       GSTNo <i className="text-danger">*</i>
                     </label>
-                    <input
+                    <Field
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="gstNo"
@@ -251,12 +250,15 @@ const profile = () => {
                       onChange={handleChange}
                       placeholder="Enter GSTIN"
                     />
+                    {touched.gstNo && errors.gstNo ? (
+                      <div className="formErrors">{errors.gstNo}</div>
+                    ) : null}
                   </div>
                   <div className="inputGroup">
                     <label htmlFor="Registration Certificate No.">
                       Registration Number <i className="text-danger">*</i>
                     </label>
-                    <input
+                    <Field
                       type="text"
                       autoComplete="off"
                       name="registrationNo"
@@ -264,11 +266,18 @@ const profile = () => {
                       onChange={handleChange}
                       placeholder="Enter Registration Number"
                     />
+                    {touched.registrationNo && errors.registrationNo ? (
+                      <div className="formErrors">{errors.registrationNo}</div>
+                    ) : null}
                   </div>
                 </div>
                 <div className="cont">
                   <div className="vertical-center">
-                    <button type="submit" className="profilebtn">
+                    <button
+                      type="button"
+                      className="profilebtn"
+                      // onClick={submitForm}
+                    >
                       Update
                     </button>
                   </div>
@@ -282,7 +291,7 @@ const profile = () => {
   );
 };
 
-export default profile;
+export default vendorProfile;
 
 // import React, {Component} from "react";
 // import "../vendor.css";

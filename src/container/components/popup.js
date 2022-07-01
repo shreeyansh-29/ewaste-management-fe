@@ -138,7 +138,7 @@
 /* eslint-disable react/prop-types */
 
 import React, {useEffect, useState} from "react";
-import "./customer.css";
+import "../customer/customer.css";
 import api from "../../core/utilities/httpProvider";
 import {Formik, Field, Form} from "formik";
 function Popup(props) {

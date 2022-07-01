@@ -7,14 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const collectorPendingReducer = (state = initialState, action) => {
+export const customerCountCollReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.COLLECTOR_PENDING_REQUEST:
+    case types.CUSTOMER_COUNT_COLL_REQUEST:
       return {...state, isLoading: true};
-    case types.COLLECTOR_PENDING_SUCCESS:
-      console.log(action);
-      return {...state, data: action.payload};
-    case types.COLLECTOR_PENDING_ERROR:
+    case types.CUSTOMER_COUNT_COLL_SUCCESS:
+      console.log("success reducer", action);
+      return {...state, data: action};
+    case types.CUSTOMER_COUNT_COLL_ERROR:
       return {...state, error: action};
     default:
       return state;

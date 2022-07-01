@@ -28,11 +28,10 @@ import Sales from "./container/vendor/vendorSales/sales";
 import MyOrders from "./container/vendor/vendorSales/myOrders";
 import RequestSummary from "./container/collector/collectorsRequests/requestSummary";
 import ItemsForSale from "./container/collector/collectorSaleItems/itemsForSale";
-import Feedbacks from "./container/collector/collectorsRequests/feedbacks"
 import GlobalStyle from "./container/globalStyles";
 import ScrollToTop from "./container/components/scrollToTop";
 import SummarySales from "./container/collector/collectorSaleItems/availableSales";
-import Popup from "./container/customer/popup";
+import Popup from "./container/components/popup";
 import Waste from "./container/customer/customerRequests/waste";
 function App() {
   const role = localStorage.getItem("Roles");
@@ -86,7 +85,6 @@ function App() {
         />
         <Route path="/CustomerHome" element={<CustomerHome />} />
         <Route path="/EditProfile" element={<EditProfile />} />
-        <Route path="/Feedbacks" element={<Feedbacks/>}/>
         <Route path="/Popup" element={<Popup />} />
         <Route path="/CollectorHome" element={<CollectorHome />} />
         <Route path="/CollectorProfile" element={<CollectorProfile />} />

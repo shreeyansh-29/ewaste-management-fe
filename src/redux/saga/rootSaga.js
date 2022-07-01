@@ -40,6 +40,14 @@ import {watchCollectorSold} from "./collector/collectorSoldSaga/collectorSoldSag
 import {watchViewAcceptColProfileSaga} from "./vendor/viewAcceptColProfileSaga";
 import {watchViewCollProfileSaga} from "./vendor/viewCollProfileSaga";
 import {watchViewCollectorProfileSaga} from "./customer/viewCollectorProfileSaga";
+import {watchVendorProfileEdit} from "./vendor/vendorProfileSaga/vendorProfileEditSaga";
+import {watchCustomerProfileEdit} from "./customer/customerProfileSaga/customerProfileEditSaga";
+import {watchCollectorProfileEdit} from "./collector/collectorProfileSaga/collectorProfileEditSaga";
+import {watchCustomerCountColl} from "./customer/customerPickUpSaga/customerCountCollSaga";
+import {watchCustomerPickUp} from "./customer/customerPickUpSaga/customerPickUpSaga";
+import {watchCollectorPending} from "./collector/collectorPendingSaga/collectorPendingSaga";
+import {watchCollectorPendingAccept} from "./collector/collectorPendingAcceptSaga/collectorPendingAcceptSaga";
+import {watchCollectorSummary} from "./collector/collectorSummarySaga/collectorSummarySaga";
 
 function* rootSaga() {
   yield all([
@@ -51,7 +59,10 @@ function* rootSaga() {
     watchCustomerNotificationCount(),
     watchCustomerNotificationData(),
     watchCustomerProfile(),
+    watchCustomerProfileEdit(),
     watchCustomerEWaste(),
+    watchCustomerPickUp(),
+    watchCustomerCountColl(),
     watchCustomerDropOff(),
     watchCustomerViewCollectors(),
     watchCustomerWasteGenerated(),
@@ -61,6 +72,7 @@ function* rootSaga() {
     watchCollectorNotificationCount(),
     watchCollectorNotificationData(),
     watchCollectorProfile(),
+    watchCollectorProfileEdit(),
     watchCollectorEWasteDrives(),
     watchCollectorEWasteItems(),
     watchCollectorRevenueChart(),
@@ -72,8 +84,12 @@ function* rootSaga() {
     watchCollectorSold(),
     watchCollectorMyDrives(),
     watchCollectorMyDrivesStatus(),
+    watchCollectorPending(),
+    watchCollectorPendingAccept(),
+    watchCollectorSummary(),
     watchVendorName(),
     watchVendorProfile(),
+    watchVendorProfileEdit(),
     watchVendorCatgItems(),
     watchVendorCategory(),
     watchVendorCollectorData(),

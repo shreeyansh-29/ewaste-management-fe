@@ -12,8 +12,7 @@ export const customerPickUpReducer = (state = initialState, action) => {
     case types.CUSTOMER_PICKUP_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_PICKUP_SUCCESS:
-      console.log("success reducer", action);
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.CUSTOMER_PICKUP_ERROR:
       return {...state, error: action};
     default:

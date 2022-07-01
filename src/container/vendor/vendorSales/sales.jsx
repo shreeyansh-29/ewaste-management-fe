@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
 import PuchaseData from "./puchaseData";
 import "../vendor.css";
-import Popup from "../../customer/popup";
+import Popup from "../../components/popup";
 import {useDispatch, useSelector} from "react-redux";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";

@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-import api from "../../../core/utilities/httpProvider";
 import SearchIcon from "@material-ui/icons/Search";
-import Popup from "../../customer/popup";
-import { FaUserCircle } from "react-icons/fa";
-import {
-  COLLECTOR_REQUEST_SUMMARY,
-  TOAST_WARN3,
-} from "../../constant/constant";
+import Popup from "../../components/popup";
+import {FaUserCircle} from "react-icons/fa";
+import {TOAST_WARN3} from "../../constant/constant";
 import Toast from "../../components/toast";
+import {collectorSummaryRequest} from "../../../redux/action/collector/collectorSummaryAction/collectorSummaryAction";
+import {useDispatch, useSelector} from "react-redux";
+import {isEmpty} from "lodash";
 
 export const ProfileIcon = FaUserCircle;
 export default function CollectorRequests() {
-  const { useState } = React;
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.collectorSummary);
+  console.log(res);
   const [data, setData] = useState();
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -144,30 +145,8 @@ export default function CollectorRequests() {
   const togglepop = () => {
     setopen(!isopen);
   };
-  const handledate = (res) => {
-    res.data.map((obj) => {
-      if (obj.requestType === "PickUp") {
-        if (obj.scheduledTime === "10") {
-          obj.scheduledTime = " 10:00-12:00";
-        } else if (obj.scheduledTime === "12") {
-          obj.scheduledTime = " 12:00-14:00";
-        } else if (obj.scheduledTime === "14") {
-          obj.scheduledTime = " 14:00-16:00";
-        } else if (obj.scheduledTime === "16") {
-          obj.scheduledTime = " 16:00-18:00";
-        }
-      }
-    });
-  };
-  const handledata = (res) => {
-    handledate(res);
-    res.data.map((obj) => {
-      if (obj.requestType === "PickUp") {
-        obj.id = "CP" + obj.id;
-      }
-      if (obj.requestType === "DropOff") {
-        obj.id = "CD" + obj.id;
-      }
+  const handledata = (res1) => {
+    res1.data.map((obj) => {
       if (obj.requestType === "DropOff" && obj.status === "pending") {
         obj.status = "Scheduled";
       }
@@ -177,25 +156,20 @@ export default function CollectorRequests() {
       }
     });
   };
-  useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(COLLECTOR_REQUEST_SUMMARY);
-        if (res.status === "success") {
-          console.log(res);
-          handledata(res);
 
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+  useEffect(() => {
+    if (isEmpty(res?.data) !== true) {
+      if (res.data.status === "success") handledata(res.data);
+      setData(res.data.data);
+    }
+  });
+  useEffect(() => {
+    dispatch(collectorSummaryRequest());
   }, []);
 
   return (
     <div>
-      <div style={{ padding: "150px 30px 0 30px" }}>
+      <div style={{padding: "150px 30px 0 30px"}}>
         <h2
           style={{
             textAlign: "center",
@@ -216,7 +190,7 @@ export default function CollectorRequests() {
           data={data}
           title=""
           icons={{
-            Search: () => <SearchIcon style={{ fill: "white" }} />,
+            Search: () => <SearchIcon style={{fill: "white"}} />,
           }}
           localization={{
             header: {
@@ -231,7 +205,7 @@ export default function CollectorRequests() {
                   const index = oldData.tableData.id;
                   dataUpdate[index] = newData;
                   setData([...dataUpdate]);
-  
+
                   resolve();
                 }, 1000);
               }),
@@ -248,7 +222,7 @@ export default function CollectorRequests() {
                   onClick={togglepop}
                 >
                   {" "}
-                  <ProfileIcon style={{ color: "#e75480" }} />{" "}
+                  <ProfileIcon style={{color: "#e75480"}} />{" "}
                 </button>
               ),
 

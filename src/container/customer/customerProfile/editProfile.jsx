@@ -2,111 +2,70 @@ import {Field, Form, Formik} from "formik";
 import React, {useEffect} from "react";
 import Toast from "../../components/toast";
 import "../customer.css";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import {
-  ADDRESS_REQUIRED,
-  CITY_REQUIRED,
-  FNAME_REQUIRED,
-  LNAME_REQUIRED,
+  // ADDRESS_REQUIRED,
+  // CITY_REQUIRED,
+  // FNAME_REQUIRED,
+  // LNAME_REQUIRED,
   // MOBILE_INVALID,
   // MOBILE_REQUIRED,
-  PASSWORD_REQUIRED,
-  PINCODE_REQUIRED,
-  STATE_REQUIRED,
+  // PASSWORD_REQUIRED,
+  // PINCODE_REQUIRED,
+  // STATE_REQUIRED,
   TOAST_SUCCESS5,
-  PINCODE_INVALID,
+  // PINCODE_INVALID,
 } from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {customerProfileEditRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileEditAction";
 import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
-const pinCodeReg = /^\d{6}$/;
 
-let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required(FNAME_REQUIRED),
-  lastName: Yup.string().required(LNAME_REQUIRED),
-  city: Yup.string().required(CITY_REQUIRED),
-  password: Yup.string().required(PASSWORD_REQUIRED),
-  state: Yup.string().required(STATE_REQUIRED),
-  // mobileNo: Yup.string().phone(MOBILE_INVALID).required(MOBILE_REQUIRED),
-  address1: Yup.string().required(ADDRESS_REQUIRED),
-  pincode: Yup.string()
-    .matches(pinCodeReg, {PINCODE_INVALID})
-    .required(PINCODE_REQUIRED),
-});
+// let validationSchema = Yup.object().shape({
+//   firstName: Yup.string().required(FNAME_REQUIRED),
+//   lastName: Yup.string().required(LNAME_REQUIRED),
+//   city: Yup.string().required(CITY_REQUIRED),
+//   password: Yup.string().required(PASSWORD_REQUIRED),
+//   state: Yup.string().required(STATE_REQUIRED),
+//   mobileNo: Yup.string().phone(MOBILE_INVALID).required(MOBILE_REQUIRED),
+//   address1: Yup.string().required(ADDRESS_REQUIRED),
+//   pincode: Yup.string()
+//     .matches(pinCodeReg, {PINCODE_INVALID})
+//     .required(PINCODE_REQUIRED),
+// });
 
 function EditProfile() {
   const dispatch = useDispatch();
-  const res = useSelector((state) => state.customerProfile);
-  const [initialDetails, setInitialDetails] = React.useState({
-    firstName: res.data.firstName,
-    lastName: res.data.lastName,
-    state: res.data.state,
-    city: res.data.city,
-    mobileNo: res.data.mobileNo,
-    address1: res.data.address1,
-    pincode: res.data.pinCode,
-  });
-  // const [dummyState, setDummyState] = React.useState(false);
-  useEffect(() => {
-    if (Object.keys(res.data).length !== 0) {
-      // setDummyState(true);
-      setInitialDetails({
-        firstName: res.data.firstName,
-        lastName: res.data.lastName,
-        state: res.data.state,
-        city: res.data.city,
-        mobileNo: res.data.mobileNo,
-        address1: res.data.address1,
-        pincode: res.data.pinCode,
-      });
-    }
-  }, [res]);
-  // useEffect(() => {
-  //   if (dummyState) {
-  //     setInitialDetails({
-  //       firstName: res.data.firstName,
-  //       lastName: res.data.lastName,
-  //       state: res.data.state,
-  //       city: res.data.city,
-  //       mobileNo: res.data.mobileNo,
-  //       address1: res.data.address1,
-  //       pincode: res.data.pinCode,
-  //     });
-  //   }
-  // }, [dummyState]);
+
+  let res = useSelector((state) => state.customerProfile);
+  console.log("res", res);
   useEffect(() => {
     dispatch(customerProfileRequest());
   }, []);
 
-  function handleSubmit(values) {
-    const email = email;
-    const {data} = {values, email};
+  const handleSubmit = (values) => {
+    const data = {values, password: res?.data.password};
+    console.log(data);
     dispatch(customerProfileEditRequest(data));
     Toast.success(TOAST_SUCCESS5, 1500);
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
-  }
-  if (initialDetails.firstName === undefined) {
-    // console.log("init", initialDetails);
-    return <></>;
-  }
+  };
+
   return (
     <div className="profile" style={{marginTop: "85px"}}>
       <Formik
+        enableReinitialize
         initialValues={{
           firstName: res?.data?.firstName,
           lastName: res.data.lastName,
           state: res.data.state,
-          city: res.data.city,
+          city: res?.data.city,
           mobileNo: res.data.mobileNo,
           address1: res.data.address1,
-          pincode: res.data.pinCode,
+          pinCode: res.data.pinCode,
+          email: res.data.email,
         }}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
+        // validator={() => ({})}
         onSubmit={(values) => {
-          // setInitialDetails(values);
-          // setFirstName(values);
           handleSubmit(values);
         }}
       >
@@ -138,8 +97,7 @@ function EditProfile() {
                       name="firstName"
                       style={{borderRadius: "17px"}}
                       onChange={handleChange}
-                      placeholder="First name"
-                      // value={firstName.firstName}
+                      placeholder="First Name"
                     />
                     {touched.firstName && errors.firstName ? (
                       <div className="formErrors">{errors.firstName}</div>
@@ -153,7 +111,7 @@ function EditProfile() {
                     <Field
                       autoComplete="off"
                       onChange={handleChange}
-                      placeholder="Last name"
+                      placeholder="Last Name"
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="lastName"
@@ -173,7 +131,7 @@ function EditProfile() {
                           backgroundColor: "white",
                         }}
                         disabled
-                        value={localStorage.getItem("email")}
+                        name="email"
                       />
                     </div>
                     <div className="inputGroup">
@@ -215,12 +173,12 @@ function EditProfile() {
                       <label>
                         State <i className="text-danger">*</i>
                       </label>
-                      <select
+                      <Field
+                        type="select"
                         style={{borderRadius: "17px", padding: "4px"}}
                         className="form-select"
                         onChange={handleChange}
                         name="state"
-                        value={res.data.state}
                       >
                         {/* <option value="Select State">
                           {this.state.state}{" "}
@@ -228,7 +186,7 @@ function EditProfile() {
                         {this.state.states.map((e, key) => {
                           return <option key={key}>{e.name}</option>;
                         })} */}
-                      </select>
+                      </Field>
                       {touched.state && errors.state ? (
                         <div className="formErrors">{errors.state}</div>
                       ) : null}
@@ -239,16 +197,17 @@ function EditProfile() {
                       <label>
                         City <i className="text-danger">*</i>{" "}
                       </label>
-                      <select
+                      <Field
                         style={{borderRadius: "17px", padding: "4px"}}
                         className="form-select"
                         onChange={handleChange}
+                        name="city"
                       >
                         {/* <option value="Select City">{this.state.city}</option>
                         {this.state.cities.map((e, key) => {
                           return <option key={key}>{e}</option>;
                         })} */}
-                      </select>
+                      </Field>
                       {touched.city && errors.city ? (
                         <div className="formErrors">{errors.city}</div>
                       ) : null}
@@ -261,13 +220,13 @@ function EditProfile() {
                       <Field
                         type="pincode"
                         style={{borderRadius: "17px"}}
-                        name="pincode"
+                        name="pinCode"
                         autoComplete="off"
                         onChange={handleChange}
                         placeholder="Pincode"
                       />
-                      {touched.pincode && errors.pincode ? (
-                        <div className="formErrors">{errors.pincode}</div>
+                      {touched.pinCode && errors.pinCode ? (
+                        <div className="formErrors">{errors.pinCode}</div>
                       ) : null}
                     </div>
                   </div>

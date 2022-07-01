@@ -9,8 +9,7 @@ import {
 function* collectorNotificationCountSaga() {
   try {
     let response = yield call(collectorNotificationCountService);
-    console.log("Saga", response);
-    yield put(collectorNotificationCountSuccess(response));
+    yield put(collectorNotificationCountSuccess(response.data));
   } catch (error) {
     yield put(collectorNotificationCountError(error));
   }

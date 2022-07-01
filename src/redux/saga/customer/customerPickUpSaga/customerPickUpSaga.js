@@ -3,10 +3,10 @@ import {CUSTOMER_PICKUP_REQUEST} from "../../../config/actionType";
 import * as types from "../../../action/customer/customerPickUpAction/customerPickUpAction";
 import {customerPickUpService} from "../../../service/customer/customerPickUpService/customerPickUpService";
 
-function* customerPickUpSaga() {
+function* customerPickUpSaga(data) {
   try {
-    let response = yield call(customerPickUpService());
-    console.log("success saga", response);
+    let response = yield call(customerPickUpService, data);
+    response = yield response.json();
     yield put(types.customerPickUpSuccess(response));
   } catch (error) {
     yield put(types.customerPickUpError(error));

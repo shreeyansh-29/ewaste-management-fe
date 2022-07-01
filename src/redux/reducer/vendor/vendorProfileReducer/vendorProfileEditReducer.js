@@ -7,14 +7,13 @@ const initialState = {
   error: "",
 };
 
-export const collectorPendingReducer = (state = initialState, action) => {
+export const vendorProfileEditReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.COLLECTOR_PENDING_REQUEST:
+    case types.VENDOR_PROFILE_EDIT_REQUEST:
       return {...state, isLoading: true};
-    case types.COLLECTOR_PENDING_SUCCESS:
-      console.log(action);
+    case types.VENDOR_PROFILE_EDIT_SUCCESS:
       return {...state, data: action.payload};
-    case types.COLLECTOR_PENDING_ERROR:
+    case types.VENDOR_PROFILE_EDIT_ERROR:
       return {...state, error: action};
     default:
       return state;

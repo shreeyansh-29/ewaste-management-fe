@@ -1,11 +1,10 @@
 /* eslint-disable indent */
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import Popup from "../../popup";
+import Popup from "../../../components/popup";
 import "../../customer.css";
 import api from "../../../../core/utilities/httpProvider";
 import {FaUserCircle} from "react-icons/fa";
-import FeedbackPopup from "../MyRequests/Feedback/feedbackPopup";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
 import {CUSTOMER_REQUEST_COMPLETED} from "../../../constant/constant";
@@ -16,7 +15,6 @@ export default function Completed() {
   const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
-  const [feedback, setfeedback] = useState([]);
 
   const [columns] = useState([
     {
@@ -202,51 +200,6 @@ export default function Completed() {
                     setdetail(datas.collectorUid);
                   },
                 },
-                (rowData) =>
-                  rowData.status === "Completed"
-                    ? {
-                        icon: () => (
-                          <>
-                            <button
-                              style={{
-                                background: "white",
-                                color: "blue",
-                                border: "1px solid white",
-                                fontSize: "10px",
-                              }}
-                              onClick={togglepop}
-                              disabled
-                            >
-                              Feedback
-                            </button>
-                          </>
-                        ),
-                        onClick: (e, datas) => {
-                          console.log(e);
-                          setfeedback(datas);
-                        },
-                      }
-                    : {
-                        icon: () => (
-                          <>
-                            <button
-                              style={{
-                                background: "white",
-                                color: "blue",
-                                border: "1px solid white",
-                                fontSize: "10px",
-                              }}
-                              onClick={togglepop}
-                            >
-                              Feedback
-                            </button>
-                          </>
-                        ),
-                        onClick: (e, datas) => {
-                          console.log(e);
-                          setfeedback(datas);
-                        },
-                      },
               ]}
               options={{
                 actionsColumnIndex: -1,
@@ -257,9 +210,6 @@ export default function Completed() {
         <div>
           {isopen && detail != null && (
             <Popup handleClose={togglepop} contents={detail} />
-          )}
-          {isopen && feedback != null && (
-            <FeedbackPopup handleClose={togglepop} contents={feedback} />
           )}
         </div>
       </div>
