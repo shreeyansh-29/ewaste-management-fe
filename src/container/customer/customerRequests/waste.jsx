@@ -12,12 +12,15 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 import "../customer.css";
-import api from "../../../core/utilities/httpProvider";
-import {CUSTOMER_VIEW_DRIVES} from "../../constant/constant";
+import {useDispatch, useSelector} from "react-redux";
+import {customerEWasteDrivesRequest} from "../../../redux/action/customer/customerEWasteAction/customerEWasteAction";
 
 const Waste = () => {
-  const handledate = (res) => {
-    res.data.map((obj) => {
+  const dispatch = useDispatch();
+  let res = useSelector((state) => state.customerEWasteDrives);
+
+  const handledate = (result) => {
+    result.data.map((obj) => {
       if (obj.time === "10") {
         obj.time = " 10:00-12:00";
       } else if (obj.time === "12") {
@@ -30,19 +33,13 @@ const Waste = () => {
     });
   };
   useEffect(() => {
-    (async function () {
-      try {
-        const res = await api.get(CUSTOMER_VIEW_DRIVES);
-
-        if (res.status === "success") {
-          handledate(res);
-
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    if (res?.data.status === "success") {
+      handledate(res.data);
+      setData(res.data.data);
+    }
+  });
+  useEffect(() => {
+    dispatch(customerEWasteDrivesRequest());
   }, []);
 
   const renderCard = (card) => {
