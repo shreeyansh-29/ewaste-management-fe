@@ -1,8 +1,9 @@
 import * as types from "../../config/actionType";
 
-export const colRequestCustomerRequest = () => {
+export const colRequestCustomerRequest = (response) => {
   return {
     type: types.COLLECTOR_CUSTOMERPROFILE_REQUEST,
+    response,
   };
 };
 export const colRequestCustomerSuccess = (response) => {

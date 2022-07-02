@@ -14,7 +14,7 @@ export const ProfileIcon = FaUserCircle;
 const CollectorRequests = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorSummary);
-  console.log(res);
+  // console.log(res);
   const [data, setData] = useState();
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -227,7 +227,7 @@ const CollectorRequests = () => {
               ),
 
               onClick: (e, datas) => {
-                console.log(e);
+                // console.log(e);
 
                 setdetail(datas.customerUid);
                 if (datas.customerUid === null) {

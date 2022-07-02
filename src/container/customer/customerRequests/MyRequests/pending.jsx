@@ -119,7 +119,6 @@ const PendingRequest = () => {
     },
   ]);
   const handleDecline = (e, datas) => {
-    alert("hello");
     dispatch(customerPendingDeclineRequest(datas.orderUid));
     document.location.reload();
   };

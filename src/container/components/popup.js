@@ -15,12 +15,13 @@ function popup(props) {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.viewAcceptColReducer);
   let res2 = useSelector((state) => state.viewColProfileReducer);
-  let res3 = useSelector((state) => state.viewCollectorProfileReducer);
+  let res3 = useSelector((state) => state.viewCollectorProfileReducer?.data);
   let res4 = useSelector((state) => state.viewCustomerProfileReducer);
+
   useEffect(() => {
     if (isEmpty(res) !== true) {
       const name = res.firstName + " " + res.lastName;
-      const address1 = res.address1 + " " + res.city + " " + res.state;
+      const address1 = res.address1 + ", " + res.city + ", " + res.state;
       setmobile(res.mobileNo);
       setData(name);
       setadd(address1);
@@ -29,7 +30,7 @@ function popup(props) {
   useEffect(() => {
     if (isEmpty(res2) !== true) {
       const name = res2.firstName + " " + res2.lastName;
-      const address1 = res2.address1 + " " + res2.city + " " + res2.state;
+      const address1 = res2.address1 + ", " + res2.city + ", " + res2.state;
       setmobile(res2.mobileNo);
       setData(name);
       setadd(address1);
@@ -38,7 +39,7 @@ function popup(props) {
   useEffect(() => {
     if (isEmpty(res3) !== true) {
       const name = res3.firstName + " " + res3.lastName;
-      const address1 = res3.address1 + " " + res3.city + " " + res3.state;
+      const address1 = res3.address1 + ", " + res3.city + ", " + res3.state;
       setmobile(res3.mobileNo);
       setData(name);
       setadd(address1);
@@ -47,7 +48,7 @@ function popup(props) {
   useEffect(() => {
     if (isEmpty(res4) !== true) {
       const name = res4.firstName + " " + res4.lastName;
-      const address1 = res4.address1 + " " + res4.city + " " + res4.state;
+      const address1 = res4.address1 + ", " + res4.city + ", " + res4.state;
       setmobile(res4.mobileNo);
       setData(name);
       setadd(address1);

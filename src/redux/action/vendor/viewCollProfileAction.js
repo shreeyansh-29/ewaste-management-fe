@@ -1,24 +1,20 @@
-import {
-  VENDOR_COLLECTORPROFILE_SUCCESS,
-  VENDOR_COLLECTORPROFILE_REQUEST,
-  VENDOR_COLLECTORPROFILE_ERROR,
-} from "../../../redux/config/actionType";
+import * as types from "../../config/actionType";
 
 export const viewAcceptCollectorRequest = (response) => {
   return {
-    type: VENDOR_COLLECTORPROFILE_REQUEST,
+    type: types.VENDOR_COLLECTORPROFILE_REQUEST,
     response,
   };
 };
 export const viewAcceptCollectorSuccess = (response) => {
   return {
-    type: VENDOR_COLLECTORPROFILE_SUCCESS,
+    type: types.VENDOR_COLLECTORPROFILE_SUCCESS,
     response,
   };
 };
 export const viewAcceptCollectorError = (error) => {
   return {
-    type: VENDOR_COLLECTORPROFILE_ERROR,
+    type: types.VENDOR_COLLECTORPROFILE_ERROR,
     error,
   };
 };

@@ -166,8 +166,7 @@ const CompletedRequest = () => {
                   ),
 
                   onClick: (e, datas) => {
-                    console.log(e);
-
+                    // console.log(e);
                     setdetail(datas.collectorUid);
                   },
                 },

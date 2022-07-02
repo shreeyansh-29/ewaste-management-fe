@@ -148,7 +148,6 @@ const MyOrders = () => {
   const togglepop = () => {
     setopen(!isopen);
   };
-  console.log(res);
   useEffect(() => {
     if (isEmpty(res?.data) !== true) {
       res.data.map((obj) => {
@@ -210,7 +209,6 @@ const MyOrders = () => {
               ),
 
               onClick: (e, datas) => {
-                console.log(e);
                 if (datas.id === null) {
                   toast.warn(TOAST_WARN3, {
                     position: toast.POSITION.TOP_RIGHT,

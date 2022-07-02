@@ -125,7 +125,7 @@ const CollectorRequests = () => {
     Toast.success(TOAST_SUCCESS8, 1500);
 
     setTimeout(() => {
-      window.location.href = "/RequestSummary";
+      window.location.href = "Request/MyRequests";
     }, 3000);
   };
 

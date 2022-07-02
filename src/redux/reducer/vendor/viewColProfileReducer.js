@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import * as types from "../../../redux/config/actionType";
+import * as types from "../../config/actionType";
 
 const initialState = {
   obj: {},

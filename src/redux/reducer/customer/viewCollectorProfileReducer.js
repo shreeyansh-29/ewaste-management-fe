@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import * as types from "../../../redux/config/actionType";
+import * as types from "../../config/actionType";
 
 const initialState = {
   obj: {},
@@ -9,7 +9,7 @@ export const viewCollectorProfileReducer = (state = initialState, action) => {
     case types.CUSTOMER_COLLECTORPROFILE_REQUEST:
       return {};
     case types.CUSTOMER_COLLECTORPROFILE_SUCCESS:
-      return action;
+      return action.response;
     case types.CUSTOMER_COLLECTORPROFILE_ERROR:
       return action;
     default:

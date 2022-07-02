@@ -288,7 +288,7 @@ const Sales = () => {
         }}
       />
 
-      <Link to={{pathname: "/MyOrders", data: [details]}}></Link>
+      <Link to={{pathname: "/MyOrders/SalesSummary", data: [details]}}></Link>
       <div>{isopen && <PuchaseData quantity={quantity} item={item} />}</div>
       <div>
         {isopen2 && detail != null && (

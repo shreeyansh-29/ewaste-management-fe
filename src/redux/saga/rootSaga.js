@@ -52,6 +52,7 @@ import {watchCustomerCompletedRequest} from "./customer/customerCompletedRequest
 import {watchCustomerPendingRequest} from "./customer/customerPendingRequestSaga/customerPendingRequestSaga";
 import {watchCustomerExpiredRequest} from "./customer/customerExpiredRequestSaga/customerExpiredRequestSaga";
 import {watchCustomerPendingDecline} from "./customer/customerPendingRequestSaga/customerPendingDeclineSaga";
+import {watchViewCustomerProfileSaga} from "./collector/viewCustomerProfileSaga";
 
 function* rootSaga() {
   yield all([
@@ -108,6 +109,7 @@ function* rootSaga() {
     watchViewAcceptColProfileSaga(),
     watchViewCollProfileSaga(),
     watchViewCollectorProfileSaga(),
+    watchViewCustomerProfileSaga(),
   ]);
 }
 
