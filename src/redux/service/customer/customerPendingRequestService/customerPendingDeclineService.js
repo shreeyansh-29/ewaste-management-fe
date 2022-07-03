@@ -1,18 +1,7 @@
-export const customerPendingDeclineService = async (data) => {
-  const tokens = localStorage.getItem("token");
-  const email = localStorage.getItem("email");
+import api from "../../../../core/utilities/httpProvider";
 
-  const response = await fetch(
-    `http://localhost:8083/customer/deleteById?orderId=${data.payload}`,
-    {
-      method: "DELETE",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + tokens,
-        EMAIL: email,
-      },
-    }
+export const customerPendingDeclineService = async (data) => {
+  return api.delete(
+    `http://localhost:8083/customer/deleteById?orderId=${data.payload}`
   );
-  return response;
 };

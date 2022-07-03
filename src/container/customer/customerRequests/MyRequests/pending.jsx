@@ -12,7 +12,7 @@ toast.configure();
 
 const PendingRequest = () => {
   const dispatch = useDispatch();
-  let res1 = useSelector((state) => state.customerPendingRequest);
+  let res = useSelector((state) => state.customerPendingRequest);
   const {useState} = React;
 
   const [columns] = useState([
@@ -134,7 +134,7 @@ const PendingRequest = () => {
             align="center"
             title=""
             columns={columns}
-            data={res1?.data.data}
+            data={res?.data.data}
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,
             }}
