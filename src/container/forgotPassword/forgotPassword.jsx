@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {forgotPasswordRequest} from "../../redux/action/forgotPasswordAction/forgotPasswordAction";
 import {MSG} from "../constant/constant";
 import {useNavigate} from "react-router-dom";
-import validationSchema from "../constant/validations";
+import {ForgotPasswordValidations} from "../constant/validations";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -20,7 +20,8 @@ const ForgotPassword = () => {
           initialValues={{
             email: "",
           }}
-          validationSchema={validationSchema}
+          validationSchema={ForgotPasswordValidations}
+          validator={() => ({})}
           onSubmit={(values) => {
             console.log("value", values);
             dispatch(forgotPasswordRequest(values));

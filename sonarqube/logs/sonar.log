@@ -8,3 +8,9 @@
 2022.07.04 08:00:04 INFO  app[][o.s.a.ProcessLauncherImpl] Launch process[[key='ce', ipcIndex=3, logFilenamePrefix=ce]] from [/opt/sonarqube]: /opt/java/openjdk/bin/java -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djava.io.tmpdir=/opt/sonarqube/temp -XX:-OmitStackTraceInFastThrow --add-opens=java.base/java.util=ALL-UNNAMED -Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -Dhttp.nonProxyHosts=localhost|127.*|[::1] -cp ./lib/sonar-application-8.9.3.48735.jar:/opt/sonarqube/lib/jdbc/h2/h2-1.4.199.jar org.sonar.ce.app.CeServer /opt/sonarqube/temp/sq-process8138682043445507728properties
 2022.07.04 08:00:08 INFO  app[][o.s.a.SchedulerImpl] Process[ce] is up
 2022.07.04 08:00:08 INFO  app[][o.s.a.SchedulerImpl] SonarQube is up
+2022.07.04 10:59:38 INFO  app[][o.s.a.SchedulerImpl] Stopping SonarQube
+2022.07.04 10:59:38 INFO  app[][o.s.a.SchedulerImpl] Process[ce] is stopped
+2022.07.04 10:59:39 INFO  app[][o.s.a.SchedulerImpl] Process[web] is stopped
+2022.07.04 10:59:39 WARN  app[][o.s.a.p.AbstractManagedProcess] Process exited with exit value [es]: 143
+2022.07.04 10:59:39 INFO  app[][o.s.a.SchedulerImpl] Process[es] is stopped
+2022.07.04 10:59:39 INFO  app[][o.s.a.SchedulerImpl] SonarQube is stopped

@@ -11,7 +11,7 @@ import {TOAST_SUCCESS2} from "../constant/constant";
 import Toast from "../../components/toast";
 import {useDispatch, useSelector} from "react-redux";
 import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";
-import validationSchema from "../constant/validations";
+import {ResetPasswordValidations} from "../constant/validations";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const ResetPassword = () => {
             password: "",
             confirmPassword: "",
           }}
-          validationSchema={validationSchema}
+          validationSchema={ResetPasswordValidations}
           onSubmit={(values) => {
             handleClick(values);
           }}

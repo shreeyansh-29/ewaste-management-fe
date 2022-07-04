@@ -9,7 +9,7 @@ import {TOAST_SUCCESS5} from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {customerProfileEditRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileEditAction";
 import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
-import validationSchema from "../../constant/validations";
+import {CustomerValidations} from "../../constant/validations";
 
 const CustomerProfile = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,8 @@ const CustomerProfile = () => {
           pinCode: res?.pinCode,
           email: res?.email,
         }}
-        validationSchema={validationSchema}
+        validationSchema={CustomerValidations}
+        validator={() => ({})}
         onSubmit={(values) => {
           handleSubmit(values);
         }}

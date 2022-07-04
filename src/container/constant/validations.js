@@ -23,7 +23,12 @@ import {
   STATE_REQUIRED,
 } from "./constant";
 
-const validationSchema = Yup.object().shape({
+export const SignInValidations = Yup.object().shape({
+  email: Yup.string().email(EMAIL_INVALID).required(EMAIL_REQUIRED).nullable(),
+  password: Yup.string().required(PASSWORD_REQUIRED).nullable(),
+});
+
+export const SignUpValidations = Yup.object().shape({
   category: Yup.string().required(CATEGORY_REQUIRED).nullable(),
   firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
   lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
@@ -69,4 +74,35 @@ const validationSchema = Yup.object().shape({
     .nullable(),
 });
 
-export default validationSchema;
+export const ForgotPasswordValidations = Yup.object().shape({
+  email: Yup.string().email().required(EMAIL_REQUIRED).nullable(),
+});
+export const ResetPasswordValidations = Yup.object().shape({
+  password: Yup.string().required(PASSWORD_REQUIRED).nullable(),
+  confirmpassword: Yup.string().required(CONFIRM_PASSWORD_REQUIRED).nullable(),
+});
+export const CollectorValidations = Yup.object().shape({
+  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
+  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
+  mobileNo: Yup.string().required(MOBILE_REQUIRED).nullable(),
+  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
+  pinCode: Yup.string().required(PINCODE_REQUIRED).nullable(),
+});
+
+export const VendorValidations = Yup.object().shape({
+  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
+  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
+  mobileNo: Yup.string().required(MOBILE_REQUIRED).nullable(),
+  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
+  pinCode: Yup.string().required(PINCODE_REQUIRED).nullable(),
+  gstNo: Yup.string().required(GSTNO_REQUIRED).nullable(),
+  registrationNo: Yup.string().required(REGISTRATION_REQUIRED).nullable(),
+});
+
+export const CustomerValidations = Yup.object().shape({
+  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
+  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
+  mobileNo: Yup.string().required(MOBILE_REQUIRED).nullable(),
+  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
+  pinCode: Yup.string().required(PINCODE_REQUIRED).nullable(),
+});

@@ -9,10 +9,9 @@ import jwt from "jwt-decode";
 import {TOAST_ERROR1, TOAST_ERROR2} from "../constant/constant";
 import Toast from "../../components/toast";
 import "./signin.css";
-
 import {useDispatch, useSelector} from "react-redux";
 import {signInRequest} from "../../redux/action/signInAction/signInActions";
-import validationSchema from "../constant/validations";
+import {SignInValidations} from "../constant/validations";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -66,7 +65,8 @@ const SignIn = () => {
               email: "",
               password: "",
             }}
-            validationSchema={validationSchema}
+            validator={() => ({})}
+            validationSchema={SignInValidations}
             onSubmit={(values) => {
               handleClick(values);
             }}

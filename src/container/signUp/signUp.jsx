@@ -14,7 +14,7 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {statescity} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
-import validationSchema from "../constant/validations";
+import {SignUpValidations} from "../constant/validations";
 
 const data = [
   {
@@ -130,7 +130,8 @@ const signUp = () => {
           gstNo: "",
           registrationNo: "",
         }}
-        validationSchema={validationSchema}
+        validationSchema={SignUpValidations}
+        validator={() => ({})}
         onSubmit={(values) => {
           const data1 = {
             values,

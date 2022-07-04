@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {vendorProfileRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileAction";
 import {vendorProfileEditRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileEditAction";
 import {isEmpty} from "lodash";
-import validationSchema from "../../constant/validations";
+import {VendorValidations} from "../../constant/validations";
 
 const VendorProfile = () => {
   const [state, setState] = useState();
@@ -53,7 +53,7 @@ const VendorProfile = () => {
           gstNo: res?.gstNo,
           registrationNo: res?.registrationNo,
         }}
-        validationSchema={validationSchema}
+        validationSchema={VendorValidations}
         validator={() => ({})}
         onSubmit={(values) => {
           console.log(values);

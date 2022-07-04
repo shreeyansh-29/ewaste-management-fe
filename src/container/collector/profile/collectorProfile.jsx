@@ -9,7 +9,7 @@ import {collectorProfileRequest} from "../../../redux/action/collector/collector
 import {TOAST_SUCCESS5} from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {collectorProfileEditRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileEditAction";
-import validationSchema from "../../constant/validations";
+import {CollectorValidations} from "../../constant/validations";
 
 const CollectorProfile = () => {
   const [state1, setState1] = useState();
@@ -59,7 +59,7 @@ const CollectorProfile = () => {
           gstNo: res?.gstNo,
           registrationNo: res?.registrationNo,
         }}
-        validationSchema={validationSchema}
+        validationSchema={CollectorValidations}
         validator={() => ({})}
         onSubmit={(values) => {
           handleSubmit(values);
