@@ -9,7 +9,6 @@ import {
 function* customerProfileSaga() {
   try {
     let response = yield call(customerProfileService);
-    // console.log("saga", response);
     yield put(customerProfileSuccess(response.data));
   } catch (error) {
     yield put(customerProfileError(error));

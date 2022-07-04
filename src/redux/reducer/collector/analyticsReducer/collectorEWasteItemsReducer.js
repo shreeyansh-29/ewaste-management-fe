@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const collectorEWasteItemsReducer = (state = initialState, action) => {
+export const collectorEWasteItemsReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.COLLECTOR_EWASTE_ITEMS_REQUEST:
       return {...state, isLoading: true};

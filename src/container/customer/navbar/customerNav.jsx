@@ -14,8 +14,7 @@ import {customerNotificationDataRequest} from "../../../redux/action/customer/cu
 import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
 import {isEmpty} from "lodash";
 
-const CustomerNav = ({res, result, result2}) => {
-  // console.log(result2);
+const CustomerNav = ({res, result1, result2}) => {
   const dispatch = useDispatch();
   const name = res.firstName;
   useEffect(() => {
@@ -31,11 +30,14 @@ const CustomerNav = ({res, result, result2}) => {
   const [List, setList] = useState([]);
   var list = ["No New Notifications"];
   useEffect(() => {
-    if (result?.payload !== "No New Notification" && isEmpty(result) !== true) {
-      localStorage.setItem("count", result?.payload.length);
+    if (
+      result1?.payload !== "No New Notification" &&
+      isEmpty(result1) !== true
+    ) {
+      localStorage.setItem("count", result1?.payload.length);
       setCount(localStorage.getItem("count"));
     }
-  }, [result]);
+  }, [result1]);
 
   useEffect(() => {
     if (result2?.data.status === "success") {
@@ -85,8 +87,8 @@ const CustomerNav = ({res, result, result2}) => {
               className="notification_button"
             >
               <div className="icon-button__badge">
-                {count === "" ||
-                count === "undefined" ||
+                {count == "" ||
+                count == "undefined" ||
                 count === null ||
                 count === 0 ? (
                   ""
@@ -95,9 +97,9 @@ const CustomerNav = ({res, result, result2}) => {
                 )}
                 <NavNotiIcon
                   style={
-                    count === "" ||
+                    count == "" ||
                     count === null ||
-                    count === "undefined" ||
+                    count == "undefined" ||
                     count === 0
                       ? {color: "white", marginLeft: "24.5px"}
                       : {color: "white", marginBottom: "20px"}

@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const vendorProfileEditReducer = (state = initialState, action) => {
+export const vendorProfileEditReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.VENDOR_PROFILE_EDIT_REQUEST:
       return {...state, isLoading: true};

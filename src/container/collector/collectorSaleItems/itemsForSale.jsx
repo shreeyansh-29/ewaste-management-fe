@@ -15,7 +15,6 @@ import {collectorForSaleRequest} from "../../../redux/action/collector/collector
 const ItemsForSale = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorForSale);
-  // console.log(res);
   const {useState} = React;
   const [status, setStatus] = useState("");
   const [columns] = useState([
@@ -104,14 +103,14 @@ const ItemsForSale = () => {
     ) {
       Toast.warn(TOAST_WARN1);
     } else {
-      const data = {
+      const data1 = {
         itemName: datas.itemName,
         category: datas.category,
         quantity: datas.quantity,
         price: datas.price,
         status: "Available",
       };
-      dispatch(collectorForSaleRequest(data));
+      dispatch(collectorForSaleRequest(data1));
       Toast.success(TOAST_SUCCESS6);
     }
   };

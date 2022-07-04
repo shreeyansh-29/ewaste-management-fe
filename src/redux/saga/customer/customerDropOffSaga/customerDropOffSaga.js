@@ -9,7 +9,6 @@ import {
 function* customerDropOffSaga(action) {
   try {
     let response = yield call(customerDropOffService, action);
-    // console.log("Saga", response);
     yield put(customerDropOffSuccess(response));
   } catch (error) {
     yield put(customerDropOffError(error));

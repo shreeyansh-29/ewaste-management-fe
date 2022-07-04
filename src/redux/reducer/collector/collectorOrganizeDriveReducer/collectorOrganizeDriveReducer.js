@@ -6,7 +6,10 @@ const initialState = {
   isLoading: false,
   error: "",
 };
-export const collectorOrganizeDriveReducer = (state = initialState, action) => {
+export const collectorOrganizeDriveReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.COLLECTOR_ORGANIZE_REQUEST:
       return {...state, isLoading: true};

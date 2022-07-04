@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const customerDrivesReducer = (state = initialState, action) => {
+export const customerDrivesReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.CUSTOMER_DRIVES_REQUEST:
       return {...state, isLoading: true};

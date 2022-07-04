@@ -159,7 +159,7 @@ const OrganizeDrive = () => {
       Toast.error(TOAST_ERROR4);
     } else {
       datas.date = dateformat(datas);
-      const data = {
+      const data1 = {
         driveName: datas.name,
         description: datas.description,
 
@@ -171,7 +171,7 @@ const OrganizeDrive = () => {
         date: datas.date,
         time: datas.time,
       };
-      dispatch(collectorOrganizeDriveRequest(data));
+      dispatch(collectorOrganizeDriveRequest(data1));
       Toast.success(TOAST_SUCCESS7);
     }
   };

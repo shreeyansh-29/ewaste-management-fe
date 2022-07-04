@@ -9,7 +9,6 @@ import {
 function* collectorNameSaga() {
   try {
     let response = yield call(collectorNameService);
-    // console.log("Saga ", response);
     yield put(collectorNameSuccess(response.data));
   } catch (error) {
     yield put(collectorNameError(error));

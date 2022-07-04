@@ -12,7 +12,7 @@ import Waste from "../../container/customer/customerRequests/waste";
 import PageNotFound from "../../container/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 
-const CustomerPrivateRoutes = () => {
+const CustomerRoutes = () => {
   return (
     <Routes>
       <Route path="/CustomerHome" element={<CustomerHome />} />
@@ -29,4 +29,4 @@ const CustomerPrivateRoutes = () => {
     </Routes>
   );
 };
-export default CustomerPrivateRoutes;
+export default CustomerRoutes;

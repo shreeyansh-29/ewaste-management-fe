@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const customerCountCollReducer = (state = initialState, action) => {
+export const customerCountCollReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.CUSTOMER_COUNT_COLL_REQUEST:
       return {...state, isLoading: true};

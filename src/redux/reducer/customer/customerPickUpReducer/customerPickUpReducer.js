@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const customerPickUpReducer = (state = initialState, action) => {
+export const customerPickUpReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.CUSTOMER_PICKUP_REQUEST:
       return {...state, isLoading: true};

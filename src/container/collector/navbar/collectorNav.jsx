@@ -15,7 +15,7 @@ import {collectorNotificationCountRequest} from "../../../redux/action/collector
 import {isEmpty} from "lodash";
 import {collectorNotificationDataRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationDataAction";
 
-const CollectorNav = ({res, result, result2}) => {
+function CollectorNav({res, result1, result2}) {
   const dispatch = useDispatch();
 
   const [count, setCount] = useState(0);
@@ -29,13 +29,13 @@ const CollectorNav = ({res, result, result2}) => {
   };
   useEffect(() => {
     if (
-      result?.data.payload !== "No New Notification" &&
-      isEmpty(result?.data) !== true
+      result1?.data.payload !== "No New Notification" &&
+      isEmpty(result1?.data) !== true
     ) {
-      localStorage.setItem("count", result?.data?.payload.length);
+      localStorage.setItem("count", result1?.data?.payload.length);
       setCount(localStorage.getItem("count"));
     }
-  }, [result]);
+  }, [result1]);
   useEffect(() => {
     if (result2?.data.status === "success") {
       for (var i = 0; i < result2.data.data.length; i++) {
@@ -88,8 +88,8 @@ const CollectorNav = ({res, result, result2}) => {
               onClick={() => markAsRead()}
             >
               <div className="icon-button__badge1">
-                {count === "" ||
-                count === "undefined" ||
+                {count == "" ||
+                count == "undefined" ||
                 count === null ||
                 count === 0 ? (
                   ""
@@ -110,9 +110,9 @@ const CollectorNav = ({res, result, result2}) => {
                 )}
                 <NavNotiIcon
                   style={
-                    count === "" ||
+                    count == "" ||
                     count === null ||
-                    count === "undefined" ||
+                    count == "undefined" ||
                     count === 0
                       ? {color: "white"}
                       : {color: "white", marginBottom: "20px"}
@@ -201,7 +201,7 @@ const CollectorNav = ({res, result, result2}) => {
       </Navbar>
     </>
   );
-};
+}
 
 const mapStateToProps = (state) => {
   return {

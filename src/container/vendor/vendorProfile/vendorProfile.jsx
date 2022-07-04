@@ -1,34 +1,15 @@
 /* eslint-disable indent */
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
-import * as Yup from "yup";
 import "../vendor.css";
 import {statescity} from "../../signUp/states";
 import Toast from "../../../components/toast";
-import {
-  ADDRESS_REQUIRED,
-  FNAME_REQUIRED,
-  GSTNO_REQUIRED,
-  LNAME_REQUIRED,
-  MOBILE_REQUIRED,
-  PINCODE_REQUIRED,
-  REGISTRATION_REQUIRED,
-  TOAST_SUCCESS5,
-} from "../../constant/constant";
+import {TOAST_SUCCESS5} from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {vendorProfileRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileAction";
 import {vendorProfileEditRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileEditAction";
 import {isEmpty} from "lodash";
-
-let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
-  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
-  mobileNo: Yup.string().required(MOBILE_REQUIRED).nullable(),
-  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
-  pinCode: Yup.string().required(PINCODE_REQUIRED).nullable(),
-  gstNo: Yup.string().required(GSTNO_REQUIRED).nullable(),
-  registrationNo: Yup.string().required(REGISTRATION_REQUIRED).nullable(),
-});
+import validationSchema from "../../constant/validations";
 
 const VendorProfile = () => {
   const [state, setState] = useState();

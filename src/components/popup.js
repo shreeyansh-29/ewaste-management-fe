@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React, {useEffect, useState} from "react";
 import "../container/customer/customer.css";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,9 +14,7 @@ function popup(props) {
     address1: "",
     mobileNo: "",
   });
-  const [data, setData] = useState();
-  const [add, setadd] = useState();
-  const [mobile, setmobile] = useState();
+
   const dispatch = useDispatch();
   let res = useSelector((state) => state.viewAcceptColReducer);
   let res2 = useSelector((state) => state.viewColProfileReducer);

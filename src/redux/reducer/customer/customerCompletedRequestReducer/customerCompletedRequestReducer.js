@@ -9,7 +9,7 @@ const initialState = {
 
 export const customerCompletedRequestReducer = (
   state = initialState,
-  action
+  action = action
 ) => {
   switch (action.type) {
     case types.CUSTOMER_COMPLETED_REQUEST:

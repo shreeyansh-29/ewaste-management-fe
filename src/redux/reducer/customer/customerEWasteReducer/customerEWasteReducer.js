@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const customerEWasteReducer = (state = initialState, action) => {
+export const customerEWasteReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.CUSTOMER_EWASTE_DRIVES_REQUEST:
       return {...state, isLoading: true};

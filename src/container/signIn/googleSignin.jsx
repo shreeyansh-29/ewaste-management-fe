@@ -4,15 +4,13 @@ import {googleSignInRequest} from "../../redux/action/signInAction/googleSignInA
 import googleLogo from "../images/google-logo.png";
 import React, {useState, useEffect} from "react";
 import GoogleLogin from "react-google-login";
-import {useDispatch} from "react-redux";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
 
 const GoogleSignin = () => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   let res = useSelector((state) => state.googleSignIn?.data);
-  // console.log(res);
 
   useEffect(() => {
     if (isEmpty(res) !== true) {

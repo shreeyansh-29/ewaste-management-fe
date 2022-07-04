@@ -4,7 +4,7 @@ import * as types from "../../config/actionType";
 const initialState = {
   obj: {},
 };
-export const viewAcceptColReducer = (state = initialState, action) => {
+export const viewAcceptColReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_REQUEST:
       return {};

@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const collectorProfileEditReducer = (state = initialState, action) => {
+export const collectorProfileEditReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.COLLECTOR_PROFILE_EDIT_REQUEST:
       return {...state, isLoading: true};

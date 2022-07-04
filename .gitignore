@@ -6,6 +6,8 @@
 /.scannerwork
 /.pnp
 .pnp.js
+/config
+/scripts
 
 # testing
 /coverage
@@ -21,6 +23,11 @@
 .env.test.local
 .env.production.local
 .docker-compose.yml
+.scripts
+.config
+.scannerwork
+.sonarqube
+
 
 npm-debug.log*
 yarn-debug.log*

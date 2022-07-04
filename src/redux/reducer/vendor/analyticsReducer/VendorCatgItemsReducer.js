@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const vendorCatgItemsReducer = (state = initialState, action) => {
+export const vendorCatgItemsReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.VENDOR_CATGITEMS_REQUEST:
       return {...state, isLoading: true};

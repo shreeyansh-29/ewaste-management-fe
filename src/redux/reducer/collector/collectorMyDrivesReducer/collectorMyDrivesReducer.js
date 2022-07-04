@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const collectorMyDrivesReducer = (state = initialState, action) => {
+export const collectorMyDrivesReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.COLLECTOR_MYDRIVES_REQUEST:
       return {...state, isLoading: true};

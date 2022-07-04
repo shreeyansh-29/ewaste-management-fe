@@ -15,7 +15,7 @@ import "../customer.css";
 import {useDispatch, useSelector} from "react-redux";
 import {customerEWasteDrivesRequest} from "../../../redux/action/customer/customerEWasteAction/customerEWasteAction";
 
-const WasteDrives = () => {
+const Waste = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerEWasteDrives);
 
@@ -122,4 +122,4 @@ const WasteDrives = () => {
     </div>
   );
 };
-export default WasteDrives;
+export default Waste;

@@ -2,9 +2,8 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {isEmpty} from "lodash";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {customerCollectorCategoriesRequest} from "../../../redux/action/customer/analyticsAction/customerCollectorCategoriesAction";
-import {useSelector} from "react-redux";
 
 const data = [
   ["Category", "Collectors in your City", " Total Collectors"],

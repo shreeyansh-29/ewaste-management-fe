@@ -10,7 +10,6 @@ const AvailableSales = () => {
   const {useState} = React;
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorAvailable);
-  // console.log("available", res);
   const [columns] = useState([
     {
       title: "ID",

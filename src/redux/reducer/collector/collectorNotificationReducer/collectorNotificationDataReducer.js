@@ -9,7 +9,7 @@ const initialState = {
 
 export const collectorNotificationDataReducer = (
   state = initialState,
-  action
+  action = action
 ) => {
   switch (action.type) {
     case types.COLLECTOR_NOTIFICATION_DATA_REQUEST:

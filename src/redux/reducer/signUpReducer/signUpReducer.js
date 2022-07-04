@@ -7,7 +7,7 @@ const initialState = {
   error: "",
 };
 
-export const signUpReducer = (state = initialState, action) => {
+export const signUpReducer = (state = initialState, action = action) => {
   switch (action.types) {
     case types.SIGN_UP_REQUEST:
       return {

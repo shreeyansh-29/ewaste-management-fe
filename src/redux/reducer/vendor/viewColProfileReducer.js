@@ -4,7 +4,10 @@ import * as types from "../../config/actionType";
 const initialState = {
   obj: {},
 };
-export const viewColProfileReducer = (state = initialState, action) => {
+export const viewColProfileReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.VENDOR_COLLECTORPROFILE_REQUEST:
       return {};

@@ -7,7 +7,7 @@ const initialState = {
   error: "",
 };
 
-export const customerNameReducer = (state = initialState, action) => {
+export const customerNameReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case types.CUSTOMER_NAME_REQUEST:
       return {...state, isLoading: true};
@@ -19,5 +19,3 @@ export const customerNameReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-// console.log("success reducer", action);

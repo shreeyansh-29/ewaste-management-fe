@@ -10,8 +10,7 @@ const initialState = {
   isLoading: false,
   error: "",
 };
-export const signInReducer = (state = initialState, action) => {
-  // console.log("reducer", action);
+export const signInReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case SIGN_IN_REQUEST:
       return {

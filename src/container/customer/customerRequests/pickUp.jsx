@@ -22,12 +22,10 @@ import {customerCountCollRequest} from "../../../redux/action/customer/customerP
 import {customerPickUpRequest} from "../../../redux/action/customer/customerPickUpAction/customerPickUpAction";
 import Toast from "../../../components/toast";
 
-const PickUpRequest = () => {
+const PickUp = () => {
   const dispatch = useDispatch();
   let result = useSelector((state) => state.customerCountColl);
   let res = useSelector((state) => state.customerPickUp);
-  console.log(res);
-  console.log(result);
 
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
@@ -145,10 +143,10 @@ const PickUpRequest = () => {
       },
     },
   ]);
-  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
+
   const handleSubmit = (event, data) => {
     event.preventDefault();
-    console.log("data", data[0]);
     var date = data[0].date.toString().split(" ");
     if (date[1] === "Jan") {
       date[1] = "01";
@@ -191,21 +189,21 @@ const PickUpRequest = () => {
     event.preventDefault();
 
     if (
-      data[0].category === undefined ||
-      data[0].name === "" ||
-      data[0].quantity === null ||
-      data[0].date === undefined ||
-      data[0].time === undefined
+      data1[0].category === undefined ||
+      data1[0].name === "" ||
+      data1[0].quantity === null ||
+      data1[0].date === undefined ||
+      data1[0].time === undefined
     ) {
       Toast.error(TOAST_ERROR4);
     } else if (
-      data[0].quantity === 0 ||
-      data[0].quantity > 20 ||
-      data[0].quantity < 0
+      data1[0].quantity === 0 ||
+      data1[0].quantity > 20 ||
+      data1[0].quantity < 0
     ) {
       Toast.warn(TOAST_WARN1);
     } else {
-      dispatch(customerCountCollRequest(data[0].category));
+      dispatch(customerCountCollRequest(data1[0].category));
       setExpanded(true);
     }
   };
@@ -230,7 +228,7 @@ const PickUpRequest = () => {
         <MaterialTable
           title=""
           columns={columns}
-          data={data}
+          data={data1}
           icons={{
             Add: () => <AddIcon style={{fill: "#e75480"}} />,
           }}
@@ -239,7 +237,7 @@ const PickUpRequest = () => {
               ? (newData) =>
                   new Promise((resolve) => {
                     setTimeout(() => {
-                      setData([...data, newData]);
+                      setData1([...data1, newData]);
                       setEditable(false);
                       resolve();
                     }, 1000);
@@ -248,10 +246,10 @@ const PickUpRequest = () => {
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {
                 setTimeout(() => {
-                  const dataUpdate = [...data];
+                  const dataUpdate = [...data1];
                   const index = oldData.tableData.id;
                   dataUpdate[index] = newData;
-                  setData([...dataUpdate]);
+                  setData1([...dataUpdate]);
                   resolve();
                 }, 1000);
               }),
@@ -282,9 +280,8 @@ const PickUpRequest = () => {
         {expanded && collectors !== 0 && collectors !== undefined ? (
           <div className="textStyle">
             <h4> {collectors} collectors have been found in your area.</h4>
-            {/* {console.log("data",data)} */}
             <button
-              onClick={(e) => handleSubmit(e, data)}
+              onClick={(e) => handleSubmit(e, data1)}
               style={{
                 color: "white",
                 background: "black",
@@ -304,4 +301,4 @@ const PickUpRequest = () => {
   );
 };
 
-export default PickUpRequest;
+export default PickUp;

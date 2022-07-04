@@ -13,7 +13,7 @@ import SaleItems from "../../container/collector/collectorSaleItems/salesItems";
 import PageNotFound from "../../container/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 
-const CollectorPrivateRoutes = () => {
+const CollectorRoutes = () => {
   return (
     <Routes>
       <Route path="/CollectorHome" element={<CollectorHome />} />
@@ -35,4 +35,4 @@ const CollectorPrivateRoutes = () => {
   );
 };
 
-export default CollectorPrivateRoutes;
+export default CollectorRoutes;

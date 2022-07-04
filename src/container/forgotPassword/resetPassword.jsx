@@ -9,21 +9,14 @@ import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {TOAST_SUCCESS2} from "../constant/constant";
 import Toast from "../../components/toast";
-import * as Yup from "yup";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";
-import {useSelector} from "react-redux";
-
-let validationSchema = Yup.object().shape({
-  password: Yup.string().required("Password is Required"),
-  confirmPassword: Yup.string().required("Confirm Password is Required"),
-});
+import validationSchema from "../constant/validations";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const {token} = useParams();
   const res = useSelector((state) => state.resetPassword?.data);
-  // console.log("response", res);
   const [passwordType, setpasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const togglePassword = () => {

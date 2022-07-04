@@ -2,39 +2,11 @@
 import {Formik, Form, Field} from "formik";
 import React, {useState} from "react";
 import Select from "react-select";
-import * as Yup from "yup";
 import {useDispatch, useSelector} from "react-redux";
 import Toast from "../../components/toast";
 import ReactTooltip from "react-tooltip";
 import TimeRange from "react-time-range";
-import {
-  ADDRESS_REQUIRED,
-  // CATEGORY_REQUIRED,
-  CONFIRM_PASSWORD_INVALID,
-  // CONFIRM_PASSWORD_INVALID,
-  CITY_REQUIRED,
-  CONFIRM_PASSWORD_REQUIRED,
-  EMAIL_INVALID,
-  EMAIL_REQUIRED,
-  FNAME_REQUIRED,
-  GSTNO_INVALID,
-  GSTNO_REQUIRED,
-  LNAME_REQUIRED,
-  MOBILE_INVALID,
-  MOBILE_REQUIRED,
-  PASSWORD_INVALID,
-  PASSWORD_REQUIRED,
-  PINCODE_INVALID,
-  PINCODE_REQUIRED,
-  SERVER_MSG,
-  TOAST_ERROR3,
-  REGISTRATION_INVALID,
-  REGISTRATION_REQUIRED,
-  ROLE_REQUIRED,
-  TOAST_SUCCESS1,
-  STATE_REQUIRED,
-  CATEGORY_REQUIRED,
-} from "../constant/constant";
+import {SERVER_MSG, TOAST_ERROR3, TOAST_SUCCESS1} from "../constant/constant";
 import Dropdown from "../../components/dropdown";
 import "./signUp.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
@@ -42,52 +14,8 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {statescity} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
+import validationSchema from "../constant/validations";
 
-let validationSchema = Yup.object().shape({
-  category: Yup.string().required(CATEGORY_REQUIRED).nullable(),
-  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
-  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
-  mobileNo: Yup.string()
-    .required(MOBILE_REQUIRED)
-    .matches(/^[6-9]\d{9}$/, MOBILE_INVALID)
-    .nullable(),
-  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
-  email: Yup.string().email(EMAIL_INVALID).required(EMAIL_REQUIRED).nullable(),
-  pinCode: Yup.string()
-    .required(PINCODE_REQUIRED)
-    .matches(/^\d{6}$/, PINCODE_INVALID)
-    .nullable(),
-  password: Yup.string()
-    .required(PASSWORD_REQUIRED)
-    .matches(/^[a-zA-Z0-9]{6,20}$/, PASSWORD_INVALID)
-    .min(6, PASSWORD_INVALID)
-    .max(20, PASSWORD_INVALID)
-    .nullable(),
-  city: Yup.string().required(CITY_REQUIRED).nullable(),
-  state: Yup.string().ensure().required(STATE_REQUIRED).nullable(),
-  role: Yup.string().required(ROLE_REQUIRED).nullable(),
-  registrationNo: Yup.string().when("role", {
-    is: (role) => role !== "Customer",
-    then: Yup.string()
-      .required(REGISTRATION_REQUIRED)
-      .matches(/^\d{6}$/, REGISTRATION_INVALID)
-      .nullable(),
-  }),
-  gstNo: Yup.string().when("role", {
-    is: (role) => role !== "Customer",
-    then: Yup.string()
-      .required(GSTNO_REQUIRED)
-      .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}Z\d{1}$/, GSTNO_INVALID)
-      .nullable(),
-  }),
-  confirmPassword: Yup.string()
-    .required(CONFIRM_PASSWORD_REQUIRED)
-    .matches(/^[a-zA-Z0-9]{6,20}$/, PASSWORD_INVALID)
-    .oneOf([Yup.ref("password"), null], CONFIRM_PASSWORD_INVALID)
-    .min(6, PASSWORD_INVALID)
-    .max(20, PASSWORD_INVALID)
-    .nullable(),
-});
 const data = [
   {
     value: "Temp",
@@ -116,7 +44,7 @@ const signUp = () => {
   const [passwordType, setPasswordType] = useState("text");
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
-  const [state, setState] = useState();
+  const [state1, setState1] = useState();
   const [msg, setMsg] = useState();
   const [city, setCity] = useState();
   const [categoryAccepted, setCategoryAccepted] = useState([
@@ -129,7 +57,7 @@ const signUp = () => {
   const dispatch = useDispatch();
 
   let res = useSelector((state) => state.signUpReducer);
-  console.log(res);
+
   React.useEffect(() => {
     if (isEmpty(res?.data) !== true) {
       if (res?.status === "success") {
@@ -147,7 +75,8 @@ const signUp = () => {
   const returnFunctionStart = (event) => {
     setStartTime(event.startTime);
   };
-  const handleInputChange = (e) => {
+  const handleInputChange = (e, i) => {
+    console.log(i);
     var list = [...e];
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
     setCategoryAccepted([list]);
@@ -159,7 +88,7 @@ const signUp = () => {
   };
 
   const changeState = (event) => {
-    setState(event.target.value);
+    setState1(event.target.value);
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
   const changeCity = (event) => {
@@ -203,16 +132,16 @@ const signUp = () => {
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          const data = {
+          const data1 = {
             values,
-            state: state,
+            state: state1,
             city: city,
             role: role,
             categoryAccepted: categoryAccepted,
             startTime: startTime,
             endTime: endTime,
           };
-          dispatch(signUpRequest(data));
+          dispatch(signUpRequest(data1));
           console.log(values);
         }}
       >
@@ -401,7 +330,7 @@ const signUp = () => {
                         padding: "4px",
                       }}
                       className="form-select"
-                      value={state}
+                      value={state1}
                       onChange={(e) => changeState(e)}
                     >
                       <option value="Select State">{"Select State"} </option>
@@ -409,8 +338,8 @@ const signUp = () => {
                         return <option key={key}>{e.name}</option>;
                       })}
                     </select>
-                    {touched.state && errors.state ? (
-                      <div className="formErrors">{errors.state}</div>
+                    {touched.state1 && errors.state1 ? (
+                      <div className="formErrors">{errors.state1}</div>
                     ) : null}
                   </div>
                 </div>
@@ -483,7 +412,7 @@ const signUp = () => {
                     ) : null}
                   </div>
                 </div>
-                {role === "Vendor" ? (
+                {role === "Vendor" || role === "Collector" ? (
                   <div className="row">
                     <div className="inputGroup">
                       <label htmlFor="GSTIN">
@@ -497,9 +426,11 @@ const signUp = () => {
                         placeholder="GST Number"
                         autoComplete="off"
                       />
-                      {touched.gstNo && errors.gstNo ? (
-                        <div className="formErrors">{errors.gstNo}</div>
-                      ) : null}
+                      {() => {
+                        if (touched.gstNo && errors.gstNo) {
+                          <div className="formErrors">{errors.gstNo}</div>;
+                        }
+                      }}
                     </div>
                     <div className="inputGroup">
                       <label htmlFor="reg">
@@ -513,11 +444,13 @@ const signUp = () => {
                         placeholder="Registration Number"
                         autoComplete="off"
                       />
-                      {touched.registrationNo && errors.registrationNo ? (
-                        <div className="formErrors">
-                          {errors.registrationNo}
-                        </div>
-                      ) : null}
+                      {() => {
+                        if (touched.registrationNo && errors.registrationNo) {
+                          <div className="formErrors">
+                            {errors.registrationNo}
+                          </div>;
+                        }
+                      }}
                     </div>
                   </div>
                 ) : (
@@ -525,42 +458,6 @@ const signUp = () => {
                 )}
                 {role === "Collector" ? (
                   <>
-                    <div className="row">
-                      <div className="inputGroup">
-                        <label htmlFor="GSTIN">
-                          GST-IN <i className="text-danger">*</i>
-                        </label>
-                        <Field
-                          type="text"
-                          name="gstNo"
-                          style={{borderRadius: "17px"}}
-                          onChange={handleChange}
-                          placeholder="GST Number"
-                          autoComplete="off"
-                        />
-                        {touched.gstNo && errors.gstNo ? (
-                          <div className="formErrors">{errors.gstNo}</div>
-                        ) : null}
-                      </div>
-                      <div className="inputGroup">
-                        <label htmlFor="reg">
-                          Registration Number <i className="text-danger">*</i>
-                        </label>
-                        <Field
-                          type="text"
-                          name="registrationNo"
-                          style={{borderRadius: "17px"}}
-                          onChange={handleChange}
-                          placeholder="Registration Number"
-                          autoComplete="off"
-                        />
-                        {touched.registrationNo && errors.registrationNo ? (
-                          <div className="formErrors">
-                            {errors.registrationNo}
-                          </div>
-                        ) : null}
-                      </div>
-                    </div>
                     <div className="row">
                       <div className="inputGroup">
                         <label
@@ -622,9 +519,11 @@ const signUp = () => {
                         </div>
                       );
                     })}
-                    {touched.category && errors.category ? (
-                      <div className="formErrors">{errors.category}</div>
-                    ) : null}
+                    {() => {
+                      if (touched.category && errors.category) {
+                        <div className="formErrors">{errors.category}</div>;
+                      }
+                    }}
                   </>
                 ) : (
                   ""

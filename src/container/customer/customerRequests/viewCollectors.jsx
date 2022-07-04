@@ -11,7 +11,6 @@ import {customerViewCollectorsRequest} from "../../../redux/action/customer/cust
 
 const ViewCollectors = (props) => {
   const {useState} = React;
-  // console.log(props.data);
   const dispatch = useDispatch();
   const [btndisable, setdisable] = useState(false);
 
@@ -108,15 +107,7 @@ const ViewCollectors = (props) => {
           actions={[
             {
               icon: () => (
-                <button
-                  className="accept-btn"
-                  disabled={btndisable}
-                  style={
-                    btndisable === true
-                      ? {color: "white", background: "rgb(14, 185, 207)"}
-                      : {color: "white", background: "rgb(14, 185, 207)"}
-                  }
-                >
+                <button className="accept-btn" disabled={btndisable}>
                   Accept
                 </button>
               ),

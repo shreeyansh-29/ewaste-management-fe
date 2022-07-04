@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const vendorCategoryReducer = (state = initialState, action) => {
+export const vendorCategoryReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.VENDOR_CATEGORY_REQUEST:
       return {...state, isLoading: true};

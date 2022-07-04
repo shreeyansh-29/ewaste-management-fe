@@ -39,9 +39,7 @@ select{
     width:70px;
   }
 }
-.bell{
-  margin-left: 45%;
-}
+
 @media only screen and (max-width: 650px) {
   
   .bell{

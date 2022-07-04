@@ -7,14 +7,11 @@ import * as types from "../../config/actionType";
 import {signInService} from "../../service/signInService/signInService";
 
 function* signInSaga(data) {
-  // console.log(data);
   try {
     let response = yield call(signInService, data);
-    // console.log("service", response);
     response = yield response.json();
     yield put(signInSuccess(response));
   } catch (error) {
-    // console.log("error", error);
     yield put(signInError(error));
   }
 }

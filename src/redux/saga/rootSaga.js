@@ -50,7 +50,6 @@ import {watchCollectorPendingAccept} from "./collector/collectorPendingAcceptSag
 import {watchCollectorSummary} from "./collector/collectorSummarySaga/collectorSummarySaga";
 import {watchCustomerCompletedRequest} from "./customer/customerCompletedRequestSaga/customerCompletedRequestSaga";
 import {watchCustomerPendingRequest} from "./customer/customerPendingRequestSaga/customerPendingRequestSaga";
-import {watchCustomerExpiredRequest} from "./customer/customerExpiredRequestSaga/customerExpiredRequestSaga";
 import {watchCustomerPendingDecline} from "./customer/customerPendingRequestSaga/customerPendingDeclineSaga";
 import {watchViewCustomerProfileSaga} from "./collector/viewCustomerProfileSaga";
 
@@ -75,7 +74,6 @@ function* rootSaga() {
     watchCustomerDrives(),
     watchCustomerCompletedRequest(),
     watchCustomerPendingRequest(),
-    watchCustomerExpiredRequest(),
     watchCustomerPendingDecline(),
     watchCollectorName(),
     watchCollectorNotificationCount(),

@@ -51,7 +51,6 @@ import {collectorPendingAcceptReducer} from "./collector/collectorPendingAcceptR
 import {collectorSummaryReducer} from "./collector/collectorSummaryReducer/collectorSummaryReducer";
 import {customerCompletedRequestReducer} from "./customer/customerCompletedRequestReducer/customerCompletedRequestReducer";
 import {customerPendingRequestReducer} from "./customer/customerPendingRequestReducer/customerPendingRequestReducer";
-import {customerExpiredRequestReducer} from "./customer/customerExpiredRequestReducer/customerExpiredRequestReducer";
 import {customerPendingDeclineReducer} from "./customer/customerPendingRequestReducer/customerPendingDeclineReducer";
 
 const rootReducer = combineReducers({
@@ -74,7 +73,6 @@ const rootReducer = combineReducers({
   customerCollectorCategories: customerCollectorCategoriesReducer,
   customerCompletedRequest: customerCompletedRequestReducer,
   customerPendingRequest: customerPendingRequestReducer,
-  customerExpiredRequest: customerExpiredRequestReducer,
   customerPendingDecline: customerPendingDeclineReducer,
   collectorName: collectorNameReducer,
   collectorNotificationCount: collectorNotificationCountReducer,

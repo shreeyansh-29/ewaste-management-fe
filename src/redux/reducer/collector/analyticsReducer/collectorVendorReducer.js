@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const collectorVendorReducer = (state = initialState, action) => {
+export const collectorVendorReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.COLLECTOR_VENDOR_REQUEST:
       return {...state, isLoading: true};

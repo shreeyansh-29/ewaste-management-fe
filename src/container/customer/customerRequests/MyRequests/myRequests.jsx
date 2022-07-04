@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Pending from "./pending";
 import Completed from "./completed";
-import Expired from "./expired";
 
 const MyRequests = () => {
   const [value, setValue] = useState(0);
@@ -59,16 +58,13 @@ const MyRequests = () => {
           elevation={20}
         >
           <Tab label="Pending" />
-          <Tab label="Expired" />
+
           <Tab label="Completed" />
         </Tabs>
         <TabPanel value={value} index={0}>
           <Pending />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Expired />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
           <Completed />
         </TabPanel>
       </Paper>

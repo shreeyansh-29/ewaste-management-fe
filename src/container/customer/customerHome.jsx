@@ -4,14 +4,10 @@ import Drives from "./customerAnalytics/drives";
 import EWaste from "./customerAnalytics/wasteGenerated";
 import "./customer.css";
 import CategoryCarousel from "../../components/carousel/categoryCarousel";
-// import useGeoLocation from "../hooks /useGeoLocation";
 
 const CustomerHome = () => {
-  // const location = useGeoLocation();
-
   return (
     <div className="home">
-      {/* <UseGeoLocation/> */}
       <div className="lg_container">
         <div style={{paddingTop: "5.8%", paddingBottom: "3%"}}>
           <CategoryCarousel />
@@ -55,9 +51,6 @@ const CustomerHome = () => {
         </h3>
         <Drives />
       </div>
-      {/* {location.loaded
-        ? localStorage.setItem("customer location", JSON.stringify(location))
-        : "Location data not found"} */}
     </div>
   );
 };

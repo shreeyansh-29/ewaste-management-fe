@@ -9,11 +9,9 @@ import {
 function* collectorRevenueChartSaga() {
   try {
     let response = yield call(collectorRevenueChartService);
-    // console.log("saga", response);
     yield put(collectorRevenueChartSuccess(response));
   } catch (error) {
     yield put(collectorRevenueChartError(error));
-    ``;
   }
 }
 

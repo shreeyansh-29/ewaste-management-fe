@@ -1,22 +1,17 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
 import "./password.css";
-import {useSelector} from "react-redux";
-import {useDispatch} from "react-redux";
-import * as Yup from "yup";
+import {useSelector, useDispatch} from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {forgotPasswordRequest} from "../../redux/action/forgotPasswordAction/forgotPasswordAction";
-import {EMAIL_INVALID, EMAIL_REQUIRED, MSG} from "../constant/constant";
+import {MSG} from "../constant/constant";
 import {useNavigate} from "react-router-dom";
-let validationSchema = Yup.object().shape({
-  email: Yup.string().email(EMAIL_INVALID).required(EMAIL_REQUIRED),
-});
+import validationSchema from "../constant/validations";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.forgotPassword);
-  // console.log("data", data);
 
   return (
     <div className="ForPassword">

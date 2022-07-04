@@ -5,15 +5,13 @@ import {} from "@material-ui/icons";
 import {isEmpty} from "lodash";
 import SearchIcon from "@material-ui/icons/Search";
 
-import {useDispatch} from "react-redux";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const SoldItems = () => {
   const {useState} = React;
   const dispatch = useDispatch();
 
   let res = useSelector((state) => state.collectorSold);
-  // console.log(res);
   const [columns] = useState([
     {
       title: "ID",

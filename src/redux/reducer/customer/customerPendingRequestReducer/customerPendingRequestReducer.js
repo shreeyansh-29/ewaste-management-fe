@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const customerPendingRequestReducer = (state = initialState, action) => {
+export const customerPendingRequestReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.CUSTOMER_PENDING_REQUEST:
       return {...state, isLoading: true};

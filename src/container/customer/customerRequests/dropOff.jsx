@@ -12,12 +12,12 @@ import Toast from "../../../components/toast";
 import {isEmpty} from "lodash";
 import {customerDropOffRequest} from "../../../redux/action/customer/customerDropOffAction/customerDropOffAction";
 
-const DropOffRequest = () => {
+const DropOff = () => {
   const {useState} = React;
 
   const dispatch = useDispatch();
   let res1 = useSelector((state) => state.customerDropOff);
-  console.log(res1);
+
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState([]);
   const [isEditable, setEditable] = useState(true);
@@ -79,7 +79,7 @@ const DropOffRequest = () => {
     },
   ]);
 
-  const [data, setData] = useState([]);
+  const [value, setValue] = useState([]);
 
   const handleClick = (data) => {
     if (
@@ -122,7 +122,7 @@ const DropOffRequest = () => {
         <MaterialTable
           title=""
           columns={columns}
-          data={data}
+          data={value}
           icons={{
             Add: () => <AddIcon style={{fill: "#e75480"}} />,
             Search: () => <SearchIcon style={{fill: "white"}} />,
@@ -132,7 +132,7 @@ const DropOffRequest = () => {
               ? (newData) =>
                   new Promise((resolve) => {
                     setTimeout(() => {
-                      setData([...data, newData]);
+                      setValue([...value, newData]);
                       setEditable(false);
                       resolve();
                       handleClick([newData]);
@@ -142,10 +142,10 @@ const DropOffRequest = () => {
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {
                 setTimeout(() => {
-                  const dataUpdate = [...data];
+                  const dataUpdate = [...value];
                   const index = oldData.tableData.id;
                   dataUpdate[index] = newData;
-                  setData([...dataUpdate]);
+                  setValue([...dataUpdate]);
 
                   resolve();
                 }, 1000);
@@ -162,7 +162,7 @@ const DropOffRequest = () => {
           ""
         )}
         {expanded && collectors?.length != 0 && isEmpty(collectors) !== true ? (
-          <ViewCollectors data={collectors} customerdata={data} />
+          <ViewCollectors data={collectors} customerdata={value} />
         ) : (
           ""
         )}
@@ -170,4 +170,4 @@ const DropOffRequest = () => {
     </div>
   );
 };
-export default DropOffRequest;
+export default DropOff;

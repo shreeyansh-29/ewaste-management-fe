@@ -7,7 +7,7 @@ const initialState = {
   error: "",
 };
 
-export const collectorSoldReducer = (state = initialState, action) => {
+export const collectorSoldReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case types.COLLECTOR_SOLD_REQUEST:
       return {...state, isLoading: true};

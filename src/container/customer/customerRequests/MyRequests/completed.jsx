@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {customerCompletedRequest} from "../../../../redux/action/customer/customerCompletedRequestAction/customerCompletedRequestAction";
 toast.configure();
 
-const CompletedRequest = () => {
+const Completed = () => {
   const dispatch = useDispatch();
   let res1 = useSelector((state) => state.customerCompletedRequest);
   const {useState} = React;
@@ -165,8 +165,7 @@ const CompletedRequest = () => {
                     </>
                   ),
 
-                  onClick: (e, datas) => {
-                    // console.log(e);
+                  onClick: (datas) => {
                     setdetail(datas.collectorUid);
                   },
                 },
@@ -186,4 +185,4 @@ const CompletedRequest = () => {
     </>
   );
 };
-export default CompletedRequest;
+export default Completed;

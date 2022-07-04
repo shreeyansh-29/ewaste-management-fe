@@ -7,7 +7,7 @@ const initialState = {
   error: "",
 };
 
-export const googleSignInReducer = (state = initialState, action) => {
+export const googleSignInReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case types.GOOGLE_SIGNIN_REQUEST:
       return {...state, isLoading: true};

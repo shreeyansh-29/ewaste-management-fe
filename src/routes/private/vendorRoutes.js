@@ -8,7 +8,7 @@ import MyOrders from "../../container/vendor/vendorSales/myOrders";
 import PageNotFound from "../../container/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 
-const VendorPrivateRoutes = () => {
+const VendorRoutes = () => {
   return (
     <Routes>
       <Route exact path="/VendorHome" element={<VendorHome />} />
@@ -22,4 +22,4 @@ const VendorPrivateRoutes = () => {
   );
 };
 
-export default VendorPrivateRoutes;
+export default VendorRoutes;

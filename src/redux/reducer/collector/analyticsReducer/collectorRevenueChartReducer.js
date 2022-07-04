@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const collectorRevenueChartReducer = (state = initialState, action) => {
+export const collectorRevenueChartReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.COLLECTOR_REVENUE_CHART_REQUEST:
       return {...state, isLoading: true};

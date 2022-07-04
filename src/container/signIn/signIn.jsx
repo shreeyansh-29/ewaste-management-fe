@@ -6,24 +6,13 @@ import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import GoogleSignin from "./googleSignin";
 import jwt from "jwt-decode";
-import {
-  EMAIL_INVALID,
-  EMAIL_REQUIRED,
-  PASSWORD_REQUIRED,
-  TOAST_ERROR1,
-  TOAST_ERROR2,
-} from "../constant/constant";
+import {TOAST_ERROR1, TOAST_ERROR2} from "../constant/constant";
 import Toast from "../../components/toast";
 import "./signin.css";
-import * as Yup from "yup";
-import {useDispatch} from "react-redux";
-import {signInRequest} from "../../redux/action/signInAction/signInActions";
-import {useSelector} from "react-redux";
 
-let validationSchema = Yup.object().shape({
-  email: Yup.string().email(EMAIL_INVALID).required(EMAIL_REQUIRED),
-  password: Yup.string().required(PASSWORD_REQUIRED),
-});
+import {useDispatch, useSelector} from "react-redux";
+import {signInRequest} from "../../redux/action/signInAction/signInActions";
+import validationSchema from "../constant/validations";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -113,7 +102,6 @@ const SignIn = () => {
                     placeholder="Email"
                     style={{borderRadius: "17px"}}
                     onChange={handleChange}
-                    // autoComplete="off"
                   />
                 </div>
                 {touched.email && errors.email ? (
@@ -139,7 +127,6 @@ const SignIn = () => {
                     />
                     <div className="input-group-btn">
                       <button
-                        // type="submit"
                         onClick={togglePassword}
                         style={{
                           border: "1px solid white",
@@ -172,11 +159,7 @@ const SignIn = () => {
                   </Link>
                 </div>
                 <div className="text-center" style={{marginTop: "50px"}}>
-                  <button
-                    type="submit"
-                    className="signin-button"
-                    // onClick={handleClick}
-                  >
+                  <button type="submit" className="signin-button">
                     <div style={{textAlign: "center"}}>Sign In</div>
                   </button>
                 </div>

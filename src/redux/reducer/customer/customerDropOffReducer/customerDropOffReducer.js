@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const customerDropOffReducer = (state = initialState, action) => {
+export const customerDropOffReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.CUSTOMER_DROPOFF_REQUEST:
       return {...state, isLoading: true};

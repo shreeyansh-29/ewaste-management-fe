@@ -7,12 +7,11 @@ const initialState = {
   error: "",
 };
 
-export const collectorNameReducer = (state = initialState, action) => {
+export const collectorNameReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case types.COLLECTOR_NAME_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_NAME_SUCCESS:
-      // console.log("success reducer", action);
       return {...state, data: action};
     case types.COLLECTOR_NAME_ERROR:
       return {...state, error: action};

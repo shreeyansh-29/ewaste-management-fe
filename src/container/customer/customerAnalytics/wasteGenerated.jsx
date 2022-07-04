@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import "../customer.css";
 import {useDispatch, useSelector} from "react-redux";

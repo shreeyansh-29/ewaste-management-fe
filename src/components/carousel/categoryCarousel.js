@@ -1,6 +1,5 @@
 import React from "react";
 import {Carousel} from "react-bootstrap";
-// import CarouselItem from "./carouselItem";
 import img1 from "../../container/images/microwave.jpg";
 import img2 from "../../container/images/printer.jpeg";
 import img3 from "../../container/images/tubelight.jpg";

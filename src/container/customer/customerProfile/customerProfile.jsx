@@ -5,30 +5,15 @@ import Toast from "../../../components/toast";
 import {statescity} from "../../signUp/states";
 import "../customer.css";
 import {isEmpty} from "lodash";
-import * as Yup from "yup";
-import {
-  ADDRESS_REQUIRED,
-  FNAME_REQUIRED,
-  LNAME_REQUIRED,
-  MOBILE_REQUIRED,
-  PINCODE_REQUIRED,
-  TOAST_SUCCESS5,
-} from "../../constant/constant";
+import {TOAST_SUCCESS5} from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {customerProfileEditRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileEditAction";
 import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
-
-let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
-  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
-  mobileNo: Yup.string().required(MOBILE_REQUIRED).nullable(),
-  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
-  pinCode: Yup.string().required(PINCODE_REQUIRED).nullable(),
-});
+import validationSchema from "../../constant/validations";
 
 const CustomerProfile = () => {
   const dispatch = useDispatch();
-  const [state, setState] = useState();
+  const [state1, setState1] = useState();
   const [city, setCity] = useState();
   const [initialcities, setCities] = useState([]);
 
@@ -37,18 +22,18 @@ const CustomerProfile = () => {
     dispatch(customerProfileRequest());
   }, []);
   useEffect(() => {
-    setState(res?.state);
+    setState1(res?.state);
     setCity(res?.city);
   }, [res]);
 
   const handleSubmit = (values) => {
-    const data = {values, password: res?.password, state: state, city: city};
+    const data = {values, password: res?.password, state: state1, city: city};
     console.log(data);
     dispatch(customerProfileEditRequest(data));
     Toast.success(TOAST_SUCCESS5, 1500);
   };
   const changeState = (event) => {
-    setState(event.target.value);
+    setState1(event.target.value);
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
   const changeCity = (event) => {
@@ -182,10 +167,10 @@ const CustomerProfile = () => {
                           padding: "4px",
                         }}
                         className="form-select"
-                        value={state}
+                        value={state1}
                         onChange={(e) => changeState(e)}
                       >
-                        <option value="Select State">{state} </option>
+                        <option value="Select State">{state1} </option>
                         {statescity.map((e, key) => {
                           return <option key={key}>{e.name}</option>;
                         })}

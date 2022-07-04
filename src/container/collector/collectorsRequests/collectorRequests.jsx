@@ -3,8 +3,8 @@ import MaterialTable from "material-table";
 import "../Collector.css";
 import {TOAST_SUCCESS8} from "../../constant/constant";
 import Toast from "../../../components/toast";
-import {useDispatch} from "react-redux";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
 import {collectorPendingRequest} from "../../../redux/action/collector/collectorPendingAction/collectorPendingAction";
 import {isEmpty} from "lodash";
 import {collectorPendingAcceptRequest} from "../../../redux/action/collector/collectorPendingAcceptAction/collectorPendingAcceptAction";
@@ -12,7 +12,7 @@ import {collectorPendingAcceptRequest} from "../../../redux/action/collector/col
 const CollectorRequests = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorPending);
-  // console.log(res);
+
   React.useEffect(() => {
     dispatch(collectorPendingRequest());
   }, []);

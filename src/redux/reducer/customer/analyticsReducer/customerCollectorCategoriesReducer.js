@@ -9,7 +9,7 @@ const initialState = {
 
 export const customerCollectorCategoriesReducer = (
   state = initialState,
-  action
+  action = action
 ) => {
   switch (action.type) {
     case types.CUSTOMER_COLLECTORCATEGORIES_REQUEST:

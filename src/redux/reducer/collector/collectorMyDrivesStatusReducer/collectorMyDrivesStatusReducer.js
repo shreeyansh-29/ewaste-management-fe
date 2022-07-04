@@ -9,7 +9,7 @@ const initialState = {
 
 export const collectorMyDrivesStatusReducer = (
   state = initialState,
-  action
+  action = action
 ) => {
   switch (action.type) {
     case types.COLLECTOR_MYDRIVES_STATUS_REQUEST:

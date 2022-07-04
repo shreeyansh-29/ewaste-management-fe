@@ -7,7 +7,10 @@ const initialState = {
   error: "",
 };
 
-export const collectorAvailableReducer = (state = initialState, action) => {
+export const collectorAvailableReducer = (
+  state = initialState,
+  action = action
+) => {
   switch (action.type) {
     case types.COLLECTOR_AVAILABLE_REQUEST:
       return {...state, isLoading: true};

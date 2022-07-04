@@ -1,37 +1,18 @@
 /* eslint-disable indent */
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
-import * as Yup from "yup";
 import "../Collector.css";
 import {statescity} from "../../signUp/states";
 import Toast from "../../../components/toast";
 import {isEmpty} from "lodash";
 import {collectorProfileRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileAction";
-import {
-  ADDRESS_REQUIRED,
-  FNAME_REQUIRED,
-  GSTNO_REQUIRED,
-  LNAME_REQUIRED,
-  MOBILE_REQUIRED,
-  PINCODE_REQUIRED,
-  REGISTRATION_REQUIRED,
-  TOAST_SUCCESS5,
-} from "../../constant/constant";
+import {TOAST_SUCCESS5} from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {collectorProfileEditRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileEditAction";
-
-let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
-  lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
-  mobileNo: Yup.string().required(MOBILE_REQUIRED).nullable(),
-  address1: Yup.string().required(ADDRESS_REQUIRED).nullable(),
-  pinCode: Yup.string().required(PINCODE_REQUIRED).nullable(),
-  gstNo: Yup.string().required(GSTNO_REQUIRED).nullable(),
-  registrationNo: Yup.string().required(REGISTRATION_REQUIRED).nullable(),
-});
+import validationSchema from "../../constant/validations";
 
 const CollectorProfile = () => {
-  const [state, setState] = useState();
+  const [state1, setState1] = useState();
   const [city, setCity] = useState();
   const dispatch = useDispatch();
 
@@ -41,11 +22,11 @@ const CollectorProfile = () => {
   }, []);
   const [initialcities, setCities] = useState([]);
   useEffect(() => {
-    setState(res?.state);
+    setState1(res?.state);
     setCity(res?.city);
   }, [res]);
   const changeState = (event) => {
-    setState(event.target.value);
+    setState1(event.target.value);
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
   const changeCity = (event) => {
@@ -58,7 +39,7 @@ const CollectorProfile = () => {
       password: res?.password,
       categoriesAcceptedSet: res?.categoriesAcceptedSet,
       shopTime: res?.shopTime,
-      state: state,
+      state: state1,
       city: city,
     };
     dispatch(collectorProfileEditRequest(data));
@@ -192,10 +173,10 @@ const CollectorProfile = () => {
                         padding: "4px",
                       }}
                       className="form-select"
-                      value={state}
+                      value={state1}
                       onChange={(e) => changeState(e)}
                     >
-                      <option value="Select State">{state} </option>
+                      <option value="Select State">{state1} </option>
                       {statescity.map((e, key) => {
                         return <option key={key}>{e.name}</option>;
                       })}
