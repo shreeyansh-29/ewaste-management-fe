@@ -3,7 +3,7 @@ import {BsPerson, BsBell} from "react-icons/bs";
 import {GiGreenPower} from "react-icons/gi";
 import {ImHome} from "react-icons/im";
 import {Link} from "react-router-dom";
-import {Container} from "../../globalStyles";
+import {Container} from "../../container/globalStyles";
 
 import {FiLogOut} from "react-icons/fi";
 
@@ -36,15 +36,15 @@ export const NavLogo = styled(Link)`
   display: flex;
   align-items: center;
   @media screen and (min-width: 370px) {
-  @media screen and (max-width: 400px) {
-    font-size:1.3rem;
+    @media screen and (max-width: 400px) {
+      font-size: 1.3rem;
+    }
   }
-}
   @media screen and (min-width: 280px) {
     @media screen and (max-width: 360px) {
-    font-size:1.5rem;
+      font-size: 1.5rem;
+    }
   }
-}
 `;
 
 export const NavIcon = styled(GiGreenPower)`
@@ -80,14 +80,14 @@ export const MobileIcon = styled.div`
     display: block;
     position: absolute;
     top: 3.5px;
-    font-size:1.3rem;
+    font-size: 1.3rem;
   }
   @media screen and (min-width: 280px) {
     @media screen and (max-width: 360px) {
-    font-size:0.8rem;
-    top:17px;
+      font-size: 0.8rem;
+      top: 17px;
+    }
   }
-}
 `;
 
 export const NavMenu = styled.ul`

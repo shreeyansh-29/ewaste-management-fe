@@ -2,7 +2,7 @@ import React from "react";
 import MaterialTable from "material-table";
 import "../Collector.css";
 import {TOAST_SUCCESS8} from "../../constant/constant";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import {collectorPendingRequest} from "../../../redux/action/collector/collectorPendingAction/collectorPendingAction";

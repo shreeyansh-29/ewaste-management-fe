@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import * as Yup from "yup";
 import "../vendor.css";
 import {statescity} from "../../signUp/states";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 import {
   ADDRESS_REQUIRED,
   FNAME_REQUIRED,

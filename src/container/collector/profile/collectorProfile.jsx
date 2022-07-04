@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import * as Yup from "yup";
 import "../Collector.css";
 import {statescity} from "../../signUp/states";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 import {isEmpty} from "lodash";
 import {collectorProfileRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileAction";
 import {

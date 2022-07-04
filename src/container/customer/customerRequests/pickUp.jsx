@@ -20,7 +20,7 @@ import {
 } from "../../constant/constant";
 import {customerCountCollRequest} from "../../../redux/action/customer/customerPickUpAction/customerCountCollAction";
 import {customerPickUpRequest} from "../../../redux/action/customer/customerPickUpAction/customerPickUpAction";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 
 const PickUpRequest = () => {
   const dispatch = useDispatch();

@@ -11,7 +11,7 @@ import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
 import {toast} from "react-toastify";
 import {TOAST_ERROR4, TOAST_SUCCESS7} from "../../constant/constant";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 import {collectorOrganizeDriveRequest} from "../../../redux/action/collector/collectorOrganizeDriveAction/collectorOrganizeDriveAction";
 toast.configure();
 

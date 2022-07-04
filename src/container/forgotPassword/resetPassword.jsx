@@ -8,7 +8,7 @@ import "./password.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {TOAST_SUCCESS2} from "../constant/constant";
-import Toast from "../components/toast";
+import Toast from "../../components/toast";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
 import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";

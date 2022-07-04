@@ -9,7 +9,7 @@ import {
 } from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 import {collectorForSaleRequest} from "../../../redux/action/collector/collectorForSaleAction/collectorForSaleAction";
 
 const ItemsForSale = () => {

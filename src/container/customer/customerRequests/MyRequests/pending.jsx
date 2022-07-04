@@ -7,12 +7,13 @@ import {toast} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
 import {customerPendingRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingRequestAction";
 import {customerPendingDeclineRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingDeclineAction";
+
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
-const PendingRequest = () => {
+const Pending = () => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerPendingRequest);
+  let res = useSelector((state) => state.customerPendingRequest?.data);
   const {useState} = React;
 
   const [columns] = useState([
@@ -118,7 +119,7 @@ const PendingRequest = () => {
       },
     },
   ]);
-  const handleDecline = (e, datas) => {
+  const handleDecline = async (e, datas) => {
     dispatch(customerPendingDeclineRequest(datas.orderUid));
     document.location.reload();
   };
@@ -134,7 +135,7 @@ const PendingRequest = () => {
             align="center"
             title=""
             columns={columns}
-            data={res?.data.data}
+            data={res?.data}
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,
             }}
@@ -158,5 +159,4 @@ const PendingRequest = () => {
     </div>
   );
 };
-
-export default PendingRequest;
+export default Pending;

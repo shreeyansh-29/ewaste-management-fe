@@ -3,23 +3,21 @@ import React, {useEffect, useState} from "react";
 import {
   NavLogoutBtn,
   NavNotiIcon,
-} from "../../components/navbar/navbarelements";
+} from "../../../components/navbar/navbarelements";
 import ".././customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
 import Swal from "sweetalert2";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
 import {customerNotificationDataRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationDataAction";
 import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
 import {isEmpty} from "lodash";
 
-const CustomerNav = () => {
+const CustomerNav = ({res, result, result2}) => {
+  // console.log(result2);
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerProfile);
-  let result = useSelector((state) => state.customerNotificationCount);
-  let result2 = useSelector((state) => state.customerNotificationData);
-  const name = res.data.firstName;
+  const name = res.firstName;
   useEffect(() => {
     dispatch(customerProfileRequest());
     dispatch(customerNotificationCountRequest());
@@ -33,14 +31,11 @@ const CustomerNav = () => {
   const [List, setList] = useState([]);
   var list = ["No New Notifications"];
   useEffect(() => {
-    if (
-      result?.data.payload !== "No New Notification" &&
-      isEmpty(result?.data) !== true
-    ) {
-      localStorage.setItem("count", result?.data?.payload.length);
+    if (result?.payload !== "No New Notification" && isEmpty(result) !== true) {
+      localStorage.setItem("count", result?.payload.length);
       setCount(localStorage.getItem("count"));
     }
-  }, [result]);
+  }, []);
 
   useEffect(() => {
     if (result2?.data.status === "success") {
@@ -174,4 +169,12 @@ const CustomerNav = () => {
   );
 };
 
-export default CustomerNav;
+const mapStateToProps = (state) => {
+  return {
+    res: state.customerProfile?.data,
+    result: state.customerNotificationCount?.data,
+    result2: state.customerNotificationData,
+  };
+};
+
+export default connect(mapStateToProps)(CustomerNav);

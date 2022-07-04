@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import Select from "react-select";
 import * as Yup from "yup";
 import {useDispatch, useSelector} from "react-redux";
-import Toast from "../components/toast";
+import Toast from "../../components/toast";
 import ReactTooltip from "react-tooltip";
 import TimeRange from "react-time-range";
 import {
@@ -35,7 +35,7 @@ import {
   STATE_REQUIRED,
   CATEGORY_REQUIRED,
 } from "../constant/constant";
-import Dropdown from "../components/dropdown";
+import Dropdown from "../../components/dropdown";
 import "./signUp.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";

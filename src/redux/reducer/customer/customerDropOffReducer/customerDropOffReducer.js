@@ -13,7 +13,7 @@ export const customerDropOffReducer = (state = initialState, action) => {
       return {...state, isLoading: true};
     case types.CUSTOMER_DROPOFF_SUCCESS:
       console.log("success reducer", action.payload);
-      return {...state, data: action.payload};
+      return action.payload;
     case types.CUSTOMER_DROPOFF_ERROR:
       return {...state, error: action};
     default:

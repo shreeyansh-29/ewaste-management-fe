@@ -6,20 +6,14 @@ import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import GoogleSignin from "./googleSignin";
 import jwt from "jwt-decode";
-// import api from "../../core/utilities/httpProvider";
 import {
-  // COLLECTOR_AUTH_URL,
-  // COLLECTOR_NOTIFICATION_URL,
-  // // CUSTOMER_AUTH_URL,
-  // CUSTOMER_NOTIFICATION_URL,
   EMAIL_INVALID,
   EMAIL_REQUIRED,
   PASSWORD_REQUIRED,
   TOAST_ERROR1,
   TOAST_ERROR2,
-  // VENDOR_AUTH_URL,
 } from "../constant/constant";
-import Toast from "../components/toast";
+import Toast from "../../components/toast";
 import "./signin.css";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";

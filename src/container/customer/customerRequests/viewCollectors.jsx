@@ -6,12 +6,12 @@ import {} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
 import "../customer.css";
 import {TOAST_SUCCESS4} from "../../constant/constant";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";
 
 const ViewCollectors = (props) => {
   const {useState} = React;
-  console.log(props);
+  console.log(props.data);
   const dispatch = useDispatch();
   const [btndisable, setdisable] = useState(false);
 

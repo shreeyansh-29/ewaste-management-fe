@@ -6,7 +6,7 @@ import CustomerNav from "../../container/customer/navbar/customerNav";
 import PickUp from "../../container/customer/customerRequests/pickUp";
 import DropOff from "../../container/customer/customerRequests/dropOff";
 import MyRequests from "../../container/customer/customerRequests/MyRequests/myRequests";
-import Popup from "../../container/components/popup";
+import Popup from "../../components/popup";
 import ViewCollectors from "../../container/customer/customerRequests/viewCollectors";
 import Waste from "../../container/customer/customerRequests/waste";
 import PageNotFound from "../../container/pageNotFound/pageNotFound";

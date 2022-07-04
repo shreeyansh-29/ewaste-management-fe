@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-import Popup from "../../components/popup";
+import Popup from "../../../components/popup";
 import {FaUserCircle} from "react-icons/fa";
 import {toast} from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";

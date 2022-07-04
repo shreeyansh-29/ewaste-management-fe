@@ -1,7 +1,7 @@
 import React from "react";
 import {Provider} from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./container/components/navbar/navbars";
+import Navbar from "./components/navbar/navbars";
 import GlobalStyle from "./container/globalStyles";
 import CustomerNav from "./container/customer/navbar/customerNav";
 import CollectorNav from "./container/collector/navbar/collectorNav";

@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 import {statescity} from "../../signUp/states";
 import "../customer.css";
 import {isEmpty} from "lodash";

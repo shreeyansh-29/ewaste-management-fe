@@ -4,22 +4,20 @@ import Swal from "sweetalert2";
 import {
   NavLogoutBtn,
   NavNotiIcon,
-} from "../../components/navbar/navbarelements";
+} from "../../../components/navbar/navbarelements";
 import "../../customer/customer.css";
 import "../Collector.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {collectorProfileRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileAction";
 import {collectorNotificationCountRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationCountAction";
 import {isEmpty} from "lodash";
 import {collectorNotificationDataRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationDataAction";
 
-const CollectorNav = () => {
+const CollectorNav = ({res, result, result2}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorProfile);
-  let result = useSelector((state) => state.collectorNotificationCount);
-  let result2 = useSelector((state) => state.collectorNotificationData);
+
   const [count, setCount] = useState(0);
   useEffect(() => {
     dispatch(collectorProfileRequest());
@@ -205,4 +203,12 @@ const CollectorNav = () => {
   );
 };
 
-export default CollectorNav;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorProfile,
+    result: state.collectorNotificationCount,
+    result2: state.collectorNotificationData,
+  };
+};
+
+export default connect(mapStateToProps)(CollectorNav);

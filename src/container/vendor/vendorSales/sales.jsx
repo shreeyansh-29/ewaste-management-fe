@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
 import PuchaseData from "./puchaseData";
 import "../vendor.css";
-import Popup from "../../components/popup";
+import Popup from "../../../components/popup";
 import {useDispatch, useSelector} from "react-redux";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
@@ -17,7 +17,7 @@ import {
   VALID_QUANTITY,
 } from "../../constant/constant";
 import {isEmpty} from "lodash";
-import Toast from "../../components/toast";
+import Toast from "../../../components/toast";
 export const ProfileIcon = FaUserCircle;
 
 const Sales = () => {
