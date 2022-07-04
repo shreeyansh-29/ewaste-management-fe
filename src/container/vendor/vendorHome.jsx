@@ -4,7 +4,7 @@ import VendorData from "./vendor Analytics/vendorData";
 import "./vendor Analytics/vendorAnalytics.css";
 import CollectorData from "./vendor Analytics/collectorData";
 import CollCat from "./vendor Analytics/category";
-import CategoryCarousel from "../categoryCarousel";
+import CategoryCarousel from "../../components/carousel/categoryCarousel";
 
 const VendorHome = () => {
   return (

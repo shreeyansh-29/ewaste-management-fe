@@ -13,7 +13,7 @@ const SoldItems = () => {
   const dispatch = useDispatch();
 
   let res = useSelector((state) => state.collectorSold);
-  console.log(res);
+  // console.log(res);
   const [columns] = useState([
     {
       title: "ID",

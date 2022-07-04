@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import {collectorMyDrivesRequest} from "../../../redux/action/collector/collectorMyDrivesAction/collectorMyDrivesAction";
@@ -7,7 +7,6 @@ import {isEmpty} from "lodash";
 import {collectorMyDrivesStatusRequest} from "../../../redux/action/collector/collectorMyDrivesStatusAction/collectorMyDrivesStatusAction";
 
 const MyDrives = () => {
-  const {useState} = React;
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorMyDrives);
   const [columns] = useState([

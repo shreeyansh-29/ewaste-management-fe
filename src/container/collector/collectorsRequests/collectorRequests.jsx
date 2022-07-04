@@ -12,7 +12,7 @@ import {collectorPendingAcceptRequest} from "../../../redux/action/collector/col
 const CollectorRequests = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorPending);
-  console.log(res);
+  // console.log(res);
   React.useEffect(() => {
     dispatch(collectorPendingRequest());
   }, []);

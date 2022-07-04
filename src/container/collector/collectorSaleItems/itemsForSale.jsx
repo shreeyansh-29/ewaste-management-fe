@@ -15,7 +15,7 @@ import {collectorForSaleRequest} from "../../../redux/action/collector/collector
 const ItemsForSale = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorForSale);
-  console.log(res);
+  // console.log(res);
   const {useState} = React;
   const [status, setStatus] = useState("");
   const [columns] = useState([

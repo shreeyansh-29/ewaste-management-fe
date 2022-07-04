@@ -11,7 +11,7 @@ import {customerViewCollectorsRequest} from "../../../redux/action/customer/cust
 
 const ViewCollectors = (props) => {
   const {useState} = React;
-  console.log(props.data);
+  // console.log(props.data);
   const dispatch = useDispatch();
   const [btndisable, setdisable] = useState(false);
 

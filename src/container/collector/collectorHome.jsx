@@ -5,7 +5,7 @@ import Users from "./collectorAnalytics/users";
 import Data from "./collectorAnalytics/vendor.jsx";
 import Revenue from "./collectorAnalytics/revenueChart";
 import "./Collector.css";
-import CategoryCarousel from "../categoryCarousel";
+import CategoryCarousel from "../../components/carousel/categoryCarousel";
 
 const CollectorHome = () => {
   return (

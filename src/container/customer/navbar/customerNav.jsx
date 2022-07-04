@@ -35,7 +35,7 @@ const CustomerNav = ({res, result, result2}) => {
       localStorage.setItem("count", result?.payload.length);
       setCount(localStorage.getItem("count"));
     }
-  }, []);
+  }, [result]);
 
   useEffect(() => {
     if (result2?.data.status === "success") {

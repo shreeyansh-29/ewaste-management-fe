@@ -10,9 +10,7 @@ import {useSelector} from "react-redux";
 const VendorNav = () => {
   const dispatch = useDispatch();
   const res = useSelector((state) => state.vendorName);
-  // console.log(res);
   const name = res.data.payload;
-  // console.log(name);
 
   React.useEffect(() => {
     dispatch(vendorNameRequest());

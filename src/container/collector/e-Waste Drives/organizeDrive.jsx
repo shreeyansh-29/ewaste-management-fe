@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,7 +16,6 @@ import {collectorOrganizeDriveRequest} from "../../../redux/action/collector/col
 toast.configure();
 
 const OrganizeDrive = () => {
-  const {useState} = React;
   var maxDate = new Date();
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorOrganizeDrive);

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import {Container} from "../../globalStyles";
+import {Container} from "../../container/globalStyles";
 import {
   InfoSec,
   InfoRow,

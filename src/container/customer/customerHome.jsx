@@ -3,7 +3,7 @@ import CollectorsCategories from "./customerAnalytics/collectorsCategories";
 import Drives from "./customerAnalytics/drives";
 import EWaste from "./customerAnalytics/wasteGenerated";
 import "./customer.css";
-import CategoryCarousel from "../categoryCarousel";
+import CategoryCarousel from "../../components/carousel/categoryCarousel";
 // import useGeoLocation from "../hooks /useGeoLocation";
 
 const CustomerHome = () => {
