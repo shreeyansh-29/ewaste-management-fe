@@ -1,21 +1,21 @@
 import * as types from "../../config/actionType";
 
-export const forgotPasswordRequest = (email) => {
+export const forgotPasswordRequest = (payload) => {
   return {
     type: types.FORGOT_PASSWORD_REQUEST,
-    email,
+    payload,
   };
 };
 
-export const forgotPasswordSuccess = (status) => {
+export const forgotPasswordSuccess = (payload) => {
   return {
     type: types.FORGOT_PASSWORD_SUCCESS,
-    status,
+    payload,
   };
 };
-export const forgotPasswordError = (error) => {
+export const forgotPasswordError = (payload) => {
   return {
     type: types.FORGOT_PASSWORD_ERROR,
-    error,
+    payload,
   };
 };

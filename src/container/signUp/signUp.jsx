@@ -15,6 +15,8 @@ import {statescity} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
 import {SignUpValidations} from "../constant/validations";
+import {togglePassword} from "../../components/togglePassword/togglePassword";
+import {Heading, ButtonStyle, SelectStyle} from "../../components/styles";
 
 const data = [
   {
@@ -98,20 +100,13 @@ const signUp = () => {
     setRole(e);
   };
 
-  const togglePassword = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      return;
-    }
-    setPasswordType("password");
+  const togglePasswords = () => {
+    setPasswordType(togglePassword(passwordType));
   };
-  const confirmtogglePassword = () => {
-    if (confirmPasswordType === "password") {
-      setConfirmPasswordType("text");
-      return;
-    }
-    setConfirmPasswordType("password");
+  const confirmTogglePasswords = () => {
+    setConfirmPasswordType(togglePassword(confirmPasswordType));
   };
+
   return (
     <div className="signUp">
       <Formik
@@ -123,7 +118,7 @@ const signUp = () => {
           password: "",
           confirmPassword: "",
           address1: "",
-          state: "",
+          state1: "",
           city: "",
           pinCode: "",
           role: "",
@@ -150,17 +145,7 @@ const signUp = () => {
           <Form>
             <div className="Form-bodY">
               <div className="signup-heading">
-                <h2
-                  style={{
-                    textAlign: "center",
-                    padding: "20px",
-                    fontSize: "1.7rem",
-                    fontFamily: "Poppins",
-                    color: "white",
-                  }}
-                >
-                  Sign Up
-                </h2>
+                <Heading>Sign Up</Heading>
               </div>
               <div className="signup-form-cont">
                 <div className="row">
@@ -249,20 +234,13 @@ const signUp = () => {
                         <div className="formErrors">{errors.password}</div>
                       ) : null}
                       <div className="input-group-btn">
-                        <button
-                          type="button"
-                          onClick={togglePassword}
-                          style={{
-                            border: "1px solid white",
-                            backgroundColor: "white",
-                          }}
-                        >
+                        <ButtonStyle type="button" onClick={togglePasswords}>
                           {passwordType === "password" ? (
                             <ShowOffIcon />
                           ) : (
                             <ShowIcon />
                           )}
-                        </button>
+                        </ButtonStyle>
                       </div>
                     </div>
                     <i className="fa-solid fa-eye-slash"></i>
@@ -286,20 +264,16 @@ const signUp = () => {
                         </div>
                       ) : null}
                       <div className="input-group-btn">
-                        <button
+                        <ButtonStyle
                           type="button"
-                          onClick={confirmtogglePassword}
-                          style={{
-                            border: "1px solid white",
-                            backgroundColor: "white",
-                          }}
+                          onClick={confirmTogglePasswords}
                         >
                           {confirmPasswordType === "password" ? (
                             <ShowOffIcon />
                           ) : (
                             <ShowIcon />
                           )}
-                        </button>
+                        </ButtonStyle>
                       </div>
                     </div>
                   </div>
@@ -325,11 +299,7 @@ const signUp = () => {
                     <label>
                       State <i className="text-danger">*</i>
                     </label>
-                    <select
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                      }}
+                    <SelectStyle
                       className="form-select"
                       value={state1}
                       onChange={(e) => changeState(e)}
@@ -338,7 +308,7 @@ const signUp = () => {
                       {statescity.map((e, key) => {
                         return <option key={key}>{e.name}</option>;
                       })}
-                    </select>
+                    </SelectStyle>
                     {touched.state1 && errors.state1 ? (
                       <div className="formErrors">{errors.state1}</div>
                     ) : null}
@@ -349,11 +319,7 @@ const signUp = () => {
                     <label>
                       City <i className="text-danger">*</i>
                     </label>
-                    <select
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                      }}
+                    <SelectStyle
                       className="form-select"
                       value={city}
                       onChange={(e) => changeCity(e)}
@@ -364,7 +330,7 @@ const signUp = () => {
                             return <option key={key}>{e}</option>;
                           })
                         : ""}
-                    </select>
+                    </SelectStyle>
                     {touched.city && errors.city ? (
                       <div className="formErrors">{errors.city}</div>
                     ) : null}
@@ -530,10 +496,19 @@ const signUp = () => {
                   ""
                 )}
                 <span className="error">{msg !== "" ? msg : ""}</span>
-                <div className="cont">
-                  <div className="vertical-center">
-                    <button type="submit" className="profilebtn">
-                      Submit
+                <div className="row">
+                  <div className="cont">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        window.location.href = "/Signin";
+                      }}
+                      className="backbutton"
+                    >
+                      BACK
+                    </button>
+                    <button type="submit" className="signup-button">
+                      SIGN UP
                     </button>
                   </div>
                 </div>

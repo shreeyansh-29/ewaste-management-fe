@@ -22,9 +22,8 @@ const ForgotPassword = () => {
           }}
           validationSchema={ForgotPasswordValidations}
           validator={() => ({})}
-          onSubmit={(values) => {
-            console.log("value", values);
-            dispatch(forgotPasswordRequest(values));
+          onSubmit={(email) => {
+            dispatch(forgotPasswordRequest(email));
           }}
         >
           {({errors, touched, handleChange}) => (
