@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import {
   ADDRESS_REQUIRED,
   CATEGORY_REQUIRED,
-  CITY_REQUIRED,
+  // CITY_REQUIRED,
   CONFIRM_PASSWORD_INVALID,
   CONFIRM_PASSWORD_REQUIRED,
   EMAIL_INVALID,
@@ -19,8 +19,8 @@ import {
   PINCODE_REQUIRED,
   REGISTRATION_INVALID,
   REGISTRATION_REQUIRED,
-  ROLE_REQUIRED,
-  STATE_REQUIRED,
+  // ROLE_REQUIRED,
+  // STATE_REQUIRED,
 } from "./constant";
 
 export const SignInValidations = Yup.object().shape({
@@ -48,9 +48,9 @@ export const SignUpValidations = Yup.object().shape({
     .min(6, PASSWORD_INVALID)
     .max(20, PASSWORD_INVALID)
     .nullable(),
-  city: Yup.string().required(CITY_REQUIRED).nullable(),
-  state1: Yup.string().ensure().required(STATE_REQUIRED).nullable(),
-  role: Yup.string().required(ROLE_REQUIRED).nullable(),
+  // city: Yup.string().required(CITY_REQUIRED).nullable(),
+  // state1: Yup.string().ensure().required(STATE_REQUIRED).nullable(),
+  // role: Yup.string().required(ROLE_REQUIRED).nullable(),
   registrationNo: Yup.string().when("role", {
     is: (role) => role !== "Customer",
     then: Yup.string()

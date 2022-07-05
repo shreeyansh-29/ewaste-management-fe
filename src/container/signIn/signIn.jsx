@@ -12,17 +12,15 @@ import "./signin.css";
 import {useDispatch, useSelector} from "react-redux";
 import {signInRequest} from "../../redux/action/signInAction/signInActions";
 import {SignInValidations} from "../constant/validations";
+import {Heading, ButtonStyle, Headings} from "../../components/styles";
+import {togglePassword} from "../../components/togglePassword/togglePassword";
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const [passwordType, setpasswordType] = useState("password");
   const res = useSelector((state) => state.signIn?.data);
-  const togglePassword = () => {
-    if (passwordType === "password") {
-      setpasswordType("text");
-      return;
-    }
-    setpasswordType("password");
+  const togglePasswords = () => {
+    setpasswordType(togglePassword(passwordType));
   };
 
   useEffect(() => {
@@ -74,17 +72,7 @@ const SignIn = () => {
             {({errors, touched, handleChange}) => (
               <Form>
                 <div className="heading">
-                  <h2
-                    style={{
-                      textAlign: "center",
-                      padding: "20px",
-                      fontSize: "1.7rem",
-                      fontFamily: "sans-serif",
-                      color: "white",
-                    }}
-                  >
-                    Sign In
-                  </h2>
+                  <Heading>Sign In</Heading>
                 </div>
 
                 <div
@@ -126,20 +114,13 @@ const SignIn = () => {
                       autoComplete="off"
                     />
                     <div className="input-group-btn">
-                      <button
-                        onClick={togglePassword}
-                        style={{
-                          border: "1px solid white",
-                          backgroundColor: "white",
-                        }}
-                        type="button"
-                      >
+                      <ButtonStyle onClick={togglePasswords} type="button">
                         {passwordType === "password" ? (
                           <ShowOffIcon />
                         ) : (
                           <ShowIcon />
                         )}
-                      </button>
+                      </ButtonStyle>
                     </div>
                   </div>
                 </div>
@@ -166,28 +147,12 @@ const SignIn = () => {
                 <div>
                   <GoogleSignin />
                 </div>
-
-                <div
-                  style={{
-                    textAlign: "center",
-                    padding: "8px",
-                    fontFamily: "Poppins",
-                    marginTop: "45px",
-                  }}
-                >
-                  {" "}
-                  New User?{" "}
-                  <Link
-                    to="/SignUp"
-                    style={{
-                      color: "grey",
-                      fontFamily: "Poppins",
-                      fontSize: "16.5px",
-                    }}
-                  >
+                <Headings>
+                  New User?
+                  <Link to="/SignUp" className="signIn-link">
                     <strong>SIGN UP</strong>
                   </Link>
-                </div>
+                </Headings>
               </Form>
             )}
           </Formik>

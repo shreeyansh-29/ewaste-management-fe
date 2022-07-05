@@ -14,7 +14,7 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {statescity} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
-import {SignUpValidations} from "../constant/validations";
+// import {SignUpValidations} from "../constant/validations";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 import {Heading, ButtonStyle, SelectStyle} from "../../components/styles";
 
@@ -125,7 +125,7 @@ const signUp = () => {
           gstNo: "",
           registrationNo: "",
         }}
-        validationSchema={SignUpValidations}
+        // validationSchema={SignUpValidations}
         validator={() => ({})}
         onSubmit={(values) => {
           const data1 = {
@@ -141,7 +141,7 @@ const signUp = () => {
           console.log(values);
         }}
       >
-        {({errors, touched, handleChange}) => (
+        {({errors, touched, handleChange, submitForm}) => (
           <Form>
             <div className="Form-bodY">
               <div className="signup-heading">
@@ -507,7 +507,11 @@ const signUp = () => {
                     >
                       BACK
                     </button>
-                    <button type="submit" className="signup-button">
+                    <button
+                      type="submit"
+                      className="signup-button"
+                      onClick={submitForm}
+                    >
                       SIGN UP
                     </button>
                   </div>
