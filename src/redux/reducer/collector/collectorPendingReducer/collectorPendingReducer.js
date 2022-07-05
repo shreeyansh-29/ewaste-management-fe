@@ -15,7 +15,6 @@ export const collectorPendingReducer = (
     case types.COLLECTOR_PENDING_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_PENDING_SUCCESS:
-      console.log(action);
       return {...state, data: action.payload};
     case types.COLLECTOR_PENDING_ERROR:
       return {...state, error: action};

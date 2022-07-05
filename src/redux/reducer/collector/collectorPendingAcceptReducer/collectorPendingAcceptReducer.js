@@ -13,9 +13,8 @@ export const collectorPendingAcceptReducer = (
 ) => {
   switch (action.type) {
     case types.COLLECTOR_PENDING_ACCEPT_REQUEST:
-      return {...state, isLoading: false};
+      return {...state, isLoading: true};
     case types.COLLECTOR_PENDING_ACCEPT_SUCCESS:
-      console.log(action);
       return {...state, data: action.payload};
     case types.COLLECTOR_PENDING_ACCEPT_ERROR:
       return {...state, error: action};

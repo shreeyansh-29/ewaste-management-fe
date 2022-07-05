@@ -12,7 +12,6 @@ export const collectorSoldReducer = (state = initialState, action = action) => {
     case types.COLLECTOR_SOLD_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_SOLD_SUCCESS:
-      console.log(action);
       return {...state, data: action.payload};
     case types.COLLECTOR_SOLD_ERROR:
       return {...state, error: action};

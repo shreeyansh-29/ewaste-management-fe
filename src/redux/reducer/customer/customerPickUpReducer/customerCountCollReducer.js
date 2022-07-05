@@ -15,7 +15,6 @@ export const customerCountCollReducer = (
     case types.CUSTOMER_COUNT_COLL_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_COUNT_COLL_SUCCESS:
-      console.log("success reducer", action);
       return {...state, data: action};
     case types.CUSTOMER_COUNT_COLL_ERROR:
       return {...state, error: action};

@@ -24,10 +24,10 @@ import {collectorEWasteItemsReducer} from "./collector/analyticsReducer/collecto
 import {collectorRevenueChartReducer} from "./collector/analyticsReducer/collectorRevenueChartReducer";
 import {collectorUsersReducer} from "./collector/analyticsReducer/collectorUsersReducer";
 import {collectorVendorReducer} from "./collector/analyticsReducer/collectorVendorReducer";
-import {vendorCategoryReducer} from "./vendor/analyticsReducer/VendorCategoryReducer";
-import {vendorCatgItemsReducer} from "./vendor/analyticsReducer/VendorCatgItemsReducer";
-import {vendorCollectorDataReducer} from "./vendor/analyticsReducer/VendorCollectorDataReducer";
-import {vendorVendorDataReducer} from "./vendor/analyticsReducer/VendorVendorDataReducer";
+import {vendorCategoryReducer} from "./vendor/analyticsReducer/vendorCategoryReducer";
+import {vendorCatgItemsReducer} from "./vendor/analyticsReducer/vendorCatgItemsReducer";
+import {vendorCollectorDataReducer} from "./vendor/analyticsReducer/vendorCollectorDataReducer";
+import {vendorVendorDataReducer} from "./vendor/analyticsReducer/vendorVendorDataReducer";
 import {vendorMyOrdersReducer} from "./vendor/vendorMyOrdersReducer/vendorMyOrdersReducer";
 import {vendorViewItemsReducer} from "./vendor/vendorSalesReducer/vendorViewItemsReducer";
 import {vendorAcceptItemsReducer} from "./vendor/vendorSalesReducer/vendorAcceptItemsReducer";

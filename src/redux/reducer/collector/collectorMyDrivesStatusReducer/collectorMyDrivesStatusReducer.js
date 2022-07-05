@@ -15,7 +15,6 @@ export const collectorMyDrivesStatusReducer = (
     case types.COLLECTOR_MYDRIVES_STATUS_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_MYDRIVES_STATUS_SUCCESS:
-      console.log(action);
       return {...state, data: action.payload};
     case types.COLLECTOR_MYDRIVES_STATUS_ERROR:
       return {...state, error: action};

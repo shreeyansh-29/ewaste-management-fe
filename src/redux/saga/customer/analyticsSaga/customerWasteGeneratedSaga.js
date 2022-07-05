@@ -3,7 +3,7 @@ import {
   customerWasteGeneratedError,
   customerWasteGeneratedSuccess,
 } from "../../../action/customer/analyticsAction/customerWasteGeneratedAction";
-import {CUSTOMER_WASTEGENERATAED_REQUEST} from "../../../config/actionType";
+import {CUSTOMER_WASTEGENERATED_REQUEST} from "../../../config/actionType";
 import {customerWasteGeneratedService} from "../../../service/customer/analyticsService/customerWasteGeneratedService";
 
 function* customerWasteGeneratedSaga() {
@@ -16,8 +16,5 @@ function* customerWasteGeneratedSaga() {
 }
 
 export function* watchCustomerWasteGenerated() {
-  yield takeLatest(
-    CUSTOMER_WASTEGENERATAED_REQUEST,
-    customerWasteGeneratedSaga
-  );
+  yield takeLatest(CUSTOMER_WASTEGENERATED_REQUEST, customerWasteGeneratedSaga);
 }

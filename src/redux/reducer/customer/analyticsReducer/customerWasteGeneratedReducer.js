@@ -12,11 +12,11 @@ export const customerWasteGeneratedReducer = (
   action = action
 ) => {
   switch (action.type) {
-    case types.CUSTOMER_WASTEGENERATAED_REQUEST:
+    case types.CUSTOMER_WASTEGENERATED_REQUEST:
       return {...state, isLoading: true};
-    case types.CUSTOMER_WASTEGENERATAED_SUCCESS:
+    case types.CUSTOMER_WASTEGENERATED_SUCCESS:
       return {...state, data: action.payload};
-    case types.CUSTOMER_WASTEGENERATAED_ERROR:
+    case types.CUSTOMER_WASTEGENERATED_ERROR:
       return {...state, error: action};
     default:
       return state;

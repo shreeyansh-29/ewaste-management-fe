@@ -14,7 +14,6 @@ export const collectorOrganizeDriveReducer = (
     case types.COLLECTOR_ORGANIZE_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_ORGANIZE_SUCCESS:
-      console.log(action);
       return {...state, data: action.payload};
     case types.COLLECTOR_ORGANIZE_ERROR:
       return {...state, error: action};

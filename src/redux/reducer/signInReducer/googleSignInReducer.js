@@ -14,7 +14,7 @@ export const googleSignInReducer = (state = initialState, action = action) => {
     case types.GOOGLE_SIGNIN_SUCCESS:
       return {...state, data: action.payload};
     case types.GOOGLE_SIGNIN_ERROR:
-      return {...state, data: action};
+      return {...state, error: action};
     default:
       return state;
   }
