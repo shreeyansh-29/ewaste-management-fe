@@ -4,13 +4,13 @@ import {customerNameReducer} from "./customerNameReducer";
 
 describe("customerNameReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = customerNameReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

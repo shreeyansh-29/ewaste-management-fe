@@ -4,13 +4,13 @@ import {collectorSummaryReducer} from "./collectorSummaryReducer";
 
 describe("collectorSummaryReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = collectorSummaryReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

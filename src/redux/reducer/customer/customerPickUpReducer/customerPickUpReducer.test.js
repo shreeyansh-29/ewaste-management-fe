@@ -4,13 +4,13 @@ import {customerPickUpReducer} from "./customerPickUpReducer";
 
 describe("customerPickUpReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = customerPickUpReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

@@ -4,11 +4,11 @@ import {viewCustomerProfileReducer} from "./viewCustomerProfileReducer";
 
 describe("viewCustomerProfileReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       obj: {},
     };
     const newState = viewCustomerProfileReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     obj: {},

@@ -4,13 +4,13 @@ import {vendorCategoryReducer} from "./vendorCategoryReducer";
 
 describe("vendorCategoryReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = vendorCategoryReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

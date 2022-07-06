@@ -9,7 +9,7 @@
 }
 .signIn-forgot-link{
   color: gray;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   margin-right: 20px;
 }
 .signIn-body{
@@ -19,10 +19,15 @@
 }
 .signIn-link{
   color: grey;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 16.5px;
 }
-
+.signIn-float{
+  float: right;
+}
+.signIn-btn{
+margin-top: 50px;
+}
 .signIn {
   display: flex;
   justify-content: center;

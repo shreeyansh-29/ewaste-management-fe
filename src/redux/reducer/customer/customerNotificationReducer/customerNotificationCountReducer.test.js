@@ -4,13 +4,13 @@ import {customerNotificationCountReducer} from "./customerNotificationCountReduc
 
 describe("customerNotificationCountReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = customerNotificationCountReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

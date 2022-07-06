@@ -4,13 +4,13 @@ import {customerPendingRequestReducer} from "./customerPendingRequestReducer";
 
 describe("customerPendingRequestReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = customerPendingRequestReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

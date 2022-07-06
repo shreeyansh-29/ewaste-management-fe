@@ -1,17 +1,16 @@
 /* eslint-disable no-undef */
 import * as types from "../../../config/actionType";
 import {collectorRevenueChartReducer} from "./collectorRevenueChartReducer";
-import {COLLECTOR_REVENUE_CHART_ERROR} from "../../../config/actionType";
 
 describe("collectorRevenueChart", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = collectorRevenueChartReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},
@@ -44,11 +43,11 @@ describe("collectorRevenueChart", () => {
   it("should handle COLLECTOR_REVENUE_CHART_ERROR", () => {
     expect(
       collectorRevenueChartReducer(initialState, {
-        type: COLLECTOR_REVENUE_CHART_ERROR,
+        type: types.COLLECTOR_REVENUE_CHART_ERROR,
         payload: "NOOOO!!!",
       })
     ).toEqual({
-      error: {payload: "NOOOO!!!", type: COLLECTOR_REVENUE_CHART_ERROR},
+      error: {payload: "NOOOO!!!", type: types.COLLECTOR_REVENUE_CHART_ERROR},
       data: {},
       isLoading: true,
     });

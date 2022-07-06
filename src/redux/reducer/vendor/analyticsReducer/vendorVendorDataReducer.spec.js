@@ -4,13 +4,13 @@ import {vendorVendorDataReducer} from "./vendorVendorDataReducer";
 
 describe("vendorVendorDataReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = vendorVendorDataReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

@@ -4,13 +4,13 @@ import {customerWasteGeneratedReducer} from "./customerWasteGeneratedReducer";
 
 describe("customerWasteGeneratedReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = customerWasteGeneratedReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

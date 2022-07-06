@@ -4,13 +4,13 @@ import {collectorProfileEditReducer} from "./collectorProfileEditReducer";
 
 describe("collectorProfileEditReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = collectorProfileEditReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

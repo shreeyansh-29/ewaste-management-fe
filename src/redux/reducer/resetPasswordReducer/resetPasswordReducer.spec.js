@@ -4,13 +4,13 @@ import {resetPasswordReducer} from "./resetPasswordReducer";
 
 describe("resetPasswordReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = resetPasswordReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},

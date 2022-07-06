@@ -4,13 +4,13 @@ import {vendorProfileReducer} from "./vendorProfileReducer";
 
 describe("vendorProfileReducer", () => {
   it("should return the initial state", () => {
-    const initialState = {
+    const initialState1 = {
       data: {},
       isLoading: false,
       error: "",
     };
     const newState = vendorProfileReducer(undefined, {});
-    expect(newState).toEqual(initialState);
+    expect(newState).toEqual(initialState1);
   });
   const initialState = {
     data: {},
