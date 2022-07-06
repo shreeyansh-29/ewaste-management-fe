@@ -120,6 +120,7 @@ const Pending = () => {
     },
   ]);
   const handleDecline = async (e, datas) => {
+    e.preventDefault();
     dispatch(customerPendingDeclineRequest(datas.orderUid));
     document.location.reload();
   };

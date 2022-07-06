@@ -35,7 +35,7 @@ describe("signUpReducer", () => {
         payload: {status: "success"},
       })
     ).toEqual({
-      data: {},
+      data: {status: "success"},
       isLoading: true,
       error: "",
     });
@@ -48,7 +48,7 @@ describe("signUpReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "",
+      error: {payload: "ERROR", type: types.SIGN_UP_ERROR},
       isLoading: true,
     });
   });

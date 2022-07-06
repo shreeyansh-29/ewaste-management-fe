@@ -1,7 +1,7 @@
 import {call, takeLatest, put} from "@redux-saga/core/effects";
 import {
-  viewAcceptCollectorSuccess,
-  viewAcceptCollectorError,
+  vendorViewAcceptCollectorSuccess,
+  vendorViewAcceptCollectorError,
 } from "../../action/vendor/viewCollProfileAction";
 import {viewColProfileService} from "../../service/vendor/viewColProfileService";
 import {VENDOR_COLLECTORPROFILE_REQUEST} from "../../config/actionType";
@@ -9,9 +9,9 @@ import {VENDOR_COLLECTORPROFILE_REQUEST} from "../../config/actionType";
 function* viewAcceptColProfileSaga(data) {
   try {
     let response = yield call(viewColProfileService, data);
-    yield put(viewAcceptCollectorSuccess(response.data));
+    yield put(vendorViewAcceptCollectorSuccess(response));
   } catch (err) {
-    yield put(viewAcceptCollectorError(err));
+    yield put(vendorViewAcceptCollectorError(err));
   }
 }
 

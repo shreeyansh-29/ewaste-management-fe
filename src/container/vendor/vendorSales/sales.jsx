@@ -29,7 +29,7 @@ const Sales = () => {
   const [isopen, setopen] = useState(false);
   const [quantity, setQuantity] = useState();
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.vendorViewItems);
+  let res = useSelector((state) => state.vendorViewItems?.data);
   let res2 = useSelector((state) => state.vendorAcceptItems);
   const [columns] = useState([
     {

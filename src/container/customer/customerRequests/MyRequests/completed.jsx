@@ -3,17 +3,22 @@ import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import Popup from "../../../../components/popup";
 import "../../customer.css";
+import {
+  ProfileIconBarStyle,
+  ProfileIconStyle,
+} from "../../../../components/styles";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
 export const ProfileIcon = FaUserCircle;
 import {useDispatch, useSelector} from "react-redux";
 import {customerCompletedRequest} from "../../../../redux/action/customer/customerCompletedRequestAction/customerCompletedRequestAction";
+import {isEmpty} from "lodash";
 toast.configure();
 
-const Completed = () => {
+export default function completed() {
   const dispatch = useDispatch();
-  let res1 = useSelector((state) => state.customerCompletedRequest);
+  let res = useSelector((state) => state.customerCompletedRequest);
   const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
@@ -125,7 +130,19 @@ const Completed = () => {
   const togglepop = () => {
     setopen(!isopen);
   };
-
+  const handledata = (res1) => {
+    res1.map((obj) => {
+      if (obj.scheduledDate !== null) {
+        const date = obj.scheduledDate.split("T");
+        obj.scheduledDate = date[0];
+      }
+    });
+  };
+  useEffect(() => {
+    if (isEmpty(res?.data) !== true) {
+      handledata(res?.data.data);
+    }
+  });
   useEffect(() => {
     dispatch(customerCompletedRequest());
   }, []);
@@ -139,7 +156,7 @@ const Completed = () => {
               align="center"
               title=""
               columns={columns}
-              data={res1?.data.data}
+              data={res?.data.data}
               icons={{
                 Search: () => <SearchIcon style={{fill: "white"}} />,
               }}
@@ -152,20 +169,16 @@ const Completed = () => {
                 {
                   icon: () => (
                     <>
-                      <button
-                        style={{
-                          background: "white",
-                          border: "1px solid white",
-                          fontSize: "15px",
-                        }}
-                        onClick={togglepop}
-                      >
-                        <ProfileIcon style={{color: "#e75480"}} />
-                      </button>
+                      <ProfileIconStyle onClick={togglepop}>
+                        <ProfileIconBarStyle>
+                          <ProfileIcon></ProfileIcon>
+                        </ProfileIconBarStyle>
+                      </ProfileIconStyle>
                     </>
                   ),
 
-                  onClick: (datas) => {
+                  onClick: (e, datas) => {
+                    e.preventDefault();
                     setdetail(datas.collectorUid);
                   },
                 },
@@ -184,5 +197,4 @@ const Completed = () => {
       </div>
     </>
   );
-};
-export default Completed;
+}

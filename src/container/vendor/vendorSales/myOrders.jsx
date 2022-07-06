@@ -209,6 +209,7 @@ const MyOrders = () => {
               ),
 
               onClick: (e, datas) => {
+                e.preventDefault();
                 if (datas.id === null) {
                   toast.warn(TOAST_WARN3, {
                     position: toast.POSITION.TOP_RIGHT,

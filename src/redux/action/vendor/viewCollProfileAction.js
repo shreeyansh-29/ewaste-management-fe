@@ -1,20 +1,20 @@
 import * as types from "../../config/actionType";
 
-export const viewAcceptCollectorRequest = (response) => {
+export const vendorViewAcceptCollectorRequest = (payload) => {
   return {
     type: types.VENDOR_COLLECTORPROFILE_REQUEST,
-    response,
+    payload,
   };
 };
-export const viewAcceptCollectorSuccess = (response) => {
+export const vendorViewAcceptCollectorSuccess = (payload) => {
   return {
     type: types.VENDOR_COLLECTORPROFILE_SUCCESS,
-    response,
+    payload,
   };
 };
-export const viewAcceptCollectorError = (error) => {
+export const vendorViewAcceptCollectorError = (payload) => {
   return {
     type: types.VENDOR_COLLECTORPROFILE_ERROR,
-    error,
+    payload,
   };
 };

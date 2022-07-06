@@ -1,10 +1,7 @@
 /* eslint-disable indent */
 import React, {useState, useEffect} from "react";
 import Swal from "sweetalert2";
-import {
-  NavLogoutBtn,
-  NavNotiIcon,
-} from "../../../components/navbar/navbarelements";
+import {NavLogoutBtn} from "../../../components/navbar/navbarelements";
 import "../../customer/customer.css";
 import "../Collector.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,8 +11,11 @@ import {collectorProfileRequest} from "../../../redux/action/collector/collector
 import {collectorNotificationCountRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationCountAction";
 import {isEmpty} from "lodash";
 import {collectorNotificationDataRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationDataAction";
+import {NavbarButton} from "../../../components/styles";
+import NotificationCount from "./notificationCount";
 
-function CollectorNav({res, result1, result2}) {
+function CollectorNav(props) {
+  const {res, result1, result2} = props;
   const dispatch = useDispatch();
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -82,43 +82,9 @@ function CollectorNav({res, result1, result2}) {
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
           <Nav.Item className="bell">
-            <button
-              style={{background: "#101522", border: "none"}}
-              onClick={() => markAsRead()}
-            >
-              <div className="icon-button__badge1">
-                {count == "" ||
-                count == "undefined" ||
-                count === null ||
-                count === 0 ? (
-                  ""
-                ) : (
-                  <div
-                    style={{
-                      color: "white",
-                      marginLeft: "18px",
-                      borderRadius: "17px",
-                      width: "20px",
-                      top: "7px",
-                      left: "4px",
-                      position: "relative",
-                    }}
-                  >
-                    {count}
-                  </div>
-                )}
-                <NavNotiIcon
-                  style={
-                    count == "" ||
-                    count === null ||
-                    count == "undefined" ||
-                    count === 0
-                      ? {color: "white"}
-                      : {color: "white", marginBottom: "20px"}
-                  }
-                ></NavNotiIcon>
-              </div>
-            </button>
+            <NavbarButton onClick={() => markAsRead()}>
+              <NotificationCount count={count} />
+            </NavbarButton>
 
             {show ? (
               <div className="notifications1">

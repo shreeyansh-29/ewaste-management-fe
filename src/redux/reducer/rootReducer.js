@@ -53,7 +53,7 @@ import {customerCompletedRequestReducer} from "./customer/customerCompletedReque
 import {customerPendingRequestReducer} from "./customer/customerPendingRequestReducer/customerPendingRequestReducer";
 import {customerPendingDeclineReducer} from "./customer/customerPendingRequestReducer/customerPendingDeclineReducer";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
   resetPassword: resetPasswordReducer,
   signIn: signInReducer,
@@ -108,5 +108,3 @@ const rootReducer = combineReducers({
   viewCollectorProfileReducer: viewCollectorProfileReducer,
   viewCustomerProfileReducer: viewCustomerProfileReducer,
 });
-
-export default rootReducer;

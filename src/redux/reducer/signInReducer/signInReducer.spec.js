@@ -35,7 +35,7 @@ describe("signInReducer", () => {
         payload: {status: "success"},
       })
     ).toEqual({
-      data: undefined,
+      data: {status: "success"},
       isLoading: true,
       error: "",
     });

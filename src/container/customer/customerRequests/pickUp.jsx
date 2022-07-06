@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import "../customer.css";
@@ -10,23 +10,22 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import dateUpdate from "../date";
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
 import {isEmpty} from "lodash";
-import {
-  TOAST_ERROR4,
-  TOAST_SUCCESS3,
-  TOAST_WARN1,
-} from "../../constant/constant";
+import {TOAST_SUCCESS3} from "../../constant/constant";
 import {customerCountCollRequest} from "../../../redux/action/customer/customerPickUpAction/customerCountCollAction";
 import {customerPickUpRequest} from "../../../redux/action/customer/customerPickUpAction/customerPickUpAction";
 import Toast from "../../../components/toast";
+import {Button, TableTitle} from "../../../components/styles";
+import {quantityValidation} from "./quantityValidations";
 
-const PickUp = () => {
-  const dispatch = useDispatch();
+export default function pickUp() {
   let result = useSelector((state) => state.customerCountColl);
   let res = useSelector((state) => state.customerPickUp);
-
+  const dispatch = useDispatch();
+  const {useState} = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
   const [isEditable, setEditable] = useState(true);
@@ -38,7 +37,7 @@ const PickUp = () => {
   useEffect(() => {
     if (
       isEmpty(result?.data) !== true ||
-      result.data.type === "CUSTOMER_SUCCESS_PICKUP_COUNT"
+      result?.data.type === "CUSTOMER_COUNT_COLL_SUCCESS"
     ) {
       setCollectors(result.data.payload);
     }
@@ -139,71 +138,31 @@ const PickUp = () => {
       },
       headerStyle: {
         textAlign: "center",
-        fontSize: "15pexport default functionx",
+        fontSize: "15px",
       },
     },
   ]);
-  const [data1, setData1] = useState([]);
-
-  const handleSubmit = (event, data) => {
+  const [data, setData] = useState([]);
+  const handleSubmit = (event, value) => {
     event.preventDefault();
-    var date = data[0].date.toString().split(" ");
-    if (date[1] === "Jan") {
-      date[1] = "01";
-    } else if (date[1] === "Feb") {
-      date[1] = "02";
-    } else if (date[1] === "Mar") {
-      date[1] = "03";
-    } else if (date[1] === "Apr") {
-      date[1] = "04";
-    } else if (date[1] === "May") {
-      date[1] = "05";
-    } else if (date[1] === "Jun") {
-      date[1] = "06";
-    } else if (date[1] === "Jul") {
-      date[1] = "07";
-    } else if (date[1] === "Aug") {
-      date[1] = "08";
-    } else if (date[1] === "Sep") {
-      date[1] = "09";
-    } else if (date[1] === "Oct") {
-      date[1] = "10";
-    } else if (date[1] === "Nov") {
-      date[1] = "11";
-    } else if (date[1] === "Dec") {
-      date[1] = "12";
-    }
+    var date = value[0].date.toString().split(" ");
+    date[1] = dateUpdate(date[1]);
+
     date = date[3] + "-" + date[1] + "-" + date[2];
-    data[0].date = date;
-    console.log(data[0]);
+    value[0].date = date;
     const datas = {
-      category: data[0].category,
-      itemName: data[0].name,
-      quantity: data[0].quantity,
-      scheduledDate: data[0].date,
-      scheduledTime: data[0].time,
+      category: value[0].category,
+      itemName: value[0].name,
+      quantity: value[0].quantity,
+      scheduledDate: value[0].date,
+      scheduledTime: value[0].time,
     };
     dispatch(customerPickUpRequest(datas));
   };
   const handleClick = (event) => {
     event.preventDefault();
-
-    if (
-      data1[0].category === undefined ||
-      data1[0].name === "" ||
-      data1[0].quantity === null ||
-      data1[0].date === undefined ||
-      data1[0].time === undefined
-    ) {
-      Toast.error(TOAST_ERROR4);
-    } else if (
-      data1[0].quantity === 0 ||
-      data1[0].quantity > 20 ||
-      data1[0].quantity < 0
-    ) {
-      Toast.warn(TOAST_WARN1);
-    } else {
-      dispatch(customerCountCollRequest(data1[0].category));
+    if (quantityValidation(data[0])) {
+      dispatch(customerCountCollRequest(data[0].category));
       setExpanded(true);
     }
   };
@@ -211,24 +170,11 @@ const PickUp = () => {
   return (
     <div>
       <div style={{padding: "150px 30px"}}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "30px",
-            padding: "2px",
-            marginBottom: "2.5%",
-            color: "white",
-            backgroundColor: " rgb(30, 28, 54)",
-            borderRadius: "5px",
-          }}
-        >
-          {" "}
-          Pick-Up Requests{" "}
-        </h2>
+        <TableTitle> Pick-Up Requests</TableTitle>
         <MaterialTable
           title=""
           columns={columns}
-          data={data1}
+          data={data}
           icons={{
             Add: () => <AddIcon style={{fill: "#e75480"}} />,
           }}
@@ -237,7 +183,7 @@ const PickUp = () => {
               ? (newData) =>
                   new Promise((resolve) => {
                     setTimeout(() => {
-                      setData1([...data1, newData]);
+                      setData([...data, newData]);
                       setEditable(false);
                       resolve();
                     }, 1000);
@@ -246,10 +192,10 @@ const PickUp = () => {
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {
                 setTimeout(() => {
-                  const dataUpdate = [...data1];
+                  const dataUpdate = [...data];
                   const index = oldData.tableData.id;
                   dataUpdate[index] = newData;
-                  setData1([...dataUpdate]);
+                  setData([...dataUpdate]);
                   resolve();
                 }, 1000);
               }),
@@ -280,18 +226,7 @@ const PickUp = () => {
         {expanded && collectors !== 0 && collectors !== undefined ? (
           <div className="textStyle">
             <h4> {collectors} collectors have been found in your area.</h4>
-            <button
-              onClick={(e) => handleSubmit(e, data1)}
-              style={{
-                color: "white",
-                background: "black",
-                padding: "10px",
-                borderRadius: "3px",
-                border: "1px solid black",
-              }}
-            >
-              Send Request
-            </button>
+            <Button onClick={(e) => handleSubmit(e, data)}>Send Request</Button>
           </div>
         ) : (
           ""
@@ -299,6 +234,4 @@ const PickUp = () => {
       </div>
     </div>
   );
-};
-
-export default PickUp;
+}

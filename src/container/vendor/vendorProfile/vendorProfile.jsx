@@ -56,7 +56,6 @@ const VendorProfile = () => {
         validationSchema={VendorValidations}
         validator={() => ({})}
         onSubmit={(values) => {
-          console.log(values);
           handleSubmit(values);
         }}
       >

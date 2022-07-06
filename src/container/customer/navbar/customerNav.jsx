@@ -1,9 +1,5 @@
-/* eslint-disable indent */
 import React, {useEffect, useState} from "react";
-import {
-  NavLogoutBtn,
-  NavNotiIcon,
-} from "../../../components/navbar/navbarelements";
+import {NavLogoutBtn} from "../../../components/navbar/navbarelements";
 import ".././customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
@@ -13,6 +9,8 @@ import {customerProfileRequest} from "../../../redux/action/customer/customerPro
 import {customerNotificationDataRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationDataAction";
 import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
 import {isEmpty} from "lodash";
+import {NavbarButton} from "../../../components/styles";
+import NotificationCount from "../../collector/navbar/notificationCount";
 
 const CustomerNav = ({res, result1, result2}) => {
   const dispatch = useDispatch();
@@ -81,32 +79,12 @@ const CustomerNav = ({res, result1, result2}) => {
           </Navbar.Brand>
 
           <Nav.Item>
-            <button
-              style={{background: "#101522", border: "none"}}
+            <NavbarButton
               onClick={() => markAsRead()}
               className="notification_button"
             >
-              <div className="icon-button__badge">
-                {count == "" ||
-                count == "undefined" ||
-                count === null ||
-                count === 0 ? (
-                  ""
-                ) : (
-                  <div className="navbarCount">{count}</div>
-                )}
-                <NavNotiIcon
-                  style={
-                    count == "" ||
-                    count === null ||
-                    count == "undefined" ||
-                    count === 0
-                      ? {color: "white", marginLeft: "24.5px"}
-                      : {color: "white", marginBottom: "20px"}
-                  }
-                ></NavNotiIcon>
-              </div>
-            </button>
+              <NotificationCount count={count} />
+            </NavbarButton>
 
             {show ? (
               <div className="notifications">

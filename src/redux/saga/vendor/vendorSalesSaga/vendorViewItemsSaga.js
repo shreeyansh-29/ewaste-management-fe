@@ -9,8 +9,7 @@ import {VENDOR_VIEW_ITEMS_REQUEST} from "../../../config/actionType";
 function* vendorViewItemsSaga() {
   try {
     let response = yield call(vendorViewItemsService);
-    // console.log(response);
-    yield put(vendorViewItemsSuccess(response.data));
+    yield put(vendorViewItemsSuccess(response));
   } catch (error) {
     yield put(vendorViewItemsError(error));
   }

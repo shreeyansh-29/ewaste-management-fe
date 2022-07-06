@@ -2,7 +2,9 @@
 import * as types from "../../config/actionType";
 
 const initialState = {
-  obj: {},
+  data: {},
+  isLoading: false,
+  error: "",
 };
 export const viewCustomerProfileReducer = (
   state = initialState,
@@ -10,11 +12,11 @@ export const viewCustomerProfileReducer = (
 ) => {
   switch (action.type) {
     case types.COLLECTOR_CUSTOMERPROFILE_REQUEST:
-      return {};
+      return {...state, isLoading: true};
     case types.COLLECTOR_CUSTOMERPROFILE_SUCCESS:
-      return action.response.data;
+      return {...state, data: action.payload};
     case types.COLLECTOR_CUSTOMERPROFILE_ERROR:
-      return action;
+      return {...state, error: action};
     default:
       return state;
   }

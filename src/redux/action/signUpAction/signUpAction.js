@@ -1,22 +1,22 @@
 import * as types from "../../config/actionType";
 
-export const signUpRequest = (data) => {
+export const signUpRequest = (payload) => {
   return {
     type: types.SIGN_UP_REQUEST,
-    data,
+    payload,
   };
 };
 
-export const signUpSuccess = (response) => {
+export const signUpSuccess = (payload) => {
   return {
     type: types.SIGN_UP_SUCCESS,
-    response,
+    payload,
   };
 };
 
-export const signUpError = (error) => {
+export const signUpError = (payload) => {
   return {
     type: types.SIGN_UP_ERROR,
-    error,
+    payload,
   };
 };

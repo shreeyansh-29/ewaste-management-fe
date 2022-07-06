@@ -14,7 +14,7 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {statescity} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
-// import {SignUpValidations} from "../constant/validations";
+import {SignUpValidations} from "../constant/validations";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 import {Heading, ButtonStyle, SelectStyle} from "../../components/styles";
 
@@ -58,7 +58,7 @@ const signUp = () => {
   const [initialcities, setCities] = useState([]);
   const dispatch = useDispatch();
 
-  let res = useSelector((state) => state.signUpReducer);
+  let res = useSelector((state) => state.signUpReducer?.data);
 
   React.useEffect(() => {
     if (isEmpty(res?.data) !== true) {
@@ -82,7 +82,6 @@ const signUp = () => {
     var list = [...e];
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
     setCategoryAccepted([list]);
-    console.log(categoryAccepted);
   };
 
   const returnFunctionEnd = (event) => {
@@ -125,7 +124,7 @@ const signUp = () => {
           gstNo: "",
           registrationNo: "",
         }}
-        // validationSchema={SignUpValidations}
+        validationSchema={SignUpValidations}
         validator={() => ({})}
         onSubmit={(values) => {
           const data1 = {
@@ -141,7 +140,7 @@ const signUp = () => {
           console.log(values);
         }}
       >
-        {({errors, touched, handleChange, submitForm}) => (
+        {({errors, handleChange, submitForm}) => (
           <Form>
             <div className="Form-bodY">
               <div className="signup-heading">
@@ -161,7 +160,7 @@ const signUp = () => {
                       placeholder="First Name"
                       autoComplete="off"
                     />
-                    {touched.firstName && errors.firstName ? (
+                    {errors.firstName ? (
                       <div className="formErrors">{errors.firstName}</div>
                     ) : null}
                   </div>
@@ -177,7 +176,7 @@ const signUp = () => {
                       placeholder="Last Name"
                       autoComplete="off"
                     />
-                    {touched.lastName && errors.lastName ? (
+                    {errors.lastName ? (
                       <div className="formErrors">{errors.lastName}</div>
                     ) : null}
                   </div>
@@ -195,7 +194,7 @@ const signUp = () => {
                       placeholder="Mail"
                       autoComplete="off"
                     />
-                    {touched.email && errors.email ? (
+                    {errors.email ? (
                       <div className="formErrors">{errors.email}</div>
                     ) : null}
                   </div>
@@ -211,7 +210,7 @@ const signUp = () => {
                       placeholder="Mobile Number"
                       autoComplete="off"
                     />
-                    {touched.mobileNo && errors.mobileNo ? (
+                    {errors.mobileNo ? (
                       <div className="formErrors">{errors.mobileNo}</div>
                     ) : null}
                   </div>
@@ -230,7 +229,7 @@ const signUp = () => {
                         placeholder="Enter Password"
                         autoComplete="off"
                       />
-                      {touched.password && errors.password ? (
+                      {errors.password ? (
                         <div className="formErrors">{errors.password}</div>
                       ) : null}
                       <div className="input-group-btn">
@@ -258,7 +257,7 @@ const signUp = () => {
                         placeholder="Confirm Password"
                         autoComplete="off"
                       />
-                      {touched.confirmPassword && errors.confirmPassword ? (
+                      {errors.confirmPassword ? (
                         <div className="formErrors">
                           {errors.confirmPassword}
                         </div>
@@ -291,7 +290,7 @@ const signUp = () => {
                       placeholder="Address"
                       autoComplete="off"
                     />
-                    {touched.address1 && errors.address1 ? (
+                    {errors.address1 ? (
                       <div className="formErrors">{errors.address1}</div>
                     ) : null}
                   </div>
@@ -309,7 +308,7 @@ const signUp = () => {
                         return <option key={key}>{e.name}</option>;
                       })}
                     </SelectStyle>
-                    {touched.state1 && errors.state1 ? (
+                    {errors.state1 ? (
                       <div className="formErrors">{errors.state1}</div>
                     ) : null}
                   </div>
@@ -331,7 +330,7 @@ const signUp = () => {
                           })
                         : ""}
                     </SelectStyle>
-                    {touched.city && errors.city ? (
+                    {errors.city ? (
                       <div className="formErrors">{errors.city}</div>
                     ) : null}
                   </div>
@@ -348,7 +347,7 @@ const signUp = () => {
                       placeholder="Pincode"
                       autoComplete="off"
                     />
-                    {touched.pinCode && errors.pinCode ? (
+                    {errors.pinCode ? (
                       <div className="formErrors">{errors.pinCode}</div>
                     ) : null}
                   </div>
@@ -374,7 +373,7 @@ const signUp = () => {
                         />
                       </>
                     </div>
-                    {touched.role && errors.role ? (
+                    {errors.role ? (
                       <div className="formErrors">{errors.role}</div>
                     ) : null}
                   </div>
@@ -394,7 +393,7 @@ const signUp = () => {
                         autoComplete="off"
                       />
                       {() => {
-                        if (touched.gstNo && errors.gstNo) {
+                        if (errors.gstNo) {
                           <div className="formErrors">{errors.gstNo}</div>;
                         }
                       }}
@@ -412,7 +411,7 @@ const signUp = () => {
                         autoComplete="off"
                       />
                       {() => {
-                        if (touched.registrationNo && errors.registrationNo) {
+                        if (errors.registrationNo) {
                           <div className="formErrors">
                             {errors.registrationNo}
                           </div>;
@@ -487,7 +486,7 @@ const signUp = () => {
                       );
                     })}
                     {() => {
-                      if (touched.category && errors.category) {
+                      if (errors.category) {
                         <div className="formErrors">{errors.category}</div>;
                       }
                     }}

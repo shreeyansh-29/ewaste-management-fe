@@ -2,16 +2,19 @@
 import * as types from "../../config/actionType";
 
 const initialState = {
-  obj: {},
+  data: {},
+  isLoading: false,
+  error: "",
 };
 export const viewAcceptColReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_REQUEST:
-      return {};
+      return {...state, isLoading: true};
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_SUCCESS:
-      return action.response.data;
+      console.log(action);
+      return {...state, data: action.payload};
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_ERROR:
-      return action;
+      return {...state, error: action};
     default:
       return state;
   }

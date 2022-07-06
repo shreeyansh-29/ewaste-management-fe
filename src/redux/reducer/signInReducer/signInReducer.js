@@ -13,17 +13,11 @@ const initialState = {
 export const signInReducer = (state = initialState, action = action) => {
   switch (action.type) {
     case SIGN_IN_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-      };
+      return {...state, isLoading: true};
     case SIGN_IN_SUCCESS:
-      return {...state, data: action.response};
+      return {...state, data: action.payload};
     case SIGN_IN_ERROR:
-      return {
-        ...state,
-        error: action,
-      };
+      return {...state, error: action};
     default:
       return state;
   }

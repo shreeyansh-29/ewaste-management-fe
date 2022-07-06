@@ -5,28 +5,41 @@ import {viewCustomerProfileReducer} from "./viewCustomerProfileReducer";
 describe("viewCustomerProfileReducer", () => {
   it("should return the initial state", () => {
     const initialState1 = {
-      obj: {},
+      data: {},
+      isLoading: false,
+      error: "",
     };
     const newState = viewCustomerProfileReducer(undefined, {});
     expect(newState).toEqual(initialState1);
   });
   const initialState = {
-    obj: {},
+    data: {},
+    isLoading: true,
+    error: "",
   };
   it("should handle COLLECTOR_CUSTOMERPROFILE_REQUEST", () => {
     expect(
       viewCustomerProfileReducer(initialState, {
         type: types.COLLECTOR_CUSTOMERPROFILE_REQUEST,
       })
-    ).toEqual({});
+    ).toEqual({
+      data: {},
+      isLoading: true,
+      error: "",
+    });
   });
-  //   it("should handle COLLECTOR_CUSTOMERPROFILE_SUCCESS", () => {
-  //     expect(
-  //       viewCustomerProfileReducer(initialState, {
-  //         type: types.COLLECTOR_CUSTOMERPROFILE_SUCCESS,
-  //       })
-  //     ).toEqual({});
-  //   });
+  it("should handle COLLECTOR_CUSTOMERPROFILE_SUCCESS", () => {
+    expect(
+      viewCustomerProfileReducer(initialState, {
+        type: types.COLLECTOR_CUSTOMERPROFILE_SUCCESS,
+        payload: {status: "success"},
+      })
+    ).toEqual({
+      data: {status: "success"},
+      isLoading: true,
+      error: "",
+    });
+  });
   it("should handle COLLECTOR_CUSTOMERPROFILE_ERROR", () => {
     expect(
       viewCustomerProfileReducer(initialState, {
@@ -34,8 +47,12 @@ describe("viewCustomerProfileReducer", () => {
         payload: "ERROR",
       })
     ).toEqual({
-      payload: "ERROR",
-      type: types.COLLECTOR_CUSTOMERPROFILE_ERROR,
+      data: {},
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_CUSTOMERPROFILE_ERROR,
+      },
+      isLoading: true,
     });
   });
 });

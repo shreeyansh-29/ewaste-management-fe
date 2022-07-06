@@ -12,11 +12,11 @@ export const customerNotificationDataReducer = (
   action = action
 ) => {
   switch (action.type) {
-    case types.COLLECTOR_NOTIFICATION_DATA_REQUEST:
+    case types.CUSTOMER_NOTIFICATION_DATA_REQUEST:
       return {...state, isLoading: true};
-    case types.COLLECTOR_NOTIFICATION_DATA_SUCCESS:
+    case types.CUSTOMER_NOTIFICATION_DATA_SUCCESS:
       return {...state, data: action.payload};
-    case types.COLLECTOR_NOTIFICATION_DATA_ERROR:
+    case types.CUSTOMER_NOTIFICATION_DATA_ERROR:
       return {...state, error: action};
     default:
       return state;

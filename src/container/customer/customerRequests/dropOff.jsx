@@ -16,7 +16,7 @@ const DropOff = () => {
   const {useState} = React;
 
   const dispatch = useDispatch();
-  let res1 = useSelector((state) => state.customerDropOff);
+  let res1 = useSelector((state) => state.customerDropOff?.data);
 
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState([]);

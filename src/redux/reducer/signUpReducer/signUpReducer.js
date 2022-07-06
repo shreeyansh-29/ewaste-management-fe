@@ -8,14 +8,11 @@ const initialState = {
 };
 
 export const signUpReducer = (state = initialState, action = action) => {
-  switch (action.types) {
+  switch (action.type) {
     case types.SIGN_UP_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-      };
+      return {...state, isLoading: true};
     case types.SIGN_UP_SUCCESS:
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.SIGN_UP_ERROR:
       return {...state, error: action};
     default:

@@ -3,12 +3,13 @@ import React, {useEffect, useState} from "react";
 import "../container/customer/customer.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Formik, Field, Form} from "formik";
-import {viewAcceptCollectorRequest} from "../redux/action/vendor/viewCollProfileAction";
+import {vendorViewAcceptCollectorRequest} from "../redux/action/vendor/viewCollProfileAction";
 import {isEmpty} from "lodash";
-import {venRequestCollectorAcceptRequest} from "../redux/action/vendor/viewAcceptCollectorProfileAction";
-import {cusRequestCollectorRequest} from "../redux/action/customer/viewCollectorProfileAction";
-import {colRequestCustomerRequest} from "../redux/action/collector/viewCustomerProfileAction";
-function popup(props) {
+import {vendorCollectorProfileRequest} from "../redux/action/vendor/viewAcceptCollectorProfileAction";
+import {viewCollectorProfileRequest} from "../redux/action/customer/viewCollectorProfileAction";
+import {viewCustomerProfileRequest} from "../redux/action/collector/viewCustomerProfileAction";
+
+const Popup = (props) => {
   const [value, setValue] = useState({
     name: "",
     address1: "",
@@ -16,65 +17,82 @@ function popup(props) {
   });
 
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.viewAcceptColReducer);
-  let res2 = useSelector((state) => state.viewColProfileReducer);
+  let res = useSelector((state) => state.viewAcceptColReducer?.data);
+  let res2 = useSelector((state) => state.viewColProfileReducer?.data);
   let res3 = useSelector((state) => state.viewCollectorProfileReducer?.data);
-  let res4 = useSelector((state) => state.viewCustomerProfileReducer);
-  console.log(res);
+  let res4 = useSelector((state) => state.viewCustomerProfileReducer?.data);
+  console.log(res2);
 
   useEffect(() => {
-    if (isEmpty(res) !== true) {
+    if (isEmpty(res?.data) !== true || res?.status === "success") {
       setValue((prev) => {
         return {
           ...prev,
-          name: res.firstName + " " + res.lastName,
-          address1: res.address1 + ", " + res.city + ", " + res.state,
-          mobileNo: res.mobileNo,
+          name: res?.data.firstName + " " + res?.data.lastName,
+          address1:
+            res?.data.address1 + ", " + res?.data.city + ", " + res?.data.state,
+          mobileNo: res?.data.mobileNo,
         };
       });
     }
   }, [res]);
   useEffect(() => {
-    if (isEmpty(res2) !== true) {
+    if (isEmpty(res2?.data) !== true || res2?.status === "success") {
       setValue((prev) => {
         return {
           ...prev,
-          name: res2.firstName + " " + res2.lastName,
-          address1: res2.address1 + ", " + res2.city + ", " + res2.state,
-          mobileNo: res2.mobileNo,
+          name: res2?.data.firstName + " " + res2?.data.lastName,
+          address1:
+            res2?.data.address1 +
+            ", " +
+            res2?.data.city +
+            ", " +
+            res2?.data.state,
+          mobileNo: res2?.data.mobileNo,
         };
       });
     }
   }, [res2]);
   useEffect(() => {
-    if (isEmpty(res3) !== true) {
+    if (isEmpty(res3?.data) !== true || res3?.status === "success") {
       setValue((prev) => {
         return {
           ...prev,
-          name: res3.firstName + " " + res3.lastName,
-          address1: res3.address1 + ", " + res3.city + ", " + res3.state,
-          mobileNo: res3.mobileNo,
+          name: res3?.data.firstName + " " + res3?.data.lastName,
+          address1:
+            res3?.data.address1 +
+            ", " +
+            res3?.data.city +
+            ", " +
+            res3?.data.state,
+          mobileNo: res3?.data.mobileNo,
         };
       });
     }
   }, [res3]);
   useEffect(() => {
-    if (isEmpty(res4) !== true) {
+    if (isEmpty(res4?.data) !== true || res4?.status === "success") {
       setValue((prev) => {
         return {
           ...prev,
-          name: res4.firstName + " " + res4.lastName,
-          address1: res4.address1 + ", " + res4.city + ", " + res4.state,
-          mobileNo: res4.mobileNo,
+          name: res4?.data.firstName + " " + res4?.data.lastName,
+          address1:
+            res4?.data.address1 +
+            ", " +
+            res4?.data.city +
+            ", " +
+            res4?.data.state,
+          mobileNo: res4?.data.mobileNo,
         };
       });
     }
   }, [res4]);
+
   useEffect(() => {
-    dispatch(venRequestCollectorAcceptRequest(props.c));
-    dispatch(viewAcceptCollectorRequest(props.cont));
-    dispatch(cusRequestCollectorRequest(props.contents));
-    dispatch(colRequestCustomerRequest(props.content));
+    dispatch(vendorViewAcceptCollectorRequest(props.c));
+    dispatch(vendorCollectorProfileRequest(props.cont));
+    dispatch(viewCollectorProfileRequest(props.contents));
+    dispatch(viewCustomerProfileRequest(props.content));
   }, []);
 
   return (
@@ -157,5 +175,5 @@ function popup(props) {
       </div>
     </>
   );
-}
-export default popup;
+};
+export default Popup;

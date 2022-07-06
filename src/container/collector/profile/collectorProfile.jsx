@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+// /* eslint-disable indent */
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
 import "../Collector.css";
@@ -10,6 +11,7 @@ import {TOAST_SUCCESS5} from "../../constant/constant";
 import {useDispatch, useSelector} from "react-redux";
 import {collectorProfileEditRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileEditAction";
 import {CollectorValidations} from "../../constant/validations";
+import {SelectStyle} from "../../../components/styles";
 
 const CollectorProfile = () => {
   const [state1, setState1] = useState();
@@ -167,11 +169,7 @@ const CollectorProfile = () => {
                     <label>
                       State <i className="text-danger">*</i>
                     </label>
-                    <select
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                      }}
+                    <SelectStyle
                       className="form-select"
                       value={state1}
                       onChange={(e) => changeState(e)}
@@ -180,7 +178,7 @@ const CollectorProfile = () => {
                       {statescity.map((e, key) => {
                         return <option key={key}>{e.name}</option>;
                       })}
-                    </select>
+                    </SelectStyle>
                     {touched.state && errors.state ? (
                       <div className="formErrors">{errors.state}</div>
                     ) : null}
@@ -191,11 +189,7 @@ const CollectorProfile = () => {
                     <label>
                       City <i className="text-danger">*</i>{" "}
                     </label>
-                    <select
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                      }}
+                    <SelectStyle
                       className="form-select"
                       value={city}
                       onChange={(e) => changeCity(e)}
@@ -206,7 +200,7 @@ const CollectorProfile = () => {
                             return <option key={key}>{e}</option>;
                           })
                         : ""}
-                    </select>
+                    </SelectStyle>
                     {touched.city && errors.city ? (
                       <div className="formErrors">{errors.city}</div>
                     ) : null}
@@ -241,9 +235,6 @@ const CollectorProfile = () => {
                       onChange={handleChange}
                       placeholder="Enter GSTIN"
                     />
-                    {touched.gstNo && errors.gstNo ? (
-                      <div className="formErrors">{errors.gstNo}</div>
-                    ) : null}
                   </div>
                   <div className="inputGroup">
                     <label htmlFor="Registration Certificate No.">
@@ -257,9 +248,6 @@ const CollectorProfile = () => {
                       onChange={handleChange}
                       placeholder="Enter Registration Number"
                     />
-                    {touched.registrationNo && errors.registrationNo ? (
-                      <div className="formErrors">{errors.registrationNo}</div>
-                    ) : null}
                   </div>
                 </div>
                 <div className="cont">

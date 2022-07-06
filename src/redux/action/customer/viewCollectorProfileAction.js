@@ -1,20 +1,20 @@
 import * as types from "../../config/actionType";
 
-export const cusRequestCollectorRequest = (response) => {
+export const viewCollectorProfileRequest = (payload) => {
   return {
     type: types.CUSTOMER_COLLECTORPROFILE_REQUEST,
-    response,
+    payload,
   };
 };
-export const cusRequestCollectorSuccess = (response) => {
+export const viewCollectorProfileSuccess = (payload) => {
   return {
     type: types.CUSTOMER_COLLECTORPROFILE_SUCCESS,
-    response,
+    payload,
   };
 };
-export const cusRequestCollectorError = (error) => {
+export const viewCollectorProfileError = (payload) => {
   return {
     type: types.CUSTOMER_COLLECTORPROFILE_ERROR,
-    error,
+    payload,
   };
 };

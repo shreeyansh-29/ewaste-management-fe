@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {customerProfileEditRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileEditAction";
 import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
 import {CustomerValidations} from "../../constant/validations";
+import {ProfileHeading, SelectStyle} from "../../../components/styles";
 
 const CustomerProfile = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,6 @@ const CustomerProfile = () => {
 
   const handleSubmit = (values) => {
     const data = {values, password: res?.password, state: state1, city: city};
-    console.log(data);
     dispatch(customerProfileEditRequest(data));
     Toast.success(TOAST_SUCCESS5, 1500);
   };
@@ -62,17 +62,7 @@ const CustomerProfile = () => {
           <Form>
             <div className="containers">
               <div className="customersprofile">
-                <h1
-                  style={{
-                    textAlign: "center",
-                    padding: "20px",
-                    fontSize: "2rem",
-                    fontFamily: "sans-serif",
-                    color: "white",
-                  }}
-                >
-                  Profile
-                </h1>
+                <ProfileHeading>Profile</ProfileHeading>
               </div>
               <div className="customerbody">
                 <div className="row">
@@ -162,11 +152,7 @@ const CustomerProfile = () => {
                       <label>
                         State <i className="text-danger">*</i>
                       </label>
-                      <select
-                        style={{
-                          borderRadius: "17px",
-                          padding: "4px",
-                        }}
+                      <SelectStyle
                         className="form-select"
                         value={state1}
                         onChange={(e) => changeState(e)}
@@ -175,7 +161,7 @@ const CustomerProfile = () => {
                         {statescity.map((e, key) => {
                           return <option key={key}>{e.name}</option>;
                         })}
-                      </select>
+                      </SelectStyle>
                     </div>
                   </div>
                   <div className="row">
@@ -183,11 +169,7 @@ const CustomerProfile = () => {
                       <label>
                         City <i className="text-danger">*</i>{" "}
                       </label>
-                      <select
-                        style={{
-                          borderRadius: "17px",
-                          padding: "4px",
-                        }}
+                      <SelectStyle
                         className="form-select"
                         value={city}
                         onChange={(e) => changeCity(e)}
@@ -198,7 +180,7 @@ const CustomerProfile = () => {
                               return <option key={key}>{e}</option>;
                             })
                           : ""}
-                      </select>
+                      </SelectStyle>
                     </div>
 
                     <div className="inputGroup">

@@ -4,23 +4,23 @@ import {
   SIGN_IN_SUCCESS,
 } from "../../config/actionType";
 
-export const signInRequest = (data) => {
+export const signInRequest = (payload) => {
   return {
     type: SIGN_IN_REQUEST,
-    data,
+    payload,
   };
 };
 
-export const signInSuccess = (response) => {
+export const signInSuccess = (payload) => {
   return {
     type: SIGN_IN_SUCCESS,
-    response,
+    payload,
   };
 };
 
-export const signInError = (error) => {
+export const signInError = (payload) => {
   return {
     type: SIGN_IN_ERROR,
-    error,
+    payload,
   };
 };

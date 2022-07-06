@@ -28,18 +28,18 @@ describe("customerDropOffReducer", () => {
       error: "",
     });
   });
-  //   it("should handle CUSTOMER_DROPOFF_SUCCESS", () => {
-  //     expect(
-  //       customerDropOffReducer(initialState, {
-  //         type: types.CUSTOMER_DROPOFF_SUCCESS,
-  //         status: "success",
-  //       })
-  //     ).toEqual({
-  //       isLoading: true,
-  //       error: "",
-  //       status: "success",
-  //     });
-  //   });
+  it("should handle CUSTOMER_DROPOFF_SUCCESS", () => {
+    expect(
+      customerDropOffReducer(initialState, {
+        type: types.CUSTOMER_DROPOFF_SUCCESS,
+        payload: {status: "success"},
+      })
+    ).toEqual({
+      isLoading: true,
+      error: "",
+      data: {status: "success"},
+    });
+  });
   it("should handle CUSTOMER_DROPOFF_ERROR", () => {
     expect(
       customerDropOffReducer(initialState, {

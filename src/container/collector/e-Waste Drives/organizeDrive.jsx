@@ -146,7 +146,7 @@ const OrganizeDrive = () => {
     return scheduledate;
   };
   const handleDone = async (e, datas) => {
-    console.log(e);
+    e.preventDefault();
 
     if (
       datas.itemsAcc === "" ||

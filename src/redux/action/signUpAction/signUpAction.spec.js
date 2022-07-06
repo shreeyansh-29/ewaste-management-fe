@@ -9,19 +9,19 @@ describe("test signUpAction", () => {
   it("test signUpRequest function", () => {
     expect(actions.signUpRequest(data)).toEqual({
       type: types.SIGN_UP_REQUEST,
-      data,
+      payload: data,
     });
   });
   it("test signUpSuccess function", () => {
     expect(actions.signUpSuccess(payload)).toEqual({
       type: types.SIGN_UP_SUCCESS,
-      response: payload,
+      payload,
     });
   });
   it("test signUpError function", () => {
     expect(actions.signUpError(error)).toEqual({
       type: types.SIGN_UP_ERROR,
-      error: error,
+      payload: error,
     });
   });
 });
