@@ -9,7 +9,6 @@ import {
 function* vendorProfileEditSaga(data) {
   try {
     let response = yield call(vendorProfileEditService, data);
-    console.log(response);
     yield put(vendorProfileEditSuccess(response));
   } catch (error) {
     yield put(vendorProfileEditError(error));

@@ -6,7 +6,6 @@ import {customerCountCollService} from "../../../service/customer/customerPickUp
 function* customerCountCollSaga(data) {
   try {
     let response = yield call(customerCountCollService, data);
-    console.log("success saga", response);
     yield put(types.customerCountCollSuccess(response));
   } catch (error) {
     yield put(types.customerCountCollError(error));

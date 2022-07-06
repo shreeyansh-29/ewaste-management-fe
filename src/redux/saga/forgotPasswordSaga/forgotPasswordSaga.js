@@ -11,7 +11,6 @@ function* forgotPassword(email) {
     let response = yield call(helper, email);
     yield put(forgotPasswordSuccess(response.status));
   } catch (err) {
-    console.log(err);
     yield put(forgotPasswordError(err));
   }
 }

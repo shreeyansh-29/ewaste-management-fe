@@ -7,7 +7,6 @@ function* customerNotificationDataSaga() {
   try {
     let response = yield call(customerNotificationDataService);
     response = yield response.json();
-    console.log("success saga", response);
     yield put(actions.customerNotificationDataSuccess(response));
   } catch (error) {
     yield put(actions.customerNotificationDataError(error));

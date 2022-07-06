@@ -10,7 +10,6 @@ function* googleSignInSaga(data) {
   try {
     let response = yield call(googleSignInService, data);
     response = yield response.json();
-    console.log(response);
     yield put(googleSignInSuccess(response));
   } catch (error) {
     yield put(googleSignInError(error));

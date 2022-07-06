@@ -8,10 +8,8 @@ import {
 function* signUpSaga(data) {
   try {
     let response = yield call(signUpService(data));
-    console.log("saga response", response);
     yield put(signUpSuccess(response));
   } catch (error) {
-    console.log("saga error", error);
     yield put(signUpError(error));
   }
 }

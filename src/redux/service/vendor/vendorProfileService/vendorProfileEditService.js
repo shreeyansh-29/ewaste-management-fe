@@ -2,7 +2,6 @@ import {VENDOR_PROFILE_EDIT} from "../../../../container/constant/constant";
 import api from "../../../../core/utilities/httpProvider";
 
 export const vendorProfileEditService = (data) => {
-  console.log(data.payload);
   return api.put(VENDOR_PROFILE_EDIT, {
     firstName: data.payload.values.firstName,
     lastName: data.payload.values.lastName,

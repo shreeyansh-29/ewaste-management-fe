@@ -107,7 +107,6 @@ const AvailableSales = () => {
 
   useEffect(() => {
     if (isEmpty(res?.data) !== true) {
-      console.log(res);
       res.data.map((obj) => {
         obj.id = "IS" + obj.id;
         obj.Totalprice = obj.price * obj.availableQuantity;

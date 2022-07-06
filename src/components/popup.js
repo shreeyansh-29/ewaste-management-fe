@@ -21,7 +21,6 @@ const Popup = (props) => {
   let res2 = useSelector((state) => state.viewColProfileReducer?.data);
   let res3 = useSelector((state) => state.viewCollectorProfileReducer?.data);
   let res4 = useSelector((state) => state.viewCustomerProfileReducer?.data);
-  console.log(res2);
 
   useEffect(() => {
     if (isEmpty(res?.data) !== true || res?.status === "success") {

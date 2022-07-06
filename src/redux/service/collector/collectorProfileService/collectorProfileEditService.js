@@ -2,7 +2,6 @@ import {COLLECTOR_PROFILE_EDIT} from "../../../../container/constant/constant";
 import api from "../../../../core/utilities/httpProvider";
 
 export const collectorProfileEditService = (data) => {
-  console.log(data);
   return api.put(COLLECTOR_PROFILE_EDIT, {
     firstName: data.payload.values.firstName,
     lastName: data.payload.values.lastName,

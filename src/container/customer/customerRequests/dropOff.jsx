@@ -153,7 +153,6 @@ const DropOff = () => {
           }}
           options={{pageSize: 1, actionsColumnIndex: -1, search: false}}
         />
-        {console.log(collectors)}
         {expanded && collectors?.length === 0 ? (
           <div className="textStyle">
             <h4> No Collectors have been found in your area.</h4>

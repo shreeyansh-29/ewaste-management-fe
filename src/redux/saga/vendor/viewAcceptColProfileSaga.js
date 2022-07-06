@@ -9,7 +9,6 @@ import {VENDOR_COLLECTORPROFILE_ACCEPT_REQUEST} from "../../config/actionType";
 function* viewColProfileSaga(data) {
   try {
     let response = yield call(viewAcceptCollProfileService, data);
-    console.log(response);
     yield put(vendorCollectorProfileSuccess(response));
   } catch (err) {
     yield put(vendorCollectorProfileError(err));

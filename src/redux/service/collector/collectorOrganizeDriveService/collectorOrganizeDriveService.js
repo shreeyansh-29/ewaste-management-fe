@@ -2,7 +2,6 @@ import {COLLECTOR_ORGANIZE_DRIVE} from "../../../../container/constant/constant"
 import api from "../../../../core/utilities/httpProvider";
 
 export const collectorOrganizeDriveService = (data) => {
-  console.log(data);
   return api.post(COLLECTOR_ORGANIZE_DRIVE, {
     driveName: data.payload.driveName,
     description: data.payload.description,

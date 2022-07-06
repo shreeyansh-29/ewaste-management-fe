@@ -11,7 +11,6 @@ export const viewAcceptColReducer = (state = initialState, action = action) => {
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_SUCCESS:
-      console.log(action);
       return {...state, data: action.payload};
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_ERROR:
       return {...state, error: action};

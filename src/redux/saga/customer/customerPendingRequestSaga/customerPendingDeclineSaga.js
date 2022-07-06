@@ -3,14 +3,13 @@ import {CUSTOMER_PENDING_DECLINE_REQUEST} from "../../../config/actionType";
 import {customerPendingDeclineService} from "../../../service/customer/customerPendingRequestService/customerPendingDeclineService";
 import {
   customerPendingDeclineError,
-  // customerPendingDeclineSuccess,
+  customerPendingDeclineSuccess,
 } from "../../../action/customer/customerPendingRequestAction/customerPendingDeclineAction";
 
 function* customerPendingDeclineSaga(data) {
   try {
     let response = yield call(customerPendingDeclineService, data);
-    console.log(response);
-    // yield put(customerPendingDeclineSuccess(response.data));
+    yield put(customerPendingDeclineSuccess(response.data));
   } catch (error) {
     yield put(customerPendingDeclineError(error));
   }

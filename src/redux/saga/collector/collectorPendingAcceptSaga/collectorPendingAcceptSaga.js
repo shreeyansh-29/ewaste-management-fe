@@ -9,7 +9,6 @@ import {
 function* collectorPendingAcceptSaga(data) {
   try {
     let response = yield call(collectorPendingAcceptService, data);
-    console.log(response);
     yield put(collectorPendingAcceptSuccess(response.data));
   } catch (error) {
     yield put(collectorPendingAcceptError(error));

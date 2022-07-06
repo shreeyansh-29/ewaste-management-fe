@@ -9,7 +9,6 @@ import {
 function* collectorPendingSaga() {
   try {
     let response = yield call(collectorPendingService);
-    console.log(response);
     yield put(collectorPendingSuccess(response));
   } catch (error) {
     yield put(collectorPendingError(error));

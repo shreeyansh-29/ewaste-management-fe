@@ -9,7 +9,6 @@ import {VENDOR_ACCEPT_ITEMS_REQUEST} from "../../../config/actionType";
 function* vendorAcceptItemsSaga(data) {
   try {
     let response = yield call(vendorAcceptItemsService, data);
-    console.log(response);
     response = yield response.json();
     yield put(vendorAcceptItemsSuccess(response.data));
   } catch (error) {

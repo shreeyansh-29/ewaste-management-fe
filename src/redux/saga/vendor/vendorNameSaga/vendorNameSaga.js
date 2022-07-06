@@ -6,7 +6,6 @@ import {vendorNameService} from "../../../service/vendor/vendorNameService/vendo
 function* vendorNameSaga() {
   try {
     let response = yield call(vendorNameService);
-    // console.log("saga", response.data);
     yield put(actions.vendorNameSuccess(response.data));
   } catch (error) {
     yield put(actions.vendorNameError(error));

@@ -137,7 +137,6 @@ const signUp = () => {
             endTime: endTime,
           };
           dispatch(signUpRequest(data1));
-          console.log(values);
         }}
       >
         {({errors, handleChange, submitForm}) => (
