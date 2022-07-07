@@ -41,7 +41,7 @@ const data = [
     label: "Small IT and Telecommunication Equipment (Mobile phones, Printers)",
   },
 ];
-const signUp = () => {
+const SignUp = () => {
   const [confirmPasswordType, setConfirmPasswordType] = useState("text");
   const [passwordType, setPasswordType] = useState("text");
   const [startTime, setStartTime] = useState();
@@ -523,4 +523,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;

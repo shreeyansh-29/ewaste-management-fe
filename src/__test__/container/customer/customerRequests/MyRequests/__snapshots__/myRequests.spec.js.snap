@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test My Requests 1`] = `
+<div
+  style={
+    Object {
+      "padding": "150px 30px 0 30px",
+    }
+  }
+>
+  <h2
+    style={
+      Object {
+        "backgroundColor": " rgb(30, 28, 54)",
+        "borderRadius": "5px",
+        "color": "white",
+        "fontSize": "30px",
+        "marginBottom": "2.5%",
+        "padding": "2px,",
+        "textAlign": "center",
+      }
+    }
+  >
+     
+    My Requests
+     
+  </h2>
+  <ForwardRef(Paper)
+    square={true}
+    style={
+      Object {
+        "margin": "20px auto",
+        "width": "100%",
+      }
+    }
+  >
+    <ForwardRef(Tabs)
+      aria-label="disabled tabs example"
+      centered={true}
+      elevation={20}
+      indicatorColor="primary"
+      onChange={[Function]}
+      textColor="primary"
+      value={0}
+      variant="fullWidth"
+    >
+      <ForwardRef(Tab)
+        label="Pending"
+      />
+      <ForwardRef(Tab)
+        label="Completed"
+      />
+    </ForwardRef(Tabs)>
+    <TabPanel
+      index={0}
+      value={0}
+    >
+      <Pending />
+    </TabPanel>
+    <TabPanel
+      index={1}
+      value={0}
+    >
+      <completed />
+    </TabPanel>
+  </ForwardRef(Paper)>
+</div>
+`;

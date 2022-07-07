@@ -44,7 +44,6 @@ const Sales = () => {
           }}
           onClick={() => profile(rowData)}
         >
-          {" "}
           <ProfileIcon style={{color: "#e75480"}} />
         </button>
       ),

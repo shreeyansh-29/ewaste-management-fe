@@ -1,5 +1,6 @@
 export const statescity = [
-  {name: "Arunachal Pradesh",
+  {
+    name: "Arunachal Pradesh",
     cities: [
       "Anjaw",
       "Changlang",
@@ -24,7 +25,8 @@ export const statescity = [
       "Itanagar",
     ],
   },
-  {name: "Andhra Pradesh",
+  {
+    name: "Andhra Pradesh",
     cities: [
       "Anantapur",
       "Chittoor",
@@ -41,7 +43,8 @@ export const statescity = [
       "West Godavari",
     ],
   },
-  {name: "Assam",
+  {
+    name: "Assam",
     cities: [
       "Baksa",
       "Barpeta",
@@ -78,7 +81,8 @@ export const statescity = [
       "West Karbi Anglong",
     ],
   },
-  {name: "Bihar",
+  {
+    name: "Bihar",
     cities: [
       "Araria",
       "Arwal",
@@ -120,7 +124,8 @@ export const statescity = [
       "West Champaran",
     ],
   },
-  {name: "Chattisgarh",
+  {
+    name: "Chattisgarh",
     cities: [
       "Balod",
       "Baloda Bazar",
@@ -151,8 +156,9 @@ export const statescity = [
       "Surguja",
     ],
   },
-  { name: "Goa", cities: ["North Goa", "South Goa"] },
-  {name: "Gujarat",
+  {name: "Goa", cities: ["North Goa", "South Goa"]},
+  {
+    name: "Gujarat",
     cities: [
       "Ahmedabad",
       "Amreli",
@@ -189,7 +195,8 @@ export const statescity = [
       "Valsad",
     ],
   },
-  {name: "Harayana",
+  {
+    name: "Harayana",
     cities: [
       "Ambala",
       "Bhiwani",
@@ -215,7 +222,8 @@ export const statescity = [
       "Yamunanagar",
     ],
   },
-  {name: "Himachal Pradesh",
+  {
+    name: "Himachal Pradesh",
     cities: [
       "Bilaspur",
       "Chamba",
@@ -231,7 +239,8 @@ export const statescity = [
       "Una",
     ],
   },
-  {name: "Jammu and Kashmir",
+  {
+    name: "Jammu and Kashmir",
     cities: [
       "Anantnag",
       "Bandipora",
@@ -257,7 +266,8 @@ export const statescity = [
       "Udhampur",
     ],
   },
-  {name: "Jharkhand",
+  {
+    name: "Jharkhand",
     cities: [
       "Bokaro",
       "Chatra",
@@ -285,7 +295,8 @@ export const statescity = [
       "West Singhbhum",
     ],
   },
-  {name: "Karnataka",
+  {
+    name: "Karnataka",
     cities: [
       "Bagalkot",
       "Bangalore Rural",
@@ -319,7 +330,8 @@ export const statescity = [
       "Yadgir",
     ],
   },
-  {name: "Kerala",
+  {
+    name: "Kerala",
     cities: [
       "Alappuzha",
       "Ernakulam",
@@ -337,7 +349,8 @@ export const statescity = [
       "Wayanad",
     ],
   },
-  {name: "Madhya Pradesh",
+  {
+    name: "Madhya Pradesh",
     cities: [
       "Agar Malwa",
       "Alirajpur",
@@ -392,7 +405,8 @@ export const statescity = [
       "Vidisha",
     ],
   },
-  {name: "Maharashtra",
+  {
+    name: "Maharashtra",
     cities: [
       "Ahmednagar",
       "Akola",
@@ -432,7 +446,8 @@ export const statescity = [
       "Yavatmal",
     ],
   },
-  {name: "Manipur",
+  {
+    name: "Manipur",
     cities: [
       "Bishnupur",
       "Chandel",
@@ -452,7 +467,8 @@ export const statescity = [
       "Ukhrul",
     ],
   },
-  {name: "Meghalaya",
+  {
+    name: "Meghalaya",
     cities: [
       "East Garo Hills",
       "East Jaintia Hills",
@@ -467,7 +483,8 @@ export const statescity = [
       "West Khasi Hills",
     ],
   },
-  {name: "Mizoram",
+  {
+    name: "Mizoram",
     cities: [
       "Aizawl",
       "Champhai",
@@ -487,7 +504,8 @@ export const statescity = [
       "Serchhip",
     ],
   },
-  {name: "Nagaland",
+  {
+    name: "Nagaland",
     cities: [
       "Dimapur",
       "Kiphire",
@@ -502,7 +520,8 @@ export const statescity = [
       "Zunheboto",
     ],
   },
-  {name: "Odisha",
+  {
+    name: "Odisha",
     cities: [
       "Angul",
       "Balangir",
@@ -536,7 +555,8 @@ export const statescity = [
       "Sundergarh",
     ],
   },
-  {name: "Punjab",
+  {
+    name: "Punjab",
     cities: [
       "Amritsar",
       "Barnala",
@@ -562,7 +582,8 @@ export const statescity = [
       "Tarn Taran",
     ],
   },
-  {name: "Rajasthan",
+  {
+    name: "Rajasthan",
     cities: [
       "Ajmer",
       "Alwar",
@@ -603,7 +624,8 @@ export const statescity = [
     name: "Sikkim",
     cities: ["East Sikkim", "North Sikkim", "South Sikkim", "West Sikkim"],
   },
-  {name: "Tamil Nadu",
+  {
+    name: "Tamil Nadu",
     cities: [
       "Ariyalur",
       "Chennai",
@@ -639,7 +661,8 @@ export const statescity = [
       "Virudhunagar",
     ],
   },
-  {name: "Telengana",
+  {
+    name: "Telengana",
     cities: [
       "Adilabad",
       "Bhadradri Kothagudem",
@@ -674,7 +697,8 @@ export const statescity = [
       "Yadadri Bhuvanagiri",
     ],
   },
-  {name: "Tripura",
+  {
+    name: "Tripura",
     cities: [
       "Dhalai",
       "Gomati",
@@ -686,7 +710,8 @@ export const statescity = [
       "West Tripura",
     ],
   },
-  {name: "Uttar Pradesh",
+  {
+    name: "Uttar Pradesh",
     cities: [
       "Agra",
       "Aligarh",
@@ -765,7 +790,8 @@ export const statescity = [
       "Varanasi",
     ],
   },
-  {name: "Uttarakhand",
+  {
+    name: "Uttarakhand",
     cities: [
       "Almora",
       "Bageshwar",
@@ -782,7 +808,8 @@ export const statescity = [
       "Uttarkashi",
     ],
   },
-  {name: "West Bengal",
+  {
+    name: "West Bengal",
     cities: [
       "Alipurduar",
       "Bankura",
@@ -813,10 +840,11 @@ export const statescity = [
     name: "Andaman and Nicobar",
     cities: ["Nicobar", "North Middle Andaman", "South Andaman"],
   },
-  { name: "Chandigarh", cities: ["Chandigarh"] },
-  { name: "Dadra and Nagar Haveli", cities: ["Dadra Nagar Haveli"] },
-  { name: "Daman and Diu", cities: ["Daman and Diu"] },
-  {name: "Delhi",
+  {name: "Chandigarh", cities: ["Chandigarh"]},
+  {name: "Dadra and Nagar Haveli", cities: ["Dadra Nagar Haveli"]},
+  {name: "Daman and Diu", cities: ["Daman and Diu"]},
+  {
+    name: "Delhi",
     cities: [
       "Central Delhi",
       "East Delhi",
@@ -831,8 +859,6 @@ export const statescity = [
       "West Delhi",
     ],
   },
-  { name: "Lakshwadeep", cities: ["Lakshwadeep"] },
-  {name: "Puducherry",
-    cities: ["Karaikal", "Mahe", "Puducherry", "Yanam"],
-  },
+  {name: "Lakshwadeep", cities: ["Lakshwadeep"]},
+  {name: "Puducherry", cities: ["Karaikal", "Mahe", "Puducherry", "Yanam"]},
 ];

@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test notificationCount 1`] = `
+<div
+  className="home"
+>
+  <div
+    className="lg_container"
+  >
+    <div
+      style={
+        Object {
+          "paddingBottom": "3%",
+          "paddingTop": "5.8%",
+        }
+      }
+    >
+      <CategoryCarousel />
+    </div>
+  </div>
+  <h3
+    style={
+      Object {
+        "fontFamily": "Roboto,sans-serif",
+        "fontSize": "2rem",
+        "fontWeight": "500",
+        "marginTop": "1%",
+        "paddingTop": "4%",
+        "textAlign": "center",
+        "textDecoration": "underline",
+      }
+    }
+  >
+     
+    Your contribution as an Eco-ranger:
+     
+  </h3>
+  <div
+    className="dashboard"
+  >
+    <h3
+      style={
+        Object {
+          "padding": "4% 0 2% 0",
+          "textAlign": "center",
+        }
+      }
+    >
+      Your contribution towards the Collection and Reusability of E-Waste Items
+    </h3>
+    <EWasteOrg />
+    <h3
+      style={
+        Object {
+          "padding": "6% 0 8% 0",
+          "textAlign": "center",
+        }
+      }
+    >
+      Revenue Generated With Respect to Category
+    </h3>
+    <Revenue />
+  </div>
+  <div
+    className="dashboard"
+  >
+    <h3
+      style={
+        Object {
+          "padding": "4% 0 2% 0",
+          "textAlign": "center",
+        }
+      }
+    >
+      E-Waste drives in your City
+    </h3>
+    <EWasteDrives />
+  </div>
+  <div
+    className="row"
+    style={
+      Object {
+        "padding": "2% 0 10% 0",
+      }
+    }
+  >
+    <div
+      className="col-lg-6"
+    >
+      <h3
+        style={
+          Object {
+            "padding": "4% 0 2% 0",
+            "textAlign": "center",
+          }
+        }
+      >
+        E-Waste Generators in your City
+      </h3>
+      <CustomerData />
+    </div>
+    <div
+      className="col-lg-6"
+    >
+      <h3
+        style={
+          Object {
+            "padding": "4% 0 2% 0",
+            "textAlign": "center",
+          }
+        }
+      >
+        E-Waste Recylers in your City
+      </h3>
+      <VendorData />
+    </div>
+  </div>
+</div>
+`;

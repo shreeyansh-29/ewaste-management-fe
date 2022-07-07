@@ -26,7 +26,7 @@ jest.mock("react-redux", () => ({
 describe("Sold Items", () => {
   let store;
   store = mockStore({
-    collectorAvailable: {
+    collectorSold: {
       isLoading: true,
       error: "",
       data: {

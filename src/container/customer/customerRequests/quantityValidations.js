@@ -1,6 +1,6 @@
 import {TOAST_ERROR4, TOAST_WARN1} from "../../constant/constant";
 import Toast from "../../../components/toast";
-export const quantityValidation = (data) => {
+export const QuantityValidation = (data) => {
   if (
     data.category === undefined ||
     data.name === "" ||

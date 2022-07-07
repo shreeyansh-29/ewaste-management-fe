@@ -10,7 +10,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import dateUpdate from "../date";
+import dateUpdate from "../../../components/date";
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
 import {isEmpty} from "lodash";
@@ -19,9 +19,9 @@ import {customerCountCollRequest} from "../../../redux/action/customer/customerP
 import {customerPickUpRequest} from "../../../redux/action/customer/customerPickUpAction/customerPickUpAction";
 import Toast from "../../../components/toast";
 import {Button, TableTitle} from "../../../components/styles";
-import {quantityValidation} from "./quantityValidations";
+import {QuantityValidation} from "./quantityValidations";
 
-export default function pickUp() {
+export default function PickUp() {
   let result = useSelector((state) => state.customerCountColl);
   let res = useSelector((state) => state.customerPickUp);
   const dispatch = useDispatch();
@@ -161,7 +161,7 @@ export default function pickUp() {
   };
   const handleClick = (event) => {
     event.preventDefault();
-    if (quantityValidation(data[0])) {
+    if (QuantityValidation(data[0])) {
       dispatch(customerCountCollRequest(data[0].category));
       setExpanded(true);
     }

@@ -1,4 +1,4 @@
-const date = (data) => {
+const Date = (data) => {
   if (data === "Jan") {
     data = "01";
   } else if (data === "Feb") {
@@ -26,4 +26,4 @@ const date = (data) => {
   }
   return data;
 };
-export default date;
+export default Date;
