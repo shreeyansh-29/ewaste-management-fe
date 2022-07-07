@@ -7,7 +7,7 @@ import Toast from "../../components/toast";
 import ReactTooltip from "react-tooltip";
 import TimeRange from "react-time-range";
 import {SERVER_MSG, TOAST_ERROR3, TOAST_SUCCESS1} from "../constant/constant";
-import Dropdown from "../../components/dropdown";
+import Dropdown from "../../components/dropDown/dropdown";
 import "./signUp.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";

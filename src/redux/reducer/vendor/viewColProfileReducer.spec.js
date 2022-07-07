@@ -18,6 +18,7 @@ describe("viewColProfileReducer", () => {
     error: "",
   };
   it("should handle VENDOR_COLLECTORPROFILE_REQUEST", () => {
+    expect.assertions(1);
     expect(
       viewColProfileReducer(initialState, {
         type: types.VENDOR_COLLECTORPROFILE_REQUEST,

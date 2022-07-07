@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test infoSec 1`] = `
+<Fragment>
+  <styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.div>
+          <styled.div>
+            <styled.img />
+          </styled.div>
+        </styled.div>
+        <styled.div>
+          <styled.div>
+            <styled.div />
+            <styled.h1 />
+            <styled.p />
+          </styled.div>
+        </styled.div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+</Fragment>
+`;

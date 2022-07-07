@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
-import Popup from "../../../components/popup";
+import Popup from "../../../components/popUp/popUp";
 import {FaUserCircle} from "react-icons/fa";
 import {TOAST_WARN3} from "../../constant/constant";
 import Toast from "../../../components/toast";
@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
 export const ProfileIcon = FaUserCircle;
 
-const CollectorRequests = () => {
+const RequestSummary = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorSummary);
 
@@ -247,4 +247,4 @@ const CollectorRequests = () => {
     </div>
   );
 };
-export default CollectorRequests;
+export default RequestSummary;

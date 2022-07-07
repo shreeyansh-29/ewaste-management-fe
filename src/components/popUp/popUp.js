@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from "react";
-import "../container/customer/customer.css";
+import "../../container/customer/customer.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Formik, Field, Form} from "formik";
-import {vendorViewAcceptCollectorRequest} from "../redux/action/vendor/viewCollProfileAction";
+import {vendorViewAcceptCollectorRequest} from "../../redux/action/vendor/viewCollProfileAction";
 import {isEmpty} from "lodash";
-import {vendorCollectorProfileRequest} from "../redux/action/vendor/viewAcceptCollectorProfileAction";
-import {viewCollectorProfileRequest} from "../redux/action/customer/viewCollectorProfileAction";
-import {viewCustomerProfileRequest} from "../redux/action/collector/viewCustomerProfileAction";
+import {vendorCollectorProfileRequest} from "../../redux/action/vendor/viewAcceptCollectorProfileAction";
+import {viewCollectorProfileRequest} from "../../redux/action/customer/viewCollectorProfileAction";
+import {viewCustomerProfileRequest} from "../../redux/action/collector/viewCustomerProfileAction";
 
 const Popup = (props) => {
   const [value, setValue] = useState({

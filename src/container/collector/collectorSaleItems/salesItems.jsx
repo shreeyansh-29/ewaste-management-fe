@@ -10,6 +10,7 @@ import SoldItems from "./soldItems";
 const SalesItems = () => {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
+    event.preventDefault();
     setValue(newValue);
   };
   const TabPanel = (props) => {

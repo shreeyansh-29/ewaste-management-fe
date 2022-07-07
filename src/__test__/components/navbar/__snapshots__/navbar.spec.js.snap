@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test categoryCarousel 1`] = `
+<Fragment>
+  <Navbar
+    bg="myblue"
+    collapseOnSelect={true}
+    expand="lg"
+    fixed="top"
+    variant="dark"
+  >
+    <Container
+      fluid={true}
+    >
+      <NavLink
+        disabled={false}
+        href="/"
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+      >
+        <div
+          className="title"
+        >
+          <Styled(GiGreenPower) />
+          EWaste Management
+        </div>
+      </NavLink>
+      <NavbarToggle
+        aria-controls="responsive-navbar-nav"
+        label="Toggle navigation"
+      />
+      <NavbarCollapse
+        id="responsive-navbar-nav"
+      >
+        <Nav
+          className="ms-auto"
+          fill={false}
+          justify={false}
+          style={
+            Object {
+              "marginRight": "1%",
+            }
+          }
+        >
+          <NavLink
+            disabled={false}
+            href="/"
+            style={
+              Object {
+                "color": "white",
+                "padding": "18px",
+              }
+            }
+          >
+            <Styled(ImHome) />
+          </NavLink>
+          <NavLink
+            disabled={false}
+            href="/Signin"
+            style={
+              Object {
+                "color": "white",
+                "padding": "18px",
+              }
+            }
+          >
+            <Styled(BsPerson) />
+          </NavLink>
+        </Nav>
+      </NavbarCollapse>
+    </Container>
+  </Navbar>
+</Fragment>
+`;

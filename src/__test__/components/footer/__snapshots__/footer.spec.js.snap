@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test footer 1`] = `
+<Fragment>
+  <styled.div>
+    <styled.section>
+      <styled.p>
+        Join our exclusive platform
+      </styled.p>
+      <styled.p>
+        You can join at any time.
+      </styled.p>
+      <styled.form>
+        <styled.button
+          fontBig={true}
+          onClick={[Function]}
+        >
+          Join
+        </styled.button>
+      </styled.form>
+    </styled.section>
+    <styled.section>
+      <styled.div>
+        <styled.small>
+          Ⓒ 
+          2022
+           Powered by E-Waste Management
+        </styled.small>
+      </styled.div>
+    </styled.section>
+  </styled.div>
+</Fragment>
+`;

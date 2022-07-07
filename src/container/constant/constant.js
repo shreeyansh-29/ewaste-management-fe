@@ -1,5 +1,7 @@
-const {apiUrl} = require("../../core/config/index");
+const {apiUrl} = require("../../core/config/index") || {};
 
+export const PASSWORD = "password";
+export const TEXT = "text";
 export const SIGN_IN = `${apiUrl}/signin`;
 export const SIGN_UP = `${apiUrl}/user`;
 export const FORGOT_PASSWORD = `${apiUrl}/password/reset`;

@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
-import Popup from "../../../../components/popup";
+import Popup from "../../../../components/popUp/popUp";
 import "../../customer.css";
 import {
   ProfileIconBarStyle,

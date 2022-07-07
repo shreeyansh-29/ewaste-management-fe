@@ -11,7 +11,7 @@ import {
   Subtitle,
   ImgWrapper,
   Img,
-} from "./InfoSec";
+} from "./Info.elements";
 
 const Info = ({
   lightBg,

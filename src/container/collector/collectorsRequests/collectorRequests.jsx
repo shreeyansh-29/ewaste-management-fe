@@ -4,7 +4,6 @@ import "../Collector.css";
 import {TOAST_SUCCESS8} from "../../constant/constant";
 import Toast from "../../../components/toast";
 import {useDispatch, useSelector} from "react-redux";
-
 import {collectorPendingRequest} from "../../../redux/action/collector/collectorPendingAction/collectorPendingAction";
 import {isEmpty} from "lodash";
 import {collectorPendingAcceptRequest} from "../../../redux/action/collector/collectorPendingAcceptAction/collectorPendingAcceptAction";

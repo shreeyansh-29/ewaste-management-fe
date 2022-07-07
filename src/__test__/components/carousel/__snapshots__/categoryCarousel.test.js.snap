@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test categoryCarousel 1`] = `
+<Fragment>
+  <Carousel
+    controls={true}
+    defaultActiveIndex={0}
+    fade={true}
+    indicatorLabels={Array []}
+    indicators={true}
+    interval={5000}
+    keyboard={true}
+    nextIcon={
+      <span
+        aria-hidden="true"
+        className="carousel-control-next-icon"
+      />
+    }
+    nextLabel="Next"
+    pause="hover"
+    prevIcon={
+      <span
+        aria-hidden="true"
+        className="carousel-control-prev-icon"
+      />
+    }
+    prevLabel="Previous"
+    slide={true}
+    touch={true}
+    wrap={true}
+  >
+    <CarouselItem
+      interval={2000}
+      key="0"
+    >
+      <img
+        alt="First Slide"
+        className="d-block w-100"
+        src="microwave.jpg"
+      />
+    </CarouselItem>
+    <CarouselItem
+      interval={2000}
+      key="1"
+    >
+      <img
+        alt="Secomd Slide"
+        className="d-block w-100"
+        src="printer.jpeg"
+      />
+    </CarouselItem>
+    <CarouselItem
+      interval={2000}
+      key="2"
+    >
+      <img
+        alt="Third Slide"
+        className="d-block w-100"
+        src="tubelight.jpg"
+      />
+    </CarouselItem>
+    <CarouselItem
+      interval={2000}
+      key="3"
+    >
+      <img
+        alt="Fourth Slide"
+        className="d-block w-100"
+        src="monitor.jpg"
+      />
+    </CarouselItem>
+    <CarouselItem
+      interval={2000}
+      key="4"
+    >
+      <img
+        alt="Fifth Slide"
+        className="d-block w-100"
+        src="TV.jpg"
+      />
+    </CarouselItem>
+    <CarouselItem
+      interval={2000}
+      key="5"
+    >
+      <img
+        alt="Sixth Slide"
+        className="d-block w-100"
+        src="machine.jpg"
+      />
+    </CarouselItem>
+    <CarouselItem
+      interval={2000}
+      key="6"
+    >
+      <img
+        alt="Seventh Slide"
+        className="d-block w-100"
+        src="mobile.jpg"
+      />
+    </CarouselItem>
+  </Carousel>
+</Fragment>
+`;
