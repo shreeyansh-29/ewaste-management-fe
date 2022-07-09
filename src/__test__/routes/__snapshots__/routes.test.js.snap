@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing routes test Routes 1`] = `
+<BrowserRouter>
+  <PublicRoutes />
+</BrowserRouter>
+`;

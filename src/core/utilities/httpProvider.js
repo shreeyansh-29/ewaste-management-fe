@@ -1,47 +1,38 @@
-const ApiRequest = async (method, url, data) => {
-  const tokens = localStorage.getItem("token") || "";
-  const email = localStorage.getItem("email") || "";
-  const headerconfig = {
-    "Content-Type": "application/json",
-    Authorization: "Bearer " + tokens || "",
-    EMAIL: email || "",
-  };
-  let options;
-  if (method !== "GET") {
-    options = {
-      method,
-      credentials: "same-origin",
-      headers: headerconfig,
-      body: JSON.stringify(data),
-    };
-  } else {
-    options = {
-      method,
-      credentials: "same-origin",
-      headers: headerconfig,
-    };
-  }
-  try {
-    const res = fetch(url, options);
-    if (method !== "GET") {
-      return await res;
-    }
-    return (await res).json();
-  } catch (e) {
-    return Promise.reject(e);
-  }
+import axios from "axios";
+
+const tokens = localStorage.getItem("token") || "";
+const email = localStorage.getItem("email") || "";
+const api = axios.create({});
+if (tokens !== null) {
+  api.defaults.headers.common.Authorization = `Bearer ${tokens}`;
+  api.defaults.headers.EMAIL = email;
+  api.defaults.headers.common["Content-Type"] = "application/json";
+}
+
+const requestHandler = (request) => {
+  return request;
 };
-export default {
-  get(url, data) {
-    return ApiRequest("GET", url, data || "");
-  },
-  put(url, data) {
-    return ApiRequest("PUT", url, data || "");
-  },
-  post(url, data) {
-    return ApiRequest("POST", url, data || "");
-  },
-  delete(url, data) {
-    return ApiRequest("DELETE", url, data || "");
-  },
+
+/* istanbul ignore next */
+const responseHandler = (response) => {
+  return response.data;
 };
+
+/* istanbul ignore next */
+const errorHandler = (error) => {
+  return Promise.reject(error);
+};
+
+/* istanbul ignore next */
+api.interceptors.request.use(
+  (request) => requestHandler(request),
+  (error) => errorHandler(error)
+);
+
+/* istanbul ignore next */
+api.interceptors.response.use(
+  (response) => responseHandler(response),
+  (error) => errorHandler(error)
+);
+
+export default api;

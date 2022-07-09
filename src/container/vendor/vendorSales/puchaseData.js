@@ -27,6 +27,7 @@ const PuchaseData = (props) => {
               Congratulations, you have purchased {props.quantity} quantity of{" "}
               {props.item}.
             </h3>
+
             <div style={{textAlign: "center", marginTop: "40px"}}>
               <h3>Your Invoice No. is {Date.now()}.</h3>
             </div>

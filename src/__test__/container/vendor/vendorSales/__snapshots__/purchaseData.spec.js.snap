@@ -36,9 +36,10 @@ exports[`test Purchase Data test purchaseData 1`] = `
       >
         <h3>
           Congratulations, you have purchased 
+          10
            quantity of
            
-          1657221108206
+          TV
           .
         </h3>
         <div
@@ -51,7 +52,7 @@ exports[`test Purchase Data test purchaseData 1`] = `
         >
           <h3>
             Your Invoice No. is 
-            1657221295544
+            1657361867817
             .
           </h3>
         </div>

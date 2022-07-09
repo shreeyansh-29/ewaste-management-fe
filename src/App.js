@@ -8,11 +8,14 @@ import CollectorNav from "./container/collector/navbar/collectorNav";
 import VendorNav from "./container/vendor/navbar/vendorNav";
 import store from "./redux/store";
 import AllRoutes from "./routes/routes";
+
 function App() {
+  /* istanbul ignore next */
   const role = localStorage.getItem("Roles");
   return (
     <Provider store={store}>
       {role === "CUSTOMER" ? (
+        /* istanbul ignore next */
         <>
           <CustomerNav />
           <GlobalStyle />
@@ -21,6 +24,7 @@ function App() {
         ""
       )}
       {role === "COLLECTOR" ? (
+        /* istanbul ignore next */
         <>
           <GlobalStyle />
           <CollectorNav />
@@ -29,6 +33,7 @@ function App() {
         ""
       )}
       {role === "VENDOR" ? (
+        /* istanbul ignore next */
         <>
           <GlobalStyle />
           <VendorNav />
@@ -42,6 +47,7 @@ function App() {
           <Navbar />
         </>
       ) : (
+        /* istanbul ignore next */
         ""
       )}
       <AllRoutes />

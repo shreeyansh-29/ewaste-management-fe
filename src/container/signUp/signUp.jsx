@@ -367,7 +367,6 @@ const SignUp = () => {
                           name="role"
                           value={role}
                           style={{borderRadius: "17px"}}
-                          placeholder="Select your Role"
                           onChange={(e) => handleDropdown(e)}
                         />
                       </>

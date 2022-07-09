@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test App testing 1`] = `
+<Provider
+  store={
+    Object {
+      "@@observable": [Function],
+      "asyncReducers": Object {},
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Memo(l) />
+  <Navbars />
+  <Routes />
+</Provider>
+`;

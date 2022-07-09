@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing authProtected test 1`] = `
+<Routes>
+  <Route
+    element={<Home />}
+    exact={true}
+    path="/"
+  />
+  <Route
+    element={<SignIn />}
+    exact={true}
+    path="/Signin"
+  />
+  <Route
+    element={<SignUp />}
+    exact={true}
+    path="/signUp"
+  />
+  <Route
+    element={<ForgotPassword />}
+    exact={true}
+    path="/ForgotPassword"
+  />
+  <Route
+    element={<ResetPassword />}
+    exact={true}
+    path="/password/save/:token"
+    render={[Function]}
+  />
+  <Route
+    element={<PageNotFound />}
+    exact={true}
+    path="*"
+  />
+</Routes>
+`;

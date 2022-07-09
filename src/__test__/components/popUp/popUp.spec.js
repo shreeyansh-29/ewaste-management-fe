@@ -1,3 +1,23 @@
+// /* eslint-disable no-undef */
+// import * as reactRedux from "react-redux";
+
+// describe("test suite", () => {
+//   const useSelectorMock = jest.spyOn(reactRedux, "useSelector");
+//   const useDispatchMock = jest.spyOn(reactRedux, "useDispatch");
+
+//   beforeEach(() => {
+//     useSelectorMock.mockClear();
+//     useDispatchMock.mockClear();
+//   });
+
+//   it("does something", () => {
+//     const dummyDispatch = jest.fn();
+//     useDispatchMock.mockReturnValue(dummyDispatch);
+//     /* SANITY CHECK */
+//     expect(dummyDispatch).not.toHaveBeenCalled();
+//   });
+// });
+
 /* eslint-disable no-undef */
 import React from "react";
 import Popup from "../../../components/popUp/popUp";
@@ -6,6 +26,7 @@ import toJson from "enzyme-to-json";
 import configureStore from "redux-mock-store";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import {Provider} from "react-redux";
+// import * as reactRedux from 'react-redux'
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -60,13 +81,33 @@ describe("PopUp", () => {
       data: {status: "success", data: {}},
     },
   });
-  test("test popUp Component", () => {
-    const wrapper = shallow(
+  let props = {c: 1, cont: 2, contents: 3, content: 4};
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, "useState");
+  useStateSpy.mockImplementationOnce((init) => [init, setState]);
+  let wrapper;
+
+  beforeEach(() => {
+    jest.spyOn(React, "useEffect").mockImplementation((f) => f());
+    wrapper = shallow(
       <Provider store={store}>
-        <Popup />;
+        <Popup {...props} />;
       </Provider>
     );
-    expect.assertions(1);
-    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test("test popUp Component", () => {
+    const mockedDispatch = jest.fn();
+    mockedUsedSelector.mockImplementation(
+      (state) => state.viewCollectorProfileReducer
+    );
+    mockedUsedDispatch.mockReturnValue(mockedDispatch);
+    // expect.assertions(1);
+    expect(mockedDispatch).toHaveBeenCalledTimes(0);
+    expect(toJson(wrapper)).toBeTruthy();
   });
 });

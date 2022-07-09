@@ -9,7 +9,7 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe("test Purchase Data", () => {
   it("test purchaseData", () => {
-    let props = {item: 1657221108206};
+    let props = {item: "TV", quantity: 10};
     const wrapper = shallow(<PurchaseData {...props} />);
     expect.assertions(1);
     expect(toJson(wrapper)).toMatchSnapshot();

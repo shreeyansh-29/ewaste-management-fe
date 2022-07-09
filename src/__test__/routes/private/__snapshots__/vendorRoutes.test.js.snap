@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing Vendor Routes test vendorRoutes 1`] = `
+<Routes>
+  <Route
+    element={<VendorHome />}
+    exact={true}
+    path="/VendorHome"
+  />
+  <Route
+    element={<VendorNav />}
+    exact={true}
+    path="/VendorNav"
+  />
+  <Route
+    element={<VendorProfile />}
+    exact={true}
+    path="/VendorProfile"
+  />
+  <Route
+    element={<Sales />}
+    exact={true}
+    path="/MyOrders/PurchaseItems"
+  />
+  <Route
+    element={<MyOrders />}
+    exact={true}
+    path="/MyOrders/SalesSummary"
+  />
+  <Route
+    element={<AuthProtected />}
+    path="/"
+  />
+  <Route
+    element={<PageNotFound />}
+    exact={true}
+    path="*"
+  />
+</Routes>
+`;

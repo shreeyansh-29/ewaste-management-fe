@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` button test button  1`] = `
+<button
+  className="app-button1"
+  onClick={[Function]}
+>
+  Sign In
+</button>
+`;

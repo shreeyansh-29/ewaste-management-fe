@@ -13,10 +13,10 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-it("test footer", () => {
+describe("test footer element", () => {
   const handleClick = jest.fn();
-  expect.assertions(1);
-  expect(
-    toJson(shallow(<Footer handleClick={handleClick} />))
-  ).toMatchSnapshot();
+  it("test footer", () => {
+    expect.assertions(1);
+    expect(toJson(shallow(<Footer onClick={handleClick} />))).toMatchSnapshot();
+  });
 });

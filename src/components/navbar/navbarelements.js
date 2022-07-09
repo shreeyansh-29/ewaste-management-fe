@@ -96,6 +96,7 @@ export const NavMenu = styled.ul`
   list-style: none;
   text-align: center;
 
+  /* istanbul ignore next */
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
@@ -103,6 +104,7 @@ export const NavMenu = styled.ul`
     height: 100vh;
     position: absolute;
     top: 60px;
+
     left: ${({click}) => (click ? 0 : "-100%")};
     opacity: 1;
     transition: all 0.5s ease;

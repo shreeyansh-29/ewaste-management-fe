@@ -6,6 +6,7 @@ import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import SignIn from "../../../container/signIn/signIn";
+// import {formik} from 'formik';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -28,6 +29,8 @@ describe("SignIn", () => {
   store = mockStore({
     signIn: {
       data: {},
+      error: "",
+      isLoading: true,
     },
   });
   it("test signIn", () => {

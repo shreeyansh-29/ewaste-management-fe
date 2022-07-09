@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing authProtected test 1`] = `
+<Fragment>
+  <Navigate
+    to="/404"
+  />
+  <Navigate
+    to="/404"
+  />
+  <Navigate
+    to="/404"
+  />
+</Fragment>
+`;
