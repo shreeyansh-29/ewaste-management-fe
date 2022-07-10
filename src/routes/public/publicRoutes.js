@@ -17,7 +17,7 @@ const PublicRoutes = () => {
       <Route
         exact
         path={"/password/save/:token"}
-        render={/* istanbul ignore next */ (props) => <ResetPass {...props} />}
+        render={(props) => <ResetPass {...props} />}
         element={<ResetPass />}
       />
       <Route exact path="*" element={<PageNotFound />} />

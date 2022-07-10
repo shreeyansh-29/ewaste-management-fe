@@ -7,5 +7,4 @@
 import {configure} from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 
-/* istanbul ignore next */
 configure({adapter: new Adapter()});

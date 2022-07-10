@@ -96,7 +96,6 @@ export const NavMenu = styled.ul`
   list-style: none;
   text-align: center;
 
-  /* istanbul ignore next */
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;

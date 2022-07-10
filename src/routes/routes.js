@@ -8,7 +8,7 @@ import VendorPrivateRoutes from "./private/vendorRoutes";
 
 const Routes = () => {
   var role = localStorage.getItem("Roles");
-  /* istanbul ignore next */
+
   return (
     <BrowserRouter>
       {role === null ? <PublicRoutes /> : ""}

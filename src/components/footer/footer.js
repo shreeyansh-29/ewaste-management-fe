@@ -18,7 +18,7 @@ let year = d.getFullYear();
 
 const Footer = () => {
   const navigate = useNavigate();
-  /* istanbul ignore next */
+
   function handleClick() {
     navigate("/SignIn");
   }

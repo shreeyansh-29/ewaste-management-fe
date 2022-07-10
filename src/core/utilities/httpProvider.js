@@ -13,23 +13,19 @@ const requestHandler = (request) => {
   return request;
 };
 
-/* istanbul ignore next */
 const responseHandler = (response) => {
   return response.data;
 };
 
-/* istanbul ignore next */
 const errorHandler = (error) => {
   return Promise.reject(error);
 };
 
-/* istanbul ignore next */
 api.interceptors.request.use(
   (request) => requestHandler(request),
   (error) => errorHandler(error)
 );
 
-/* istanbul ignore next */
 api.interceptors.response.use(
   (response) => responseHandler(response),
   (error) => errorHandler(error)

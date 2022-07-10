@@ -93,7 +93,7 @@ const Popup = (props) => {
     dispatch(viewCollectorProfileRequest(props.contents));
     dispatch(viewCustomerProfileRequest(props.content));
   }, []);
-  /* istanbul ignore next */
+
   return (
     <>
       <div className="popup-box">
