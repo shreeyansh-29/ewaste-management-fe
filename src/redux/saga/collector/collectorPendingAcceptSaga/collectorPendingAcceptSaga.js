@@ -6,7 +6,7 @@ import {
   collectorPendingAcceptSuccess,
 } from "../../../action/collector/collectorPendingAcceptAction/collectorPendingAcceptAction";
 
-function* collectorPendingAcceptSaga(data) {
+export function* collectorPendingAcceptSaga(data) {
   try {
     let response = yield call(collectorPendingAcceptService, data);
     yield put(collectorPendingAcceptSuccess(response.data));

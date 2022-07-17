@@ -1,3 +1,6 @@
+/*
+  @module collectorRoutes
+*/
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 import CollectorHome from "../../container/collector/collectorHome";
@@ -25,7 +28,7 @@ const CollectorRoutes = () => {
         path="/Request/CollectorRequests"
         element={<CollectorRequests />}
       />
-      <Route path="/Request/MyRequests" element={<RequestSummary />} />
+      <Route path="/MyRequests" element={<RequestSummary />} />
       <Route path="/Sales/ItemsForSale" element={<ItemsForSale />} />
       <Route path="/Sales/SummarySales" element={<SummarySales />} />
       <Route path="/Sales/SaleItems" element={<SaleItems />} />

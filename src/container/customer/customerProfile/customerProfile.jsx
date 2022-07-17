@@ -1,3 +1,6 @@
+/* 
+  @module customerProfile
+*/
 /* eslint-disable indent */
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
@@ -27,15 +30,34 @@ const CustomerProfile = () => {
     setCity(res?.city);
   }, [res]);
 
+  /* 
+    @function handleSubmit
+    @params {values} contains all the details of the user
+    @detail dispatch the editCusProfileRequest from CustomerProfileAction
+    @return {void}
+  */
   const handleSubmit = (values) => {
     const data = {values, password: res?.password, state: state1, city: city};
     dispatch(customerProfileEditRequest(data));
     Toast.success(TOAST_SUCCESS5, 1500);
   };
+  /* 
+    @function changeState
+    @params {event}
+    @detail set the value of state field whenever it is updated by user
+    @return {void}
+  */
   const changeState = (event) => {
     setState1(event.target.value);
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
+
+  /* 
+    @function changeCity
+    @params {event}
+    @detail set the value of city field whenever it is updated by user
+    @return {void}
+  */
   const changeCity = (event) => {
     setCity(event.target.value);
   };

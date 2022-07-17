@@ -1,3 +1,6 @@
+/*
+  @module analytics
+*/
 import React from "react";
 import {Carousel} from "react-bootstrap";
 import EWaste from "./wasteGenerated";

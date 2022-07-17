@@ -1,3 +1,6 @@
+/*
+  @module collectorCategory
+*/
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {useDispatch, useSelector} from "react-redux";

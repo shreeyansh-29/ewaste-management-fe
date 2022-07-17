@@ -6,7 +6,7 @@ import {
 } from "../../../action/collector/collectorSoldAction/collectorSoldAction";
 import {collectorSoldService} from "../../../service/collector/collectorSoldService/collectorSoldService";
 
-function* collectorSoldSaga() {
+export function* collectorSoldSaga() {
   try {
     let response = yield call(collectorSoldService);
     yield put(collectorSoldSuccess(response.data));

@@ -12,7 +12,7 @@ export const collectorNameReducer = (state = initialState, action = action) => {
     case types.COLLECTOR_NAME_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_NAME_SUCCESS:
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.COLLECTOR_NAME_ERROR:
       return {...state, error: action};
     default:

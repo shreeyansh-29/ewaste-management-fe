@@ -13,7 +13,7 @@ describe("test collectorNameAction", () => {
   it("test collectorNameSuccess function", () => {
     expect(actions.collectorNameSuccess(payload)).toEqual({
       type: types.COLLECTOR_NAME_SUCCESS,
-      payload: undefined,
+      payload,
     });
   });
   it("test collectorNameError function", () => {

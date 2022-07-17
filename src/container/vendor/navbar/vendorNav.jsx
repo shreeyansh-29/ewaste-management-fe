@@ -1,3 +1,7 @@
+/*
+  @module vendorNav
+*/
+
 import React from "react";
 import Swal from "sweetalert2";
 import {NavLogoutBtn} from "../../../components/navbar/navbarelements";
@@ -8,8 +12,8 @@ import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/v
 
 const VendorNav = () => {
   const dispatch = useDispatch();
-  const res = useSelector((state) => state.vendorName);
-  const name = res.data.payload;
+  const res = useSelector((state) => state.vendorName?.data);
+  const name = res.firstName;
 
   React.useEffect(() => {
     dispatch(vendorNameRequest());

@@ -6,7 +6,7 @@ import {
 } from "../../../action/customer/customerNotificationAction/customerNotificationCountAction";
 import * as types from "../../../config/actionType";
 
-function* customerNotificationCountSaga() {
+export function* customerNotificationCountSaga() {
   try {
     let response = yield call(customerNotificationCountService);
     yield put(customerNotificationCountSuccess(response.data));

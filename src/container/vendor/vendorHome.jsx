@@ -1,3 +1,6 @@
+/*
+  @module vendorHome
+*/
 import React from "react";
 import CatgItems from "./vendor Analytics/catgItems";
 import VendorData from "./vendor Analytics/vendorData";

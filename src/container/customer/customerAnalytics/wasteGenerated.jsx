@@ -1,3 +1,6 @@
+/*
+  @module wasteGenerated
+*/
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import "../customer.css";

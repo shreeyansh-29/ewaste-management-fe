@@ -1,3 +1,6 @@
+/*
+  @module puchaseData
+*/
 /* eslint-disable react/prop-types */
 import React from "react";
 import "../../customer/customer.css";

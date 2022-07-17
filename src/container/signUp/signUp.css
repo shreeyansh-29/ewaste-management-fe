@@ -117,7 +117,6 @@ input[type="pincode"],
 }
 select{
   width:300px;
-  
 }
 .forms-select{
   width:300px;
@@ -152,9 +151,10 @@ select{
   font-weight: normal;
   font-family: "poppins", sans-serif;
 }
-.role {
-  margin-left: -2%;
+.role{
+  margin-left: 2.3%;
 }
+
 .app-button {
   padding: 10px 70px;
   place-content: center;

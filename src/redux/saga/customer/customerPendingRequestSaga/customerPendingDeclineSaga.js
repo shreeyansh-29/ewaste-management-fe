@@ -6,7 +6,7 @@ import {
   customerPendingDeclineSuccess,
 } from "../../../action/customer/customerPendingRequestAction/customerPendingDeclineAction";
 
-function* customerPendingDeclineSaga(data) {
+export function* customerPendingDeclineSaga(data) {
   try {
     let response = yield call(customerPendingDeclineService, data);
     yield put(customerPendingDeclineSuccess(response.data));

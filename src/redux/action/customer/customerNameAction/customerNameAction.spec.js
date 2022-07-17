@@ -13,7 +13,7 @@ describe("test customerNameAction", () => {
   it("test customerNameSuccess function", () => {
     expect(actions.customerNameSuccess(payload)).toEqual({
       type: types.CUSTOMER_NAME_SUCCESS,
-      payload: undefined,
+      payload,
     });
   });
   it("test customerNameError function", () => {

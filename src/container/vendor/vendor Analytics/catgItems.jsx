@@ -1,3 +1,6 @@
+/*
+  @module collectorCatgItems
+*/
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {useDispatch} from "react-redux";

@@ -6,7 +6,7 @@ import {
   collectorMyDrivesError,
 } from "../../../action/collector/collectorMyDrivesAction/collectorMyDrivesAction";
 
-function* collectorMyDrivesSaga() {
+export function* collectorMyDrivesSaga() {
   try {
     let response = yield call(collectorMyDrivesService);
     yield put(collectorMyDrivesSuccess(response.data));

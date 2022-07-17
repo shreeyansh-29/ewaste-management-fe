@@ -5,7 +5,7 @@ export const customerNameRequest = () => {
 };
 
 export const customerNameSuccess = (payload) => {
-  return {type: types.CUSTOMER_NAME_SUCCESS, payload: payload.firstName};
+  return {type: types.CUSTOMER_NAME_SUCCESS, payload};
 };
 
 export const customerNameError = (payload) => {

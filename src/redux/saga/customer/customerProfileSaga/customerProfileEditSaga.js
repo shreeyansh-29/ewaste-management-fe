@@ -6,7 +6,7 @@ import {
   customerProfileEditSuccess,
 } from "../../../action/customer/customerProfileAction/customerProfileEditAction";
 
-function* customerProfileEditSaga(data) {
+export function* customerProfileEditSaga(data) {
   try {
     let response = yield call(customerProfileEditService, data);
     yield put(customerProfileEditSuccess(response));

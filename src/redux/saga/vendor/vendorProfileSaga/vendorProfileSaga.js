@@ -3,7 +3,7 @@ import * as types from "../../../config/actionType";
 import * as actions from "../../../action/vendor/vendorProfileAction/vendorProfileAction";
 import {vendorProfileService} from "../../../service/vendor/vendorProfileService/vendorProfileService";
 
-function* vendorProfileSaga() {
+export function* vendorProfileSaga() {
   try {
     let response = yield call(vendorProfileService);
     yield put(actions.vendorProfileSuccess(response.data));

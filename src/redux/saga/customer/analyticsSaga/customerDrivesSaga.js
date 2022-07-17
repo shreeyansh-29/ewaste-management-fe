@@ -6,7 +6,7 @@ import {
 import {CUSTOMER_DRIVES_REQUEST} from "../../../config/actionType";
 import {customerDrivesService} from "../../../service/customer/analyticsService/customerDrivesService";
 
-function* customerDrivesSaga() {
+export function* customerDrivesSaga() {
   try {
     let response = yield call(customerDrivesService);
     yield put(customerDrivesSuccess(response));

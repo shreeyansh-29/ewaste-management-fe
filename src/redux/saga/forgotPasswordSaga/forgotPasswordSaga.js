@@ -4,11 +4,11 @@ import {
   forgotPasswordSuccess,
 } from "../../action/forgotPasswordAction/forgotPasswordAction";
 import * as types from "../../config/actionType";
-import {helper} from "../../service/forgotPasswordService/forgotPasswordService";
+import {forgotPasswordService} from "../../service/forgotPasswordService/forgotPasswordService";
 
-function* forgotPassword(email) {
+export function* forgotPassword(email) {
   try {
-    let response = yield call(helper, email);
+    let response = yield call(forgotPasswordService, email);
     yield put(forgotPasswordSuccess(response.status));
   } catch (err) {
     yield put(forgotPasswordError(err));

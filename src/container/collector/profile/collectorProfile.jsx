@@ -1,5 +1,7 @@
+/*
+  @module collectorProfile
+*/
 /* eslint-disable indent */
-// /* eslint-disable indent */
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
 import "../Collector.css";
@@ -27,14 +29,31 @@ const CollectorProfile = () => {
     setState1(res?.state);
     setCity(res?.city);
   }, [res]);
+  /* 
+    @function changeState
+    @params {event}
+    @detail set the value of state field whenever it is updated by user
+    @return {void}
+  */
   const changeState = (event) => {
     setState1(event.target.value);
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
+  /* 
+    @function changeCity
+    @params {event}
+    @detail set the value of city field whenever it is updated by user
+    @return {void}
+  */
   const changeCity = (event) => {
     setCity(event.target.value);
   };
-
+  /* 
+    @function handleSubmit
+    @params {values} contains all the details of the user
+    @detail dispatch the editColProfileRequest from CollectorProfileAction
+    @return {void}
+  */
   const handleSubmit = (values) => {
     const data = {
       values,

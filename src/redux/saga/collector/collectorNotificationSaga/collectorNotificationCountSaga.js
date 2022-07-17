@@ -6,7 +6,7 @@ import {
   collectorNotificationCountSuccess,
 } from "../../../action/collector/collectorNotificationAction/collectorNotificationCountAction";
 
-function* collectorNotificationCountSaga() {
+export function* collectorNotificationCountSaga() {
   try {
     let response = yield call(collectorNotificationCountService);
     yield put(collectorNotificationCountSuccess(response.data));

@@ -35,10 +35,7 @@ describe("vendorNameReducer", () => {
         payload: {firstName: "John"},
       })
     ).toEqual({
-      data: {
-        payload: {firstName: "John"},
-        type: types.VENDOR_NAME_SUCCESS,
-      },
+      data: {firstName: "John"},
       isLoading: true,
       error: "",
     });

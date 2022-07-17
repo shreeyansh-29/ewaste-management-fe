@@ -6,7 +6,7 @@ import {
   collectorVendorError,
 } from "../../../action/collector/analyticsAction/collectorVendorAction";
 
-function* collectorVendorSaga() {
+export function* collectorVendorSaga() {
   try {
     let response = yield call(collectorVendorService);
     yield put(collectorVendorSuccess(response));

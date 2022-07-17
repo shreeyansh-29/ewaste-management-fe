@@ -1,3 +1,6 @@
+/*
+  @module collectorHome
+*/
 import React from "react";
 import EWasteDrives from "./collectorAnalytics/eWasteDrives";
 import EWasteOrg from "./collectorAnalytics/eWasteItems";

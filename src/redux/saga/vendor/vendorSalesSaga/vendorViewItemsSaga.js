@@ -6,7 +6,7 @@ import {takeLatest, put, call} from "redux-saga/effects";
 import {vendorViewItemsService} from "../../../service/vendor/vendorSalesService/vendorViewItemsService";
 import {VENDOR_VIEW_ITEMS_REQUEST} from "../../../config/actionType";
 
-function* vendorViewItemsSaga() {
+export function* vendorViewItemsSaga() {
   try {
     let response = yield call(vendorViewItemsService);
     yield put(vendorViewItemsSuccess(response));

@@ -1,3 +1,6 @@
+/*
+  @module customerHome
+*/
 import React from "react";
 import CollectorsCategories from "./customerAnalytics/collectorsCategories";
 import Drives from "./customerAnalytics/drives";

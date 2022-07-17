@@ -6,7 +6,7 @@ import {
   vendorCatgItemsSuccess,
 } from "../../../action/vendor/analyticsAction/vendorCatgItemsAction";
 
-function* vendorCatgItemsSaga() {
+export function* vendorCatgItemsSaga() {
   try {
     let response = yield call(vendorCatgItemsService);
     yield put(vendorCatgItemsSuccess(response));

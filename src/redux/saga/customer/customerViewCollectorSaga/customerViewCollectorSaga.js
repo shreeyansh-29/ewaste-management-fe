@@ -6,7 +6,7 @@ import {
 import {CUSTOMER_VIEW_COLLECTORS_REQUEST} from "../../../config/actionType";
 import {customerViewCollectorService} from "../../../service/customer/customerViewCollectorService/customerViewCollectorService";
 
-function* customerViewCollectorsSaga(action) {
+export function* customerViewCollectorsSaga(action) {
   try {
     let response = yield call(customerViewCollectorService, action);
     yield put(customerViewCollectorsSuccess(response));

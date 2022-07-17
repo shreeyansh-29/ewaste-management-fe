@@ -5,7 +5,7 @@ export const collectorNameRequest = () => {
 };
 
 export const collectorNameSuccess = (payload) => {
-  return {type: types.COLLECTOR_NAME_SUCCESS, payload: payload.firstName};
+  return {type: types.COLLECTOR_NAME_SUCCESS, payload};
 };
 
 export const collectorNameError = (payload) => {

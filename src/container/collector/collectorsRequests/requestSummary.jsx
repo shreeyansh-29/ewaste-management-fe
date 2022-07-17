@@ -1,3 +1,8 @@
+
+
+/*
+  @module requestSummary
+*/
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
@@ -141,10 +146,18 @@ const RequestSummary = () => {
       },
     },
   ]);
-
+  /* 
+    @function togglePop
+    @detail update the value of isopen variable
+  */
   const togglepop = () => {
     setopen(!isopen);
   };
+  /* 
+    @function handleData
+    @params {values} contain the pickUp and dropOff request data
+    @detail updating the data according to the conditions
+  */
   const handledata = (res1) => {
     res1.data.map((obj) => {
       if (obj.requestType === "DropOff" && obj.status === "pending") {

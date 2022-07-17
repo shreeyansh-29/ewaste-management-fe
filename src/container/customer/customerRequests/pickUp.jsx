@@ -1,3 +1,6 @@
+/*
+  @module PickUp
+*/
 /* eslint-disable indent */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useEffect} from "react";
@@ -22,24 +25,19 @@ import {Button, TableTitle} from "../../../components/styles";
 import {QuantityValidation} from "./quantityValidations";
 
 export default function PickUp() {
-  let result = useSelector((state) => state.customerCountColl);
-  let res = useSelector((state) => state.customerPickUp);
+  let result1 = useSelector((state) => state.customerCountColl);
   const dispatch = useDispatch();
   const {useState} = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
   const [isEditable, setEditable] = useState(true);
-  useEffect(() => {
-    if (res?.data.status === "success") {
-      Toast.success(TOAST_SUCCESS3);
-    }
-  }, [res]);
+
   useEffect(() => {
     if (
-      isEmpty(result?.data) !== true ||
-      result?.data.type === "CUSTOMER_COUNT_COLL_SUCCESS"
+      isEmpty(result1?.data) !== true ||
+      result1?.data.type === "CUSTOMER_COUNT_COLL_SUCCESS"
     ) {
-      setCollectors(result.data.payload);
+      setCollectors(result1.data.payload);
     }
   });
   var maxDate = new Date();
@@ -143,8 +141,16 @@ export default function PickUp() {
     },
   ]);
   const [data, setData] = useState([]);
+
+  /* 
+    @function handleSubmit
+    @params {event , value} contain the data required to request for PickUp service
+    @detail dispatch the requestPickUp from PickUpAction 
+    @return {void}
+  */
   const handleSubmit = (event, value) => {
     event.preventDefault();
+
     var date = value[0].date.toString().split(" ");
     date[1] = dateUpdate(date[1]);
 
@@ -158,7 +164,15 @@ export default function PickUp() {
       scheduledTime: value[0].time,
     };
     dispatch(customerPickUpRequest(datas));
+    Toast.success(TOAST_SUCCESS3);
   };
+
+  /* 
+    @function handleClick
+    @params {event} 
+    @detail dispatch the pickUpCountRequest from PickUpAction after successful validation
+    @return {void}
+  */
   const handleClick = (event) => {
     event.preventDefault();
     if (QuantityValidation(data[0])) {

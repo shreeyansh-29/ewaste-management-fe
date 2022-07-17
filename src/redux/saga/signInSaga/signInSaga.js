@@ -6,10 +6,9 @@ import {
 import * as types from "../../config/actionType";
 import {signInService} from "../../service/signInService/signInService";
 
-function* signInSaga(data) {
+export function* signInSaga(data) {
   try {
     let response = yield call(signInService, data);
-    response = yield response.json();
     yield put(signInSuccess(response));
   } catch (error) {
     yield put(signInError(error));

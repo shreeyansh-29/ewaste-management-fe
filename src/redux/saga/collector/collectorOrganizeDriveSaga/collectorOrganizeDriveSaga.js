@@ -6,10 +6,9 @@ import {
   collectorOrganizeDriveSuccess,
 } from "../../../action/collector/collectorOrganizeDriveAction/collectorOrganizeDriveAction";
 
-function* collectorOrganizeDriveSaga(data) {
+export function* collectorOrganizeDriveSaga(data) {
   try {
     let response = yield call(collectorOrganizeDriveService, data);
-    response = yield response.json();
     yield put(collectorOrganizeDriveSuccess(response));
   } catch (error) {
     yield put(collectorOrganizeDriveError(error));

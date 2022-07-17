@@ -6,7 +6,7 @@ import {
   customerEWasteDrivesSuccess,
 } from "../../../action/customer/customerEWasteAction/customerEWasteAction";
 
-function* customerEWasteSaga() {
+export function* customerEWasteSaga() {
   try {
     let response = yield call(customerEWasteService);
     yield put(customerEWasteDrivesSuccess(response));

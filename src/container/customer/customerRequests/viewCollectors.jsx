@@ -8,6 +8,7 @@ import "../customer.css";
 import {TOAST_SUCCESS4} from "../../constant/constant";
 import Toast from "../../../components/toast";
 import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";
+import Swal from "sweetalert2";
 
 const ViewCollectors = (props) => {
   const {useState} = React;
@@ -78,9 +79,24 @@ const ViewCollectors = (props) => {
     };
 
     setdisable(true);
-
-    dispatch(customerViewCollectorsRequest(data));
-    Toast.success(TOAST_SUCCESS4);
+    if (data) {
+      Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#228B22",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(customerViewCollectorsRequest(data));
+          Toast.success(TOAST_SUCCESS4);
+          setTimeout(() => {
+            window.location.href = "/Request/MyRequests";
+          }, 5000);
+        }
+      });
+    }
   };
 
   return (

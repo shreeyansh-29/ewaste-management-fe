@@ -6,7 +6,7 @@ import {
 import {CUSTOMER_WASTEGENERATED_REQUEST} from "../../../config/actionType";
 import {customerWasteGeneratedService} from "../../../service/customer/analyticsService/customerWasteGeneratedService";
 
-function* customerWasteGeneratedSaga() {
+export function* customerWasteGeneratedSaga() {
   try {
     let response = yield call(customerWasteGeneratedService);
     yield put(customerWasteGeneratedSuccess(response));

@@ -1,3 +1,6 @@
+/*
+  @module collectorNav
+*/
 /* eslint-disable indent */
 import React, {useState, useEffect} from "react";
 import Swal from "sweetalert2";
@@ -50,6 +53,11 @@ function CollectorNav(props) {
   const [List, setList] = useState([]);
   var list = ["hh"];
   const name = res.data.firstName;
+  /* 
+    @function displayNotification
+    @params {n}  specifies the list of all the notifications
+    @return display the list of notifications received
+  */
   const displayNotification = (n) => {
     return (
       <h1>
@@ -58,6 +66,10 @@ function CollectorNav(props) {
       </h1>
     );
   };
+  /* 
+    @function handle
+    @detail update the value of show and accordingly updates the value of notification list
+  */
   const handle = () => {
     setShow(!show);
     if (show) {

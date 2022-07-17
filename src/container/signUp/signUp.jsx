@@ -1,3 +1,6 @@
+/* 
+  @module SignUp 
+*/
 /* eslint-disable indent */
 import {Formik, Form, Field} from "formik";
 import React, {useState} from "react";
@@ -74,9 +77,21 @@ const SignUp = () => {
       }
     }
   });
+
+  /* 
+    @function returnFunctionStart
+    @detail set the value of startTime field
+    @return {void}
+  */
   const returnFunctionStart = (event) => {
     setStartTime(event.startTime);
   };
+
+  /* 
+    @function handleInputChange
+    @detail set the value of categories selected by user
+    @return {void}
+  */
   const handleInputChange = (e, i) => {
     console.log(i);
     var list = [...e];
@@ -84,31 +99,64 @@ const SignUp = () => {
     setCategoryAccepted([list]);
   };
 
+  /* 
+    @function returnFunctionEnd
+    @detail set the value of endTime field
+    @return {void}
+  */
   const returnFunctionEnd = (event) => {
     setEndTime(event.endTime);
   };
 
+  /* 
+    @function changeState
+    @detail set the value of state field
+    @return {void}
+  */
   const changeState = (event) => {
     setState1(event.target.value);
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
+
+  /* 
+    @function changeState
+    @detail set the value of city field
+    @return {void}
+  */
   const changeCity = (event) => {
     setCity(event.target.value);
   };
+
+  /* 
+    @function handleDropdown
+    @detail set the value of role
+    @return {void}
+  */
   const handleDropdown = (e) => {
     setRole(e);
   };
 
+  /* 
+    @function togglePassword
+    @detail set the password type of field name 'password'
+    @return {void}
+  */
   const togglePasswords = () => {
     setPasswordType(togglePassword(passwordType));
   };
+
+  /* 
+    @function confirmTogglePassword
+    @detail set the password type of field name 'confirmpassword'
+    @return {void}
+  */
   const confirmTogglePasswords = () => {
     setConfirmPasswordType(togglePassword(confirmPasswordType));
   };
 
   return (
     <div className="signUp">
-      <Formik
+         <Formik
         initialValues={{
           firstName: "",
           lastName: "",
@@ -123,6 +171,7 @@ const SignUp = () => {
           role: "",
           gstNo: "",
           registrationNo: "",
+          selectedImage:"",
         }}
         validationSchema={SignUpValidations}
         validator={() => ({})}
@@ -357,23 +406,33 @@ const SignUp = () => {
                       Role <i className="text-danger">*</i>
                     </label>
                     <div className="role">
-                      <>
-                        <Dropdown
-                          data={[
-                            {label: "Customer"},
-                            {label: "Collector"},
-                            {label: "Vendor"},
-                          ]}
-                          name="role"
-                          value={role}
-                          style={{borderRadius: "17px"}}
-                          onChange={(e) => handleDropdown(e)}
-                        />
-                      </>
+                      <Dropdown
+                        data={[
+                          {label: "Customer"},
+                          {label: "Collector"},
+                          {label: "Vendor"},
+                        ]}
+                        name="role"
+                        value={role}
+                        style={{borderRadius: "17px"}}
+                        onChange={(e) => handleDropdown(e)}
+                      />
                     </div>
                     {errors.role ? (
                       <div className="formErrors">{errors.role}</div>
                     ) : null}
+                  </div>
+                  <div className="inputGroup">
+                    <label htmlFor="GSTIN">
+                      Profile Picture <i className="text-danger">*</i>
+                    </label>
+
+                    <input
+                      type="file"
+                      name="selectedImage"
+                      onChange={handleChange}
+                      className="form-control"
+                    />
                   </div>
                 </div>
                 {role === "Vendor" || role === "Collector" ? (

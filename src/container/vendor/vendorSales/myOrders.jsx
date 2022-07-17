@@ -1,3 +1,6 @@
+/*
+  @module myOrders
+*/
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
@@ -145,6 +148,11 @@ const MyOrders = () => {
       },
     },
   ]);
+
+  /* 
+    @function togglePop
+    @detail updating the value of 'isopen' variable
+  */
   const togglepop = () => {
     setopen(!isopen);
   };

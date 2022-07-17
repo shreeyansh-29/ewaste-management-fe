@@ -6,7 +6,7 @@ import {takeLatest, put, call} from "redux-saga/effects";
 import {vendorMyOrdersService} from "../../../service/vendor/vendorMyOrdersService/vendorMyOrdersService";
 import {VENDOR_MYORDERS_REQUEST} from "../../../config/actionType";
 
-function* vendorMyOrdersSaga() {
+export function* vendorMyOrdersSaga() {
   try {
     let response = yield call(vendorMyOrdersService);
     yield put(vendorMyOrdersSuccess(response.data));

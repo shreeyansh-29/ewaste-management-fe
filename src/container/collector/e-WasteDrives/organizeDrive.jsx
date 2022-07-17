@@ -1,3 +1,6 @@
+/*
+  @module organizeDrive
+*/
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
@@ -114,6 +117,12 @@ const OrganizeDrive = () => {
       },
     },
   ]);
+  /* 
+    @function dateformat
+    @params {datas}  contain the scheduledate of drive
+    @detail updating the format of scheduledate
+    @return scheduledate
+  */
   const dateformat = (datas) => {
     var scheduledate = datas.date.toString().split(" ");
     if (scheduledate[1] === "Jan") {
@@ -145,6 +154,11 @@ const OrganizeDrive = () => {
       scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
     return scheduledate;
   };
+  /* 
+    @function handleDone
+    @params {e,datas}  contain the data required to organize a drive
+    @detail dispatch organizeDriveRequest from organizeDriveAction after successful validation of datas 
+  */
   const handleDone = async (e, datas) => {
     e.preventDefault();
 

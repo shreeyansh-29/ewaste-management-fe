@@ -6,7 +6,7 @@ import {
 import {viewColProfileService} from "../../service/vendor/viewColProfileService";
 import {VENDOR_COLLECTORPROFILE_REQUEST} from "../../config/actionType";
 
-function* viewAcceptColProfileSaga(data) {
+export function* viewAcceptColProfileSaga(data) {
   try {
     let response = yield call(viewColProfileService, data);
     yield put(vendorViewAcceptCollectorSuccess(response));

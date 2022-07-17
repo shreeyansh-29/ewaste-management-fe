@@ -6,10 +6,9 @@ import {
   googleSignInSuccess,
 } from "../../action/signInAction/googleSignInAction";
 
-function* googleSignInSaga(data) {
+export function* googleSignInSaga(data) {
   try {
     let response = yield call(googleSignInService, data);
-    response = yield response.json();
     yield put(googleSignInSuccess(response));
   } catch (error) {
     yield put(googleSignInError(error));

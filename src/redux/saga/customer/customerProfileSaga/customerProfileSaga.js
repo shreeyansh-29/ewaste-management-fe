@@ -6,7 +6,7 @@ import {
   customerProfileError,
 } from "../../../action/customer/customerProfileAction/customerProfileAction";
 
-function* customerProfileSaga() {
+export function* customerProfileSaga() {
   try {
     let response = yield call(customerProfileService);
     yield put(customerProfileSuccess(response.data));

@@ -1,3 +1,6 @@
+/*
+  @module soldItems
+*/
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {collectorSoldRequest} from "../../../redux/action/collector/collectorSoldAction/collectorSoldAction";

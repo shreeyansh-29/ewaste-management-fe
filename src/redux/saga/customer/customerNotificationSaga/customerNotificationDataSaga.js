@@ -3,10 +3,9 @@ import {call, put, takeLatest} from "redux-saga/effects";
 import * as actions from "../../../action/customer/customerNotificationAction/customerNotificationDataAction";
 import {customerNotificationDataService} from "../../../service/customer/customerNotificationService/customerNotificationDataService";
 
-function* customerNotificationDataSaga() {
+export function* customerNotificationDataSaga() {
   try {
     let response = yield call(customerNotificationDataService);
-    response = yield response.json();
     yield put(actions.customerNotificationDataSuccess(response));
   } catch (error) {
     yield put(actions.customerNotificationDataError(error));

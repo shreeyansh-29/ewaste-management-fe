@@ -35,7 +35,7 @@ a:hover {
   display: flex;
 }
 .notification_button {
-  margin-left: 630px;
+  margin-left: 42rem;
 }
 
 .userreq .center .links a {
@@ -288,7 +288,7 @@ h3 {
 .notifications {
   position: absolute;
   top: 60px;
-  right: 19.7%;
+  right: 20%;
   background-color: rgb(235, 233, 233);
   color: black;
   font-weight: 300px;

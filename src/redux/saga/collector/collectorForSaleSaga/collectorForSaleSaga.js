@@ -6,10 +6,9 @@ import {
   collectorForSaleSuccess,
 } from "../../../action/collector/collectorForSaleAction/collectorForSaleAction";
 
-function* collectorForSaleSaga(data) {
+export function* collectorForSaleSaga(data) {
   try {
     let response = yield call(collectorForSaleService, data);
-    response = yield response.json();
     yield put(collectorForSaleSuccess(response.data));
   } catch (error) {
     yield put(collectorForSaleError(error));

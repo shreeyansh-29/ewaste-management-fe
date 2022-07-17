@@ -1,3 +1,6 @@
+/*
+  @module availableSales
+*/
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,7 +12,7 @@ import {isEmpty} from "lodash";
 const AvailableSales = () => {
   const {useState} = React;
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorAvailable);
+  let res = useSelector((state) => state.collectorAvailable?.data);
   const [columns] = useState([
     {
       title: "ID",

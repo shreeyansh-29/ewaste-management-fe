@@ -87,6 +87,16 @@ export const CONFIRM_PASSWORD_REQUIRED = "Confirm Password required.";
 export const PASSWORD_INVALID = "Password should be of atleast six characters";
 export const FNAME_REQUIRED = "First name required.";
 export const LNAME_REQUIRED = "Last name required.";
+
 export const MSG = "An email has been sent to you to reset the password.";
+export const MSG_1 = "Request failed. Try again later...";
 export const VALID_QUANTITY = "Enter valid quantity";
 export const INVALID_QUANTITY = "Invalid quantity";
+export const BAD_REQUEST = 400;
+export const SUCCESSFULL_REQUEST = 200;
+export const FORBIDDEN = 403;
+export const RESOURCE_NOT_FOUND = 404;
+export const MSG_200 = "Successful Request";
+export const MSG1_404 = "Resource Not Found";
+export const MSG2_403 = "You are not authorized to access this page";
+export const MSG3_400 = "Bad Request";

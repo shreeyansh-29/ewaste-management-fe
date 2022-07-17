@@ -6,10 +6,9 @@ import {
 } from "../../../action/collector/collectorNotificationAction/collectorNotificationDataAction";
 import {collectorNotificationDataService} from "../../../service/collector/collectorNotificationService/collectorNotificationDataService";
 
-function* collectorNotificationDataSaga() {
+export function* collectorNotificationDataSaga() {
   try {
     let response = yield call(collectorNotificationDataService);
-    response = yield response.json();
     yield put(collectorNotificationDataSuccess(response));
   } catch (error) {
     yield put(collectorNotificationDataError(error));

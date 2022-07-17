@@ -6,7 +6,7 @@ import {
   vendorProfileEditSuccess,
 } from "../../../action/vendor/vendorProfileAction/vendorProfileEditAction";
 
-function* vendorProfileEditSaga(data) {
+export function* vendorProfileEditSaga(data) {
   try {
     let response = yield call(vendorProfileEditService, data);
     yield put(vendorProfileEditSuccess(response));

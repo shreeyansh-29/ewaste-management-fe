@@ -1,3 +1,6 @@
+/*
+  @module Google SignIn
+*/
 import jwt from "jwt-decode";
 import {toast} from "react-toastify";
 import {googleSignInRequest} from "../../redux/action/signInAction/googleSignInAction";
@@ -34,10 +37,21 @@ const GoogleSignin = () => {
     }
   }, [res]);
 
+  /* 
+    @function onSuccess
+    @detail on successful login redirect to dashboard according to role
+    @return {void}
+  */
   const onSuccess = async (result) => {
     setEmail(result.profileObj.email);
     dispatch(googleSignInRequest(email));
   };
+
+  /* 
+    @function onFailure
+    @detail handling failure while signIn with google
+    @return {void}
+  */
   const onFailure = (response) => {
     console.log(response);
   };

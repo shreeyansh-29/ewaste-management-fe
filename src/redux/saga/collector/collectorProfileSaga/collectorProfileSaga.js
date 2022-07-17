@@ -6,7 +6,7 @@ import {
   collectorProfileError,
 } from "../../../action/collector/collectorProfileAction/collectorProfileAction";
 
-function* collectorProfileSaga() {
+export function* collectorProfileSaga() {
   try {
     let response = yield call(collectorProfileService);
     yield put(collectorProfileSuccess(response.data));

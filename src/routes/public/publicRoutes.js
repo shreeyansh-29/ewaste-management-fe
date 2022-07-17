@@ -1,3 +1,6 @@
+/*
+  @module publicRoutes
+*/
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 import Signin from "../../container/signIn/signIn";

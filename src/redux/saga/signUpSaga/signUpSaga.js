@@ -5,9 +5,9 @@ import {
   signUpSuccess,
   signUpError,
 } from "../../action/signUpAction/signUpAction";
-function* signUpSaga(data) {
+export function* signUpSaga(data) {
   try {
-    let response = yield call(signUpService(data));
+    let response = yield call(signUpService, data);
     yield put(signUpSuccess(response));
   } catch (error) {
     yield put(signUpError(error));

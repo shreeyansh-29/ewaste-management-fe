@@ -5,9 +5,8 @@ import {
   watchCollectorEWasteDrives,
 } from "./collectorEWasteDrivesSaga";
 import * as actions from "../../../action/collector/analyticsAction/collectorEWasteDrivesAction";
-import {collectorEWasteDrivesService} from "../../../service/collector/analyticsService/collectorEWasteDrivesService";
 import {runSaga} from "redux-saga";
-import * as service from "../../../service/collector/analyticsService/collectorEWasteDrivesService";
+import * as api from "../../../service/collector/analyticsService/collectorEWasteDrivesService";
 
 describe("watchCollectorEWasteDrives", () => {
   const genObject = watchCollectorEWasteDrives();
@@ -22,28 +21,41 @@ describe("watchCollectorEWasteDrives", () => {
 });
 describe("test collectorEWasteDrivesSaga", () => {
   it("should call api and dispatch success action", async () => {
-    let dummyData = {EWasteDriveCity: 1, EWasteDriveCollector: 1};
-    const getEWasteDrives = jest.fn(() => collectorEWasteDrivesService);
-    //   .spyOn(service, collectorEWasteDrivesService)
-    //   .mockImplementation(() => Promise.resolve(dummyData));
-    let dispatche;
-    const dispatched = [
+    const eWasteDrives = jest
+      .spyOn(api, "collectorEWasteDrivesService")
+      .mockImplementation(() => Promise.resolve());
+    const dispatched = {
+      payload: undefined,
+      type: "COLLECTOR_EWASTE_DRIVES_SUCCESS",
+    };
+    const result = runSaga(
       {
-        type: "COLLECTOR_EWASTE_DRIVES_SUCCESS",
-        payload: {EWasteDriveCity: 1, EWasteDriveCollector: 1},
-      },
-    ];
-    const result = await runSaga(
-      {
-        dispatch: (action) => dispatche.push(action),
+        dispatch: (action) => Object.assign(dispatched, action),
       },
       collectorEWasteDrivesSaga
     );
-    console.log(result);
-    expect(getEWasteDrives).toHaveBeenCalledTimes(0);
-    expect(dispatched).toEqual([
-      actions.collectorEWasteDrivesSuccess(dummyData),
-    ]);
-    getEWasteDrives.mockClear();
+    expect(result).toBeTruthy();
+    expect(eWasteDrives).toHaveBeenCalledTimes(1);
+    expect(dispatched).toEqual(actions.collectorEWasteDrivesSuccess());
+    eWasteDrives.mockClear();
+  });
+  it("failure triggers error action", async () => {
+    const eWasteDrives = jest
+      .spyOn(api, "collectorEWasteDrivesService")
+      .mockImplementation(() => Promise.reject());
+    const dispatched = {
+      payload: undefined,
+      type: "COLLECTOR_EWASTE_DRIVES_ERROR",
+    };
+    const result = runSaga(
+      {
+        dispatch: (action) => Object.assign(dispatched, action),
+      },
+      collectorEWasteDrivesSaga
+    );
+    expect(result).toBeTruthy();
+    expect(eWasteDrives).toHaveBeenCalledTimes(1);
+    expect(dispatched).toEqual(actions.collectorEWasteDrivesError());
+    eWasteDrives.mockClear();
   });
 });

@@ -1,3 +1,6 @@
+/*
+  @module collectorsCategories
+*/
 /* eslint-disable no-unused-vars */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";

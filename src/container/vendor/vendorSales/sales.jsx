@@ -1,3 +1,8 @@
+
+
+/*
+  @module sales
+*/
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {Link} from "react-router-dom";
@@ -166,6 +171,12 @@ const Sales = () => {
       },
     },
   ]);
+
+  /* 
+    @function profile
+    @params {e}
+    @detail updating the value of 'id' 
+  */
   const profile = (e) => {
     if (e.id === null) {
       Toast.warn(TOAST_WARN3);
@@ -190,6 +201,12 @@ const Sales = () => {
   }, []);
 
   const [data, setData] = useState([]);
+
+  /* 
+    @function CalTotal
+    @params {index, newData} represent the index and the data of the items put on sale
+    @detail updating the purchase quantity after successful validation
+  */
   const CalTotal = (index, newData) => {
     if (parseInt(newData.quantities) > data[index].availableQuantity) {
       Toast.error(INVALID_QUANTITY);
@@ -203,6 +220,12 @@ const Sales = () => {
       setData([...dataUpdate]);
     }
   };
+
+  /* 
+    @function handleBuy
+    @params {e,datas} represent the data of the item vendor is purchasing
+    @detail dispatch salesAcceptRequest from salesAcceptAction after validating the purchase quantity
+  */
   const handleBuy = async (e, datas) => {
     e.preventDefault();
     if (datas.quantities === 0 || datas.quantities === undefined) {
@@ -224,9 +247,19 @@ const Sales = () => {
       setDetails(res2.data);
     }
   };
+
+  /* 
+    @function togglePop
+    @detail updating the value of isopen variable
+  */
   const togglePop = () => {
     setopen(!isopen);
   };
+
+  /* 
+    @function togglePop2
+    @detail updating the value of isopen variable
+  */
   const togglepop = () => {
     setopen2(!isopen2);
   };

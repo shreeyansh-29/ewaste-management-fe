@@ -1,3 +1,6 @@
+/*
+  @module pageNotFound
+*/
 import React from "react";
 const PageNotFound = () => {
   return (

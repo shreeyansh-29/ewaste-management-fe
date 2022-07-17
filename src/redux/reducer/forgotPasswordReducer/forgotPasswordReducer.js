@@ -21,11 +21,11 @@ export const forgotPasswordReducer = (
         ...state,
         isLoading: true,
       };
+
     case FORGOT_PASSWORD_SUCCESS:
       return {...state, data: action.payload};
     case FORGOT_PASSWORD_ERROR:
       return {...state, error: action};
-
     default:
       return state;
   }

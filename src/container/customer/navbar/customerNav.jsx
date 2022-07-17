@@ -1,3 +1,6 @@
+/*
+  @module customerNavbar
+*/
 import React, {useEffect, useState} from "react";
 import {NavLogoutBtn} from "../../../components/navbar/navbarelements";
 import ".././customer.css";
@@ -48,6 +51,12 @@ const CustomerNav = ({res, result1, result2}) => {
       setList(list);
     }
   }, [result2]);
+
+  /* 
+    @function displayNotification
+    @params {n}  specifies the list of all the notifications
+    @return display the list of notifications received
+  */
   const displayNotification = (n) => {
     return (
       <h1>
@@ -55,6 +64,11 @@ const CustomerNav = ({res, result1, result2}) => {
       </h1>
     );
   };
+
+  /* 
+    @function handle
+    @detail update the value of show and accordingly updates the value of notification list
+  */
   const handle = () => {
     setShow(!show);
     if (show) {

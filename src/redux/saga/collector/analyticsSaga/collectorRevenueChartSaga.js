@@ -6,7 +6,7 @@ import {
   collectorRevenueChartSuccess,
 } from "../../../action/collector/analyticsAction/collectorRevenueChartAction";
 
-function* collectorRevenueChartSaga() {
+export function* collectorRevenueChartSaga() {
   try {
     let response = yield call(collectorRevenueChartService);
     yield put(collectorRevenueChartSuccess(response));

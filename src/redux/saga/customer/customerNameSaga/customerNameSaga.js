@@ -6,7 +6,7 @@ import {
 import {customerNameService} from "../../../service/customer/customerNameService/customerNameService";
 import * as types from "../../../config/actionType";
 
-function* customerNameSaga() {
+export function* customerNameSaga() {
   try {
     let response = yield call(customerNameService);
     yield put(customerNameSuccess(response.data));

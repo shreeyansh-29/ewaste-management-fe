@@ -1,3 +1,6 @@
+/*
+  @module Reset Password
+*/
 import React, {useState, useEffect} from "react";
 import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,7 +10,7 @@ import {NotificationContainer} from "react-notifications";
 import "./password.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import {TOAST_SUCCESS2} from "../constant/constant";
+import {TOAST_SUCCESS2, MSG_1, SUCCESSFULL_REQUEST} from "../constant/constant";
 import Toast from "../../components/toast";
 import {useDispatch, useSelector} from "react-redux";
 import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";
@@ -19,6 +22,11 @@ const ResetPassword = () => {
   const res = useSelector((state) => state.resetPassword?.data);
   const [passwordType, setpasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+  /* 
+    @function togglePassword
+    @detail set the password type of field name 'password'
+    @return {void}
+  */
   const togglePassword = () => {
     if (passwordType === "password") {
       setpasswordType("text");
@@ -26,6 +34,11 @@ const ResetPassword = () => {
     }
     setpasswordType("password");
   };
+  /* 
+    @function confirmTogglePassword
+    @detail set the password type of field name 'confirmpassword'
+    @return {void}
+  */
   const confirmtogglePassword = () => {
     if (confirmPasswordType === "password") {
       setConfirmPasswordType("text");
@@ -35,14 +48,22 @@ const ResetPassword = () => {
   };
   useEffect(() => {
     if (res !== undefined) {
-      if (res === 200) {
+      if (res === SUCCESSFULL_REQUEST) {
         Toast.success(TOAST_SUCCESS2);
         setTimeout(() => {
           window.location.href = "/Signin";
         }, 3000);
+      } else {
+        Toast.error(MSG_1);
       }
     }
   }, [res]);
+  /* 
+    @function handleClick
+    @params {values} contains the field values required to reset the password
+    @detail dispatch resetPasswordRequest function from resetPasswordAction
+    @return {void}
+  */
   const handleClick = async (values) => {
     const data = {values, token};
     dispatch(resetPasswordRequest(data));

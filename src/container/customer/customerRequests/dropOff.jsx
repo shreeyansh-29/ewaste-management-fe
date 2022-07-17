@@ -1,3 +1,6 @@
+/* 
+  @module DropOff
+*/
 /* eslint-disable indent */
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
@@ -81,6 +84,12 @@ const DropOff = () => {
 
   const [value, setValue] = useState([]);
 
+  /* 
+    @function handleClick
+    @params {datas} contain the data required to request for drop off service
+    @detail dispatch the dropOffRequest from DropOffAction after successful validation
+    @return {void}
+  */
   const handleClick = (data) => {
     if (
       data[0].category === undefined ||

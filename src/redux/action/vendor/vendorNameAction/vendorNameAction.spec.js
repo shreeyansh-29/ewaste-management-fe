@@ -13,7 +13,7 @@ describe("test vendorNameAction", () => {
   it("test vendorNameSuccess function", () => {
     expect(actions.vendorNameSuccess(payload)).toEqual({
       type: types.VENDOR_NAME_SUCCESS,
-      payload: undefined,
+      payload,
     });
   });
   it("test vendorNameError function", () => {

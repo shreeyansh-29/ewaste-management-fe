@@ -6,7 +6,7 @@ import {
   collectorSummarySuccess,
 } from "../../../action/collector/collectorSummaryAction/collectorSummaryAction";
 
-function* collectorSummarySaga() {
+export function* collectorSummarySaga() {
   try {
     let response = yield call(collectorSummaryService);
     yield put(collectorSummarySuccess(response));

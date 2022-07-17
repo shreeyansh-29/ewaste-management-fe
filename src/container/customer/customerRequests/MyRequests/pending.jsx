@@ -1,3 +1,6 @@
+/*
+  @module pending
+*/
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import "../../customer.css";
@@ -7,13 +10,14 @@ import {toast} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
 import {customerPendingRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingRequestAction";
 import {customerPendingDeclineRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingDeclineAction";
+import Swal from "sweetalert2";
 
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
 const Pending = () => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerPendingRequest?.data);
+  let res = useSelector((state) => state.customerPendingRequest);
   const {useState} = React;
 
   const [columns] = useState([
@@ -119,10 +123,28 @@ const Pending = () => {
       },
     },
   ]);
+  /* 
+    @function handleDecline
+    @params {e,datas} specifies the data of the request user wants to decline
+    @detail dispatch deletePendingRequest from deletePendingAction
+  */
   const handleDecline = async (e, datas) => {
     e.preventDefault();
-    dispatch(customerPendingDeclineRequest(datas.orderUid));
-    document.location.reload();
+    if (datas) {
+      Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#228B22",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(customerPendingDeclineRequest(datas.orderUid));
+          document.location.reload();
+        }
+      });
+    }
   };
   useEffect(() => {
     dispatch(customerPendingRequest());
@@ -136,7 +158,7 @@ const Pending = () => {
             align="center"
             title=""
             columns={columns}
-            data={res?.data}
+            data={res?.data.data}
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,
             }}

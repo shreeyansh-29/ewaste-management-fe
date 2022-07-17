@@ -1,3 +1,6 @@
+/*
+  @module completed
+ */
 /* eslint-disable indent */
 import React, {useEffect} from "react";
 import MaterialTable from "material-table";
@@ -127,6 +130,11 @@ export default function completed() {
     },
   ]);
 
+  /* 
+    @function togglepop
+    @detail update the value of isopen
+    @return {void}
+  */
   const togglepop = () => {
     setopen(!isopen);
   };

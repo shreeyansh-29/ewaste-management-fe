@@ -6,10 +6,10 @@ import {
 } from "../../../action/collector/collectorAvailableAction/collectorAvailableAction";
 import {collectorAvailableService} from "../../../service/collector/collectorAvailableService/collectorAvailableService";
 
-function* collectorAvailableSaga() {
+export function* collectorAvailableSaga() {
   try {
     let response = yield call(collectorAvailableService);
-    yield put(collectorAvailableSuccess(response.data));
+    yield put(collectorAvailableSuccess(response));
   } catch (error) {
     yield put(collectorAvailableError(error));
   }

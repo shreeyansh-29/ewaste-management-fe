@@ -6,7 +6,7 @@ import {
   collectorUsersError,
 } from "../../../action/collector/analyticsAction/collectorUsersAction";
 
-function* collectorUsersSaga() {
+export function* collectorUsersSaga() {
   try {
     let response = yield call(collectorUsersService);
     yield put(collectorUsersSuccess(response));

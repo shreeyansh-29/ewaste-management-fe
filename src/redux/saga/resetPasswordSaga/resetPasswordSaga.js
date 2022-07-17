@@ -6,7 +6,7 @@ import {
 import {RESET_PASSWORD_REQUEST} from "../../config/actionType";
 import {resetPasswordService} from "../../service/resetPasswordService/resetPasswordService";
 
-function* resetPassword(action) {
+export function* resetPassword(action) {
   try {
     let response = yield call(resetPasswordService, action);
     yield put(resetPasswordSuccess(response.status));

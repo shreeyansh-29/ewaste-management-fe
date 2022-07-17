@@ -1,3 +1,6 @@
+/*
+  @module collectorRequests
+*/
 import React from "react";
 import MaterialTable from "material-table";
 import "../Collector.css";
@@ -116,6 +119,11 @@ const CollectorRequests = () => {
     },
   ]);
 
+  /* 
+    @function handleAccept
+    @params {e,datas}  contains the data of the pickUp request collector is accepting
+    @detail dispatch acceptPendingRequest from acceptPendingAction  
+  */
   const handleAccept = async (e, datas) => {
     e.preventDefault();
     orderid = datas.orderId;
@@ -124,7 +132,7 @@ const CollectorRequests = () => {
     Toast.success(TOAST_SUCCESS8, 1500);
 
     setTimeout(() => {
-      window.location.href = "Request/MyRequests";
+      window.location.href = "MyRequests";
     }, 3000);
   };
 

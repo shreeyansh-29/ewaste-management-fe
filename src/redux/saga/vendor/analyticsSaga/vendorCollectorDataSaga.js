@@ -6,7 +6,7 @@ import {
   vendorCollectorDataSuccess,
 } from "../../../action/vendor/analyticsAction/vendorCollectorDataAction";
 
-function* vendorCollectorDataSaga() {
+export function* vendorCollectorDataSaga() {
   try {
     let response = yield call(vendorCollectorDataService);
     yield put(vendorCollectorDataSuccess(response));

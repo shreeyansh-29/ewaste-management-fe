@@ -1,3 +1,6 @@
+/*
+  @module Home
+*/
 import React from "react";
 import InfoSection from "../../components/infoSection/InfoSection";
 import {

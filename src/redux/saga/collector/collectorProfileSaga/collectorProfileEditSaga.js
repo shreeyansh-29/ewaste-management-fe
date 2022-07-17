@@ -6,7 +6,7 @@ import {
   collectorProfileEditSuccess,
 } from "../../../action/collector/collectorProfileAction/collectorProfileEditAction";
 
-function* collectorProfileEditSaga(data) {
+export function* collectorProfileEditSaga(data) {
   try {
     let response = yield call(collectorProfileEditService, data);
     yield put(collectorProfileEditSuccess(response));

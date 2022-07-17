@@ -1,3 +1,6 @@
+/*
+  @module myDrives
+*/
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
@@ -125,6 +128,11 @@ const MyDrives = () => {
       },
     },
   ]);
+  /* 
+    @function callApi
+    @params {newData}  contains the updated status of the drive
+    @detail dispatch myDriveStatusRequest from myDrivesAction  
+  */
   const callApi = async (newData) => {
     dispatch(collectorMyDrivesStatusRequest(newData));
   };

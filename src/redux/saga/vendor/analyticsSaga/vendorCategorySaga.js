@@ -6,7 +6,7 @@ import {
   vendorCategorySuccess,
 } from "../../../action/vendor/analyticsAction/vendorCategoryAction";
 
-function* vendorCategorySaga() {
+export function* vendorCategorySaga() {
   try {
     let response = yield call(vendorCategoryService);
     yield put(vendorCategorySuccess(response));

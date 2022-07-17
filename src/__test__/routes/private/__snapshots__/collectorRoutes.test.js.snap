@@ -28,7 +28,7 @@ exports[`testing Collector Routes test collectorRoutes 1`] = `
   />
   <Route
     element={<RequestSummary />}
-    path="/Request/MyRequests"
+    path="/MyRequests"
   />
   <Route
     element={<ItemsForSale />}

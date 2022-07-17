@@ -1,3 +1,6 @@
+/*
+  @module vendorRoutes
+*/
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 import VendorHome from "../../container/vendor/vendorHome";

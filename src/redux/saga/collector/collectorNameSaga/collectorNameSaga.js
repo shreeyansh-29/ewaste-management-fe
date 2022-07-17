@@ -6,7 +6,7 @@ import {
   collectorNameError,
 } from "../../../action/collector/collectorNameAction/collectorNameAction";
 
-function* collectorNameSaga() {
+export function* collectorNameSaga() {
   try {
     let response = yield call(collectorNameService);
     yield put(collectorNameSuccess(response.data));

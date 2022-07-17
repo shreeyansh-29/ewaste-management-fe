@@ -1,3 +1,6 @@
+/*
+  @module itemsForSale
+*/
 import React from "react";
 import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/AddBox";
@@ -86,6 +89,11 @@ const ItemsForSale = () => {
       setStatus(res.data.status);
     }
   }, []);
+  /* 
+    @function handleSubmit
+    @params {e,datas} contain the data required to put the item on sale
+    @detail dispatch itemsForSalesRequest from itemsForSaleAction after successful validation 
+  */
   const handleSubmit = async (e, datas) => {
     e.preventDefault();
     if (

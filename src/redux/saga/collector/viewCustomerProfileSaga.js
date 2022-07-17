@@ -6,7 +6,7 @@ import {
 import {viewCustomerProfileService} from "../../service/collector/viewCustomerProfileService";
 import {COLLECTOR_CUSTOMERPROFILE_REQUEST} from "../../config/actionType";
 
-function* viewCustomerProfileSaga(data) {
+export function* viewCustomerProfileSaga(data) {
   try {
     let response = yield call(viewCustomerProfileService, data);
     yield put(viewCustomerProfileSuccess(response));

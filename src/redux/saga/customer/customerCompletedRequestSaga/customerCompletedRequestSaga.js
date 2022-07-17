@@ -6,7 +6,7 @@ import {
   customerCompletedSuccess,
 } from "../../../action/customer/customerCompletedRequestAction/customerCompletedRequestAction";
 
-function* customerCompletedRequestSaga() {
+export function* customerCompletedRequestSaga() {
   try {
     let response = yield call(customerCompletedRequestService);
     yield put(customerCompletedSuccess(response));

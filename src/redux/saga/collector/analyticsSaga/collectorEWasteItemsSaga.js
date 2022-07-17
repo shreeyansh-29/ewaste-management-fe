@@ -6,7 +6,7 @@ import {
   collectorEWasteItemsError,
 } from "../../../action/collector/analyticsAction/collectorEWasteItemsAction";
 
-function* collectorEWasteItemsSaga() {
+export function* collectorEWasteItemsSaga() {
   try {
     let response = yield call(collectorEWasteItemsService);
     yield put(collectorEWasteItemsSuccess(response));

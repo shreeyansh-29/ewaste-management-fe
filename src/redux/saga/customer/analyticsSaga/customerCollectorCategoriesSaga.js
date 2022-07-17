@@ -6,7 +6,7 @@ import {
 import {CUSTOMER_COLLECTORCATEGORIES_REQUEST} from "../../../config/actionType";
 import {customerCollectorCategoriesService} from "../../../service/customer/analyticsService/customerCollectorCategoriesService";
 
-function* customerCollectorCategoriesSaga() {
+export function* customerCollectorCategoriesSaga() {
   try {
     let response = yield call(customerCollectorCategoriesService);
     yield put(customerCollectorCategoriesSuccess(response));

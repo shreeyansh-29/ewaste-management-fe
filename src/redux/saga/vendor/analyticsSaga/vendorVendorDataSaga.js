@@ -6,7 +6,7 @@ import {
   vendorVendorDataSuccess,
 } from "../../../action/vendor/analyticsAction/vendorVendorDataAction";
 
-function* vendorVendorDataSaga() {
+export function* vendorVendorDataSaga() {
   try {
     let response = yield call(vendorVendorDataService);
     yield put(vendorVendorDataSuccess(response));

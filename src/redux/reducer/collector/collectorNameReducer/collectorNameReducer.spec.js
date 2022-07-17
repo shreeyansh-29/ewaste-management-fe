@@ -36,8 +36,7 @@ describe("collectorMyDrivesReducer", () => {
       })
     ).toEqual({
       data: {
-        payload: {firstName: "Shreeyansh"},
-        type: types.COLLECTOR_NAME_SUCCESS,
+        firstName: "Shreeyansh",
       },
       isLoading: true,
       error: "",

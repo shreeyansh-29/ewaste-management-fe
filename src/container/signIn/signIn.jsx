@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from "react";
+/* 
+  @module SignIn
+*/
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,11 +22,12 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [passwordType, setpasswordType] = useState("password");
   const res = useSelector((state) => state.signIn?.data);
+  console.log(res);
   const togglePasswords = () => {
     setpasswordType(togglePassword(passwordType));
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (res !== undefined) {
       if (res.status == "Fail") {
         Toast.error(TOAST_ERROR1);
@@ -33,7 +37,7 @@ const SignIn = () => {
       } else if (res.status == "success") {
         localStorage.setItem("token", res.data.token);
         const tokens = localStorage.getItem("token");
-        var token = jwt(tokens);
+        let token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
         localStorage.setItem("email", token.sub);
         const role = localStorage.getItem("Roles");
@@ -50,6 +54,12 @@ const SignIn = () => {
     }
   }, [res]);
 
+  /* 
+    @function handleClick
+    @params {values} contains the email and password of user
+    @detail dispatch the signInRequest function from signInAction
+    @return {void}
+  */
   const handleClick = (values) => {
     dispatch(signInRequest(values));
   };
@@ -63,7 +73,6 @@ const SignIn = () => {
               email: "",
               password: "",
             }}
-            validator={() => ({})}
             validationSchema={SignInValidations}
             onSubmit={(values) => {
               handleClick(values);
