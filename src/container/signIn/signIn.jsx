@@ -1,7 +1,7 @@
 /* 
   @module SignIn
 */
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,12 +22,11 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [passwordType, setpasswordType] = useState("password");
   const res = useSelector((state) => state.signIn?.data);
-  console.log(res);
   const togglePasswords = () => {
     setpasswordType(togglePassword(passwordType));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (res !== undefined) {
       if (res.status == "Fail") {
         Toast.error(TOAST_ERROR1);
@@ -139,6 +138,7 @@ const SignIn = () => {
                 <div style={{float: "right"}}>
                   <Link
                     to="/ForgotPassword"
+                    id="forgot"
                     style={{
                       color: "gray",
                       fontFamily: "Poppins",

@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {customerDrivesRequest} from "../../../redux/action/customer/analyticsAction/customerDrivesAction";
 import {isEmpty} from "lodash";
 
@@ -29,9 +29,9 @@ export const options = {
   },
 };
 
-const Drives = () => {
+const Drives = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerDrives);
+
   useEffect(() => {
     dispatch(customerDrivesRequest());
   }, []);
@@ -51,4 +51,11 @@ const Drives = () => {
     />
   );
 };
-export default Drives;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.customerDrives,
+  };
+};
+
+export default connect(mapStateToProps)(Drives);

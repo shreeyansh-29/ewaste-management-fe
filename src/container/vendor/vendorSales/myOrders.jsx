@@ -1,7 +1,7 @@
 /*
   @module myOrders
 */
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import Popup from "../../../components/popUp/popUp";
@@ -12,142 +12,16 @@ import {TOAST_WARN3} from "../../constant/constant";
 import {vendorMyOrdersRequest} from "../../../redux/action/vendor/vendorMyOrdersAction/vendorMyOrdersAction";
 import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
+import {myOrdersColumn} from "./myOrdersColumn";
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 
 const MyOrders = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.vendorMyOrders);
-  const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
   const [value, setValue] = useState();
-
-  const [columns] = useState([
-    {
-      title: "   ID",
-      field: "id",
-      editable: false,
-      filtering: false,
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Item Name",
-      field: "itemName",
-      editable: false,
-      filtering: false,
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Category",
-      field: "category",
-      lookup: {
-        Temp: "Temperature exchange equipment ",
-        Screens: "Screens, monitors ",
-        Lapms: "Lamps ",
-        LargeEqip: "Large equipment",
-        SmallEquip: "Small equipment ",
-        SmallIT: "Small IT and telecommunication equipment ",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-
-    {
-      title: "Quantity",
-      field: "quantity",
-      type: "numeric",
-      filtering: false,
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-
-    {
-      title: "Price",
-      field: "price",
-      filtering: false,
-      type: "currency",
-      currencySetting: {currencyCode: "INR"},
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-
-    {
-      title: "Address",
-      field: "address",
-      editable: false,
-      cellStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Date of Purchase",
-      field: "date",
-      editable: false,
-      cellStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Status",
-      editable: false,
-      field: "status",
-      lookup: {
-        Open: "Open",
-        completed: "Completed",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-  ]);
 
   /* 
     @function togglePop
@@ -185,11 +59,10 @@ const MyOrders = () => {
             borderRadius: "5px",
           }}
         >
-          {" "}
-          Items Summary{" "}
+          Items Summary
         </h2>
         <MaterialTable
-          columns={columns}
+          columns={myOrdersColumn}
           data={value}
           title=""
           localization={{
@@ -204,6 +77,7 @@ const MyOrders = () => {
             {
               icon: () => (
                 <button
+                  id="pop1"
                   style={{
                     background: "white",
                     border: "1px solid white",
@@ -237,7 +111,7 @@ const MyOrders = () => {
       </div>
       <div>
         {isopen && detail != null && (
-          <Popup handleClose={togglepop} c={detail} />
+          <Popup id="pop2" handleClose={togglepop} c={detail} />
         )}
       </div>
     </div>

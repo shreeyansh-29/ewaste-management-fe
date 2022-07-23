@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {CUSTOMER_PROFILE_EDIT_REQUEST} from "../../../config/actionType";
-import {customerProfileEditService} from "../../../service/customer/customerProfileService/customerProfileEditService";
+import {customerProfileEditService} from "../../../../services/customer/customerProfileService/customerProfileEditService";
 import {
   customerProfileEditError,
   customerProfileEditSuccess,

@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test notificationCount 1`] = `
+<div
+  className="home"
+>
+  <div
+    className="lg_container"
+  >
+    <div
+      style={
+        Object {
+          "paddingBottom": "3%",
+          "paddingTop": "5.8%",
+        }
+      }
+    >
+      <CategoryCarousel />
+    </div>
+  </div>
+  <h3
+    style={
+      Object {
+        "fontFamily": "Poppins",
+        "fontSize": "1.5rem",
+        "fontWeight": "500",
+        "marginTop": "1%",
+        "paddingBottom": "3%",
+        "paddingTop": "4%",
+        "textAlign": "center",
+        "textDecoration": "underline",
+      }
+    }
+  >
+     
+    Your contribution as an Eco-ranger:
+     
+  </h3>
+  <div
+    className="dashboard"
+  >
+    <h3
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      Your Contribution towards the Sustainability of our Planet
+    </h3>
+    <Connect(EWaste) />
+  </div>
+  <div
+    className="dashboard"
+  >
+    <h3
+      style={
+        Object {
+          "padding": "4% 0 2% 0",
+          "textAlign": "center",
+        }
+      }
+    >
+      E-Waste Collectors in your City
+    </h3>
+    <Connect(CollectorsCategories) />
+  </div>
+  <div
+    style={
+      Object {
+        "paddingBottom": "8%",
+      }
+    }
+  >
+    <h3
+      style={
+        Object {
+          "padding": "8% 0 2% 0",
+          "textAlign": "center",
+        }
+      }
+    >
+      E-Waste Drives in your City
+    </h3>
+    <Connect(Drives) />
+  </div>
+</div>
+`;

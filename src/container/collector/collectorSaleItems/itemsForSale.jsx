@@ -1,7 +1,7 @@
 /*
   @module itemsForSale
 */
-import React from "react";
+import React, {useState, useEffect} from "react";
 import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/AddBox";
 import "../Collector.css";
@@ -14,77 +14,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "lodash";
 import Toast from "../../../components/toast";
 import {collectorForSaleRequest} from "../../../redux/action/collector/collectorForSaleAction/collectorForSaleAction";
+import {ItemsForSaleColumns} from "./itemsForSalesColumns";
 
 const ItemsForSale = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.collectorForSale);
-  const {useState} = React;
   const [status, setStatus] = useState("");
-  const [columns] = useState([
-    {
-      title: "Item Name",
-      field: "itemName",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Category",
-      field: "category",
 
-      lookup: {
-        Temp: "Temperature exchange equipment (such as air conditioners, freezers)",
-        Screens: "Screens, monitors (TVs, laptops)",
-        Lapms: "Lamps (LED lamps, for example)",
-        LargeEqip: "Large equipment (washing machines, electric stoves)",
-        SmallEquip: "Small equipment (microwaves, electric shavers)",
-        SmallIT:
-          "Small IT and telecommunication equipment (such as mobile phones, printers)",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Quantity",
-      field: "quantity",
-      type: "numeric",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-
-    {
-      title: "Price/Item",
-      field: "price",
-      type: "currency",
-      currencySetting: {currencyCode: "INR"},
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-  ]);
-  React.useEffect(() => {
+  useEffect(() => {
     if (isEmpty(res?.data) !== true) {
       setStatus(res.data.status);
     }
@@ -144,11 +81,12 @@ const ItemsForSale = () => {
         </h2>
         <MaterialTable
           title=""
-          columns={columns}
+          columns={ItemsForSaleColumns}
           data={data}
           icons={{
             Add: () => <AddIcon style={{fill: "#e75480"}} />,
           }}
+          /*istanbul ignore next */
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve) => {

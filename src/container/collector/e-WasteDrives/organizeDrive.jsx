@@ -16,6 +16,7 @@ import {toast} from "react-toastify";
 import {TOAST_ERROR4, TOAST_SUCCESS7} from "../../constant/constant";
 import Toast from "../../../components/toast";
 import {collectorOrganizeDriveRequest} from "../../../redux/action/collector/collectorOrganizeDriveAction/collectorOrganizeDriveAction";
+import DateFormat from "../../../components/date/date";
 toast.configure();
 
 const OrganizeDrive = () => {
@@ -124,32 +125,9 @@ const OrganizeDrive = () => {
     @return scheduledate
   */
   const dateformat = (datas) => {
-    var scheduledate = datas.date.toString().split(" ");
-    if (scheduledate[1] === "Jan") {
-      scheduledate[1] = "01";
-    } else if (scheduledate[1] === "Feb") {
-      scheduledate[1] = "02";
-    } else if (scheduledate[1] === "Mar") {
-      scheduledate[1] = "03";
-    } else if (scheduledate[1] === "Apr") {
-      scheduledate[1] = "04";
-    } else if (scheduledate[1] === "May") {
-      scheduledate[1] = "05";
-    } else if (scheduledate[1] === "Jun") {
-      scheduledate[1] = "06";
-    } else if (scheduledate[1] === "Jul") {
-      scheduledate[1] = "07";
-    } else if (scheduledate[1] === "Aug") {
-      scheduledate[1] = "08";
-    } else if (scheduledate[1] === "Sep") {
-      scheduledate[1] = "09";
-    } else if (scheduledate[1] === "Oct") {
-      scheduledate[1] = "10";
-    } else if (scheduledate[1] === "Nov") {
-      scheduledate[1] = "11";
-    } else if (scheduledate[1] === "Dec") {
-      scheduledate[1] = "12";
-    }
+    let scheduledate = datas.date.toString().split(" ");
+
+    scheduledate[1] = DateFormat(scheduledate[1]);
     scheduledate =
       scheduledate[3] + "-" + scheduledate[1] + "-" + scheduledate[2];
     return scheduledate;

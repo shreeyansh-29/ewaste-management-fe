@@ -4,7 +4,7 @@ import {
   collectorNotificationDataError,
   collectorNotificationDataSuccess,
 } from "../../../action/collector/collectorNotificationAction/collectorNotificationDataAction";
-import {collectorNotificationDataService} from "../../../service/collector/collectorNotificationService/collectorNotificationDataService";
+import {collectorNotificationDataService} from "../../../../services/collector/collectorNotificationService/collectorNotificationDataService";
 
 export function* collectorNotificationDataSaga() {
   try {

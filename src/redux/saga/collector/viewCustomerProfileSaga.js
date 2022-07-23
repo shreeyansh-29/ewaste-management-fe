@@ -3,7 +3,7 @@ import {
   viewCustomerProfileSuccess,
   viewCustomerProfileError,
 } from "../../action/collector/viewCustomerProfileAction";
-import {viewCustomerProfileService} from "../../service/collector/viewCustomerProfileService";
+import {viewCustomerProfileService} from "../../../services/collector/viewCustomerProfileService";
 import {COLLECTOR_CUSTOMERPROFILE_REQUEST} from "../../config/actionType";
 
 export function* viewCustomerProfileSaga(data) {

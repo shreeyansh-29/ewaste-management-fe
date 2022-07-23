@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {CUSTOMER_COUNT_COLL_REQUEST} from "../../../config/actionType";
 import * as types from "../../../action/customer/customerPickUpAction/customerCountCollAction";
-import {customerCountCollService} from "../../../service/customer/customerPickUpService/customerCountCollService";
+import {customerCountCollService} from "../../../../services/customer/customerPickUpService/customerCountCollService";
 
 export function* customerCountCollSaga(data) {
   try {

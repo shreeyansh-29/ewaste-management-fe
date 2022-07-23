@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {VENDOR_CATEGORY_REQUEST} from "../../../config/actionType";
-import {vendorCategoryService} from "../../../service/vendor/analyicsService/vendorCategoryService";
+import {vendorCategoryService} from "../../../../services/vendor/analyicsService/vendorCategoryService";
 import {
   vendorCategoryError,
   vendorCategorySuccess,

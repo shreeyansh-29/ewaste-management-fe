@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {VENDOR_PROFILE_EDIT_REQUEST} from "../../../config/actionType";
-import {vendorProfileEditService} from "../../../service/vendor/vendorProfileService/vendorProfileEditService";
+import {vendorProfileEditService} from "../../../../services/vendor/vendorProfileService/vendorProfileEditService";
 import {
   vendorProfileEditError,
   vendorProfileEditSuccess,

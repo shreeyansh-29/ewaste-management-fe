@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/customer/customerPickUpService/customerPickUpService";
+import * as api from "../../../../services/customer/customerPickUpService/customerPickUpService";
 import {
   customerPickUpError,
   customerPickUpSuccess,

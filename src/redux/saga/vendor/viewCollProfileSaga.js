@@ -3,7 +3,7 @@ import {
   vendorViewAcceptCollectorSuccess,
   vendorViewAcceptCollectorError,
 } from "../../action/vendor/viewCollProfileAction";
-import {viewColProfileService} from "../../service/vendor/viewColProfileService";
+import {viewColProfileService} from "../../../services/vendor/viewColProfileService";
 import {VENDOR_COLLECTORPROFILE_REQUEST} from "../../config/actionType";
 
 export function* viewAcceptColProfileSaga(data) {

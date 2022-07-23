@@ -1,7 +1,7 @@
 /*
   @module collectorRequests
 */
-import React from "react";
+import React, {useState, useEffect} from "react";
 import MaterialTable from "material-table";
 import "../Collector.css";
 import {TOAST_SUCCESS8} from "../../constant/constant";
@@ -10,114 +10,23 @@ import {useDispatch, useSelector} from "react-redux";
 import {collectorPendingRequest} from "../../../redux/action/collector/collectorPendingAction/collectorPendingAction";
 import {isEmpty} from "lodash";
 import {collectorPendingAcceptRequest} from "../../../redux/action/collector/collectorPendingAcceptAction/collectorPendingAcceptAction";
+import {collectorRequestsColumns} from "./collectorRequestsColumns";
 
 const CollectorRequests = () => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorPending);
+  let res = useSelector((state) => state.collectorPending?.data);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(collectorPendingRequest());
   }, []);
-  const {useState} = React;
+
   var orderid = 0;
-  React.useEffect(() => {
-    if (isEmpty(res?.data) !== true || res?.data.status === "success") {
-      setData(res.data.data);
+  useEffect(() => {
+    if (isEmpty(res) !== true || res?.status === "success") {
+      setData(res.data);
     }
   }, [res]);
   const [data, setData] = useState();
-  const [columns] = useState([
-    {
-      title: "Request Name",
-      editable: "never",
-      field: "itemName",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Category",
-      editable: "never",
-      field: "category",
-      lookup: {
-        Temp: "Temperature exchange equipment",
-        Screens: "Screens, monitors ",
-        Lapms: "Lamps ",
-        LargeEqip: "Large equipment",
-        SmallEquip: "Small equipment",
-        SmallIT: "Small IT and telecommunication equipment ",
-      },
-      initialEditValue: "initial edit value",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Quantity",
-      editable: "never",
-      field: "quantity",
-      type: "numeric",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Date",
-      editable: "never",
-      field: "scheduleDate",
-      type: "date",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Time",
-      editable: "never",
-      field: "scheduledTime",
-      type: "date",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Address",
-      field: "address",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-  ]);
 
   /* 
     @function handleAccept
@@ -132,7 +41,7 @@ const CollectorRequests = () => {
     Toast.success(TOAST_SUCCESS8, 1500);
 
     setTimeout(() => {
-      window.location.href = "MyRequests";
+      window.location.href = "/MyRequests";
     }, 3000);
   };
 
@@ -154,7 +63,7 @@ const CollectorRequests = () => {
       </h2>
       <MaterialTable
         align="center"
-        columns={columns}
+        columns={collectorRequestsColumns}
         title=""
         data={data}
         actions={[

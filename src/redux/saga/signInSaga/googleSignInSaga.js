@@ -1,5 +1,5 @@
 import {takeLatest, call, put} from "redux-saga/effects";
-import {googleSignInService} from "../../service/signInService/googleSignInService";
+import {googleSignInService} from "../../../services/signInService/googleSignInService";
 import {GOOGLE_SIGNIN_REQUEST} from "../../config/actionType";
 import {
   googleSignInError,

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/customer/analyticsService/customerDrivesService";
+import * as api from "../../../../services/customer/analyticsService/customerDrivesService";
 import {customerDrivesSaga, watchCustomerDrives} from "./customerDrivesSaga";
 import {
   customerDrivesError,

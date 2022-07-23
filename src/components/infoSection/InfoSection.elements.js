@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+/*istanbul ignore next */
 export const InfoSec = styled.div`
   color: #fff;
   padding: 130px 0;
@@ -9,6 +10,7 @@ export const InfoSec = styled.div`
   }
 `;
 
+/*istanbul ignore next */
 export const InfoRow = styled.div`
   display: flex;
   margin: 0 -15px -15px -15px;
@@ -41,6 +43,7 @@ export const TextWrapper = styled.div`
   }
 `;
 
+/*istanbul ignore next */
 export const ImgWrapper = styled.div`
   max-width: 450px;
   display: flex;
@@ -50,6 +53,7 @@ export const ImgWrapper = styled.div`
   }
 `;
 
+/*istanbul ignore next */
 export const TopLine = styled.div`
   color: ${({lightTopLine}) => (lightTopLine ? "#a9b3c1" : "#4B59F7")};
   font-size: 18px;
@@ -71,6 +75,7 @@ export const Img = styled.img`
   }
 `;
 
+/*istanbul ignore next */
 export const Heading = styled.h1`
   margin-bottom: 24px;
   font-size: 28px;
@@ -81,6 +86,7 @@ export const Heading = styled.h1`
   color: ${({lightText}) => (lightText ? "#f7f8fa" : "#1c2237")};
 `;
 
+/*istanbul ignore next */
 export const Subtitle = styled.p`
   max-width: 440px;
   margin-bottom: 35px;

@@ -4,7 +4,7 @@
 
 import React from "react";
 import Swal from "sweetalert2";
-import {NavLogoutBtn} from "../../../components/navbar/navbarelements";
+import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useDispatch, useSelector} from "react-redux";

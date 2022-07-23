@@ -4,7 +4,7 @@ import {
   customerCollectorCategoriesSuccess,
 } from "../../../action/customer/analyticsAction/customerCollectorCategoriesAction";
 import {CUSTOMER_COLLECTORCATEGORIES_REQUEST} from "../../../config/actionType";
-import {customerCollectorCategoriesService} from "../../../service/customer/analyticsService/customerCollectorCategoriesService";
+import {customerCollectorCategoriesService} from "../../../../services/customer/analyticsService/customerCollectorCategoriesService";
 
 export function* customerCollectorCategoriesSaga() {
   try {

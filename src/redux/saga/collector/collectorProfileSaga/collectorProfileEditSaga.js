@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {COLLECTOR_PROFILE_EDIT_REQUEST} from "../../../config/actionType";
-import {collectorProfileEditService} from "../../../service/collector/collectorProfileService/collectorProfileEditService";
+import {collectorProfileEditService} from "../../../../services/collector/collectorProfileService/collectorProfileEditService";
 import {
   collectorProfileEditError,
   collectorProfileEditSuccess,

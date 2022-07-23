@@ -5,7 +5,7 @@ import {
   collectorUsersError,
   collectorUsersSuccess,
 } from "../../../action/collector/analyticsAction/collectorUsersAction";
-import * as api from "../../../service/collector/analyticsService/collectorUsersService";
+import * as api from "../../../../services/collector/analyticsService/collectorUsersService";
 import {collectorUsersSaga, watchCollectorUsers} from "./collectorUsersSaga";
 
 describe("watchCollectorUsers", () => {

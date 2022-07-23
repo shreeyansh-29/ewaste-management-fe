@@ -9,7 +9,7 @@ import {
   FooterSubHeading,
   FooterSubText,
   Form,
-} from "./footer.elements";
+} from "./footer.styles";
 
 import {useNavigate} from "react-router-dom";
 
@@ -29,7 +29,7 @@ const Footer = () => {
           <FooterSubHeading>Join our exclusive platform</FooterSubHeading>
           <FooterSubText>You can join at any time.</FooterSubText>
           <Form>
-            <Button fontBig onClick={handleClick}>
+            <Button id="big" fontBig onClick={handleClick}>
               Join
             </Button>
           </Form>

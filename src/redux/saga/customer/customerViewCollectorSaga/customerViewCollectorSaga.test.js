@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/customer/customerViewCollectorService/customerViewCollectorService";
+import * as api from "../../../../services/customer/customerViewCollectorService/customerViewCollectorService";
 import {
   customerViewCollectorsError,
   customerViewCollectorsSuccess,

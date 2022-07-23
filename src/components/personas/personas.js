@@ -6,7 +6,7 @@ import {
   ServicesCard,
   ServicesH2,
   ServicesP,
-} from "./personasElements";
+} from "./personas.styles";
 
 const Personas = () => {
   return (

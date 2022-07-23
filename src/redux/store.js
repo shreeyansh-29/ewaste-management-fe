@@ -6,7 +6,7 @@ import {compose, createStore, applyMiddleware} from "redux";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleWares = [logger, sagaMiddleware];
-
+/*istanbul ignore next */
 if (process.env.NODE_ENV === `development`) {
   middleWares.push(logger);
 }

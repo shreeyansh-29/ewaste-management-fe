@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/collector/collectorPendingAcceptService/collectorPendingAcceptService";
+import * as api from "../../../../services/collector/collectorPendingAcceptService/collectorPendingAcceptService";
 import {
   collectorPendingAcceptSaga,
   watchCollectorPendingAccept,

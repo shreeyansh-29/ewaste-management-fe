@@ -4,7 +4,7 @@ import {
 } from "../../../action/collector/analyticsAction/collectorEWasteDrivesAction";
 import {COLLECTOR_EWASTE_DRIVES_REQUEST} from "../../../config/actionType";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {collectorEWasteDrivesService} from "../../../service/collector/analyticsService/collectorEWasteDrivesService";
+import {collectorEWasteDrivesService} from "../../../../services/collector/analyticsService/collectorEWasteDrivesService";
 
 export function* collectorEWasteDrivesSaga() {
   try {

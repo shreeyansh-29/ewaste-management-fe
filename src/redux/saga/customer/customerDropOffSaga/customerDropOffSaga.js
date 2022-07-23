@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {CUSTOMER_DROPOFF_REQUEST} from "../../../config/actionType";
-import {customerDropOffService} from "../../../service/customer/customerDropOffService/customerDropOffService";
+import {customerDropOffService} from "../../../../services/customer/customerDropOffService/customerDropOffService";
 import {
   customerDropOffError,
   customerDropOffSuccess,

@@ -3,7 +3,7 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {collectorRevenueChartRequest} from "../../../redux/action/collector/analyticsAction/collectorRevenueChartAction";
 import {isEmpty} from "lodash";
 
@@ -39,9 +39,9 @@ const options = {
   height: "400px",
 };
 
-const Revenue = () => {
+const Revenue = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorRevenueChart);
+
   useEffect(() => {
     dispatch(collectorRevenueChartRequest());
   }, []);
@@ -65,4 +65,11 @@ const Revenue = () => {
     />
   );
 };
-export default Revenue;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorRevenueChart,
+  };
+};
+
+export default connect(mapStateToProps)(Revenue);

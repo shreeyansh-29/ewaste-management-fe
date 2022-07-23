@@ -2,24 +2,23 @@
   @module customerNavbar
 */
 import React, {useEffect, useState} from "react";
-import {NavLogoutBtn} from "../../../components/navbar/navbarelements";
+import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import ".././customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
 import Swal from "sweetalert2";
 import {useDispatch, connect} from "react-redux";
-import {customerProfileRequest} from "../../../redux/action/customer/customerProfileAction/customerProfileAction";
 import {customerNotificationDataRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationDataAction";
 import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
 import {isEmpty} from "lodash";
 import {NavbarButton} from "../../../components/styles";
 import NotificationCount from "../../collector/navbar/notificationCount";
+import {customerNameRequest} from "../../../redux/action/customer/customerNameAction/customerNameAction";
 
 const CustomerNav = ({res, result1, result2}) => {
   const dispatch = useDispatch();
-  const name = res.firstName;
   useEffect(() => {
-    dispatch(customerProfileRequest());
+    dispatch(customerNameRequest());
     dispatch(customerNotificationCountRequest());
   }, []);
   const markAsRead = () => {
@@ -89,7 +88,7 @@ const CustomerNav = ({res, result1, result2}) => {
       >
         <Container fluid>
           <Navbar.Brand href="/CustomerHome" style={{marginLeft: "1%"}}>
-            <div className="welcome">Welcome {name}</div>
+            <div className="welcome">Welcome {res}</div>
           </Navbar.Brand>
 
           <Nav.Item>
@@ -165,7 +164,7 @@ const CustomerNav = ({res, result1, result2}) => {
 
 const mapStateToProps = (state) => {
   return {
-    res: state.customerProfile?.data,
+    res: state.customerName?.data.firstName,
     result: state.customerNotificationCount?.data,
     result2: state.customerNotificationData,
   };

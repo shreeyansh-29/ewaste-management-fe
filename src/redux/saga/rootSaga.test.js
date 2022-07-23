@@ -2,16 +2,14 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-import rootSaga from "./rootSaga";
+import RootSaga from "./rootSaga";
 import toJson from "enzyme-to-json";
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe("test rootSaga", () => {
-  let RootSaga = rootSaga;
+describe("testing rootSaga", () => {
   const wrapper = shallow(<RootSaga />);
-
-  it("testing rootSaga", () => {
+  it("should render rootSaga", () => {
     expect.assertions(1);
     expect(toJson(wrapper)).toMatchSnapshot();
   });

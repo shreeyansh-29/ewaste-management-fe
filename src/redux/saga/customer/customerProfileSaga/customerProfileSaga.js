@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import * as types from "../../../config/actionType";
-import {customerProfileService} from "../../../service/customer/customerProfileService/customerProfileService";
+import {customerProfileService} from "../../../../services/customer/customerProfileService/customerProfileService";
 import {
   customerProfileSuccess,
   customerProfileError,

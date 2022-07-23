@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/customer/customerPendingRequestService/customerPendingDeclineService";
+import * as api from "../../../../services/customer/customerPendingRequestService/customerPendingDeclineService";
 import {
   customerPendingDeclineError,
   customerPendingDeclineSuccess,

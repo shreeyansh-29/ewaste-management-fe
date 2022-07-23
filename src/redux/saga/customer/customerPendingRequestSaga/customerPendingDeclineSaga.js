@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {CUSTOMER_PENDING_DECLINE_REQUEST} from "../../../config/actionType";
-import {customerPendingDeclineService} from "../../../service/customer/customerPendingRequestService/customerPendingDeclineService";
+import {customerPendingDeclineService} from "../../../../services/customer/customerPendingRequestService/customerPendingDeclineService";
 import {
   customerPendingDeclineError,
   customerPendingDeclineSuccess,

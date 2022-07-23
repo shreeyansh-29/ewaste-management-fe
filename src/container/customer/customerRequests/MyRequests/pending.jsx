@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {customerPendingRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingRequestAction";
 import {customerPendingDeclineRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingDeclineAction";
 import Swal from "sweetalert2";
+import {pendingColumns} from "./pendingColumns";
 
 export const ProfileIcon = FaUserCircle;
 toast.configure();
@@ -18,111 +19,7 @@ toast.configure();
 const Pending = () => {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerPendingRequest);
-  const {useState} = React;
 
-  const [columns] = useState([
-    {
-      title: "ID",
-
-      field: "id",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Request Name",
-      field: "itemName",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Category",
-      field: "category",
-      editable: "never",
-      lookup: {
-        Temp: "Temperature exchange equipment ",
-        Screens: "Screens, monitors ",
-        Lapms: "Lamps ",
-        LargeEqip: "Large equipment",
-        SmallEquip: "Small equipment ",
-        SmallIT:
-          "Small IT and telecommunication equipment (such as mobile phones, printers)",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Quantity",
-      field: "quantity",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Request Type",
-      field: "requestType",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Date",
-      field: "scheduledDate",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Time",
-      field: "scheduledTime",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-  ]);
   /* 
     @function handleDecline
     @params {e,datas} specifies the data of the request user wants to decline
@@ -157,7 +54,7 @@ const Pending = () => {
           <MaterialTable
             align="center"
             title=""
-            columns={columns}
+            columns={pendingColumns}
             data={res?.data.data}
             icons={{
               Search: () => <SearchIcon style={{fill: "white"}} />,

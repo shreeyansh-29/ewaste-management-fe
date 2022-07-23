@@ -7,7 +7,7 @@ import React, {useEffect} from "react";
 import MaterialTable from "material-table";
 import {Link} from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
-import PuchaseData from "./puchaseData";
+import PuchaseData from "./purchaseData";
 import "../vendor.css";
 import Popup from "../../../components/popUp/popUp";
 import {useDispatch, useSelector} from "react-redux";

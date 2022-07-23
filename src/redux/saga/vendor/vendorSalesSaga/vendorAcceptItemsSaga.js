@@ -3,7 +3,7 @@ import {
   vendorAcceptItemsError,
 } from "../../../action/vendor/vendorSalesAction/vendorAcceptItemsAction";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {vendorAcceptItemsService} from "../../../service/vendor/vendorSalesService/vendorAcceptItemsService";
+import {vendorAcceptItemsService} from "../../../../services/vendor/vendorSalesService/vendorAcceptItemsService";
 import {VENDOR_ACCEPT_ITEMS_REQUEST} from "../../../config/actionType";
 
 export function* vendorAcceptItemsSaga(data) {

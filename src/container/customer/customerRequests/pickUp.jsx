@@ -3,7 +3,7 @@
 */
 /* eslint-disable indent */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import "../customer.css";
@@ -13,7 +13,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import dateUpdate from "../../../components/date";
+import dateUpdate from "../../../components/date/date";
 import "react-toastify/dist/ReactToastify.css";
 import DateFnsUtils from "@date-io/date-fns";
 import {isEmpty} from "lodash";
@@ -25,9 +25,8 @@ import {Button, TableTitle} from "../../../components/styles";
 import {QuantityValidation} from "./quantityValidations";
 
 export default function PickUp() {
-  let result1 = useSelector((state) => state.customerCountColl);
+  let result1 = useSelector((state) => state.customerCountColl?.data);
   const dispatch = useDispatch();
-  const {useState} = React;
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
   const [isEditable, setEditable] = useState(true);
@@ -35,7 +34,7 @@ export default function PickUp() {
   useEffect(() => {
     if (
       isEmpty(result1?.data) !== true ||
-      result1?.data.type === "CUSTOMER_COUNT_COLL_SUCCESS"
+      result1?.type === "CUSTOMER_COUNT_COLL_SUCCESS"
     ) {
       setCollectors(result1.data.payload);
     }

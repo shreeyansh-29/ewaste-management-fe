@@ -28,7 +28,7 @@ const CollectorRoutes = () => {
         path="/Request/CollectorRequests"
         element={<CollectorRequests />}
       />
-      <Route path="/MyRequests" element={<RequestSummary />} />
+      <Route path="/Request/MyRequests" element={<RequestSummary />} />
       <Route path="/Sales/ItemsForSale" element={<ItemsForSale />} />
       <Route path="/Sales/SummarySales" element={<SummarySales />} />
       <Route path="/Sales/SaleItems" element={<SaleItems />} />

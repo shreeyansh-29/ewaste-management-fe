@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import {call, put, takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../service/collector/viewCustomerProfileService";
+import * as api from "../../../services/collector/viewCustomerProfileService";
 import {
   viewCustomerProfileError,
   viewCustomerProfileSuccess,

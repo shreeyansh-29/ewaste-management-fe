@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/vendor/analyicsService/vendorCategoryService";
+import * as api from "../../../../services/vendor/analyicsService/vendorCategoryService";
 import {watchVendorCategory, vendorCategorySaga} from "./vendorCategorySaga";
 import {
   vendorCategoryError,

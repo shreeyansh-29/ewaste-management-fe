@@ -3,7 +3,7 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {collectorVendorRequest} from "../../../redux/action/collector/analyticsAction/collectorVendorAction";
 import {isEmpty} from "lodash";
 
@@ -28,9 +28,8 @@ export const options = {
     minRotation: 80,
   },
 };
-const VendorData = () => {
+const VendorData = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorVendor);
 
   useEffect(() => {
     dispatch(collectorVendorRequest());
@@ -52,4 +51,10 @@ const VendorData = () => {
   );
 };
 
-export default VendorData;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorVendor,
+  };
+};
+
+export default connect(mapStateToProps)(VendorData);

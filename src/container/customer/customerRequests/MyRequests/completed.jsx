@@ -2,7 +2,7 @@
   @module completed
  */
 /* eslint-disable indent */
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import Popup from "../../../../components/popUp/popUp";
 import "../../customer.css";
@@ -17,118 +17,14 @@ export const ProfileIcon = FaUserCircle;
 import {useDispatch, useSelector} from "react-redux";
 import {customerCompletedRequest} from "../../../../redux/action/customer/customerCompletedRequestAction/customerCompletedRequestAction";
 import {isEmpty} from "lodash";
+import {completedColumns} from "./completedColumns";
 toast.configure();
 
 export default function completed() {
   const dispatch = useDispatch();
   let res = useSelector((state) => state.customerCompletedRequest);
-  const {useState} = React;
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
-
-  const [columns] = useState([
-    {
-      title: "Request Name",
-      field: "itemName",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Category",
-      field: "category",
-      editable: "never",
-      lookup: {
-        Temp: "Temperature exchange equipment ",
-        Screens: "Screens, monitors ",
-        Lapms: "Lamps ",
-        LargeEqip: "Large equipment",
-        SmallEquip: "Small equipment ",
-        SmallIT:
-          "Small IT and telecommunication equipment (such as mobile phones, printers)",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Quantity",
-      field: "quantity",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Request Type",
-      field: "requestType",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Date",
-      field: "scheduledDate",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Time",
-      field: "scheduledTime",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-
-    {
-      title: "Status",
-      field: "status",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-  ]);
 
   /* 
     @function togglepop
@@ -163,7 +59,7 @@ export default function completed() {
             <MaterialTable
               align="center"
               title=""
-              columns={columns}
+              columns={completedColumns}
               data={res?.data.data}
               icons={{
                 Search: () => <SearchIcon style={{fill: "white"}} />,
@@ -199,7 +95,7 @@ export default function completed() {
         </div>
         <div>
           {isopen && detail != null && (
-            <Popup handleClose={togglepop} contents={detail} />
+            <Popup id="pop" handleClose={togglepop} contents={detail} />
           )}
         </div>
       </div>

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/collector/collectorProfileService/collectorProfileService";
+import * as api from "../../../../services/collector/collectorProfileService/collectorProfileService";
 import {
   collectorProfileSaga,
   watchCollectorProfile,

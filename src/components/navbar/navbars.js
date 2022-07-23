@@ -1,8 +1,8 @@
 import React from "react";
 import {Navbar, Container, Nav} from "react-bootstrap";
-import "../buttonStyles.css";
+import "../button/buttonStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {NavIcon, NavHomeIcon, NavLoginIcon} from "./navbarelements";
+import {NavIcon, NavHomeIcon, NavLoginIcon} from "./navbar.styles";
 
 const Navbars = () => {
   return (

@@ -3,7 +3,7 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {vendorVendorDataRequest} from "../../../redux/action/vendor/analyticsAction/vendorVendorDataAction";
 import {isEmpty} from "lodash";
 
@@ -24,9 +24,8 @@ export const options = {
   },
 };
 
-const VendorData = () => {
+const VendorData = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.vendorData);
 
   useEffect(() => {
     dispatch(vendorVendorDataRequest());
@@ -48,4 +47,10 @@ const VendorData = () => {
   );
 };
 
-export default VendorData;
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorData,
+  };
+};
+
+export default connect(mapStateToProps)(VendorData);

@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {CUSTOMER_PICKUP_REQUEST} from "../../../config/actionType";
 import * as types from "../../../action/customer/customerPickUpAction/customerPickUpAction";
-import {customerPickUpService} from "../../../service/customer/customerPickUpService/customerPickUpService";
+import {customerPickUpService} from "../../../../services/customer/customerPickUpService/customerPickUpService";
 
 export function* customerPickUpSaga(data) {
   try {

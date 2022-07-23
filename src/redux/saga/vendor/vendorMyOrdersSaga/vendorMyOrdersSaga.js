@@ -3,7 +3,7 @@ import {
   vendorMyOrdersError,
 } from "../../../action/vendor/vendorMyOrdersAction/vendorMyOrdersAction";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {vendorMyOrdersService} from "../../../service/vendor/vendorMyOrdersService/vendorMyOrdersService";
+import {vendorMyOrdersService} from "../../../../services/vendor/vendorMyOrdersService/vendorMyOrdersService";
 import {VENDOR_MYORDERS_REQUEST} from "../../../config/actionType";
 
 export function* vendorMyOrdersSaga() {

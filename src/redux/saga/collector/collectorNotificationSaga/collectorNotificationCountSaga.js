@@ -1,6 +1,6 @@
 import {call, takeLatest, put} from "redux-saga/effects";
 import {COLLECTOR_NOTIFICATION_COUNT_REQUEST} from "../../../config/actionType";
-import {collectorNotificationCountService} from "../../../service/collector/collectorNotificationService/collectorNotificationCountService";
+import {collectorNotificationCountService} from "../../../../services/collector/collectorNotificationService/collectorNotificationCountService";
 import {
   collectorNotificationCountError,
   collectorNotificationCountSuccess,

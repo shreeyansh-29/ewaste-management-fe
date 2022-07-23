@@ -3,7 +3,7 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {collectorEWasteDrivesRequest} from "../../../redux/action/collector/analyticsAction/collectorEWasteDrivesAction";
 import {isEmpty} from "lodash";
 
@@ -29,9 +29,8 @@ export const options = {
   },
 };
 
-const EWasteDrives = () => {
+export const EWasteDrives = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorEWasteDrives);
 
   useEffect(() => {
     dispatch(collectorEWasteDrivesRequest());
@@ -53,4 +52,10 @@ const EWasteDrives = () => {
   );
 };
 
-export default EWasteDrives;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorEWasteDrives,
+  };
+};
+
+export default connect(mapStateToProps)(EWasteDrives);

@@ -3,7 +3,7 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {vendorCollectorDataRequest} from "../../../redux/action/vendor/analyticsAction/vendorCollectorDataAction";
 import {isEmpty} from "lodash";
 
@@ -24,9 +24,8 @@ export const options = {
   },
 };
 
-const CollectorData = () => {
+const CollectorData = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.vendorCollectorData);
   useEffect(() => {
     dispatch(vendorCollectorDataRequest());
   }, []);
@@ -47,4 +46,10 @@ const CollectorData = () => {
   );
 };
 
-export default CollectorData;
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorCollectorData,
+  };
+};
+
+export default connect(mapStateToProps)(CollectorData);

@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {VENDOR_VENDOR_DATA_REQUEST} from "../../../config/actionType";
-import {vendorVendorDataService} from "../../../service/vendor/analyicsService/vendorVendorDataService";
+import {vendorVendorDataService} from "../../../../services/vendor/analyicsService/vendorVendorDataService";
 import {
   vendorVendorDataError,
   vendorVendorDataSuccess,

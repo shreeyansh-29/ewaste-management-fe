@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import * as types from "../../../config/actionType";
 import * as actions from "../../../action/vendor/vendorNameAction/vendorNameAction";
-import {vendorNameService} from "../../../service/vendor/vendorNameService/vendorNameService";
+import {vendorNameService} from "../../../../services/vendor/vendorNameService/vendorNameService";
 
 export function* vendorNameSaga() {
   try {

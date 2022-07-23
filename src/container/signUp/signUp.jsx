@@ -20,6 +20,7 @@ import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
 import {SignUpValidations} from "../constant/validations";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 import {Heading, ButtonStyle, SelectStyle} from "../../components/styles";
+import {useNavigate} from "react-router-dom";
 
 const data = [
   {
@@ -45,6 +46,7 @@ const data = [
   },
 ];
 const SignUp = () => {
+  const navigate = useNavigate();
   const [confirmPasswordType, setConfirmPasswordType] = useState("text");
   const [passwordType, setPasswordType] = useState("text");
   const [startTime, setStartTime] = useState();
@@ -156,7 +158,7 @@ const SignUp = () => {
 
   return (
     <div className="signUp">
-         <Formik
+      <Formik
         initialValues={{
           firstName: "",
           lastName: "",
@@ -171,7 +173,7 @@ const SignUp = () => {
           role: "",
           gstNo: "",
           registrationNo: "",
-          selectedImage:"",
+          selectedImage: "",
         }}
         validationSchema={SignUpValidations}
         validator={() => ({})}
@@ -188,7 +190,7 @@ const SignUp = () => {
           dispatch(signUpRequest(data1));
         }}
       >
-        {({errors, handleChange, submitForm}) => (
+        {({errors, handleChange}) => (
           <Form>
             <div className="Form-bodY">
               <div className="signup-heading">
@@ -281,7 +283,11 @@ const SignUp = () => {
                         <div className="formErrors">{errors.password}</div>
                       ) : null}
                       <div className="input-group-btn">
-                        <ButtonStyle type="button" onClick={togglePasswords}>
+                        <ButtonStyle
+                          id="btn1"
+                          type="button"
+                          onClick={togglePasswords}
+                        >
                           {passwordType === "password" ? (
                             <ShowOffIcon />
                           ) : (
@@ -312,6 +318,7 @@ const SignUp = () => {
                       ) : null}
                       <div className="input-group-btn">
                         <ButtonStyle
+                          id="btn2"
                           type="button"
                           onClick={confirmTogglePasswords}
                         >
@@ -347,13 +354,18 @@ const SignUp = () => {
                       State <i className="text-danger">*</i>
                     </label>
                     <SelectStyle
+                      id="state"
                       className="form-select"
                       value={state1}
                       onChange={(e) => changeState(e)}
                     >
                       <option value="Select State">{"Select State"} </option>
                       {statescity.map((e, key) => {
-                        return <option key={key}>{e.name}</option>;
+                        return (
+                          <option key={key} id="selectedState">
+                            {e.name}
+                          </option>
+                        );
                       })}
                     </SelectStyle>
                     {errors.state1 ? (
@@ -367,6 +379,7 @@ const SignUp = () => {
                       City <i className="text-danger">*</i>
                     </label>
                     <SelectStyle
+                      id="city"
                       className="form-select"
                       value={city}
                       onChange={(e) => changeCity(e)}
@@ -412,6 +425,7 @@ const SignUp = () => {
                           {label: "Collector"},
                           {label: "Vendor"},
                         ]}
+                        id="role"
                         name="role"
                         value={role}
                         style={{borderRadius: "17px"}}
@@ -557,17 +571,13 @@ const SignUp = () => {
                     <button
                       type="button"
                       onClick={() => {
-                        window.location.href = "/Signin";
+                        navigate("/Signin");
                       }}
                       className="backbutton"
                     >
                       BACK
                     </button>
-                    <button
-                      type="submit"
-                      className="signup-button"
-                      onClick={submitForm}
-                    >
+                    <button type="submit" className="signup-button">
                       SIGN UP
                     </button>
                   </div>

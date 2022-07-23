@@ -3,7 +3,7 @@
 */
 /* eslint-disable indent */
 import React from "react";
-import {NavNotiIcon} from "../../../components/navbar/navbarelements";
+import {NavNotiIcon} from "../../../components/navbar/navbar.styles";
 export default function NotificationCount(props) {
   return (
     <div>

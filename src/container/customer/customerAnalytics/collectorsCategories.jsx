@@ -5,7 +5,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import {isEmpty} from "lodash";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {customerCollectorCategoriesRequest} from "../../../redux/action/customer/analyticsAction/customerCollectorCategoriesAction";
 
 const data = [
@@ -30,9 +30,8 @@ const options = {
   height: "400px",
   colors: ["yellow", "green"],
 };
-const CollectorsCategories = () => {
+const CollectorsCategories = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerCollectorCategories);
 
   useEffect(() => {
     dispatch(customerCollectorCategoriesRequest());
@@ -58,4 +57,11 @@ const CollectorsCategories = () => {
 
   return <Chart chartType="LineChart" data={data} options={options} />;
 };
-export default CollectorsCategories;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.customerCollectorCategories,
+  };
+};
+
+export default connect(mapStateToProps)(CollectorsCategories);

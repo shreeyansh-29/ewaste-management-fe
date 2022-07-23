@@ -4,7 +4,7 @@ import {
   forgotPasswordSuccess,
 } from "../../action/forgotPasswordAction/forgotPasswordAction";
 import * as types from "../../config/actionType";
-import {forgotPasswordService} from "../../service/forgotPasswordService/forgotPasswordService";
+import {forgotPasswordService} from "../../../services/forgotPasswordService/forgotPasswordService";
 
 export function* forgotPassword(email) {
   try {

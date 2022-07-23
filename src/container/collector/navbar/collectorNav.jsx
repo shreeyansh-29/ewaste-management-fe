@@ -4,25 +4,28 @@
 /* eslint-disable indent */
 import React, {useState, useEffect} from "react";
 import Swal from "sweetalert2";
-import {NavLogoutBtn} from "../../../components/navbar/navbarelements";
+import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import "../../customer/customer.css";
 import "../Collector.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
-import {useDispatch, connect} from "react-redux";
-import {collectorProfileRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileAction";
+import {useDispatch, useSelector} from "react-redux";
 import {collectorNotificationCountRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationCountAction";
 import {isEmpty} from "lodash";
 import {collectorNotificationDataRequest} from "../../../redux/action/collector/collectorNotificationAction/collectorNotificationDataAction";
 import {NavbarButton} from "../../../components/styles";
 import NotificationCount from "./notificationCount";
+import {collectorNameRequest} from "../../../redux/action/collector/collectorNameAction/collectorNameAction";
 
-function CollectorNav(props) {
-  const {res, result1, result2} = props;
+function CollectorNav() {
+  const res = useSelector((state) => state.collectorName?.data.firstName);
+  const result1 = useSelector((state) => state.collectorNotificationCount);
+  const result2 = useSelector((state) => state.collectorNotificationData);
+
   const dispatch = useDispatch();
   const [count, setCount] = useState(0);
   useEffect(() => {
-    dispatch(collectorProfileRequest());
+    dispatch(collectorNameRequest());
     dispatch(collectorNotificationCountRequest());
   }, []);
   const markAsRead = () => {
@@ -52,7 +55,6 @@ function CollectorNav(props) {
   const [show, setShow] = useState(false);
   const [List, setList] = useState([]);
   var list = ["hh"];
-  const name = res.data.firstName;
   /* 
     @function displayNotification
     @params {n}  specifies the list of all the notifications
@@ -91,10 +93,10 @@ function CollectorNav(props) {
       >
         <Container fluid>
           <Navbar.Brand href="/CollectorHome" style={{marginLeft: "0.5%"}}>
-            <div className="welcome">Welcome {name}</div>
+            <div className="welcome">Welcome {res}</div>
           </Navbar.Brand>
           <Nav.Item className="bell">
-            <NavbarButton onClick={() => markAsRead()}>
+            <NavbarButton id="count" onClick={markAsRead}>
               <NotificationCount count={count} />
             </NavbarButton>
 
@@ -179,12 +181,5 @@ function CollectorNav(props) {
     </>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    res: state.collectorProfile,
-    result: state.collectorNotificationCount,
-    result2: state.collectorNotificationData,
-  };
-};
 
-export default connect(mapStateToProps)(CollectorNav);
+export default CollectorNav;

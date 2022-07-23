@@ -1,6 +1,6 @@
 import {COLLECTOR_FORSALE_REQUEST} from "../../../config/actionType";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {collectorForSaleService} from "../../../service/collector/collectorForSaleService/collectorForSaleService";
+import {collectorForSaleService} from "../../../../services/collector/collectorForSaleService/collectorForSaleService";
 import {
   collectorForSaleError,
   collectorForSaleSuccess,

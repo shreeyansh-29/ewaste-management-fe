@@ -4,7 +4,7 @@ import {
   customerWasteGeneratedSuccess,
 } from "../../../action/customer/analyticsAction/customerWasteGeneratedAction";
 import {CUSTOMER_WASTEGENERATED_REQUEST} from "../../../config/actionType";
-import {customerWasteGeneratedService} from "../../../service/customer/analyticsService/customerWasteGeneratedService";
+import {customerWasteGeneratedService} from "../../../../services/customer/analyticsService/customerWasteGeneratedService";
 
 export function* customerWasteGeneratedSaga() {
   try {

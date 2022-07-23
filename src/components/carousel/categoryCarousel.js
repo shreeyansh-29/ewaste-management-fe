@@ -1,12 +1,12 @@
 import React from "react";
 import {Carousel} from "react-bootstrap";
-import img1 from "../../container/images/microwave.jpg";
-import img2 from "../../container/images/printer.jpeg";
-import img3 from "../../container/images/tubelight.jpg";
-import img4 from "../../container/images/monitor.jpg";
-import img5 from "../../container/images/TV.jpg";
-import img6 from "../../container/images/machine.jpg";
-import img7 from "../../container/images/mobile.jpg";
+import img1 from "../../assets/images/microwave.jpg";
+import img2 from "../../assets/images/printer.jpeg";
+import img3 from "../../assets/images/tubelight.jpg";
+import img4 from "../../assets/images/monitor.jpg";
+import img5 from "../../assets/images/TV.jpg";
+import img6 from "../../assets/images/machine.jpg";
+import img7 from "../../assets/images/mobile.jpg";
 
 const carouselImages = [
   {src: img1, alt: "First Slide"},

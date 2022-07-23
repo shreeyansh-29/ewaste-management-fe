@@ -6,7 +6,6 @@ import {Formik, Field, Form} from "formik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useParams} from "react-router-dom";
 import "../signIn/signIn";
-import {NotificationContainer} from "react-notifications";
 import "./password.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
@@ -15,37 +14,32 @@ import Toast from "../../components/toast";
 import {useDispatch, useSelector} from "react-redux";
 import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";
 import {ResetPasswordValidations} from "../constant/validations";
+import {togglePassword} from "../../components/togglePassword/togglePassword";
+import {ButtonStyle} from "../../components/styles";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const {token} = useParams();
   const res = useSelector((state) => state.resetPassword?.data);
-  const [passwordType, setpasswordType] = useState("password");
-  const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+  const [passwordType, setPasswordType] = useState("text");
+  const [confirmPasswordType, setConfirmPasswordType] = useState("text");
   /* 
     @function togglePassword
     @detail set the password type of field name 'password'
     @return {void}
   */
-  const togglePassword = () => {
-    if (passwordType === "password") {
-      setpasswordType("text");
-      return;
-    }
-    setpasswordType("password");
+  const togglePasswords = () => {
+    setPasswordType(togglePassword(passwordType));
   };
   /* 
     @function confirmTogglePassword
     @detail set the password type of field name 'confirmpassword'
     @return {void}
   */
-  const confirmtogglePassword = () => {
-    if (confirmPasswordType === "password") {
-      setConfirmPasswordType("text");
-      return;
-    }
-    setConfirmPasswordType("password");
+  const confirmTogglePasswords = () => {
+    setConfirmPasswordType(togglePassword(confirmPasswordType));
   };
+
   useEffect(() => {
     if (res !== undefined) {
       if (res === SUCCESSFULL_REQUEST) {
@@ -72,7 +66,6 @@ const ResetPassword = () => {
   return (
     <div className="ForPassword">
       <div className="Form-body">
-        <NotificationContainer />
         <Formik
           initialValues={{
             password: "",
@@ -109,6 +102,7 @@ const ResetPassword = () => {
                 <div className="inputWithButtons">
                   <Field
                     name="password"
+                    id="input1"
                     className="form-control"
                     type={passwordType}
                     placeholder="New Password"
@@ -117,12 +111,9 @@ const ResetPassword = () => {
                     autoComplete="off"
                   />
                   <div className="input-group-btn">
-                    <button
-                      onClick={togglePassword}
-                      style={{
-                        border: "1px solid white",
-                        backgroundColor: "white",
-                      }}
+                    <ButtonStyle
+                      id="btn1"
+                      onClick={togglePasswords}
                       type="button"
                     >
                       {passwordType === "password" ? (
@@ -130,7 +121,7 @@ const ResetPassword = () => {
                       ) : (
                         <ShowIcon />
                       )}
-                    </button>
+                    </ButtonStyle>
                   </div>
                 </div>
               </div>
@@ -148,6 +139,7 @@ const ResetPassword = () => {
                 <div className="inputWithButtons">
                   <Field
                     name="confirmPassword"
+                    id="input2"
                     className="form-control"
                     type={confirmPasswordType}
                     style={{borderRadius: "17px"}}
@@ -155,12 +147,9 @@ const ResetPassword = () => {
                     onChange={handleChange}
                   />
                   <div className="input-group-btn">
-                    <button
-                      onClick={confirmtogglePassword}
-                      style={{
-                        border: "1px solid white",
-                        backgroundColor: "white",
-                      }}
+                    <ButtonStyle
+                      id="btn2"
+                      onClick={confirmTogglePasswords}
                       type="button"
                     >
                       {confirmPasswordType === "password" ? (
@@ -168,7 +157,7 @@ const ResetPassword = () => {
                       ) : (
                         <ShowIcon />
                       )}
-                    </button>
+                    </ButtonStyle>
                   </div>
                 </div>
               </div>

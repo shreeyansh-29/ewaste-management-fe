@@ -6,6 +6,6 @@
 
 import {configure} from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-import "jest-canvas-mock";
 
+/*istanbul ignore next */
 configure({adapter: new Adapter()});

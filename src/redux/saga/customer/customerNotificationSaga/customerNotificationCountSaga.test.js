@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/customer/customerNotificationService/customerNotificationCountService";
+import * as api from "../../../../services/customer/customerNotificationService/customerNotificationCountService";
 import {
   customerNotificationCountError,
   customerNotificationCountSuccess,
@@ -29,7 +29,7 @@ describe("test customerNotificationCountSaga", () => {
   it("should call api and dispatch success action", async () => {
     const generator = jest
       .spyOn(api, "customerNotificationCountService")
-      .mockImplementation(() => Promise.reject());
+      .mockImplementation(() => Promise.resolve());
     const dispatched = {
       payload: undefined,
       type: "CUSTOMER_NOTIFICATION_COUNT_SUCCESS",

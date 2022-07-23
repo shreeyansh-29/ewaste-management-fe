@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test dropDown Component should render dropdown 1`] = `
+<div>
+  <select
+    className="dropdown"
+    onChange={[Function]}
+    style={
+      Object {
+        "background": "white",
+        "border": "1px solid lightgrey",
+        "borderRadius": "17px",
+        "marginLeft": "-7px",
+        "padding": "7px",
+        "width": "300px",
+      }
+    }
+  >
+    <option>
+      Select your Role
+    </option>
+    <option
+      key="0"
+      value="Customer"
+    >
+      Customer
+    </option>
+    <option
+      key="1"
+      value="Collector"
+    >
+      Collector
+    </option>
+    <option
+      key="2"
+      value="Vendor"
+    >
+      Vendor
+    </option>
+  </select>
+</div>
+`;

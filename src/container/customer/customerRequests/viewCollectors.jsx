@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, {useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
@@ -9,63 +9,11 @@ import {TOAST_SUCCESS4} from "../../constant/constant";
 import Toast from "../../../components/toast";
 import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";
 import Swal from "sweetalert2";
+import {viewCollectorsColumns} from "./viewCollectorsColumns";
 
 const ViewCollectors = (props) => {
-  const {useState} = React;
   const dispatch = useDispatch();
   const [btndisable, setdisable] = useState(false);
-
-  const [columns] = useState([
-    {
-      title: "Name",
-      field: "firstName",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Address",
-      field: "address1",
-      editable: "never",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-
-    {
-      title: "Pincode",
-      field: "pinCode",
-      editable: "never",
-      cellStyle: {
-        fontSize: "15px",
-      },
-      headerStyle: {
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Time",
-      field: "shopTime",
-      editable: "never",
-      cellStyle: {
-        fontSize: "15px",
-      },
-      headerStyle: {
-        fontSize: "15px",
-      },
-    },
-  ]);
 
   const handleAccept = async (e, datas) => {
     e.preventDefault();
@@ -118,7 +66,7 @@ const ViewCollectors = (props) => {
         </h2>
         <MaterialTable
           title=""
-          columns={columns}
+          columns={viewCollectorsColumns}
           data={props.data}
           actions={[
             {

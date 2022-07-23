@@ -4,7 +4,7 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
 import "./password.css";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {forgotPasswordRequest} from "../../redux/action/forgotPasswordAction/forgotPasswordAction";
 import {
@@ -19,10 +19,9 @@ import {useNavigate} from "react-router-dom";
 import {ForgotPasswordValidations} from "../constant/validations";
 import {Heading, MsgStyle} from "../../components/styles";
 
-const ForgotPassword = () => {
+const ForgotPassword = ({res}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const res = useSelector((state) => state.forgotPassword);
 
   return (
     <>
@@ -100,4 +99,10 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+const mapStateToProps = (state) => {
+  return {
+    res: state.forgotPassword,
+  };
+};
+
+export default connect(mapStateToProps)(ForgotPassword);

@@ -3,9 +3,8 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {vendorCatgItemsRequest} from "../../../redux/action/vendor/analyticsAction/vendorCatgItemsAction";
-import {useSelector} from "react-redux";
 import {isEmpty} from "lodash";
 const data = [
   ["Category", "Items Available", "Purchased Items"],
@@ -33,10 +32,9 @@ const options = {
   height: "800px",
 };
 
-const Catg_Items = () => {
+const Catg_Items = ({res}) => {
   const dispatch = useDispatch();
 
-  let res = useSelector((state) => state.vendorCatgItems);
   useEffect(() => {
     dispatch(vendorCatgItemsRequest());
   }, []);
@@ -67,4 +65,10 @@ const Catg_Items = () => {
   );
 };
 
-export default Catg_Items;
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorCatgItems,
+  };
+};
+
+export default connect(mapStateToProps)(Catg_Items);

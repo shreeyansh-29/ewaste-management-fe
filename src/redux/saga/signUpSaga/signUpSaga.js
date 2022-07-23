@@ -1,6 +1,6 @@
 import * as types from "../../config/actionType";
 import {call, put, takeLatest} from "redux-saga/effects";
-import {signUpService} from "../../service/signUpService/signUpService";
+import {signUpService} from "../../../services/signUpService/signUpService";
 import {
   signUpSuccess,
   signUpError,

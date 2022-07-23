@@ -4,7 +4,7 @@ import {
   signInSuccess,
 } from "../../action/signInAction/signInActions";
 import * as types from "../../config/actionType";
-import {signInService} from "../../service/signInService/signInService";
+import {signInService} from "../../../services/signInService/signInService";
 
 export function* signInSaga(data) {
   try {

@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {COLLECTOR_EWASTE_ITEMS_REQUEST} from "../../../config/actionType";
-import {collectorEWasteItemsService} from "../../../service/collector/analyticsService/collectorEWasteItemsService";
+import {collectorEWasteItemsService} from "../../../../services/collector/analyticsService/collectorEWasteItemsService";
 import {
   collectorEWasteItemsSuccess,
   collectorEWasteItemsError,

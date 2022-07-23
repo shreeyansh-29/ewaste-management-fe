@@ -1,6 +1,6 @@
 import {put, takeLatest, call} from "redux-saga/effects";
 import * as types from "../../../config/actionType";
-import {collectorProfileService} from "../../../service/collector/collectorProfileService/collectorProfileService";
+import {collectorProfileService} from "../../../../services/collector/collectorProfileService/collectorProfileService";
 import {
   collectorProfileSuccess,
   collectorProfileError,

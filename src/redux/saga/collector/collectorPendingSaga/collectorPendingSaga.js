@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {COLLECTOR_PENDING_REQUEST} from "../../../config/actionType";
-import {collectorPendingService} from "../../../service/collector/collectorPendingService/collectorPendingService";
+import {collectorPendingService} from "../../../../services/collector/collectorPendingService/collectorPendingService";
 import {
   collectorPendingError,
   collectorPendingSuccess,

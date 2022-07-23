@@ -9,7 +9,7 @@ import {
   collectorForSaleSaga,
   watchCollectorForSale,
 } from "./collectorForSaleSaga";
-import * as api from "../../../service/collector/collectorForSaleService/collectorForSaleService";
+import * as api from "../../../../services/collector/collectorForSaleService/collectorForSaleService";
 
 describe("watchCollectorForSale", () => {
   const genObject = watchCollectorForSale();

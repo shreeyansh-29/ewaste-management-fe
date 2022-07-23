@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {COLLECTOR_SUMMARY_REQUEST} from "../../../config/actionType";
-import {collectorSummaryService} from "../../../service/collector/collectorSummaryService/collectorSummaryService";
+import {collectorSummaryService} from "../../../../services/collector/collectorSummaryService/collectorSummaryService";
 import {
   collectorSummaryError,
   collectorSummarySuccess,

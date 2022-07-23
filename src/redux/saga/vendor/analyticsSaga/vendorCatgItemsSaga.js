@@ -1,6 +1,6 @@
 import {takeLatest, put, call} from "redux-saga/effects";
 import {VENDOR_CATGITEMS_REQUEST} from "../../../config/actionType";
-import {vendorCatgItemsService} from "../../../service/vendor/analyicsService/vendorCatgItemsService";
+import {vendorCatgItemsService} from "../../../../services/vendor/analyicsService/vendorCatgItemsService";
 import {
   vendorCatgItemsError,
   vendorCatgItemsSuccess,

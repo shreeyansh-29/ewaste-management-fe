@@ -6,7 +6,7 @@ import {
   collectorVendorError,
   collectorVendorSuccess,
 } from "../../../action/collector/analyticsAction/collectorVendorAction";
-import * as api from "../../../service/collector/analyticsService/collectorVendorService";
+import * as api from "../../../../services/collector/analyticsService/collectorVendorService";
 import {collectorVendorSaga, watchCollectorVendor} from "./collectorVendorSaga";
 
 describe("watchCollectorVendor", () => {

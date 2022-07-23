@@ -5,7 +5,7 @@ import {
   collectorRevenueChartError,
   collectorRevenueChartSuccess,
 } from "../../../action/collector/analyticsAction/collectorRevenueChartAction";
-import * as api from "../../../service/collector/analyticsService/collectorRevenueChartService";
+import * as api from "../../../../services/collector/analyticsService/collectorRevenueChartService";
 import {
   collectorRevenueChartSaga,
   watchCollectorRevenueChart,

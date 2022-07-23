@@ -3,8 +3,9 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {collectorEWasteItemsRequest} from "../../../redux/action/collector/analyticsAction/collectorEWasteItemsAction";
+import {isEmpty} from "lodash";
 
 export const data = [
   ["Category", "Requests Accepted", "Items Sold"],
@@ -38,17 +39,15 @@ const options = {
   height: "800px",
 };
 
-const EWasteOrg = () => {
+const EWasteOrg = ({res}) => {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(false);
-  let res = useSelector((state) => state.collectorEWasteItems);
+
   useEffect(() => {
     dispatch(collectorEWasteItemsRequest());
-    setValue(true);
   }, []);
 
   useEffect(() => {
-    if (value) {
+    if (isEmpty(res?.data) !== true) {
       data[1][1] = res?.data?.data.TempCollected;
       data[2][1] = res?.data?.data.ScreensCollected;
       data[3][1] = res?.data?.data.LapmsCollected;
@@ -74,4 +73,10 @@ const EWasteOrg = () => {
   );
 };
 
-export default EWasteOrg;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorEWasteItems,
+  };
+};
+
+export default connect(mapStateToProps)(EWasteOrg);

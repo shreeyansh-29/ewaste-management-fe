@@ -53,7 +53,6 @@ const VendorProfile = () => {
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
 
-
   /* 
     @function changeCity
     @params {event}
@@ -147,6 +146,7 @@ const VendorProfile = () => {
                       }}
                       disabled
                       name="email"
+                      id="email"
                     />
                   </div>
                   <div className="inputGroup">
@@ -154,6 +154,7 @@ const VendorProfile = () => {
                       Phone Number <i className="text-danger">*</i>
                     </label>
                     <Field
+                      id="phone"
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="mobileNo"
@@ -172,6 +173,7 @@ const VendorProfile = () => {
                       Address Line <i className="text-danger">*</i>
                     </label>
                     <Field
+                      id="address"
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="address1"
@@ -192,6 +194,7 @@ const VendorProfile = () => {
                         borderRadius: "17px",
                         padding: "4px",
                       }}
+                      id="state"
                       className="form-select"
                       value={state}
                       onChange={(e) => changeState(e)}
@@ -212,6 +215,7 @@ const VendorProfile = () => {
                       City <i className="text-danger">*</i>{" "}
                     </label>
                     <select
+                      id="city"
                       style={{
                         borderRadius: "17px",
                         padding: "4px",
@@ -221,6 +225,7 @@ const VendorProfile = () => {
                       onChange={(e) => changeCity(e)}
                     >
                       <option value="Select City">{city}</option>
+
                       {isEmpty(initialcities) !== true
                         ? initialcities?.cities.map((e, key) => {
                             return <option key={key}>{e}</option>;
@@ -236,7 +241,7 @@ const VendorProfile = () => {
                       Pincode <i className="text-danger">*</i>
                     </label>
                     <Field
-                      type="text"
+                      type="pincode"
                       style={{borderRadius: "17px"}}
                       name="pinCode"
                       autoComplete="off"
@@ -254,6 +259,7 @@ const VendorProfile = () => {
                       GSTNo <i className="text-danger">*</i>
                     </label>
                     <Field
+                      id="gst"
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="gstNo"
@@ -270,6 +276,7 @@ const VendorProfile = () => {
                       Registration Number <i className="text-danger">*</i>
                     </label>
                     <Field
+                      id="registrationNo"
                       type="text"
                       autoComplete="off"
                       name="registrationNo"

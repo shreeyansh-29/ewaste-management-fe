@@ -1,6 +1,6 @@
 import {COLLECTOR_MYDRIVES_REQUEST} from "../../../config/actionType";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {collectorMyDrivesService} from "../../../service/collector/collectorMyDrivesService/collectorMyDrivesService";
+import {collectorMyDrivesService} from "../../../../services/collector/collectorMyDrivesService/collectorMyDrivesService";
 import {
   collectorMyDrivesSuccess,
   collectorMyDrivesError,

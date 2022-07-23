@@ -1,6 +1,6 @@
 import {COLLECTOR_REVENUE_CHART_REQUEST} from "../../../config/actionType";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {collectorRevenueChartService} from "../../../service/collector/analyticsService/collectorRevenueChartService";
+import {collectorRevenueChartService} from "../../../../services/collector/analyticsService/collectorRevenueChartService";
 import {
   collectorRevenueChartError,
   collectorRevenueChartSuccess,

@@ -4,7 +4,7 @@ import {
   customerViewCollectorsSuccess,
 } from "../../../action/customer/customerViewCollectorAction/customerViewCollectorAction";
 import {CUSTOMER_VIEW_COLLECTORS_REQUEST} from "../../../config/actionType";
-import {customerViewCollectorService} from "../../../service/customer/customerViewCollectorService/customerViewCollectorService";
+import {customerViewCollectorService} from "../../../../services/customer/customerViewCollectorService/customerViewCollectorService";
 
 export function* customerViewCollectorsSaga(action) {
   try {

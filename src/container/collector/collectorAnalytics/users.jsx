@@ -3,7 +3,7 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {collectorUsersRequest} from "../../../redux/action/collector/analyticsAction/collectorUsersAction";
 import {isEmpty} from "lodash";
 export const data = [
@@ -28,9 +28,8 @@ export const options = {
   },
 };
 
-const CustomerData = () => {
+const CustomerData = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorUsers);
 
   useEffect(() => {
     dispatch(collectorUsersRequest());
@@ -53,4 +52,11 @@ const CustomerData = () => {
     />
   );
 };
-export default CustomerData;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorUsers,
+  };
+};
+
+export default connect(mapStateToProps)(CustomerData);

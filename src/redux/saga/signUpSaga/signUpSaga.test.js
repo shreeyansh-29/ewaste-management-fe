@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
-import * as api from "../../service/signUpService/signUpService";
+import * as api from "../../../services/signUpService/signUpService";
 import {signUpSaga, watchSignUpSaga} from "./signUpSaga";
 import {
   signUpError,

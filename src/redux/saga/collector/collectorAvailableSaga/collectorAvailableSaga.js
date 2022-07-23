@@ -4,7 +4,7 @@ import {
   collectorAvailableError,
   collectorAvailableSuccess,
 } from "../../../action/collector/collectorAvailableAction/collectorAvailableAction";
-import {collectorAvailableService} from "../../../service/collector/collectorAvailableService/collectorAvailableService";
+import {collectorAvailableService} from "../../../../services/collector/collectorAvailableService/collectorAvailableService";
 
 export function* collectorAvailableSaga() {
   try {

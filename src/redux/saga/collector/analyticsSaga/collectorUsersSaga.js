@@ -1,6 +1,6 @@
 import {COLLECTOR_USERS_REQUEST} from "../../../config/actionType";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {collectorUsersService} from "../../../service/collector/analyticsService/collectorUsersService";
+import {collectorUsersService} from "../../../../services/collector/analyticsService/collectorUsersService";
 import {
   collectorUsersSuccess,
   collectorUsersError,

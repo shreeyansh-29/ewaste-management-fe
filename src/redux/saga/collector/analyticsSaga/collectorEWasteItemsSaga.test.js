@@ -6,7 +6,7 @@ import {
   collectorEWasteItemsError,
   collectorEWasteItemsSuccess,
 } from "../../../action/collector/analyticsAction/collectorEWasteItemsAction";
-import * as api from "../../../service/collector/analyticsService/collectorEWasteItemsService";
+import * as api from "../../../../services/collector/analyticsService/collectorEWasteItemsService";
 import {
   collectorEWasteItemsSaga,
   watchCollectorEWasteItems,

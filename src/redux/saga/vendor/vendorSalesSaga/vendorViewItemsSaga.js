@@ -3,7 +3,7 @@ import {
   vendorViewItemsError,
 } from "../../../action/vendor/vendorSalesAction/vendorViewItemsAction";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {vendorViewItemsService} from "../../../service/vendor/vendorSalesService/vendorViewItemsService";
+import {vendorViewItemsService} from "../../../../services/vendor/vendorSalesService/vendorViewItemsService";
 import {VENDOR_VIEW_ITEMS_REQUEST} from "../../../config/actionType";
 
 export function* vendorViewItemsSaga() {

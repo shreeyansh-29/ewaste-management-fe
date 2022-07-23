@@ -4,7 +4,7 @@ import {
   resetPasswordSuccess,
 } from "../../action/resetPasswordAction/resetPasswordAction";
 import {RESET_PASSWORD_REQUEST} from "../../config/actionType";
-import {resetPasswordService} from "../../service/resetPasswordService/resetPasswordService";
+import {resetPasswordService} from "../../../services/resetPasswordService/resetPasswordService";
 
 export function* resetPassword(action) {
   try {

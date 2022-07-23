@@ -3,7 +3,7 @@ import {
   customerNameError,
   customerNameSuccess,
 } from "../../../action/customer/customerNameAction/customerNameAction";
-import {customerNameService} from "../../../service/customer/customerNameService/customerNameService";
+import {customerNameService} from "../../../../services/customer/customerNameService/customerNameService";
 import * as types from "../../../config/actionType";
 
 export function* customerNameSaga() {

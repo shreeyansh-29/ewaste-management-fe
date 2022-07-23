@@ -3,7 +3,7 @@
 */
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {vendorCategoryRequest} from "../../../redux/action/vendor/analyticsAction/vendorCategoryAction";
 import {isEmpty} from "lodash";
 export const data = [
@@ -28,9 +28,8 @@ export const options = {
   },
 };
 
-const CollectorCategory = () => {
+const CollectorCategory = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.vendorCategory);
   useEffect(() => {
     dispatch(vendorCategoryRequest());
   }, []);
@@ -55,4 +54,10 @@ const CollectorCategory = () => {
   );
 };
 
-export default CollectorCategory;
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorCategory,
+  };
+};
+
+export default connect(mapStateToProps)(CollectorCategory);

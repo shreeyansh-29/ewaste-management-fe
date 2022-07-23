@@ -4,7 +4,7 @@ import {
   customerDrivesSuccess,
 } from "../../../action/customer/analyticsAction/customerDrivesAction";
 import {CUSTOMER_DRIVES_REQUEST} from "../../../config/actionType";
-import {customerDrivesService} from "../../../service/customer/analyticsService/customerDrivesService";
+import {customerDrivesService} from "../../../../services/customer/analyticsService/customerDrivesService";
 
 export function* customerDrivesSaga() {
   try {

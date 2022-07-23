@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../service/signInService/googleSignInService";
+import * as api from "../../../services/signInService/googleSignInService";
 import {googleSignInSaga, watchGoogleSignIn} from "./googleSignInSaga";
 import {
   googleSignInSuccess,

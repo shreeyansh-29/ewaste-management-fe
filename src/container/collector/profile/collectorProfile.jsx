@@ -148,6 +148,7 @@ const CollectorProfile = () => {
                       }}
                       disabled
                       name="email"
+                      id="email"
                     />
                   </div>
                   <div className="inputGroup">
@@ -155,6 +156,7 @@ const CollectorProfile = () => {
                       Phone Number <i className="text-danger">*</i>
                     </label>
                     <Field
+                      id="phone"
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="mobileNo"
@@ -173,6 +175,7 @@ const CollectorProfile = () => {
                       Address Line <i className="text-danger">*</i>
                     </label>
                     <Field
+                      id="address"
                       type="text"
                       style={{borderRadius: "17px"}}
                       name="address1"
@@ -189,6 +192,7 @@ const CollectorProfile = () => {
                       State <i className="text-danger">*</i>
                     </label>
                     <SelectStyle
+                      id="state"
                       className="form-select"
                       value={state1}
                       onChange={(e) => changeState(e)}
@@ -209,6 +213,7 @@ const CollectorProfile = () => {
                       City <i className="text-danger">*</i>{" "}
                     </label>
                     <SelectStyle
+                      id="city"
                       className="form-select"
                       value={city}
                       onChange={(e) => changeCity(e)}
@@ -248,6 +253,7 @@ const CollectorProfile = () => {
                     </label>
                     <Field
                       type="text"
+                      id="gst"
                       style={{borderRadius: "17px"}}
                       name="gstNo"
                       autoComplete="off"
@@ -260,6 +266,7 @@ const CollectorProfile = () => {
                       Registration Number <i className="text-danger">*</i>
                     </label>
                     <Field
+                      id="registrationNo"
                       type="text"
                       autoComplete="off"
                       name="registrationNo"

@@ -1,6 +1,6 @@
 import * as types from "../../../config/actionType";
 import {call, put, takeLatest} from "redux-saga/effects";
-import {customerEWasteService} from "../../../service/customer/customerEWasteService/customerEWasteService";
+import {customerEWasteService} from "../../../../services/customer/customerEWasteService/customerEWasteService";
 import {
   customerEWasteDrivesError,
   customerEWasteDrivesSuccess,

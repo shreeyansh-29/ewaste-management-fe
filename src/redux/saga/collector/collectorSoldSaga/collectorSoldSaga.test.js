@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/collector/collectorSoldService/collectorSoldService";
+import * as api from "../../../../services/collector/collectorSoldService/collectorSoldService";
 import {collectorSoldSaga, watchCollectorSold} from "./collectorSoldSaga";
 import {
   collectorSoldError,

@@ -4,7 +4,7 @@
 import jwt from "jwt-decode";
 import {toast} from "react-toastify";
 import {googleSignInRequest} from "../../redux/action/signInAction/googleSignInAction";
-import googleLogo from "../images/google-logo.png";
+import googleLogo from "../../assets/images/google-logo.png";
 import React, {useState, useEffect} from "react";
 import GoogleLogin from "react-google-login";
 import {useDispatch, useSelector} from "react-redux";

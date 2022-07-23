@@ -1,5 +1,5 @@
 import {takeLatest, put, call} from "redux-saga/effects";
-import {collectorOrganizeDriveService} from "../../../service/collector/collectorOrganizeDriveService/collectorOrganizeDriveService";
+import {collectorOrganizeDriveService} from "../../../../services/collector/collectorOrganizeDriveService/collectorOrganizeDriveService";
 import {COLLECTOR_ORGANIZE_REQUEST} from "../../../config/actionType";
 import {
   collectorOrganizeDriveError,

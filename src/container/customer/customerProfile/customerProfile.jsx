@@ -75,7 +75,6 @@ const CustomerProfile = () => {
           email: res?.email,
         }}
         validationSchema={CustomerValidations}
-        validator={() => ({})}
         onSubmit={(values) => {
           handleSubmit(values);
         }}
@@ -133,6 +132,7 @@ const CustomerProfile = () => {
                         }}
                         disabled
                         name="email"
+                        id="email"
                       />
                     </div>
                     <div className="inputGroup">
@@ -140,6 +140,7 @@ const CustomerProfile = () => {
                         Phone Number <i className="text-danger">*</i>
                       </label>
                       <Field
+                        id="phone"
                         type="text"
                         style={{borderRadius: "17px"}}
                         name="mobileNo"
@@ -158,6 +159,7 @@ const CustomerProfile = () => {
                         Address Line <i className="text-danger">*</i>
                       </label>
                       <Field
+                        id="address"
                         type="text"
                         style={{borderRadius: "17px"}}
                         name="address1"
@@ -175,6 +177,7 @@ const CustomerProfile = () => {
                         State <i className="text-danger">*</i>
                       </label>
                       <SelectStyle
+                        id="state"
                         className="form-select"
                         value={state1}
                         onChange={(e) => changeState(e)}
@@ -192,6 +195,7 @@ const CustomerProfile = () => {
                         City <i className="text-danger">*</i>{" "}
                       </label>
                       <SelectStyle
+                        id="city"
                         className="form-select"
                         value={city}
                         onChange={(e) => changeCity(e)}

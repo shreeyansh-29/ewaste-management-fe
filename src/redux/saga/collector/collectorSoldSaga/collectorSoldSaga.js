@@ -4,7 +4,7 @@ import {
   collectorSoldError,
   collectorSoldSuccess,
 } from "../../../action/collector/collectorSoldAction/collectorSoldAction";
-import {collectorSoldService} from "../../../service/collector/collectorSoldService/collectorSoldService";
+import {collectorSoldService} from "../../../../services/collector/collectorSoldService/collectorSoldService";
 
 export function* collectorSoldSaga() {
   try {

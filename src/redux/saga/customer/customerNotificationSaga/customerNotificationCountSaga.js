@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {customerNotificationCountService} from "../../../service/customer/customerNotificationService/customerNotificationCountService";
+import {customerNotificationCountService} from "../../../../services/customer/customerNotificationService/customerNotificationCountService";
 import {
   customerNotificationCountSuccess,
   customerNotificationCountError,

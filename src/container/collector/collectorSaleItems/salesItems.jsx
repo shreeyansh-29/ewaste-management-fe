@@ -16,8 +16,7 @@ const SalesItems = () => {
     event.preventDefault();
     setValue(newValue);
   };
-  const TabPanel = (props) => {
-    const {children, index, ...other} = props;
+  const TabPanel = ({children, index, ...other}) => {
     return (
       <div
         role="tabpanel"

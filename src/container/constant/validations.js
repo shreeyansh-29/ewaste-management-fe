@@ -1,15 +1,11 @@
 import * as Yup from "yup";
 import {
   ADDRESS_REQUIRED,
-  CATEGORY_REQUIRED,
-  // CITY_REQUIRED,
   CONFIRM_PASSWORD_INVALID,
   CONFIRM_PASSWORD_REQUIRED,
   EMAIL_INVALID,
   EMAIL_REQUIRED,
   FNAME_REQUIRED,
-  GSTNO_INVALID,
-  GSTNO_REQUIRED,
   LNAME_REQUIRED,
   MOBILE_INVALID,
   MOBILE_REQUIRED,
@@ -17,10 +13,8 @@ import {
   PASSWORD_REQUIRED,
   PINCODE_INVALID,
   PINCODE_REQUIRED,
-  REGISTRATION_INVALID,
+  GSTNO_REQUIRED,
   REGISTRATION_REQUIRED,
-  // ROLE_REQUIRED,
-  // STATE_REQUIRED,
 } from "./constant";
 
 export const SignInValidations = Yup.object().shape({
@@ -28,8 +22,8 @@ export const SignInValidations = Yup.object().shape({
   password: Yup.string().required(PASSWORD_REQUIRED).nullable(),
 });
 
+/*istanbul ignore next */
 export const SignUpValidations = Yup.object().shape({
-  category: Yup.string().required(CATEGORY_REQUIRED).nullable(),
   firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
   lastName: Yup.string().required(LNAME_REQUIRED).nullable(),
   mobileNo: Yup.string()
@@ -48,23 +42,6 @@ export const SignUpValidations = Yup.object().shape({
     .min(6, PASSWORD_INVALID)
     .max(20, PASSWORD_INVALID)
     .nullable(),
-  // city: Yup.string().required(CITY_REQUIRED).nullable(),
-  // state1: Yup.string().ensure().required(STATE_REQUIRED).nullable(),
-  // role: Yup.string().required(ROLE_REQUIRED).nullable(),
-  registrationNo: Yup.string().when("role", {
-    is: (role) => role !== "Customer",
-    then: Yup.string()
-      .required(REGISTRATION_REQUIRED)
-      .matches(/^\d{6}$/, REGISTRATION_INVALID)
-      .nullable(),
-  }),
-  gstNo: Yup.string().when("role", {
-    is: (role) => role !== "Customer",
-    then: Yup.string()
-      .required(GSTNO_REQUIRED)
-      .matches(/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}Z\d{1}$/, GSTNO_INVALID)
-      .nullable(),
-  }),
   confirmPassword: Yup.string()
     .required(CONFIRM_PASSWORD_REQUIRED)
     .matches(/^[a-zA-Z0-9]{6,20}$/, PASSWORD_INVALID)
@@ -75,7 +52,7 @@ export const SignUpValidations = Yup.object().shape({
 });
 
 export const ForgotPasswordValidations = Yup.object().shape({
-  email: Yup.string().email().required(EMAIL_REQUIRED).nullable(),
+  email: Yup.string().email(EMAIL_INVALID).required(EMAIL_REQUIRED).nullable(),
 });
 export const ResetPasswordValidations = Yup.object().shape({
   password: Yup.string().required(PASSWORD_REQUIRED).nullable(),

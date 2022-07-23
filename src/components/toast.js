@@ -1,4 +1,5 @@
 import {toast} from "react-toastify";
+/*istanbul ignore next */
 export default {
   success(msg, close) {
     toast.success(msg, {

@@ -4,7 +4,7 @@
 import React, {useEffect} from "react";
 import {Chart} from "react-google-charts";
 import "../customer.css";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {customerWasteGeneratedRequest} from "../../../redux/action/customer/analyticsAction/customerWasteGeneratedAction";
 import {isEmpty} from "lodash";
 
@@ -30,9 +30,7 @@ export const options = {
   },
 };
 
-const EWaste = () => {
-  let res = useSelector((state) => state.customerWasteGenerated);
-
+const EWaste = ({res}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(customerWasteGeneratedRequest());
@@ -54,4 +52,11 @@ const EWaste = () => {
     />
   );
 };
-export default EWaste;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.customerWasteGenerated,
+  };
+};
+
+export default connect(mapStateToProps)(EWaste);

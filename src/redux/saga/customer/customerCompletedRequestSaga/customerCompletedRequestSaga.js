@@ -1,6 +1,6 @@
 import {CUSTOMER_COMPLETED_REQUEST} from "../../../config/actionType";
 import {takeLatest, put, call} from "redux-saga/effects";
-import {customerCompletedRequestService} from "../../../service/customer/customerCompletedRequestService/customerCompletedRequestService";
+import {customerCompletedRequestService} from "../../../../services/customer/customerCompletedRequestService/customerCompletedRequestService";
 import {
   customerCompletedError,
   customerCompletedSuccess,

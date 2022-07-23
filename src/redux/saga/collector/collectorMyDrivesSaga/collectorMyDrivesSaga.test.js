@@ -2,7 +2,7 @@
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
 
-import * as api from "../../../service/collector/collectorMyDrivesService/collectorMyDrivesService";
+import * as api from "../../../../services/collector/collectorMyDrivesService/collectorMyDrivesService";
 import {
   watchCollectorMyDrives,
   collectorMyDrivesSaga,

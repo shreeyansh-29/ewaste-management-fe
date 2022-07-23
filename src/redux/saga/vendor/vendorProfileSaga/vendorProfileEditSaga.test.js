@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import {takeLatest} from "redux-saga/effects";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/vendor/vendorProfileService/vendorProfileEditService";
+import * as api from "../../../../services/vendor/vendorProfileService/vendorProfileEditService";
 import {
   watchVendorProfileEdit,
   vendorProfileEditSaga,

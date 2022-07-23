@@ -6,7 +6,7 @@ import {
 } from "./collectorEWasteDrivesSaga";
 import * as actions from "../../../action/collector/analyticsAction/collectorEWasteDrivesAction";
 import {runSaga} from "redux-saga";
-import * as api from "../../../service/collector/analyticsService/collectorEWasteDrivesService";
+import * as api from "../../../../services/collector/analyticsService/collectorEWasteDrivesService";
 
 describe("watchCollectorEWasteDrives", () => {
   const genObject = watchCollectorEWasteDrives();

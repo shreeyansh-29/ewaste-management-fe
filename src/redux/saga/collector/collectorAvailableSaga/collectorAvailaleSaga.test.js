@@ -5,7 +5,7 @@ import {
   collectorAvailableError,
   collectorAvailableSuccess,
 } from "../../../action/collector/collectorAvailableAction/collectorAvailableAction";
-import * as api from "../../../service/collector/collectorAvailableService/collectorAvailableService";
+import * as api from "../../../../services/collector/collectorAvailableService/collectorAvailableService";
 import {
   collectorAvailableSaga,
   watchCollectorAvailable,
