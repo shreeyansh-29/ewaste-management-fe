@@ -25,6 +25,6 @@ exports[`test Vendor Navbar test vendorNav 1`] = `
     }
   }
 >
-  <VendorNav />
+  <Connect(VendorNav) />
 </ContextProvider>
 `;

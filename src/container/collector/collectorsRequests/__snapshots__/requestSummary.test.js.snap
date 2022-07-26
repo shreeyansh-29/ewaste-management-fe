@@ -25,6 +25,6 @@ exports[`CollectorRequestsSummary test RequestSummary 1`] = `
     }
   }
 >
-  <RequestSummary />
+  <Connect(collectorRequests) />
 </ContextProvider>
 `;

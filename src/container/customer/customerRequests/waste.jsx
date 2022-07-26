@@ -12,12 +12,11 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 import "../customer.css";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {customerEWasteDrivesRequest} from "../../../redux/action/customer/customerEWasteAction/customerEWasteAction";
 
-const Waste = () => {
+const Waste = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerEWasteDrives);
 
   const handledate = (result) => {
     result.data.map((obj) => {
@@ -121,4 +120,11 @@ const Waste = () => {
     </div>
   );
 };
-export default Waste;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.customerEWasteDrives,
+  };
+};
+
+export default connect(mapStateToProps)(Waste);

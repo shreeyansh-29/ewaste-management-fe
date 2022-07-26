@@ -25,6 +25,6 @@ exports[`Sold Items test SoldItems 1`] = `
     }
   }
 >
-  <SoldItems />
+  <Connect(SoldItems) />
 </ContextProvider>
 `;

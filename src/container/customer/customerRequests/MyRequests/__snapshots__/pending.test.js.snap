@@ -25,6 +25,6 @@ exports[`Pending Request test pending 1`] = `
     }
   }
 >
-  <Pending />
+  <Connect(Pending) />
 </ContextProvider>
 `;

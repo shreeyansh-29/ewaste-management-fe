@@ -22,7 +22,6 @@ export const SignInValidations = Yup.object().shape({
   password: Yup.string().required(PASSWORD_REQUIRED).nullable(),
 });
 
-/*istanbul ignore next */
 export const SignUpValidations = Yup.object().shape({
   firstName: Yup.string().required(FNAME_REQUIRED).nullable(),
   lastName: Yup.string().required(LNAME_REQUIRED).nullable(),

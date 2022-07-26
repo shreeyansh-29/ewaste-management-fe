@@ -8,7 +8,6 @@ import "../customer.css";
 import {TOAST_SUCCESS4} from "../../constant/constant";
 import Toast from "../../../components/toast";
 import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";
-import Swal from "sweetalert2";
 import {viewCollectorsColumns} from "./viewCollectorsColumns";
 
 const ViewCollectors = (props) => {
@@ -27,24 +26,9 @@ const ViewCollectors = (props) => {
     };
 
     setdisable(true);
-    if (data) {
-      Swal.fire({
-        title: "Are you sure?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#228B22",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Confirm",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(customerViewCollectorsRequest(data));
-          Toast.success(TOAST_SUCCESS4);
-          setTimeout(() => {
-            window.location.href = "/Request/MyRequests";
-          }, 5000);
-        }
-      });
-    }
+
+    dispatch(customerViewCollectorsRequest(data));
+    Toast.success(TOAST_SUCCESS4);
   };
 
   return (
@@ -71,7 +55,7 @@ const ViewCollectors = (props) => {
           actions={[
             {
               icon: () => (
-                <button className="accept-btn" disabled={btndisable}>
+                <button className="accept-btn" disabled={btndisable} id="bttn">
                   Accept
                 </button>
               ),

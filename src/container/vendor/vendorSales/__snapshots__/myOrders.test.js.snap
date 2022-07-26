@@ -25,6 +25,6 @@ exports[`test My Orders test myOrders 1`] = `
     }
   }
 >
-  <MyOrders />
+  <Connect(MyOrders) />
 </ContextProvider>
 `;

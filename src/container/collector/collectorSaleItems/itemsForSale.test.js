@@ -6,7 +6,6 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import toJson from "enzyme-to-json";
 import ItemsForSale from "./itemsForSale";
-import {TOAST_ERROR4} from "../../constant/constant";
 import MaterialTable from "material-table";
 import {act} from "react-test-renderer";
 

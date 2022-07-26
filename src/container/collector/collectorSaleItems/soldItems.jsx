@@ -8,12 +8,10 @@ import {} from "@material-ui/icons";
 import {isEmpty} from "lodash";
 import SearchIcon from "@material-ui/icons/Search";
 import {soldItemsColumns} from "./soldItemsColumns";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 
-const SoldItems = () => {
+const SoldItems = ({res}) => {
   const dispatch = useDispatch();
-
-  let res = useSelector((state) => state.collectorSold);
   useEffect(() => {
     if (isEmpty(res?.data) !== true) {
       res.data.map((obj) => {
@@ -47,4 +45,10 @@ const SoldItems = () => {
   );
 };
 
-export default SoldItems;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorSold,
+  };
+};
+
+export default connect(mapStateToProps)(SoldItems);

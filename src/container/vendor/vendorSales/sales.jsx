@@ -1,5 +1,3 @@
-
-
 /*
   @module sales
 */
@@ -10,7 +8,7 @@ import Edit from "@material-ui/icons/Edit";
 import PuchaseData from "./purchaseData";
 import "../vendor.css";
 import Popup from "../../../components/popUp/popUp";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
 import {vendorViewItemsRequest} from "../../../redux/action/vendor/vendorSalesAction/vendorViewItemsAction";
@@ -18,14 +16,13 @@ import {vendorAcceptItemsRequest} from "../../../redux/action/vendor/vendorSales
 import {
   INVALID_QUANTITY,
   TOAST_ERROR5,
-  TOAST_WARN3,
   VALID_QUANTITY,
 } from "../../constant/constant";
 import {isEmpty} from "lodash";
 import Toast from "../../../components/toast";
 export const ProfileIcon = FaUserCircle;
 
-const Sales = () => {
+const Sales = ({res, res2}) => {
   const {useState} = React;
   const [details, setDetails] = useState([]);
   const [detail, setdetail] = useState();
@@ -34,14 +31,13 @@ const Sales = () => {
   const [isopen, setopen] = useState(false);
   const [quantity, setQuantity] = useState();
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.vendorViewItems?.data);
-  let res2 = useSelector((state) => state.vendorAcceptItems);
   const [columns] = useState([
     {
       title: "Seller Profile",
       editable: "never",
       render: (rowData) => (
         <button
+          id="pop1"
           style={{
             background: "white",
             border: "1px solid white",
@@ -178,12 +174,8 @@ const Sales = () => {
     @detail updating the value of 'id' 
   */
   const profile = (e) => {
-    if (e.id === null) {
-      Toast.warn(TOAST_WARN3);
-    } else {
-      const id = e.id;
-      setdetail(id);
-    }
+    const id = e.id;
+    setdetail(id);
     togglepop();
   };
   useEffect(() => {
@@ -331,4 +323,11 @@ const Sales = () => {
   );
 };
 
-export default Sales;
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorViewItems?.data,
+    res2: state.vendorAcceptItems,
+  };
+};
+
+export default connect(mapStateToProps)(Sales);

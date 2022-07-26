@@ -8,12 +8,12 @@ exports[`testing authProtected test 1`] = `
     path="/"
   />
   <Route
-    element={<SignIn />}
+    element={<Memo(Connect(SignIn)) />}
     exact={true}
     path="/Signin"
   />
   <Route
-    element={<SignUp />}
+    element={<Memo(Connect(signUp)) />}
     exact={true}
     path="/signUp"
   />
@@ -23,7 +23,7 @@ exports[`testing authProtected test 1`] = `
     path="/ForgotPassword"
   />
   <Route
-    element={<ResetPassword />}
+    element={<Memo(Connect(ResetPassword)) />}
     exact={true}
     path="/password/save/:token"
     render={[Function]}

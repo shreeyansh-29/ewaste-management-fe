@@ -14,15 +14,14 @@ import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
 export const ProfileIcon = FaUserCircle;
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {customerCompletedRequest} from "../../../../redux/action/customer/customerCompletedRequestAction/customerCompletedRequestAction";
 import {isEmpty} from "lodash";
 import {completedColumns} from "./completedColumns";
 toast.configure();
 
-export default function completed() {
+function completed({res}) {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerCompletedRequest);
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
 
@@ -73,7 +72,7 @@ export default function completed() {
                 {
                   icon: () => (
                     <>
-                      <ProfileIconStyle onClick={togglepop}>
+                      <ProfileIconStyle onClick={togglepop} id="pop1">
                         <ProfileIconBarStyle>
                           <ProfileIcon></ProfileIcon>
                         </ProfileIconBarStyle>
@@ -102,3 +101,11 @@ export default function completed() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.customerCompletedRequest,
+  };
+};
+
+export default connect(mapStateToProps)(completed);

@@ -28,41 +28,30 @@ describe("test My Orders", () => {
   let store;
   store = mockStore({
     vendorMyOrders: {
-      payload: [
+      data: [
         {
-          address: "Shop No. 17, Gopal Tower, Aminabad Lucknow Uttar Pradesh",
-          category: "Screens",
-          collector: {
-            address1: "Shop No. 17, Gopal Tower, Aminabad",
-            categoriesAcceptedSet: [
-              {id: 2, categoryAccepted: "Lamps"},
-              {id: 3, categoryAccepted: "Temp"},
-              {id: 1, categoryAccepted: "Screens"},
-            ],
-            city: "Lucknow",
-            email: "collector1@gmail.com",
-            firstName: "John",
-            gstNo: "09AABCU9603R1Z1",
-            id: 1,
-            lastName: "Cena",
-            mobileNo: "9090909090",
-            password:
-              "$2a$10$UfrslBdkndf5sLCjzF2XE.cxhvwgqc.OTv.yMx4eL/gNwBV9eBMgm",
-            pinCode: "226022",
-            registrationNo: "721973",
-            shopTime: "9:00-14:00",
-            state: "Uttar Pradesh",
-            uid: "09233cfe-9700-4150-965c-3c695fdb8c9f",
-          },
-          collectorUid: "09233cfe-9700-4150-965c-3c695fdb8c9f",
-          date: "2022-07-02",
           id: "ORD1",
-          itemName: "Monitor",
-          price: "16500",
-          quantity: "5",
+          itemName: "AC",
+          category: "Temp",
+          quantity: "2",
+          price: "28000",
+          address: "Goyal Tower Lucknow Uttar Pradesh",
+          date: "2022-07-25",
           status: "completed",
+          collector: [
+            {
+              firstName: "Anvesh",
+              lastName: "Thakur",
+              mobileNo: "9695072068",
+              address1: "Goyal Tower",
+              city: "Lucknow",
+              state: "Uttar Pradesh",
+            },
+          ],
         },
       ],
+      error: "",
+      isLoading: "true",
     },
   });
   it("test myOrders", () => {
@@ -82,19 +71,14 @@ describe("test My Orders", () => {
     );
     expect(wrapper.find(MaterialTable).length).toEqual(1);
   });
-  it.skip("should test togglepop", () => {
-    const togglepop = jest.fn();
-    // let isopen = true;
-    // const event = {preventDefault() {}, isopen: "true"};
+  it("should test togglepop", () => {
+    const mockFn = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
-        <MyOrders togglepop={togglepop} />
+        <MyOrders togglepop={mockFn} />
       </Provider>
     );
-    // console.log("wrapper", wrapper.find(".MuiTableBody-root").debug());
-    // console.log("length", wrapper.find("td").length);
-    // console.log("tb length", wrapper.find("td").length);
-    // wrapper.find(".MuiIconButton-label").at(0).simulate("click");
-    // expect(wrapper.find(MaterialTable).length).toBe(1);
+    wrapper.find("#pop1").simulate("click");
+    expect(mockFn).toHaveBeenCalled;
   });
 });

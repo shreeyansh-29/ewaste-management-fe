@@ -12,7 +12,6 @@ import {act} from "react-test-renderer";
 Enzyme.configure({adapter: new Adapter()});
 
 const mockedUsedDispatch = jest.fn();
-const mockedUsedSelector = jest.fn();
 const mockStore = configureStore([]);
 
 jest.mock("react-redux", () => ({
@@ -20,30 +19,16 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockedUsedDispatch,
 }));
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockedUsedSelector,
-}));
-
+jest.useFakeTimers();
 describe("Organize Drives", () => {
-  let store;
-  store = mockStore({
-    collectorOrganizeDrive: {
-      isLoading: true,
-      error: "",
-      data: {
-        status: "success",
-        data: {
-          category: "Screens",
-          availableQuantity: "9",
-          id: 3,
-          price: "1000",
-          itemName: "AC",
-        },
-      },
-    },
-  });
   it("test OrganizeDrive", () => {
+    const store = mockStore({
+      collectorOrganizeDrive: {
+        data: {},
+        isLoading: true,
+        error: "",
+      },
+    });
     const wrapper = shallow(
       <Provider store={store}>
         <OrganizeDrive />
@@ -53,6 +38,13 @@ describe("Organize Drives", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   it("should test MaterialTable", () => {
+    const store = mockStore({
+      collectorOrganizeDrive: {
+        data: {},
+        isLoading: true,
+        error: "",
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <OrganizeDrive />
@@ -61,6 +53,13 @@ describe("Organize Drives", () => {
     expect(wrapper.find(MaterialTable).length).toEqual(1);
   });
   it("should have no data initially", () => {
+    const store = mockStore({
+      collectorOrganizeDrive: {
+        data: {},
+        isLoading: true,
+        error: "",
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <OrganizeDrive />
@@ -71,6 +70,13 @@ describe("Organize Drives", () => {
     );
   });
   it("should have an add button to generate a request", () => {
+    const store = mockStore({
+      collectorOrganizeDrive: {
+        data: {},
+        isLoading: true,
+        error: "",
+      },
+    });
     const props = {
       onPageChange: jest.fn(),
       dateformat: jest.fn(),
@@ -127,7 +133,7 @@ describe("Organize Drives", () => {
 
     let date;
     act(() => {
-      date = wrapper.find('input[value="23/07/2022"]').simulate("change", {
+      date = wrapper.find('input[value="26/07/2022"]').simulate("change", {
         persist: () => {},
         target: {
           type: "text",
@@ -136,11 +142,6 @@ describe("Organize Drives", () => {
       });
     });
     expect(date.html()).toMatch("31/07/2022");
-
-    // act(() => {
-    //   wrapper.find(".MuiSvgIcon-root").at(1).simulate("click");
-    // });
-    // expect(props.dateformat).toBeCalled;
 
     let time;
     act(() => {
@@ -157,15 +158,8 @@ describe("Organize Drives", () => {
     expect(time.text()).toMatch("");
 
     //check button
-    let check;
-    act(() => {
-      check = wrapper.find(".MuiIconButton-label").at(2);
-      expect(check.simulate("click")).toBeTruthy();
-    });
-
-    act(() => {
-      wrapper.find(".MuiIconButton-label").at(3).simulate("cancel");
-    });
+    let check = wrapper.find(".MuiIconButton-label").at(2);
+    expect(check.simulate("click")).toBeTruthy();
 
     let doneBtn;
     act(() => {
@@ -173,5 +167,34 @@ describe("Organize Drives", () => {
     });
     expect(doneBtn.length).toEqual(1);
     expect(props.handleDone).toBeCalled;
+  });
+  it.skip("should test handleDone", () => {
+    let store;
+    store = mockStore({
+      collectorOrganizeDrive: {
+        isLoading: true,
+        error: "",
+        data: {
+          status: "success",
+          data: {
+            date: "2022-07-31",
+            description: "Green World Moto",
+            driveName: "HUSKA",
+            time: "9:00-17:00",
+            eWasteCategoryAccepted: [
+              {id: 3, categoriesAccepted: "Small Equipments"},
+            ],
+          },
+        },
+      },
+    });
+    const mockFn = jest.fn();
+    const wrapper = mount(
+      <Provider store={store}>
+        <OrganizeDrive handleDone={mockFn} />
+      </Provider>
+    );
+    jest.runAllTimers();
+    console.log("wrapper", wrapper.debug());
   });
 });

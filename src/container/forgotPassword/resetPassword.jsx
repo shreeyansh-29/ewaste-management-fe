@@ -11,16 +11,15 @@ import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {TOAST_SUCCESS2, MSG_1, SUCCESSFULL_REQUEST} from "../constant/constant";
 import Toast from "../../components/toast";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";
 import {ResetPasswordValidations} from "../constant/validations";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 import {ButtonStyle} from "../../components/styles";
 
-const ResetPassword = () => {
+const ResetPassword = ({res}) => {
   const dispatch = useDispatch();
   const {token} = useParams();
-  const res = useSelector((state) => state.resetPassword?.data);
   const [passwordType, setPasswordType] = useState("text");
   const [confirmPasswordType, setConfirmPasswordType] = useState("text");
   /* 
@@ -42,7 +41,7 @@ const ResetPassword = () => {
 
   useEffect(() => {
     if (res !== undefined) {
-      if (res === SUCCESSFULL_REQUEST) {
+      if (res?.data === SUCCESSFULL_REQUEST) {
         Toast.success(TOAST_SUCCESS2);
         setTimeout(() => {
           window.location.href = "/Signin";
@@ -178,4 +177,10 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+const mapStateToProps = (state) => {
+  return {
+    res: state.resetPassword,
+  };
+};
+
+export default connect(mapStateToProps)(ResetPassword);

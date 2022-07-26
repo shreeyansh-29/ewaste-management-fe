@@ -9,7 +9,7 @@ import {collectorAvailableService} from "../../../../services/collector/collecto
 export function* collectorAvailableSaga() {
   try {
     let response = yield call(collectorAvailableService);
-    yield put(collectorAvailableSuccess(response));
+    yield put(collectorAvailableSuccess(response.data));
   } catch (error) {
     yield put(collectorAvailableError(error));
   }

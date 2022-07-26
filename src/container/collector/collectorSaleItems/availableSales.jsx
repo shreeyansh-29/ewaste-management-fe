@@ -49,7 +49,7 @@ const AvailableSales = ({res}) => {
 
 const mapStateToProps = (state) => {
   return {
-    res: state.collectorAvailable?.data,
+    res: state.collectorAvailable,
   };
 };
 

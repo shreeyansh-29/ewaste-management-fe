@@ -15,19 +15,19 @@ exports[`testing Collector Routes test collectorRoutes 1`] = `
     path="/CollectorProfile"
   />
   <Route
-    element={<OrganizeDrive />}
+    element={<Memo(Connect(OrganizeDrive)) />}
     path="/Drive/OrganizeDrive"
   />
   <Route
-    element={<MyDrives />}
+    element={<Memo(Connect(MyDrives)) />}
     path="/Drive/MyDrives"
   />
   <Route
-    element={<CollectorRequests />}
+    element={<Memo(Connect(CollectorRequests)) />}
     path="/Request/CollectorRequests"
   />
   <Route
-    element={<RequestSummary />}
+    element={<Memo(Connect(collectorRequests)) />}
     path="/Request/MyRequests"
   />
   <Route

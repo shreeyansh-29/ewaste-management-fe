@@ -5,15 +5,14 @@ import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import {collectorMyDrivesRequest} from "../../../redux/action/collector/collectorMyDrivesAction/collectorMyDrivesAction";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
 import {collectorMyDrivesStatusRequest} from "../../../redux/action/collector/collectorMyDrivesStatusAction/collectorMyDrivesStatusAction";
 import {myDrivesColumns} from "./myDrivesColumns";
 
-const MyDrives = () => {
+const MyDrives = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorMyDrives);
-
+  const [data, setData] = useState([]);
   /* 
     @function callApi
     @params {newData}  contains the updated status of the drive
@@ -30,7 +29,6 @@ const MyDrives = () => {
   useEffect(() => {
     dispatch(collectorMyDrivesRequest());
   }, []);
-  const [data, setData] = useState([]);
 
   return (
     <div style={{padding: "150px 30px 0 30px"}}>
@@ -45,8 +43,7 @@ const MyDrives = () => {
           borderRadius: "5px",
         }}
       >
-        {" "}
-        My E-Waste Drives{" "}
+        My E-Waste Drives
       </h2>
       <MaterialTable
         title=""
@@ -77,4 +74,10 @@ const MyDrives = () => {
   );
 };
 
-export default MyDrives;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorMyDrives,
+  };
+};
+
+export default connect(mapStateToProps)(MyDrives);

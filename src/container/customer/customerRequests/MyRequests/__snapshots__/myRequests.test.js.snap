@@ -55,13 +55,13 @@ exports[`testing myRequests should render Requests 1`] = `
       index={0}
       value={0}
     >
-      <Pending />
+      <Connect(Pending) />
     </TabPanel>
     <TabPanel
       index={1}
       value={0}
     >
-      <completed />
+      <Connect(completed) />
     </TabPanel>
   </ForwardRef(Paper)>
 </div>
@@ -120,12 +120,12 @@ exports[`testing myRequests should test onChange 1`] = `
     <TabPanel
       index={0}
     >
-      <Pending />
+      <Connect(Pending) />
     </TabPanel>
     <TabPanel
       index={1}
     >
-      <completed />
+      <Connect(completed) />
     </TabPanel>
   </ForwardRef(Paper)>
 </div>

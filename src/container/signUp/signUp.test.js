@@ -5,11 +5,11 @@ import toJson from "enzyme-to-json";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import SignUp, {changeState} from "./signUp";
+import SignUp from "./signUp";
 import {Formik} from "formik";
 import {isEmpty} from "lodash";
-import {act} from "react-test-renderer";
 import enableHooks from "jest-react-hooks-shallow";
+import toast from "../../components/toast";
 import {useNavigate} from "react-router-dom";
 
 enableHooks(jest);
@@ -17,34 +17,22 @@ Enzyme.configure({adapter: new Adapter()});
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
-  useSelector: jest.fn(),
   useDispatch: jest.fn(),
 }));
-
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: jest.fn(),
 }));
 
-// const mockedUsedDispatch = jest.fn();
-// const mockedUsedSelector = jest.fn();
 const mockStore = configureStore([]);
-
-// jest.mock("react-redux", () => ({
-//   ...jest.requireActual("react-redux"),
-//   useDispatch: () => mockedUsedDispatch,
-// }));
-
-// jest.mock("react-redux", () => ({
-//   ...jest.requireActual("react-redux"),
-//   useSelector: () => mockedUsedSelector,
-// }));
 
 describe("SignUp", () => {
   let store;
   store = mockStore({
-    signUpReducer: {
+    signUp: {
       data: {},
+      error: "",
+      isLoading: false,
     },
   });
   it("test signUp", () => {
@@ -65,15 +53,18 @@ describe("SignUp", () => {
     expect(wrapper.find(Formik).length).toEqual(1);
   });
 });
+
+jest.useFakeTimers();
 describe("testing Formik", () => {
-  let store = mockStore({
-    signIn: {
-      data: {},
-      error: "",
-      isLoading: true,
-    },
-  });
   it("should have firstName field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -91,6 +82,14 @@ describe("testing Formik", () => {
     expect(firstName.html()).toMatch("Shaun");
   });
   it("should have lastName field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -108,6 +107,14 @@ describe("testing Formik", () => {
     expect(lastName.html()).toMatch("Mendis");
   });
   it("should have email field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -125,6 +132,14 @@ describe("testing Formik", () => {
     expect(email.html()).toMatch("customer1@gmail.com");
   });
   it("should have mobileNo field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -142,6 +157,14 @@ describe("testing Formik", () => {
     expect(mobileNo.html()).toMatch("9695072068");
   });
   it("should have password field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -159,6 +182,14 @@ describe("testing Formik", () => {
     expect(password.html()).toMatch("123456");
   });
   it("should test togglePasswords", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const onClick = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
@@ -169,6 +200,14 @@ describe("testing Formik", () => {
     expect(onClick).toBeCalled;
   });
   it("should have confirmPassword field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -186,6 +225,14 @@ describe("testing Formik", () => {
     expect(confirmPassword.html()).toMatch("123456");
   });
   it("should test confirmTogglePasswords", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const onClick = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
@@ -196,6 +243,14 @@ describe("testing Formik", () => {
     expect(onClick).toBeCalled;
   });
   it("should have address field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -213,6 +268,14 @@ describe("testing Formik", () => {
     expect(address.html()).toMatch("Burj Khalifa");
   });
   it("should have state field and triggers changeState()", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const mockFn = jest.fn();
     mockFn.mockReturnValue("Assam");
     const wrapper = mount(
@@ -223,12 +286,7 @@ describe("testing Formik", () => {
     const state = wrapper.find("#state").at(1);
     // expect(state.simulate("click")).toBeTruthy();
 
-    const value = wrapper
-      .find("#state")
-      .at(1)
-      .find("#selectedState")
-      .at(2)
-      .text();
+    const value = wrapper.find("#state").at(1).find("#selectedState").at(2);
 
     console.log("state", value);
     expect(mockFn).toBeCalledWith;
@@ -243,6 +301,14 @@ describe("testing Formik", () => {
     expect(state.html()).toMatch("state");
   });
   it("should have city field and triggers changeCity()", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const mockFn = jest.fn();
     const initialcities = false;
     const cities = [];
@@ -262,6 +328,14 @@ describe("testing Formik", () => {
     expect(isEmpty(initialcities)).toEqual(true);
   });
   it("should have pincode field", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SignUp />
@@ -279,6 +353,14 @@ describe("testing Formik", () => {
     expect(pincode.html()).toMatch("226022");
   });
   it("should have role field and triggers handleDropdown()", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const props = {
       handleDropdown: jest.fn(),
       data: [{label: "Customer"}, {label: "Collector"}, {label: "Vendor"}],
@@ -289,20 +371,50 @@ describe("testing Formik", () => {
         <SignUp {...props} />
       </Provider>
     );
-    // console.log(wrapper.find("#role").debug());
     let role = wrapper.find("#role").find(".dropdown");
     role.simulate("click");
-    expect(props.handleDropdown).toBeCalled;
-    let value = wrapper
-      .find("#role")
-      .find(".dropdown")
-      .find("option[value='Customer']")
-      .text();
-    expect(role.length).toEqual(1);
-    role = value;
-    // console.log(role);
+    expect(props.handleDropdown).toHaveBeenCalled;
+    role = props.data[0].label;
+    // let value = wrapper
+    //   .find("#role")
+    //   .find(".dropdown")
+    //   .find("option[value='Customer']")
+    //   .text();
+    // expect(role.length).toEqual(1);
+    // role = value;
+    // // console.log(role);
+  });
+  it("should have back button", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
+    const mockNavigate = jest.fn();
+    useNavigate.mockImplementation(() => mockNavigate);
+    const mockFn = jest.fn();
+    const wrapper = mount(
+      <Provider store={store}>
+        <SignUp onClick={mockFn} />
+      </Provider>
+    );
+    const backBtn = wrapper.find(".backbutton");
+    expect(backBtn.simulate("click")).toBeTruthy();
+    expect(mockFn).toBeCalled;
+    expect(mockNavigate).toBeCalledWith("/Signin");
   });
   it("should have submit button and triggers onSubmit() and handleTime()", () => {
+    let store;
+    store = mockStore({
+      signUp: {
+        data: {},
+        error: "",
+        isLoading: true,
+      },
+    });
     const mockFn = jest.fn();
     const mockFn2 = jest.fn();
     const wrapper = mount(
@@ -317,34 +429,52 @@ describe("testing Formik", () => {
     submitBtn.simulate("submit");
     expect(mockFn2).toBeCalled;
   });
-  it("should have back button", () => {
-    const mockNavigate = jest.fn();
-    useNavigate.mockImplementation(() => mockNavigate);
-    const mockFn = jest.fn();
+  it("should check status=success", () => {
+    let store = mockStore({
+      signUp: {
+        data: {status: "success"},
+        error: "",
+        isLoading: true,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
-        <SignUp onClick={mockFn} />
+        <SignUp />
       </Provider>
     );
-    const backBtn = wrapper.find(".backbutton");
-    expect(backBtn.simulate("click")).toBeTruthy();
-    expect(mockFn).toBeCalled;
-    expect(mockNavigate).toBeCalledWith("/Signin");
+    expect(toast.success).toHaveBeenCalled;
+    expect(wrapper).toBeTruthy;
+    jest.runAllTimers();
   });
-  // it.only("should have gst", () => {
-  //   const wrapper = mount(
-  //     <Provider store={store}>
-  //       <SignUp />
-  //     </Provider>
-  //   );
-  //   let gst;
-  //   act(() => {
-  //     gst = wrapper.find("input[placeholder='GST Number']");
-  //     gst.simulate("change", {
-  //       persist: () => {},
-  //       target: {value: ""},
-  //     });
-  //   });
-  //   expect(gst.html()).toMatch("");
-  // });
+  it("should check status=fail", () => {
+    let store = mockStore({
+      signUp: {
+        data: {status: "fail"},
+        error: "",
+        isLoading: true,
+      },
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <SignUp />
+      </Provider>
+    );
+    expect(toast.error).toHaveBeenCalled;
+    expect(wrapper).toBeTruthy;
+  });
+  it("should check status=''", () => {
+    let store = mockStore({
+      signUp: {
+        data: {status: ""},
+        error: "",
+        isLoading: true,
+      },
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <SignUp />
+      </Provider>
+    );
+    expect(wrapper).toBeTruthy;
+  });
 });

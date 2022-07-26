@@ -11,37 +11,20 @@ import MaterialTable from "material-table";
 Enzyme.configure({adapter: new Adapter()});
 
 const mockedUsedDispatch = jest.fn();
-const mockedUsedSelector = jest.fn();
 const mockStore = configureStore([]);
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockedUsedDispatch,
 }));
-
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockedUsedSelector,
-}));
-
+jest.useFakeTimers();
 describe("CollectorRequests", () => {
-  let store;
-  store = mockStore({
-    collectorPending: {
-      isLoading: true,
-      error: "",
-      data: {
-        status: "success",
-        data: {
-          address: "Sec-14/339,Vikas Nagar, Lucknow, Uttar Pradesh",
-          category: "Temp",
-          id: 17,
-          itemName: "AC",
-        },
-      },
-    },
-  });
   it("test CollectorRequests", () => {
+    let store = mockStore({
+      collectorPending: {
+        data: {},
+      },
+    });
     const wrapper = shallow(
       <Provider store={store}>
         <CollectorRequests />
@@ -51,6 +34,11 @@ describe("CollectorRequests", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   it("should test MaterialTable", () => {
+    let store = mockStore({
+      collectorPending: {
+        data: {},
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <CollectorRequests />
@@ -58,14 +46,35 @@ describe("CollectorRequests", () => {
     );
     expect(wrapper.find(MaterialTable).length).toEqual(1);
   });
-  it.skip("should test onClick", () => {
-    const handleAccept = jest.fn();
-    const props = {preventDefault() {}, datas: ""};
+  it("should test Accept Button", () => {
+    let store = mockStore({
+      collectorPending: {
+        isLoading: true,
+        error: "",
+        data: {
+          status: "success",
+          data: [
+            {
+              address: "Sec-12, Lucknow, Uttar Pradesh",
+              category: "Temp",
+              itemName: "AC",
+              quantity: "8",
+              scheduleDate: "2022-07-28",
+              scheduledTime: "10:00 -12:00",
+            },
+          ],
+        },
+      },
+    });
+    const mockFn = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
-        <CollectorRequests onClick={handleAccept} {...props} />
+        <CollectorRequests handleAccept={mockFn} />
       </Provider>
     );
-    expect(wrapper.find(".bttn").exists).toBeTruthy;
+    console.log(wrapper.find(".bttn").debug());
+    wrapper.find(".bttn").simulate("click");
+    expect(mockFn).toHaveBeenCalled;
+    jest.runAllTimers();
   });
 });

@@ -8,18 +8,17 @@ import "../vendor.css";
 import {statescity} from "../../signUp/states";
 import Toast from "../../../components/toast";
 import {TOAST_SUCCESS5} from "../../constant/constant";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {vendorProfileRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileAction";
 import {vendorProfileEditRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileEditAction";
 import {isEmpty} from "lodash";
 import {VendorValidations} from "../../constant/validations";
 
-const VendorProfile = () => {
+const VendorProfile = ({res}) => {
   const [state, setState] = useState();
   const [city, setCity] = useState();
   const dispatch = useDispatch();
 
-  let res = useSelector((state) => state.vendorProfile?.data);
   useEffect(() => {
     dispatch(vendorProfileRequest());
   }, []);
@@ -39,7 +38,6 @@ const VendorProfile = () => {
     const data = {values, password: res?.password, state: state, city: city};
     dispatch(vendorProfileEditRequest(data));
     Toast.success(TOAST_SUCCESS5, 1500);
-    setState();
   };
 
   /* 
@@ -78,7 +76,6 @@ const VendorProfile = () => {
           registrationNo: res?.registrationNo,
         }}
         validationSchema={VendorValidations}
-        validator={() => ({})}
         onSubmit={(values) => {
           handleSubmit(values);
         }}
@@ -305,4 +302,10 @@ const VendorProfile = () => {
   );
 };
 
-export default VendorProfile;
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorProfile?.data,
+  };
+};
+
+export default connect(mapStateToProps)(VendorProfile);

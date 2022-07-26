@@ -9,40 +9,18 @@ import SoldItems from "./soldItems";
 import MaterialTable from "material-table";
 
 Enzyme.configure({adapter: new Adapter()});
-
-const mockedUsedDispatch = jest.fn();
-const mockedUsedSelector = jest.fn();
 const mockStore = configureStore([]);
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useDispatch: () => mockedUsedDispatch,
-}));
-
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockedUsedSelector,
-}));
-
 describe("Sold Items", () => {
-  let store;
-  store = mockStore({
-    collectorSold: {
-      isLoading: true,
-      error: "",
-      data: {
-        status: "success",
-        data: {
-          category: "Screens",
-          availableQuantity: "9",
-          id: 3,
-          price: "1000",
-          itemName: "AC",
-        },
-      },
-    },
-  });
   it("test SoldItems", () => {
+    let store;
+    store = mockStore({
+      collectorSold: {
+        isLoading: false,
+        error: "",
+        data: {},
+      },
+    });
     const wrapper = shallow(
       <Provider store={store}>
         <SoldItems />
@@ -52,6 +30,21 @@ describe("Sold Items", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   it("should test for Material Table", () => {
+    let store = mockStore({
+      collectorSold: {
+        data: [
+          {
+            id: 1,
+            itemName: "AC",
+            category: "Temp",
+            quantity: "2",
+            price: "28000",
+          },
+        ],
+        isLoading: true,
+        error: "",
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <SoldItems />

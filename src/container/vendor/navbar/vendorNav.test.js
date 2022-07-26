@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import VendorNav from "./vendorNav";
 import toJson from "enzyme-to-json";
 import {Navbar} from "react-bootstrap";
+import Swal from "sweetalert2";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -59,5 +60,9 @@ describe("test Vendor Navbar", () => {
       </Provider>
     );
     wrapper.find(".Btn").simulate("click");
+  });
+  it("should clear localStorage after logout ", () => {
+    expect(Swal.getTitle().textContent).toEqual("Are you sure?");
+    Swal.clickConfirm();
   });
 });

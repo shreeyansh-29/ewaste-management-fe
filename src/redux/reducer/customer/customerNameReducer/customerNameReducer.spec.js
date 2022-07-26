@@ -36,8 +36,7 @@ describe("customerNameReducer", () => {
       })
     ).toEqual({
       data: {
-        payload: {firstName: "John"},
-        type: types.CUSTOMER_NAME_SUCCESS,
+        firstName: "John",
       },
       isLoading: true,
       error: "",

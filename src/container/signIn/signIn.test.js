@@ -8,10 +8,10 @@ import {Provider} from "react-redux";
 import SignIn from "./signIn";
 import {Form, Formik} from "formik";
 import {BrowserRouter} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {signInRequest} from "../../redux/action/signInAction/signInActions";
 import enableHooks from "jest-react-hooks-shallow";
+import toast from "../../components/toast";
 
+jest.mock("jwt-decode", () => ({tokens: "chdbcui1i8cdsbh"}));
 enableHooks(jest);
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
@@ -61,14 +61,14 @@ describe("SignIn", () => {
   });
 });
 describe("should test for Formik", () => {
-  let store = mockStore({
-    signIn: {
-      data: {},
-      error: "",
-      isLoading: true,
-    },
-  });
   it("should test for Formik", () => {
+    let store = mockStore({
+      signIn: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
@@ -80,6 +80,13 @@ describe("should test for Formik", () => {
     expect(wrapper.find(Form).length).toEqual(1);
   });
   it("should have a email field", () => {
+    let store = mockStore({
+      signIn: {
+        data: {},
+        error: "",
+        isLoading: false,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
@@ -90,6 +97,13 @@ describe("should test for Formik", () => {
     wrapper.find('input[type="email"]');
   });
   it("should set email onChange", () => {
+    let store = mockStore({
+      signIn: {
+        data: {},
+        error: "",
+        isLoading: true,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
@@ -108,6 +122,13 @@ describe("should test for Formik", () => {
     expect(emailField.html()).toMatch("customer1@gmail.com");
   });
   it("should have a password field", () => {
+    let store = mockStore({
+      signIn: {
+        data: {},
+        error: "",
+        isLoading: true,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
@@ -118,6 +139,13 @@ describe("should test for Formik", () => {
     wrapper.find('input[type="password"]');
   });
   it("should update password onChange", () => {
+    let store = mockStore({
+      signIn: {
+        data: {},
+        error: "",
+        isLoading: true,
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
@@ -136,6 +164,13 @@ describe("should test for Formik", () => {
     expect(passwordField.html()).toMatch("123456");
   });
   it("should test togglePasswords", () => {
+    let store = mockStore({
+      signIn: {
+        data: {},
+        error: "",
+        isLoading: true,
+      },
+    });
     const onClick = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
@@ -146,19 +181,14 @@ describe("should test for Formik", () => {
     );
     wrapper.find('button[type="button"]').simulate("click");
   });
-  it.skip("should have ForgotPassword Link", () => {
-    const wrapper = mount(
-      <Provider store={store}>
-        <BrowserRouter>
-          <SignIn />
-        </BrowserRouter>
-      </Provider>
-    );
-    // console.log(wrapper.find("#forgot").debug());
-    wrapper.find("#forgot").render().find("/ForgotPassword");
-    expect(mockLink).toHaveBeenCalled;
-  });
   it("should have submit button", () => {
+    let store = mockStore({
+      signIn: {
+        data: {},
+        error: "",
+        isLoading: true,
+      },
+    });
     const handleClick = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
@@ -172,73 +202,58 @@ describe("should test for Formik", () => {
     });
     expect(handleClick).toBeCalled;
   });
-  it("should return error for empty email address", () => {
-    const mockFn = jest.fn();
-    const wrapper = shallow(
-      <Provider store={store}>
-        <BrowserRouter>
-          <SignIn handleReset={mockFn} />
-        </BrowserRouter>
-      </Provider>
-    );
-
-    const signInForm = (props = {errors: {}, touched: {}}) =>
-      wrapper.find(SignIn).dive().find(Formik).renderProp("children")(props);
-
-    const formWithInvalidEmailErrors = signInForm({
-      errors: {
-        email: "Email id required",
+  it("should throw error on status=Fail", () => {
+    let store = mockStore({
+      signIn: {
+        data: {status: "Fail"},
+        error: "",
+        isLoading: true,
       },
-      touched: {email: true},
-      handleReset: mockFn,
     });
-
-    expect(formWithInvalidEmailErrors.text()).toMatch(/Email id required/);
-  });
-  it("should return error for invalid email address", () => {
-    const mockFn = jest.fn();
-    const wrapper = shallow(
-      <Provider store={store}>
-        <BrowserRouter>
-          <SignIn handleReset={mockFn} />
-        </BrowserRouter>
-      </Provider>
-    );
-
-    const signInForm = (props = {errors: {}, touched: {}}) =>
-      wrapper.find(SignIn).dive().find(Formik).renderProp("children")(props);
-
-    const formWithInvalidEmailErrors = signInForm({
-      errors: {
-        email: "Invalid email id",
-      },
-      touched: {email: true},
-      handleReset: mockFn,
-    });
-
-    expect(formWithInvalidEmailErrors.text()).toMatch(/Invalid email id/);
-  });
-  it("should return error if there is password validation error", () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
           <SignIn />
         </BrowserRouter>
       </Provider>
     );
-
-    const signInForm = (props = {errors: {}}) =>
-      wrapper.find(SignIn).dive().find(Formik).renderProp("children")(props);
-
-    const formWithPAsswordErrors = signInForm({
-      errors: {
-        password: "Password should be of atleast six characters",
+    expect(wrapper).toBeTruthy;
+    expect(toast.error).toHaveBeenCalled;
+  });
+  it("should throw error on status=fail", () => {
+    let store = mockStore({
+      signIn: {
+        data: {status: "fail"},
+        error: "",
+        isLoading: true,
       },
-      touched: {password: true},
     });
-    expect(formWithPAsswordErrors.text()).toMatch(
-      /Password should be of atleast six characters/
+    const wrapper = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <SignIn />
+        </BrowserRouter>
+      </Provider>
     );
+    expect(wrapper).toBeTruthy;
+    expect(toast.error).toHaveBeenCalled;
+  });
+  it("should throw error on status=success", () => {
+    let store = mockStore({
+      signIn: {
+        data: {status: "success"},
+        error: "",
+        isLoading: true,
+      },
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <SignIn />
+        </BrowserRouter>
+      </Provider>
+    );
+    expect(wrapper).toBeTruthy;
   });
 });
 // describe("SignIn Component: when user is not logged in should dispatch an action", () => {

@@ -1,23 +1,3 @@
-// /* eslint-disable no-undef */
-// import * as reactRedux from "react-redux";
-
-// describe("test suite", () => {
-//   const useSelectorMock = jest.spyOn(reactRedux, "useSelector");
-//   const useDispatchMock = jest.spyOn(reactRedux, "useDispatch");
-
-//   beforeEach(() => {
-//     useSelectorMock.mockClear();
-//     useDispatchMock.mockClear();
-//   });
-
-//   it("does something", () => {
-//     const dummyDispatch = jest.fn();
-//     useDispatchMock.mockReturnValue(dummyDispatch);
-//     /* SANITY CHECK */
-//     expect(dummyDispatch).not.toHaveBeenCalled();
-//   });
-// });
-
 /* eslint-disable no-undef */
 import React from "react";
 import Popup from "./popUp";

@@ -25,6 +25,6 @@ exports[`Completed Request test completed 1`] = `
     }
   }
 >
-  <completed />
+  <Connect(completed) />
 </ContextProvider>
 `;

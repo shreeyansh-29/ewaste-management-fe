@@ -7,19 +7,16 @@ import "../../customer.css";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
 import {toast} from "react-toastify";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {customerPendingRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingRequestAction";
 import {customerPendingDeclineRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingDeclineAction";
-import Swal from "sweetalert2";
 import {pendingColumns} from "./pendingColumns";
 
 export const ProfileIcon = FaUserCircle;
 toast.configure();
 
-const Pending = () => {
+const Pending = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.customerPendingRequest);
-
   /* 
     @function handleDecline
     @params {e,datas} specifies the data of the request user wants to decline
@@ -27,21 +24,9 @@ const Pending = () => {
   */
   const handleDecline = async (e, datas) => {
     e.preventDefault();
-    if (datas) {
-      Swal.fire({
-        title: "Are you sure?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#228B22",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Confirm",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(customerPendingDeclineRequest(datas.orderUid));
-          document.location.reload();
-        }
-      });
-    }
+
+    dispatch(customerPendingDeclineRequest(datas.orderUid));
+    document.location.reload();
   };
   useEffect(() => {
     dispatch(customerPendingRequest());
@@ -79,4 +64,11 @@ const Pending = () => {
     </div>
   );
 };
-export default Pending;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.customerPendingRequest,
+  };
+};
+
+export default connect(mapStateToProps)(Pending);

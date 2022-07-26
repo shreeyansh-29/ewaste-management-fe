@@ -36,7 +36,7 @@ export default function PickUp() {
       isEmpty(result1?.data) !== true ||
       result1?.type === "CUSTOMER_COUNT_COLL_SUCCESS"
     ) {
-      setCollectors(result1.data.payload);
+      setCollectors(result1.payload);
     }
   });
   var maxDate = new Date();

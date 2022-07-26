@@ -6,15 +6,14 @@ import MaterialTable from "material-table";
 import "../Collector.css";
 import {TOAST_SUCCESS8} from "../../constant/constant";
 import Toast from "../../../components/toast";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {collectorPendingRequest} from "../../../redux/action/collector/collectorPendingAction/collectorPendingAction";
 import {isEmpty} from "lodash";
 import {collectorPendingAcceptRequest} from "../../../redux/action/collector/collectorPendingAcceptAction/collectorPendingAcceptAction";
 import {collectorRequestsColumns} from "./collectorRequestsColumns";
 
-const CollectorRequests = () => {
+const CollectorRequests = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorPending?.data);
 
   useEffect(() => {
     dispatch(collectorPendingRequest());
@@ -41,7 +40,7 @@ const CollectorRequests = () => {
     Toast.success(TOAST_SUCCESS8, 1500);
 
     setTimeout(() => {
-      window.location.href = "/MyRequests";
+      window.location.href = "/Request/MyRequests";
     }, 3000);
   };
 
@@ -81,4 +80,10 @@ const CollectorRequests = () => {
   );
 };
 
-export default CollectorRequests;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorPending?.data,
+  };
+};
+
+export default connect(mapStateToProps)(CollectorRequests);

@@ -61,7 +61,7 @@ exports[`test salesItems should render SalesItems 1`] = `
       index={1}
       value={0}
     >
-      <SoldItems />
+      <Connect(SoldItems) />
     </TabPanel>
   </ForwardRef(Paper)>
 </div>
@@ -125,7 +125,7 @@ exports[`test salesItems should test onChange 1`] = `
     <TabPanel
       index={1}
     >
-      <SoldItems />
+      <Connect(SoldItems) />
     </TabPanel>
   </ForwardRef(Paper)>
 </div>

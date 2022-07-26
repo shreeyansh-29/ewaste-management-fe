@@ -26,21 +26,11 @@ jest.mock("react-redux", () => ({
 
 describe("Available Sales", () => {
   it("test AvailableSales", () => {
-    let store;
-    store = mockStore({
+    let store = mockStore({
       collectorAvailable: {
-        isLoading: true,
+        data: {},
+        isLoading: false,
         error: "",
-        data: {
-          status: "success",
-          data: {
-            category: "Screens",
-            availableQuantity: "9",
-            id: 3,
-            price: "1000",
-            itemName: "AC",
-          },
-        },
       },
     });
     const wrapper = shallow(
@@ -52,12 +42,20 @@ describe("Available Sales", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   it("should test for Material Table", () => {
-    let store;
-    store = mockStore({
+    let store = mockStore({
       collectorAvailable: {
-        isLoading: true,
+        data: [
+          {
+            Totalprice: 28000,
+            availableQuantity: "2",
+            category: "Temp",
+            id: "IS1",
+            itemName: "AC",
+            price: "14000",
+          },
+        ],
+        isLoading: false,
         error: "",
-        data: {},
       },
     });
     const wrapper = mount(

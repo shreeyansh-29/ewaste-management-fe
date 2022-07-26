@@ -8,17 +8,15 @@ import Popup from "../../../components/popUp/popUp";
 import {FaUserCircle} from "react-icons/fa";
 import {toast} from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";
-import {TOAST_WARN3} from "../../constant/constant";
 import {vendorMyOrdersRequest} from "../../../redux/action/vendor/vendorMyOrdersAction/vendorMyOrdersAction";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {isEmpty} from "lodash";
 import {myOrdersColumn} from "./myOrdersColumn";
 toast.configure();
 export const ProfileIcon = FaUserCircle;
 
-const MyOrders = () => {
+const MyOrders = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.vendorMyOrders);
   const [isopen, setopen] = useState(false);
   const [detail, setdetail] = useState();
   const [value, setValue] = useState();
@@ -32,7 +30,7 @@ const MyOrders = () => {
   };
   useEffect(() => {
     if (isEmpty(res?.data) !== true) {
-      res.data.map((obj) => {
+      res?.data.map((obj) => {
         const date = obj.date.split("T");
         obj.date = date[0];
         obj.id = "ORD" + obj.id;
@@ -85,22 +83,14 @@ const MyOrders = () => {
                   }}
                   onClick={togglepop}
                 >
-                  {" "}
                   <ProfileIcon style={{color: "#e75480"}} />
                 </button>
               ),
 
               onClick: (e, datas) => {
                 e.preventDefault();
-                if (datas.id === null) {
-                  toast.warn(TOAST_WARN3, {
-                    position: toast.POSITION.TOP_RIGHT,
-                  });
-                } else {
-                  const id = datas.id.split("D");
-
-                  setdetail(id[1]);
-                }
+                const id = datas.id.split("D");
+                setdetail(id[1]);
               },
             },
           ]}
@@ -117,4 +107,11 @@ const MyOrders = () => {
     </div>
   );
 };
-export default MyOrders;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorMyOrders,
+  };
+};
+
+export default connect(mapStateToProps)(MyOrders);

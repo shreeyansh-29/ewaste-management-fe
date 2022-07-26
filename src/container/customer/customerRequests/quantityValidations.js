@@ -17,5 +17,6 @@ export const QuantityValidation = ({category, name, quantity, date, time}) => {
     Toast.warn(TOAST_WARN1);
     return false;
   }
+  /*istanbul ignore next*/
   return true;
 };

@@ -1,15 +1,21 @@
+/* eslint-disable indent */
 /* 
   @module SignUp 
 */
-/* eslint-disable indent */
 import {Formik, Form, Field} from "formik";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Select from "react-select";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import Toast from "../../components/toast";
 import ReactTooltip from "react-tooltip";
 import TimeRange from "react-time-range";
-import {SERVER_MSG, TOAST_ERROR3, TOAST_SUCCESS1} from "../constant/constant";
+import {SignUpValidations} from "../constant/validations";
+import {
+  PASSWORD,
+  SERVER_MSG,
+  TOAST_ERROR3,
+  TOAST_SUCCESS1,
+} from "../constant/constant";
 import Dropdown from "../../components/dropDown/dropdown";
 import "./signUp.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
@@ -17,7 +23,6 @@ import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import {statescity} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
-import {SignUpValidations} from "../constant/validations";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 import {Heading, ButtonStyle, SelectStyle} from "../../components/styles";
 import {useNavigate} from "react-router-dom";
@@ -45,7 +50,7 @@ const data = [
     label: "Small IT and Telecommunication Equipment (Mobile phones, Printers)",
   },
 ];
-const SignUp = () => {
+const signUp = ({res}) => {
   const navigate = useNavigate();
   const [confirmPasswordType, setConfirmPasswordType] = useState("text");
   const [passwordType, setPasswordType] = useState("text");
@@ -63,10 +68,8 @@ const SignUp = () => {
   const [initialcities, setCities] = useState([]);
   const dispatch = useDispatch();
 
-  let res = useSelector((state) => state.signUpReducer?.data);
-
-  React.useEffect(() => {
-    if (isEmpty(res?.data) !== true) {
+  useEffect(() => {
+    if (isEmpty(res) !== true) {
       if (res?.status === "success") {
         Toast.success(TOAST_SUCCESS1, 1500);
         setTimeout(() => {
@@ -79,7 +82,6 @@ const SignUp = () => {
       }
     }
   });
-
   /* 
     @function returnFunctionStart
     @detail set the value of startTime field
@@ -88,7 +90,6 @@ const SignUp = () => {
   const returnFunctionStart = (event) => {
     setStartTime(event.startTime);
   };
-
   /* 
     @function handleInputChange
     @detail set the value of categories selected by user
@@ -96,11 +97,10 @@ const SignUp = () => {
   */
   const handleInputChange = (e, i) => {
     console.log(i);
-    var list = [...e];
+    let list = [...e];
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
     setCategoryAccepted([list]);
   };
-
   /* 
     @function returnFunctionEnd
     @detail set the value of endTime field
@@ -109,7 +109,6 @@ const SignUp = () => {
   const returnFunctionEnd = (event) => {
     setEndTime(event.endTime);
   };
-
   /* 
     @function changeState
     @detail set the value of state field
@@ -119,34 +118,36 @@ const SignUp = () => {
     setState1(event.target.value);
     setCities(statescity.find((obj) => obj.name === event.target.value));
   };
-
-  /* 
-    @function changeState
-    @detail set the value of city field
-    @return {void}
-  */
   const changeCity = (event) => {
     setCity(event.target.value);
   };
-
-  /* 
-    @function handleDropdown
-    @detail set the value of role
-    @return {void}
-  */
   const handleDropdown = (e) => {
     setRole(e);
   };
-
   /* 
     @function togglePassword
     @detail set the password type of field name 'password'
     @return {void}
   */
+
   const togglePasswords = () => {
     setPasswordType(togglePassword(passwordType));
   };
-
+  const handleTime = () => {
+    if (role === "Collector") {
+      let start = startTime.toString().split("T");
+      start = start[1].split(":");
+      start = (parseInt(start[0]) + 6) % 24;
+      start = start + ":" + "00" + "-";
+      let end = endTime.toString().split("T");
+      end = end[1].split(":");
+      end = (parseInt(end[0]) + 6) % 24;
+      end = end + ":" + "00";
+      return start.toString() + end.toString();
+    }
+    setCategoryAccepted([]);
+    return "10";
+  };
   /* 
     @function confirmTogglePassword
     @detail set the password type of field name 'confirmpassword'
@@ -155,7 +156,6 @@ const SignUp = () => {
   const confirmTogglePasswords = () => {
     setConfirmPasswordType(togglePassword(confirmPasswordType));
   };
-
   return (
     <div className="signUp">
       <Formik
@@ -167,30 +167,29 @@ const SignUp = () => {
           password: "",
           confirmPassword: "",
           address1: "",
-          state1: "",
+          state: "",
           city: "",
           pinCode: "",
           role: "",
           gstNo: "",
           registrationNo: "",
-          selectedImage: "",
         }}
         validationSchema={SignUpValidations}
-        validator={() => ({})}
         onSubmit={(values) => {
-          const data1 = {
+          const dropoff = handleTime();
+          const info = {
             values,
             state: state1,
             city: city,
-            role: role,
+            role: role.toUpperCase(),
             categoryAccepted: categoryAccepted,
-            startTime: startTime,
-            endTime: endTime,
+            dropOff: dropoff,
           };
-          dispatch(signUpRequest(data1));
+
+          dispatch(signUpRequest(info));
         }}
       >
-        {({errors, handleChange}) => (
+        {({errors, touched, handleChange}) => (
           <Form>
             <div className="Form-bodY">
               <div className="signup-heading">
@@ -210,7 +209,8 @@ const SignUp = () => {
                       placeholder="First Name"
                       autoComplete="off"
                     />
-                    {errors.firstName ? (
+
+                    {touched.firstName && errors.firstName ? (
                       <div className="formErrors">{errors.firstName}</div>
                     ) : null}
                   </div>
@@ -226,7 +226,7 @@ const SignUp = () => {
                       placeholder="Last Name"
                       autoComplete="off"
                     />
-                    {errors.lastName ? (
+                    {touched.lastName && errors.lastName ? (
                       <div className="formErrors">{errors.lastName}</div>
                     ) : null}
                   </div>
@@ -244,7 +244,7 @@ const SignUp = () => {
                       placeholder="Mail"
                       autoComplete="off"
                     />
-                    {errors.email ? (
+                    {touched.email && errors.email ? (
                       <div className="formErrors">{errors.email}</div>
                     ) : null}
                   </div>
@@ -260,7 +260,7 @@ const SignUp = () => {
                       placeholder="Mobile Number"
                       autoComplete="off"
                     />
-                    {errors.mobileNo ? (
+                    {touched.mobileNo && errors.mobileNo ? (
                       <div className="formErrors">{errors.mobileNo}</div>
                     ) : null}
                   </div>
@@ -279,7 +279,7 @@ const SignUp = () => {
                         placeholder="Enter Password"
                         autoComplete="off"
                       />
-                      {errors.password ? (
+                      {touched.password && errors.password ? (
                         <div className="formErrors">{errors.password}</div>
                       ) : null}
                       <div className="input-group-btn">
@@ -288,7 +288,7 @@ const SignUp = () => {
                           type="button"
                           onClick={togglePasswords}
                         >
-                          {passwordType === "password" ? (
+                          {passwordType === PASSWORD ? (
                             <ShowOffIcon />
                           ) : (
                             <ShowIcon />
@@ -311,7 +311,7 @@ const SignUp = () => {
                         placeholder="Confirm Password"
                         autoComplete="off"
                       />
-                      {errors.confirmPassword ? (
+                      {touched.confirmPassword && errors.confirmPassword ? (
                         <div className="formErrors">
                           {errors.confirmPassword}
                         </div>
@@ -322,7 +322,7 @@ const SignUp = () => {
                           type="button"
                           onClick={confirmTogglePasswords}
                         >
-                          {confirmPasswordType === "password" ? (
+                          {confirmPasswordType === PASSWORD ? (
                             <ShowOffIcon />
                           ) : (
                             <ShowIcon />
@@ -345,7 +345,7 @@ const SignUp = () => {
                       placeholder="Address"
                       autoComplete="off"
                     />
-                    {errors.address1 ? (
+                    {touched.address1 && errors.address1 ? (
                       <div className="formErrors">{errors.address1}</div>
                     ) : null}
                   </div>
@@ -368,14 +368,14 @@ const SignUp = () => {
                         );
                       })}
                     </SelectStyle>
-                    {errors.state1 ? (
-                      <div className="formErrors">{errors.state1}</div>
+                    {touched.state && errors.state ? (
+                      <div className="formErrors">{errors.state}</div>
                     ) : null}
                   </div>
                 </div>
                 <div className="row">
                   <div className="inputGroup">
-                    <label>
+                    <label id="city">
                       City <i className="text-danger">*</i>
                     </label>
                     <SelectStyle
@@ -391,13 +391,13 @@ const SignUp = () => {
                           })
                         : ""}
                     </SelectStyle>
-                    {errors.city ? (
+                    {touched.city && errors.city ? (
                       <div className="formErrors">{errors.city}</div>
                     ) : null}
                   </div>
 
                   <div className="inputGroup">
-                    <label htmlFor="pincode">
+                    <label htmlFor="pinCode">
                       Pincode <i className="text-danger">*</i>
                     </label>
                     <Field
@@ -408,51 +408,38 @@ const SignUp = () => {
                       placeholder="Pincode"
                       autoComplete="off"
                     />
-                    {errors.pinCode ? (
+                    {touched.pinCode && errors.pinCode ? (
                       <div className="formErrors">{errors.pinCode}</div>
                     ) : null}
                   </div>
                 </div>
                 <div className="row">
                   <div className="inputGroup">
-                    <label htmlFor="role">
+                    <label id="role" htmlFor="role">
                       Role <i className="text-danger">*</i>
                     </label>
-                    <div className="role">
-                      <Dropdown
-                        data={[
-                          {label: "Customer"},
-                          {label: "Collector"},
-                          {label: "Vendor"},
-                        ]}
-                        id="role"
-                        name="role"
-                        value={role}
-                        style={{borderRadius: "17px"}}
-                        onChange={(e) => handleDropdown(e)}
-                      />
+                    <div id="role" className="role">
+                      <>
+                        <Dropdown
+                          data={[
+                            {label: "Customer"},
+                            {label: "Collector"},
+                            {label: "Vendor"},
+                          ]}
+                          name="role"
+                          value={role}
+                          style={{borderRadius: "17px"}}
+                          placeholder="Select your Role"
+                          onChange={(e) => handleDropdown(e)}
+                        />
+                      </>
                     </div>
-                    {errors.role ? (
-                      <div className="formErrors">{errors.role}</div>
-                    ) : null}
-                  </div>
-                  <div className="inputGroup">
-                    <label htmlFor="GSTIN">
-                      Profile Picture <i className="text-danger">*</i>
-                    </label>
-
-                    <input
-                      type="file"
-                      name="selectedImage"
-                      onChange={handleChange}
-                      className="form-control"
-                    />
                   </div>
                 </div>
                 {role === "Vendor" || role === "Collector" ? (
                   <div className="row">
                     <div className="inputGroup">
-                      <label htmlFor="GSTIN">
+                      <label htmlFor="gstNo">
                         GST-IN <i className="text-danger">*</i>
                       </label>
                       <Field
@@ -591,4 +578,10 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapStateToProps = (state) => {
+  return {
+    res: state.signUp?.data,
+  };
+};
+
+export default connect(mapStateToProps)(signUp);

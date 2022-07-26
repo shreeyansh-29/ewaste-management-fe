@@ -25,6 +25,6 @@ exports[`Organize Drives test OrganizeDrive 1`] = `
     }
   }
 >
-  <OrganizeDrive />
+  <Connect(OrganizeDrive) />
 </ContextProvider>
 `;

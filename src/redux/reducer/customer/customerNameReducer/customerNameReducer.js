@@ -12,7 +12,7 @@ export const customerNameReducer = (state = initialState, action = action) => {
     case types.CUSTOMER_NAME_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_NAME_SUCCESS:
-      return {...state, data: action};
+      return {...state, data: action.payload};
     case types.CUSTOMER_NAME_ERROR:
       return {...state, error: action};
     default:

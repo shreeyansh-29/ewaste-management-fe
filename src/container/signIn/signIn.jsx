@@ -12,16 +12,15 @@ import jwt from "jwt-decode";
 import {TOAST_ERROR1, TOAST_ERROR2} from "../constant/constant";
 import Toast from "../../components/toast";
 import "./signin.css";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {signInRequest} from "../../redux/action/signInAction/signInActions";
 import {SignInValidations} from "../constant/validations";
 import {Heading, ButtonStyle, Headings} from "../../components/styles";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 
-const SignIn = () => {
+const SignIn = ({res}) => {
   const dispatch = useDispatch();
   const [passwordType, setpasswordType] = useState("password");
-  const res = useSelector((state) => state.signIn?.data);
   const togglePasswords = () => {
     setpasswordType(togglePassword(passwordType));
   };
@@ -34,7 +33,7 @@ const SignIn = () => {
       if (res.status == "fail") {
         Toast.error(TOAST_ERROR2);
       } else if (res.status == "success") {
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res?.data?.token);
         const tokens = localStorage.getItem("token");
         let token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
@@ -171,4 +170,10 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  return {
+    res: state.signIn?.data,
+  };
+};
+
+export default connect(mapStateToProps)(SignIn);

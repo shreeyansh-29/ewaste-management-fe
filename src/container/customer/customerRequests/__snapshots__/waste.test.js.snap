@@ -25,6 +25,6 @@ exports[`EWaste Drives test Waste 1`] = `
     }
   }
 >
-  <Waste />
+  <Connect(Waste) />
 </ContextProvider>
 `;

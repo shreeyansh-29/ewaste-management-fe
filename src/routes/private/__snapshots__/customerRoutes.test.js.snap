@@ -31,7 +31,7 @@ exports[`testing Customer Routes test customerRoutes 1`] = `
     path="/Popup"
   />
   <Route
-    element={<Waste />}
+    element={<Memo(Connect(Waste)) />}
     path="/Drives/Waste"
   />
   <Route

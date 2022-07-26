@@ -4,7 +4,6 @@
 /* eslint-disable indent */
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
-import {} from "@material-ui/icons";
 import "../customer.css";
 import {useDispatch, useSelector} from "react-redux";
 import ViewCollectors from "./viewCollectors";

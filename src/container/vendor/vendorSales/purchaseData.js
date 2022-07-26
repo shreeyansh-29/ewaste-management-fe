@@ -46,7 +46,7 @@ const PurchaseData = (props) => {
             }}
           >
             {" "}
-            <a href="/MyOrders" style={{color: "blue"}}>
+            <a href="/MyOrders/SalesSummary" style={{color: "blue"}}>
               See details
             </a>
           </div>

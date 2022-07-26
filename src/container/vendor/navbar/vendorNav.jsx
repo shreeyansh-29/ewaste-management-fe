@@ -7,12 +7,12 @@ import Swal from "sweetalert2";
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {useDispatch, useSelector} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/vendorNameAction";
 
-const VendorNav = () => {
+const VendorNav = ({res}) => {
   const dispatch = useDispatch();
-  const res = useSelector((state) => state.vendorName?.data);
+
   const name = res.firstName;
 
   React.useEffect(() => {
@@ -80,4 +80,10 @@ const VendorNav = () => {
   );
 };
 
-export default VendorNav;
+const mapStateToProps = (state) => {
+  return {
+    res: state.vendorName?.data,
+  };
+};
+
+export default connect(mapStateToProps)(VendorNav);

@@ -25,6 +25,6 @@ exports[`SignUp test signUp 1`] = `
     }
   }
 >
-  <SignUp />
+  <Connect(signUp) />
 </ContextProvider>
 `;

@@ -8,22 +8,22 @@ exports[`testing Vendor Routes test vendorRoutes 1`] = `
     path="/VendorHome"
   />
   <Route
-    element={<VendorNav />}
+    element={<Memo(Connect(VendorNav)) />}
     exact={true}
     path="/VendorNav"
   />
   <Route
-    element={<VendorProfile />}
+    element={<Memo(Connect(VendorProfile)) />}
     exact={true}
     path="/VendorProfile"
   />
   <Route
-    element={<Sales />}
+    element={<Memo(Connect(Sales)) />}
     exact={true}
     path="/MyOrders/PurchaseItems"
   />
   <Route
-    element={<MyOrders />}
+    element={<Memo(Connect(MyOrders)) />}
     exact={true}
     path="/MyOrders/SalesSummary"
   />

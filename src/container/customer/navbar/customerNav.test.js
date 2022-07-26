@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import toJson from "enzyme-to-json";
 import CustomerNav from "./customerNav";
 import {Navbar} from "react-bootstrap";
+import Swal from "sweetalert2";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -36,8 +37,7 @@ describe("Customer Navbar", () => {
       data: {payload: {}},
     },
     customerNotificationData: {
-      status: "success",
-      data: {},
+      data: {status: "success", data: {}},
     },
   });
   it("test CustomerNav", () => {
@@ -89,5 +89,9 @@ describe("Customer Navbar", () => {
     );
     wrapper.find(".Btn").simulate("click");
     expect(mockFn).toBeCalled;
+  });
+  it("should clear localStorage after logout ", () => {
+    expect(Swal.getTitle().textContent).toEqual("Are you sure?");
+    Swal.clickConfirm();
   });
 });

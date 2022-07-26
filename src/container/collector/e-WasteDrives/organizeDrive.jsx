@@ -4,7 +4,7 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -19,10 +19,9 @@ import {collectorOrganizeDriveRequest} from "../../../redux/action/collector/col
 import DateFormat from "../../../components/date/date";
 toast.configure();
 
-const OrganizeDrive = () => {
+const OrganizeDrive = ({res}) => {
   var maxDate = new Date();
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorOrganizeDrive);
   useEffect(() => {
     if (res?.status === "success") {
       setStatus(res.data.status);
@@ -227,4 +226,10 @@ const OrganizeDrive = () => {
   );
 };
 
-export default OrganizeDrive;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorOrganizeDrive,
+  };
+};
+
+export default connect(mapStateToProps)(OrganizeDrive);
