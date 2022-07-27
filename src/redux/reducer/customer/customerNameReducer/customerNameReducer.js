@@ -7,14 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const customerNameReducer = (state = initialState, action = action) => {
-  switch (action.type) {
+export const customerNameReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case types.CUSTOMER_NAME_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_NAME_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.CUSTOMER_NAME_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

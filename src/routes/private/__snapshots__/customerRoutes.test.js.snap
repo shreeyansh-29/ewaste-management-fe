@@ -15,11 +15,11 @@ exports[`testing Customer Routes test customerRoutes 1`] = `
     path="/CustomerNav"
   />
   <Route
-    element={<PickUp />}
+    element={<Memo(Connect(PickUp)) />}
     path="/Request/PickUp"
   />
   <Route
-    element={<DropOff />}
+    element={<Memo(Connect(DropOff)) />}
     path="/Request/DropOff"
   />
   <Route

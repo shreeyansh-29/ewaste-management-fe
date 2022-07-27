@@ -9,15 +9,15 @@ const initialState = {
 
 export const collectorMyDrivesStatusReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.COLLECTOR_MYDRIVES_STATUS_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_MYDRIVES_STATUS_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.COLLECTOR_MYDRIVES_STATUS_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

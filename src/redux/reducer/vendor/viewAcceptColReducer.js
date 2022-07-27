@@ -6,14 +6,14 @@ const initialState = {
   isLoading: false,
   error: "",
 };
-export const viewAcceptColReducer = (state = initialState, action = action) => {
-  switch (action.type) {
+export const viewAcceptColReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.VENDOR_COLLECTORPROFILE_ACCEPT_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

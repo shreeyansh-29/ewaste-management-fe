@@ -9,15 +9,15 @@ const initialState = {
 
 export const vendorMyOrdersReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.VENDOR_MYORDERS_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_MYORDERS_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.VENDOR_MYORDERS_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

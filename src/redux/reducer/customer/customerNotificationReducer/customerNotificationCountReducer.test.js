@@ -35,10 +35,7 @@ describe("customerNotificationCountReducer", () => {
         payload: {count: 3},
       })
     ).toEqual({
-      data: {
-        payload: {count: 3},
-        type: types.CUSTOMER_NOTIFICATION_COUNT_SUCCESS,
-      },
+      data: {count: 3},
       isLoading: true,
       error: "",
     });
@@ -51,7 +48,7 @@ describe("customerNotificationCountReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.CUSTOMER_NOTIFICATION_COUNT_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

@@ -25,6 +25,6 @@ exports[`PickUp Request test PickUp 1`] = `
     }
   }
 >
-  <PickUp />
+  <Connect(PickUp) />
 </ContextProvider>
 `;

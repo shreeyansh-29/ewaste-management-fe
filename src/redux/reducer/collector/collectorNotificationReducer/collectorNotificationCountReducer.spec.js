@@ -35,10 +35,8 @@ describe("collectorNotificationCountReducer", () => {
         payload: {status: "success"},
       })
     ).toEqual({
-      data: {
-        payload: {status: "success"},
-        type: types.COLLECTOR_NOTIFICATION_COUNT_SUCCESS,
-      },
+      data: {status: "success"},
+
       isLoading: true,
       error: "",
     });
@@ -51,10 +49,8 @@ describe("collectorNotificationCountReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {
-        payload: "ERROR",
-        type: types.COLLECTOR_NOTIFICATION_COUNT_ERROR,
-      },
+      error: "ERROR",
+
       isLoading: true,
     });
   });

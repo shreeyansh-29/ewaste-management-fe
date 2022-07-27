@@ -7,14 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const collectorSoldReducer = (state = initialState, action = action) => {
-  switch (action.type) {
+export const collectorSoldReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case types.COLLECTOR_SOLD_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_SOLD_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.COLLECTOR_SOLD_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

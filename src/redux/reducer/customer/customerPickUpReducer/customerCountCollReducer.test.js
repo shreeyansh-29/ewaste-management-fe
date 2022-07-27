@@ -37,10 +37,7 @@ describe("customerCountCollReducer", () => {
     ).toEqual({
       isLoading: true,
       error: "",
-      data: {
-        payload: {status: "success"},
-        type: types.CUSTOMER_COUNT_COLL_SUCCESS,
-      },
+      data: {status: "success"},
     });
   });
   it("should handle CUSTOMER_COUNT_COLL_ERROR", () => {
@@ -51,7 +48,7 @@ describe("customerCountCollReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.CUSTOMER_COUNT_COLL_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

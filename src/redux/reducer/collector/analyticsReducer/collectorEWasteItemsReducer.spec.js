@@ -48,7 +48,7 @@ describe("collectorEWasteItems", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.COLLECTOR_EWASTE_ITEMS_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

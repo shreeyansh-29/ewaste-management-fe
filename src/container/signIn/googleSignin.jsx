@@ -2,25 +2,25 @@
   @module Google SignIn
 */
 import jwt from "jwt-decode";
-import {toast} from "react-toastify";
+import toast from "../../components/toast";
 import {googleSignInRequest} from "../../redux/action/signInAction/googleSignInAction";
 import googleLogo from "../../assets/images/google-logo.png";
 import React, {useState, useEffect} from "react";
 import GoogleLogin from "react-google-login";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
+import {TOAST_ERROR1} from "../constant/constant";
 
-const GoogleSignin = () => {
+const GoogleSignin = ({res}) => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.googleSignIn?.data);
 
   useEffect(() => {
     if (isEmpty(res) !== true) {
       if (res.status == "Fail") {
-        toast.error("Wrong Email ID", {position: toast.POSITION.TOP_RIGHT});
+        toast.error(TOAST_ERROR1);
       } else if (res.status == "success") {
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res?.data?.token);
         localStorage.setItem("email", email);
         const tokens = localStorage.getItem("token");
         const token = jwt(tokens);
@@ -87,4 +87,11 @@ const GoogleSignin = () => {
     </div>
   );
 };
-export default GoogleSignin;
+
+const mapStateToProps = (state) => {
+  return {
+    res: state.googleSignIn,
+  };
+};
+
+export default connect(mapStateToProps)(GoogleSignin);

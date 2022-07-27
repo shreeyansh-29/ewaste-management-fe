@@ -13,9 +13,9 @@ const initialState = {
 
 export const forgotPasswordReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case FORGOT_PASSWORD_REQUEST:
       return {
         ...state,
@@ -23,9 +23,9 @@ export const forgotPasswordReducer = (
       };
 
     case FORGOT_PASSWORD_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case FORGOT_PASSWORD_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

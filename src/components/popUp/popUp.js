@@ -24,6 +24,7 @@ const Popup = (props) => {
 
   useEffect(() => {
     if (isEmpty(res?.data) !== true || res?.status === "success") {
+      /*istanbul ignore next*/
       setValue((prev) => {
         return {
           ...prev,
@@ -37,6 +38,7 @@ const Popup = (props) => {
   }, [res]);
   useEffect(() => {
     if (isEmpty(res2?.data) !== true || res2?.status === "success") {
+      /*istanbul ignore next*/
       setValue((prev) => {
         return {
           ...prev,
@@ -54,6 +56,7 @@ const Popup = (props) => {
   }, [res2]);
   useEffect(() => {
     if (isEmpty(res3?.data) !== true || res3?.status === "success") {
+      /*istanbul ignore next*/
       setValue((prev) => {
         return {
           ...prev,
@@ -71,6 +74,7 @@ const Popup = (props) => {
   }, [res3]);
   useEffect(() => {
     if (isEmpty(res4?.data) !== true || res4?.status === "success") {
+      /*istanbul ignore next*/
       setValue((prev) => {
         return {
           ...prev,

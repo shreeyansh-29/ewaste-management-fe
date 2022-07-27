@@ -228,7 +228,7 @@ const OrganizeDrive = ({res}) => {
 
 const mapStateToProps = (state) => {
   return {
-    res: state.collectorOrganizeDrive,
+    res: state.collectorOrganizeDrive?.data,
   };
 };
 

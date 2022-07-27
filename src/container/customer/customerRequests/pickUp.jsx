@@ -7,7 +7,7 @@ import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {} from "@material-ui/icons";
 import "../customer.css";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import AddIcon from "@material-ui/icons/AddBox";
 import {
   MuiPickersUtilsProvider,
@@ -24,8 +24,7 @@ import Toast from "../../../components/toast";
 import {Button, TableTitle} from "../../../components/styles";
 import {QuantityValidation} from "./quantityValidations";
 
-export default function PickUp() {
-  let result1 = useSelector((state) => state.customerCountColl?.data);
+function PickUp({result1}) {
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState();
@@ -172,8 +171,7 @@ export default function PickUp() {
     @detail dispatch the pickUpCountRequest from PickUpAction after successful validation
     @return {void}
   */
-  const handleClick = (event) => {
-    event.preventDefault();
+  const handleClick = () => {
     if (QuantityValidation(data[0])) {
       dispatch(customerCountCollRequest(data[0].category));
       setExpanded(true);
@@ -248,3 +246,11 @@ export default function PickUp() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    result1: state.customerCountColl?.data,
+  };
+};
+
+export default connect(mapStateToProps)(PickUp);

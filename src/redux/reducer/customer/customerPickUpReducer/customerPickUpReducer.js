@@ -9,15 +9,15 @@ const initialState = {
 
 export const customerPickUpReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.CUSTOMER_PICKUP_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_PICKUP_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.CUSTOMER_PICKUP_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

@@ -48,7 +48,7 @@ describe("vendorViewItemsReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.VENDOR_VIEW_ITEMS_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

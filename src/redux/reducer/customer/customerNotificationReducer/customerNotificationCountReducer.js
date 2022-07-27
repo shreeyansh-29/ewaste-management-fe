@@ -9,9 +9,9 @@ const initialState = {
 
 export const customerNotificationCountReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.CUSTOMER_NOTIFICATION_COUNT_REQUEST:
       return {
         ...state,
@@ -20,12 +20,12 @@ export const customerNotificationCountReducer = (
     case types.CUSTOMER_NOTIFICATION_COUNT_SUCCESS:
       return {
         ...state,
-        data: action,
+        data: payload,
       };
     case types.CUSTOMER_NOTIFICATION_COUNT_ERROR:
       return {
         ...state,
-        error: action,
+        error: payload,
       };
     default:
       return state;

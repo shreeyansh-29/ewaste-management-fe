@@ -50,7 +50,7 @@ describe("customerNameReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.CUSTOMER_NAME_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

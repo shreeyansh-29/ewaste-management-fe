@@ -5,19 +5,17 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import "../customer.css";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import ViewCollectors from "./viewCollectors";
 import AddIcon from "@material-ui/icons/AddBox";
-import SearchIcon from "@material-ui/icons/Search";
 import {TOAST_ERROR4, TOAST_WARN1} from "../../constant/constant";
 import Toast from "../../../components/toast";
 import {isEmpty} from "lodash";
 import {dropOffColumns} from "./dropOffColumns";
 import {customerDropOffRequest} from "../../../redux/action/customer/customerDropOffAction/customerDropOffAction";
 
-const DropOff = () => {
+const DropOff = ({res1}) => {
   const dispatch = useDispatch();
-  let res1 = useSelector((state) => state.customerDropOff?.data);
 
   const [expanded, setExpanded] = useState(false);
   const [collectors, setCollectors] = useState([]);
@@ -83,7 +81,6 @@ const DropOff = () => {
           data={value}
           icons={{
             Add: () => <AddIcon style={{fill: "#e75480"}} />,
-            Search: () => <SearchIcon style={{fill: "white"}} />,
           }}
           editable={{
             onRowAdd: isEditable
@@ -127,4 +124,11 @@ const DropOff = () => {
     </div>
   );
 };
-export default DropOff;
+
+const mapStateToProps = (state) => {
+  return {
+    res1: state.customerDropOff?.data,
+  };
+};
+
+export default connect(mapStateToProps)(DropOff);

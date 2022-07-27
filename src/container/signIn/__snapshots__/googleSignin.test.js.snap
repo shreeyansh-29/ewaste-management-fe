@@ -25,6 +25,6 @@ exports[`googleSignIn test googleSignIn 1`] = `
     }
   }
 >
-  <GoogleSignin />
+  <Connect(GoogleSignin) />
 </ContextProvider>
 `;

@@ -8,15 +8,15 @@ const initialState = {
 };
 export const viewColProfileReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.VENDOR_COLLECTORPROFILE_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_COLLECTORPROFILE_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.VENDOR_COLLECTORPROFILE_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

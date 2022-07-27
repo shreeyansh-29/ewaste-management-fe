@@ -7,14 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const vendorNameReducer = (state = initialState, action = action) => {
-  switch (action.type) {
+export const vendorNameReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case types.VENDOR_NAME_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_NAME_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.VENDOR_NAME_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

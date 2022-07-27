@@ -48,7 +48,7 @@ describe("customerEWasteReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.CUSTOMER_EWASTE_DRIVES_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

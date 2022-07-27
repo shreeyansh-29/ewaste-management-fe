@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DropOff Request test DropOff 1`] = `
+exports[`testing should render component 1`] = `
 <ContextProvider
   value={
     Object {
@@ -25,6 +25,11 @@ exports[`DropOff Request test DropOff 1`] = `
     }
   }
 >
-  <Connect(DropOff) />
+  <Popup
+    c={1}
+    cont={1}
+    content={1}
+    contents={1}
+  />
 </ContextProvider>
 `;

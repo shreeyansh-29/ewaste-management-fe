@@ -48,7 +48,7 @@ describe("vendorAcceptItemsReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.VENDOR_ACCEPT_ITEMS_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

@@ -9,15 +9,15 @@ const initialState = {
 
 export const vendorCollectorDataReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.VENDOR_COLLECTOR_DATA_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_COLLECTOR_DATA_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.VENDOR_COLLECTOR_DATA_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

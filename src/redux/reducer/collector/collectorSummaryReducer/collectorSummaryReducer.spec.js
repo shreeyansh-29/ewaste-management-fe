@@ -48,10 +48,8 @@ describe("collectorSummaryReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {
-        payload: "ERROR",
-        type: types.COLLECTOR_SUMMARY_ERROR,
-      },
+      error: "ERROR",
+
       isLoading: true,
     });
   });

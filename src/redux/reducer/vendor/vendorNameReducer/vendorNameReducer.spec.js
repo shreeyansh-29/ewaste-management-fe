@@ -48,7 +48,7 @@ describe("vendorNameReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.VENDOR_NAME_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

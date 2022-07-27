@@ -12,7 +12,7 @@ import {act} from "react-test-renderer";
 Enzyme.configure({adapter: new Adapter()});
 
 const mockedUsedDispatch = jest.fn();
-const mockedUsedSelector = jest.fn();
+
 const mockStore = configureStore([]);
 
 jest.mock("react-redux", () => ({
@@ -20,30 +20,16 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockedUsedDispatch,
 }));
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockedUsedSelector,
-}));
-
+jest.useFakeTimers();
 describe("test ItemsForSale", () => {
-  let store;
-  store = mockStore({
-    collectorForSale: {
-      isLoading: true,
-      error: "",
-      data: {
-        status: "success",
-        data: {
-          category: "Screens",
-          availableQuantity: "9",
-          id: 3,
-          price: "1000",
-          itemName: "AC",
-        },
-      },
-    },
-  });
   it("should render ItemsForSale", () => {
+    let store = mockStore({
+      collectorForSale: {
+        isLoading: false,
+        error: "",
+        data: {},
+      },
+    });
     const wrapper = shallow(
       <Provider store={store}>
         <ItemsForSale />
@@ -53,6 +39,13 @@ describe("test ItemsForSale", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   it("should test for Material Table", () => {
+    let store = mockStore({
+      collectorForSale: {
+        isLoading: false,
+        error: "",
+        data: {},
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <ItemsForSale />
@@ -61,6 +54,13 @@ describe("test ItemsForSale", () => {
     expect(wrapper.find(MaterialTable).length).toEqual(1);
   });
   it("should have no data initially", () => {
+    let store = mockStore({
+      collectorForSale: {
+        isLoading: false,
+        error: "",
+        data: {},
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <ItemsForSale />
@@ -70,7 +70,14 @@ describe("test ItemsForSale", () => {
       "No records to display"
     );
   });
-  it.only("should have an add button", () => {
+  it("should have an add button", () => {
+    let store = mockStore({
+      collectorForSale: {
+        isLoading: false,
+        error: "",
+        data: {},
+      },
+    });
     const props = {
       handleSubmit: jest.fn(),
     };
@@ -79,118 +86,65 @@ describe("test ItemsForSale", () => {
         <ItemsForSale {...props} />
       </Provider>
     );
-    const addBtn = wrapper.find(".MuiSvgIcon-root").at(0).simulate("click");
-    expect(addBtn).toBeTruthy();
-    // console.log("wrpper", wrapper.find(".MuiTableRow-root").debug());
+    wrapper.find("button[title='Add']").simulate("click");
 
-    let itemName;
-    act(() => {
-      itemName = wrapper
-        .find('input[placeholder="Item Name"]')
-        .simulate("change", {
-          persist: () => {},
-          target: {
-            type: "text",
-            value: "AC",
-          },
-        });
+    const itemName = wrapper.find('input[placeholder="Item Name"]');
+    itemName.simulate("change", {
+      persist() {},
+      target: {
+        type: "text",
+        value: "AC",
+      },
     });
     expect(itemName.html()).toMatch("AC");
 
-    let checkBtn;
-    act(() => {
-      checkBtn = wrapper.find(".MuiIconButton-label").at(2);
-      expect(checkBtn.simulate("click")).toBeTruthy();
-    });
-    expect(checkBtn.length).toEqual(1);
+    let categoryInput = wrapper.find('div[aria-label="Category"]');
 
-    console.log("Hy", wrapper.find(".MuiIconButton-label").length);
-    let saleItBtn = jest.autoMockOn();
+    // categoryInput.simulate("change", {target: {value: " "}});
+    categoryInput.simulate("mousedown", {button: 0});
+    categoryInput.update();
+
+    wrapper
+      .find("input[value='']")
+      .at(0)
+      .props()
+      .onChange({target: {value: 8}});
+    // console.log("wraper", wrapper.find("input[value='']").at(0).props.value);
+
+    let quantity = wrapper.find('input[placeholder="Quantity"]');
+
+    quantity.simulate("mousedown", {target: {value: 8}});
+    quantity.update();
+
+    expect(quantity.prop("value")).toBe("");
+
+    wrapper.find('button[title="Save"]').simulate("click");
+
     act(() => {
-      saleItBtn = wrapper.find(".bttn");
+      jest.runAllTimers();
+      console.log(wrapper.find('button[type="button"]').debug());
     });
-    console.log("wrapper", saleItBtn.debug());
-    expect(saleItBtn).toBeTruthy();
-    saleItBtn.simulate("click");
   });
-
-  // it("should test button", () => {
-  //   const handleSubmit = jest.fn();
-  //   const name = "Sale It";
-  //   const event = {preventDefault() {}, datas: ""};
-  //   const wrapper = shallow(
-  //     <Provider store={store}>
-  //       <ItemsForSale onClick={handleSubmit}>{name}</ItemsForSale>
-  //     </Provider>
-  //   );
-  //   const render = wrapper.dive().find(".bttn");
-  //   // render.simulate("click", event);
-  //   // wrapper.find(".bttn").simulate("click", event);
-  //   // expect(handleSubmit).toHaveBeenCalled;
-  // });
-  // it("should test handleSubmit", () => {
-  //   const handleSubmit = jest.fn();
-  //   const props = {preventDefault() {}, datas: {}};
-  //   const wrapper = shallow(
-  //     <Provider store={store}>
-  //       <ItemsForSale handleSubmit={handleSubmit} {...props} />
-  //     </Provider>
-  //   );
-  //   expect(wrapper).toBeTruthy();
-  //   expect(handleSubmit).toHaveBeenCalled;
-  //   if (props.datas === null) {
-  //     expect(datas).toHaveBeenCalledWith(TOAST_ERROR4);
-  //   }
-  // });
+  it("should test Sale It Button", () => {
+    let store = mockStore({
+      collectorForSale: {
+        isLoading: true,
+        error: "",
+        data: {
+          availableQuantity: "8",
+          category: "LargeEqip",
+          itemName: "Washing Machines",
+          price: "8000",
+          quantity: "8",
+          status: "Available",
+        },
+      },
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <ItemsForSale />
+      </Provider>
+    );
+    expect(wrapper).toBeTruthy;
+  });
 });
-
-// console.log(wrapper.find(".MuiFormControl-root").at(1).debug());
-// let categoryInput, categoryDiv, categoryDropdown;
-// act(() => {
-//   categoryDiv = wrapper
-//     .find(".MuiFormControl-root")
-//     .at(1)
-//     .find('div[aria-label="Category"]');
-//   categoryInput = categoryDiv.find(".MuiSelect-nativeInput").at(0);
-//   console.log(categoryDiv.debug());
-//   categoryDropdown = categoryDiv
-//     .find('svg[aria-hidden="true"]')
-//     .simulate("change", {
-//       preventDefault() {},
-//       target: {
-//         value:
-//           "Temperature exchange equipment (such as air conditioners, freezers)",
-//       },
-//     });
-//   categoryDiv = categoryDropdown;
-//   categoryInput = "Temp";
-//   expect(categoryInput).toBeTruthy();
-// });
-// let quantity;
-// act(() => {
-//   quantity = wrapper
-//     .find('input[placeholder="Quantity"]')
-//     .first()
-//     .invoke("onChange", {
-//       persist: () => {},
-//       target: {
-//         type: "number",
-//         value: "10",
-//       },
-//     });
-// });
-// expect(quantity.text).toMatch("10");
-
-//   let price;
-//   act(() => {
-//     price = wrapper
-//       .find('input[placeholder="Price/Item"]')
-//       .simulate("change", {
-//         persist: () => {},
-//         target: {
-//           type: "number",
-//           value: "1000",
-//         },
-//       });
-//   });
-//   expect(price.html()).toMatch("1000");

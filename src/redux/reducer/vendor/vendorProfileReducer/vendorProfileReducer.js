@@ -7,14 +7,14 @@ const initialState = {
   isLoading: false,
 };
 
-export const vendorProfileReducer = (state = initialState, action = action) => {
-  switch (action.type) {
+export const vendorProfileReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case types.VENDOR_PROFILE_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_PROFILE_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.VENDOR_PROFILE_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

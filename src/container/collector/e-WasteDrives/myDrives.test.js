@@ -122,6 +122,7 @@ describe("MyDrives", () => {
       .simulate("change", {persist() {}, target: {value: "Cancelled"}});
 
     console.log("status", status.html());
+    // expect(status.html()).toMatch("Completed");
     wrapper.find('button[title="Save"]').simulate("click");
     jest.runAllTimers();
 

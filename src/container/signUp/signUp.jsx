@@ -2,6 +2,7 @@
 /* 
   @module SignUp 
 */
+
 import {Formik, Form, Field} from "formik";
 import React, {useState, useEffect} from "react";
 import Select from "react-select";
@@ -189,7 +190,9 @@ const signUp = ({res}) => {
           dispatch(signUpRequest(info));
         }}
       >
-        {({errors, touched, handleChange}) => (
+        {(
+          {errors, touched, handleChange} //NoSonar
+        ) => (
           <Form>
             <div className="Form-bodY">
               <div className="signup-heading">

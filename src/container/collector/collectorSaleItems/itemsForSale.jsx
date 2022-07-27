@@ -10,15 +10,14 @@ import {
   TOAST_SUCCESS6,
   TOAST_WARN1,
 } from "../../constant/constant";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
 import Toast from "../../../components/toast";
 import {collectorForSaleRequest} from "../../../redux/action/collector/collectorForSaleAction/collectorForSaleAction";
 import {ItemsForSaleColumns} from "./itemsForSalesColumns";
 
-const ItemsForSale = () => {
+const ItemsForSale = ({res}) => {
   const dispatch = useDispatch();
-  let res = useSelector((state) => state.collectorForSale);
   const [status, setStatus] = useState("");
 
   useEffect(() => {
@@ -86,7 +85,6 @@ const ItemsForSale = () => {
           icons={{
             Add: () => <AddIcon style={{fill: "#e75480"}} />,
           }}
-          /*istanbul ignore next */
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve) => {
@@ -104,8 +102,7 @@ const ItemsForSale = () => {
                   className="bttn"
                   disabled={status === "Available" ? true : false}
                 >
-                  {" "}
-                  Sale It{" "}
+                  Sale It
                 </button>
               ),
               onClick: (e, datas) => {
@@ -123,4 +120,10 @@ const ItemsForSale = () => {
   );
 };
 
-export default ItemsForSale;
+const mapStateToProps = (state) => {
+  return {
+    res: state.collectorForSale,
+  };
+};
+
+export default connect(mapStateToProps)(ItemsForSale);

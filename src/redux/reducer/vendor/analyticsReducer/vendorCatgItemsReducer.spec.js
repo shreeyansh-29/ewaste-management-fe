@@ -48,7 +48,7 @@ describe("vendorCatgItemsReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.VENDOR_CATGITEMS_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

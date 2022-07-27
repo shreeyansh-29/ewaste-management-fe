@@ -47,7 +47,7 @@ describe("collectorRevenueChart", () => {
         payload: "NOOOO!!!",
       })
     ).toEqual({
-      error: {payload: "NOOOO!!!", type: types.COLLECTOR_REVENUE_CHART_ERROR},
+      error: "NOOOO!!!",
       data: {},
       isLoading: true,
     });

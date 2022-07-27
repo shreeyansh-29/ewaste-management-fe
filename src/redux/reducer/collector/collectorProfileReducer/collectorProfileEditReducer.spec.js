@@ -48,10 +48,8 @@ describe("collectorProfileEditReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {
-        payload: "ERROR",
-        type: types.COLLECTOR_PROFILE_EDIT_ERROR,
-      },
+      error: "ERROR",
+
       isLoading: true,
     });
   });

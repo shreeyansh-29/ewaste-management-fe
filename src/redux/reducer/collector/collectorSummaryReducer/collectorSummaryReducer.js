@@ -9,15 +9,15 @@ const initialState = {
 
 export const collectorSummaryReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.COLLECTOR_SUMMARY_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_SUMMARY_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.COLLECTOR_SUMMARY_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

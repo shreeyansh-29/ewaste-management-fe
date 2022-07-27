@@ -48,7 +48,7 @@ describe("vendorCollectorDataReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.VENDOR_COLLECTOR_DATA_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

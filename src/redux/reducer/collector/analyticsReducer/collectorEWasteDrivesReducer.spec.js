@@ -48,7 +48,7 @@ describe("collectorEWasteDrives", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.COLLECTOR_EWASTE_DRIVES_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

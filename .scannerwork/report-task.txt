@@ -2,5 +2,5 @@ projectKey=ewaste_management_frontend
 serverUrl=http://localhost:9000
 serverVersion=8.9.3.48735
 dashboardUrl=http://localhost:9000/dashboard?id=ewaste_management_frontend
-ceTaskId=AYI6m2Hza8_b0tykhsYm
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYI6m2Hza8_b0tykhsYm
+ceTaskId=AYJA1vwJsmYVC8XsH30d
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYJA1vwJsmYVC8XsH30d

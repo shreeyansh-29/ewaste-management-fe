@@ -228,13 +228,13 @@ const Sales = ({res, res2}) => {
       setQuantity(datas.quantities);
       setItem(datas.itemName);
 
-      const data = {
+      const data1 = {
         id: datas.id,
         quantity: datas.quantities,
         price: datas.purchaseprice,
         date: new Date(),
       };
-      dispatch(vendorAcceptItemsRequest(data));
+      dispatch(vendorAcceptItemsRequest(data1));
 
       setDetails(res2.data);
     }

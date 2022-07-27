@@ -9,15 +9,15 @@ const initialState = {
 
 export const collectorRevenueChartReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.COLLECTOR_REVENUE_CHART_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_REVENUE_CHART_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.COLLECTOR_REVENUE_CHART_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

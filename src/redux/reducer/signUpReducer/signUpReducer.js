@@ -7,14 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const signUpReducer = (state = initialState, action = action) => {
-  switch (action.type) {
+export const signUpReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
     case types.SIGN_UP_REQUEST:
       return {...state, isLoading: true};
     case types.SIGN_UP_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.SIGN_UP_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

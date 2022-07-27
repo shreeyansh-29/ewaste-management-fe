@@ -48,7 +48,7 @@ describe("resetPasswordReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.RESET_PASSWORD_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

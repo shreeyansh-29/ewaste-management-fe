@@ -48,10 +48,7 @@ describe("collectorPendingReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {
-        payload: "ERROR",
-        type: types.COLLECTOR_PENDING_ERROR,
-      },
+      error: "ERROR",
       isLoading: true,
     });
   });

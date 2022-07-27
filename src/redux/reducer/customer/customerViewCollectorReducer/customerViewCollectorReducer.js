@@ -9,15 +9,15 @@ const initialState = {
 
 export const customerViewCollectorsReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.CUSTOMER_VIEW_COLLECTORS_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_VIEW_COLLECTORS_SUCCESS:
-      return {...state, action};
+      return {...state, data: payload};
     case types.CUSTOMER_VIEW_COLLECTORS_ERROR:
-      return {...state, action};
+      return {...state, error: payload};
     default:
       return state;
   }

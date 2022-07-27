@@ -8,15 +8,15 @@ const initialState = {
 };
 export const viewCustomerProfileReducer = (
   state = initialState,
-  action = action
+  {type, payload}
 ) => {
-  switch (action.type) {
+  switch (type) {
     case types.COLLECTOR_CUSTOMERPROFILE_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_CUSTOMERPROFILE_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: payload};
     case types.COLLECTOR_CUSTOMERPROFILE_ERROR:
-      return {...state, error: action};
+      return {...state, error: payload};
     default:
       return state;
   }

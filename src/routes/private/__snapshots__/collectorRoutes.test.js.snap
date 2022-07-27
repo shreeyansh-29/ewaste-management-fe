@@ -31,7 +31,7 @@ exports[`testing Collector Routes test collectorRoutes 1`] = `
     path="/Request/MyRequests"
   />
   <Route
-    element={<ItemsForSale />}
+    element={<Memo(Connect(ItemsForSale)) />}
     path="/Sales/ItemsForSale"
   />
   <Route

@@ -48,7 +48,7 @@ describe("customerPendingRequestReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {payload: "ERROR", type: types.CUSTOMER_PENDING_ERROR},
+      error: "ERROR",
       isLoading: true,
     });
   });

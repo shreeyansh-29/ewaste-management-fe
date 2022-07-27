@@ -7,7 +7,9 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import GoogleSignin from "./googleSignin";
 import GoogleLogin from "react-google-login";
+import toast from "../../components/toast";
 
+jest.mock("jwt-decode", () => ({}));
 Enzyme.configure({adapter: new Adapter()});
 
 const mockedUsedDispatch = jest.fn();
@@ -25,13 +27,13 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("googleSignIn", () => {
-  let store;
-  store = mockStore({
-    googleSignIn: {
-      data: {},
-    },
-  });
   it("test googleSignIn", () => {
+    let store;
+    store = mockStore({
+      googleSignIn: {
+        data: {},
+      },
+    });
     const wrapper = shallow(
       <Provider store={store}>
         <GoogleSignin />
@@ -41,6 +43,12 @@ describe("googleSignIn", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   it("should test for GoogleLogin", () => {
+    let store;
+    store = mockStore({
+      googleSignIn: {
+        data: {},
+      },
+    });
     const wrapper = mount(
       <Provider store={store}>
         <GoogleSignin />
@@ -48,17 +56,51 @@ describe("googleSignIn", () => {
     );
     expect(wrapper.find(GoogleLogin).length).toEqual(1);
   });
-  it("should test for onFailure", () => {
+  it("should test onSuccess", () => {
+    let store;
+    store = mockStore({
+      googleSignIn: {
+        data: {},
+      },
+    });
     const mockFn = jest.fn();
-    const renderProps = {};
-    const response = "Error";
     const wrapper = mount(
       <Provider store={store}>
-        <GoogleSignin onClick={mockFn} {...renderProps} {...response} />
+        <GoogleSignin onFailure={mockFn} />
       </Provider>
     );
-    // console.log(wrapper.find("button").debug());
-    wrapper.find("button").simulate("click");
+    wrapper.find(GoogleLogin).simulate("click");
     expect(mockFn).toHaveBeenCalled;
+  });
+  it("should test for status = Fail", () => {
+    let store;
+    store = mockStore({
+      googleSignIn: {
+        status: "Fail",
+        data: {},
+      },
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <GoogleSignin />
+      </Provider>
+    );
+    expect(wrapper).toBeTruthy;
+    expect(toast.error).toHaveBeenCalled;
+  });
+  it("should test for status = success", () => {
+    let store;
+    store = mockStore({
+      googleSignIn: {
+        status: "success",
+        data: {token: "2vcvdajc1"},
+      },
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <GoogleSignin />
+      </Provider>
+    );
+    expect(wrapper).toBeTruthy;
   });
 });

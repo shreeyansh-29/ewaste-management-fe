@@ -48,10 +48,8 @@ describe("viewAcceptColReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {
-        payload: "ERROR",
-        type: types.VENDOR_COLLECTORPROFILE_ACCEPT_ERROR,
-      },
+      error: "ERROR",
+
       isLoading: true,
     });
   });

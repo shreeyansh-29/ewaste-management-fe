@@ -11,7 +11,7 @@ import VendorPrivateRoutes from "./private/vendorRoutes";
 import CustomerNav from "../container/customer/navbar/customerNav";
 import GlobalStyle from "../container/globalStyles";
 import CollectorNav from "../container/collector/navbar/collectorNav";
-import VendorNav from "../container/vendor/navbar/vendorNav";
+import VendorNav from "../container/vendorContainer/navbar/vendorNav";
 import Navbar from "../components/navbar/navbars";
 
 const Routes = () => {

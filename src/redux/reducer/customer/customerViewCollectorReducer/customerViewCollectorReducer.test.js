@@ -35,10 +35,8 @@ describe("customerViewCollectorReducer", () => {
         payload: {status: "success"},
       })
     ).toEqual({
-      data: {},
-      action: {
-        payload: {status: "success"},
-        type: types.CUSTOMER_VIEW_COLLECTORS_SUCCESS,
+      data: {
+        status: "success",
       },
       isLoading: true,
       error: "",
@@ -52,8 +50,8 @@ describe("customerViewCollectorReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "",
-      action: {payload: "ERROR", type: types.CUSTOMER_VIEW_COLLECTORS_ERROR},
+      error: "ERROR",
+
       isLoading: true,
     });
   });

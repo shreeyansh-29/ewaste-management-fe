@@ -48,10 +48,8 @@ describe("viewCollectorProfileReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: {
-        payload: "ERROR",
-        type: types.CUSTOMER_COLLECTORPROFILE_ERROR,
-      },
+      error: "ERROR",
+
       isLoading: true,
     });
   });

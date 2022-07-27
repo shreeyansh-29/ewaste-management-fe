@@ -8,6 +8,7 @@ import toJson from "enzyme-to-json";
 import OrganizeDrive from "./organizeDrive";
 import MaterialTable from "material-table";
 import {act} from "react-test-renderer";
+import toast from "../../../components/toast";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -25,7 +26,7 @@ describe("Organize Drives", () => {
     const store = mockStore({
       collectorOrganizeDrive: {
         data: {},
-        isLoading: true,
+        isLoading: false,
         error: "",
       },
     });
@@ -41,7 +42,7 @@ describe("Organize Drives", () => {
     const store = mockStore({
       collectorOrganizeDrive: {
         data: {},
-        isLoading: true,
+        isLoading: false,
         error: "",
       },
     });
@@ -56,7 +57,7 @@ describe("Organize Drives", () => {
     const store = mockStore({
       collectorOrganizeDrive: {
         data: {},
-        isLoading: true,
+        isLoading: false,
         error: "",
       },
     });
@@ -72,19 +73,27 @@ describe("Organize Drives", () => {
   it("should have an add button to generate a request", () => {
     const store = mockStore({
       collectorOrganizeDrive: {
-        data: {},
-        isLoading: true,
+        data: {
+          status: "success",
+          data: {
+            date: "2022-07-31",
+            description: "HUIA",
+            driveName: "XYZA",
+            status: "Upcoming",
+            time: "10:00-18:00",
+            eWasteCategoryAccepted: [
+              {id: 4, categoriesAccepted: "Small Equipments"},
+            ],
+          },
+        },
+        isLoading: false,
         error: "",
       },
     });
-    const props = {
-      onPageChange: jest.fn(),
-      dateformat: jest.fn(),
-      handleDone: jest.fn(),
-    };
+    const mockFn = jest.fn();
     const wrapper = mount(
       <Provider store={store}>
-        <OrganizeDrive {...props} />
+        <OrganizeDrive handleDone={mockFn} />
       </Provider>
     );
     // console.log(wrapper.find(".MuiSvgIcon-root").debug());
@@ -131,70 +140,62 @@ describe("Organize Drives", () => {
     });
     expect(categoriesAccepted.html()).toMatch("Large and Small Equipments");
 
-    let date;
-    act(() => {
-      date = wrapper.find('input[value="26/07/2022"]').simulate("change", {
-        persist: () => {},
-        target: {
-          type: "text",
-          value: "31/07/2022",
-        },
-      });
-    });
-    expect(date.html()).toMatch("31/07/2022");
+    // let date = wrapper.find('input[type="text"]').at(3);
+    // wrapper.find("button[type='button']").at(1).simulate("click");
+    // date = wrapper.find(
+    //   ".MuiTypography-root .MuiTypography-body2 .MuiTypography-colorInherit"
+    // );
+    // console.log("wrapper", date.length);
 
-    let time;
-    act(() => {
-      time = wrapper
-        .find("div[role='button']")
-        .at(4)
-        .simulate("change", {
-          persist: () => {},
-          target: {
-            value: "9:00-17:00",
-          },
-        });
-    });
-    expect(time.text()).toMatch("");
+    let time = wrapper.find(".MuiSelect-nativeInput").at(0);
+    time = wrapper
+      .find('svg[viewBox="0 0 24 24"]')
+      .at(2)
+      .simulate("change", {
+        persist() {},
+        target: {value: "8:00-16:00"},
+      });
+    console.log("time", time.html());
+    // expect(time.text()).toMatch("");
 
     //check button
-    let check = wrapper.find(".MuiIconButton-label").at(2);
-    expect(check.simulate("click")).toBeTruthy();
+    let check = wrapper.find("button[title='Save']");
+    check.simulate("click");
 
-    let doneBtn;
-    act(() => {
-      doneBtn = wrapper.find(".MuiTouchRipple-root").at(3).simulate("click");
-    });
-    expect(doneBtn.length).toEqual(1);
-    expect(props.handleDone).toBeCalled;
+    // Done Button
+    const done = wrapper.find(".MuiTouchRipple-root").at(3).simulate("click");
+    console.log("wrapper", done.debug());
+    expect(mockFn).toHaveBeenCalled;
+    jest.runAllTimers();
+    expect(toast.error).toHaveBeenCalled;
   });
-  it.skip("should test handleDone", () => {
-    let store;
-    store = mockStore({
+  it("should test Done button", () => {
+    const store = mockStore({
       collectorOrganizeDrive: {
-        isLoading: true,
-        error: "",
         data: {
           status: "success",
           data: {
             date: "2022-07-31",
-            description: "Green World Moto",
-            driveName: "HUSKA",
-            time: "9:00-17:00",
+            description: "HUIA",
+            driveName: "XYZA",
+            status: "Upcoming",
+            time: "10:00-18:00",
             eWasteCategoryAccepted: [
-              {id: 3, categoriesAccepted: "Small Equipments"},
+              {id: 4, categoriesAccepted: "Small Equipments"},
             ],
           },
         },
+        isLoading: false,
+        error: "",
       },
     });
-    const mockFn = jest.fn();
+
     const wrapper = mount(
       <Provider store={store}>
-        <OrganizeDrive handleDone={mockFn} />
+        <OrganizeDrive />
       </Provider>
     );
-    jest.runAllTimers();
+
     console.log("wrapper", wrapper.debug());
   });
 });
