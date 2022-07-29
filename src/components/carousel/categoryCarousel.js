@@ -4,7 +4,7 @@ import img1 from "../../assets/images/microwave.jpg";
 import img2 from "../../assets/images/printer.jpeg";
 import img3 from "../../assets/images/tubelight.jpg";
 import img4 from "../../assets/images/monitor.jpg";
-import img5 from "../../assets/images/TV.jpg";
+import img5 from "../../assets/images/tv.jpg";
 import img6 from "../../assets/images/machine.jpg";
 import img7 from "../../assets/images/mobile.jpg";
 
