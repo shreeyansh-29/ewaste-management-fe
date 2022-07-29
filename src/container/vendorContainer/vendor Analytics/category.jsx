@@ -6,6 +6,7 @@ import {Chart} from "react-google-charts";
 import {connect, useDispatch} from "react-redux";
 import {vendorCategoryRequest} from "../../../redux/action/vendor/analyticsAction/vendorCategoryAction";
 import {isEmpty} from "lodash";
+
 export const data = [
   ["category", "quantity"],
   ["Temperature Exchange Equipment", 18],

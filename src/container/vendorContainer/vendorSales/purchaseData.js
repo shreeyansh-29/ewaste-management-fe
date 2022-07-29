@@ -3,7 +3,7 @@
 */
 /* eslint-disable react/prop-types */
 import React from "react";
-import "../../customer/customer.css";
+import "../../customerContainer/customer.css";
 
 const PurchaseData = (props) => {
   return (

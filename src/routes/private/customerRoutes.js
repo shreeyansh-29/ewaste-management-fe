@@ -3,15 +3,15 @@
 */
 import React from "react";
 import {Routes, Route} from "react-router-dom";
-import CustomerHome from "../../container/customer/customerHome";
-import CustomerProfile from "../../container/customer/customerProfile/customerProfile";
-import CustomerNav from "../../container/customer/navbar/customerNav";
-import PickUp from "../../container/customer/customerRequests/pickUp";
-import DropOff from "../../container/customer/customerRequests/dropOff";
-import MyRequests from "../../container/customer/customerRequests/MyRequests/myRequests";
+import CustomerHome from "../../container/customerContainer/customerHome";
+import CustomerProfile from "../../container/customerContainer/customerProfile/customerProfile";
+import CustomerNav from "../../container/customerContainer/navbar/customerNav";
+import PickUp from "../../container/customerContainer/customerRequests/pickUp";
+import DropOff from "../../container/customerContainer/customerRequests/dropOff";
+import MyRequests from "../../container/customerContainer/customerRequests/MyRequests/myRequests";
 import Popup from "../../components/popUp/popUp";
-import ViewCollectors from "../../container/customer/customerRequests/viewCollectors";
-import Waste from "../../container/customer/customerRequests/waste";
+import ViewCollectors from "../../container/customerContainer/customerRequests/viewCollectors";
+import Waste from "../../container/customerContainer/customerRequests/waste";
 import PageNotFound from "../../container/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 

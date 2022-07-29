@@ -1,4 +1,4 @@
-import {COLLECTOR_SELL} from "../../../container/constant/constant";
+import {COLLECTOR_SELL} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const collectorForSaleService = (data) => {

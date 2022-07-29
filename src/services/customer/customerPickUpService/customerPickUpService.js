@@ -1,4 +1,4 @@
-import * as types from "../../../container/constant/constant";
+import * as types from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const customerPickUpService = (data) => {

@@ -1,4 +1,4 @@
-import {SIGN_UP} from "../../container/constant/constant";
+import {SIGN_UP} from "../../container/constant/constants";
 import api from "../../core/utilities/httpProvider";
 
 export const signUpService = (data) => {

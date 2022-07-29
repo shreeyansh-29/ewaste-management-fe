@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from "react";
-import "../../container/customer/customer.css";
+import "../../container/customerContainer/customer.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Formik, Field, Form} from "formik";
 import {vendorViewAcceptCollectorRequest} from "../../redux/action/vendor/viewCollProfileAction";

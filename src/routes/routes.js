@@ -8,9 +8,9 @@ import PublicRoutes from "./public/publicRoutes";
 import CustomerPrivateRoutes from "./private/customerRoutes";
 import CollectorPrivateRoutes from "./private/collectorRoutes";
 import VendorPrivateRoutes from "./private/vendorRoutes";
-import CustomerNav from "../container/customer/navbar/customerNav";
+import CustomerNav from "../container/customerContainer/navbar/customerNav";
 import GlobalStyle from "../container/globalStyles";
-import CollectorNav from "../container/collector/navbar/collectorNav";
+import CollectorNav from "../container/collectorContainer/navbar/collectorNav";
 import VendorNav from "../container/vendorContainer/navbar/vendorNav";
 import Navbar from "../components/navbar/navbars";
 

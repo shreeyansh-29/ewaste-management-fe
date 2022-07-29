@@ -1,4 +1,4 @@
-import {CUSTOMER_PROFILE_EDIT} from "../../../container/constant/constant";
+import {CUSTOMER_PROFILE_EDIT} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const customerProfileEditService = (data) => {

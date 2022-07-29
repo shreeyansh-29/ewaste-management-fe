@@ -1,5 +1,5 @@
 import api from "../../../core/utilities/httpProvider";
-import {CUSTOMER_DROPOFF} from "../../../container/constant/constant";
+import {CUSTOMER_DROPOFF} from "../../../container/constant/constants";
 
 export const customerViewCollectorService = (data) => {
   return api.post(CUSTOMER_DROPOFF, {

@@ -1,4 +1,4 @@
-import {CUSTOMER_REQUEST_COMPLETED} from "../../../container/constant/constant";
+import {CUSTOMER_REQUEST_COMPLETED} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const customerCompletedRequestService = () => {

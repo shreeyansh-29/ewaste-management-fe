@@ -21,26 +21,7 @@ jest.mock("react-redux", () => ({
 
 Enzyme.configure({adapter: new Adapter()});
 
-// const mockedUsedDispatch = jest.fn();
-// const mockedUsedSelector = jest.fn();
-// const mockLink = jest.fn();
-
 const mockStore = configureStore([]);
-
-// jest.mock("react-router-dom", () => ({
-//   ...jest.requireActual("react-router-dom"),
-//   Link: () => mockLink,
-// }));
-
-// jest.mock("react-redux", () => ({
-//   ...jest.requireActual("react-redux"),
-//   useDispatch: () => mockedUsedDispatch,
-// }));
-
-// jest.mock("react-redux", () => ({
-//   ...jest.requireActual("react-redux"),
-//   useSelector: () => mockedUsedSelector,
-// }));
 
 describe("SignIn", () => {
   let store = mockStore({
@@ -256,70 +237,3 @@ describe("should test for Formik", () => {
     expect(wrapper).toBeTruthy;
   });
 });
-// describe("SignIn Component: when user is not logged in should dispatch an action", () => {
-//   const mockDispatch = jest.fn();
-//   useDispatch.mockImplementation(() => mockDispatch);
-//   // let values = {email: "customer1@gmail.com", password: "123456"};
-//   const onSubmit = jest.fn();
-//   let store = mockStore({
-//     signIn: {
-//       data: {},
-//       error: "",
-//       isLoading: false,
-//     },
-//   });
-//   const wrapper = mount(
-//     <Provider store={store}>
-//       <BrowserRouter>
-//         <SignIn handleClick={onSubmit} />
-//       </BrowserRouter>
-//     </Provider>
-//   );
-//   beforeAll(() => {
-//     useSelector.mockImplementation(() => ({
-//       data: {},
-//       isLoading: false,
-//       error: "",
-//     }));
-//   });
-//   it("should have submit button, triggers onSubmit and dispatches the action", () => {
-//     wrapper.find(Form).simulate("submit", {
-//       preventDefault: () => {},
-//     });
-//     expect(onSubmit).toBeCalled;
-//     expect(mockDispatch).toBeCalled;
-//     // expect(mockDispatch).toBeCalledWith(signInRequest(values));
-//   });
-// });
-
-// describe("SignIn Component:  When the user is not logged in", () => {
-//   let container, soon;
-//   let store = mockStore({
-//     signIn: {
-//       data: {},
-//       error: "",
-//       isLoading: true,
-//     },
-//   });
-//   const wrapper = shallow(
-//     <Provider store={store}>
-//       <BrowserRouter>
-//         <SignIn />
-//       </BrowserRouter>
-//     </Provider>
-//   );
-//   beforeAll(() => {
-//     useSelector.mockImplementation(() => ({
-//       data: {},
-//       error: "",
-//       isLoading: false,
-//     }));
-//   });
-//   beforeEach(() => {
-//     container = wrapper.find("SignIn").dive();
-//     soon = container;
-//   });
-//   it("should render", () => {
-//     expect(container).toBe(soon);
-//   });
-// });

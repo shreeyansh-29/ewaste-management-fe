@@ -1,3 +1,27 @@
+export const data = [
+  {
+    value: "Temp",
+    label: "Temperature Exchange Equipment (Air Conditioners, Freezers)",
+  },
+  {
+    value: "Screens",
+    label: "Screens, monitors (Televisions , Laptops)",
+  },
+  {value: "Lamps", label: "Lamps (LED Lamps)"},
+  {
+    value: "LargeEqip",
+    label: "Large Equipment (Washing Machines, Electric Stoves)",
+  },
+  {
+    value: "SmallEquip",
+    label: "Small Equipment (Microwaves, Electric Shavers)",
+  },
+  {
+    value: "SmallIT",
+    label: "Small IT and Telecommunication Equipment (Mobile phones, Printers)",
+  },
+];
+
 export const statescity = [
   {
     name: "Arunachal Pradesh",

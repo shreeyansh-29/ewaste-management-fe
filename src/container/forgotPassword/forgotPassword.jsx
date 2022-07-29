@@ -14,7 +14,7 @@ import {
   MSG2_403,
   RESOURCE_NOT_FOUND,
   SUCCESSFULL_REQUEST,
-} from "../constant/constant";
+} from "../constant/constants";
 import {useNavigate} from "react-router-dom";
 import {ForgotPasswordValidations} from "../constant/validations";
 import {Heading, MsgStyle} from "../../components/styles";

@@ -121,14 +121,6 @@ describe("should test for Form", () => {
       },
     });
     expect(emailInput.html()).toMatch("email@gmail.com");
-    // act(() => {
-    //   wrapper
-    //     .find(".form-control")
-    //     .simulate("change", {target: {value: "customer1@gmail.com"}});
-    // });
-    // expect(wrapper.find('input[type="email"]').prop("value")).toEqual(
-    //   "customer1@gmail.com"
-    // );
   });
   it.skip("should throw an error for invalid email address", () => {
     let store;

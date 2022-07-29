@@ -3,16 +3,16 @@
 */
 import React from "react";
 import {Routes, Route} from "react-router-dom";
-import CollectorHome from "../../container/collector/collectorHome";
-import CollectorNav from "../../container/collector/navbar/collectorNav";
-import CollectorProfile from "../../container/collector/profile/collectorProfile";
-import OrganizeDrive from "../../container/collector/e-WasteDrives/organizeDrive";
-import MyDrives from "../../container/collector/e-WasteDrives/myDrives";
-import CollectorRequests from "../../container/collector/collectorsRequests/collectorRequests";
-import RequestSummary from "../../container/collector/collectorsRequests/requestSummary";
-import ItemsForSale from "../../container/collector/collectorSaleItems/itemsForSale";
-import SummarySales from "../../container/collector/collectorSaleItems/availableSales";
-import SaleItems from "../../container/collector/collectorSaleItems/salesItems";
+import CollectorHome from "../../container/collectorContainer/collectorHome";
+import CollectorNav from "../../container/collectorContainer/navbar/collectorNav";
+import CollectorProfile from "../../container/collectorContainer/profile/collectorProfile";
+import OrganizeDrive from "../../container/collectorContainer/e-WasteDrives/organizeDrive";
+import MyDrives from "../../container/collectorContainer/e-WasteDrives/myDrives";
+import CollectorRequests from "../../container/collectorContainer/collectorsRequests/collectorRequests";
+import RequestSummary from "../../container/collectorContainer/collectorsRequests/requestSummary";
+import ItemsForSale from "../../container/collectorContainer/collectorSaleItems/itemsForSale";
+import SummarySales from "../../container/collectorContainer/collectorSaleItems/availableSales";
+import SaleItems from "../../container/collectorContainer/collectorSaleItems/salesItems";
 import PageNotFound from "../../container/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 

@@ -9,7 +9,7 @@ import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
 import GoogleSignin from "./googleSignin";
 import jwt from "jwt-decode";
-import {TOAST_ERROR1, TOAST_ERROR2} from "../constant/constant";
+import {TOAST_ERROR1, TOAST_ERROR2} from "../constant/constants";
 import Toast from "../../components/toast";
 import "./signin.css";
 import {useDispatch, connect} from "react-redux";

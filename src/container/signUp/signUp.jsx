@@ -16,41 +16,18 @@ import {
   SERVER_MSG,
   TOAST_ERROR3,
   TOAST_SUCCESS1,
-} from "../constant/constant";
+} from "../constant/constants";
 import Dropdown from "../../components/dropDown/dropdown";
 import "./signUp.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import {statescity} from "./states";
+import {statescity, data} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 import {Heading, ButtonStyle, SelectStyle} from "../../components/styles";
 import {useNavigate} from "react-router-dom";
 
-const data = [
-  {
-    value: "Temp",
-    label: "Temperature Exchange Equipment (Air Conditioners, Freezers)",
-  },
-  {
-    value: "Screens",
-    label: "Screens, monitors (Televisions , Laptops)",
-  },
-  {value: "Lamps", label: "Lamps (LED Lamps)"},
-  {
-    value: "LargeEqip",
-    label: "Large Equipment (Washing Machines, Electric Stoves)",
-  },
-  {
-    value: "SmallEquip",
-    label: "Small Equipment (Microwaves, Electric Shavers)",
-  },
-  {
-    value: "SmallIT",
-    label: "Small IT and Telecommunication Equipment (Mobile phones, Printers)",
-  },
-];
 const signUp = ({res}) => {
   const navigate = useNavigate();
   const [confirmPasswordType, setConfirmPasswordType] = useState("text");
@@ -88,9 +65,19 @@ const signUp = ({res}) => {
     @detail set the value of startTime field
     @return {void}
   */
-  const returnFunctionStart = (event) => {
+  const returnFunctionStartTime = (event) => {
     setStartTime(event.startTime);
   };
+
+  /* 
+    @function returnFunctionEnd
+    @detail set the value of endTime field
+    @return {void}
+  */
+  const returnFunctionEndTime = (event) => {
+    setEndTime(event.endTime);
+  };
+
   /* 
     @function handleInputChange
     @detail set the value of categories selected by user
@@ -102,14 +89,7 @@ const signUp = ({res}) => {
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
     setCategoryAccepted([list]);
   };
-  /* 
-    @function returnFunctionEnd
-    @detail set the value of endTime field
-    @return {void}
-  */
-  const returnFunctionEnd = (event) => {
-    setEndTime(event.endTime);
-  };
+
   /* 
     @function changeState
     @detail set the value of state field
@@ -505,8 +485,8 @@ const signUp = ({res}) => {
                           customers
                         </ReactTooltip>
                         <TimeRange
-                          onStartTimeChange={returnFunctionStart}
-                          onEndTimeChange={returnFunctionEnd}
+                          onStartTimeChange={returnFunctionStartTime}
+                          onEndTimeChange={returnFunctionEndTime}
                           startMoment={startTime}
                           endMoment={endTime}
                           use24Hours={true}

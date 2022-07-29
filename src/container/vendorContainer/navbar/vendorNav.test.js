@@ -12,7 +12,6 @@ import Swal from "sweetalert2";
 Enzyme.configure({adapter: new Adapter()});
 
 const mockedUsedDispatch = jest.fn();
-const mockedUsedSelector = jest.fn();
 const mockStore = configureStore([]);
 
 jest.mock("react-redux", () => ({
@@ -20,10 +19,6 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockedUsedDispatch,
 }));
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockedUsedSelector,
-}));
 
 describe("test Vendor Navbar", () => {
   let store;

@@ -9,7 +9,7 @@ import React, {useState, useEffect} from "react";
 import GoogleLogin from "react-google-login";
 import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
-import {TOAST_ERROR1} from "../constant/constant";
+import {TOAST_ERROR1} from "../constant/constants";
 
 const GoogleSignin = ({res}) => {
   const [email, setEmail] = useState("");

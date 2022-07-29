@@ -7,7 +7,7 @@ import React, {useEffect, useState} from "react";
 import "../vendor.css";
 import {statescity} from "../../signUp/states";
 import Toast from "../../../components/toast";
-import {TOAST_SUCCESS5} from "../../constant/constant";
+import {TOAST_SUCCESS5} from "../../constant/constants";
 import {useDispatch, connect} from "react-redux";
 import {vendorProfileRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileAction";
 import {vendorProfileEditRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileEditAction";

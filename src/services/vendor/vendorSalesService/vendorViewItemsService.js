@@ -1,4 +1,4 @@
-import {VENDOR_VIEW_ITEMS} from "../../../container/constant/constant";
+import {VENDOR_VIEW_ITEMS} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const vendorViewItemsService = () => {

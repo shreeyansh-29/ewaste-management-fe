@@ -1,4 +1,4 @@
-import {COLLECTOR_DRIVE_MYDRIVE} from "../../../container/constant/constant";
+import {COLLECTOR_DRIVE_MYDRIVE} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const collectorMyDrivesService = () => {

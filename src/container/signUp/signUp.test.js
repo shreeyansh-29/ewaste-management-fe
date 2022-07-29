@@ -375,14 +375,6 @@ describe("testing Formik", () => {
     role.simulate("click");
     expect(props.handleDropdown).toHaveBeenCalled;
     role = props.data[0].label;
-    // let value = wrapper
-    //   .find("#role")
-    //   .find(".dropdown")
-    //   .find("option[value='Customer']")
-    //   .text();
-    // expect(role.length).toEqual(1);
-    // role = value;
-    // // console.log(role);
   });
   it("should have back button", () => {
     let store;

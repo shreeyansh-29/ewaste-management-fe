@@ -1,4 +1,4 @@
-import {CUSTOMER_VIEW_DRIVES} from "../../../container/constant/constant";
+import {CUSTOMER_VIEW_DRIVES} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const customerEWasteService = () => {

@@ -12,7 +12,6 @@ import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/v
 
 const VendorNav = ({res}) => {
   const dispatch = useDispatch();
-
   const name = res.firstName;
 
   React.useEffect(() => {

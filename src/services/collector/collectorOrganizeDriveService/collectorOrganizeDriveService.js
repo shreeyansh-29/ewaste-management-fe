@@ -1,4 +1,4 @@
-import {COLLECTOR_ORGANIZE_DRIVE} from "../../../container/constant/constant";
+import {COLLECTOR_ORGANIZE_DRIVE} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const collectorOrganizeDriveService = (data) => {

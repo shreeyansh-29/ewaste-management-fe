@@ -1,4 +1,4 @@
-import {COLLECTOR_PROFILE_EDIT} from "../../../container/constant/constant";
+import {COLLECTOR_PROFILE_EDIT} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const collectorProfileEditService = (data) => {

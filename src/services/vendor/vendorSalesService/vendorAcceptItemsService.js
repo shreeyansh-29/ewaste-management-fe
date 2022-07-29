@@ -1,4 +1,4 @@
-import {VENDOR_ACCEPT_ITEMS} from "../../../container/constant/constant";
+import {VENDOR_ACCEPT_ITEMS} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const vendorAcceptItemsService = (data) => {

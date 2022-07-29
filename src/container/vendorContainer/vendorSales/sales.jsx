@@ -17,7 +17,7 @@ import {
   INVALID_QUANTITY,
   TOAST_ERROR5,
   VALID_QUANTITY,
-} from "../../constant/constant";
+} from "../../constant/constants";
 import {isEmpty} from "lodash";
 import Toast from "../../../components/toast";
 export const ProfileIcon = FaUserCircle;

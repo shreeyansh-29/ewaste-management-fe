@@ -1,4 +1,4 @@
-import {VENDOR_ANALYTICS_V4} from "../../../container/constant/constant";
+import {VENDOR_ANALYTICS_V4} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const vendorCategoryService = () => {

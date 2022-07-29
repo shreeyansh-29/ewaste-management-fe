@@ -1,4 +1,4 @@
-import {VENDOR_SUMMARY} from "../../../container/constant/constant";
+import {VENDOR_SUMMARY} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const vendorMyOrdersService = () => {

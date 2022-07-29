@@ -9,7 +9,11 @@ import "../signIn/signIn";
 import "./password.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import {TOAST_SUCCESS2, MSG_1, SUCCESSFULL_REQUEST} from "../constant/constant";
+import {
+  TOAST_SUCCESS2,
+  MSG_1,
+  SUCCESSFULL_REQUEST,
+} from "../constant/constants";
 import Toast from "../../components/toast";
 import {useDispatch, connect} from "react-redux";
 import {resetPasswordRequest} from "../../redux/action/resetPasswordAction/resetPasswordAction";

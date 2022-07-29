@@ -1,4 +1,4 @@
-import {PASSWORD, TEXT} from "../../container/constant/constant";
+import {PASSWORD, TEXT} from "../../container/constant/constants";
 
 export const togglePassword = (passwordType) => {
   if (passwordType === PASSWORD) {

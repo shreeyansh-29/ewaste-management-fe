@@ -1,4 +1,4 @@
-import {VENDOR_PROFILE_EDIT} from "../../../container/constant/constant";
+import {VENDOR_PROFILE_EDIT} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const vendorProfileEditService = (data) => {

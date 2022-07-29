@@ -15,7 +15,7 @@ import {
   PINCODE_REQUIRED,
   GSTNO_REQUIRED,
   REGISTRATION_REQUIRED,
-} from "./constant";
+} from "./constants";
 
 export const SignInValidations = Yup.object().shape({
   email: Yup.string().email(EMAIL_INVALID).required(EMAIL_REQUIRED).nullable(),

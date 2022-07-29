@@ -1,4 +1,4 @@
-import {CUSTOMER_NOTIFICATION_URL} from "../../../container/constant/constant";
+import {CUSTOMER_NOTIFICATION_URL} from "../../../container/constant/constants";
 import api from "../../../core/utilities/httpProvider";
 
 export const customerNotificationCountService = () => {
