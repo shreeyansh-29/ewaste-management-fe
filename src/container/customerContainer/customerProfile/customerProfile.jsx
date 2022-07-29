@@ -22,6 +22,7 @@ const CustomerProfile = () => {
   const [initialcities, setCities] = useState([]);
 
   let res = useSelector((state) => state.customerProfile?.data);
+  
   useEffect(() => {
     dispatch(customerProfileRequest());
   }, []);

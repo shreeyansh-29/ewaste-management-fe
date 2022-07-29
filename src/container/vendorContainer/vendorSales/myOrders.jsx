@@ -3,30 +3,27 @@
 */
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
-import {} from "@material-ui/icons";
 import Popup from "../../../components/popUp/popUp";
 import {FaUserCircle} from "react-icons/fa";
-import {toast} from "react-toastify";
 import SearchIcon from "@material-ui/icons/Search";
 import {vendorMyOrdersRequest} from "../../../redux/action/vendor/vendorMyOrdersAction/vendorMyOrdersAction";
 import {connect, useDispatch} from "react-redux";
 import {isEmpty} from "lodash";
 import {myOrdersColumn} from "./myOrdersColumn";
-toast.configure();
 export const ProfileIcon = FaUserCircle;
 
 const MyOrders = ({res}) => {
   const dispatch = useDispatch();
-  const [isopen, setopen] = useState(false);
-  const [detail, setdetail] = useState();
+  const [isOpen, setOpen] = useState(false);
+  const [detail, setDetail] = useState();
   const [value, setValue] = useState();
 
   /* 
     @function togglePop
     @detail updating the value of 'isopen' variable
   */
-  const togglepop = () => {
-    setopen(!isopen);
+  const togglePop = () => {
+    setOpen(!isOpen);
   };
   useEffect(() => {
     if (isEmpty(res?.data) !== true) {
@@ -81,7 +78,7 @@ const MyOrders = ({res}) => {
                     border: "1px solid white",
                     fontSize: "15px",
                   }}
-                  onClick={togglepop}
+                  onClick={togglePop}
                 >
                   <ProfileIcon style={{color: "#e75480"}} />
                 </button>
@@ -90,7 +87,7 @@ const MyOrders = ({res}) => {
               onClick: (e, datas) => {
                 e.preventDefault();
                 const id = datas.id.split("D");
-                setdetail(id[1]);
+                setDetail(id[1]);
               },
             },
           ]}
@@ -100,8 +97,8 @@ const MyOrders = ({res}) => {
         />
       </div>
       <div>
-        {isopen && detail != null && (
-          <Popup id="pop2" handleClose={togglepop} c={detail} />
+        {isOpen && detail != null && (
+          <Popup id="pop2" handleClose={togglePop} c={detail} />
         )}
       </div>
     </div>

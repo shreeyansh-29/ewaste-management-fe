@@ -17,12 +17,13 @@ import {VendorValidations} from "../../constant/validations";
 const VendorProfile = ({res}) => {
   const [state, setState] = useState();
   const [city, setCity] = useState();
+  const [initialcities, setCities] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(vendorProfileRequest());
   }, []);
-  const [initialcities, setCities] = useState([]);
+  
   useEffect(() => {
     setState(res.state);
     setCity(res.city);

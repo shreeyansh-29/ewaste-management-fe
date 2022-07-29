@@ -29,8 +29,7 @@ const VendorHome = () => {
             textDecoration: "underline",
           }}
         >
-          {" "}
-          Your contribution as an Eco-ranger:{" "}
+          Your contribution as an Eco-ranger:
         </h3>
         <div className="dashboard">
           <h3 style={{textAlign: "center", padding: "12% 0 1% 0"}}>

@@ -1,7 +1,7 @@
 /*
   @module sales
 */
-import React, {useEffect} from "react";
+import React, {useEffect,useState} from "react";
 import MaterialTable from "material-table";
 import {Link} from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
@@ -23,13 +23,13 @@ import Toast from "../../../components/toast";
 export const ProfileIcon = FaUserCircle;
 
 const Sales = ({res, res2}) => {
-  const {useState} = React;
   const [details, setDetails] = useState([]);
-  const [detail, setdetail] = useState();
-  const [isopen2, setopen2] = useState(false);
+  const [detail, setDetail] = useState();
+  const [isOpen2, setOpen2] = useState(false);
   const [item, setItem] = useState();
-  const [isopen, setopen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [quantity, setQuantity] = useState();
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const [columns] = useState([
     {
@@ -175,9 +175,10 @@ const Sales = ({res, res2}) => {
   */
   const profile = (e) => {
     const id = e.id;
-    setdetail(id);
-    togglepop();
+    setDetail(id);
+    togglePop2();
   };
+
   useEffect(() => {
     if (isEmpty(res?.obj) !== true || isEmpty(res?.data) !== true) {
       res.data.map((obj) => {
@@ -191,8 +192,6 @@ const Sales = ({res, res2}) => {
   useEffect(() => {
     dispatch(vendorViewItemsRequest());
   }, []);
-
-  const [data, setData] = useState([]);
 
   /* 
     @function CalTotal
@@ -223,7 +222,7 @@ const Sales = ({res, res2}) => {
     if (datas.quantities === 0 || datas.quantities === undefined) {
       Toast.error(TOAST_ERROR5);
 
-      setopen(false);
+      setOpen(false);
     } else {
       setQuantity(datas.quantities);
       setItem(datas.itemName);
@@ -242,21 +241,21 @@ const Sales = ({res, res2}) => {
 
   /* 
     @function togglePop
-    @detail updating the value of isopen variable
+    @detail updating the value of isOpen variable
   */
   const togglePop = () => {
-    setopen(!isopen);
+    setOpen(!isOpen);
   };
 
   /* 
     @function togglePop2
-    @detail updating the value of isopen variable
+    @detail updating the value of isOpen variable
   */
-  const togglepop = () => {
-    setopen2(!isopen2);
+  const togglePop2 = () => {
+    setOpen2(!isOpen2);
   };
   return (
-    <div style={{padding: "150px 30px   "}}>
+    <div style={{padding: "150px 30px"}}>
       <h2
         style={{
           textAlign: "center",
@@ -313,10 +312,10 @@ const Sales = ({res, res2}) => {
       />
 
       <Link to={{pathname: "/MyOrders/SalesSummary", data: [details]}}></Link>
-      <div>{isopen && <PuchaseData quantity={quantity} item={item} />}</div>
+      <div>{isOpen && <PuchaseData quantity={quantity} item={item} />}</div>
       <div>
-        {isopen2 && detail != null && (
-          <Popup handleClose={togglepop} cont={detail} />
+        {isOpen2 && detail != null && (
+          <Popup handleClose={togglePop2} cont={detail} />
         )}
       </div>
     </div>

@@ -20,9 +20,9 @@ import {togglePassword} from "../../components/togglePassword/togglePassword";
 
 const SignIn = ({res}) => {
   const dispatch = useDispatch();
-  const [passwordType, setpasswordType] = useState("password");
+  const [passwordType, setPasswordType] = useState("password");
   const togglePasswords = () => {
-    setpasswordType(togglePassword(passwordType));
+    setPasswordType(togglePassword(passwordType));
   };
 
   useEffect(() => {

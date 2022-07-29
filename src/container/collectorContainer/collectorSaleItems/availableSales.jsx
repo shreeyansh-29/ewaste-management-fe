@@ -4,7 +4,6 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {connect, useDispatch} from "react-redux";
-import {} from "@material-ui/icons";
 import {collectorAvailableRequest} from "../../../redux/action/collector/collectorAvailableAction/collectorAvailableAction";
 import SearchIcon from "@material-ui/icons/Search";
 import {isEmpty} from "lodash";

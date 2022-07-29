@@ -2,7 +2,7 @@
   @module vendorNav
 */
 
-import React from "react";
+import React,{useEffect} from "react";
 import Swal from "sweetalert2";
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
@@ -13,8 +13,8 @@ import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/v
 const VendorNav = ({res}) => {
   const dispatch = useDispatch();
   const name = res.firstName;
-
-  React.useEffect(() => {
+  
+  useEffect(() => {
     dispatch(vendorNameRequest());
   }, []);
 

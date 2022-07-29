@@ -114,6 +114,7 @@ const signUp = ({res}) => {
   const togglePasswords = () => {
     setPasswordType(togglePassword(passwordType));
   };
+  
   const handleTime = () => {
     if (role === "Collector") {
       let start = startTime.toString().split("T");

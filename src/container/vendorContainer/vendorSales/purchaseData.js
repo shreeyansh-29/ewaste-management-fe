@@ -45,7 +45,6 @@ const PurchaseData = (props) => {
               marginBottom: "40px",
             }}
           >
-            {" "}
             <a href="/MyOrders/SalesSummary" style={{color: "blue"}}>
               See details
             </a>
