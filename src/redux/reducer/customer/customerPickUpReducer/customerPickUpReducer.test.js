@@ -48,7 +48,10 @@ describe("customerPickUpReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_PICKUP_ERROR,
+      },
       isLoading: true,
     });
   });

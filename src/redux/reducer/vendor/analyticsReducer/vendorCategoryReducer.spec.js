@@ -48,7 +48,10 @@ describe("vendorCategoryReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.VENDOR_CATEGORY_ERROR,
+      },
       isLoading: true,
     });
   });

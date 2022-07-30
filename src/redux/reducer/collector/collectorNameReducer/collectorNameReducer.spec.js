@@ -50,7 +50,10 @@ describe("collectorMyDrivesReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_NAME_ERROR,
+      },
 
       isLoading: true,
     });

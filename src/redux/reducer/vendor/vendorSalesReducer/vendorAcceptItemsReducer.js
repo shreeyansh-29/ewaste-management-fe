@@ -7,17 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const vendorAcceptItemsReducer = (
-  state = initialState,
-  {type, payload}
-) => {
-  switch (type) {
+export const vendorAcceptItemsReducer = (state = initialState, action) => {
+  switch (action.type) {
     case types.VENDOR_ACCEPT_ITEMS_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_ACCEPT_ITEMS_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.VENDOR_ACCEPT_ITEMS_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

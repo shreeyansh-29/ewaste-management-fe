@@ -48,7 +48,7 @@ describe("customerNotificationDataReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {payload: "ERROR", type: types.CUSTOMER_NOTIFICATION_DATA_ERROR},
       isLoading: true,
     });
   });

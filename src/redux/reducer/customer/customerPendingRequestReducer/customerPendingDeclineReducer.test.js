@@ -48,7 +48,10 @@ describe("customerEWasteReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_PENDING_DECLINE_ERROR,
+      },
       isLoading: true,
     });
   });

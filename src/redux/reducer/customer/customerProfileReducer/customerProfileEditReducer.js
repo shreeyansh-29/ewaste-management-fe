@@ -7,17 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const customerProfileEditReducer = (
-  state = initialState,
-  {type, payload}
-) => {
-  switch (type) {
+export const customerProfileEditReducer = (state = initialState, action) => {
+  switch (action.type) {
     case types.CUSTOMER_PROFILE_EDIT_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_PROFILE_EDIT_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.CUSTOMER_PROFILE_EDIT_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

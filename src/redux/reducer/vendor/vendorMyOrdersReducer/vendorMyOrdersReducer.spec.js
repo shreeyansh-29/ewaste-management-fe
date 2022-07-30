@@ -48,7 +48,10 @@ describe("vendorMyOrdersReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.VENDOR_MYORDERS_ERROR,
+      },
       isLoading: true,
     });
   });

@@ -48,7 +48,10 @@ describe("customerDrivesReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_DRIVES_ERROR,
+      },
       isLoading: true,
     });
   });

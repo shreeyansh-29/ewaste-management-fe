@@ -50,7 +50,10 @@ describe("customerViewCollectorReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_VIEW_COLLECTORS_ERROR,
+      },
 
       isLoading: true,
     });

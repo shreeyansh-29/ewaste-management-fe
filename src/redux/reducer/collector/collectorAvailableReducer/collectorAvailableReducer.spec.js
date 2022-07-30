@@ -48,7 +48,10 @@ describe("collectorAvailableReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_AVAILABLE_ERROR,
+      },
       isLoading: true,
     });
   });

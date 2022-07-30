@@ -48,7 +48,10 @@ describe("collectorOrganizeDriveReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_ORGANIZE_ERROR,
+      },
 
       isLoading: true,
     });

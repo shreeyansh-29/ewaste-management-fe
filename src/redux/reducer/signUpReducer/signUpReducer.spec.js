@@ -48,7 +48,10 @@ describe("signUpReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.SIGN_UP_ERROR,
+      },
       isLoading: true,
     });
   });

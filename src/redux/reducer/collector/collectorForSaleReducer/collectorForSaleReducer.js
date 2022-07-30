@@ -7,17 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const collectorForSaleReducer = (
-  state = initialState,
-  {type, payload}
-) => {
-  switch (type) {
+export const collectorForSaleReducer = (state = initialState, action) => {
+  switch (action.type) {
     case types.COLLECTOR_FORSALE_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_FORSALE_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.COLLECTOR_FORSALE_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

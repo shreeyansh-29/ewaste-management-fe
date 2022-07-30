@@ -48,7 +48,10 @@ describe("googleSignInReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.GOOGLE_SIGNIN_ERROR,
+      },
       isLoading: true,
     });
   });

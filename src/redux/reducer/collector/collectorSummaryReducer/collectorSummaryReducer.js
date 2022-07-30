@@ -7,17 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const collectorSummaryReducer = (
-  state = initialState,
-  {type, payload}
-) => {
-  switch (type) {
+export const collectorSummaryReducer = (state = initialState, action) => {
+  switch (action.type) {
     case types.COLLECTOR_SUMMARY_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_SUMMARY_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.COLLECTOR_SUMMARY_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

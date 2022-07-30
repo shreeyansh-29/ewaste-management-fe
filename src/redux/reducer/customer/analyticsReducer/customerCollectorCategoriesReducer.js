@@ -9,15 +9,15 @@ const initialState = {
 
 export const customerCollectorCategoriesReducer = (
   state = initialState,
-  {type, payload}
+  action
 ) => {
-  switch (type) {
+  switch (action.type) {
     case types.CUSTOMER_COLLECTORCATEGORIES_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_COLLECTORCATEGORIES_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.CUSTOMER_COLLECTORCATEGORIES_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

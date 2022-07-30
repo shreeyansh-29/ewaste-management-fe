@@ -48,7 +48,10 @@ describe("collectorProfileReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_PROFILE_ERROR,
+      },
 
       isLoading: true,
     });

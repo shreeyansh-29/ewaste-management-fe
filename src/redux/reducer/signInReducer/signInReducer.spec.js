@@ -48,7 +48,10 @@ describe("signInReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.SIGN_IN_ERROR,
+      },
       isLoading: true,
     });
   });

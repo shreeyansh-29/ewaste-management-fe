@@ -48,7 +48,10 @@ describe("customerCompletedRequestReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_COMPLETED_ERROR,
+      },
       isLoading: true,
     });
   });

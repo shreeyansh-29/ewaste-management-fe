@@ -7,14 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const resetPasswordReducer = (state = initialState, {type, payload}) => {
-  switch (type) {
+export const resetPasswordReducer = (state = initialState, action) => {
+  switch (action.type) {
     case types.RESET_PASSWORD_REQUEST:
       return {...state, isLoading: true};
     case types.RESET_PASSWORD_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.RESET_PASSWORD_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

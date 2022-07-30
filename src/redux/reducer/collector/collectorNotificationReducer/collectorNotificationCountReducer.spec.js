@@ -49,7 +49,10 @@ describe("collectorNotificationCountReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_NOTIFICATION_COUNT_ERROR,
+      },
 
       isLoading: true,
     });

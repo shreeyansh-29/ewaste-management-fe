@@ -48,7 +48,10 @@ describe("customerDropOffReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_DROPOFF_ERROR,
+      },
       isLoading: true,
     });
   });

@@ -48,7 +48,10 @@ describe("forgotPasswordReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.FORGOT_PASSWORD_ERROR,
+      },
       isLoading: true,
     });
   });

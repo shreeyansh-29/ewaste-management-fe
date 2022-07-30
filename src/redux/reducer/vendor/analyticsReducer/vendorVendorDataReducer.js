@@ -7,17 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const vendorVendorDataReducer = (
-  state = initialState,
-  {type, payload}
-) => {
-  switch (type) {
+export const vendorVendorDataReducer = (state = initialState, action) => {
+  switch (action.type) {
     case types.VENDOR_VENDOR_DATA_REQUEST:
       return {...state, isLoading: true};
     case types.VENDOR_VENDOR_DATA_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.VENDOR_VENDOR_DATA_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

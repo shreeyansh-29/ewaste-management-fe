@@ -48,7 +48,10 @@ describe("customerNotificationCountReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_NOTIFICATION_COUNT_ERROR,
+      },
       isLoading: true,
     });
   });

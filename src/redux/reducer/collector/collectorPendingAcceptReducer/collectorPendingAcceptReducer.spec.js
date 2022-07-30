@@ -48,7 +48,10 @@ describe("collectorNotificationDataReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_PENDING_ACCEPT_ERROR,
+      },
 
       isLoading: true,
     });

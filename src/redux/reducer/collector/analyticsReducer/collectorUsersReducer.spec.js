@@ -48,7 +48,10 @@ describe("collectorUsersReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.COLLECTOR_USERS_ERROR,
+      },
       isLoading: true,
     });
   });

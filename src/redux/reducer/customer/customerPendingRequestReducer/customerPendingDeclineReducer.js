@@ -7,17 +7,14 @@ const initialState = {
   error: "",
 };
 
-export const customerPendingDeclineReducer = (
-  state = initialState,
-  {type, payload}
-) => {
-  switch (type) {
+export const customerPendingDeclineReducer = (state = initialState, action) => {
+  switch (action.type) {
     case types.CUSTOMER_PENDING_DECLINE_REQUEST:
       return {...state, isLoading: true};
     case types.CUSTOMER_PENDING_DECLINE_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.CUSTOMER_PENDING_DECLINE_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

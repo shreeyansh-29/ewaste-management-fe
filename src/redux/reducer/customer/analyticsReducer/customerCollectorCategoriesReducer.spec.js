@@ -48,7 +48,10 @@ describe("customerCollectorCategoriesReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_COLLECTORCATEGORIES_ERROR,
+      },
       isLoading: true,
     });
   });

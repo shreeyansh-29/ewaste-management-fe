@@ -48,7 +48,10 @@ describe("customerCountCollReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_COUNT_COLL_ERROR,
+      },
       isLoading: true,
     });
   });

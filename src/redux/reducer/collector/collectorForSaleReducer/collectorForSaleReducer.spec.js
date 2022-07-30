@@ -48,7 +48,10 @@ describe("collectorForSaleReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        type: types.COLLECTOR_FORSALE_ERROR,
+        payload: "ERROR",
+      },
 
       isLoading: true,
     });

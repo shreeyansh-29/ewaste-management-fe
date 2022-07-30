@@ -48,7 +48,10 @@ describe("customerProfileEditReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_PROFILE_EDIT_ERROR,
+      },
       isLoading: true,
     });
   });

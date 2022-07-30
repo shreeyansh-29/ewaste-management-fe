@@ -9,15 +9,15 @@ const initialState = {
 
 export const collectorNotificationCountReducer = (
   state = initialState,
-  {type, payload}
+  action
 ) => {
-  switch (type) {
+  switch (action.type) {
     case types.COLLECTOR_NOTIFICATION_COUNT_REQUEST:
       return {...state, isLoading: true};
     case types.COLLECTOR_NOTIFICATION_COUNT_SUCCESS:
-      return {...state, data: payload};
+      return {...state, data: action.payload};
     case types.COLLECTOR_NOTIFICATION_COUNT_ERROR:
-      return {...state, error: payload};
+      return {...state, error: action};
     default:
       return state;
   }

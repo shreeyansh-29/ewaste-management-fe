@@ -48,7 +48,10 @@ describe("vendorProfileEditReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.VENDOR_PROFILE_EDIT_ERROR,
+      },
       isLoading: true,
     });
   });

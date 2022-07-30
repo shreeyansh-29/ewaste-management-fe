@@ -48,7 +48,10 @@ describe("customerWasteGeneratedReducer", () => {
       })
     ).toEqual({
       data: {},
-      error: "ERROR",
+      error: {
+        payload: "ERROR",
+        type: types.CUSTOMER_WASTEGENERATED_ERROR,
+      },
       isLoading: true,
     });
   });
