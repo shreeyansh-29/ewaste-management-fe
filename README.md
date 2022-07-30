@@ -35,10 +35,27 @@ git push
 ### Merging a pull request  
 1. Click on "Merge pull request" button at the bottom of your pull request to merge your changes.   
 2. Add a commit message and click on "Confirm Merge" to merge the changes.  
+
+
+
+## Setup for running test cases
+```
+npm install jest
+npm install enzyme
+npm install enzyme-to-json
+npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
+npm install --save-dev redux-mock-store 
+```
+
+Running the below command will start the testcases
+
+```
+npm run test
+```
+
   
 ## License  
 The project belongs to <a href= "https://www.nineleaps.com/" >Nineleaps</a> 
-
 
 
   
