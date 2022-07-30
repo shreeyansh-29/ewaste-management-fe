@@ -40,6 +40,17 @@ git push
 The project belongs to <a href= "https://www.nineleaps.com/" >Nineleaps</a> 
 
 
+### Setup for running test cases
+```
+npm i jest
+npm i enzyme
+npm i enzyme-to-json
+npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
+npm install --save-dev redux-mock-store 
+```
+### First we need to create a setupTests.js to setup the testing environment
+
+
 
   
 
