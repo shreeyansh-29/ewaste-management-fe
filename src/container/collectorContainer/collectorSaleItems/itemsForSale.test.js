@@ -100,7 +100,6 @@ describe("test ItemsForSale", () => {
 
     let categoryInput = wrapper.find('div[aria-label="Category"]');
 
-    // categoryInput.simulate("change", {target: {value: " "}});
     categoryInput.simulate("mousedown", {button: 0});
     categoryInput.update();
 
@@ -109,8 +108,7 @@ describe("test ItemsForSale", () => {
       .at(0)
       .props()
       .onChange({target: {value: 8}});
-    // console.log("wraper", wrapper.find("input[value='']").at(0).props.value);
-
+  
     let quantity = wrapper.find('input[placeholder="Quantity"]');
 
     quantity.simulate("mousedown", {target: {value: 8}});

@@ -70,7 +70,7 @@ describe("DropOff Request", () => {
     wrapper.find('button[title="Add"]').simulate("click");
 
     let requestName = wrapper.find('input[placeholder="Request Name"]');
-    // requestName.props().onChange({target: {value: "AC"}});
+
     requestName.simulate("change", {persist() {}, target: {value: "AC"}});
     requestName.update();
 
@@ -79,8 +79,6 @@ describe("DropOff Request", () => {
     let quantity = wrapper.find("input[placeholder='Quantity']");
     quantity.simulate("change", {persist() {}, target: {value: 10}});
     quantity.update();
-
-    // expect(quantity.html()).toMatch("10");
 
     wrapper.find('button[title="Save"]').simulate("click");
 

@@ -267,8 +267,7 @@ const Sales = ({res, res2}) => {
           borderRadius: "5px",
         }}
       >
-        {" "}
-        Purchase Items{" "}
+        Purchase Items
       </h2>
       <MaterialTable
         align="center"

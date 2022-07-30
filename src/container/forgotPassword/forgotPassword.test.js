@@ -138,7 +138,7 @@ describe("should test for Form", () => {
         <ForgotPassword />
       </Provider>
     );
-    const signInForm = (props = {errors: {}, touched: {}}) =>
+    const forgotPasswordForm = () =>
       wrapper.find(ForgotPassword).dive().find(Formik).renderProp("children")({
         touched: {email: ""},
         errors: {
@@ -148,7 +148,7 @@ describe("should test for Form", () => {
 
     const errors = {email: "Invalid email id"};
 
-    const formWithInvalidEmailErrors = signInForm({
+    const formWithInvalidEmailErrors = forgotPasswordForm({
       errors: {
         email: "Invalid email id",
       },
@@ -175,7 +175,6 @@ describe("should test for Form", () => {
         <ForgotPassword onClick={onClick}>{name}</ForgotPassword>
       </Provider>
     );
-    // expect(wrapper.find('button[type="button"]').length).toEqual(1);
     wrapper.find('button[type="button"]').simulate("click");
     expect.assertions(1);
     expect(mockedUsedNavigate).toHaveBeenCalled();

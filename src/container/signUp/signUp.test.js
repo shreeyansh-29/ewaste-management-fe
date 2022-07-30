@@ -284,8 +284,7 @@ describe("testing Formik", () => {
       </Provider>
     );
     const state = wrapper.find("#state").at(1);
-    // expect(state.simulate("click")).toBeTruthy();
-
+  
     const value = wrapper.find("#state").at(1).find("#selectedState").at(2);
 
     console.log("state", value);
@@ -324,7 +323,6 @@ describe("testing Formik", () => {
       target: {value: "Assam"},
     });
     expect(mockFn).toBeCalled;
-    // expect(city.html()).toMatch("Assam");
     expect(isEmpty(initialcities)).toEqual(true);
   });
   it("should have pincode field", () => {

@@ -133,7 +133,5 @@ describe("test Sales", () => {
 
     expect(wrapper.find("button[title='Save']").simulate("click")).toBeEnabled;
     jest.runAllTimers();
-
-    // wrapper.find("button[className='bttn']").simulate("click");
   });
 });

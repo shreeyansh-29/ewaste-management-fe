@@ -96,7 +96,7 @@ describe("Organize Drives", () => {
         <OrganizeDrive handleDone={mockFn} />
       </Provider>
     );
-    // console.log(wrapper.find(".MuiSvgIcon-root").debug());
+
     wrapper.find(".MuiSvgIcon-root").at(0).simulate("click");
     let driveName;
     act(() => {
@@ -140,13 +140,6 @@ describe("Organize Drives", () => {
     });
     expect(categoriesAccepted.html()).toMatch("Large and Small Equipments");
 
-    // let date = wrapper.find('input[type="text"]').at(3);
-    // wrapper.find("button[type='button']").at(1).simulate("click");
-    // date = wrapper.find(
-    //   ".MuiTypography-root .MuiTypography-body2 .MuiTypography-colorInherit"
-    // );
-    // console.log("wrapper", date.length);
-
     let time = wrapper.find(".MuiSelect-nativeInput").at(0);
     time = wrapper
       .find('svg[viewBox="0 0 24 24"]')
@@ -156,7 +149,6 @@ describe("Organize Drives", () => {
         target: {value: "8:00-16:00"},
       });
     console.log("time", time.html());
-    // expect(time.text()).toMatch("");
 
     //check button
     let check = wrapper.find("button[title='Save']");

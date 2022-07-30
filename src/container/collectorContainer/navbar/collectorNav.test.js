@@ -56,7 +56,6 @@ describe("Collector Navbar", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   it("should test for Navbar", () => {
-    // let props = {res: {}, result1: {}, result2: {}};
     const wrapper = mount(
       <Provider store={store}>
         <CollectorNav />

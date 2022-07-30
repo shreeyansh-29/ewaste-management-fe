@@ -26,6 +26,7 @@ const ItemsForSale = ({res}) => {
       setStatus(res.data.status);
     }
   }, []);
+  
   /* 
     @function handleSubmit
     @params {e,datas} contain the data required to put the item on sale
