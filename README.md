@@ -35,9 +35,6 @@ git push
 ### Merging a pull request  
 1. Click on "Merge pull request" button at the bottom of your pull request to merge your changes.   
 2. Add a commit message and click on "Confirm Merge" to merge the changes.  
-  
-## License  
-The project belongs to <a href= "https://www.nineleaps.com/" >Nineleaps</a> 
 
 
 ## Setup for running test cases
@@ -61,6 +58,11 @@ Running the below command will start the testcases
 ```
 npm test
 ```
+
+  
+## License  
+The project belongs to <a href= "https://www.nineleaps.com/" >Nineleaps</a> 
+
 
   
 
