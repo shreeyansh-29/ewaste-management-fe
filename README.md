@@ -40,7 +40,7 @@ git push
 The project belongs to <a href= "https://www.nineleaps.com/" >Nineleaps</a> 
 
 
-### Setup for running test cases
+## Setup for running test cases
 ```
 npm i jest
 npm i enzyme
