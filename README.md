@@ -46,7 +46,9 @@ npm i enzyme-to-json
 npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
 npm install --save-dev redux-mock-store 
 ```
-### First we need to create a setupTests.js to setup the testing environment
+### First we need to setup the testing environment
+1. Create a setupTests.js file in src folder.
+2. Paste the below code in the file.
 
 ```
 import {configure} from "enzyme";
