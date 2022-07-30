@@ -50,7 +50,7 @@ npm install --save-dev redux-mock-store
 Running the below command will start the testcases
 
 ```
-npm test
+npm run test
 ```
 
   
