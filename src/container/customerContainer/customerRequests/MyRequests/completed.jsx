@@ -54,14 +54,14 @@ function completed({res}) {
     <>
       <div>
         <div>
-          <div style={{padding: " 10px 30px"}}>
+          <div className="completed">
             <MaterialTable
               align="center"
               title=""
               columns={completedColumns}
               data={res?.data.data}
               icons={{
-                Search: () => <SearchIcon style={{fill: "white"}} />,
+                Search: () => <SearchIcon className="completedSearchBtn" />,
               }}
               localization={{
                 header: {

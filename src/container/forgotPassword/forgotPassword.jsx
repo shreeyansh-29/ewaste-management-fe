@@ -46,11 +46,10 @@ const ForgotPassword = ({res}) => {
                   <Field
                     type="email"
                     name="email"
-                    className="form-control"
+                    className="form-control forgotPasswordField"
                     placeholder="Email"
                     onChange={handleChange}
                     autoComplete="off"
-                    style={{borderRadius: "17px"}}
                   />
                 </div>
                 {touched.email && errors.email ? (

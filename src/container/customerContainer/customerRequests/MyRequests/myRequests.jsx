@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Pending from "./pending";
 import Completed from "./completed";
+import "../../customer.css";
 
 const MyRequests = () => {
   const [value, setValue] = useState(0);
@@ -35,22 +36,9 @@ const MyRequests = () => {
     );
   };
   return (
-    <div style={{padding: "150px 30px 0 30px"}}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: "30px",
-          padding: "2px,",
-          color: "white",
-          marginBottom: "2.5%",
-          backgroundColor: " rgb(30, 28, 54)",
-          borderRadius: "5px",
-        }}
-      >
-        {" "}
-        My Requests{" "}
-      </h2>
-      <Paper square style={{margin: "20px auto", width: "100%"}}>
+    <div className="myRequests">
+      <h2 className="myRequests-h2"> My Requests </h2>
+      <Paper square className="myRequests-Paper">
         <Tabs
           value={value}
           indicatorColor="primary"

@@ -419,3 +419,19 @@ width:300px;
     }
   }
   }
+
+.signUpField{
+    border-radius: 17px !important;
+}
+
+.categories{
+  padding-left:15px;
+}
+
+.categoriesLabel{
+  padding-left: 7px;
+}
+
+.dropOffTime{
+  margin-top: 22px;
+}

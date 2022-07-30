@@ -6,6 +6,7 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import "../customer.css";
+import "./customerRequests.css";
 import {useDispatch, connect} from "react-redux";
 import AddIcon from "@material-ui/icons/AddBox";
 import {
@@ -180,14 +181,14 @@ function PickUp({result1}) {
 
   return (
     <div>
-      <div style={{padding: "150px 30px"}}>
+      <div className="pickUp">
         <TableTitle> Pick-Up Requests</TableTitle>
         <MaterialTable
           title=""
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon className="pickUpAddBtn" />,
           }}
           editable={{
             onRowAdd: isEditable
@@ -219,7 +220,6 @@ function PickUp({result1}) {
           }}
         />
         <div className="a">
-          {" "}
           <a href="#" onClick={handleClick}>
             Find Collectors
           </a>

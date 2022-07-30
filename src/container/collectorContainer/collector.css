@@ -1,6 +1,5 @@
 .collector_profile {
   height: 110vh;
-
 }
 select{
   width:70px;
@@ -47,6 +46,16 @@ select{
   }
 
 }
+.collectorNav{
+  margin-left: 0.5% !important;
+}
+.collectorNavDropDown{
+  padding: 10px !important;
+}
+.navLink{
+  padding: 18px !important;
+}
+
 .collectorbody{
   padding:20px;
 }
@@ -187,7 +196,49 @@ a {
   background-color: rgb(22, 21, 43);
   border-radius: 10px 10px 0px 0px;
 }
+.home-carousel{
+  padding-top: 5.8%; 
+  padding-bottom: 3%;
+}
+.home-h3{
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 1%;
+  font-family: "Roboto" ,sans-serif;
+  font-weight: 500;
+  padding-top: 4%;
+  text-decoration: underline
+}
+.home-h3-1{
+  text-align: center;
+  padding: 4% 0 2% 0;
+}
+.home-h3-2{
+  text-align: center;
+  padding: 6% 0 8% 0;
+}
 
+.home-div{
+  padding: "2% 0 10% 0";
+}
+.collectorProfile{
+  margin-top: 85px;
+}
+.collectorProfile-h1{
+  text-align: center;
+  padding: 20px;
+  font-size: 2rem;
+  font-size: sans-serif;
+  color: white;
+}
+.collectorProfileField{
+  border-radius: 17px;
+}
+.collectorProfileEmail{
+  border-radius: 17px;
+  padding: 4px;
+  background-color: white;
+}
 
 @media screen and (max-width: 360px) {
   .Formbody{

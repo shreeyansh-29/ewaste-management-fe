@@ -22,7 +22,7 @@ const CustomerProfile = () => {
   const [initialcities, setCities] = useState([]);
 
   let res = useSelector((state) => state.customerProfile?.data);
-  
+
   useEffect(() => {
     dispatch(customerProfileRequest());
   }, []);
@@ -64,7 +64,7 @@ const CustomerProfile = () => {
   };
 
   return (
-    <div className="profile" style={{marginTop: "85px"}}>
+    <div className="profile customerProfile">
       <Formik
         enableReinitialize
         initialValues={{
@@ -96,7 +96,7 @@ const CustomerProfile = () => {
                       autoComplete="off"
                       type="text"
                       name="firstName"
-                      style={{borderRadius: "17px"}}
+                      className="customerProfileField"
                       onChange={handleChange}
                       placeholder="First Name"
                     />
@@ -114,7 +114,7 @@ const CustomerProfile = () => {
                       onChange={handleChange}
                       placeholder="Last Name"
                       type="text"
-                      style={{borderRadius: "17px"}}
+                      className="customerProfileField"
                       name="lastName"
                     />
                     {touched.lastName && errors.lastName ? (
@@ -126,11 +126,7 @@ const CustomerProfile = () => {
                     <div className="inputGroup">
                       <label htmlFor="email">Email</label>
                       <Field
-                        style={{
-                          borderRadius: "17px",
-                          padding: "4px",
-                          backgroundColor: "white",
-                        }}
+                        className="customerProfileEmail"
                         disabled
                         name="email"
                         id="email"
@@ -143,7 +139,7 @@ const CustomerProfile = () => {
                       <Field
                         id="phone"
                         type="text"
-                        style={{borderRadius: "17px"}}
+                        className="customerProfileField"
                         name="mobileNo"
                         autoComplete="off"
                         onChange={handleChange}
@@ -162,7 +158,7 @@ const CustomerProfile = () => {
                       <Field
                         id="address"
                         type="text"
-                        style={{borderRadius: "17px"}}
+                        className="customerProfileField"
                         name="address1"
                         autoComplete="off"
                         onChange={handleChange}
@@ -216,7 +212,7 @@ const CustomerProfile = () => {
                       </label>
                       <Field
                         type="pincode"
-                        style={{borderRadius: "17px"}}
+                        className="customerProfileField"
                         name="pinCode"
                         autoComplete="off"
                         onChange={handleChange}

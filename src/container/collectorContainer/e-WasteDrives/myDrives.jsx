@@ -9,6 +9,7 @@ import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
 import {collectorMyDrivesStatusRequest} from "../../../redux/action/collector/collectorMyDrivesStatusAction/collectorMyDrivesStatusAction";
 import {myDrivesColumns} from "./myDrivesColumns";
+import "./e-WasteDrives.css";
 
 const MyDrives = ({res}) => {
   const dispatch = useDispatch();
@@ -31,26 +32,14 @@ const MyDrives = ({res}) => {
   }, []);
 
   return (
-    <div style={{padding: "150px 30px 0 30px"}}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: "30px",
-          padding: "2px,",
-          color: "white",
-          marginBottom: "2.5%",
-          backgroundColor: " rgb(30, 28, 54)",
-          borderRadius: "5px",
-        }}
-      >
-        My E-Waste Drives
-      </h2>
+    <div className="myDrives">
+      <h2 className="myDrives-h2">My E-Waste Drives</h2>
       <MaterialTable
         title=""
         columns={myDrivesColumns}
         data={data}
         icons={{
-          Search: () => <SearchIcon style={{fill: "white"}} />,
+          Search: () => <SearchIcon className="myDrivesSearchBtn" />,
         }}
         editable={{
           onRowUpdate: (newData, oldData) =>

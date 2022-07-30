@@ -34,6 +34,22 @@ margin-top: 50px;
   align-items: center;
   height: 88vh;
 }
+.signInForm{
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.signInField{
+  border-radius: 17px !important;
+}
+.forgotPasswordLink{
+  color: gray;
+  font-family: "Poppins";
+  margin-right: 20px;
+}
+.signInBtnDiv{
+  margin-top: 50px;
+}
 .heading {
   background-color: rgb(30, 28, 54);
   border-radius: 10px 10px 0px 0px;
@@ -50,6 +66,11 @@ margin-top: 50px;
   font-weight: bold;
   width: 200px;
   margin-left:-5px;
+}
+.googleLogin{
+  background-color: blue; 
+  width: 50;
+  height: 50px;
 }
 .Form-BOdy {
   resize: none;

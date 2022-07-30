@@ -22,7 +22,6 @@ const OrganizeDrive = ({res}) => {
   const [status, setStatus] = useState("");
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
     if (res?.status === "success") {
       setStatus(res.data.status);
@@ -169,27 +168,14 @@ const OrganizeDrive = ({res}) => {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "30px",
-            padding: "2px,",
-            color: "white",
-            marginBottom: "2.5%",
-            backgroundColor: " rgb(30, 28, 54)",
-            borderRadius: "5px",
-          }}
-        >
-          {" "}
-          Organize an E-Waste Drive{" "}
-        </h2>
+      <div className="organizeDrive">
+        <h2 className="organizeDrive-h2">Organize an E-Waste Drive</h2>
         <MaterialTable
           title=""
           columns={columns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon className="organizeDriveAddBtn" />,
           }}
           editable={{
             onRowAdd: (newData) =>

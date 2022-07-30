@@ -4,11 +4,11 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {collectorSoldRequest} from "../../../redux/action/collector/collectorSoldAction/collectorSoldAction";
-import {} from "@material-ui/icons";
 import {isEmpty} from "lodash";
 import SearchIcon from "@material-ui/icons/Search";
 import {soldItemsColumns} from "./soldItemsColumns";
 import {useDispatch, connect} from "react-redux";
+import "./collectorSales.css";
 
 const SoldItems = ({res}) => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const SoldItems = ({res}) => {
       <MaterialTable
         title=""
         icons={{
-          Search: () => <SearchIcon style={{fill: "white"}} />,
+          Search: () => <SearchIcon className="sold-searchbtn" />,
         }}
         columns={soldItemsColumns}
         data={data}

@@ -1,0 +1,79 @@
+/*dropOff*/
+.dropOff{
+  padding: 150px 30px
+}
+
+.dropOff-h2{
+    text-align: center;
+    font-size: 30px;
+    padding: 2px;
+    color: white;
+    margin-bottom: 2.5%;
+    background-color: rgb(30, 28, 54);
+    border-radius: 5px;
+}
+
+.dropOffAddBtn{
+    fill: #e75480;
+}
+
+/*pickUp*/
+.pickUp{
+    padding:150px 30px
+}
+
+.pickUpAddBtn{
+    fill: #e75480;
+}
+
+/*viewCollector*/
+
+.viewCollector{
+    padding-top: 50px;
+}
+
+.viewCollector-h2{
+    text-align: center;
+    font-size: 30px;
+    padding: 2px;
+    color: white;
+    margin-bottom: 2.5%;
+    background-color: rgb(30, 28, 54);
+    border-radius: 5px
+}
+
+/*waste*/
+
+.mdbCard{
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px
+}
+
+.mdbCard-Body{
+    border-radius: 15px
+}
+
+.mdbCard-Title{
+   text-align: center
+}
+
+.mdbCard-Text{
+   font-style: "Poppins";
+}
+
+.mdbCard-Footer{
+    background-color: rgb(30, 28, 54);
+    color: white;
+    border-radius: 0px 0px 17px 17px;
+}
+
+.mdbCard-h2{
+    text-align: center; 
+    margin: 100px
+}
+
+.mdb-Row{
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}   

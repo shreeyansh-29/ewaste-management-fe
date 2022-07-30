@@ -13,6 +13,7 @@ import {vendorProfileRequest} from "../../../redux/action/vendor/vendorProfileAc
 import {vendorProfileEditRequest} from "../../../redux/action/vendor/vendorProfileAction/vendorProfileEditAction";
 import {isEmpty} from "lodash";
 import {VendorValidations} from "../../constant/validations";
+import {ProfileHeading, SelectStyle} from "../../../components/styles";
 
 const VendorProfile = ({res}) => {
   const [state, setState] = useState();
@@ -23,7 +24,7 @@ const VendorProfile = ({res}) => {
   useEffect(() => {
     dispatch(vendorProfileRequest());
   }, []);
-  
+
   useEffect(() => {
     setState(res.state);
     setCity(res.city);
@@ -63,7 +64,7 @@ const VendorProfile = ({res}) => {
   };
 
   return (
-    <div className="vendor" style={{marginTop: "85px"}}>
+    <div className="vendor vendorProfile">
       <Formik
         enableReinitialize
         initialValues={{
@@ -85,17 +86,7 @@ const VendorProfile = ({res}) => {
           <Form>
             <div className="formbody">
               <div className="vendorsprofile">
-                <h1
-                  style={{
-                    textAlign: "center",
-                    padding: "20px",
-                    fontSize: "2rem",
-                    fontFamily: "sans-serif",
-                    color: "white",
-                  }}
-                >
-                  Profile
-                </h1>
+                <ProfileHeading>Profile</ProfileHeading>
               </div>
               <div className="vendorbody">
                 <div className="row">
@@ -106,7 +97,7 @@ const VendorProfile = ({res}) => {
                     <Field
                       autoComplete="off"
                       onChange={handleChange}
-                      style={{borderRadius: "17px"}}
+                      className="vendorProfileField"
                       type="text"
                       name="firstName"
                       placeholder="First Name"
@@ -124,7 +115,7 @@ const VendorProfile = ({res}) => {
                       type="text"
                       name="lastName"
                       autoComplete="off"
-                      style={{borderRadius: "17px"}}
+                      className="vendorProfileField"
                       onChange={handleChange}
                       placeholder="Last Name"
                     />
@@ -137,11 +128,7 @@ const VendorProfile = ({res}) => {
                   <div className="inputGroup">
                     <label htmlFor="email">Email</label>
                     <Field
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                        backgroundColor: "white",
-                      }}
+                      className="vendorProfileEmail"
                       disabled
                       name="email"
                       id="email"
@@ -154,7 +141,7 @@ const VendorProfile = ({res}) => {
                     <Field
                       id="phone"
                       type="text"
-                      style={{borderRadius: "17px"}}
+                      className="vendorProfileField"
                       name="mobileNo"
                       autoComplete="off"
                       onChange={handleChange}
@@ -173,7 +160,7 @@ const VendorProfile = ({res}) => {
                     <Field
                       id="address"
                       type="text"
-                      style={{borderRadius: "17px"}}
+                      className="vendorProfileField"
                       name="address1"
                       autoComplete="off"
                       onChange={handleChange}
@@ -187,11 +174,7 @@ const VendorProfile = ({res}) => {
                     <label>
                       State <i className="text-danger">*</i>
                     </label>
-                    <select
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                      }}
+                    <SelectStyle
                       id="state"
                       className="form-select"
                       value={state}
@@ -201,7 +184,7 @@ const VendorProfile = ({res}) => {
                       {statescity.map((e, key) => {
                         return <option key={key}>{e.name}</option>;
                       })}
-                    </select>
+                    </SelectStyle>
                     {touched.state && errors.state ? (
                       <div className="formErrors">{errors.state}</div>
                     ) : null}
@@ -212,24 +195,18 @@ const VendorProfile = ({res}) => {
                     <label>
                       City <i className="text-danger">*</i>{" "}
                     </label>
-                    <select
-                      id="city"
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                      }}
+                    <SelectStyle
                       className="form-select"
                       value={city}
                       onChange={(e) => changeCity(e)}
                     >
                       <option value="Select City">{city}</option>
-
                       {isEmpty(initialcities) !== true
                         ? initialcities?.cities.map((e, key) => {
                             return <option key={key}>{e}</option>;
                           })
                         : ""}
-                    </select>
+                    </SelectStyle>
                     {touched.city && errors.city ? (
                       <div className="formErrors">{errors.city}</div>
                     ) : null}
@@ -240,7 +217,7 @@ const VendorProfile = ({res}) => {
                     </label>
                     <Field
                       type="pincode"
-                      style={{borderRadius: "17px"}}
+                      className="vendorProfileField"
                       name="pinCode"
                       autoComplete="off"
                       onChange={handleChange}
@@ -259,7 +236,7 @@ const VendorProfile = ({res}) => {
                     <Field
                       id="gst"
                       type="text"
-                      style={{borderRadius: "17px"}}
+                      className="vendorProfileField"
                       name="gstNo"
                       autoComplete="off"
                       onChange={handleChange}
@@ -278,7 +255,7 @@ const VendorProfile = ({res}) => {
                       type="text"
                       autoComplete="off"
                       name="registrationNo"
-                      style={{borderRadius: "17px"}}
+                      className="vendorProfileField"
                       onChange={handleChange}
                       placeholder="Enter Registration Number"
                     />

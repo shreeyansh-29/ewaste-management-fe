@@ -11,6 +11,11 @@ import {connect, useDispatch} from "react-redux";
 import {isEmpty} from "lodash";
 import {myOrdersColumn} from "./myOrdersColumn";
 export const ProfileIcon = FaUserCircle;
+import "../vendor.css";
+import {
+  ProfileIconBarStyle,
+  ProfileIconStyle,
+} from "../../../components/styles";
 
 const MyOrders = ({res}) => {
   const dispatch = useDispatch();
@@ -42,20 +47,8 @@ const MyOrders = ({res}) => {
 
   return (
     <div>
-      <div style={{padding: "150px 30px"}}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "30px",
-            padding: "2px,",
-            color: "white",
-            marginBottom: "2.5%",
-            backgroundColor: " rgb(30, 28, 54)",
-            borderRadius: "5px",
-          }}
-        >
-          Items Summary
-        </h2>
+      <div className="myOrders">
+        <h2 className="myOrders-h2">Items Summary</h2>
         <MaterialTable
           columns={myOrdersColumn}
           data={value}
@@ -66,22 +59,16 @@ const MyOrders = ({res}) => {
             },
           }}
           icons={{
-            Search: () => <SearchIcon style={{fill: "white"}} />,
+            Search: () => <SearchIcon className="myOrdersSearchBtn" />,
           }}
           actions={[
             {
               icon: () => (
-                <button
-                  id="pop1"
-                  style={{
-                    background: "white",
-                    border: "1px solid white",
-                    fontSize: "15px",
-                  }}
-                  onClick={togglePop}
-                >
-                  <ProfileIcon style={{color: "#e75480"}} />
-                </button>
+                <ProfileIconStyle onClick={togglePop} id="pop1">
+                  <ProfileIconBarStyle>
+                    <ProfileIcon />
+                  </ProfileIconBarStyle>
+                </ProfileIconStyle>
               ),
 
               onClick: (e, datas) => {

@@ -5,6 +5,7 @@ import React, {useState, useEffect} from "react";
 import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/AddBox";
 import "../collector.css";
+import "./collectorSales.css";
 import {
   TOAST_ERROR4,
   TOAST_SUCCESS6,
@@ -26,7 +27,7 @@ const ItemsForSale = ({res}) => {
       setStatus(res.data.status);
     }
   }, []);
-  
+
   /* 
     @function handleSubmit
     @params {e,datas} contain the data required to put the item on sale
@@ -63,26 +64,14 @@ const ItemsForSale = ({res}) => {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "30px",
-            padding: "2px,",
-            color: "white",
-            marginBottom: "2.5%",
-            backgroundColor: " rgb(30, 28, 54)",
-            borderRadius: "5px",
-          }}
-        >
-          On Sale
-        </h2>
+      <div className="sale">
+        <h2 className="sale-h2">On Sale</h2>
         <MaterialTable
           title=""
           columns={ItemsForSaleColumns}
           data={data}
           icons={{
-            Add: () => <AddIcon style={{fill: "#e75480"}} />,
+            Add: () => <AddIcon className="sale-addbtn" />,
           }}
           editable={{
             onRowAdd: (newData) =>

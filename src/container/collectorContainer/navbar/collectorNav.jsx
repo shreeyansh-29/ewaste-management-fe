@@ -92,7 +92,7 @@ function CollectorNav() {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="/CollectorHome" style={{marginLeft: "0.5%"}}>
+          <Navbar.Brand href="/CollectorHome" className="collectorNav">
             <div className="welcome">Welcome {res}</div>
           </Navbar.Brand>
           <Nav.Item className="bell">
@@ -114,7 +114,7 @@ function CollectorNav() {
               <NavDropdown
                 title="Requests"
                 id="collasible-nav-dropdown"
-                style={{padding: "10px"}}
+                className="collectorNavDropDown"
               >
                 <NavDropdown.Item href="/Request/CollectorRequests">
                   Request
@@ -126,7 +126,7 @@ function CollectorNav() {
               <NavDropdown
                 title="Drives"
                 id="collasible-nav-dropdown"
-                style={{padding: "10px"}}
+                className="collectorNavDropDown"
               >
                 <NavDropdown.Item href="/Drive/OrganizeDrive">
                   Organize Drive
@@ -138,7 +138,7 @@ function CollectorNav() {
               <NavDropdown
                 title="Sales"
                 id="collasible-nav-dropdown"
-                style={{padding: "10px"}}
+                className="collectorNavDropDown"
               >
                 <NavDropdown.Item href="/Sales/ItemsForSale">
                   On Sale
@@ -148,7 +148,7 @@ function CollectorNav() {
                 </NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link href="/CollectorProfile" style={{padding: "18px"}}>
+              <Nav.Link href="/CollectorProfile" className="navLink">
                 Profile
               </Nav.Link>
             </Nav>

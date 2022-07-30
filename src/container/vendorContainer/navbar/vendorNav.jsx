@@ -2,18 +2,19 @@
   @module vendorNav
 */
 
-import React,{useEffect} from "react";
+import React, {useEffect} from "react";
 import Swal from "sweetalert2";
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {connect, useDispatch} from "react-redux";
 import {vendorNameRequest} from "../../../redux/action/vendor/vendorNameAction/vendorNameAction";
+import "../vendor.css";
 
 const VendorNav = ({res}) => {
   const dispatch = useDispatch();
   const name = res.firstName;
-  
+
   useEffect(() => {
     dispatch(vendorNameRequest());
   }, []);
@@ -28,16 +29,16 @@ const VendorNav = ({res}) => {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="/VendorHome" style={{marginLeft: "2%"}}>
+          <Navbar.Brand href="/VendorHome" className="vendorNavBrand">
             <div className="welcome">Welcome {name}</div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="respohttp://localhost:3000/VendorHomensive-navbar-nav">
-            <Nav className="ms-auto" style={{marginRight: "1%"}}>
+            <Nav className="ms-auto vendorNav">
               <NavDropdown
                 title="My Orders"
                 id="collasible-nav-dropdown"
-                style={{padding: "10px"}}
+                className="vendorNavDropDown"
               >
                 <NavDropdown.Item href="/MyOrders/PurchaseItems">
                   Purchase Items
@@ -46,7 +47,7 @@ const VendorNav = ({res}) => {
                   Items Summary
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/VendorProfile" style={{padding: "18px"}}>
+              <Nav.Link href="/VendorProfile" className="vendorNavLink">
                 Profile
               </Nav.Link>
               <Nav.Link>

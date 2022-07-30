@@ -10,6 +10,7 @@ import GoogleLogin from "react-google-login";
 import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
 import {TOAST_ERROR1} from "../constant/constants";
+import "./signin.css";
 
 const GoogleSignin = ({res}) => {
   const [email, setEmail] = useState("");
@@ -82,7 +83,7 @@ const GoogleSignin = ({res}) => {
         cookiePolicy={"single_host_origin"}
         approvalPrompt="force"
         prompt="consent"
-        style={{backgroundColor: "blue", width: 50, height: "50px"}}
+        className="googleLogin"
       />
     </div>
   );

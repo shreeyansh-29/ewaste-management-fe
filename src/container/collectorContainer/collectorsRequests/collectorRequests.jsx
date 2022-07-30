@@ -4,6 +4,7 @@
 import React, {useState, useEffect} from "react";
 import MaterialTable from "material-table";
 import "../collector.css";
+import "./collectorRequests.css";
 import {TOAST_SUCCESS8} from "../../constant/constants";
 import Toast from "../../../components/toast";
 import {useDispatch, connect} from "react-redux";
@@ -45,20 +46,8 @@ const CollectorRequests = ({res}) => {
   };
 
   return (
-    <div style={{padding: "150px 30px 0 30px"}}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: "30px",
-          padding: "2px,",
-          color: "white",
-          marginBottom: "2.5%",
-          backgroundColor: " rgb(30, 28, 54)",
-          borderRadius: "5px",
-        }}
-      >
-        Requests
-      </h2>
+    <div className="collectorRequests">
+      <h2 className="collectorRequests-h2">Requests</h2>
       <MaterialTable
         align="center"
         columns={collectorRequestsColumns}

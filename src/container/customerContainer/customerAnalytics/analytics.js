@@ -12,7 +12,7 @@ const Analytics = () => {
   return (
     <Carousel>
       <Carousel.Item>
-        <h3 style={{textAlign: "center"}}>
+        <h3 className="analytics-h3">
           Your Contribution towards the Sustainability of our Planet
         </h3>
         <div>

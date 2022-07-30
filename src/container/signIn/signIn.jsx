@@ -82,41 +82,25 @@ const SignIn = ({res}) => {
                   <Heading>Sign In</Heading>
                 </div>
 
-                <div
-                  className="form-group"
-                  style={{
-                    marginTop: "30px",
-                    marginLeft: "20px",
-                    marginRight: "20px",
-                  }}
-                >
+                <div className="form-group signInForm">
                   <Field
                     name="email"
-                    className="form-control"
+                    className="form-control signInField"
                     type="email"
                     placeholder="Email"
-                    style={{borderRadius: "17px"}}
                     onChange={handleChange}
                   />
                 </div>
                 {touched.email && errors.email ? (
                   <div className="formError">{errors.email}</div>
                 ) : null}
-                <div
-                  className="form-group"
-                  style={{
-                    marginTop: "30px",
-                    marginLeft: "20px",
-                    marginRight: "20px",
-                  }}
-                >
+                <div className="form-group signInForm">
                   <div className="inputWithButtons">
                     <Field
                       name="password"
-                      className="form-control"
+                      className="form-control signInField"
                       type={passwordType}
                       placeholder="Password"
-                      style={{borderRadius: "17px"}}
                       onChange={handleChange}
                       autoComplete="off"
                     />
@@ -138,18 +122,14 @@ const SignIn = ({res}) => {
                   <Link
                     to="/ForgotPassword"
                     id="forgot"
-                    style={{
-                      color: "gray",
-                      fontFamily: "Poppins",
-                      marginRight: "20px",
-                    }}
+                    className="forgotPasswordLink"
                   >
                     Forgot Password
                   </Link>
                 </div>
-                <div className="text-center" style={{marginTop: "50px"}}>
+                <div className="text-center signInBtnDiv">
                   <button type="submit" className="signin-button">
-                    <div style={{textAlign: "center"}}>Sign In</div>
+                    <div>Sign In</div>
                   </button>
                 </div>
                 <div>

@@ -32,7 +32,7 @@ const CustomerNav = ({res, result1, result2}) => {
   const [count, setCount] = useState(0);
   const [List, setList] = useState([]);
   var list = ["No New Notifications"];
-  
+
   useEffect(() => {
     if (
       result1?.payload !== "No New Notification" &&
@@ -114,11 +114,11 @@ const CustomerNav = ({res, result1, result2}) => {
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto" style={{marginRight: "2%"}}>
+            <Nav className="ms-auto customerNav">
               <NavDropdown
                 title="Requests"
                 id="collasible-nav-dropdown"
-                style={{padding: "10px"}}
+                className="customerNavDropDown"
               >
                 <NavDropdown.Item href="/Request/PickUp">
                   Pick Up
@@ -130,10 +130,10 @@ const CustomerNav = ({res, result1, result2}) => {
                   My Requests
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/Drives/Waste" style={{padding: "18px"}}>
+              <Nav.Link href="/Drives/Waste" className="customerNavLink">
                 Drives
               </Nav.Link>
-              <Nav.Link style={{padding: "18px"}} href="/CustomerProfile">
+              <Nav.Link className="customerNavLink" href="/CustomerProfile">
                 Profile
               </Nav.Link>
               <Nav.Link>

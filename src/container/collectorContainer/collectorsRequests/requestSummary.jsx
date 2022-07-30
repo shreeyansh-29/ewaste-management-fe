@@ -3,7 +3,6 @@
 */
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
-import {} from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
 import Popup from "../../../components/popUp/popUp";
 import {FaUserCircle} from "react-icons/fa";
@@ -15,6 +14,7 @@ import {
   ProfileIconStyle,
   TableTitle,
 } from "../../../components/styles";
+import "./collectorRequests.css";
 import {requestSummaryColumns} from "./requestSummaryColumns";
 
 export const ProfileIcon = FaUserCircle;
@@ -63,7 +63,7 @@ function collectorRequests({res1}) {
 
   return (
     <div>
-      <div style={{padding: "150px 30px 0 30px"}}>
+      <div className="requestSummary">
         <TableTitle>My Requests </TableTitle>
         <MaterialTable
           align="center"
@@ -71,7 +71,7 @@ function collectorRequests({res1}) {
           data={data}
           title=""
           icons={{
-            Search: () => <SearchIcon style={{fill: "white"}} />,
+            Search: () => <SearchIcon className="request-searchBtn" />,
           }}
           localization={{
             header: {

@@ -35,14 +35,14 @@ const Pending = ({res}) => {
   return (
     <div>
       <div>
-        <div style={{padding: " 10px 30px"}}>
+        <div className="pending">
           <MaterialTable
             align="center"
             title=""
             columns={pendingColumns}
             data={res?.data.data}
             icons={{
-              Search: () => <SearchIcon style={{fill: "white"}} />,
+              Search: () => <SearchIcon className="pendingBtn" />,
             }}
             localization={{
               header: {

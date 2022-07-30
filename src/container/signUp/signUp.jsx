@@ -114,7 +114,7 @@ const signUp = ({res}) => {
   const togglePasswords = () => {
     setPasswordType(togglePassword(passwordType));
   };
-  
+
   const handleTime = () => {
     if (role === "Collector") {
       let start = startTime.toString().split("T");
@@ -188,7 +188,7 @@ const signUp = ({res}) => {
                     <Field
                       type="text"
                       name="firstName"
-                      style={{borderRadius: "17px"}}
+                      className="signUpField"
                       onChange={handleChange}
                       placeholder="First Name"
                       autoComplete="off"
@@ -205,7 +205,7 @@ const signUp = ({res}) => {
                     <Field
                       type="text"
                       name="lastName"
-                      style={{borderRadius: "17px"}}
+                      className="signUpField"
                       onChange={handleChange}
                       placeholder="Last Name"
                       autoComplete="off"
@@ -223,7 +223,7 @@ const signUp = ({res}) => {
                     <Field
                       type="email"
                       name="email"
-                      style={{borderRadius: "17px"}}
+                      className="signUpField"
                       onChange={handleChange}
                       placeholder="Mail"
                       autoComplete="off"
@@ -239,7 +239,7 @@ const signUp = ({res}) => {
                     <Field
                       type="text"
                       name="mobileNo"
-                      style={{borderRadius: "17px"}}
+                      className="signUpField"
                       onChange={handleChange}
                       placeholder="Mobile Number"
                       autoComplete="off"
@@ -258,7 +258,7 @@ const signUp = ({res}) => {
                       <Field
                         type={passwordType}
                         name="password"
-                        style={{borderRadius: "17px"}}
+                        className="signUpField"
                         onChange={handleChange}
                         placeholder="Enter Password"
                         autoComplete="off"
@@ -290,7 +290,7 @@ const signUp = ({res}) => {
                       <Field
                         type={confirmPasswordType}
                         name="confirmPassword"
-                        style={{borderRadius: "17px"}}
+                        className="signUpField"
                         onChange={handleChange}
                         placeholder="Confirm Password"
                         autoComplete="off"
@@ -324,7 +324,7 @@ const signUp = ({res}) => {
                     <Field
                       type="text"
                       name="address1"
-                      style={{borderRadius: "17px"}}
+                      className="signUpField"
                       onChange={handleChange}
                       placeholder="Address"
                       autoComplete="off"
@@ -386,7 +386,7 @@ const signUp = ({res}) => {
                     </label>
                     <Field
                       type="text"
-                      style={{borderRadius: "17px"}}
+                      className="signUpField"
                       name="pinCode"
                       onChange={handleChange}
                       placeholder="Pincode"
@@ -412,7 +412,7 @@ const signUp = ({res}) => {
                           ]}
                           name="role"
                           value={role}
-                          style={{borderRadius: "17px"}}
+                          className="signUpField"
                           placeholder="Select your Role"
                           onChange={(e) => handleDropdown(e)}
                         />
@@ -429,7 +429,7 @@ const signUp = ({res}) => {
                       <Field
                         type="text"
                         name="gstNo"
-                        style={{borderRadius: "17px"}}
+                        className="signUpField"
                         onChange={handleChange}
                         placeholder="GST Number"
                         autoComplete="off"
@@ -447,7 +447,7 @@ const signUp = ({res}) => {
                       <Field
                         type="text"
                         name="registrationNo"
-                        style={{borderRadius: "17px"}}
+                        className="signUpField"
                         onChange={handleChange}
                         placeholder="Registration Number"
                         autoComplete="off"
@@ -472,8 +472,7 @@ const signUp = ({res}) => {
                           htmlFor="time"
                           data-tip
                           data-for="registerTip"
-                          style={{marginTop: "22px"}}
-                          className="timelabel"
+                          className="timelabel dropOffTime"
                         >
                           Drop-Off Time <i className="text-danger">*</i>
                         </label>
@@ -502,7 +501,7 @@ const signUp = ({res}) => {
                       htmlFor="categories"
                       data-tip
                       data-for="Tip"
-                      style={{paddingLeft: "7px"}}
+                      className="categoriesLabel"
                     >
                       Categories <i className="text-danger">*</i>
                     </label>
@@ -513,10 +512,7 @@ const signUp = ({res}) => {
                     {categoryAccepted.map((v, i) => {
                       return (
                         // eslint-disable-next-line react/jsx-key
-                        <div
-                          className="inputGroups"
-                          style={{paddingLeft: "15px"}}
-                        >
+                        <div className="inputGroups categories">
                           <Select
                             value={categoryAccepted.category}
                             options={data}

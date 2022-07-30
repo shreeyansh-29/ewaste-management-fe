@@ -4,6 +4,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import "../../customerContainer/customer.css";
+import "../vendor.css";
 
 const PurchaseData = (props) => {
   return (
@@ -11,31 +12,19 @@ const PurchaseData = (props) => {
       <div className="popup-box">
         <div className="box">
           <div className="heading">
-            <h2
-              style={{
-                textAlign: "center",
-                padding: "20px",
-                fontSize: "1.7rem",
-                fontFamily: "sans-serif",
-                color: "white",
-              }}
-            >
-              Invoice Details
-            </h2>
+            <h2 className="purchaseData-h2">Invoice Details</h2>
           </div>
-          <div
-            style={{textAlign: "center", marginTop: "40px", padding: "0 50px"}}
-          >
+          <div className="purchaseDataDiv1">
             <h3>
               Congratulations, you have purchased {props.quantity} quantity of{" "}
               {props.item}.
             </h3>
 
-            <div style={{textAlign: "center", marginTop: "40px"}}>
+            <div className="purchaseDataDiv2">
               <h3>Your Invoice No. is {Date.now()}.</h3>
             </div>
           </div>
-          <div style={{textAlign: "center", marginTop: "30px"}}>
+          <div className="purchaseDataDiv3">
             <h7>Click the link below to see the details.</h7>
           </div>
           <div
@@ -45,7 +34,7 @@ const PurchaseData = (props) => {
               marginBottom: "40px",
             }}
           >
-            <a href="/MyOrders/SalesSummary" style={{color: "blue"}}>
+            <a href="/MyOrders/SalesSummary" className="purchaseData-a">
               See details
             </a>
           </div>

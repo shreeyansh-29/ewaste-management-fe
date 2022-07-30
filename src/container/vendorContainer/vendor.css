@@ -204,3 +204,130 @@ a {
   }
 }
 
+.vendorCarousel{
+  padding-top: 5.8%;
+  padding-bottom: 3%;
+}
+
+.vendorCarousel-h3-1{
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Roboto";
+  margin-bottom: -8%;
+  padding-top: 4%;
+  text-decoration: underline;
+}
+
+.vendorCarousel-h3-2{
+  text-align: center;
+  padding: 12% 0 1% 0
+}
+
+.vendorCarousel-h3-3{
+  text-align: center; 
+  padding: 0 0 1% 0
+}
+
+.vendorCarouselDiv{
+  padding: 5% 3% 10% 3%;
+}
+
+.myOrders{
+  padding: 150px 30px;
+}
+
+.myOrders-h2{
+  text-align: center;
+  font-size: 30px;
+  padding: 2px;
+  color: white;
+  margin-bottom: 2.5%;
+  background-color: rgb(30, 28, 54);
+  border-radius: 5px;
+}
+
+.myOrdersSearchBtn{
+  fill: white
+}
+
+.purchaseData-h2{
+  text-align: center;
+  padding: 20px;
+  font-size: 1.7rem;
+  font-family: sans-serif;
+  color: white;
+}
+
+.purchaseDataDiv1{
+  text-align: center; 
+  margin-top: 40px; 
+  padding: 0 50px;
+}
+
+.purchaseDataDiv2{
+  text-align: center; 
+  margin-top: 40px;
+}
+
+.purchaseDataDiv3{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.purchaseData-a{
+  color: blue;
+}
+
+.sales{
+  padding: 150px 30px;
+}
+
+.sales-h2{
+  text-align: center;
+  font-size: 30px;
+  padding: 2px;
+  color: white;
+  margin-bottom: 2.5%;
+  background-color: rgb(30, 28, 54);
+  border-radius: 5px;
+}
+
+.sales-Edit{
+  color: black; 
+  align-content: left;
+}
+
+.sales-Search{
+  fill: white;
+}
+
+.vendorProfile{
+  margin-top: 85px;
+}
+
+.vendorProfileField{
+  border-radius: 17px;
+}
+
+.vendorProfileEmail{
+  border-radius: 17px;
+  padding: 4px;
+  background-color: white;
+}
+
+.vendorNav{
+  margin-right: 1%;
+}
+
+.vendorNavDropDown{
+  padding:10px;
+}
+
+.vendorNavLink{
+  padding: 18px;
+}
+
+.vendorNavBrand{
+  margin-left: 2%;
+}

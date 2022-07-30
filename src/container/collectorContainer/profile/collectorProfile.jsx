@@ -25,7 +25,7 @@ const CollectorProfile = () => {
   useEffect(() => {
     dispatch(collectorProfileRequest());
   }, []);
- 
+
   useEffect(() => {
     setState1(res?.state);
     setCity(res?.city);
@@ -68,7 +68,7 @@ const CollectorProfile = () => {
     Toast.success(TOAST_SUCCESS5, 1500);
   };
   return (
-    <div className="vendor" style={{marginTop: "85px"}}>
+    <div className="vendor collectorProfile">
       <Formik
         enableReinitialize
         initialValues={{
@@ -91,17 +91,7 @@ const CollectorProfile = () => {
           <Form>
             <div className="formbody">
               <div className="vendorsprofile">
-                <h1
-                  style={{
-                    textAlign: "center",
-                    padding: "20px",
-                    fontSize: "2rem",
-                    fontFamily: "sans-serif",
-                    color: "white",
-                  }}
-                >
-                  Profile
-                </h1>
+                <h1 className="collectorProfile-h1">Profile</h1>
               </div>
               <div className="vendorbody">
                 <div className="row">
@@ -112,7 +102,7 @@ const CollectorProfile = () => {
                     <Field
                       autoComplete="off"
                       onChange={handleChange}
-                      style={{borderRadius: "17px"}}
+                      className="collectorProfileField"
                       name="firstName"
                       type="text"
                       placeholder="First Name"
@@ -129,7 +119,7 @@ const CollectorProfile = () => {
                       type="text"
                       name="lastName"
                       autoComplete="off"
-                      style={{borderRadius: "17px"}}
+                      className="collectorProfileField"
                       onChange={handleChange}
                       placeholder="Last Name"
                     />
@@ -142,11 +132,7 @@ const CollectorProfile = () => {
                   <div className="inputGroup">
                     <label htmlFor="email">Email</label>
                     <Field
-                      style={{
-                        borderRadius: "17px",
-                        padding: "4px",
-                        backgroundColor: "white",
-                      }}
+                      className="collectorProfileEmail"
                       disabled
                       name="email"
                       id="email"
@@ -159,7 +145,7 @@ const CollectorProfile = () => {
                     <Field
                       id="phone"
                       type="text"
-                      style={{borderRadius: "17px"}}
+                      className="collectorProfileField"
                       name="mobileNo"
                       autoComplete="off"
                       onChange={handleChange}
@@ -178,7 +164,7 @@ const CollectorProfile = () => {
                     <Field
                       id="address"
                       type="text"
-                      style={{borderRadius: "17px"}}
+                      className="collectorProfileField"
                       name="address1"
                       autoComplete="off"
                       onChange={handleChange}
@@ -236,7 +222,7 @@ const CollectorProfile = () => {
                     </label>
                     <Field
                       type="pincode"
-                      style={{borderRadius: "17px"}}
+                      className="collectorProfileField"
                       name="pinCode"
                       autoComplete="off"
                       onChange={handleChange}
@@ -255,7 +241,7 @@ const CollectorProfile = () => {
                     <Field
                       type="text"
                       id="gst"
-                      style={{borderRadius: "17px"}}
+                      className="collectorProfileField"
                       name="gstNo"
                       autoComplete="off"
                       onChange={handleChange}
@@ -271,7 +257,7 @@ const CollectorProfile = () => {
                       type="text"
                       autoComplete="off"
                       name="registrationNo"
-                      style={{borderRadius: "17px"}}
+                      className="collectorProfileField"
                       onChange={handleChange}
                       placeholder="Enter Registration Number"
                     />

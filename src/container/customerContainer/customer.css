@@ -107,6 +107,85 @@ a {
   width: 40%;
   height: 60%;
 }
+.home-heading{
+  padding-top: 5.8%;
+  padding-bottom: 3%;
+}
+.customerHome-h3{
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1%;
+  font-weight: 500;
+  font-family: "Poppins";
+  padding-top: 4%;
+  padding-bottom: 3%;
+  text-decoration: underline; 
+}
+.customerHome-h3-1{
+  text-align: center;
+}
+.customerHome-h3-2{
+  text-align: center;
+  padding: 4% 0 2% 0
+}
+.customerHome-h3-3{
+  text-align: center;
+  padding: 8% 0 2% 0;
+}
+.customerHome-div{
+  padding-bottom: 8%;
+}
+.customerNavLink{
+  padding: 18px;
+}
+.customerNavDropDown{
+  padding: 10px;
+}
+.customerNav{
+  margin-right: 2%;
+}
+.completed{
+  padding: 10px 30px;
+}
+.completedSearchBtn{
+  fill: white;
+}
+.myRequests{
+ padding: 150px 30px 0 30px;
+}
+.myRequests-h2{
+  text-align: center;
+  font-size: 30px;
+  padding: 2px;
+  color: white;
+  margin-bottom: 2.5%;
+  background-color:  rgb(30, 28, 54);
+  border-radius: 5px
+}
+.myRequests-Paper{
+  margin: 20px auto;
+  width: 100%
+}
+.pending{
+  padding: 10px 30px;
+}
+.pendingBtn{
+  fill: white;
+}
+.analytics-h3{
+  text-align: center;
+}
+.customerProfile{
+  margin-top: 85px;
+}
+.customerProfileField{
+  border-radius: 17px;
+}
+.customerProfileEmail{
+  border-radius: 17px;
+  padding: 4px;
+  background-color: white;
+}
 .textStyle {
   text-align: center;
   margin-top: 20px;

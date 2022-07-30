@@ -82,34 +82,16 @@ const ResetPassword = ({res}) => {
           {({errors, touched, handleChange}) => (
             <Form>
               <div className="psswd-heading">
-                <h2
-                  style={{
-                    textAlign: "center",
-                    padding: "12px",
-                    fontSize: "1.7rem",
-                    fontFamily: "sans-serif",
-                    color: "white",
-                  }}
-                >
-                  Reset Password
-                </h2>
+                <h2 className="psswd-heading-h2">Reset Password</h2>
               </div>
-              <div
-                className="form-group"
-                style={{
-                  marginTop: "30px",
-                  marginLeft: "20px",
-                  marginRight: "20px",
-                }}
-              >
+              <div className="form-group psswdform">
                 <div className="inputWithButtons">
                   <Field
                     name="password"
                     id="input1"
-                    className="form-control"
+                    className="form-control pswwdField"
                     type={passwordType}
                     placeholder="New Password"
-                    style={{borderRadius: "17px"}}
                     onChange={handleChange}
                     autoComplete="off"
                   />
@@ -131,21 +113,13 @@ const ResetPassword = ({res}) => {
               {touched.password && errors.password ? (
                 <div className="formErrors1">{errors.password}</div>
               ) : null}
-              <div
-                className="form-group"
-                style={{
-                  marginTop: "30px",
-                  marginLeft: "20px",
-                  marginRight: "20px",
-                }}
-              >
+              <div className="form-group psswdform">
                 <div className="inputWithButtons">
                   <Field
                     name="confirmPassword"
                     id="input2"
-                    className="form-control"
+                    className="form-control psswdField"
                     type={confirmPasswordType}
-                    style={{borderRadius: "17px"}}
                     placeholder="Confirm Password"
                     onChange={handleChange}
                   />
@@ -168,7 +142,7 @@ const ResetPassword = ({res}) => {
                 <div className="formErrors1">{errors.confirmPassword}</div>
               ) : null}
 
-              <div className="cont" style={{marginLeft: "25px"}}>
+              <div className="cont cont-reset">
                 <button type="submit" className="reset-button">
                   Reset
                 </button>

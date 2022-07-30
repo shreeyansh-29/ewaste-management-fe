@@ -1,7 +1,7 @@
 /*
   @module sales
 */
-import React, {useEffect,useState} from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {Link} from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
@@ -20,6 +20,10 @@ import {
 } from "../../constant/constants";
 import {isEmpty} from "lodash";
 import Toast from "../../../components/toast";
+import {
+  ProfileIconBarStyle,
+  ProfileIconStyle,
+} from "../../../components/styles";
 export const ProfileIcon = FaUserCircle;
 
 const Sales = ({res, res2}) => {
@@ -36,17 +40,16 @@ const Sales = ({res, res2}) => {
       title: "Seller Profile",
       editable: "never",
       render: (rowData) => (
-        <button
-          id="pop1"
-          style={{
-            background: "white",
-            border: "1px solid white",
-            fontSize: "15px",
+        <ProfileIconStyle
+          onClick={() => {
+            profile(rowData);
           }}
-          onClick={() => profile(rowData)}
+          id="pop1"
         >
-          <ProfileIcon style={{color: "#e75480"}} />
-        </button>
+          <ProfileIconBarStyle>
+            <ProfileIcon />
+          </ProfileIconBarStyle>
+        </ProfileIconStyle>
       ),
       filtering: false,
       cellStyle: {
@@ -255,29 +258,17 @@ const Sales = ({res, res2}) => {
     setOpen2(!isOpen2);
   };
   return (
-    <div style={{padding: "150px 30px"}}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: "30px",
-          padding: "2px,",
-          color: "white",
-          marginBottom: "2.5%",
-          backgroundColor: " rgb(30, 28, 54)",
-          borderRadius: "5px",
-        }}
-      >
-        Purchase Items
-      </h2>
+    <div className="sales">
+      <h2 className="sales-h2">Purchase Items</h2>
       <MaterialTable
         align="center"
         title=""
         columns={columns}
         data={data}
         icons={{
-          Edit: () => <Edit style={{color: "black", alignContent: "left"}} />,
+          Edit: () => <Edit className="sales-Edit" />,
 
-          Search: () => <SearchIcon style={{fill: "white"}} />,
+          Search: () => <SearchIcon className="sales-Search" />,
         }}
         editable={{
           onRowUpdate: (newData, oldData) =>
