@@ -50,7 +50,17 @@ npm install --save-dev redux-mock-store
 ```
 ### First we need to create a setupTests.js to setup the testing environment
 
+```
+import {configure} from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 
+configure({adapter: new Adapter()});
+```
+Running the below command will start the testcases
+
+```
+npm test
+```
 
   
 
