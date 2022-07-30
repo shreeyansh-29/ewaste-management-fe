@@ -40,22 +40,13 @@ git push
 
 ## Setup for running test cases
 ```
-npm i jest
-npm i enzyme
-npm i enzyme-to-json
+npm install jest
+npm install enzyme
+npm install enzyme-to-json
 npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
 npm install --save-dev redux-mock-store 
 ```
-### First we need to setup the testing environment
-1. Create a setupTests.js file in src folder.
-2. Paste the below code in the file.
 
-```
-import {configure} from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-
-configure({adapter: new Adapter()});
-```
 Running the below command will start the testcases
 
 ```
