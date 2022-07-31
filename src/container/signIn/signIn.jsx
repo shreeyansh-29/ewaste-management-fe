@@ -17,6 +17,7 @@ import {signInRequest} from "../../redux/action/signInAction/signInActions";
 import {SignInValidations} from "../constant/validations";
 import {Heading, ButtonStyle, Headings} from "../../components/styles";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
+import {renderRole} from "../../components/renderRole/renderRole";
 
 const SignIn = ({res}) => {
   const dispatch = useDispatch();
@@ -39,15 +40,7 @@ const SignIn = ({res}) => {
         localStorage.setItem("Roles", token.Roles[0]);
         localStorage.setItem("email", token.sub);
         const role = localStorage.getItem("Roles");
-        if (role === "CUSTOMER") {
-          window.location.href = "/CustomerHome";
-        } else if (role === "COLLECTOR") {
-          window.location.href = "/CollectorHome";
-        } else if (role === "VENDOR") {
-          window.location.href = "/VendorHome";
-        } else {
-          window.location.href = "/";
-        }
+        window.location.href = renderRole[role];
       }
     }
   }, [res]);

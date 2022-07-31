@@ -11,6 +11,7 @@ import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
 import {TOAST_ERROR1} from "../constant/constants";
 import "./signin.css";
+import {renderRole} from "../../components/renderRole/renderRole";
 
 const GoogleSignin = ({res}) => {
   const [email, setEmail] = useState("");
@@ -27,13 +28,7 @@ const GoogleSignin = ({res}) => {
         const token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
         const role = localStorage.getItem("Roles");
-        if (role === "CUSTOMER") {
-          window.location.href = "/CustomerHome";
-        } else if (role === "COLLECTOR") {
-          window.location.href = "/CollectorHome";
-        } else if (role === "VENDOR") {
-          window.location.href = "/VendorHome";
-        }
+        window.location.href = renderRole[role];
       }
     }
   }, [res]);
