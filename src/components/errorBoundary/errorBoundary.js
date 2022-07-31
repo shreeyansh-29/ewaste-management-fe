@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component {
         <>
           <div className="row text-center column">
             <div className="col-lg-12 div1">
-              <img src={image} alt="" />
+              <img src={image} alt="" className="img1" />
             </div>
             <div className="col-lg-12">
               <h1 className="error-h1">Oh no!</h1>

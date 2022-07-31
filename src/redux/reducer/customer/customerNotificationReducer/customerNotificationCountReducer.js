@@ -20,7 +20,7 @@ export const customerNotificationCountReducer = (
     case types.CUSTOMER_NOTIFICATION_COUNT_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        data: action,
       };
     case types.CUSTOMER_NOTIFICATION_COUNT_ERROR:
       return {

@@ -151,7 +151,7 @@ function PickUp({result1}) {
     event.preventDefault();
 
     var date = value[0].date.toString().split(" ");
-    date[1] = dateMapping.date[1];
+    date[1] = dateMapping[date[1]];
 
     date = date[3] + "-" + date[1] + "-" + date[2];
     value[0].date = date;
@@ -228,13 +228,13 @@ function PickUp({result1}) {
           <div className="textStyle">
             <h4>
               No collectors found in your area. Please try using a Drop Off
-              Request.{" "}
+              Request.
             </h4>
           </div>
         ) : (
           ""
         )}
-        {expanded && collectors !== 0 && collectors !== undefined ? (
+        {expanded && collectors !== 0 ? (
           <div className="textStyle">
             <h4> {collectors} collectors have been found in your area.</h4>
             <Button onClick={(e) => handleSubmit(e, data)}>Send Request</Button>
