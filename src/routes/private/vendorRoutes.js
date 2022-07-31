@@ -8,7 +8,7 @@ import VendorNav from "../../container/vendorContainer/navbar/vendorNav";
 import VendorProfile from "../../container/vendorContainer/vendorProfile/vendorProfile";
 import Sales from "../../container/vendorContainer/vendorSales/sales";
 import MyOrders from "../../container/vendorContainer/vendorSales/myOrders";
-import PageNotFound from "../../container/pageNotFound/pageNotFound";
+import PageNotFound from "../../components/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 
 const VendorRoutes = () => {

@@ -12,7 +12,7 @@ import MyRequests from "../../container/customerContainer/customerRequests/MyReq
 import Popup from "../../components/popUp/popUp";
 import ViewCollectors from "../../container/customerContainer/customerRequests/viewCollectors";
 import Waste from "../../container/customerContainer/customerRequests/waste";
-import PageNotFound from "../../container/pageNotFound/pageNotFound";
+import PageNotFound from "../../components/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 
 const CustomerRoutes = () => {

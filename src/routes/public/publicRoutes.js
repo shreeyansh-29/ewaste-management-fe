@@ -8,7 +8,7 @@ import HomePage from "../../container/homePage/homePage";
 import SignUp from "../../container/signUp/signUp";
 import ForgotPassword from "../../container/forgotPassword/forgotPassword";
 import ResetPass from "../../container/forgotPassword/resetPassword";
-import PageNotFound from "../../container/pageNotFound/pageNotFound";
+import PageNotFound from "../../components/pageNotFound/pageNotFound";
 
 const PublicRoutes = () => {
   return (

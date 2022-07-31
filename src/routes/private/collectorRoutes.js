@@ -13,7 +13,7 @@ import RequestSummary from "../../container/collectorContainer/collectorsRequest
 import ItemsForSale from "../../container/collectorContainer/collectorSaleItems/itemsForSale";
 import SummarySales from "../../container/collectorContainer/collectorSaleItems/availableSales";
 import SaleItems from "../../container/collectorContainer/collectorSaleItems/salesItems";
-import PageNotFound from "../../container/pageNotFound/pageNotFound";
+import PageNotFound from "../../components/pageNotFound/pageNotFound";
 import AuthProtected from "../authProtected/authProtected";
 
 const CollectorRoutes = () => {
