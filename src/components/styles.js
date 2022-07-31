@@ -92,7 +92,7 @@ export const ProfileHeading = styled.h1`
   padding: 20px;
   font-size: 2rem;
   font-family: "sans-serif";
-  color: "white";
+  color: white;
 `;
 export const Button = styled.button`
   color: white;

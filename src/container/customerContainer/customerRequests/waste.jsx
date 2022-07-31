@@ -88,10 +88,10 @@ const Waste = ({res}) => {
     <div>
       {data.length === 0 ? (
         <div>
-          <h2 className="mdbCard=h2">No Upcoming drives</h2>
+          <h2 className="mdbCard-h2">No Upcoming drives</h2>
         </div>
       ) : (
-        <MDBRow className="mdbRow" export default function>
+        <MDBRow className="mdb-Row" export default function>
           {data.map(renderCard)}
         </MDBRow>
       )}

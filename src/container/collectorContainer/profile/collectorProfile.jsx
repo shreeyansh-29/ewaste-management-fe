@@ -13,7 +13,7 @@ import {TOAST_SUCCESS5} from "../../constant/constants";
 import {useDispatch, useSelector} from "react-redux";
 import {collectorProfileEditRequest} from "../../../redux/action/collector/collectorProfileAction/collectorProfileEditAction";
 import {CollectorValidations} from "../../constant/validations";
-import {SelectStyle} from "../../../components/styles";
+import {ProfileHeading, SelectStyle} from "../../../components/styles";
 
 const CollectorProfile = () => {
   const [state1, setState1] = useState();
@@ -91,7 +91,7 @@ const CollectorProfile = () => {
           <Form>
             <div className="formbody">
               <div className="vendorsprofile">
-                <h1 className="collectorProfile-h1">Profile</h1>
+                <ProfileHeading>Profile</ProfileHeading>
               </div>
               <div className="vendorbody">
                 <div className="row">

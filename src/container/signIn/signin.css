@@ -35,9 +35,9 @@ margin-top: 50px;
   height: 88vh;
 }
 .signInForm{
-  margin-top: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-top: 30px !important;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
 }
 .signInField{
   border-radius: 17px !important;

@@ -35,7 +35,7 @@ a:hover {
   display: flex;
 }
 .notification_button {
-  margin-left: 42rem;
+  margin-left: 46rem;
 }
 
 .userreq .center .links a {
@@ -136,13 +136,13 @@ a {
   padding-bottom: 8%;
 }
 .customerNavLink{
-  padding: 18px;
+  padding: 18px !important;
 }
 .customerNavDropDown{
   padding: 10px;
 }
 .customerNav{
-  margin-right: 2%;
+  margin-right: 2% !important;
 }
 .completed{
   padding: 10px 30px;
@@ -176,15 +176,15 @@ a {
   text-align: center;
 }
 .customerProfile{
-  margin-top: 85px;
+  margin-top: 85px !important;
 }
 .customerProfileField{
-  border-radius: 17px;
+  border-radius: 17px !important;
 }
 .customerProfileEmail{
-  border-radius: 17px;
-  padding: 4px;
-  background-color: white;
+  border-radius: 17px !important;
+  padding: 4px !important;
+  background-color: white !important;
 }
 .textStyle {
   text-align: center;
@@ -341,8 +341,8 @@ h3 {
   background: rgb(39, 35, 75);
 }
 .customersprofile {
-  background-color: rgb(22, 21, 43);
-  border-radius: 10px 10px 0px 0px;
+  background-color: rgb(22, 21, 43) !important;
+  border-radius: 10px 10px 0px 0px !important;
 }
 
 .find-btn {

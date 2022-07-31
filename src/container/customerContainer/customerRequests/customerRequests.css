@@ -14,7 +14,7 @@
 }
 
 .dropOffAddBtn{
-    fill: #e75480;
+    fill: #e75480 !important;
 }
 
 /*pickUp*/
@@ -23,7 +23,7 @@
 }
 
 .pickUpAddBtn{
-    fill: #e75480;
+    fill: #e75480 !important;
 }
 
 /*viewCollector*/
@@ -45,35 +45,35 @@
 /*waste*/
 
 .mdbCard{
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px
+    border-radius: 15px !important;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px !important;
 }
 
 .mdbCard-Body{
-    border-radius: 15px
+    border-radius: 15px !important;
 }
 
 .mdbCard-Title{
-   text-align: center
+   text-align: center !important;
 }
 
 .mdbCard-Text{
-   font-style: "Poppins";
+   font-style: "Poppins" !important;
 }
 
 .mdbCard-Footer{
-    background-color: rgb(30, 28, 54);
-    color: white;
-    border-radius: 0px 0px 17px 17px;
+    background-color: rgb(30, 28, 54) !important;
+    color: white !important; 
+    border-radius: 0px 0px 17px 17px !important;
 }
 
 .mdbCard-h2{
-    text-align: center; 
-    margin: 100px
+    text-align: center !important; 
+    margin: 100px !important;
 }
 
 .mdb-Row{
-    margin-top: 100px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-top: 100px !important;
+    margin-left: 20px !important; 
+    margin-right: 20px !important;
 }   
