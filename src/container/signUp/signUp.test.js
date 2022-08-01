@@ -287,7 +287,6 @@ describe("testing Formik", () => {
   
     const value = wrapper.find("#state").at(1).find("#selectedState").at(2);
 
-    console.log("state", value);
     expect(mockFn).toBeCalledWith;
 
     state.simulate("change", {
@@ -296,7 +295,6 @@ describe("testing Formik", () => {
         value: value,
       },
     });
-    console.log("State", state.text());
     expect(state.html()).toMatch("state");
   });
   it("should have city field and triggers changeCity()", () => {

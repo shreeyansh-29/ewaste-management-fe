@@ -120,7 +120,6 @@ describe("test ItemsForSale", () => {
 
     act(() => {
       jest.runAllTimers();
-      console.log(wrapper.find('button[type="button"]').debug());
     });
   });
   it("should test Sale It Button", () => {

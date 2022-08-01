@@ -72,7 +72,6 @@ describe("CollectorRequests", () => {
         <CollectorRequests handleAccept={mockFn} />
       </Provider>
     );
-    console.log(wrapper.find(".bttn").debug());
     wrapper.find(".bttn").simulate("click");
     expect(mockFn).toHaveBeenCalled;
     jest.runAllTimers();

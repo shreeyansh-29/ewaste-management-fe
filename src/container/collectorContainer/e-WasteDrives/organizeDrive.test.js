@@ -148,7 +148,7 @@ describe("Organize Drives", () => {
         persist() {},
         target: {value: "8:00-16:00"},
       });
-    console.log("time", time.html());
+    time.html();
 
     //check button
     let check = wrapper.find("button[title='Save']");
@@ -156,7 +156,7 @@ describe("Organize Drives", () => {
 
     // Done Button
     const done = wrapper.find(".MuiTouchRipple-root").at(3).simulate("click");
-    console.log("wrapper", done.debug());
+    done.debug();
     expect(mockFn).toHaveBeenCalled;
     jest.runAllTimers();
     expect(toast.error).toHaveBeenCalled;
@@ -188,6 +188,6 @@ describe("Organize Drives", () => {
       </Provider>
     );
 
-    console.log("wrapper", wrapper.debug());
+    expect(wrapper).toBeTruthy;
   });
 });

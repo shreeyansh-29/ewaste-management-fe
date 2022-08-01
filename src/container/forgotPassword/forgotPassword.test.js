@@ -154,7 +154,6 @@ describe("should test for Form", () => {
       },
       touched: {email: true},
     });
-    console.log(formWithInvalidEmailErrors.find(".formerrors").debug());
     expect(formWithInvalidEmailErrors.find("formerrors")).toMatch(errors.email);
   });
   it("should have a back button and navigate to /Signin", () => {

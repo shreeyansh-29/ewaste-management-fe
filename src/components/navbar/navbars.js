@@ -15,7 +15,7 @@ const Navbars = () => {
         fixed="top"
       >
         <Container fluid>
-          <Nav.Link href="/" style={{color: "white"}}>
+          <Nav.Link href="/" className="navbarLink">
             <div className="title">
               <NavIcon />
               EWaste Management
@@ -24,13 +24,13 @@ const Navbars = () => {
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto" style={{marginRight: "1%"}}>
-              <Nav.Link href="/" style={{padding: "18px", color: "white"}}>
+            <Nav className="ms-auto navbarNav">
+              <Nav.Link href="/" className="navLinkHref">
                 <NavHomeIcon />
               </Nav.Link>
               <Nav.Link
                 href="/Signin"
-                style={{padding: "18px", color: "white"}}
+                className="navLinkHref"
               >
                 <NavLoginIcon />
               </Nav.Link>

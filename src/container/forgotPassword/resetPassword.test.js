@@ -128,7 +128,6 @@ describe("should test for form", () => {
       </Provider>
     );
     const cnfPasswordInput = wrapper.find("#input2").at(1);
-    console.log(cnfPasswordInput);
     cnfPasswordInput.simulate("change", {
       persist: () => {},
       target: {

@@ -32,7 +32,6 @@ describe("testing authProtected", () => {
     const wrapper = mount(<AuthProtected {...props} />);
     expect(wrapper).toBeTruthy();
     if (props.role === "CUSTOMER" && props.isAuthenticated) {
-      // console.log(wrapper.debug());
       expect(mockOutlet).toHaveBeenCalled;
     } else {
       expect(mockNavigate).toHaveBeenCalled;

@@ -60,6 +60,12 @@ margin-top: 50px;
 .form-cont {
   padding: 15px 10px;
 }
+.googleDiv{
+  margin-top: 4%;
+}
+.googleImg{
+  padding-bottom: 4px
+}
 .googlebtn{
   border-radius: 17px;
   padding: 3px 8px;

@@ -49,11 +49,11 @@ const GoogleSignin = ({res}) => {
     @return {void}
   */
   const onFailure = (response) => {
-    console.log(response);
+    toast.error(response);
   };
 
   return (
-    <div style={{marginTop: "4%"}}>
+    <div className="googleDiv">
       <GoogleLogin
         clientId="890963815850-bguvaqnq3mc0jt0q3l459oufv2b7uocu.apps.googleusercontent.com"
         render={(renderProps) => (
@@ -67,7 +67,7 @@ const GoogleSignin = ({res}) => {
                 src={googleLogo}
                 alt="Google"
                 width="30px"
-                style={{paddingBottom: "4px"}}
+                className="googleImg"
               />
               Sign in
             </button>

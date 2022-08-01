@@ -83,8 +83,7 @@ const signUp = ({res}) => {
     @detail set the value of categories selected by user
     @return {void}
   */
-  const handleInputChange = (e, i) => {
-    console.log(i);
+  const handleInputChange = (e) => {
     let list = [...e];
     list[list.length - 1].categoryAccepted = e[e.length - 1].value;
     setCategoryAccepted([list]);

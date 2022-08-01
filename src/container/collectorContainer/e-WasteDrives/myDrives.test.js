@@ -65,7 +65,6 @@ describe("MyDrives", () => {
       </Provider>
     );
     expect(wrapper.find(MaterialTable).length).toEqual(1);
-    console.log("wrapper", wrapper.debug());
   });
   it("should have no initial data", () => {
     let store;
@@ -121,7 +120,7 @@ describe("MyDrives", () => {
       .at(1)
       .simulate("change", {persist() {}, target: {value: "Cancelled"}});
 
-    console.log("status", status.html());
+    status.html();
     wrapper.find('button[title="Save"]').simulate("click");
     jest.runAllTimers();
 

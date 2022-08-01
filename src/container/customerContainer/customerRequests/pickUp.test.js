@@ -98,6 +98,5 @@ describe("PickUp Request", () => {
     wrapper.find(".a").simulate("click");
     expect(mockFn).toHaveBeenCalled;
     expect(mockedUsedDispatch).toHaveBeenCalled;
-    console.log("wrapper", wrapper.debug());
   });
 });

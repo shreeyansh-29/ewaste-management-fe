@@ -84,7 +84,5 @@ describe("DropOff Request", () => {
 
     expect(toast.error).toHaveBeenCalled;
     jest.useFakeTimers();
-
-    console.log("wrapper", wrapper.debug());
   });
 });
