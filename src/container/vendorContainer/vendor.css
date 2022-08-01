@@ -331,3 +331,9 @@ a {
 .vendorNavBrand{
   margin-left: 2%;
 }
+
+.details{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}

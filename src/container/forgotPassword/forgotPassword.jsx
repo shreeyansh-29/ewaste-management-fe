@@ -60,18 +60,10 @@ const ForgotPassword = ({res}) => {
                   <MsgStyle>{MSG}</MsgStyle>
                 )}
                 {res?.data === FORBIDDEN && (
-                  <div
-                    style={{color: "red", marginRight: "7%", marginLeft: "9%"}}
-                  >
-                    {MSG2_403}
-                  </div>
+                  <div className="forbidden">{MSG2_403}</div>
                 )}
                 {res?.data === RESOURCE_NOT_FOUND && (
-                  <div
-                    style={{color: "red", marginRight: "7%", marginLeft: "9%"}}
-                  >
-                    {MSG1_404}
-                  </div>
+                  <div className="forbidden">{MSG1_404}</div>
                 )}
                 <div className="row">
                   <div className="container">

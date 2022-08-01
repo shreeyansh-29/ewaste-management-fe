@@ -8,6 +8,7 @@ import {collectorAvailableRequest} from "../../../redux/action/collector/collect
 import SearchIcon from "@material-ui/icons/Search";
 import {isEmpty} from "lodash";
 import {availableSalesColumns} from "./availableSalesColumns";
+import "./collectorSales.css"
 
 const AvailableSales = ({res}) => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const AvailableSales = ({res}) => {
       <MaterialTable
         title=""
         icons={{
-          Search: () => <SearchIcon style={{fill: "white"}} />,
+          Search: () => <SearchIcon className="availableSearchBtn" />,
         }}
         columns={availableSalesColumns}
         data={data}

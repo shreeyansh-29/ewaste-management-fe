@@ -64,15 +64,15 @@ const Waste = ({res}) => {
             </MDBCardText>
             <MDBCardFooter className="mdbCard-Footer">
               <small>
-                <PersonOutlineOutlinedIcon style={{fontSize: "large"}} />
+                <PersonOutlineOutlinedIcon className="personOutlineOutlinedIcon" />
                 {"   "}
                 {card.organizerName}
                 <br></br>
-                <LocationOnOutlinedIcon style={{fontSize: "medium"}} />
+                <LocationOnOutlinedIcon className="locationOnOut" />
                 {"    "}
                 {card.location}
                 <br></br>
-                <EventNoteOutlinedIcon style={{fontSize: "medium"}} />
+                <EventNoteOutlinedIcon className="locationOnOut" />
                 {"    "}
                 {card.date} {card.time}
               </small>

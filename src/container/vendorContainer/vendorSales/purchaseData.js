@@ -27,13 +27,7 @@ const PurchaseData = (props) => {
           <div className="purchaseDataDiv3">
             <h7>Click the link below to see the details.</h7>
           </div>
-          <div
-            style={{
-              textAlign: "center",
-              marginTop: "20px",
-              marginBottom: "40px",
-            }}
-          >
+          <div className="details">
             <a href="/MyOrders/SalesSummary" className="purchaseData-a">
               See details
             </a>

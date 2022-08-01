@@ -21,7 +21,7 @@ import Dropdown from "../../components/dropDown/dropdown";
 import "./signUp.css";
 import ShowIcon from "@mui/icons-material/VisibilityOutlined";
 import ShowOffIcon from "@mui/icons-material/VisibilityOff";
-import {statescity, data} from "./states";
+import {statesCity, data} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
@@ -43,7 +43,7 @@ const signUp = ({res}) => {
     },
   ]);
   const [role, setRole] = useState();
-  const [initialcities, setCities] = useState([]);
+  const [initialCities, setInitialCities] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const signUp = ({res}) => {
   */
   const changeState = (event) => {
     setState1(event.target.value);
-    setCities(statescity.find((obj) => obj.name === event.target.value));
+    setInitialCities(statesCity.find((obj) => obj.name === event.target.value));
   };
   const changeCity = (event) => {
     setCity(event.target.value);
@@ -115,7 +115,7 @@ const signUp = ({res}) => {
     setPasswordType(togglePassword(passwordType));
   };
 
-  const handleTime = () => {
+  const handleDropOffTime = () => {
     if (role === "Collector") {
       let start = startTime.toString().split("T");
       start = start[1].split(":");
@@ -158,7 +158,7 @@ const signUp = ({res}) => {
         }}
         validationSchema={SignUpValidations}
         onSubmit={(values) => {
-          const dropoff = handleTime();
+          const dropoff = handleDropOffTime();
           const info = {
             values,
             state: state1,
@@ -344,7 +344,7 @@ const signUp = ({res}) => {
                       onChange={(e) => changeState(e)}
                     >
                       <option value="Select State">{"Select State"} </option>
-                      {statescity.map((e, key) => {
+                      {statesCity.map((e, key) => {
                         return (
                           <option key={key} id="selectedState">
                             {e.name}
@@ -369,8 +369,8 @@ const signUp = ({res}) => {
                       onChange={(e) => changeCity(e)}
                     >
                       <option value="Select City">{"Select city"}</option>
-                      {isEmpty(initialcities) !== true
-                        ? initialcities?.cities.map((e, key) => {
+                      {isEmpty(initialCities) !== true
+                        ? initialCities?.cities.map((e, key) => {
                             return <option key={key}>{e}</option>;
                           })
                         : ""}

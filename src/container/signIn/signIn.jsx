@@ -111,7 +111,7 @@ const SignIn = ({res}) => {
                 {touched.password && errors.password ? (
                   <div className="formError">{errors.password}</div>
                 ) : null}
-                <div style={{float: "right"}}>
+                <div className="forgotLink">
                   <Link
                     to="/ForgotPassword"
                     id="forgot"

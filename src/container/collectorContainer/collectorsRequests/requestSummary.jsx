@@ -23,15 +23,15 @@ function collectorRequests({res1}) {
   const dispatch = useDispatch();
 
   const [data, setData] = useState();
-  const [isopen, setopen] = useState(false);
-  const [detail, setdetail] = useState();
+  const [isOpen, setOpen] = useState(false);
+  const [detail, setDetail] = useState();
 
   /* 
     @function togglePop
     @detail update the value of isopen variable
   */
-  const togglepop = () => {
-    setopen(!isopen);
+  const togglePop = () => {
+    setOpen(!isOpen);
   };
   useEffect(() => {
     if (isEmpty(res1) !== true) {
@@ -94,7 +94,7 @@ function collectorRequests({res1}) {
           actions={[
             {
               icon: () => (
-                <ProfileIconStyle onClick={togglepop} id="pop1">
+                <ProfileIconStyle onClick={togglePop} id="pop1">
                   <ProfileIconBarStyle>
                     <ProfileIcon />
                   </ProfileIconBarStyle>
@@ -104,7 +104,7 @@ function collectorRequests({res1}) {
               onClick: (e, datas) => {
                 e.preventDefault();
 
-                setdetail(datas.customerUid);
+                setDetail(datas.customerUid);
               },
             },
           ]}
@@ -114,8 +114,8 @@ function collectorRequests({res1}) {
         />
       </div>
       <div>
-        {isopen && detail != null && (
-          <Popup id="pop2" handleClose={togglepop} content={detail} />
+        {isOpen && detail != null && (
+          <Popup id="pop2" handleClose={togglePop} content={detail} />
         )}
       </div>
     </div>

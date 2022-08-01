@@ -22,7 +22,7 @@ export const data = [
   },
 ];
 
-export const statescity = [
+export const statesCity = [
   {
     name: "Arunachal Pradesh",
     cities: [

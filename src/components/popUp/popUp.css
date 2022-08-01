@@ -1,0 +1,24 @@
+.profile-tab{
+    text-align: center;
+    padding: 7px;
+    font-size: 2.5rem;
+    font-family: "sans-serif";
+    color: white;
+}
+
+.profile-field1{
+    font-weight: bold;
+    text-decoration-color: black;
+    border-radius: 17px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px
+}
+
+.profile-field2{
+    font-weight: bold;
+    text-decoration-color: black;
+    border-radius: 17px;
+    font-size: 14px;
+    margin: 10px;
+}

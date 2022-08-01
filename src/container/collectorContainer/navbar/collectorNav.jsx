@@ -23,8 +23,8 @@ function CollectorNav() {
   const result2 = useSelector((state) => state.collectorNotificationData);
 
   const [show, setShow] = useState(false);
-  const [List, setList] = useState([]);
-  var list = ["hh"];
+  const [list, setList] = useState([]);
+  var listData = ["hh"];
 
   const dispatch = useDispatch();
   const [count, setCount] = useState(0);
@@ -48,12 +48,12 @@ function CollectorNav() {
   useEffect(() => {
     if (result2?.data.status === "success") {
       for (var i = 0; i < result2.data.data.length; i++) {
-        list[i] = result2.data.data[i].message;
+        listData[i] = result2.data.data[i].message;
       }
-      setList(list);
+      setList(listData);
     } else {
-      list = ["No New Notifications"];
-      setList(list);
+      listData = ["No New Notifications"];
+      setList(listData);
     }
   }, [result2]);
   /* 
@@ -75,8 +75,8 @@ function CollectorNav() {
   const handle = () => {
     setShow(!show);
     if (show) {
-      list = ["No New Notifications"];
-      setList(list);
+      listData = ["No New Notifications"];
+      setList(listData);
     }
 
     localStorage.removeItem("count");
@@ -102,7 +102,7 @@ function CollectorNav() {
 
             {show ? (
               <div className="notifications1">
-                {List.map((n) => displayNotification(n))}
+                {list.map((n) => displayNotification(n))}
               </div>
             ) : (
               ""

@@ -22,16 +22,16 @@ toast.configure();
 
 function completed({res}) {
   const dispatch = useDispatch();
-  const [isopen, setopen] = useState(false);
-  const [detail, setdetail] = useState();
+  const [isOpen, setOpen] = useState(false);
+  const [detail, setDetail] = useState();
 
   /* 
     @function togglepop
     @detail update the value of isopen
     @return {void}
   */
-  const togglepop = () => {
-    setopen(!isopen);
+  const togglePop = () => {
+    setOpen(!isOpen);
   };
   const handledata = (res1) => {
     res1.map((obj) => {
@@ -72,7 +72,7 @@ function completed({res}) {
                 {
                   icon: () => (
                     <>
-                      <ProfileIconStyle onClick={togglepop} id="pop1">
+                      <ProfileIconStyle onClick={togglePop} id="pop1">
                         <ProfileIconBarStyle>
                           <ProfileIcon></ProfileIcon>
                         </ProfileIconBarStyle>
@@ -82,7 +82,7 @@ function completed({res}) {
 
                   onClick: (e, datas) => {
                     e.preventDefault();
-                    setdetail(datas.collectorUid);
+                    setDetail(datas.collectorUid);
                   },
                 },
               ]}
@@ -93,8 +93,8 @@ function completed({res}) {
           </div>
         </div>
         <div>
-          {isopen && detail != null && (
-            <Popup id="pop" handleClose={togglepop} contents={detail} />
+          {isOpen && detail != null && (
+            <Popup id="pop" handleClose={togglePop} contents={detail} />
           )}
         </div>
       </div>

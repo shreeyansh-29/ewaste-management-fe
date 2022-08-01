@@ -144,6 +144,9 @@ a {
 .customerNav{
   margin-right: 2% !important;
 }
+.navbarBrand{
+  margin-left: 1%
+}
 .completed{
   padding: 10px 30px;
 }

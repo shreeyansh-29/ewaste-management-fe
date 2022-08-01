@@ -5,7 +5,7 @@
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
 import Toast from "../../../components/toast";
-import {statescity} from "../../signUp/states";
+import {statesCity} from "../../signUp/states";
 import "../customer.css";
 import {isEmpty} from "lodash";
 import {TOAST_SUCCESS5} from "../../constant/constants";
@@ -19,7 +19,7 @@ const CustomerProfile = () => {
   const dispatch = useDispatch();
   const [state1, setState1] = useState();
   const [city, setCity] = useState();
-  const [initialcities, setCities] = useState([]);
+  const [initialCities, setInitialCities] = useState([]);
 
   let res = useSelector((state) => state.customerProfile?.data);
 
@@ -50,7 +50,7 @@ const CustomerProfile = () => {
   */
   const changeState = (event) => {
     setState1(event.target.value);
-    setCities(statescity.find((obj) => obj.name === event.target.value));
+    setInitialCities(statesCity.find((obj) => obj.name === event.target.value));
   };
 
   /* 
@@ -180,7 +180,7 @@ const CustomerProfile = () => {
                         onChange={(e) => changeState(e)}
                       >
                         <option value="Select State">{state1} </option>
-                        {statescity.map((e, key) => {
+                        {statesCity.map((e, key) => {
                           return <option key={key}>{e.name}</option>;
                         })}
                       </SelectStyle>
@@ -198,8 +198,8 @@ const CustomerProfile = () => {
                         onChange={(e) => changeCity(e)}
                       >
                         <option value="Select City">{city}</option>
-                        {isEmpty(initialcities) !== true
-                          ? initialcities?.cities.map((e, key) => {
+                        {isEmpty(initialCities) !== true
+                          ? initialCities?.cities.map((e, key) => {
                               return <option key={key}>{e}</option>;
                             })
                           : ""}

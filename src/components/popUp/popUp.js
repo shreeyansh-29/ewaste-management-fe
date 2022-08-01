@@ -8,6 +8,7 @@ import {isEmpty} from "lodash";
 import {vendorCollectorProfileRequest} from "../../redux/action/vendor/viewAcceptCollectorProfileAction";
 import {viewCollectorProfileRequest} from "../../redux/action/customer/viewCollectorProfileAction";
 import {viewCustomerProfileRequest} from "../../redux/action/collector/viewCustomerProfileAction";
+import "./popUp.css";
 
 const Popup = (props) => {
   const [value, setValue] = useState({
@@ -109,32 +110,14 @@ const Popup = (props) => {
               </button>
 
               <div className="customersprofile">
-                <h1
-                  style={{
-                    textAlign: "center",
-                    padding: "7px",
-                    fontSize: "2.5rem",
-                    fontFamily: "sans-serif",
-                    color: "white",
-                  }}
-                >
-                  Profile
-                </h1>
+                <h1 className="profile-tab">Profile</h1>
               </div>
               <div className="popupbody">
                 <label>Name</label>
                 <Field
                   name="lastName"
-                  className="form-control"
+                  className="form-control profile-field1"
                   type="text"
-                  style={{
-                    fontWeight: "bold",
-                    textDecorationColor: "black",
-                    borderRadius: "17px",
-                    padding: "10px",
-                    margin: "10px",
-                    fontSize: "14px",
-                  }}
                   value={value.name}
                   disabled
                 />
@@ -142,16 +125,8 @@ const Popup = (props) => {
                 <label>Address</label>
                 <Field
                   name="address"
-                  className="form-control"
+                  className="form-control profile-field1"
                   type="text"
-                  style={{
-                    fontWeight: "bold",
-                    textDecorationColor: "black",
-                    borderRadius: "17px",
-                    padding: "10px",
-                    margin: "10px",
-                    fontSize: "14px",
-                  }}
                   value={value.address1}
                   disabled
                 />
@@ -159,15 +134,8 @@ const Popup = (props) => {
                 <label>Contact Number</label>
                 <Field
                   name="mobileNo"
-                  className="form-control"
+                  className="form-control profile-field2"
                   type="text"
-                  style={{
-                    fontWeight: "bold",
-                    textDecorationColor: "black",
-                    borderRadius: "17px",
-                    fontSize: "14px",
-                    margin: "10px",
-                  }}
                   value={value.mobileNo}
                   disabled
                 />

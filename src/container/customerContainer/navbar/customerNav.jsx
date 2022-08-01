@@ -3,7 +3,7 @@
 */
 import React, {useEffect, useState} from "react";
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
-import ".././customer.css";
+import "../customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -91,7 +91,7 @@ const CustomerNav = ({res, result1, result2}) => {
         fixed="top"
       >
         <Container fluid>
-          <Navbar.Brand href="/CustomerHome" style={{marginLeft: "1%"}}>
+          <Navbar.Brand href="/CustomerHome" className="navbarBrand">
             <div className="welcome">Welcome {res}</div>
           </Navbar.Brand>
 

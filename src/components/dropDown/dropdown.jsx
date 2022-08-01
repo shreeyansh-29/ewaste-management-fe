@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../container/signIn/signIn";
+import "./dropdown.css";
 
 const Dropdown = (props) => {
   const {role, data, onChange} = props;
@@ -11,12 +11,7 @@ const Dropdown = (props) => {
 
   return (
     <div>
-      <select
-        className="dropdown"
-        value={role}
-        onChange={handleChange}
-        style={customStyles}
-      >
+      <select className="dropdown" value={role} onChange={handleChange}>
         <option>Select your Role</option>
         {data.map((item, key) => (
           <option key={key} value={item.label}>
@@ -39,15 +34,6 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
   value: "",
   placeholder: "",
-};
-
-const customStyles = {
-  marginLeft: "-7px",
-  borderRadius: "17px",
-  padding: "7px",
-  width: "300px",
-  background: "white",
-  border: "1px solid lightgrey",
 };
 
 export default Dropdown;

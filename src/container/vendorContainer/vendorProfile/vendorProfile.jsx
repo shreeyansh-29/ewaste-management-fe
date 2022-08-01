@@ -5,7 +5,7 @@
 import {Field, Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
 import "../vendor.css";
-import {statescity} from "../../signUp/states";
+import {statesCity} from "../../signUp/states";
 import Toast from "../../../components/toast";
 import {TOAST_SUCCESS5} from "../../constant/constants";
 import {useDispatch, connect} from "react-redux";
@@ -18,7 +18,7 @@ import {ProfileHeading, SelectStyle} from "../../../components/styles";
 const VendorProfile = ({res}) => {
   const [state, setState] = useState();
   const [city, setCity] = useState();
-  const [initialcities, setCities] = useState([]);
+  const [initialCities, setInitialCities] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const VendorProfile = ({res}) => {
   */
   const changeState = (event) => {
     setState(event.target.value);
-    setCities(statescity.find((obj) => obj.name === event.target.value));
+    setInitialCities(statesCity.find((obj) => obj.name === event.target.value));
   };
 
   /* 
@@ -181,7 +181,7 @@ const VendorProfile = ({res}) => {
                       onChange={(e) => changeState(e)}
                     >
                       <option value="Select State">{state} </option>
-                      {statescity.map((e, key) => {
+                      {statesCity.map((e, key) => {
                         return <option key={key}>{e.name}</option>;
                       })}
                     </SelectStyle>
@@ -201,8 +201,8 @@ const VendorProfile = ({res}) => {
                       onChange={(e) => changeCity(e)}
                     >
                       <option value="Select City">{city}</option>
-                      {isEmpty(initialcities) !== true
-                        ? initialcities?.cities.map((e, key) => {
+                      {isEmpty(initialCities) !== true
+                        ? initialCities?.cities.map((e, key) => {
                             return <option key={key}>{e}</option>;
                           })
                         : ""}

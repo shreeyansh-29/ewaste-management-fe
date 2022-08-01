@@ -6,14 +6,11 @@ import MaterialTable from "material-table";
 import "../../customer.css";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
-import {toast} from "react-toastify";
 import {useDispatch, connect} from "react-redux";
 import {customerPendingRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingRequestAction";
 import {customerPendingDeclineRequest} from "../../../../redux/action/customer/customerPendingRequestAction/customerPendingDeclineAction";
 import {pendingColumns} from "./pendingColumns";
-
 export const ProfileIcon = FaUserCircle;
-toast.configure();
 
 const Pending = ({res}) => {
   const dispatch = useDispatch();
