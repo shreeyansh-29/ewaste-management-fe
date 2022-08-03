@@ -14,6 +14,7 @@
 /build
 
 .scannerwork
+.vscode
 config
 scripts
 sonarqube
