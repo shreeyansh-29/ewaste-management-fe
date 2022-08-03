@@ -17,6 +17,9 @@
 config
 scripts
 sonarqube
+docker-compose.yml
+eslint-report.html
+
 # misc
 .DS_Store
 .env
@@ -24,11 +27,6 @@ sonarqube
 .env.development.local
 .env.test.local
 .env.production.local
-.docker-compose.yml
-.scripts
-.config
-.scannerwork
-.sonarqube
 
 
 npm-debug.log*
