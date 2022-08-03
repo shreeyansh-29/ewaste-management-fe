@@ -5,7 +5,7 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import "../customer.css";
-import "./customerRequests.css";
+import "./customerRequests.scss";
 import {useDispatch, connect} from "react-redux";
 import ViewCollectors from "./viewCollectors";
 import AddIcon from "@material-ui/icons/AddBox";
@@ -14,6 +14,7 @@ import Toast from "../../../components/toast";
 import {isEmpty} from "lodash";
 import {dropOffColumns} from "./dropOffColumns";
 import {customerDropOffRequest} from "../../../redux/action/customer/customerDropOffAction/customerDropOffAction";
+import {TableTitle} from "../../../components/styles";
 
 const DropOff = ({res1}) => {
   const dispatch = useDispatch();
@@ -59,15 +60,15 @@ const DropOff = ({res1}) => {
 
   return (
     <div>
-      <div className="dropOff">
-        <h2 className="dropOff-h2"> Drop-Off Requests </h2>
+      <div className="padding">
+        <TableTitle> Drop-Off Requests </TableTitle>
 
         <MaterialTable
           title=""
           columns={dropOffColumns}
           data={value}
           icons={{
-            Add: () => <AddIcon className="dropOffAddBtn" />,
+            Add: () => <AddIcon className="AddBtn" />,
           }}
           editable={{
             onRowAdd: isEditable

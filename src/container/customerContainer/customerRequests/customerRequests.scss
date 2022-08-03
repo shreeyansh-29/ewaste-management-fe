@@ -1,0 +1,76 @@
+$fill: #e75480 !important;
+$pddingTop: 150px;
+$pddingBottom: 150px;
+$pddingLeft: 30px;
+$pddingRight: 30px;
+$pddingtop : 50px;
+$borderRadius: 15px !important;
+$boxShadow: rgba(0, 0, 0, 0.55) 0px 5px 15px !important;
+$textAlign: center !important;
+$fontStyle:  "Poppins" !important;
+$bgColor: rgb(30, 28, 54) !important;
+$clr: white !important;
+$border-Radius: 0px 0px 17px 17px !important;
+$margin-h2: 100px !important;
+$margin-left: 20px !important; 
+$f-Size:large;
+$font-Size: medium;
+
+.AddBtn{
+    fill: $fill;
+}
+
+.padding{
+    padding-top: $pddingTop;
+    padding-bottom: $pddingBottom;
+    padding-left: $pddingLeft;
+    padding-right: $pddingRight;
+}
+
+.viewCollector{
+    padding-top: $pddingtop;
+}
+
+// waste.jsx
+.mdbCard{
+    border-radius: $borderRadius;
+    box-shadow: $boxShadow;
+}
+
+.mdbCard-Body{
+    border-radius: $borderRadius;
+}
+
+.mdbCard-Title{
+    text-align: $textAlign
+}
+
+.mdbCard-Text{
+    font-style: $fontStyle;
+}
+
+.mdbCard-Footer{
+    background-color: $bgColor;
+    color: $clr;
+    border-radius: $border-Radius;
+}
+
+.mdbCard-h2{
+    text-align: $textAlign; 
+    margin: $margin-h2;
+}
+
+.mdb-Row{
+    margin-top: $margin-h2;
+    margin-left: $margin-left;
+    margin-right: $margin-left;
+}   
+
+.personOutlineOutlinedIcon{
+    font-size: $f-Size;
+}
+
+.locationOnOut{
+    font-size: $font-Size;
+}
+ 

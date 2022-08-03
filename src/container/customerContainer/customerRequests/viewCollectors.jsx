@@ -4,11 +4,12 @@ import React, {useState} from "react";
 import MaterialTable from "material-table";
 import {useDispatch} from "react-redux";
 import "../customer.css";
-import "./customerRequests.css";
+import "./customerRequests.scss";
 import {TOAST_SUCCESS4} from "../../constant/constants";
 import Toast from "../../../components/toast";
 import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";
 import {viewCollectorsColumns} from "./viewCollectorsColumns";
+import {TableTitle} from "../../../components/styles";
 
 const ViewCollectors = (props) => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const ViewCollectors = (props) => {
   return (
     <div>
       <div className="viewCollector">
-        <h2 className="viewCollector-h2">Collectors Available</h2>
+        <TableTitle>Collectors Available</TableTitle>
         <MaterialTable
           title=""
           columns={viewCollectorsColumns}
