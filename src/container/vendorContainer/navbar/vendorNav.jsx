@@ -3,7 +3,7 @@
 */
 
 import React, {useEffect} from "react";
-import Swal from "sweetalert2";
+import {handleSwal} from "../../../components/sweetAlert/sweetAlert";
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -51,24 +51,7 @@ const VendorNav = ({res}) => {
                 Profile
               </Nav.Link>
               <Nav.Link>
-                <button
-                  className="Btn"
-                  onClick={() => {
-                    Swal.fire({
-                      title: "Are you sure?",
-                      icon: "warning",
-                      showCancelButton: true,
-                      confirmButtonColor: "#228B22",
-                      cancelButtonColor: "#d33",
-                      confirmButtonText: "Logout",
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        window.location.href = "/Signin";
-                        localStorage.clear();
-                      }
-                    });
-                  }}
-                >
+                <button className="Btn" onClick={handleSwal()}>
                   <NavLogoutBtn />
                 </button>
               </Nav.Link>

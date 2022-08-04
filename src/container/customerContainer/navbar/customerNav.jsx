@@ -6,7 +6,6 @@ import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import "../customer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Navbar, NavDropdown, Nav, Container} from "react-bootstrap";
-import Swal from "sweetalert2";
 import {useDispatch, connect} from "react-redux";
 import {customerNotificationDataRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationDataAction";
 import {customerNotificationCountRequest} from "../../../redux/action/customer/customerNotificationAction/customerNotificationCountAction";
@@ -14,6 +13,7 @@ import {isEmpty} from "lodash";
 import {NavbarButton} from "../../../components/styles";
 import NotificationCount from "../../collectorContainer/navbar/notificationCount";
 import {customerNameRequest} from "../../../redux/action/customer/customerNameAction/customerNameAction";
+import {handleSwal} from "../../../components/sweetAlert/sweetAlert";
 
 const CustomerNav = ({res, result1, result2}) => {
   const dispatch = useDispatch();
@@ -137,24 +137,7 @@ const CustomerNav = ({res, result1, result2}) => {
                 Profile
               </Nav.Link>
               <Nav.Link>
-                <button
-                  className="Btn"
-                  onClick={() => {
-                    Swal.fire({
-                      title: "Are you sure?",
-                      icon: "warning",
-                      showCancelButton: true,
-                      confirmButtonColor: "#228B22",
-                      cancelButtonColor: "#d33",
-                      confirmButtonText: "Logout",
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        localStorage.clear();
-                        window.location.href = "/Signin";
-                      }
-                    });
-                  }}
-                >
+                <button className="Btn" onClick={handleSwal}>
                   <NavLogoutBtn />
                 </button>
               </Nav.Link>

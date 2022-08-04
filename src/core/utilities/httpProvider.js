@@ -1,7 +1,10 @@
 import axios from "axios";
+import {decryptData} from "./utils";
 
-const tokens = localStorage.getItem("token") || "";
-const email = localStorage.getItem("email") || "";
+var tokens = localStorage.getItem("token") || "";
+var email = localStorage.getItem("email") || "";
+tokens = decryptData(tokens);
+email = decryptData(email);
 const api = axios.create({});
 if (tokens !== null) {
   api.defaults.headers.common.Authorization = `Bearer ${tokens}`;

@@ -4,11 +4,7 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import {useDispatch, connect} from "react-redux";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import {organizeDriveColumn} from "./organizeDriveColumn"
 import AddIcon from "@material-ui/icons/AddBox";
 import "../collector.css";
 import {TOAST_ERROR4, TOAST_SUCCESS7} from "../../constant/constants";
@@ -29,93 +25,6 @@ const OrganizeDrive = ({res}) => {
   });
   maxDate.setMonth(maxDate.getMonth() + 6);
 
-  const [columns] = useState([
-    {
-      title: "Drive Name",
-      field: "name",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Description",
-      field: "description",
-
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Categories Accepted",
-      field: "itemsAcc",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-    {
-      title: "Date",
-      field: "date",
-      type: "date",
-
-      editComponent: ({value, onChange}) => (
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            margin="normal"
-            format="dd/MM/yyyy"
-            clearable
-            value={value}
-            onChange={onChange}
-            minDate={new Date().toDateString()}
-            maxDate={maxDate}
-          />
-        </MuiPickersUtilsProvider>
-      ),
-
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-
-    {
-      title: "Time",
-      field: "time",
-
-      lookup: {
-        "8:00-16:00": "8:00-16:00",
-        "9:00-17:00": "9:00-17:00",
-        "10:00-18:00": "10:00-18:00",
-        "11:00-19:00": "11:00-19:00",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "15px",
-      },
-    },
-  ]);
   /* 
     @function dateformat
     @params {datas}  contain the scheduledate of drive
@@ -172,7 +81,7 @@ const OrganizeDrive = ({res}) => {
         <h2 className="organizeDrive-h2">Organize an E-Waste Drive</h2>
         <MaterialTable
           title=""
-          columns={columns}
+          columns={organizeDriveColumn}
           data={data}
           icons={{
             Add: () => <AddIcon className="organizeDriveAddBtn" />,

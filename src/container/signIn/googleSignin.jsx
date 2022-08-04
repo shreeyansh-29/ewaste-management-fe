@@ -12,6 +12,9 @@ import {isEmpty} from "lodash";
 import {TOAST_ERROR1} from "../constant/constants";
 import "./signin.css";
 import {renderRole} from "../../components/renderRole/renderRole";
+import {encryptData} from "../../core/utilities/utils";
+import log from "loglevel";
+const {clientId} = require("../../core/config/index");
 
 const GoogleSignin = ({res}) => {
   const [email, setEmail] = useState("");
@@ -22,11 +25,13 @@ const GoogleSignin = ({res}) => {
       if (res.status == "Fail") {
         toast.error(TOAST_ERROR1);
       } else if (res.status == "success") {
-        localStorage.setItem("token", res?.data?.token);
-        localStorage.setItem("email", email);
-        const tokens = localStorage.getItem("token");
-        const token = jwt(tokens);
+        const token1 = encryptData(res?.data?.token);
+        localStorage.setItem("token", token1);
+        const tokens = res?.data?.token;
+        let token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
+        const email = encryptData(token.sub);
+        localStorage.setItem("email", email);
         const role = localStorage.getItem("Roles");
         window.location.href = renderRole[role];
       }
@@ -49,13 +54,13 @@ const GoogleSignin = ({res}) => {
     @return {void}
   */
   const onFailure = (response) => {
-    toast.error(response);
+    log(response);
   };
 
   return (
     <div className="googleDiv">
       <GoogleLogin
-        clientId="890963815850-bguvaqnq3mc0jt0q3l459oufv2b7uocu.apps.googleusercontent.com"
+        clientId={clientId}
         render={(renderProps) => (
           <div className="text-center">
             <button

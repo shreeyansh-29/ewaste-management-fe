@@ -9,7 +9,4 @@ sonarqubeScanner(
       "sonar.inclusions": "src/**", // Entry point of your code
     },
   },
-  (r) => {
-    console.log(r);
-  }
 );

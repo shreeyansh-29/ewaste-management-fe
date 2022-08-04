@@ -3,7 +3,7 @@
 */
 /* eslint-disable indent */
 import React, {useState, useEffect} from "react";
-import Swal from "sweetalert2";
+import {handleSwal} from "../../../components/sweetAlert/sweetAlert"
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import "../../customerContainer/customer.css";
 import "../collector.css";
@@ -156,21 +156,7 @@ function CollectorNav() {
             <Nav.Link>
               <button
                 className="Btn"
-                onClick={() => {
-                  Swal.fire({
-                    title: "Are you sure?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#228B22",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Logout",
-                  }).then((results) => {
-                    if (results.isConfirmed) {
-                      window.location.href = "/Signin";
-                      localStorage.clear();
-                    }
-                  });
-                }}
+                onClick={handleSwal()}
               >
                 <NavLogoutBtn />
               </button>

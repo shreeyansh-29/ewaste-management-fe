@@ -7,180 +7,24 @@ import {Link} from "react-router-dom";
 import Edit from "@material-ui/icons/Edit";
 import PuchaseData from "./purchaseData";
 import "../vendor.css";
-import Popup from "../../../components/popUp/popUp";
 import {connect, useDispatch} from "react-redux";
 import {FaUserCircle} from "react-icons/fa";
 import SearchIcon from "@material-ui/icons/Search";
 import {vendorViewItemsRequest} from "../../../redux/action/vendor/vendorSalesAction/vendorViewItemsAction";
 import {vendorAcceptItemsRequest} from "../../../redux/action/vendor/vendorSalesAction/vendorAcceptItemsAction";
-import {
-  INVALID_QUANTITY,
-  TOAST_ERROR5,
-  VALID_QUANTITY,
-} from "../../constant/constants";
+import {INVALID_QUANTITY, TOAST_ERROR5} from "../../constant/constants";
 import {isEmpty} from "lodash";
 import Toast from "../../../components/toast";
-import {
-  ProfileIconBarStyle,
-  ProfileIconStyle,
-} from "../../../components/styles";
+import {salesColumn} from "./salesColumn";
 export const ProfileIcon = FaUserCircle;
 
 const Sales = ({res, res2}) => {
   const [details, setDetails] = useState([]);
-  const [detail, setDetail] = useState();
-  const [isOpen2, setOpen2] = useState(false);
   const [item, setItem] = useState();
   const [isOpen, setOpen] = useState(false);
   const [quantity, setQuantity] = useState();
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
-  const [columns] = useState([
-    {
-      title: "Seller Profile",
-      editable: "never",
-      render: (rowData) => (
-        <ProfileIconStyle
-          onClick={() => {
-            profile(rowData);
-          }}
-          id="pop1"
-        >
-          <ProfileIconBarStyle>
-            <ProfileIcon />
-          </ProfileIconBarStyle>
-        </ProfileIconStyle>
-      ),
-      filtering: false,
-      cellStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-      headerStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-    },
-
-    {
-      title: "Item Name",
-      field: "itemName",
-      editable: "never",
-      filtering: false,
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Category",
-      field: "category",
-      editable: "never",
-      lookup: {
-        Temp: "Temperature exchange equipment",
-        Screens: "Screens, monitors ",
-        Lapms: "Lamps ",
-        LargeEqip: "Large equipment ",
-        SmallEquip: "Small equipment ",
-        SmallIT: "Small IT and telecommunication equipment ",
-      },
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Available Quantity",
-      field: "availableQuantity",
-      editable: "never",
-      type: "numeric",
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-    {
-      title: "Unit price",
-      field: "price",
-      editable: "never",
-      type: "currency",
-      currencySetting: {currencyCode: "INR"},
-      filtering: false,
-      cellStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-      headerStyle: {
-        fontSize: "13px",
-        textAlign: "center",
-      },
-    },
-
-    {
-      title: "Purchase Quantity",
-      field: "quantities",
-      type: "numeric",
-      initialEditValue: 0,
-
-      validate: (rowData) =>
-        parseInt(rowData.quantities) > 0 ||
-        rowData.quantities === null ||
-        rowData.quantities === undefined
-          ? ""
-          : VALID_QUANTITY,
-      filtering: false,
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-
-    {
-      title: "Total Price",
-      field: "purchaseprice",
-      type: "currency",
-      currencySetting: {currencyCode: "INR"},
-      initialEditValue: 0,
-      editable: "never",
-
-      filtering: false,
-      cellStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-      headerStyle: {
-        textAlign: "center",
-        fontSize: "13px",
-      },
-    },
-  ]);
-
-  /* 
-    @function profile
-    @params {e}
-    @detail updating the value of 'id' 
-  */
-  const profile = (e) => {
-    const id = e.id;
-    setDetail(id);
-    togglePop2();
-  };
 
   useEffect(() => {
     if (isEmpty(res?.obj) !== true || isEmpty(res?.data) !== true) {
@@ -250,20 +94,13 @@ const Sales = ({res, res2}) => {
     setOpen(!isOpen);
   };
 
-  /* 
-    @function togglePop2
-    @detail updating the value of isOpen variable
-  */
-  const togglePop2 = () => {
-    setOpen2(!isOpen2);
-  };
   return (
     <div className="sales">
       <h2 className="sales-h2">Purchase Items</h2>
       <MaterialTable
         align="center"
         title=""
-        columns={columns}
+        columns={salesColumn}
         data={data}
         icons={{
           Edit: () => <Edit className="sales-Edit" />,
@@ -303,11 +140,6 @@ const Sales = ({res, res2}) => {
 
       <Link to={{pathname: "/MyOrders/SalesSummary", data: [details]}}></Link>
       <div>{isOpen && <PuchaseData quantity={quantity} item={item} />}</div>
-      <div>
-        {isOpen2 && detail != null && (
-          <Popup handleClose={togglePop2} cont={detail} />
-        )}
-      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import React, {Component} from "react";
 import "./errorBoundary.css";
 import image from "../../assets/images/something-went-wrong.png";
+import log from "loglevel";
 
 export class ErrorBoundary extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log("Logging error", error, errorInfo);
+    log("Logging error", error, errorInfo);
   }
 
   render() {

@@ -108,26 +108,6 @@ describe("Collector Profile", () => {
       });
     expect(mockFn).toBeCalled;
   });
-  it.skip("should return error if state is not selected", () => {
-    const mockFn = jest.fn();
-    const wrapper = mount(
-      <Provider store={store}>
-        <CollectorProfile />
-      </Provider>
-    );
-
-    const profileForm = (props = {errors: {}, touched: {}}) =>
-      wrapper.find(Formik).renderProp("children")(props);
-
-    const formWithPAsswordErrors = profileForm({
-      errors: {
-        state: "State Required",
-      },
-      touched: {state: true},
-      handleReset: mockFn,
-    });
-    expect(formWithPAsswordErrors.text()).toMatch(/State Required/);
-  });
   it("should test changeCity", () => {
     const mockFn = jest.fn();
     const initialcities = false;

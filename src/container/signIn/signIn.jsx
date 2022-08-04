@@ -18,6 +18,7 @@ import {SignInValidations} from "../constant/validations";
 import {Heading, ButtonStyle, Headings} from "../../components/styles";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
 import {renderRole} from "../../components/renderRole/renderRole";
+import {encryptData} from "../../core/utilities/utils";
 
 const SignIn = ({res}) => {
   const dispatch = useDispatch();
@@ -34,11 +35,13 @@ const SignIn = ({res}) => {
       if (res.status == "fail") {
         Toast.error(TOAST_ERROR2);
       } else if (res.status == "success") {
-        localStorage.setItem("token", res?.data?.token);
-        const tokens = localStorage.getItem("token");
+        const token1 = encryptData(res?.data?.token);
+        localStorage.setItem("token", token1);
+        const tokens = res?.data?.token;
         let token = jwt(tokens);
         localStorage.setItem("Roles", token.Roles[0]);
-        localStorage.setItem("email", token.sub);
+        const email = encryptData(token.sub);
+        localStorage.setItem("email", email);
         const role = localStorage.getItem("Roles");
         window.location.href = renderRole[role];
       }

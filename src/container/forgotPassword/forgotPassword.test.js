@@ -122,40 +122,6 @@ describe("should test for Form", () => {
     });
     expect(emailInput.html()).toMatch("email@gmail.com");
   });
-  it.skip("should throw an error for invalid email address", () => {
-    let store;
-
-    store = mockStore({
-      forgotPassword: {
-        data: {},
-        isLoading: false,
-        error: "",
-      },
-    });
-
-    const wrapper = shallow(
-      <Provider store={store}>
-        <ForgotPassword />
-      </Provider>
-    );
-    const forgotPasswordForm = () =>
-      wrapper.find(ForgotPassword).dive().find(Formik).renderProp("children")({
-        touched: {email: ""},
-        errors: {
-          email: "",
-        },
-      });
-
-    const errors = {email: "Invalid email id"};
-
-    const formWithInvalidEmailErrors = forgotPasswordForm({
-      errors: {
-        email: "Invalid email id",
-      },
-      touched: {email: true},
-    });
-    expect(formWithInvalidEmailErrors.find("formerrors")).toMatch(errors.email);
-  });
   it("should have a back button and navigate to /Signin", () => {
     let store;
 

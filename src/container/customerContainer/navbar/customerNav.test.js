@@ -70,16 +70,6 @@ describe("Customer Navbar", () => {
     wrapper.find(".notification_button").at(1).simulate("click");
     expect(handle).toHaveBeenCalled;
   });
-  it.skip("should test displayNotification()", () => {
-    const mockFn = jest.fn();
-    const wrapper = mount(
-      <Provider store={store}>
-        <CustomerNav displayNotification={mockFn} />
-      </Provider>
-    );
-    wrapper.find("#count").at(1).simulate("click");
-    expect(mockFn).toHaveBeenCalled;
-  });
   it("should test LogoutBtn", () => {
     const mockFn = jest.fn();
     const wrapper = mount(
