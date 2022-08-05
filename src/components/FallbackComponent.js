@@ -1,6 +1,6 @@
 import React from "react";
-import "./components/errorBoundary/errorBoundary.css"
-import image from "./assets/images/something-went-wrong.png";
+import "../components/errorBoundary/errorBoundary.css";
+import image from "../assets/images/something-went-wrong.png";
 export const FallbackComponent = () => {
   return (
     <>

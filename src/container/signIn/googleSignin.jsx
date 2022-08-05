@@ -11,7 +11,7 @@ import {useDispatch, connect} from "react-redux";
 import {isEmpty} from "lodash";
 import {TOAST_ERROR1} from "../constant/constants";
 import "./signin.css";
-import {renderRole} from "../../components/renderRole/renderRole";
+import {routeRole} from "../../components/routeRole/routeRole";
 import {encryptData} from "../../core/utilities/utils";
 import log from "loglevel";
 const {clientId} = require("../../core/config/index");
@@ -33,7 +33,7 @@ const GoogleSignin = ({res}) => {
         const email = encryptData(token.sub);
         localStorage.setItem("email", email);
         const role = localStorage.getItem("Roles");
-        window.location.href = renderRole[role];
+        window.location.href = routeRole[role];
       }
     }
   }, [res]);

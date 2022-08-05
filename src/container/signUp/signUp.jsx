@@ -2,18 +2,18 @@
 /* 
   @module SignUp 
 */
-
 import {Formik} from "formik";
 import React, {useState, useEffect} from "react";
 import {connect, useDispatch} from "react-redux";
 import Toast from "../../components/toast";
 import {SignUpValidations} from "../constant/validations";
 import {SERVER_MSG, TOAST_ERROR3, TOAST_SUCCESS1} from "../constant/constants";
-import "./signUp.css";
 import {statesCity, data} from "./states";
 import {isEmpty} from "lodash";
 import {signUpRequest} from "../../redux/action/signUpAction/signUpAction";
 import SignUpForm from "./signUpForm";
+import "./signUp.css";
+import {renderRole} from "../../components/renderRole/renderRole";
 
 const signUp = ({res}) => {
   const [startTime, setStartTime] = useState();
@@ -89,7 +89,7 @@ const signUp = ({res}) => {
     setRole(e);
   };
   const handleDropOffTime = () => {
-    if (role === "Collector") {
+    if (renderRole[role] === "Collector") {
       let start = startTime.toString().split("T");
       start = start[1].split(":");
       start = (parseInt(start[0]) + 6) % 24;

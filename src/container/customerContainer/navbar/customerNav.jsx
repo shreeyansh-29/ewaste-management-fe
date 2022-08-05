@@ -13,7 +13,7 @@ import {isEmpty} from "lodash";
 import {NavbarButton} from "../../../components/styles";
 import NotificationCount from "../../collectorContainer/navbar/notificationCount";
 import {customerNameRequest} from "../../../redux/action/customer/customerNameAction/customerNameAction";
-import {handleSwal} from "../../../components/sweetAlert/sweetAlert";
+import sweetAlert from "../../../components/sweetAlert/sweetAlert";
 
 const CustomerNav = ({res, result1, result2}) => {
   const dispatch = useDispatch();
@@ -80,6 +80,23 @@ const CustomerNav = ({res, result1, result2}) => {
     }
     localStorage.removeItem("count");
     setCount(0);
+  };
+
+  const handleSwal = () => {
+    const title = "Are you sure?";
+    const icon = "warning";
+    const showCancelButton = true;
+    const confirmButtonColor = "#228B22";
+    const cancelButtonColor = "#d33";
+    const confirmButtonText = "Logout";
+    sweetAlert(
+      title,
+      icon,
+      showCancelButton,
+      confirmButtonColor,
+      cancelButtonColor,
+      confirmButtonText
+    );
   };
   return (
     <>

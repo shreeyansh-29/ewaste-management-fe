@@ -1,17 +1,23 @@
 import Swal from "sweetalert2";
-
-export function handleSwal() {
+export default function sweetAlert(
+  title,
+  icon,
+  showCancelButton,
+  confirmButtonColor,
+  cancelButtonColor,
+  confirmButtonText
+) {
   Swal.fire({
-    title: "Are you sure?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#228B22",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Logout",
+    title: title,
+    icon: icon,
+    showCancelButton: showCancelButton,
+    confirmButtonColor: confirmButtonColor,
+    cancelButtonColor: cancelButtonColor,
+    confirmButtonText: confirmButtonText,
   }).then((results) => {
     if (results.isConfirmed) {
-      window.location.href = "/Signin";
       localStorage.clear();
+      window.location.href = "/Signin";
     }
   });
 }

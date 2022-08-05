@@ -10,7 +10,7 @@
 .signup-button {
   border-radius: 17px;
   padding: 10px 46px;
-  margin-left: 2.5rem;
+  margin-left: 16rem;
   border: none;
   background-color: rgb(30, 28, 54);
   color: white;
@@ -67,8 +67,8 @@
   margin-left:1%;
 }
 .row {
-  display: flex;
-  flex-direction: row;
+  display: flex !important;
+  flex-direction: row !important;
 }
 .signup-form-cont {
   padding: 30px;

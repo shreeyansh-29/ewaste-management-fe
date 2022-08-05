@@ -3,7 +3,7 @@
 */
 
 import React, {useEffect} from "react";
-import {handleSwal} from "../../../components/sweetAlert/sweetAlert";
+import sweetAlert from "../../../components/sweetAlert/sweetAlert";
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import {Navbar, NavDropdown, Container, Nav} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,6 +19,22 @@ const VendorNav = ({res}) => {
     dispatch(vendorNameRequest());
   }, []);
 
+  const handleSwal = () => {
+    const title = "Are you sure?";
+    const icon = "warning";
+    const showCancelButton = true;
+    const confirmButtonColor = "#228B22";
+    const cancelButtonColor = "#d33";
+    const confirmButtonText = "Logout";
+    sweetAlert(
+      title,
+      icon,
+      showCancelButton,
+      confirmButtonColor,
+      cancelButtonColor,
+      confirmButtonText
+    );
+  };
   return (
     <>
       <Navbar
@@ -51,7 +67,7 @@ const VendorNav = ({res}) => {
                 Profile
               </Nav.Link>
               <Nav.Link>
-                <button className="Btn" onClick={handleSwal()}>
+                <button className="Btn" onClick={handleSwal}>
                   <NavLogoutBtn />
                 </button>
               </Nav.Link>

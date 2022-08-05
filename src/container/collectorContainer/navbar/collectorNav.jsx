@@ -3,7 +3,7 @@
 */
 /* eslint-disable indent */
 import React, {useState, useEffect} from "react";
-import {handleSwal} from "../../../components/sweetAlert/sweetAlert"
+import sweetAlert from "../../../components/sweetAlert/sweetAlert";
 import {NavLogoutBtn} from "../../../components/navbar/navbar.styles";
 import "../../customerContainer/customer.css";
 import "../collector.css";
@@ -82,6 +82,23 @@ function CollectorNav() {
     localStorage.removeItem("count");
     setCount(0);
   };
+
+  const handleSwal = () => {
+    const title = "Are you sure?";
+    const icon = "warning";
+    const showCancelButton = true;
+    const confirmButtonColor = "#228B22";
+    const cancelButtonColor = "#d33";
+    const confirmButtonText = "Logout";
+    sweetAlert(
+      title,
+      icon,
+      showCancelButton,
+      confirmButtonColor,
+      cancelButtonColor,
+      confirmButtonText
+    );
+  };
   return (
     <>
       <Navbar
@@ -154,10 +171,7 @@ function CollectorNav() {
             </Nav>
 
             <Nav.Link>
-              <button
-                className="Btn"
-                onClick={handleSwal()}
-              >
+              <button className="Btn" onClick={handleSwal}>
                 <NavLogoutBtn />
               </button>
             </Nav.Link>

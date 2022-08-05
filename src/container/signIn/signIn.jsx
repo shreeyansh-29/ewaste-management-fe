@@ -17,7 +17,7 @@ import {signInRequest} from "../../redux/action/signInAction/signInActions";
 import {SignInValidations} from "../constant/validations";
 import {Heading, ButtonStyle, Headings} from "../../components/styles";
 import {togglePassword} from "../../components/togglePassword/togglePassword";
-import {renderRole} from "../../components/renderRole/renderRole";
+import {routeRole} from "../../components/routeRole/routeRole";
 import {encryptData} from "../../core/utilities/utils";
 
 const SignIn = ({res}) => {
@@ -43,7 +43,7 @@ const SignIn = ({res}) => {
         const email = encryptData(token.sub);
         localStorage.setItem("email", email);
         const role = localStorage.getItem("Roles");
-        window.location.href = renderRole[role];
+        window.location.href = routeRole[role];
       }
     }
   }, [res]);

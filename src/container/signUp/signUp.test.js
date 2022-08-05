@@ -466,3 +466,35 @@ describe("testing Formik", () => {
     expect(wrapper).toBeTruthy;
   });
 });
+
+const timeout = process.env.SLOWMO ? 30000 : 10000;
+
+describe(
+  "integration testing",
+  () => {
+    it("form test", async () => {
+      const puppeteer = require("puppeteer");
+      const browser = await puppeteer.launch({headless: false});
+      const page = await browser.newPage();
+
+      await page.waitForSelector(".Form-BOdy");
+      await page.type("[name='firstName']", "Shreeyansh");
+      await page.type("[name='lastName']", "Singh");
+      await page.type("[type='email']", "customer1@gmail.com");
+      await page.type("[name='mobileNo']", "9695072068")
+      await page.type("[name='password']", "123456");
+      await page.type("[name='confirmPassword']", "123456");
+      await page.type("[name='address']", "Sec-14/339, Vikas Nagar");
+      await page.type("[id='#state']", "Uttar Pradesh");
+      await page.type("[id='#city']", "Lucknow");
+      await page.type("[name='pinCode']", "226022");
+      await page.type("[name='role']", "Customer")
+      await page.click('[type="submit"]');
+      await page.waitForSelector("");
+      const html = await page.$eval(".success", (el) => el.innerHTML);
+
+      expect(html).toBe("Successfully signed up!");
+    });
+  },
+  timeout
+);
