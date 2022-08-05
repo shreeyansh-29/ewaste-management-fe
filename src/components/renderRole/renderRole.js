@@ -1,6 +1,6 @@
 export const renderRole = {
-  CUSTOMER: "CustomerHome",
-  COLLECTOR: "CollectorHome",
-  VENDOR: "VendorHome",
-  "": null,
+  CUSTOMER: "CUSTOMER",
+  COLLECTOR: "COLLECTOR",
+  VENDOR: "VENDOR",
+  null: null,
 };

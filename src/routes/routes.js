@@ -20,7 +20,7 @@ const Routes = () => {
   /*istanbul ignore next*/
   return (
     <BrowserRouter>
-      {renderRole[role] === "CUSTOMER" ? (
+      {role === renderRole.CUSTOMER ? (
         <>
           <CustomerNav />
           <GlobalStyle />
@@ -29,7 +29,7 @@ const Routes = () => {
       ) : (
         ""
       )}
-      {renderRole[role] === "COLLECTOR" ? (
+      {role === renderRole.COLLECTOR ? (
         <>
           <CollectorNav />
           <GlobalStyle />
@@ -39,7 +39,7 @@ const Routes = () => {
         ""
       )}
 
-      {renderRole[role] === "VENDOR" ? (
+      {role === renderRole.VENDOR ? (
         <>
           <VendorNav />
           <GlobalStyle />
@@ -48,11 +48,11 @@ const Routes = () => {
       ) : (
         ""
       )}
-      {renderRole[role] === "null" ? (
+      {role === renderRole.null ? (
         <>
+          <PublicRoutes />
           <GlobalStyle />
           <Navbar />
-          <PublicRoutes />
         </>
       ) : (
         ""

@@ -56,9 +56,10 @@ const ForgotPassword = ({res}) => {
                   <div className="formerrors">{errors.email}</div>
                 ) : null}
 
-                {res?.data === SUCCESSFULL_REQUEST && (
-                  <MsgStyle>{MSG}</MsgStyle>
-                )}
+                {res?.data === SUCCESSFULL_REQUEST ||
+                  (res?.type === "FORGOT_PASSWORD_SUCCESS" && (
+                    <MsgStyle id="message">{MSG}</MsgStyle>
+                  ))}
                 {res?.data === FORBIDDEN && (
                   <div className="forbidden">{MSG2_403}</div>
                 )}
@@ -92,7 +93,7 @@ const ForgotPassword = ({res}) => {
 
 const mapStateToProps = (state) => {
   return {
-    res: state.forgotPassword,
+    res: state.forgotPassword?.data,
   };
 };
 

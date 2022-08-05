@@ -20,7 +20,7 @@ export const forgotPasswordReducer = (state = initialState, action) => {
       };
 
     case FORGOT_PASSWORD_SUCCESS:
-      return {...state, data: action.payload};
+      return {...state, data: action};
     case FORGOT_PASSWORD_ERROR:
       return {...state, error: action};
     default:

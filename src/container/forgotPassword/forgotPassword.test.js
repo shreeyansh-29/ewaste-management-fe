@@ -8,6 +8,7 @@ import configureStore from "redux-mock-store";
 import ForgotPassword from "./forgotPassword";
 import {Form, Formik} from "formik";
 import enableHooks from "jest-react-hooks-shallow";
+import {MSG} from "../constant/constants";
 
 enableHooks(jest);
 jest.mock("react-redux", () => ({
@@ -197,4 +198,24 @@ describe("should test for Form", () => {
     );
     expect(wrapper).toBeTruthy();
   });
+
+
+  const timeout = process.env.SLOWMO ? 30000 : 10000;
+  it.only("form test", async () => {
+    const puppeteer = require("puppeteer");
+    const browser = await puppeteer.launch({headless: false});
+    const page = await browser.newPage();
+
+    await page.goto('http://localhost:3000/ForgotPassword');
+    await page.waitForSelector(".Form-body");
+    await page.type("[type = 'email']", "shreeyansh.singh@nineleaps.com");
+    await page.click('[type="submit"]');
+
+    await page.waitForSelector("#message");
+    const html = await page.$eval("#message", (el) => el.innerHTML);
+
+    expect(html).toBe(MSG);
+    browser.close();
+  });
+  timeout;
 });

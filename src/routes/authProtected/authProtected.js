@@ -3,6 +3,7 @@
 */
 import React from "react";
 import {Navigate, Outlet} from "react-router-dom";
+import {renderRole} from "../../components/renderRole/renderRole";
 
 export default function AuthProtected() {
   const isAuthenticated = localStorage.getItem("token");
@@ -10,17 +11,17 @@ export default function AuthProtected() {
 
   return (
     <>
-      {role === "CUSTOMER" && isAuthenticated ? (
+      {role === renderRole.CUSTOMER && isAuthenticated ? (
         <Outlet />
       ) : (
         <Navigate to="/404" />
       )}
-      {role === "COLLECTOR" && isAuthenticated ? (
+      {role === renderRole.COLLECTOR && isAuthenticated ? (
         <Outlet />
       ) : (
         <Navigate to="/404" />
       )}
-      {role === "VENDOR" && isAuthenticated ? (
+      {role === renderRole.VENDOR && isAuthenticated ? (
         <Outlet />
       ) : (
         <Navigate to="/404" />
