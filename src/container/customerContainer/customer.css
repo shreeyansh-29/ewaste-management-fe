@@ -1,0 +1,589 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Roboto&family=Roboto+Mono:ital,wght@1,300&display=swap");
+.home {
+  background-color: #fafdfd;
+}
+.userreq {
+  width: 100%;
+  height: 60px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+}
+a:hover {
+  cursor: pointer;
+}
+.navbarCount {
+  color: white;
+  margin-left: 18px;
+  border-radius: 17px;
+  width: 23px;
+  top: 7px;
+  left: 4px;
+  position: "relative";
+}
+.userreq .center {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userreq .center .links {
+  max-height: 80px;
+}
+
+.userreq .center #hidden {
+  display: flex;
+}
+.notification_button {
+  margin-left: 46rem;
+}
+
+.userreq .center .links a {
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+  margin-left: 50px;
+}
+@media only screen and (max-width: 850px) {
+  .userreq .center .links a {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .userreq .center .links {
+    display: none;
+  }
+  .notification_button {
+    margin-left: 15%;
+  }
+
+  .userreq .center #hidden {
+    position: absolute;
+    left: 0px;
+    top: 60px;
+    max-height: 230px;
+    height: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userreq .center #hidden a {
+    margin: 10px;
+    font-size: 20px;
+  }
+}
+.container {
+  margin-top: 40px;
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  max-width: 65%;
+  flex-direction: column;
+  background-color: white;
+}
+.a {
+  text-decoration: none;
+  text-align: center;
+  margin-top: 30px;
+  color: black;
+}
+
+.btn2 {
+  margin-top: 20px;
+  margin-left: 40%;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(17, 17, 17);
+  text-align: center;
+}
+.cls {
+  margin-left: 25%;
+  margin-top: 5%;
+  width: 40%;
+  height: 60%;
+}
+.home-heading{
+  padding-top: 5.8%;
+  padding-bottom: 3%;
+}
+.customerHome-h3{
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1%;
+  font-weight: 500;
+  font-family: "Poppins";
+  padding-top: 4%;
+  padding-bottom: 3%;
+  text-decoration: underline; 
+}
+.customerHome-h3-1{
+  text-align: center;
+}
+.customerHome-h3-2{
+  text-align: center;
+  padding: 4% 0 2% 0
+}
+.customerHome-h3-3{
+  text-align: center;
+  padding: 8% 0 2% 0;
+}
+.customerHome-div{
+  padding-bottom: 8%;
+}
+.customerNavLink{
+  padding: 18px !important;
+}
+.customerNavDropDown{
+  padding: 10px;
+}
+.customerNav{
+  margin-right: 2% !important;
+}
+.navbarBrand{
+  margin-left: 1%
+}
+.completed{
+  padding: 10px 30px;
+}
+.completedSearchBtn{
+  fill: white;
+}
+.myRequests{
+ padding: 150px 30px 0 30px;
+}
+.myRequests-h2{
+  text-align: center;
+  font-size: 30px;
+  padding: 2px;
+  color: white;
+  margin-bottom: 2.5%;
+  background-color:  rgb(30, 28, 54);
+  border-radius: 5px
+}
+.myRequests-Paper{
+  margin: 20px auto;
+  width: 100%
+}
+.pending{
+  padding: 10px 30px;
+}
+.pendingBtn{
+  fill: white;
+}
+.analytics-h3{
+  text-align: center;
+}
+.customerProfile{
+  margin-top: 85px !important;
+}
+.customerProfileField{
+  border-radius: 17px !important;
+}
+.customerProfileEmail{
+  border-radius: 17px !important;
+  padding: 4px !important;
+  background-color: white !important;
+}
+.textStyle {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+textarea {
+  max-width: 100%;
+}
+.popup-box {
+  position: fixed;
+  background-color: rgb(46, 46, 46, 0.8);
+
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 200vh;
+
+  z-index: 100001 !important;
+}
+.popupbody {
+  padding: 20px;
+}
+.box {
+  position: relative;
+  width: 40%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 15px;
+  min-height: 350px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 17px;
+  margin: 160px auto;
+  overflow: auto;
+}
+.btn-close {
+  cursor: pointer;
+  border: 1px solid rgb(8, 5, 5);
+  border-radius: 50%;
+  position: fixed;
+  background-color: white;
+  right: 380px;
+  top: 150px;
+}
+.btn-close-feedback {
+  cursor: pointer;
+  border: 1px solid rgb(8, 5, 5);
+  border-radius: 50%;
+  position: fixed;
+  background-color: white;
+  right: 380px;
+  top:50px;
+}
+.inputGroup3 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+}
+.inputGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+}
+.msg {
+  border: 1px solid white;
+  width: 300px;
+  border-radius: 4px;
+  font-size: 20px;
+  color: #e75480;
+}
+.Req {
+  color: green;
+  margin-top: 18px;
+}
+.accept-btn {
+  background-color: rgb(14, 185, 207);
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 5px 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+}
+.accept-btn:hover {
+  color: rgb(144, 117, 221);
+  background-color: #ffffff;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+}
+
+.card {
+  height: 300px;
+  margin-bottom: 40px;
+}
+.card-footer {
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+}
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+}
+.image {
+  text-align: center;
+}
+.lg_container {
+  background-color: #101522;
+}
+.sm_container {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  padding: 3% 16% 4% 18%;
+  font-size: 1.3rem;
+}
+.customerbody {
+  padding: 20px;
+}
+.containers {
+  margin-top: 20px;
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  margin-left: 23%;
+  width: 55%;
+  height: 90vh;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+}
+.profilebtn {
+  border-radius: 17px;
+  padding: 10px 130px;
+  border: none;
+  background-color: rgb(30, 28, 54);
+  color: white;
+  font-weight: bold;
+  transition: all 0.4s;
+}
+.profilebtn:hover {
+  background: rgb(39, 35, 75);
+}
+.customersprofile {
+  background-color: rgb(22, 21, 43) !important;
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+.find-btn {
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(30, 28, 54);
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+.find-btn:hover {
+  background: rgb(39, 35, 75);
+}
+.bg-myblue {
+  background-color: #101522;
+}
+.icon-button__badge {
+  margin-left: 20px;
+}
+
+.notifications {
+  position: absolute;
+  top: 60px;
+  right: 20%;
+  background-color: rgb(235, 233, 233);
+  color: black;
+  font-weight: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid black;
+  z-index: 100001 !important;
+}
+.card:hover{
+    transform: scale(1.02);
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+    /* color: white; */
+    /* background-color: rgb(144, 117, 221); */
+  
+}
+.notifications1 {
+  position: absolute;
+  top: 60px;
+  right: 32%;
+  background-color: rgb(235, 233, 233);
+  color: black;
+  font-weight: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid black;
+  z-index: 100001 !important;
+}
+@media screen and (max-width: 1000px) {
+  .notifications {
+    top: 53px;
+    right: 1%;
+  }
+  .notifications1 {
+    top: 53px;
+    right: 1%;
+  }
+  .profilebtn {
+    padding: 10px 70px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .box {
+    width: 90%;
+  }
+  .btn-close {
+    right: 4.5%;
+  }
+  .btn-close-feedback {
+    right: 4.1%;
+  }
+}
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 768px) {
+    .containers {
+      margin-top:120px;
+      height: 50%;
+      width: 85%;
+      margin-left: 7%;
+    }
+
+    .inputGroup {
+      padding: 4px 1px;
+      width: 10%;
+    }
+    .inputGroup3 {
+      width: 100%;
+      margin-left: 0.5%;
+      padding: 2px 1px;
+      margin-top: 1px;
+    }
+    .notification_button{
+      margin-left: 350px;
+    }
+    .box {
+      width: 450px;
+    }
+    .btn-close {
+      right: 150px;
+    }
+    .btn-close-feedback {
+      right: 150px;
+    }
+    .card{
+      display: flex;
+      flex-direction: row;
+      width:330px;
+    }
+    .card-body{
+      
+      width:340px;
+      
+    }
+    .card-footer{
+      width:330px;
+    }
+  }
+}
+.welcome {
+  font-family: "Poppins", sans-serif;
+}
+.welcome:hover {
+  color: rgb(27, 116, 233);
+}
+
+.notification {
+  padding: 5px;
+  font-size: 14px;
+  position: relative;
+}
+.Btn {
+  background-color: rgb(14, 185, 207);
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 7px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+}
+.Btn:hover {
+  color: rgb(144, 117, 221);
+  background-color: #ffffff;
+}
+@media screen and (max-width: 360px) {
+  .containers{
+    width:90%;
+    margin-left:13px;
+    height:100%;
+  }
+  .form-select{
+    width:250px;
+  }
+  .notification_button{
+    margin-left: 90px;
+  }
+  .card{
+    margin-bottom: 13px;
+    width:280px;
+    margin-left: -15px;
+
+  }
+  .card-body{
+    width:280px;
+  }
+  .card-footer{
+    width:100%;
+  }
+}
+@media screen and (min-width: 370px) {
+  @media screen and (max-width: 420px) {
+    .containers{
+      width:90%;
+      margin-left:20px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+    .notification_button{
+      margin-left: 180px;
+    }
+    .card{
+      margin-bottom: 13px;
+    }
+    .card-body{
+      width:300px;
+    }
+    .card-footer{
+      width:100%;
+    }
+    
+    
+  }
+}
+@media screen and (min-width: 420px) {
+  @media screen and (max-width: 500px) {
+    .containers{
+      width:90%;
+      margin-left:23px;
+      height:100%;
+    }
+  }
+}
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 600px) {
+    .containers{
+      width:95%;
+      margin-left:13px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+  }
+}
+@media screen and (min-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    .containers{
+      width:95%;
+      margin-left:13px;
+      height:100%;
+    }
+    .form-select{
+      width:90%;
+    }
+  }
+}
+
+
+

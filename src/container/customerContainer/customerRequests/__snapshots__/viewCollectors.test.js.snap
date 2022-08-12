@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View Collectors Request test ViewCollectors 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "padding": "50px 0 0 0",
+      }
+    }
+  >
+    <h2
+      style={
+        Object {
+          "backgroundColor": " rgb(30, 28, 54)",
+          "borderRadius": "5px",
+          "color": "white",
+          "fontSize": "30px",
+          "marginBottom": "2.5%",
+          "padding": "2px,",
+          "textAlign": "center",
+        }
+      }
+    >
+       
+      Collectors Available
+       
+    </h2>
+    <WithStyles(Component)
+      actions={
+        Array [
+          Object {
+            "icon": [Function],
+            "onClick": [Function],
+          },
+        ]
+      }
+      columns={
+        Array [
+          Object {
+            "cellStyle": Object {
+              "fontSize": "15px",
+              "textAlign": "center",
+            },
+            "editable": "never",
+            "field": "firstName",
+            "headerStyle": Object {
+              "fontSize": "15px",
+              "textAlign": "center",
+            },
+            "title": "Name",
+          },
+          Object {
+            "cellStyle": Object {
+              "fontSize": "15px",
+              "textAlign": "center",
+            },
+            "editable": "never",
+            "field": "address1",
+            "headerStyle": Object {
+              "fontSize": "15px",
+              "textAlign": "center",
+            },
+            "title": "Address",
+          },
+          Object {
+            "cellStyle": Object {
+              "fontSize": "15px",
+            },
+            "editable": "never",
+            "field": "pinCode",
+            "headerStyle": Object {
+              "fontSize": "15px",
+            },
+            "title": "Pincode",
+          },
+          Object {
+            "cellStyle": Object {
+              "fontSize": "15px",
+            },
+            "editable": "never",
+            "field": "shopTime",
+            "headerStyle": Object {
+              "fontSize": "15px",
+            },
+            "title": "Time",
+          },
+        ]
+      }
+      options={
+        Object {
+          "actionsColumnIndex": -1,
+        }
+      }
+      title=""
+    />
+  </div>
+</div>
+`;

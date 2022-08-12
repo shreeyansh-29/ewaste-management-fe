@@ -1,0 +1,25 @@
+/*CollectorRequests*/
+
+.collectorRequests{
+    padding: 150px 30px 0 30px;
+}
+
+.collectorRequests-h2{
+    text-align: center;
+    font-size: 30px;
+    padding: 2px;
+    color: white;
+    margin-bottom: 2.5%;
+    background-color:rgb(30, 28, 54);
+    border-radius: 5px;
+}
+
+/*RequestSummary*/
+
+.requestSummary{
+    padding: 150px 30px 0 30px;
+}
+
+.request-searchBtn{
+    fill: white;
+}

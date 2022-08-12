@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing Customer Routes test customerRoutes 1`] = `
+<Routes>
+  <Route
+    element={<CustomerHome />}
+    path="/CustomerHome"
+  />
+  <Route
+    element={<CustomerProfile />}
+    path="/CustomerProfile"
+  />
+  <Route
+    element={<Memo(Connect(CustomerNav)) />}
+    path="/CustomerNav"
+  />
+  <Route
+    element={<Memo(Connect(PickUp)) />}
+    path="/Request/PickUp"
+  />
+  <Route
+    element={<Memo(Connect(DropOff)) />}
+    path="/Request/DropOff"
+  />
+  <Route
+    element={<MyRequests />}
+    path="/Request/MyRequests"
+  />
+  <Route
+    element={<Popup />}
+    path="/Popup"
+  />
+  <Route
+    element={<Memo(Connect(Waste)) />}
+    path="/Drives/Waste"
+  />
+  <Route
+    element={<ViewCollectors />}
+    path="/ViewCollectors"
+  />
+  <Route
+    element={<AuthProtected />}
+    path="/"
+  />
+  <Route
+    element={<PageNotFound />}
+    exact={true}
+    path="*"
+  />
+</Routes>
+`;

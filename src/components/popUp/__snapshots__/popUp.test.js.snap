@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing should render component 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "getServerState": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Object {
+        "addNestedSub": [Function],
+        "getListeners": [Function],
+        "handleChangeWrapper": [Function],
+        "isSubscribed": [Function],
+        "notifyNestedSubs": [Function],
+        "trySubscribe": [Function],
+        "tryUnsubscribe": [Function],
+      },
+    }
+  }
+>
+  <Popup
+    c={1}
+    cont={1}
+    content={1}
+    contents={1}
+  />
+</ContextProvider>
+`;

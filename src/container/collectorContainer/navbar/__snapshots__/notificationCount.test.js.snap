@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test notificationCount  should render component 1`] = `
+<div>
+  <div
+    className="icon-button__badge1"
+  >
+    <div
+      className="navbar-Count"
+    />
+    <Styled(BsBell)
+      style={
+        Object {
+          "color": "white",
+          "marginBottom": "20px",
+        }
+      }
+    />
+  </div>
+</div>
+`;

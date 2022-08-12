@@ -1,0 +1,60 @@
+.app-button {
+  padding: 10px 30px;
+  margin-top: 1rem;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  transition: all 0.4s;
+}
+
+.app-button:hover {
+  background: orange;
+}
+.title{
+  font-size: 30px;
+}
+.navbarLink{
+  color: white
+}
+.navbarNav{
+  margin-right: 1%
+}
+.navbarLinkHref{
+  padding: 18px;
+  color: white;
+}
+
+@media screen and (max-width: 360px) {
+  .title{
+    font-size:18px;
+  }
+}
+@media screen and (min-width: 370px) {
+  @media screen and (max-width: 420px) {
+    .title{
+      font-size:22px;
+    }
+  }
+}
+@media screen and (min-width: 420px) {
+  @media screen and (max-width: 500px) {
+    .title{
+      font-size: 20px;
+    }
+  }
+}
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 600px) {
+    .title{
+      font-size: 25px;
+    }
+  }
+}
+@media screen and (min-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    .title{
+      font-size: 30px;
+    }
+  }
+}

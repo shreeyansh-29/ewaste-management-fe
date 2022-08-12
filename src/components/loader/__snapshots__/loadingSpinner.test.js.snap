@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing loader test 1`] = `
+<div
+  className="spinner-container"
+>
+  <div
+    className="loading-spinner"
+  >
+    <ThreeDots
+      height="50"
+      width="50"
+    />
+  </div>
+</div>
+`;
