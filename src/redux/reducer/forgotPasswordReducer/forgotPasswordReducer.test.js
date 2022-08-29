@@ -35,7 +35,7 @@ describe("forgotPasswordReducer", () => {
         payload: {status: "success"},
       })
     ).toEqual({
-      data: {status: "success"},
+      data: {payload: {status: "success"}, type: types.FORGOT_PASSWORD_SUCCESS},
       isLoading: true,
       error: "",
     });

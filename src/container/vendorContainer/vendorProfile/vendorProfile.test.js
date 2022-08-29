@@ -7,7 +7,6 @@ import {Provider} from "react-redux";
 import toJson from "enzyme-to-json";
 import VendorProfile from "./vendorProfile";
 import {Formik, Form} from "formik";
-import {isEmpty} from "lodash";
 import toast from "../../../components/toast";
 
 Enzyme.configure({adapter: new Adapter()});
@@ -88,25 +87,6 @@ describe("test Vendor Profile", () => {
         target: {value: ""},
       });
     expect(mockFn).toBeCalled;
-  });
-  it("should test changeCity", () => {
-    const mockFn = jest.fn();
-    const initialcities = false;
-    const cities = [];
-    const wrapper = mount(
-      <Provider store={store}>
-        <VendorProfile changeCity={mockFn} {...initialcities} {...cities} />
-      </Provider>
-    );
-    wrapper
-      .find("#city")
-      .at(0)
-      .simulate("change", {
-        preventDefault() {},
-        target: {value: ""},
-      });
-    expect(mockFn).toBeCalled;
-    expect(isEmpty(initialcities)).toEqual(true);
   });
   it("should have submit button", () => {
     const wrapper = mount(

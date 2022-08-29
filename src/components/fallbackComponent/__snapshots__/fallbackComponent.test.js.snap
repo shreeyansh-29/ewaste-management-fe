@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FallBackComponent testing 1`] = `
+<Fragment>
+  <div
+    className="row text-center column"
+  >
+    <div
+      className="col-lg-12 div1"
+    >
+      <img
+        alt=""
+        className="img1"
+        src="something-went-wrong.png"
+      />
+    </div>
+    <div
+      className="col-lg-12"
+    >
+      <h1
+        className="error-h1"
+      >
+        Oh no!
+      </h1>
+      <h2
+        className="error-h2"
+      >
+        !!!!....Something went wrong....!!!!
+      </h2>
+      <h5
+        className="error-h5"
+      >
+        Refresh or Try Again Later
+      </h5>
+    </div>
+  </div>
+</Fragment>
+`;

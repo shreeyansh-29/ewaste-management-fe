@@ -78,7 +78,7 @@ describe("test My Orders", () => {
         <MyOrders togglepop={mockFn} />
       </Provider>
     );
-    wrapper.find("#pop1").simulate("click");
+    wrapper.find("#pop1").at(0).simulate("click");
     expect(mockFn).toHaveBeenCalled;
   });
 });

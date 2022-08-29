@@ -6,7 +6,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import toJson from "enzyme-to-json";
 import CustomerProfile from "./customerProfile";
-import {Form, Formik} from "formik";
+import {Formik} from "formik";
 import {isEmpty} from "lodash";
 
 Enzyme.configure({adapter: new Adapter()});
@@ -59,7 +59,6 @@ describe("Customer Profile", () => {
       </Provider>
     );
     expect(wrapper.find(Formik).length).toEqual(1);
-    expect(wrapper.find(Form).length).toEqual(1);
   });
   it("should have Multiple Input Fields", () => {
     const wrapper = mount(
@@ -83,7 +82,7 @@ describe("Customer Profile", () => {
         <CustomerProfile handleSubmit={handleSubmit} />
       </Provider>
     );
-    wrapper.find(Form).simulate("submit");
+    wrapper.find(Formik).simulate("submit");
     expect(handleSubmit).toBeCalled;
   });
   it("should test changeState", () => {

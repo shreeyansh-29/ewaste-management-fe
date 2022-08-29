@@ -9,43 +9,21 @@ exports[`test vendorHome 1`] = `
       className="lg_container"
     >
       <div
-        style={
-          Object {
-            "paddingBottom": "3%",
-            "paddingTop": "5.8%",
-          }
-        }
+        className="vendorCarousel"
       >
         <CategoryCarousel />
       </div>
     </div>
     <h3
-      style={
-        Object {
-          "fontFamily": "Roboto",
-          "fontSize": "2rem",
-          "fontWeight": "500",
-          "marginBottom": "-8%",
-          "paddingTop": "4%",
-          "textAlign": "center",
-          "textDecoration": "underline",
-        }
-      }
+      className="vendorCarousel-h3-1"
     >
-       
       Your contribution as an Eco-ranger:
-       
     </h3>
     <div
       className="dashboard"
     >
       <h3
-        style={
-          Object {
-            "padding": "12% 0 1% 0",
-            "textAlign": "center",
-          }
-        }
+        className="vendorCarousel-h3-2"
       >
         Your contribution towards the Recyclability of the E-Waste Generated
       </h3>
@@ -55,35 +33,20 @@ exports[`test vendorHome 1`] = `
       className="dashboard"
     >
       <h3
-        style={
-          Object {
-            "padding": "0 0 1% 0",
-            "textAlign": "center",
-          }
-        }
+        className="vendorCarousel-h3-3"
       >
         Number of Collectors per Category in your City
       </h3>
       <Connect(CollectorCategory) />
     </div>
     <div
-      className="row"
-      style={
-        Object {
-          "padding": "5% 3% 10% 3%",
-        }
-      }
+      className="row vendorCarouselDiv"
     >
       <div
         className="col-lg-6"
       >
         <h3
-          style={
-            Object {
-              "padding": "0 0 1% 0",
-              "textAlign": "center",
-            }
-          }
+          className="vendorCarousel-h3-3"
         >
           E-Waste Collectors in your City
         </h3>
@@ -93,12 +56,7 @@ exports[`test vendorHome 1`] = `
         className="col-lg-6"
       >
         <h3
-          style={
-            Object {
-              "padding": "0 0 1% 0",
-              "textAlign": "center",
-            }
-          }
+          className="vendorCarousel-h3-3"
         >
           E-Waste Recycling Vendors in your City
         </h3>

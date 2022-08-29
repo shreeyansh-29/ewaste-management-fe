@@ -35,7 +35,10 @@ describe("collectorNotificationDataReducer", () => {
         payload: {status: "success"},
       })
     ).toEqual({
-      data: {status: "success"},
+      data: {
+        payload: {status: "success"},
+        type: types.COLLECTOR_NOTIFICATION_DATA_SUCCESS,
+      },
       isLoading: true,
       error: "",
     });

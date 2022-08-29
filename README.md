@@ -15,8 +15,9 @@ npm start
   
 ## Prerequisites
 1.IDE (visual studio)  
-2.npm version 8.5.2  
+2.npm version 8.15.0  
 3.react v17.0.2  
+4.node v18.7.0
 
 ## Store the source code on Github
 ```  

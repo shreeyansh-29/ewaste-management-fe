@@ -3,29 +3,11 @@
 exports[`View Collectors Request test ViewCollectors 1`] = `
 <div>
   <div
-    style={
-      Object {
-        "padding": "50px 0 0 0",
-      }
-    }
+    className="viewCollector"
   >
-    <h2
-      style={
-        Object {
-          "backgroundColor": " rgb(30, 28, 54)",
-          "borderRadius": "5px",
-          "color": "white",
-          "fontSize": "30px",
-          "marginBottom": "2.5%",
-          "padding": "2px,",
-          "textAlign": "center",
-        }
-      }
-    >
-       
+    <styled.h2>
       Collectors Available
-       
-    </h2>
+    </styled.h2>
     <WithStyles(Component)
       actions={
         Array [

@@ -11,7 +11,8 @@ jest.mock("./httpProvider");
 
 it("testing api calls", () => {
   const Api = api;
-  const wrapper = shallow(<Api />);
+  let token = "jnxajscna";
+  const wrapper = shallow(<Api {...token} />);
   expect.assertions(1);
   expect(toJson(wrapper)).toMatchSnapshot();
 });

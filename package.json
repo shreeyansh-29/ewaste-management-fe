@@ -51,7 +51,6 @@
     "identity-obj-proxy": "^3.0.0",
     "input-material-ui": "^2.9.0",
     "jest": "^27.5.1",
-    "jest-puppeteer": "^6.1.1",
     "jest-react-hooks-shallow": "^1.5.1",
     "jest-resolve": "^27.4.2",
     "jest-styled-components": "^7.0.8",
@@ -68,7 +67,6 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
     "prompts": "^2.4.2",
-    "puppeteer": "^16.0.0",
     "react": "^17.0.2",
     "react-app-polyfill": "^3.0.0",
     "react-bootstrap": "^2.2.2",
@@ -151,7 +149,6 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
-    "jest-canvas-mock": "^2.4.0",
     "node-sass": "^7.0.1",
     "redux-mock-store": "^1.5.4"
   },

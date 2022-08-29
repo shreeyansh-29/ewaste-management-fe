@@ -8,54 +8,27 @@ exports[`test notificationCount 1`] = `
     className="lg_container"
   >
     <div
-      style={
-        Object {
-          "paddingBottom": "3%",
-          "paddingTop": "5.8%",
-        }
-      }
+      className="home-carousel"
     >
       <CategoryCarousel />
     </div>
   </div>
   <h3
-    style={
-      Object {
-        "fontFamily": "Roboto,sans-serif",
-        "fontSize": "2rem",
-        "fontWeight": "500",
-        "marginTop": "1%",
-        "paddingTop": "4%",
-        "textAlign": "center",
-        "textDecoration": "underline",
-      }
-    }
+    className="home-h3"
   >
-     
     Your contribution as an Eco-ranger:
-     
   </h3>
   <div
     className="dashboard"
   >
     <h3
-      style={
-        Object {
-          "padding": "4% 0 2% 0",
-          "textAlign": "center",
-        }
-      }
+      className="home-h3-1"
     >
       Your contribution towards the Collection and Reusability of E-Waste Items
     </h3>
     <Connect(EWasteOrg) />
     <h3
-      style={
-        Object {
-          "padding": "6% 0 8% 0",
-          "textAlign": "center",
-        }
-      }
+      className="home-h3-2"
     >
       Revenue Generated With Respect to Category
     </h3>
@@ -65,35 +38,20 @@ exports[`test notificationCount 1`] = `
     className="dashboard"
   >
     <h3
-      style={
-        Object {
-          "padding": "4% 0 2% 0",
-          "textAlign": "center",
-        }
-      }
+      className="home-h3-1"
     >
       E-Waste drives in your City
     </h3>
     <Connect(EWasteDrives) />
   </div>
   <div
-    className="row"
-    style={
-      Object {
-        "padding": "2% 0 10% 0",
-      }
-    }
+    className="row home-div"
   >
     <div
       className="col-lg-6"
     >
       <h3
-        style={
-          Object {
-            "padding": "4% 0 2% 0",
-            "textAlign": "center",
-          }
-        }
+        className="home-h3-1"
       >
         E-Waste Generators in your City
       </h3>
@@ -103,12 +61,7 @@ exports[`test notificationCount 1`] = `
       className="col-lg-6"
     >
       <h3
-        style={
-          Object {
-            "padding": "4% 0 2% 0",
-            "textAlign": "center",
-          }
-        }
+        className="home-h3-1"
       >
         E-Waste Recylers in your City
       </h3>

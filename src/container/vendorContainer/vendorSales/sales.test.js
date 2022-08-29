@@ -79,19 +79,6 @@ describe("test Sales", () => {
     );
     expect(wrapper.find(MaterialTable).length).toEqual(1);
   });
-  it("should test ProfileIcon", () => {
-    const mockFn = jest.fn();
-    const wrapper = mount(
-      <Provider store={store}>
-        <BrowserRouter>
-          <Sales profile={mockFn} />
-        </BrowserRouter>
-      </Provider>
-    );
-
-    wrapper.find("#pop1").simulate("click");
-    expect(mockFn).toHaveBeenCalled;
-  });
   it("should test Purchase Button and throw error if purchaseQuantity is empty", () => {
     const mockFn = jest.fn();
     const wrapper = mount(

@@ -8,43 +8,21 @@ exports[`test notificationCount 1`] = `
     className="lg_container"
   >
     <div
-      style={
-        Object {
-          "paddingBottom": "3%",
-          "paddingTop": "5.8%",
-        }
-      }
+      className="home-heading"
     >
       <CategoryCarousel />
     </div>
   </div>
   <h3
-    style={
-      Object {
-        "fontFamily": "Poppins",
-        "fontSize": "1.5rem",
-        "fontWeight": "500",
-        "marginTop": "1%",
-        "paddingBottom": "3%",
-        "paddingTop": "4%",
-        "textAlign": "center",
-        "textDecoration": "underline",
-      }
-    }
+    className="customerHome-h3"
   >
-     
     Your contribution as an Eco-ranger:
-     
   </h3>
   <div
     className="dashboard"
   >
     <h3
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
+      className="customerHome-h3-1"
     >
       Your Contribution towards the Sustainability of our Planet
     </h3>
@@ -54,31 +32,17 @@ exports[`test notificationCount 1`] = `
     className="dashboard"
   >
     <h3
-      style={
-        Object {
-          "padding": "4% 0 2% 0",
-          "textAlign": "center",
-        }
-      }
+      className="customerHome-h3-2"
     >
       E-Waste Collectors in your City
     </h3>
     <Connect(CollectorsCategories) />
   </div>
   <div
-    style={
-      Object {
-        "paddingBottom": "8%",
-      }
-    }
+    className="customerHome-div"
   >
     <h3
-      style={
-        Object {
-          "padding": "8% 0 2% 0",
-          "textAlign": "center",
-        }
-      }
+      className="customerHome-h3-3"
     >
       E-Waste Drives in your City
     </h3>

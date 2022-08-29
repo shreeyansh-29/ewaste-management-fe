@@ -30,11 +30,7 @@ exports[`testing analytics should render component 1`] = `
 >
   <CarouselItem>
     <h3
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
+      className="analytics-h3"
     >
       Your Contribution towards the Sustainability of our Planet
     </h3>

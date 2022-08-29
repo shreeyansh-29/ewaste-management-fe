@@ -35,7 +35,10 @@ describe("customerNotificationCountReducer", () => {
         payload: {count: 3},
       })
     ).toEqual({
-      data: {count: 3},
+      data: {
+        payload: {count: 3},
+        type: types.CUSTOMER_NOTIFICATION_COUNT_SUCCESS,
+      },
       isLoading: true,
       error: "",
     });

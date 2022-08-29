@@ -14,7 +14,7 @@ import "./signin.css";
 import {routeRole} from "../../components/routeRole/routeRole";
 import {encryptData} from "../../core/utilities/utils";
 import log from "loglevel";
-const {clientId} = require("../../core/config/index");
+const {clientId} = require("../../core/config/index") || {};
 
 const GoogleSignin = ({res}) => {
   const [email, setEmail] = useState("");

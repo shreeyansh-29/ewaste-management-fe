@@ -6,7 +6,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import toJson from "enzyme-to-json";
 import CollectorProfile from "./collectorProfile";
-import {Form, Formik} from "formik";
+import {Formik} from "formik";
 import {isEmpty} from "lodash";
 
 Enzyme.configure({adapter: new Adapter()});
@@ -59,7 +59,6 @@ describe("Collector Profile", () => {
       </Provider>
     );
     expect(wrapper.find(Formik).length).toEqual(1);
-    expect(wrapper.find(Form).length).toEqual(1);
   });
   it("should have Multiple Input Fields", () => {
     const wrapper = mount(

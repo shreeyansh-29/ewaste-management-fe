@@ -76,7 +76,7 @@ exports[`test categoryCarousel 1`] = `
       <img
         alt="Fifth Slide"
         className="d-block w-100"
-        src="TV.jpg"
+        src="tv.jpg"
       />
     </CarouselItem>
     <CarouselItem

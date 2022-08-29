@@ -108,7 +108,7 @@ describe("test ItemsForSale", () => {
       .at(0)
       .props()
       .onChange({target: {value: 8}});
-  
+
     let quantity = wrapper.find('input[placeholder="Quantity"]');
 
     quantity.simulate("mousedown", {target: {value: 8}});
@@ -117,10 +117,7 @@ describe("test ItemsForSale", () => {
     expect(quantity.prop("value")).toBe("");
 
     wrapper.find('button[title="Save"]').simulate("click");
-
-    act(() => {
-      jest.runAllTimers();
-    });
+    jest.runAllTimers();
   });
   it("should test Sale It Button", () => {
     let store = mockStore({

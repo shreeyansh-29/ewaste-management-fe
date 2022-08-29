@@ -1,7 +1,8 @@
 import React from "react";
-import "../components/errorBoundary/errorBoundary.css";
-import image from "../assets/images/something-went-wrong.png";
-export const FallbackComponent = () => {
+import "./fallbackComponent.css";
+import image from "../../assets/images/something-went-wrong.png";
+
+const FallbackComponent = () => {
   return (
     <>
       <div className="row text-center column">
@@ -17,3 +18,5 @@ export const FallbackComponent = () => {
     </>
   );
 };
+
+export default FallbackComponent;

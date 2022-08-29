@@ -13,13 +13,9 @@ exports[`test categoryCarousel 1`] = `
       fluid={true}
     >
       <NavLink
+        className="navbarLink"
         disabled={false}
         href="/"
-        style={
-          Object {
-            "color": "white",
-          }
-        }
       >
         <div
           className="title"
@@ -36,36 +32,21 @@ exports[`test categoryCarousel 1`] = `
         id="responsive-navbar-nav"
       >
         <Nav
-          className="ms-auto"
+          className="ms-auto navbarNav"
           fill={false}
           justify={false}
-          style={
-            Object {
-              "marginRight": "1%",
-            }
-          }
         >
           <NavLink
+            className="navLinkHref"
             disabled={false}
             href="/"
-            style={
-              Object {
-                "color": "white",
-                "padding": "18px",
-              }
-            }
           >
             <Styled(ImHome) />
           </NavLink>
           <NavLink
+            className="navLinkHref"
             disabled={false}
             href="/Signin"
-            style={
-              Object {
-                "color": "white",
-                "padding": "18px",
-              }
-            }
           >
             <Styled(BsPerson) />
           </NavLink>
