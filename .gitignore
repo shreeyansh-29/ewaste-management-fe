@@ -15,11 +15,7 @@
 
 .scannerwork
 .vscode
-config
-scripts
 sonarqube
-docker-compose.yml
-eslint-report.html
 
 # misc
 .DS_Store
