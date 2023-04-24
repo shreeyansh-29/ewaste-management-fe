@@ -3,7 +3,7 @@
 exports[`test dropDown Component should render dropdown 1`] = `
 <div>
   <select
-    className="dropdown"
+    className="dropdown1"
     onChange={[Function]}
   >
     <option>

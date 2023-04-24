@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import MaterialTable from "material-table";
 import {useDispatch} from "react-redux";
 import "../customer.css";
-import "./customerRequests.scss";
+// import "./customerRequests.scss";
 import {TOAST_SUCCESS4} from "../../constant/constants";
 import Toast from "../../../components/toast";
 import {customerViewCollectorsRequest} from "../../../redux/action/customer/customerViewCollectorAction/customerViewCollectorAction";

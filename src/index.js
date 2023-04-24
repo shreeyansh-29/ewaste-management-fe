@@ -5,7 +5,7 @@ import App from "./App";
 import {AppContainer} from "react-hot-loader";
 import * as Sentry from "@sentry/react";
 import {BrowserTracing} from "@sentry/tracing";
-import {FallBackComponent} from "../src/components/fallbackComponent/fallbackComponent";
+import FallBackComponent from "./components/fallbackComponent/fallbackComponent";
 
 Sentry.init({
   dsn: "https://bdeccc4501874bb68ffd3c1faaa235de@o1346476.ingest.sentry.io/6624411",

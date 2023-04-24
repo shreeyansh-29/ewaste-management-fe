@@ -24,7 +24,7 @@ exports[`test footer element test footer 1`] = `
       <styled.div>
         <styled.small>
           Ⓒ 
-          2022
+          2023
            Powered by E-Waste Management
         </styled.small>
       </styled.div>

@@ -25,7 +25,7 @@ describe("test dropDown Component", () => {
   });
   it("should test onChange", () => {
     const wrapper = shallow(<Dropdown {...props}>{name}</Dropdown>);
-    wrapper.find(".dropdown").simulate("change", event);
+    wrapper.find(".dropdown1").simulate("change", event);
     expect(props.onChange).toBeCalledWith("Customer");
   });
 });

@@ -11,7 +11,7 @@ const Dropdown = (props) => {
 
   return (
     <div>
-      <select className="dropdown" value={role} onChange={handleChange}>
+      <select className="dropdown1" value={role} onChange={handleChange}>
         <option>Select your Role</option>
         {data.map((item, key) => (
           <option key={key} value={item.label}>

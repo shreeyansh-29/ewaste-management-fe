@@ -6,7 +6,7 @@
 import React, {useEffect, useState} from "react";
 import MaterialTable from "material-table";
 import "../customer.css";
-import "./customerRequests.scss";
+// import "./customerRequests.scss";
 import {useDispatch, connect} from "react-redux";
 import AddIcon from "@material-ui/icons/AddBox";
 import {

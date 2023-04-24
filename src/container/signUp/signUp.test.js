@@ -367,7 +367,7 @@ describe("testing Formik", () => {
         <SignUp {...props} />
       </Provider>
     );
-    let role = wrapper.find("#role").find(".dropdown");
+    let role = wrapper.find("#role").find(".dropdown1");
     role.simulate("click");
     expect(props.handleDropdown).toHaveBeenCalled;
     role = props.data[0].label;
