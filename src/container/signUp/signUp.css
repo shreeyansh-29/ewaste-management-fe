@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-
 .signUp {
   height: 170vh;
 }
@@ -148,7 +146,6 @@ select{
   text-align: justify;
   font-size: 14px;
   font-weight: normal;
-  font-family: "poppins", sans-serif;
 }
 .role{
   margin-left: 2.3%;

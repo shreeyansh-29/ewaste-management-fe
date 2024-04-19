@@ -79,6 +79,7 @@
     "react-google-map-picker": "^1.2.3",
     "react-hot-loader": "^4.13.0",
     "react-icons": "^4.3.1",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-loader-spinner": "^5.1.5",
     "react-notifications": "^1.7.3",
     "react-redux": "^8.0.2",

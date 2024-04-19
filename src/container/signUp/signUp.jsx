@@ -106,6 +106,7 @@ const signUp = ({res}) => {
   return (
     <div className="signUp">
       <Formik
+        enableReinitialize
         initialValues={{
           firstName: "",
           lastName: "",
@@ -136,7 +137,7 @@ const signUp = ({res}) => {
           dispatch(signUpRequest(info));
         }}
       >
-        {({errors, touched, handleChange}) => (
+        {({errors, touched, handleChange,}) => (
           <SignUpForm
             errors={errors}
             touched={touched}

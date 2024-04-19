@@ -1,32 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 * {
   margin: 0;
-  font-family: "Poppins", sans-serif;
 }
-.signin-content{
+.signin-content {
   text-align: center;
 }
-.signIn-forgot-link{
+.signIn-forgot-link {
   color: gray;
-  font-family: "Poppins", sans-serif;
   margin-right: 20px;
 }
-.signIn-body{
+.signIn-body {
   margin-top: 30px;
   margin-left: 20px;
   margin-right: 20px;
 }
-.signIn-link{
+.signIn-link {
   color: grey;
-  font-family: "Poppins", sans-serif;
   font-size: 16.5px;
 }
-.signIn-float{
+.signIn-float {
   float: right;
 }
-.signIn-btn{
-margin-top: 50px;
+.signIn-btn {
+  margin-top: 50px;
 }
 .signIn {
   display: flex;
@@ -34,39 +29,38 @@ margin-top: 50px;
   align-items: center;
   height: 88vh;
 }
-.signInForm{
+.signInForm {
   margin-top: 30px !important;
   margin-left: 20px !important;
   margin-right: 20px !important;
 }
-.signInField{
+.signInField {
   border-radius: 17px !important;
 }
-.forgotPasswordLink{
+.forgotPasswordLink {
   color: gray;
-  font-family: "Poppins";
   margin-right: 20px;
 }
-.signInBtnDiv{
+.signInBtnDiv {
   margin-top: 50px;
 }
 .heading {
   background-color: rgb(30, 28, 54);
   border-radius: 10px 10px 0px 0px;
 }
-.forgotLink{
+.forgotLink {
   float: right;
 }
 .form-cont {
   padding: 15px 10px;
 }
-.googleDiv{
+.googleDiv {
   margin-top: 4%;
 }
-.googleImg{
-  padding-bottom: 4px
+.googleImg {
+  padding-bottom: 4px;
 }
-.googlebtn{
+.googlebtn {
   border-radius: 17px;
   padding: 3px 8px;
   border: none;
@@ -74,10 +68,10 @@ margin-top: 50px;
   color: white;
   font-weight: bold;
   width: 200px;
-  margin-left:-5px;
+  margin-left: -5px;
 }
-.googleLogin{
-  background-color: blue; 
+.googleLogin {
+  background-color: blue;
   width: 50;
   height: 50px;
 }
@@ -88,31 +82,28 @@ margin-top: 50px;
   max-width: 50vh;
   margin-top: 150px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
- 
 }
 @media screen and (max-width: 400px) {
-  .Form-BOdy{
-    width:40vh;
+  .Form-BOdy {
+    width: 40vh;
   }
- 
 }
-.formError{
+.formError {
   padding-left: 9.5%;
   color: red;
   text-align: justify;
   font-size: 14px;
   font-weight: normal;
-  font-family: "poppins", sans-serif;
 }
 .signin-button {
   border-radius: 17px;
-  padding: .5rem ;
+  padding: 0.5rem;
   border: none;
   background-color: rgb(30, 28, 54);
   color: white;
   font-weight: bold;
   width: 200px;
-  margin-left:-5px;
+  margin-left: -5px;
 }
 .signin-button:hover {
   background-color: rgb(39, 35, 75);
@@ -150,8 +141,7 @@ label {
 .inputWithButtons button {
   position: absolute;
   right: 7px;
-  top : 4px;
-
+  top: 4px;
 }
 input[type="text"],
 input[type="email"],
@@ -167,19 +157,16 @@ input[type="pincode"] .select,
   border-radius: 4px;
   background: white;
   outline: none;
-  font-family: "Poppins", sans-serif;
 }
 .forgot-psswd {
   text-align: right;
   margin-top: -10%;
   margin-bottom: 20px;
-  font-family: "Poppins", sans-serif;
 }
 .sign {
   text-align: left;
   margin-top: -7%;
   margin-bottom: 10px;
-  font-family: "Poppins", sans-serif;
 }
 .cont {
   height: 45px;
@@ -192,7 +179,6 @@ input[type="pincode"] .select,
 }
 label,
 span {
-  font-family: "Poppins", sans-serif;
 }
 .app-button1 {
   padding: 10px 30px;
@@ -215,43 +201,43 @@ span {
 .Req {
   color: rgb(0, 128, 111);
 }
-  @media screen and (max-width:768px) {
-    .signIn{
-      margin-top: -30px;
-    }
-   }
-
-@media screen and (min-width:500px){
-  @media screen and (max-width:600px) {
-    .signin-button{
-      width:12.3rem;
-      height:2.3rem;
-      /* text-align: center; */
-      padding-left:60px;
-      /* padding-right: 90px; */
-    }
-    .googlebtn{
-      width:12.3rem;
-      height:2.3rem;
-      /* text-align: center; */
-      padding-left:60px;
-      /* padding-right: 90px; */
-    }
-   }
+@media screen and (max-width: 768px) {
+  .signIn {
+    margin-top: -30px;
+  }
 }
-  @media screen and (max-width:375px) {
-    .signin-button{
-      width:9.3rem;
-      height:2.3rem;
-      padding-left:50px;
+
+@media screen and (min-width: 500px) {
+  @media screen and (max-width: 600px) {
+    .signin-button {
+      width: 12.3rem;
+      height: 2.3rem;
+      /* text-align: center; */
+      padding-left: 60px;
+      /* padding-right: 90px; */
     }
-    .googlebtn{
-      width:9.3rem;
-      height:2.3rem;
-      /* padding-left:50px; */
+    .googlebtn {
+      width: 12.3rem;
+      height: 2.3rem;
+      /* text-align: center; */
+      padding-left: 60px;
+      /* padding-right: 90px; */
     }
-    .Form-BOdy{
-      margin-top: 55px;
-      width:40vh;
-    }
-   }
+  }
+}
+@media screen and (max-width: 375px) {
+  .signin-button {
+    width: 9.3rem;
+    height: 2.3rem;
+    padding-left: 50px;
+  }
+  .googlebtn {
+    width: 9.3rem;
+    height: 2.3rem;
+    /* padding-left:50px; */
+  }
+  .Form-BOdy {
+    margin-top: 55px;
+    width: 40vh;
+  }
+}

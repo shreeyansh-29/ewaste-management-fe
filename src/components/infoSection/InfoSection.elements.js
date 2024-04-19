@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 /*istanbul ignore next */
 export const InfoSec = styled.div`
@@ -63,15 +64,15 @@ export const TopLine = styled.div`
   margin-bottom: 16px;
 `;
 
-export const Img = styled.img`
-  padding-left: 20%;
+export const Img = styled(LazyLoadImage)`
+  ${'' /* padding-left: 20%; */}
   border: 0;
-  max-width: 130%;
+  max-width: 100%;
   vertical-align: middle;
   display: inline-block;
-  max-height: 400px;
+  max-height: auto;
   @media screen and (max-width: 412px) {
-    padding-left: 30%;
+    ${'' /* padding-left: 30%; */}
   }
 `;
 

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
 import Select from "react-select";
-import "./signUp.css"
+import "./signUp.css";
 
 function CategoriesField({...props}) {
   return (
@@ -18,9 +18,9 @@ function CategoriesField({...props}) {
         Select the categories of ewaste you can collect from customers
       </ReactTooltip>
       {props.categoryAccepted.map((v, i) => {
+        // eslint-disable-next-line react/jsx-key
         return (
-          // eslint-disable-next-line react/jsx-key
-          <div className="inputGroups categories">
+          <div className="inputGroups categories" key={i}>
             <Select
               value={props.categoryAccepted.category}
               options={props.data}
@@ -31,11 +31,9 @@ function CategoriesField({...props}) {
           </div>
         );
       })}
-      {() => {
-        if (props.errors.category) {
-          <div className="formErrors">{props.errors.category}</div>;
-        }
-      }}
+      {props.errors.category && (
+        <div className="formErrors">{props.errors.category}</div>
+      )}
     </>
   );
 }

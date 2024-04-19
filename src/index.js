@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import {AppContainer} from "react-hot-loader";
 import * as Sentry from "@sentry/react";
-import {BrowserTracing} from "@sentry/tracing";
+import {BrowserTracing} from "@sentry/browser";
 import FallBackComponent from "./components/fallbackComponent/fallbackComponent";
 
 Sentry.init({

@@ -13,14 +13,14 @@ import GlobalStyle from "../container/globalStyles";
 import CollectorNav from "../container/collectorContainer/navbar/collectorNav";
 import VendorNav from "../container/vendorContainer/navbar/vendorNav";
 import Navbar from "../components/navbar/navbars";
-import {renderRole} from "../components/renderRole/renderRole";
+import {renderRole as routeRole} from "../components/renderRole/renderRole";
 
 const Routes = () => {
   var role = localStorage.getItem("Roles");
   /*istanbul ignore next*/
   return (
     <BrowserRouter>
-      {role === renderRole.CUSTOMER ? (
+      {role === routeRole.Customer ? (
         <>
           <CustomerNav />
           <GlobalStyle />
@@ -29,7 +29,7 @@ const Routes = () => {
       ) : (
         ""
       )}
-      {role === renderRole.COLLECTOR ? (
+      {role === routeRole.Collector ? (
         <>
           <CollectorNav />
           <GlobalStyle />
@@ -39,7 +39,7 @@ const Routes = () => {
         ""
       )}
 
-      {role === renderRole.VENDOR ? (
+      {role === routeRole.Vendor ? (
         <>
           <VendorNav />
           <GlobalStyle />
@@ -48,14 +48,12 @@ const Routes = () => {
       ) : (
         ""
       )}
-      {role === renderRole.null ? (
+      {!role && (
         <>
           <PublicRoutes />
           <GlobalStyle />
           <Navbar />
         </>
-      ) : (
-        ""
       )}
     </BrowserRouter>
   );

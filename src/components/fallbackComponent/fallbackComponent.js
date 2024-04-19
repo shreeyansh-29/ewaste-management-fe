@@ -7,7 +7,7 @@ const FallbackComponent = () => {
     <>
       <div className="row text-center column">
         <div className="col-lg-12 div1">
-          <img src={image} alt="" className="img1" />
+          <img src={image} alt="" className="img1" loading="lazy" />
         </div>
         <div className="col-lg-12">
           <h1 className="error-h1">Oh no!</h1>

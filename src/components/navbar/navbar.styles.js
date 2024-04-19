@@ -49,6 +49,10 @@ export const NavLogo = styled(Link)`
 
 export const NavIcon = styled(GiGreenPower)`
   margin-right: 0.5rem;
+  
+  ${'' /* &:hover {
+    color: white
+  } */}
 `;
 export const NavHomeIcon = styled(ImHome)`
   margin-right: 0.5rem;

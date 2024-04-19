@@ -11,17 +11,17 @@ export default function AuthProtected() {
 
   return (
     <>
-      {role === renderRole.CUSTOMER && isAuthenticated ? (
+      {role === renderRole.Customer && isAuthenticated ? (
         <Outlet />
       ) : (
         <Navigate to="/404" />
       )}
-      {role === renderRole.COLLECTOR && isAuthenticated ? (
+      {role === renderRole.Collector && isAuthenticated ? (
         <Outlet />
       ) : (
         <Navigate to="/404" />
       )}
-      {role === renderRole.VENDOR && isAuthenticated ? (
+      {role === renderRole.Vendor && isAuthenticated ? (
         <Outlet />
       ) : (
         <Navigate to="/404" />

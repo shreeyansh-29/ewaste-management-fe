@@ -14,7 +14,6 @@ exports[`test categoryCarousel 1`] = `
     >
       <NavLink
         className="navbarLink"
-        disabled={false}
         href="/"
       >
         <div
@@ -26,26 +25,21 @@ exports[`test categoryCarousel 1`] = `
       </NavLink>
       <NavbarToggle
         aria-controls="responsive-navbar-nav"
-        label="Toggle navigation"
       />
       <NavbarCollapse
         id="responsive-navbar-nav"
       >
         <Nav
           className="ms-auto navbarNav"
-          fill={false}
-          justify={false}
         >
           <NavLink
             className="navLinkHref"
-            disabled={false}
             href="/"
           >
             <Styled(ImHome) />
           </NavLink>
           <NavLink
             className="navLinkHref"
-            disabled={false}
             href="/Signin"
           >
             <Styled(BsPerson) />

@@ -101,7 +101,12 @@ const SignIn = ({res}) => {
                       autoComplete="off"
                     />
                     <div className="input-group-btn">
-                      <ButtonStyle onClick={togglePasswords} type="button">
+                      <ButtonStyle
+                        onClick={togglePasswords}
+                        type="button"
+                        id="toggle-button"
+                        tabIndex="-1"
+                      >
                         {passwordType === "password" ? (
                           <ShowOffIcon />
                         ) : (

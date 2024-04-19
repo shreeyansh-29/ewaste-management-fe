@@ -7,7 +7,6 @@ import {Provider} from "react-redux";
 import toJson from "enzyme-to-json";
 import ItemsForSale from "./itemsForSale";
 import MaterialTable from "material-table";
-import {act} from "react-test-renderer";
 
 Enzyme.configure({adapter: new Adapter()});
 

@@ -1,33 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`testing analytics should render component 1`] = `
-<Carousel
-  controls={true}
-  defaultActiveIndex={0}
-  fade={false}
-  indicatorLabels={Array []}
-  indicators={true}
-  interval={5000}
-  keyboard={true}
-  nextIcon={
-    <span
-      aria-hidden="true"
-      className="carousel-control-next-icon"
-    />
-  }
-  nextLabel="Next"
-  pause="hover"
-  prevIcon={
-    <span
-      aria-hidden="true"
-      className="carousel-control-prev-icon"
-    />
-  }
-  prevLabel="Previous"
-  slide={true}
-  touch={true}
-  wrap={true}
->
+<Carousel>
   <CarouselItem>
     <h3
       className="analytics-h3"

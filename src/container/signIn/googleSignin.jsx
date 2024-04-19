@@ -73,6 +73,7 @@ const GoogleSignin = ({res}) => {
                 alt="Google"
                 width="30px"
                 className="googleImg"
+                loading="lazy"
               />
               Sign in
             </button>

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import {Container} from "../../container/globalStyles";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import {
   InfoSec,
   InfoRow,
@@ -40,7 +41,7 @@ const InfoSection = ({
             </InfoColumn>
             <InfoColumn>
               <ImgWrapper start={start}>
-                <Img src={img} alt={alt} />
+                <Img src={img} alt={alt} effect="blur" />
               </ImgWrapper>
             </InfoColumn>
           </InfoRow>

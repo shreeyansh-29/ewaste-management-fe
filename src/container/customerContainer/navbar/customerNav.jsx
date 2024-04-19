@@ -116,6 +116,7 @@ const CustomerNav = ({res, result1, result2}) => {
             <NavbarButton
               onClick={() => markAsRead()}
               className="notification_button"
+              aria-label="notification-button"
             >
               <NotificationCount count={count} />
             </NavbarButton>

@@ -12,7 +12,7 @@ import SignUpCityField from "./signUpCityField";
 import SignUpRoleField from "./signUpRoleField";
 import DropOffTimeField from "./dropOffTimeField";
 import CategoriesField from "./categoriesField";
-import {routeRole} from "../../components/routeRole/routeRole";
+import {renderRole} from "../../components/renderRole/renderRole";
 
 const signUpForm = (props) => {
   const [confirmPasswordType, setConfirmPasswordType] = useState("text");
@@ -118,8 +118,7 @@ const signUpForm = (props) => {
             <div className="row">
               <SignUpRoleField {...props} />
             </div>
-            {routeRole[props.role] === "Vendor" ||
-            routeRole[props.role] === "Collector" ? (
+            {renderRole[props.role] === "Vendor" && (
               <div className="row">
                 <SignUpInputField
                   label="GST-IN"
@@ -136,27 +135,42 @@ const signUpForm = (props) => {
                   {...props}
                 />
               </div>
-            ) : (
-              ""
             )}
-            {routeRole[props.role] === "Collector" ? (
-              <>
+            {renderRole[props.role] === "Collector" && (
+              <div className="row">
+                <SignUpInputField
+                  label="GST-IN"
+                  type="text"
+                  name="gstNo"
+                  placeholder="GST Number"
+                  {...props}
+                />
+                <SignUpInputField
+                  label="Registration Number"
+                  type="text"
+                  name="registrationNo"
+                  placeholder="Registration Number"
+                  {...props}
+                />
                 <div className="row">
                   <DropOffTimeField {...props} />
                   <div className="inputGroup"></div>
                 </div>
                 <>
-                  <CategoriesField />
+                  <CategoriesField {...props} />
                 </>
-              </>
-            ) : (
-              ""
+              </div>
             )}
             <span className="error">{props.msg !== "" ? props.msg : ""}</span>
             <div className="row">
               <div className="cont">
                 <button type="submit" className="signup-button">
                   SIGN UP
+                </button>
+              </div>
+              <div className="cont">
+                <button className="backbutton">
+                  BACK
                 </button>
               </div>
             </div>

@@ -25,6 +25,10 @@
   color: white;
 }
 
+.title.title:hover{
+  color: rgb(9, 100, 157);
+}
+
 @media screen and (max-width: 360px) {
   .title{
     font-size:18px;
